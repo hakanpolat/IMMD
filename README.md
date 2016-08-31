@@ -1,15 +1,9 @@
-# IMMD
-integrated modular motor drive
+# IMMD Research
 
-## sdfsdf
-
-fdgd fhgfh
-
-fhgfh
-fghfg
-
-* fghfg
+## Dökümantasyon Planı
+* weekly plan: haftalık neler çalışılacağı - neler yapıldığı
+* 
 * gjgfjgh
-* gjgfjgh
+
 
 ![](./images/heatsink.png)
