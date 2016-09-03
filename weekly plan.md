@@ -22,4 +22,4 @@
 ## Gerçekleşen çalışmalar
 * Çoğu bitti
 * -
-* -
+* Çoğu bitti
