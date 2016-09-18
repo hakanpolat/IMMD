@@ -11,6 +11,18 @@
 * Konu5: Cooling configuration
 * Konu6: Spatial configuration and housing
 
+## MENDELEY'de tagler
+* IMMD
+* machine: configuration
+* integration
+* control
+* Thermal
+* device
+* topology
+* rectifier
+* capacitor
+* passive
+
 ## Makale planlaması
 * Inverter topologies, devices, loss characterisation, analytical modeling and simulations
 * DC link capacitor evaluation (bu ikisi aynı makale de olabilir farklı da olabilir bence).
