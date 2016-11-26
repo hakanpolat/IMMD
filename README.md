@@ -12,21 +12,20 @@
 * Konu6: Spatial configuration and housing
 
 ## MENDELEY'de tagler
-* IMMD
-* machine: configuration
-* integration
-* control
-* Thermal
-* device
-* topology
-* rectifier
-* capacitor
-* passive
+* "IMMD"
+* "machine" configuration
+* "modular" motor - SMC core
+* "integration"
+* "control"
+* "thermal"
+* "device"
+* "topology"
+* "rectifier"
+* "capacitor"
+* "passive"
 
 ## Makale planlaması
-* Inverter topologies, devices, loss characterisation, analytical modeling and simulations
-* DC link capacitor evaluation (bu ikisi aynı makale de olabilir farklı da olabilir bence).
-Veya rectifier topology ile capacitor evaluation birleştirilebilir.
-
-
-![](./images/heatsink.png)
+* Machine configuration, inverter topologies and simulation
+* Devices, loss characterisation, analytical modeling and simulation
+* DC link capacitor evaluation, analytical modeling and simulation
+* Rectifier configuration and topologies

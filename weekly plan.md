@@ -1,3 +1,20 @@
+# 28 Kasım - 4 Aralık
+## Planlanan çalışmalar:
+* Mendeley tagleri sonlandırılacak
+* Mendeley'de kalan makaleler okunacak, highligh edilecek
+* DC link kondansatörü konusunda literatür derlenecek, bulgular dökümante edilecek
+* Motor drive topolojileri konusunda literatür derlenecek, bulgular dökümante edilecek
+* Kullanılabilecek yarıiletkenler konusunda literatür derlenecek, bulgular dökümante edilecek
+
+## Gerçekleşen çalışmalar:
+* ds
+* df
+
+
+
+
+# *OLD STUFF*
+
 # Haftalık Çalışma Planı - 4
 ## 19 Eylül - 25 Eylül
 ## Planlanan çalışmalar:
