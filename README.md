@@ -23,6 +23,8 @@
 * "rectifier"
 * "capacitor"
 * "passive"
+* "spatial"
+* "special", örn: MEA
 
 ## Makale planlaması
 * Machine configuration, inverter topologies and simulation

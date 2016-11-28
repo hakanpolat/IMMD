@@ -7,8 +7,8 @@
 * Kullanılabilecek yarıiletkenler konusunda literatür derlenecek, bulgular dökümante edilecek
 
 ## Gerçekleşen çalışmalar:
-* ds
-* df
+* Tag'ler bitti
+* 
 
 
 
