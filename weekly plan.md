@@ -8,7 +8,7 @@
 
 ## Gerçekleşen çalışmalar:
 * Tag'ler bitti
-* 
+* 5 makale daha çalışıldı
 
 
 
