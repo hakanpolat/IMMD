@@ -2,13 +2,17 @@
 ## Planlanan çalışmalar:
 * Mendeley tagleri sonlandırılacak
 * Mendeley'de kalan makaleler okunacak, highligh edilecek
+* Okunan makalelerin referansları araştırılıp yeni makaleler eklenecek
 * DC link kondansatörü konusunda literatür derlenecek, bulgular dökümante edilecek
 * Motor drive topolojileri konusunda literatür derlenecek, bulgular dökümante edilecek
 * Kullanılabilecek yarıiletkenler konusunda literatür derlenecek, bulgular dökümante edilecek
 
 ## Gerçekleşen çalışmalar:
 * Tag'ler bitti
-* 5 makale daha çalışıldı
+* 8 makale daha çalışıldı
+* GaN ile ilgili 3 yeni makale eklendi
+
+
 
 
 
