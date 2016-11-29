@@ -1,4 +1,7 @@
 # Semiconductor devices
-* Standard 2-level 3-phase inverter
 
-![](./images/heatsink.png)
+The table below shows the commercially available cascode GaN manufacturers.
+![](./images/gan_commercial.png)
+
+The table below shows the commercially available enhancement mode GaN manufacturers.
+![](./images/gan_commercial2.png)
