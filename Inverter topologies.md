@@ -38,7 +38,7 @@ The circuit schematic is shown below:
 
 * A 2n+1 level CHB converter consists of n H-bridges in each phase
 * It is possible to generate an output voltage of ±kVdc/n (k from 0 to n).
-* CHB converters are supplied by isolated voltage sources or phase shift transformers for each bridge.
+* CHB converters are supplied by isolated voltage sources or phase shift transformers for each bridge. Extra cost.
 * Each H- bridge only supplies a single-phase module and the instantaneous power from the input DC source is fluctuating.
 
 # Topology with transformers
@@ -92,3 +92,15 @@ The circuit schematic is shown below:
 * The module capacitors will buffer the single phase fluctuating power, so MHF topology needs some design considerations on the capacitor size.
 * The module capacitors must deal with the negative instantaneous power.
 * Since the module of MMC forms a boost converter topology, the component voltage in MMC must be slightly higher than Vdc/n.
+
+# Topology Proposed by Wang, Jiyao (Wisconsin)
+The circuit schematic is shown below:
+
+![](./images/topology/wisconsin.png)
+* The motor is segmented with three-phase modules.
+* Utilization of the motor for isolation of CHB cells.
+* Requires only one DC source.
+* Three-phase modules are connected in series on their DC link.
+
+# Topology Comparison (quantity)
+![](./images/topology/quantity.png)
