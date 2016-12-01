@@ -1,24 +1,23 @@
 # 28 Kasım - 4 Aralık
 ## Planlanan çalışmalar:
-* Mendeley tagleri sonlandırılacak
-* Mendeley'de kalan makaleler okunacak, highligh edilecek
-* Okunan makalelerin referansları araştırılıp yeni makaleler eklenecek
-* GaN için commercially available firmalara bakılacak, sample istenecek
-* Motor drive topolojileri konusunda literatür derlenecek, bulgular dökümante edilecek
-* Kullanılabilecek yarıiletkenler (GaN ağırlıklı) konusunda literatür derlenecek, bulgular dökümante edilecek
-* DC link kondansatörü konusunda literatür derlenecek, bulgular dökümante edilecek
+* Mendeley tagleri sonlandırılacak: OK
+* Mendeley'de kalan makaleler okunacak, highligh edilecek: OK
+* Okunan makalelerin referansları araştırılıp yeni makaleler eklenecek: DEVAM
+* GaN için commercially available firmalara bakılacak, sample istenecek: DEVAM
+* Motor drive topolojileri konusunda literatür derlenecek, bulgular dökümante edilecek: DEVAM
+* Kullanılabilecek yarıiletkenler (GaN ağırlıklı) konusunda literatür derlenecek, bulgular dökümante edilecek: DEVAM
+* DC link kondansatörü konusunda literatür derlenecek, bulgular dökümante edilecek: ERTELEME
 
 
 ## Gerçekleşen çalışmalar:
 * Tag'ler bitti.
-* 12 makale daha çalışıldı. Makaleler (çok uzun olan state of art ya da tez vb. haricinde) bitirildi. Kalanları da zaman içerisinde bölüm bölüm çalışılacak.
+* 14 makale daha çalışıldı. Makaleler (çok uzun olan state of art ya da tez vb. haricinde) bitirildi. Kalanları da zaman içerisinde bölüm bölüm çalışılacak.
 * GaN ile ilgili 4 yeni makale eklendi, çalışıldı.
 * GaN için firmalar derlendi, sample istenecek.
 * Planar magnetics ile ilgili bir review makalesine çalışıldı.
+* "Inverter topologies" ile ilgili dökümantasyon yapıldı
+* "Semiconductor devices" ile ilgili dökümantasyon yapıldı
 * DC link kondansatörü konusu ertelendi.
-
-
-
 
 
 
