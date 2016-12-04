@@ -1,8 +1,10 @@
 ## Split Winding machine
 Conventional winding:
+
 ![](./images/machine/conventional.png)
 
 Split winding:
+
 ![](./images/machine/split.png)
 
 * Maintains all electrical and mechanical properties of motor

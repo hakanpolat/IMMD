@@ -1,13 +1,24 @@
+# 5 Aralık - 12 Aralık
+## Planlanan çalışmalar:
+* Wang'ın tezi bitirilecek (Wisconsin)
+* GaN için sample istenecek: DEVAM
+* "Inverter topologies" ile ilgili dökümantasyona devam edilecek
+* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
+* "Machine configuration" ile ilgili dökümantasyona devam edilecek
+
+## Gerçekleşen çalışmalar:
+* .
+
+
 # 28 Kasım - 4 Aralık
 ## Planlanan çalışmalar:
 * Mendeley tagleri sonlandırılacak: OK
 * Mendeley'de kalan makaleler okunacak, highligh edilecek: OK
-* Okunan makalelerin referansları araştırılıp yeni makaleler eklenecek: DEVAM
+* Okunan makalelerin referansları araştırılıp yeni makaleler eklenecek: OK
 * GaN için commercially available firmalara bakılacak, sample istenecek: DEVAM
 * Motor drive topolojileri konusunda literatür derlenecek, bulgular dökümante edilecek: DEVAM
 * Kullanılabilecek yarıiletkenler (GaN ağırlıklı) konusunda literatür derlenecek, bulgular dökümante edilecek: DEVAM
 * DC link kondansatörü konusunda literatür derlenecek, bulgular dökümante edilecek: ERTELEME
-
 
 ## Gerçekleşen çalışmalar:
 * Tag'ler bitti.
@@ -17,7 +28,7 @@
 * Planar magnetics ile ilgili bir review makalesine çalışıldı.
 * "Inverter topologies" ile ilgili dökümantasyon yapıldı
 * "Semiconductor devices" ile ilgili dökümantasyon yapıldı
-* DC link kondansatörü konusu ertelendi.
+* "Machine configuration" ile ilgili dökümantasyon yapıldı
 
 
 

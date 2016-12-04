@@ -31,6 +31,7 @@ Switching performance comparison of Si and SiC FET devices having similar Ron:
 ![](./images/device/sameRon.png)
 
 * GaN FET: Use of Si substrate is more suitable for commercial products (due to cost). Depletion mode GaNs are normally-on (not desirable). Enhancement mode are normall-off. Cascode solution can be used as shown below:
+
 ![](./images/device/cascode.png)
 
 * WBG IGBT: IGBT is bipolar where MOSFET is unipolar, thus IGBTs have smaller Ron. But, IGBT has on-state voltage drop.

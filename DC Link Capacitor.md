@@ -5,6 +5,7 @@
 * Second part is time-varying fluctuating power
 * Frequency is twice the fundamental
 * Capacitors must be large
+
 ## Three-phase system
 ![](./images/dclink/Threephase.png)
 * Instantaneous power is equal to real power
