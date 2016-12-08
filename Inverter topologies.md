@@ -101,6 +101,24 @@ The circuit schematic is shown below:
 * Utilization of the motor for isolation of CHB cells.
 * Requires only one DC source.
 * Three-phase modules are connected in series on their DC link.
+* No requirement for extra components like clamping diodes, flying capacitors, filters etc.
+* Modular
+
+# Extended Topology Proposed by Wang, Jiyao (Wisconsin)
+The circuit schematic is shown below:
+
+![](./images/topology/extended topology.png)
+* Combination of segmented machine configuration with NPC topology to further relax the stresses on the devices.
+* Flexibility
 
 # Topology Comparison (quantity)
 ![](./images/topology/quantity.png)
+
+# Topology Comparison (capacitor size)
+![](./images/topology/capacitor size.png)
+
+# Topology Comparison (voltage stress)
+![](./images/topology/voltagestress.png)
+
+# Topology Comparison (voltage stress on machine terminals)
+![](./images/topology/voltagestressmachine.png)

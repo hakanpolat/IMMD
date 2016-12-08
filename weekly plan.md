@@ -1,14 +1,14 @@
 # 5 Aralık - 12 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin)
-* GaN için sample istenecek: DEVAM
+* GaN için sample istenecek
 * "Inverter topologies" ile ilgili dökümantasyona devam edilecek
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
 * "Machine configuration" ile ilgili dökümantasyona devam edilecek
 
 ## Gerçekleşen çalışmalar:
+* Inverter topologies ile ilgili karşılaştırmalar eklendi.
 * .
-
 
 # 28 Kasım - 4 Aralık
 ## Planlanan çalışmalar:
