@@ -5,10 +5,12 @@
 * "Inverter topologies" ile ilgili dökümantasyona devam edilecek
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
 * "Machine configuration" ile ilgili dökümantasyona devam edilecek
+* "DC link capacitor"  ile ilgili dökümantasyona devam edilecek
+* "DC link capacitor"  ile ilgili simulasyon yapılacak
 
 ## Gerçekleşen çalışmalar:
 * Inverter topologies ile ilgili karşılaştırmalar eklendi.
-* .
+* Wang'ın tezinde 3 chapter daha bitirildi.
 
 # 28 Kasım - 4 Aralık
 ## Planlanan çalışmalar:
