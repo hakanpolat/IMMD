@@ -25,7 +25,7 @@ EPCOS, aluminium electrolytic capacitor
 * ESR: Equivalent series resistance (affected by temperature, frequency)
 * ESL: Equivalent series inductance (affected by dimension, around 20 nH)
 * Lifetime: Affected by temperature, Iac,r
-* Dimensions (D,L) and weight
+* Dimensions (D,L), volume, surface area and weight
 
 # Capacitor Analysis
 ## Parameters for DC link Capacitors
@@ -36,3 +36,24 @@ EPCOS, aluminium electrolytic capacitor
 * ESR: loss, heat, lifetime
 * ESL: voltage overshoot
 * Inductor of filter (effect of rectifier side)
+
+# Capacitor Types
+## Aluminium electrolytic capacitor
+* ++ High capacitance per volume
+* ++ Low cost
+* ++ Suitable for vibrational environment
+* -- Sensitive to temperature change
+* -- Low RMS current rating per volume
+## Polypropylene film capacitor
+* ++ High RMS current rating per volume
+* ++ Small ESL
+* ++ Better temperature stability
+* ++ Suitable for vibrational environment
+* -- Low capacitance per volume
+* -- High cost
+## Multi-layer ceramic capacitor (MLCC)
+* ++ Low cost
+* ++ High RMS current rating per volume
+* -- Low capacitance per volume
+* -- No self-healing capability
+* -- Limited power rating (multiple series and parallel capacitors)
