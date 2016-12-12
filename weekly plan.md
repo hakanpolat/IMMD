@@ -2,15 +2,16 @@
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin)
 * GaN için sample istenecek
-* "Inverter topologies" ile ilgili dökümantasyona devam edilecek
+* "Inverter topologies" ile ilgili dökümantasyona devam edilecek: OK
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
 * "Machine configuration" ile ilgili dökümantasyona devam edilecek
-* "DC link capacitor"  ile ilgili dökümantasyona devam edilecek
-* "DC link capacitor"  ile ilgili simulasyon yapılacak
+* "DC link capacitor"  ile ilgili dökümantasyona devam edilecek: OK
+* "DC link capacitor"  ile ilgili simulasyon yapılacak: OK
 
 ## Gerçekleşen çalışmalar:
 * Inverter topologies ile ilgili karşılaştırmalar eklendi.
 * Wang'ın tezinde 3 chapter daha bitirildi.
+* DC Link capacitor konusunda simulasyon modeli oluşturuldu. İlk simulasyonlar yapıldı.
 
 # 28 Kasım - 4 Aralık
 ## Planlanan çalışmalar:
