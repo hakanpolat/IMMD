@@ -58,7 +58,7 @@ ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
 num = 20;
 Vcrms = zeros(1,num);
 for k = 1:num
-    fsw = k*1e3; % Hz
+    fsw = k*1e3 % Hz
     sim('capacitor1.slx');
     Vcrms(k) = Vcrms_sim(numel(Vcrms_sim));
 end
