@@ -1,10 +1,24 @@
-# 5 Aralık - 12 Aralık
+# 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin)
 * GaN için sample istenecek
-* "Inverter topologies" ile ilgili dökümantasyona devam edilecek: OK
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
 * "Machine configuration" ile ilgili dökümantasyona devam edilecek
+* "DC link capacitor"  ile ilgili simulasyona devam edilecek
+* 3501 projesi yazılmaya başlanacak
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
+# 5 Aralık - 11 Aralık
+## Planlanan çalışmalar:
+* Wang'ın tezi bitirilecek (Wisconsin): devam
+* GaN için sample istenecek: devam
+* "Inverter topologies" ile ilgili dökümantasyona devam edilecek: OK
+* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek: OK
+* "Machine configuration" ile ilgili dökümantasyona devam edilecek: OK
 * "DC link capacitor"  ile ilgili dökümantasyona devam edilecek: OK
 * "DC link capacitor"  ile ilgili simulasyon yapılacak: OK
 
