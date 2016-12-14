@@ -8,7 +8,7 @@
 * 3501 projesi yazılmaya başlanacak
 
 ## Gerçekleşen çalışmalar:
-* ...
+* 3501 için bütçe kalemleri girildi.
 * ..
 * .
 
