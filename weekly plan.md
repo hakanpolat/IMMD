@@ -9,7 +9,7 @@
 
 ## Gerçekleşen çalışmalar:
 * 3501 için bütçe kalemleri girildi.
-* ..
+* 3501 için proje alt-başlıkları oluşturuldu.
 * .
 
 # 5 Aralık - 11 Aralık
