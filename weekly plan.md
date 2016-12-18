@@ -1,7 +1,6 @@
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin)
-* GaN için sample istenecek
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
 * "Machine configuration" ile ilgili dökümantasyona devam edilecek
 * "DC link capacitor"  ile ilgili simulasyona devam edilecek
@@ -10,7 +9,8 @@
 ## Gerçekleşen çalışmalar:
 * 3501 için bütçe kalemleri girildi.
 * 3501 için proje alt-başlıkları oluşturuldu.
-* .
+* 3501 için iş-zaman planı.
+*
 
 # 5 Aralık - 11 Aralık
 ## Planlanan çalışmalar:
