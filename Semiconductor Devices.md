@@ -9,6 +9,7 @@ The table below shows the commercially available enhancement mode GaN manufactur
 # Wide band-gap devices
 Material properties-I:
 ![](./images/device/materi,al_property.png)
+
 Material properties-II:
 ![](./images/device/thermal.png)
 * For normal Si semiconductor, the operating temperature cannot be high because of the significant leakage current
@@ -35,3 +36,48 @@ Switching performance comparison of Si and SiC FET devices having similar Ron:
 ![](./images/device/cascode.png)
 
 * WBG IGBT: IGBT is bipolar where MOSFET is unipolar, thus IGBTs have smaller Ron. But, IGBT has on-state voltage drop.
+
+# Comparison Between CoolMOS Si, SiC and GaN
+## Comparison of device datasheet values
+![](./images/device/comparison1.png)
+## Loss comparison
+![](./images/device/comparison2.png)
+
+## Comments on comparison:
+* Similar Rds-on: Similar conduction Loss
+* GaN has lowest capacitances: Lower switching loss
+* SiC is better than Si in capacitances (switching loss)
+* Negligible gate driver loss
+* GaN has no reverse recovery. Only conduction loss in diode (very low)
+* SiC has better diode loss than Si
+
+# Critical datasheet parameters for GaN:
+Example: EPC2012 http://epc-co.com/epc/Portals/0/epc/documents/datasheets/EPC2018_datasheet.pdf
+
+## Values
+* Vds - Breakdown voltage: 150V
+* Idc - Continuous current: 12 A (this should be provided with temp)
+* Idp - Pulsed current: 60 A (this should be provided with temp and pulsewidth)
+* Rdson - On-state resistance: 18 mOhm (this should be provided with Id, Vgs and temp)
+* Vgs - Gate-source voltage: -5 to 6V (negative supply is required)
+* Qg - Total gate charge: 5 nC (this should be provided with Vgs, Vds and Id)
+* Qoss - Output charge: 40 nC (this should be provided with Vds and Id)
+* Vf - Forward voltage: 1.8 V (source - drain, body diode) (this should be provided with Isd, Vgs and temp)
+* Qr - Recovery charge: 0 nC (source - drain, body diode, zero for GaN)
+* Thermal resistances: Rjc, Rjb, Rja
+
+## Graphs
+* Id vs Vds (Vgs)
+* Ig vs Vgs (temp)
+* Rdson vs Vgs (temp - Id)
+* C vs Vds
+* Isd vs Vsd (temp)
+* Rdson vs temp
+* Ig vs Vgs
+* Transient thermal response
+* Safe operating area
+
+## Properties due to parameters
+* Low Rdson: Low conduction loss
+* Low Qg: High switching speed (nsec)
+* Zero Qr: No recovery loss. Very low loss during dead time.

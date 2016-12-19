@@ -1,3 +1,15 @@
+# 19 Aralık - 25 Aralık
+## Planlanan çalışmalar:
+* Wang'ın tezi bitirilecek (Wisconsin). OK
+* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek.
+* "DC link capacitor"  ile ilgili simulasyona devam edilecek.
+* 3501 projesi devam edilecek.
+
+## Gerçekleşen çalışmalar:
+* Wang tez bitirildi.
+* "Semiconductor devices" ile ilgili dökümantasyon yapıldı.
+* .
+
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin). DEVAM

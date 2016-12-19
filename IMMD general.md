@@ -41,6 +41,8 @@ mounted around the motor.
 
 ![](./images/general/immd1.png)
 
+![](./images/general/immd2.png)
+
 ## Advantages of IMMD
 * Without the transmission cable, EMI and long cable effect are greatly attenuated.
 * Extra expense of power connecters and power cables are reduced.
@@ -62,3 +64,6 @@ mounted around the motor.
 * Capacitor size reduction, better efficiency and easier thermal management with GaN.
 * Reduced voltage stress on capacitor and device with multilevel converter (MLC).
 * Reduced loss and cost of devices with reduced voltage rating (MLC).
+
+## Generations of IMMD PCB design
+![](./images/general/pcb.png)
