@@ -38,3 +38,7 @@ An example is shown:
 ![](./images/prototype/circuit3.png)
 * An overall control algorithm (indifect field oriented control):
 ![](./images/control/overall.png)
+
+# GaN circuitry recommendations
+http://www.transphormusa.com/document/recommended-external-circuitry-transphorm-gan-fets/
+http://www.transphormusa.com/document/printed-circuit-board-layout-probing-gan-fets/

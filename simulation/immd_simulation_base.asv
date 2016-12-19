@@ -108,4 +108,3 @@ sim('topology1.slx');
 % Vrms = Vrms_sim(numel(Vrms_sim));
 % Irms = Irms_sim(numel(Irms_sim));
 % Sout = sqrt(3)*Vrms*Irms;
-
