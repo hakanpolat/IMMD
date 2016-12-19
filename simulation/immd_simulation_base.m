@@ -83,7 +83,8 @@ n = 4;
 phase_shift = 180/n;
 phase = zeros(1,n);
 for k = 1:n
-    phase(k) = (k-1)*(360/n);
+    %phase(k) = (k-1)*(360/n);
+    phase(k) = 0;
 end
 % modulation index
 ma = 0.82;
@@ -153,4 +154,29 @@ plot(time,Idc4,'g -','Linewidth',1.5);
 grid on;
 set(gca,'FontSize',12);
 xlim([0.096 0.1]);
+
+%%
+Icapflag1 = Idcin;
+Irms1 = 1.17*ones(1,numel(time));
+%%
+Icapflag2 = Idcin;
+Irms2 = Irms*ones(1,numel(time));
+%%
+figure;
+plot(time,Icapflag1,'b -','Linewidth',1.5);
+hold on;
+plot(time,Icapflag2,'r -','Linewidth',1.5);
+hold on;
+plot(time,Irms1,'m -','Linewidth',1.5);
+hold on;
+plot(time,Irms2,'k -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Ripple Current (A)','FontSize',12,'FontWeight','Bold')
+xlim([0.096 0.1]);
+legend('w interleaving','w/o interleaving','w interleaving rms','w/o interleaving rms');
+
+
 

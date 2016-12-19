@@ -1,15 +1,15 @@
 # 19 Aralık - 25 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin). OK
-* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek.
-* "DC link capacitor"  ile ilgili simulasyona devam edilecek.
+* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek. OK
+* "DC link capacitor"  ile ilgili simulasyona devam edilecek. OK
 * 3501 projesi devam edilecek.
 * Multilevel rectifier konsepti üzerine çalışılacak. "fully integrated AC-DC-AC motor drive"
 
 ## Gerçekleşen çalışmalar:
 * Wang tez bitirildi.
 * "Semiconductor devices" ile ilgili dökümantasyon yapıldı.
-* .
+* DC Link capacitor konusunda simulasyon yapıldı. Interlaving tekniği gösterildi.
 
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:

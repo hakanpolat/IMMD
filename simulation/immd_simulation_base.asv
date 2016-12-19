@@ -107,6 +107,7 @@ sim('topology1.slx');
 % Get parameters
 Irms = Icrms(numel(Icrms));
 
+%%
 time = 0:1e-6:0.1;
 
 figure;
@@ -119,6 +120,49 @@ hold on;
 plot(time,Idc3,'m -','Linewidth',1.5);
 hold on;
 plot(time,Idc4,'g -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Ripple Current (A)','FontSize',12,'FontWeight','Bold')
+
+%%
+figure;
+subplot(5,1,1);
+plot(time,Idcin,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlim([0.096 0.1]);
+subplot(5,1,2);
+plot(time,Idc1,'r -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlim([0.096 0.1]);
+subplot(5,1,3);
+plot(time,Idc2,'k -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlim([0.096 0.1]);
+subplot(5,1,4);
+plot(time,Idc3,'m -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlim([0.096 0.1]);
+subplot(5,1,5);
+plot(time,Idc4,'g -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlim([0.096 0.1]);
+
+%%
+Icapflag1 = Idcin;
+%%
+Icapflag2 = Idcin;
+%%
+figure;
+plot(time,Idcin,'b -','Linewidth',1.5);
+hold on;
+plot(time,Idc1,'r -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
