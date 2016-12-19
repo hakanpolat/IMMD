@@ -9,8 +9,10 @@
 ## Gerçekleşen çalışmalar:
 * 3501 için bütçe kalemleri girildi.
 * 3501 için proje alt-başlıkları oluşturuldu.
-* 3501 için iş-zaman planı.
-*
+* 3501 için iş-zaman planı hazırlandı.
+* Wang tez'de 1 chapter bitirildi.
+* Interleabing ile ilgili dökümantasyon yapıldı.
+
 
 # 5 Aralık - 11 Aralık
 ## Planlanan çalışmalar:

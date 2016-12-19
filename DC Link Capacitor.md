@@ -57,3 +57,6 @@ EPCOS, aluminium electrolytic capacitor
 * -- Low capacitance per volume
 * -- No self-healing capability
 * -- Limited power rating (multiple series and parallel capacitors)
+
+## Typical capacitor current in a motor drive
+![](./images/dclink/typical.png)
