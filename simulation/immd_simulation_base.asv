@@ -80,7 +80,7 @@ ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
 % modules
 n = 4;
 % phase shift
-phase_shift = 360/n;
+phase_shift = 180/n;
 phase = zeros(1,n);
 for k = 1:n
     phase(k) = (k-1)*(360/n);
@@ -105,6 +105,22 @@ Lload = Xload/wout; % Henries
 % Run the simulation
 sim('topology1.slx');
 % Get parameters
-% Vrms = Vrms_sim(numel(Vrms_sim));
-% Irms = Irms_sim(numel(Irms_sim));
-% Sout = sqrt(3)*Vrms*Irms;
+Irms = Icrms(numel(Icrms));
+
+time = 0:1e-6:0.1;
+
+figure;
+plot(time,Idcin,'b -','Linewidth',1.5);
+hold on;
+plot(time,Idc1,'r -','Linewidth',1.5);
+hold on;
+plot(time,Idc2,'k -','Linewidth',1.5);
+hold on;
+plot(time,Idc3,'m -','Linewidth',1.5);
+hold on;
+plot(time,Idc4,'g -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Ripple Current (A)','FontSize',12,'FontWeight','Bold')
