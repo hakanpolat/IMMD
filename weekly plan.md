@@ -4,6 +4,7 @@
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek.
 * "DC link capacitor"  ile ilgili simulasyona devam edilecek.
 * 3501 projesi devam edilecek.
+* Multilevel rectifier konsepti üzerine çalışılacak. "fully integrated AC-DC-AC motor drive"
 
 ## Gerçekleşen çalışmalar:
 * Wang tez bitirildi.

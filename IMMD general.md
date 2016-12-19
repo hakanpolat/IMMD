@@ -25,7 +25,9 @@ Piggybacked design (physically mounted on top of the motor):
 * The motor drive has a round shape, can be mounted on the back side of the motor
 * More compact than piggybacked
 
-![](./images/general/segmentedIMMD.png)
+![](./images/general/segmentedIMMD1.png)
+
+![](./images/general/segmentedIMMD2.png)
 
 ## Matrix motor:
 * Semiconductor switches can be

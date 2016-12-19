@@ -7,3 +7,5 @@ GaN için sample istenecek firmalar ve örnek ürünler:
 * Fujitsu
 * VisIC
 * Texas Instruments
+
+* EPC

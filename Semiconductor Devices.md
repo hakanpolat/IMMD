@@ -81,3 +81,18 @@ Example: EPC2012 http://epc-co.com/epc/Portals/0/epc/documents/datasheets/EPC201
 * Low Rdson: Low conduction loss
 * Low Qg: High switching speed (nsec)
 * Zero Qr: No recovery loss. Very low loss during dead time.
+
+# Practical Considerations for GaN
+## Parasitic Inductance
+* GaN has very small package Inductance.
+* As GaNs are intended to be switched at high frequencies, PCB inductance minimization is very important.
+* Minimizing inductance while designing circular shape PCBs, maintaining thermal performance and high voltage clearance is difficult.
+* Parasitic inductance in both gate driver and power stage will affect switching loss and voltage overshoot.
+* Loops in the PCB:
+![](./images/device/loops.png)
+* One should consider gate driver loop, power stage loop and also the coupling between them.
+## Gate resistance
+* Gate-turn on must be made slower to avoid short-circuit and switching time control.
+* It also helps for the damping of resonance between parasitic inductance and gate capacitance. The resonance may cause gate voltage breakdown.
+* It will decide the amount of overshoot and dv/dt in the power loop.
+* Higher gate resistance will yield higher switching loss since the switching time is increased.
