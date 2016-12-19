@@ -20,3 +20,27 @@
 ## Effect of Interleaving on machine current
 * Machine Segments in Same Pole Pair but Different Slots: No significant Effect
 * Machine Segments in Same Slots: There are parasitic capacitances. Any voltage mismatch will lead to large ripple currents. Interleaving is not recommended. This effect may be reduced by LC filters.
+
+# Voltage balancing in series connected converter topology
+## Passive voltage balancing
+![](./images/control/passive.png)
+* With resistors
+* Small resistors will have better balancing capability
+* Small resistors have significant loss
+* Passive voltage balancing techniques:
+![](./images/control/passive2.png)
+* They will fail when there is a large mismatch as follows:
+![](./images/control/mismatch.png)
+![](./images/control/mismatch2.png)
+
+## Centralised voltage balancing control
+* Block diagram is shown:
+![](./images/control/active.png)
+* Under mismatch, the voltages are balances as shown:
+![](./images/control/active2.png)
+
+## Distributed voltage balancing control
+* Block diagram is shown:
+![](./images/control/dist1.png)
+* Under mismatch, the voltages are balances as shown:
+![](./images/control/active2.png)
