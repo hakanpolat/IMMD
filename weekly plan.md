@@ -1,17 +1,18 @@
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
-* Wang'ın tezi bitirilecek (Wisconsin)
-* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek
-* "Machine configuration" ile ilgili dökümantasyona devam edilecek
-* "DC link capacitor"  ile ilgili simulasyona devam edilecek
-* 3501 projesi yazılmaya başlanacak
+* Wang'ın tezi bitirilecek (Wisconsin). DEVAM
+* "Semiconductor devices" ile ilgili dökümantasyona devam edilecek. DEVAM
+* "Machine configuration" ile ilgili dökümantasyona devam edilecek. OK
+* "DC link capacitor"  ile ilgili simulasyona devam edilecek. DEVAM
+* 3501 projesi yazılmaya başlanacak. OK
 
 ## Gerçekleşen çalışmalar:
 * 3501 için bütçe kalemleri girildi.
 * 3501 için proje alt-başlıkları oluşturuldu.
 * 3501 için iş-zaman planı hazırlandı.
-* Wang tez'de 1 chapter bitirildi.
-* Interleabing ile ilgili dökümantasyon yapıldı.
+* Wang tez'de 2 chapter bitirildi.
+* "Interleaving" ve "voltage balancing" ile ilgili dökümantasyon yapıldı.
+* "Machine configuration" ile ilgili dökümantasyon yapıldı
 
 
 # 5 Aralık - 11 Aralık

@@ -7,7 +7,7 @@
 * Capacitors must be large
 
 ## Three-phase system
-![](./images/dclink/Threephase.png)
+![](./images/dclink/threephase.png)
 * Instantaneous power is equal to real power
 * No fluctuating power
 * Reactive power of each phase is balanced by the other two phases
@@ -44,6 +44,7 @@ EPCOS, aluminium electrolytic capacitor
 * ++ Suitable for vibrational environment
 * -- Sensitive to temperature change
 * -- Low RMS current rating per volume
+
 ## Polypropylene film capacitor
 * ++ High RMS current rating per volume
 * ++ Small ESL
@@ -51,6 +52,7 @@ EPCOS, aluminium electrolytic capacitor
 * ++ Suitable for vibrational environment
 * -- Low capacitance per volume
 * -- High cost
+
 ## Multi-layer ceramic capacitor (MLCC)
 * ++ Low cost
 * ++ High RMS current rating per volume
