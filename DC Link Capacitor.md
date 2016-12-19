@@ -1,6 +1,6 @@
 # Power Fluctuation
 ## Single-phase system
-![](./images/dclink/Singlephase.png)
+![](./images/dclink/singlephase.png)
 * First part is time invarient real power
 * Second part is time-varying fluctuating power
 * Frequency is twice the fundamental
