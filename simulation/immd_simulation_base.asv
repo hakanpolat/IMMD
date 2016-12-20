@@ -100,14 +100,17 @@ Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 
 for l = 1:5
+    phase_shift = 180/n;
     phase = zeros(1,n);
     for k = 1:n
-        phase(k) = (k-1)*((l-1)*90/n)
+        phase(k) = (k-1)*(360/n);
+        %phase(k) = 0;
     end
+    
     % Run the simulation
     sim('topology1.slx');
     % Get parameters
-    Irms(l) = Icrms(numel(Icrms))
+    Irms = Icrms(numel(Icrms));
 end
 
 %%
