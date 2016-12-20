@@ -77,6 +77,9 @@ ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
 % Interleaving is applied
 % DC link is 400V - 650V devices are used
 
+% step time
+Ts = 1e-5; % sec
+
 % modules
 n = 4;
 % phase shift
@@ -87,16 +90,17 @@ for k = 1:n
     phase(k) = 0;
 end
 % modulation index
-ma = 0.82;
+ma = 1;
 % switching frequency
 fsw = 1e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
-Sout = 1e3; % VA
+Sout = 2e3; % VA
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
-Vll_rms = Vdc/sqrt(2); % Volts
+%Vll_rms = Vdc/sqrt(2); % Volts
+Vll_rms = Vdc/(1/0.612); % Volts
 Iline = Sout/(Vll_rms*sqrt(3)); % Amps
 pf = 0.9;
 Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
