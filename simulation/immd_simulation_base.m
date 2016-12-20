@@ -99,16 +99,34 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 
-for l = 1:5
+tic
+for l = 1:20
     phase = zeros(1,n);
     for k = 1:n
-        phase(k) = (k-1)*((l-1)*90/n)
+        phase(k) = (k-1)*((l-1)*45/n);
+        if k == n
+            disp(phase);
+        end
     end
     % Run the simulation
     sim('topology1.slx');
     % Get parameters
-    Irms(l) = Icrms(numel(Icrms))
+    Irms(l) = Icrms(numel(Icrms));
+    disp(Irms(l));
 end
+toc
+
+Idc = 18;
+Irms_perc = 100*Irms/Idc;
+phase_shift = 0:(90/n):9*(90/n);
+
+figure;
+plot(phase_shift,Irms_perc,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Phase shift angle','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Capacitor RMS Current (%)','FontSize',12,'FontWeight','Bold')
+
 
 %%
 time = 0:1e-5:0.5;
