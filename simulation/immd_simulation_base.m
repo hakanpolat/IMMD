@@ -121,7 +121,7 @@ toc
 %%
 Idc = 18;
 Irms_perc = 100*Irms/Idc;
-phase_shift = 0:(90/n):9*(90/n);
+phase_shift = 0:step:74*step;
 
 figure;
 plot(phase_shift,Irms_perc,'b -','Linewidth',1.5);
