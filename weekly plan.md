@@ -10,6 +10,7 @@
 * Wang tez bitirildi.
 * "Semiconductor devices" ile ilgili dökümantasyon yapıldı.
 * DC Link capacitor konusunda simulasyon yapıldı. Interlaving tekniği gösterildi.
+* More Electric Aircraft uygulamaları ile ilgili araştırma yapıldı.
 
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
