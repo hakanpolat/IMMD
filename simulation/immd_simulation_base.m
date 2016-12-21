@@ -116,12 +116,13 @@ for l = 1:20
 end
 toc
 
+%%
 Idc = 18;
 Irms_perc = 100*Irms/Idc;
-phase_shift = 0:(90/n):9*(90/n);
+phase_shift = 0:(45/n):19*(45/n);
 
 figure;
-plot(phase_shift,Irms_perc,'b -','Linewidth',1.5);
+plot(phase_shift,Irms_perc,'ro-','Linewidth',1.5);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Phase shift angle','FontSize',12,'FontWeight','Bold')
