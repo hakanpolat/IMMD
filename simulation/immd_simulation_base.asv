@@ -99,11 +99,13 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 
+step = 5; % degrees
+
 tic
-for l = 1:20
+for l = 1:75
     phase = zeros(1,n);
     for k = 1:n
-        phase(k) = (k-1)*((l-1)*45/n);
+        phase(k) = (k-1)*((l-1)*step);
         if k == n
             disp(phase);
         end
@@ -119,10 +121,10 @@ toc
 %%
 Idc = 18;
 Irms_perc = 100*Irms/Idc;
-phase_shift = 0:(45/n):19*(45/n);
+phase_shift = 0:step:74*step;
 
 figure;
-plot(phase_shift,Irms_perc,'ro-','Linewidth',1.5);
+plot(phase_shift,Irms_perc,'b -','Linewidth',1.5);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Phase shift angle','FontSize',12,'FontWeight','Bold')

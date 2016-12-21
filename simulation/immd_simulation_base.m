@@ -99,11 +99,13 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 
+step = 5; % degrees
+
 tic
-for l = 1:20
+for l = 1:75
     phase = zeros(1,n);
     for k = 1:n
-        phase(k) = (k-1)*((l-1)*45/n);
+        phase(k) = (k-1)*((l-1)*step);
         if k == n
             disp(phase);
         end
@@ -116,6 +118,7 @@ for l = 1:20
 end
 toc
 
+%%
 Idc = 18;
 Irms_perc = 100*Irms/Idc;
 phase_shift = 0:(90/n):9*(90/n);
