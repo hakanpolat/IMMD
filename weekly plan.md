@@ -1,4 +1,12 @@
+# 26 Aralık - 01 Ocak
+## Planlanan çalışmalar:
+* 3501 projesi devam edilecek.
+* ISIE makalesine devam edilecek.
 
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
 
 
 # 19 Aralık - 25 Aralık
