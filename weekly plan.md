@@ -1,16 +1,23 @@
+
+
+
 # 19 Aralık - 25 Aralık
 ## Planlanan çalışmalar:
 * Wang'ın tezi bitirilecek (Wisconsin). OK
 * "Semiconductor devices" ile ilgili dökümantasyona devam edilecek. OK
 * "DC link capacitor"  ile ilgili simulasyona devam edilecek. OK
-* 3501 projesi devam edilecek.
-* Multilevel rectifier konsepti üzerine çalışılacak. "fully integrated AC-DC-AC motor drive"
+* 3501 projesi devam edilecek. OK
+* Multilevel rectifier konsepti üzerine çalışılacak. "fully integrated AC-DC-AC motor drive". ERTELE
+* ISIE makalesine başlanacak. OK
 
 ## Gerçekleşen çalışmalar:
 * Wang tez bitirildi.
 * "Semiconductor devices" ile ilgili dökümantasyon yapıldı.
 * DC Link capacitor konusunda simulasyon yapıldı. Interlaving tekniği gösterildi.
 * More Electric Aircraft uygulamaları ile ilgili araştırma yapıldı.
+* 3501 projesi amaç-hedef devam edildi.
+* ISIE makalesinin yazımına "Evaluation of DC Link Capacitors in Integrated Modular Motor Drives" adıyla başlandı.
+
 
 # 12 Aralık - 18 Aralık
 ## Planlanan çalışmalar:
