@@ -4,7 +4,7 @@
 * ISIE makalesine devam edilecek.
 
 ## Gerçekleşen çalışmalar:
-* ...
+* 3501 projesi içeriğine devam edildi.
 * ..
 * .
 
