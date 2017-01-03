@@ -1,3 +1,13 @@
+# 02 Ocak - 08 Ocak
+## Planlanan çalışmalar:
+* 3501 projesi sonlandırılacak.
+* ISIE makalesinde: literatür çalışması ve kondansatör ön çalışmaları tamamlanacak.
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+
+
 # 26 Aralık - 01 Ocak
 ## Planlanan çalışmalar:
 * 3501 projesi devam edilecek.
@@ -5,9 +15,8 @@
 
 ## Gerçekleşen çalışmalar:
 * 3501 projesi içeriğine devam edildi.
-* ..
-* .
-
+* 3501 için proforma istendi.
+* 3501 bütçe kalemleri netleştirildi.
 
 # 19 Aralık - 25 Aralık
 ## Planlanan çalışmalar:
