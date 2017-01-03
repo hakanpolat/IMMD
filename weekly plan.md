@@ -4,7 +4,7 @@
 * ISIE makalesinde: literatür çalışması ve kondansatör ön çalışmaları tamamlanacak.
 
 ## Gerçekleşen çalışmalar:
-* ...
+* 3501 projesi iş paketleri ve yöntem.
 * ..
 
 
