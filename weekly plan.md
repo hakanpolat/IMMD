@@ -4,8 +4,9 @@
 * ISIE makalesinde: literatür çalışması ve kondansatör ön çalışmaları tamamlanacak.
 
 ## Gerçekleşen çalışmalar:
-* 3501 projesi iş paketleri ve yöntem.
-* ..
+* 3501 projesi iş paketleri ve yöntem tamamlandı.
+* Proformalar ve bütçe planlaması tamamlandı.
+
 
 
 # 26 Aralık - 01 Ocak
