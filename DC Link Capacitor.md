@@ -13,6 +13,14 @@
 * Reactive power of each phase is balanced by the other two phases
 * Capacitors are small (only ripple frequency at kHz level)
 
+# Capacitors are used in inverter DC-links for:
+* to compensate the difference between the power requirement of the inverter (whose mean value is constant in steady-state operation) and the output power of the input-rectifier bridge varying with two or six times the mains frequency
+* to supply the input current of the inverter with pulse frequency
+* to reduce the spread of current harmonics with pulse frequency into the mains
+* to take in the demagnetisation energy of the drive (e.g. induction machine) in case of an emergency shutdown of all converter transistors
+* to supply transient-power peaks
+* to protect the inverter from transient peaks of the mains voltage.
+
 # Capacitor Datasheet Evaluation
 Ref: http://www.farnell.com/datasheets/1849766.pdf
 http://tr.farnell.com/epcos/b43564a5109m000/cap-alu-elec-10000uf-450v-screw/dp/2283985

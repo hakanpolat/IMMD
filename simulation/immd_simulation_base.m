@@ -1,5 +1,4 @@
-%%
-% DC Link Capacitor simulation
+%% DC Link Capacitor simulation
 
 % modulation index
 ma = 0.66;
@@ -81,7 +80,7 @@ n = 4;
 % step time
 Ts = 1e-5; % sec
 % modulation index
-ma = 1;
+ma = 0.5;
 % switching frequency
 fsw = 1e3; % Hz
 % DC link voltage
@@ -91,14 +90,15 @@ Sout = 2e3; % VA
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 %Vll_rms = Vdc/sqrt(2); % Volts
-Vll_rms = Vdc/(1/0.612); % Volts
+Vll_rms = ma*Vdc*0.612; % Volts
 Iline = Sout/(Vll_rms*sqrt(3)); % Amps
-pf = 0.9;
+pf = 0.5;
 Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 
+%%
 step = 5; % degrees
 
 tic
@@ -121,11 +121,8 @@ toc
 %%
 Idc = 18;
 Irms_perc = 100*Irms/Idc;
-<<<<<<< HEAD
 phase_shift = 0:(45/n):19*(45/n);
-=======
-phase_shift = 0:step:74*step;
->>>>>>> 4c7fa869d182ec6fceb356a309ffd5f7c6fd9cc5
+%phase_shift = 0:step:74*step;
 
 figure;
 plot(phase_shift,Irms_perc,'ro-','Linewidth',1.5);
