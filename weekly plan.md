@@ -6,8 +6,7 @@
 ## Gerçekleşen çalışmalar:
 * 3501 projesi iş paketleri ve yöntem tamamlandı.
 * Proformalar ve bütçe planlaması tamamlandı.
-
-
+* Amaç-hedef-özgün değer-kaynakça bitti.
 
 # 26 Aralık - 01 Ocak
 ## Planlanan çalışmalar:
