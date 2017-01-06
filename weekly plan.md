@@ -6,6 +6,7 @@
 ## Gerçekleşen çalışmalar:
 * 3501 projesi gönderildi.
 * Makale için literatür derlemesine başlandı.
+* Mendeleyde DC bara kondansatörü ile ilgili 8 makale eklendi.
 
 # 26 Aralık - 01 Ocak
 ## Planlanan çalışmalar:
