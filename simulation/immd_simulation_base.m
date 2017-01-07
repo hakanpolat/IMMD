@@ -80,19 +80,19 @@ n = 4;
 % step time
 Ts = 1e-5; % sec
 % modulation index
-ma = 0.5;
+ma = 0.9;
 % switching frequency
 fsw = 1e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
-Sout = 2e3; % VA
+Sout = 2e3/0.8; % VA
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 %Vll_rms = Vdc/sqrt(2); % Volts
 Vll_rms = ma*Vdc*0.612; % Volts
 Iline = Sout/(Vll_rms*sqrt(3)); % Amps
-pf = 0.5;
+pf = 0.8;
 Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
