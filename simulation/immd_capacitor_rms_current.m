@@ -8,11 +8,12 @@ Sout = Pout/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % Volts
 Iline = Sout/(Vll_rms*sqrt(3)); % Amps
 
-Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)))
+Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 
 
 %%
 % 0.612 = sqrt(3/2)/2
+
 
 %% Capacitor Selection
 % Aluminium Electolytic
@@ -26,6 +27,7 @@ Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)))
 % Volume = D*L
 % Rth_ca
 % Weight
+
 
 %%
 
@@ -45,28 +47,120 @@ Tambient = 30; % C
 perc_ripple_c = 3; % percent
 volt_ripple_c = perc_ripple_c*0.01*Vdc; % V
 temp_max = 80; % C
+power_density_min = 100; % W/cm^3
+height_max = 50; % mm
+weight_max = 30; % g
 
 % Select switching frequency
 fsw = 1e3; % Hz
 
 % Block 1 - RMS current
-Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Icrms = Iarms*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 
 % Block 2 - Charging current
 Idc = (3/(2*sqrt(2)))*M*Iarms*cosphi/efficiency;
 Icharge = Iapeak - Idc;
 %volt_ripple = Icharge*0.5*M/(fsw*C);
-C = Icharge*0.5*M/(volt_ripple_c*fsw); % F
-Cap = ceil(C*1e4)*1e-4; % F
+Cap = Icharge*0.5*M/(volt_ripple_c*fsw); % F
+%Cap = ceil(C*1e4)*1e-4; % F
 
-% Datasheet parameters
+% Datasheet parameters (electrolytic)
+% http://www.farnell.com/datasheets/1792285.pdf
 Capacitance = 220e-6; % F
 Diameter = 25; % mm
 Length = 45; % mm
-ESR_100_20 = 400; % mOhm
+ESR_100_20 = 0.4; % Ohm
 Iacmax_100_60 = 3.02; % A
 Iacmax_100_85 = 2.32; % A
 Rth = 20.19; % C/W
+ESR_20 = ESR_100_20*0.7; % Ohm
+ESR_80 = ESR_100_20*0.4; % Ohm
+Iacmax_60 = Iacmax_100_60*1.37; % A
+Iacmax_85 = Iacmax_100_85*1.37; % A
+weight = 25; % g
+
+Okey = zeros(1,5);
+
+if Capacitance > Cap
+    Okey(1) = 1;
+end
+
+Tcore = (Tambient+Icrms^2*Rth*0.32)/(1+Icrms^2*Rth*0.002); % C
+ESR = 0.32-0.002*Tcore; % Ohm
+Ploss = Icrms^2*ESR; % W
+Iac_max = 4.7 - 0.028*Tcore; % A
+
+if Iac_max > Icrms
+    Okey(2) = 1;
+end
+
+if temp_max > Tcore
+    Okey(3) = 1;
+end
+
+if height_max > Length
+    Okey(4) = 1;
+end
+
+volume = pi*(Diameter/2)^2*Length*1e-3; % cm^3
+power_density = Pout/volume; % W/cm^3
+
+if power_density > power_density_min
+    Okey(5) = 1;
+end
+
+
+%%
+% Datasheet parameters (film)
+% http://www.farnell.com/datasheets/1794158.pdf
+series = 2;
+parallel = 6;
+Capacitance1 = 60e-6; % F
+Capacitance = Capacitance*(parallel/series); % F
+
+
+Diameter = 25; % mm
+Length = 45; % mm
+ESR_100_20 = 0.4; % Ohm
+Iacmax_100_60 = 3.02; % A
+Iacmax_100_85 = 2.32; % A
+Rth = 20.19; % C/W
+ESR_20 = ESR_100_20*0.7; % Ohm
+ESR_80 = ESR_100_20*0.4; % Ohm
+Iacmax_60 = Iacmax_100_60*1.37; % A
+Iacmax_85 = Iacmax_100_85*1.37; % A
+weight = 25; % g
+
+Okey = zeros(1,5);
+
+if Capacitance > Cap
+    Okey(1) = 1;
+end
+
+Tcore = (Tambient+Icrms^2*Rth*0.32)/(1+Icrms^2*Rth*0.002); % C
+ESR = 0.32-0.002*Tcore; % Ohm
+Ploss = Icrms^2*ESR; % W
+Iac_max = 4.7 - 0.028*Tcore; % A
+
+if Iac_max > Icrms
+    Okey(2) = 1;
+end
+
+if temp_max > Tcore
+    Okey(3) = 1;
+end
+
+if height_max > Length
+    Okey(4) = 1;
+end
+
+volume = pi*(Diameter/2)^2*Length*1e-3; % cm^3
+power_density = Pout/volume; % W/cm^3
+
+if power_density > power_density_min
+    Okey(5) = 1;
+end
+
 
 %%
 % Frequency factor of permissible ripple current Iac
