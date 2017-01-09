@@ -167,6 +167,11 @@ aec_500v = [
 ];
 
 %%
+
+% Use 500V and 450V capacitors as one series
+% USe 400V and 250V capacitors as two series
+% Parallel connection will be decided by RMS current requirement
+
 cap_select = 1:numel(aec_500v(:,1));
 
 figure;
@@ -181,6 +186,25 @@ hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Ripple Current - max - 60 C - 100 Hz (A)','FontSize',12,'FontWeight','Bold')
+legend('500V series','450V series','400V series','250V series')
+
+
+%%
+% Plot of capacitance vs RMs current
+
+figure;
+plot(aec_500v(:,1),aec_500v(:,7),'bo ','Linewidth',1.5);
+hold on;
+plot(aec_450v(:,1),aec_450v(:,7),'ro ','Linewidth',1.5);
+hold on;
+plot(aec_400v(:,1)/2,aec_400v(:,7),'ko ','Linewidth',1.5);
+hold on;
+plot(aec_250v(:,1)/2,aec_250v(:,7),'mo ','Linewidth',1.5);
+hold on;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance','FontSize',12,'FontWeight','Bold')
 ylabel('Ripple Current - max - 60 C - 100 Hz (A)','FontSize',12,'FontWeight','Bold')
 legend('500V series','450V series','400V series','250V series')
 
@@ -346,4 +370,36 @@ set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
 ylabel('Ripple Current - max - 70 C - 10 kHz (A)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series')
+
+figure;
+plot(cap_select,fpc_450v(:,1),'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,fpc_300v(:,1)/2,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+
+
+%%
+
+% Use 450V capacitors as one series
+% USe 300V capacitors as two series
+% Parallel connection will be decided by RMS current requirement
+
+cap_select = 1:numel(fpc_300v(:,1));
+
+figure;
+plot(fpc_450v(1:20,1),fpc_450v(1:20,5),'bo-','Linewidth',1.5);
+hold on;
+plot(fpc_300v(1:20,1)/2,fpc_300v(1:20,5),'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance','FontSize',12,'FontWeight','Bold')
+ylabel('Ripple Current - max - 70 C - 10 kHz (A)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+
 

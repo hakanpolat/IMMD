@@ -38,6 +38,7 @@ Icrms_perc = 100*Icrms/Idc;
 %% MAIN ALGORITHM
 
 Icrms = zeros(10,10);
+Cap = zeros(10,10);
 for k = 1:10
     % Variables
     M = 0.1:0.1:1;
@@ -70,18 +71,17 @@ for k = 1:10
     
     % Block 1 - RMS current
     interleaving_factor = 0.132*M+0.209;
-    Icrms = interleaving_factor*module.*Iarms.*sqrt(2*M.*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+    Icrms(k,:) = interleaving_factor*module.*Iarms.*sqrt(2*M.*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
     Idc = module*(3/(2*sqrt(2))).*M.*Iarms*cosphi/efficiency;
-    Icrms_perc = 100*Icrms./Idc;
+    %Icrms_perc = 100*Icrms./Idc; % USE LATER
     
     % Block 2 - Required capacitance
     Icharge = module*Iapeak - Idc;
     %volt_ripple = Icharge*0.5*M/(fsw*C);
-    Cap = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
-    Cap_select = ceil(Cap*1e5)*1e-5; % F
+    Cap(k,:) = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
+    %Cap_select = ceil(Cap*1e5)*1e-5; % F
     
-    Cap_max(k) = max(Cap);
-    Icrms_max(k) = max(Icrms);
+    Cap_max(k) = max(Cap(k,:));
 end
 
 freq1 = 10e3:10e3:100e3;
@@ -94,7 +94,14 @@ xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
 figure;
-plot(M,Icrms,'ro-','Linewidth',1.5);
+plot(M,Cap(1,:)*1e6,'bo-','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
+
+figure;
+plot(M,Icrms(1,:),'ro-','Linewidth',1.5);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
