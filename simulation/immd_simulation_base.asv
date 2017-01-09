@@ -77,11 +77,9 @@ ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
 % DC link is 400V - 650V devices are used
 % modules
 n = 4;
-phase = zeros(1,4);
-%phase = 0:90:270;
-%phase = 0:75:225;
+phase = [0,90,180,270];
 % step time
-Ts = 1e-7; % sec
+Ts = 1e-6; % sec
 % modulation index
 ma = 0.5;
 % switching frequency

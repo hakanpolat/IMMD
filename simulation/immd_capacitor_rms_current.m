@@ -1,14 +1,20 @@
 %% Capacitor Analytical RMS
 M = 0.5;
 cosphi = 0.9;
+module = 4;
+phase_dif = 90; % degrees
 
 Vdc = 400; % Volts
-Pout = M*2e3; % W
-Sout = Pout/(cosphi); % VA
+Pout1 = 2e3; % W
+Sout1 = Pout/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % Volts
-Iline = Sout/(Vll_rms*sqrt(3)); % Amps
+Iline = Sout1/(Vll_rms*sqrt(3)); % Amps
+efficiency = 0.99;
 
-Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Icrms = (0.275)*module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
+Icrms_perc = 100*Icrms/Idc;
+
 
 
 %%
@@ -32,13 +38,15 @@ Icrms = Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 %%
 
 % Inputs
-M = 0.9;
-cosphi = 0.8;
+M = 0.5;
+cosphi = 0.9;
 Vdc = 400; % V
-Pout = 2e3; % W
-Sout = Pout/(cosphi); % VA
+module = 4;
+phase_dif = 90; % degrees
+Pout1 = 2e3; % W
+Sout1 = Pout1/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % V
-Iarms = Sout/(Vll_rms*sqrt(3)); % A
+Iarms = Sout1/(Vll_rms*sqrt(3)); % A
 Iapeak = Iarms*sqrt(2); % A
 efficiency = 0.99;
 Tambient = 30; % C
@@ -52,14 +60,15 @@ height_max = 50; % mm
 weight_max = 30; % g
 
 % Select switching frequency
-fsw = 1e3; % Hz
+fsw = 100e3; % Hz
 
 % Block 1 - RMS current
-Icrms = Iarms*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Icrms = (0.275)*module*Iarms*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Idc = module*(3/(2*sqrt(2)))*M*Iarms*cosphi/efficiency;
+Icrms_perc = 100*Icrms/Idc;
 
 % Block 2 - Charging current
-Idc = (3/(2*sqrt(2)))*M*Iarms*cosphi/efficiency;
-Icharge = Iapeak - Idc;
+Icharge = module*Iapeak - Idc;
 %volt_ripple = Icharge*0.5*M/(fsw*C);
 Cap = Icharge*0.5*M/(volt_ripple_c*fsw); % F
 %Cap = ceil(C*1e4)*1e-4; % F
@@ -116,10 +125,10 @@ end
 series = 2;
 parallel = 6;
 Capacitance1 = 60e-6; % F
-Capacitance = Capacitance*(parallel/series); % F
+Capacitance = Capacitance1*(parallel/series); % F
 
-
-Diameter = 25; % mm
+%%
+Width = 35; % mm
 Length = 45; % mm
 ESR_100_20 = 0.4; % Ohm
 Iacmax_100_60 = 3.02; % A
