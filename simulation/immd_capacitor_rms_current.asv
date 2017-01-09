@@ -11,7 +11,7 @@ Vll_rms = Vdc*0.612*M; % Volts
 Iline = Sout1/(Vll_rms*sqrt(3)); % Amps
 efficiency = 0.99;
 
-Icrms = module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+Icrms = (0.275)*module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
@@ -35,44 +35,73 @@ Icrms_perc = 100*Icrms/Idc;
 % Weight
 
 
+%% MAIN ALGORITHM
+
+Icrms = zeros(10,10);
+for k = 1:10
+    % Variables
+    M = 0.1:0.1:1;
+    
+    % Inputs
+    cosphi = 0.9;
+    Vdc = 400; % V
+    module = 4;
+    phase_dif = 90; % degrees
+    efficiency = 0.99;
+    Tambient = 30; % C
+    
+    % Operational parameters
+    Pout1 = M*2e3; % W
+    Sout1 = Pout1/(cosphi); % VA
+    Vll_rms = Vdc*0.612*M; % V
+    Iarms = Sout1./(Vll_rms*sqrt(3)); % A
+    Iapeak = Iarms*sqrt(2); % A
+    
+    % Select switching frequency
+    fsw = k*10e3; % Hz
+    
+    % Constraints
+    perc_ripple_c = 3; % percent
+    volt_ripple_c = perc_ripple_c*0.01*Vdc; % V
+    temp_max = 80; % C
+    power_density_min = 100; % W/cm^3
+    height_max = 50; % mm
+    weight_max = 30; % g
+    
+    % Block 1 - RMS current
+    interleaving_factor = 0.132*M+0.209;
+    Icrms = interleaving_factor*module.*Iarms.*sqrt(2*M.*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+    Idc = module*(3/(2*sqrt(2))).*M.*Iarms*cosphi/efficiency;
+    Icrms_perc = 100*Icrms./Idc;
+    
+    % Block 2 - Required capacitance
+    Icharge = module*Iapeak - Idc;
+    %volt_ripple = Icharge*0.5*M/(fsw*C);
+    Cap = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
+    Cap_select = ceil(Cap*1e5)*1e-5; % F
+    
+    Cap_max(k) = max(Cap);
+    Icrms_max(k) = max(Icrms);
+end
+
+freq1 = 10e3:10e3:100e3;
+
+figure;
+plot(freq1/1e3,Cap_max*1e6,'bo-','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
+
+figure;
+plot(M,Icrms,'ro-','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
+ylabel('RMS current requirement (A)','FontSize',12,'FontWeight','Bold')
+
+
 %%
-
-% Inputs
-M = 0.9;
-cosphi = 0.8;
-Vdc = 400; % V
-module = 4;
-phase_dif = 90; % degrees
-Pout = 2e3; % W
-Sout = Pout/(cosphi); % VA
-Vll_rms = Vdc*0.612*M; % V
-Iarms = Sout/(Vll_rms*sqrt(3)); % A
-Iapeak = Iarms*sqrt(2); % A
-efficiency = 0.99;
-Tambient = 30; % C
-
-% Constraints
-perc_ripple_c = 3; % percent
-volt_ripple_c = perc_ripple_c*0.01*Vdc; % V
-temp_max = 80; % C
-power_density_min = 100; % W/cm^3
-height_max = 50; % mm
-weight_max = 30; % g
-
-% Select switching frequency
-fsw = 100e3; % Hz
-
-% Block 1 - RMS current
-Icrms = module*Iarms*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
-Idc = module*(3/(2*sqrt(2)))*M*Iarms*cosphi/efficiency;
-Icrms_perc = 100*Icrms/Idc;
-
-% Block 2 - Charging current
-Icharge = Iapeak - Idc;
-%volt_ripple = Icharge*0.5*M/(fsw*C);
-Cap = Icharge*0.5*M/(volt_ripple_c*fsw); % F
-%Cap = ceil(C*1e4)*1e-4; % F
-
 % Datasheet parameters (electrolytic)
 % http://www.farnell.com/datasheets/1792285.pdf
 Capacitance = 220e-6; % F
