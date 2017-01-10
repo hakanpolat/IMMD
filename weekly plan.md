@@ -1,3 +1,13 @@
+# 09 Ocak - 15 Ocak
+## Planlanan çalışmalar:
+* ISIE makalesi literatür ve review kısımları bitirilecek (Chp1-2)
+* ISIE makalesi için DC bara kondansatörü ile ilgili analitik çalışmalar, benzetimler ve algoritmalar tamamlanacak.
+
+## Gerçekleşen çalışmalar:
+* ISIE Chp1 yazıldı.
+* DC bara kondansatörü analitik çalışmalar bitti.
+* DC bara kondansatörü algoritma geliştirildi.
+
 # 02 Ocak - 08 Ocak
 ## Planlanan çalışmalar:
 * 3501 projesi sonlandırılacak.
@@ -7,6 +17,7 @@
 * 3501 projesi gönderildi.
 * Makale için literatür derlemesine başlandı.
 * Mendeleyde DC bara kondansatörü ile ilgili 8 makale eklendi.
+* DC bara kondansatörü ile ilgili algoritmaya başlandı.
 
 # 26 Aralık - 01 Ocak
 ## Planlanan çalışmalar:
