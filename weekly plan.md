@@ -4,9 +4,10 @@
 * ISIE makalesi için DC bara kondansatörü ile ilgili analitik çalışmalar, benzetimler ve algoritmalar tamamlanacak.
 
 ## Gerçekleşen çalışmalar:
-* ISIE Chp1 yazıldı.
+* ISIE review yazıldı.
 * DC bara kondansatörü analitik çalışmalar bitti.
-* DC bara kondansatörü algoritma geliştirildi.
+* DC bara kondansatörü algoritma geliştirildi. Örnek elektrolitik ve film kondansatör cerileri eklendi.
+* BRB: GaN datasheet inceleme ve 3-faz inverter üzerine çalışma yapıldı.
 
 # 02 Ocak - 08 Ocak
 ## Planlanan çalışmalar:
