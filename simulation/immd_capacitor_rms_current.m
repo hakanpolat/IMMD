@@ -165,17 +165,17 @@ end
 % There is no dependency for Iacrms on temperature before 70C ambient
 % temperature
 
-ESR_450 = fpc_450v(:,6)*1e-3; % Ohm
-ESR_300 = fpc_300v(:,6)*1e-3; % Ohm
+ESR_450 = fpc_450v(:,6)*1e-3./parallel_450(1,:)'; % Ohm
+ESR_300 = 2*fpc_300v(:,6)*1e-3./parallel_300(1,:)'; % Ohm
 thermal_res_300 = fpc_300v(:,11); % mW/C
 thermal_res_450 = fpc_450v(:,11); % mW/C
 lead_space_300 = fpc_300v(:,12); % mW/C
 lead_space_450 = fpc_450v(:,12); % mW/C
 
 Ploss_450 = required_rmscurrent^2.*ESR_450; % W
-Tcore_450 = thermal_res_450.*Ploss_450+Tambient; % C
+Tcore_450 = thermal_res_450.*Ploss_450./parallel_450'+Tambient; % C
 Ploss_300 = required_rmscurrent^2.*ESR_300; % W
-Tcore_300 = thermal_res_300.*Ploss_300+Tambient; % C
+Tcore_300 = thermal_res_300.*Ploss_300./(2*parallel_300')+Tambient; % C
 
 for m = 1:numel(cap_select)
     if Tcore_450(m) > temp_max
@@ -194,9 +194,9 @@ end
 num = numel(cap_select);
 power_density_limit = power_density_min*ones(1,num);
 fig = figure;
-plot(cap_select,power_density_300,'bo-','Linewidth',1.5);
+plot(cap_select,power_density_450,'bo-','Linewidth',1.5);
 hold on;
-plot(cap_select,power_density_450,'ro-','Linewidth',1.5);
+plot(cap_select,power_density_300,'ro-','Linewidth',1.5);
 hold on;
 plot(cap_select,power_density_limit,'ko-','Linewidth',1.5);
 hold off;
@@ -210,9 +210,9 @@ print(fig,'powerdensity','-dpng')
 % Temperature
 temperature_limit = temp_max*ones(1,num);
 fig = figure;
-plot(cap_select,Tcore_300,'bo-','Linewidth',1.5);
+plot(cap_select,Tcore_450,'bo-','Linewidth',1.5);
 hold on;
-plot(cap_select,Tcore_450,'ro-','Linewidth',1.5);
+plot(cap_select,Tcore_300,'ro-','Linewidth',1.5);
 hold on;
 plot(cap_select,temperature_limit,'ko-','Linewidth',1.5);
 hold off;
@@ -226,9 +226,9 @@ print(fig,'temperature','-dpng')
 % Height
 height_limit = height_max*ones(1,num);
 fig = figure;
-plot(cap_select,height_300,'bo-','Linewidth',1.5);
+plot(cap_select,height_450,'bo-','Linewidth',1.5);
 hold on;
-plot(cap_select,height_450,'ro-','Linewidth',1.5);
+plot(cap_select,height_300,'ro-','Linewidth',1.5);
 hold on;
 plot(cap_select,height_limit,'ko-','Linewidth',1.5);
 hold off;
@@ -241,13 +241,63 @@ print(fig,'height','-dpng')
 
 
 %%
-% Give weights to the constraints
+% Give weights to the constraints and check overall performance
 
+% Overall performance - 1
 weight_pd = 0.4;
 weight_h = 0.3;
 weight_t = 0.3;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+fig = figure;
+plot(cap_select,overall_450,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,overall_300,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.4,h=0.3,t=0.3)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+print(fig,'overall-1','-dpng')
 
-overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_temp./(T)
+% Overall performance - 2
+weight_pd = 0.5;
+weight_h = 0.2;
+weight_t = 0.3;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+fig = figure;
+plot(cap_select,overall_450,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,overall_300,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.5,h=0.2,t=0.3)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+print(fig,'overall-2','-dpng')
+
+% Overall performance - 3
+weight_pd = 0.4;
+weight_h = 0.2;
+weight_t = 0.4;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+fig = figure;
+plot(cap_select,overall_450,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,overall_300,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.4,h=0.2,t=0.4)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+print(fig,'overall-3','-dpng')
+
+
 
 %% BELOW ARE OBSOLETE, WILL BE CHECKED LATER
 
