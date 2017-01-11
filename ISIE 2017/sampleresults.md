@@ -1,3 +1,8 @@
 ![](./resultimages/powerdensity.png)
 ![](./resultimages/temperature.png)
 ![](./resultimages/height.png)
+![](./resultimages/costeuro.png)
+![](./resultimages/overall-1.png)
+![](./resultimages/overall-2.png)
+![](./resultimages/overall-3.png)
+![](./resultimages/overall-4.png)

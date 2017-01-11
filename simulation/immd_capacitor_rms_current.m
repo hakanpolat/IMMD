@@ -239,16 +239,33 @@ ylabel('Height (mm)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series','Limit')
 print(fig,'height','-dpng')
 
+% COST
+cost_300 = 2*parallel_450'.*fpc_300v(:,1)*2/3;
+cost_450 = parallel_450'.*fpc_450v(:,1)*2/3;
+
+fig = figure;
+plot(cap_select,cost_450,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,cost_300,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Cost (Euro)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series','Limit')
+print(fig,'costeuro','-dpng')
+
 
 %%
 % Give weights to the constraints and check overall performance
 
 % Overall performance - 1
-weight_pd = 0.4;
-weight_h = 0.3;
-weight_t = 0.3;
-overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
-overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+weight_pd = 0.3;
+weight_h = 0.2;
+weight_t = 0.2;
+weight_c = 0.3;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45) + weight_c./(cost_300/75);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45) + weight_c./(cost_300/75);
 fig = figure;
 plot(cap_select,overall_450,'bo-','Linewidth',1.5);
 hold on;
@@ -257,16 +274,17 @@ hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
-ylabel('Overall performance (pd=0.4,h=0.3,t=0.3)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.3,h=0.2,t=0.2,c=0.3)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series')
 print(fig,'overall-1','-dpng')
 
 % Overall performance - 2
-weight_pd = 0.5;
+weight_pd = 0.4;
 weight_h = 0.2;
-weight_t = 0.3;
-overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
-overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+weight_t = 0.2;
+weight_c = 0.2;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45) + weight_c./(cost_300/75);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45) + weight_c./(cost_300/75);
 fig = figure;
 plot(cap_select,overall_450,'bo-','Linewidth',1.5);
 hold on;
@@ -275,16 +293,17 @@ hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
-ylabel('Overall performance (pd=0.5,h=0.2,t=0.3)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.4,h=0.2,t=0.2,c=0.2)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series')
 print(fig,'overall-2','-dpng')
 
 % Overall performance - 3
-weight_pd = 0.4;
+weight_pd = 0.2;
 weight_h = 0.2;
-weight_t = 0.4;
-overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45);
-overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45);
+weight_t = 0.2;
+weight_c = 0.4;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45) + weight_c./(cost_300/75);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45) + weight_c./(cost_300/75);
 fig = figure;
 plot(cap_select,overall_450,'bo-','Linewidth',1.5);
 hold on;
@@ -293,9 +312,28 @@ hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
-ylabel('Overall performance (pd=0.4,h=0.2,t=0.4)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.2,h=0.2,t=0.2,c=0.4)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series')
 print(fig,'overall-3','-dpng')
+
+% Overall performance - 4
+weight_pd = 0.2;
+weight_h = 0.3;
+weight_t = 0.3;
+weight_c = 0.2;
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_t./(Tcore_300/45) + weight_c./(cost_300/75);
+overall_450 = weight_pd*power_density_450/10 + weight_h./(height_450/40) + weight_t./(Tcore_450/45) + weight_c./(cost_300/75);
+fig = figure;
+plot(cap_select,overall_450,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,overall_300,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Overall performance (pd=0.2,h=0.3,t=0.3,c=0.2)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series')
+print(fig,'overall-4','-dpng')
 
 
 
