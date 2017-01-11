@@ -1,0 +1,24 @@
+% columns:
+% 1. capacitance (uF)
+% 2. diameter (mm)
+% 3. length (mm)
+% 4. ESRtyp-100Hz-20C (mOhm)
+% 5. ESRtyp-300Hz-60C (mOhm)
+% 6. Zmax-10kHz-20C (mOhm)
+% 7. Iacmax-100Hz-60C (A)
+% 8. Iacr-100Hz-85C (A)
+
+% columns:
+% 1. capacitance (uF)
+% 2. width (mm)
+% 3. height (mm)
+% 4. length (mm)
+% 5. Iacmax-10kHz-70C (A)
+% 6. ESRtyp-10kHz-70C (mOhm)
+% 7. ESL (nH)
+% 8. tandelta-1kHz (1e-3)
+% 9. tandelta-10kHz (1e-3)
+% 10. MOQ
+% 11. Thermal resistance (mW/C)
+% 12. lead spacing
+

@@ -15,8 +15,6 @@ Icrms = (0.275)*module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M
 Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
-
-
 %%
 % 0.612 = sqrt(3/2)/2
 
@@ -121,8 +119,8 @@ required_rmscurrent = Icrms_max(1); % A
 
 parallel_450 = zeros(1,numel(cap_select));
 parallel_300 = zeros(1,numel(cap_select));
-available_450 = ones(1,numel(cap_select));
-available_300 = ones(1,numel(cap_select));
+available_450 = ones(4,numel(cap_select));
+available_300 = ones(4,numel(cap_select));
 for m = 1:numel(cap_select)
     parallel_450(1,m) = ceil(required_capacitance/fpc_450v(m,1));
     rms_current_450(1,m) = parallel_450(1,m)*fpc_450v(m,5);
@@ -150,38 +148,65 @@ power_density_300 = 2000./volume_300; % W/cm^3
 
 for m = 1:numel(cap_select)
     if power_density_450(m) < power_density_min
-        available_450(1,m) = 0;
+        available_450(2,m) = 0;
     end
     if power_density_300(m) < power_density_min
-        available_300(1,m) = 0;
+        available_300(2,m) = 0;
     end
     if height_450(m) > height_max
-        available_450(1,m) = 0;
+        available_450(3,m) = 0;
     end
     if height_300(m) > height_max
-        available_300(1,m) = 0;
+        available_300(3,m) = 0;
     end
 end
+
+% There is no dependency for ESR on frequency after 10 kHz.
+% There is no dependency for Iacrms on frequency after 10 kHz
+% There is no dependency for Iacrms on temperature before 70C ambient
+% temperature
 
 ESR_450 = fpc_450v(:,6)*1e-3; % Ohm
 ESR_300 = fpc_300v(:,6)*1e-3; % Ohm
+thermal_res_300 = fpc_300v(:,11); % mW/C
+thermal_res_450 = fpc_450v(:,11); % mW/C
+lead_space_300 = fpc_300v(:,12); % mW/C
+lead_space_450 = fpc_450v(:,12); % mW/C
 
-Rth = 1e-3*50; % W/C
-Ploss_450 = required_rmscurrent^2*ESR_450; % W
-Tcore_450 = Rth*Ploss_450+Tambient; % C
-Ploss_300 = required_rmscurrent^2*ESR_300; % W
-Tcore_300 = Rth*Ploss_300+Tambient; % C
+Ploss_450 = required_rmscurrent^2.*ESR_450; % W
+Tcore_450 = thermal_res_450.*Ploss_450+Tambient; % C
+Ploss_300 = required_rmscurrent^2.*ESR_300; % W
+Tcore_300 = thermal_res_300.*Ploss_300+Tambient; % C
 
 for m = 1:numel(cap_select)
     if Tcore_450(m) > temp_max
-        available_450(1,m) = 0;
+        available_450(4,m) = 0;
     end
     if Tcore_300(m) > temp_max
-        available_300(1,m) = 0;
+        available_300(4,m) = 0;
     end
 end
 
 
+%%
+% Algorithm Results
+num = numel(cap_select);
+power_density_limit = power_density_min*ones(1,num);
+figure;
+plot(cap_select,power_density_300,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,power_density_450,'ro-','Linewidth',1.5);
+hold on;
+plot(cap_select,power_density_limit,'ko-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Power Density (W/cm^3)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series','Limit')
+
+
+%% BELOW ARE OBSOLETE, WILL BE CHECKED LATER
 
 %%
 % Datasheet parameters (electrolytic)

@@ -15,8 +15,6 @@ Icrms = (0.275)*module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M
 Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
-
-
 %%
 % 0.612 = sqrt(3/2)/2
 
@@ -165,28 +163,27 @@ end
 
 ESR_450 = fpc_450v(:,6)*1e-3; % Ohm
 ESR_300 = fpc_300v(:,6)*1e-3; % Ohm
+% There is no dependency for ESR on frequency after 10 kHz.
 
-Rth = 1e-3*50; % W/C
+thermal_res_300 = fpc_300v(:,11); % mW/C
+thermal_res_450 = fpc_450v(:,11); % mW/C
+lead_space_300 = fpc_300v(:,12); % mW/C
+lead_space_450 = fpc_450v(:,12); % mW/C
+
 Ploss_450 = required_rmscurrent^2*ESR_450; % W
 Tcore_450 = Rth*Ploss_450+Tambient; % C
+Ploss_300 = required_rmscurrent^2*ESR_300; % W
+Tcore_300 = Rth*Ploss_300+Tambient; % C
 
 for m = 1:numel(cap_select)
-    if power_density_450(m) < power_density_min
+    if Tcore_450(m) > temp_max
         available_450(1,m) = 0;
     end
-    if power_density_300(m) < power_density_min
-        available_300(1,m) = 0;
-    end
-    if height_450(m) > height_max
-        available_450(1,m) = 0;
-    end
-    if height_300(m) > height_max
+    if Tcore_300(m) > temp_max
         available_300(1,m) = 0;
     end
 end
 
-
-%%
 
 
 %%
