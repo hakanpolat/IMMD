@@ -6,7 +6,7 @@
 ## Gerçekleşen çalışmalar:
 * ISIE review yazıldı.
 * DC bara kondansatörü analitik çalışmalar bitti.
-* DC bara kondansatörü algoritma geliştirildi. Örnek elektrolitik ve film kondansatör cerileri eklendi.
+* DC bara kondansatörü algoritma geliştirildi. Örnek elektrolitik ve film kondansatör verileri eklendi.
 * BRB: GaN datasheet inceleme ve 3-faz inverter üzerine çalışma yapıldı.
 
 # 02 Ocak - 08 Ocak

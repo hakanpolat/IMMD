@@ -34,21 +34,22 @@ Icrms_perc = 100*Icrms/Idc;
 
 
 %% MAIN ALGORITHM
-
-Icrms = zeros(10,10);
-Cap = zeros(10,10);
-Cap_max = zeros(1,10); 
-for k = 1:10
-    % Variables
-    M = 0.1:0.1:1;
-    
+freq1 = 10e3:10e3:400e3;
+numfreq = numel(freq1);
+M = 0.1:0.01:1;
+numM = numel(M);
+Icrms = zeros(numfreq,numM);
+Cap = zeros(numfreq,numM);
+Cap_max = zeros(1,numfreq);
+Icrms_max = zeros(1,numfreq);
+for k = 1:numfreq
     % Inputs
     cosphi = 0.9;
     Vdc = 400; % V
     module = 4;
     phase_dif = 90; % degrees
-    efficiency = 0.99;
-    Tambient = 30; % C
+    efficiency = 0.99; % THIS VALUE WILL DEPEND ON FREQUENCY !!!
+    Tambient = 40; % C
     
     % Operational parameters
     Pout1 = M*2e3; % W
@@ -63,9 +64,9 @@ for k = 1:10
     % Constraints
     perc_ripple_c = 3; % percent
     volt_ripple_c = perc_ripple_c*0.01*Vdc; % V
-    temp_max = 80; % C
+    temp_max = 45; % C
     power_density_min = 10; % W/cm^3
-    height_max = 50; % mm
+    height_max = 40; % mm
     weight_max = 30; % g
     
     % Block 1 - RMS current
@@ -76,16 +77,14 @@ for k = 1:10
     
     % Block 2 - Required capacitance
     Icharge = module*Iapeak - Idc;
-    %volt_ripple = Icharge*0.5*M/(fsw*C);
     Cap(k,:) = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
-    %Cap_select = ceil(Cap*1e5)*1e-5; % F
     
     Cap_max(k) = max(Cap(k,:));
     Icrms_max(k) = max(Icrms(k,:));
 end
 
-freq1 = 10e3:10e3:100e3;
 
+%%
 figure;
 plot(freq1/1e3,Cap_max*1e6,'bo-','Linewidth',1.5);
 grid on;
@@ -94,8 +93,8 @@ xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
 figure;
-for k = 1:10
-    plot(M,Cap(k,:)*1e6,'bo-','Linewidth',1.5);
+for k = 1:numel(freq1)
+    plot(M,Cap(k,:)*1e6,'k -','Linewidth',1.5);
     hold on;
 end
 hold off;
@@ -190,9 +189,11 @@ end
 
 %%
 % Algorithm Results
+
+% Power density
 num = numel(cap_select);
 power_density_limit = power_density_min*ones(1,num);
-figure;
+fig = figure;
 plot(cap_select,power_density_300,'bo-','Linewidth',1.5);
 hold on;
 plot(cap_select,power_density_450,'ro-','Linewidth',1.5);
@@ -204,7 +205,49 @@ set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
 ylabel('Power Density (W/cm^3)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series','Limit')
+print(fig,'powerdensity','-dpng')
 
+% Temperature
+temperature_limit = temp_max*ones(1,num);
+fig = figure;
+plot(cap_select,Tcore_300,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,Tcore_450,'ro-','Linewidth',1.5);
+hold on;
+plot(cap_select,temperature_limit,'ko-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Temperature (C)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series','Limit')
+print(fig,'temperature','-dpng')
+
+% Height
+height_limit = height_max*ones(1,num);
+fig = figure;
+plot(cap_select,height_300,'bo-','Linewidth',1.5);
+hold on;
+plot(cap_select,height_450,'ro-','Linewidth',1.5);
+hold on;
+plot(cap_select,height_limit,'ko-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
+ylabel('Height (mm)','FontSize',12,'FontWeight','Bold')
+legend('450V series','300V series','Limit')
+print(fig,'height','-dpng')
+
+
+%%
+% Give weights to the constraints
+
+weight_pd = 0.4;
+weight_h = 0.3;
+weight_t = 0.3;
+
+overall_300 = weight_pd*power_density_300/10 + weight_h./(height_300/40) + weight_temp./(T)
 
 %% BELOW ARE OBSOLETE, WILL BE CHECKED LATER
 
