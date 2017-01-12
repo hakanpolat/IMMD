@@ -194,9 +194,9 @@ end
 num = numel(cap_select);
 power_density_limit = power_density_min*ones(1,num);
 fig = figure;
-plot(cap_select,power_density_450,'bo-','Linewidth',1.5);
+plot(cap_select,power_density_450,'ro-','Linewidth',1.5);
 hold on;
-plot(cap_select,power_density_300,'ro-','Linewidth',1.5);
+plot(cap_select,power_density_300,'bo-','Linewidth',1.5);
 hold on;
 plot(cap_select,power_density_limit,'ko-','Linewidth',1.5);
 hold off;

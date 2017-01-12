@@ -62,6 +62,29 @@ Buraya bir-iki görsel gelecek (referans)
 
 * Types of Capacitors
 
+# Capacitor Types
+## Aluminium electrolytic capacitor
+* ++ High capacitance per volume
+* ++ Low cost
+* ++ Suitable for vibrational environment
+* -- Sensitive to temperature change
+* -- Low RMS current rating per volume
+
+## Polypropylene film capacitor
+* ++ High RMS current rating per volume
+* ++ Small ESL
+* ++ Better temperature stability
+* ++ Suitable for vibrational environment
+* -- Low capacitance per volume
+* -- High cost
+
+## Multi-layer ceramic capacitor (MLCC)
+* ++ Low cost
+* ++ High RMS current rating per volume
+* -- Low capacitance per volume
+* -- No self-healing capability
+* -- Limited power rating (multiple series and parallel capacitors)
+
 * Capacitor Selection Aspects
 
 * Capacitor Selection Algorithm
