@@ -14,27 +14,11 @@ In conventional motor drive systems, drive units are placed in a cabinet and con
 
 In addition, due to the long connection cables, high voltage transients on the motor windings caused by PWM operation occurs on the motor terminals causing leakage currents through stator winding insulation. This effect leads to aging of insulations and shortening of motor lifetime. One measure for this effect is the utilization of filters between motor drive and inverters which is a bulky and costly solution.
 
+In recent years, a new concept called Integrated Modular Motor Drives (IMMDs) has emerged to overcome the aforementioned problems. This concept suggests that, the drive stage of a motor drive system including power stage, control electronics, passive elements and heatsink can be integrated to the motor resulting in a single integrated unit. This integration phenomena brings several advantages. The power density of the motor drive system is significantly incrased. furthermore, the long cables are eliminated so that the lifetime of the motor is increased and EMI problems are minimized. In addition, this concept aims to modularize the overall system, dividing it into several identical parts. Winding terminals of the motor poles are taken out separately to be driven by its own power electronics. By this way, a motor drive system is composed of a number of identical modules sharing the total power requirement equally. This technique significantly incrases the fault tolerance of the motor and drive as the motor can continue its operation even if a fault occurs on one of the modules. Moreover, the voltage stress on each module and motor winding group is reduced which also enables the utilization of power semiconductor devices with low breakdown voltage ratings. The thermal performance of the drive is also improved as the heat sources in the system are now distributed on a larger surface area, and hot spot temperatures are reduced. In addition, fabrication, installation, maintenance and repairment costs are also drastically reduced thanks to the modular structure.
 
+Alongside of these benefits, integration of the motor and drive brings about several challenges to the designer. First of all, fitting all the drive componenets to such a small footprint requires size optimization and optimum placement of components. Moreover, cooling of motor and drive simultaneously is very difficult. In addition, the electronics is directly subjected to the physical vibration caused by the motor. To reduce the size of passive elements, incrasing the operation frequency by the utilization of new generation wide bandgap power semiconductors is proposed. Because of that, parasitic inductances on both power stage and gate drive circuitry become more significant which requires careful layout design.
 
-Integrated structure:
-Long cable effect (aging, EMI)
-Increased power density (kW/liter, kW/kg)
-
-
-Modular strucutere:
-voltage stress on each module is reduced
-Easier fabrication, intallation, maintenance and repairment
-Better fault tolerance
-Cost is reduced?
-Better thermal perfoemance due to distribution
-Hot spot temperature is reduced
-
-
-Challenges and research opportunities:
-Cooling of both motor and drive simultaneously
-Fitting the passive elements in a smaller footprint
-Physical vibration exerted on the power electronics and controller
-High frequency operation is beneficial to decrease component volumes. High frequency parasitic effects arise which requires optimal placement of components
+All these challenges imply new research opportunities.
 
 Bizim önerdiğimiz yeniliklerden bahsedecek miyiz???
 
@@ -44,15 +28,59 @@ Bizim önerdiğimiz yeniliklerden bahsedecek miyiz???
 * Concept of IMMD
 
 Buraya bir-iki görsel gelecek (referans)
+![](./gorsel/immd1.png)
+![](./gorsel/immd2.png)
+
+Yukarıda yazan kısımların bir kısmı buraya alınacak.
+
+* Modular Motor with Split Winding
+
+In a conventional motor, the stator coils in different poles are usually connected in series forming a single winding for each phase. In a modular motor design, these pole windings can be connected to separate drive inverters. such kind of machines are called split winding machines. This technique can be visualised in Figure.
+
+![](./gorsel/split.png)
+![](./gorsel/split2.png)
+Figür yeniden çizilecek.
+
+End winding cost and losses will decrease.
 
 
 * IMMD topologies
 
-* Wide Bandgap Power Semicondcutor Devices
+Connection of the inverters in parallel or series on the DC link in a variety of combinations is easy without the practical concerns related to circulating currents between inverters, since the load side is inherently isolated due to split winding machine configuration.
 
-* Modular Motor with Split Winding
+With modular machine, the voltage level on each segment will be small supposing that the total number of turns is preserved. Presence of a high voltage on DC link will require some sort of series connection of converters or power switches in a multilevel structure for full utilization. In addition, keeping the voltage level of each inverter module small will lead to the possibility of utilizing low voltage power semiconductors. This will surely enable new generation high electron mobility transistors (HEMT) such as Gallium Nitride (GaN). Furthermore, it is known fact that, reduction of the voltage rating of each power device yields a reduction on the switching losses of the overall system.
+
+Many multilevel converter topologies have been proposed in the literature. The most common ones are Neutral Point Clamped (NPC), Flying Capacitor (FLC), Cascaded H-Bridge (CHB) and Modular Multilevel Converter (MMC) which are shown in Figure. Comparison of these topologies for use in IMMD applications in terms of componenet quantity, componenet sizing, voltage stress etc. has been studied several times.
+
+The major drawback of topologies having series connection is reduced tolerance to the faults. One of the main ideas behind modularity is to boost the fault tolerance of the system, so it is not wise to use a fully series connected topology.
+
+Figür gelcek. Yeniden çizilecek.
+![](./gorsel/topology.png)
+
+
+It is also possible to construct a topology by just simply connecting several 3-phase 2-level modules, each of which is responsible for one motor winding module, in series and parallel according to the need for voltage and current sharing as shown in Figure.
+
+Yeniden çizilecek.
+![](./gorsel/topology.png)
+
+This type of topology has the advantage of flexibility in the design, absolute symmetry, redundancy and better fault tolerance on drive stage. The simple structure also eliminates the need of any additional circuit components.
+
+The number of series connected modules can be decided by the relation between DC link voltage level and power semiconductor voltage ratings.
+
+
+* Wide Bandgap Power Semiconductor Devices
+
+YAZ.
+
 
 ## DC Link Modeling
+
+Recduction of DC link capacitor volume is very crutial in IMMD design. As seen in the figure, in a modern power electronics system, passive elements take a significant portion of overall volume and cost
+(Marz, 2010).
+![](./gorsel/cost-volume.png)
+
+Decresing the volume of capacitors is not sufficient alone, the height of the capacitors should also be minimized.
+![](./gorsel/height.png)
 
 * Analytical Modeling
 
@@ -61,6 +89,8 @@ Buraya bir-iki görsel gelecek (referans)
 ## DC Link Capacitor Evaluation
 
 * Types of Capacitors
+
+The most common capacitor types used in motor drives are aluminum electrolytic capacitors, metal film capacitors and multilayer ceramic capacitors.
 
 # Capacitor Types
 ## Aluminium electrolytic capacitor
@@ -85,7 +115,12 @@ Buraya bir-iki görsel gelecek (referans)
 * -- No self-healing capability
 * -- Limited power rating (multiple series and parallel capacitors)
 
+
 * Capacitor Selection Aspects
+
+In motor drives, DC link capacitors have the function of taking on the power fluctuation on the DC link occuring at two or six times the msupply frequency (depending on the number of phases), supplying the current ripples at the inverter switching frequency, to avoid the injection of high frequency ripples from one side to the other in the back-to-back structure (decoupling), to provide the drive system for a while in case of power shutdown, to supply the transient powers etc.
+
+
 
 * Capacitor Selection Algorithm
 

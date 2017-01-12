@@ -112,14 +112,14 @@ ylabel('RMS current requirement (A)','FontSize',12,'FontWeight','Bold')
 
 
 %% CAPACITOR SELECTION
-
 required_capacitance = Cap_max(1)*1e6; % uF
 required_rmscurrent = Icrms_max(1); % A
-
 parallel_450 = zeros(1,numel(cap_select));
 parallel_300 = zeros(1,numel(cap_select));
 available_450 = ones(4,numel(cap_select));
 available_300 = ones(4,numel(cap_select));
+rms_current_450 = zeros(1,numel(cap_select));
+rms_current_300 = zeros(1,numel(cap_select));
 for m = 1:numel(cap_select)
     parallel_450(1,m) = ceil(required_capacitance/fpc_450v(m,1));
     rms_current_450(1,m) = parallel_450(1,m)*fpc_450v(m,5);
@@ -132,19 +132,16 @@ for m = 1:numel(cap_select)
         available_300(1,m) = 0;
     end
 end
-
 height_450 = fpc_450v(:,3); % mm
 width_450 = fpc_450v(:,2); % mm
 length_450 = fpc_450v(:,4); % mm
 volume_450 = 1e-3*length_450.*width_450.*height_450.*parallel_450(1,:)'; % cm^3
 power_density_450 = 2000./volume_450; % W/cm^3
-
 height_300 = fpc_300v(:,3); % mm
 width_300 = fpc_300v(:,2); % mm
 length_300 = fpc_300v(:,4); % mm
 volume_300 = 2*1e-3*length_300.*width_300.*height_300.*parallel_300(1,:)'; % cm^3
 power_density_300 = 2000./volume_300; % W/cm^3
-
 for m = 1:numel(cap_select)
     if power_density_450(m) < power_density_min
         available_450(2,m) = 0;
@@ -159,24 +156,20 @@ for m = 1:numel(cap_select)
         available_300(3,m) = 0;
     end
 end
-
 % There is no dependency for ESR on frequency after 10 kHz.
 % There is no dependency for Iacrms on frequency after 10 kHz
 % There is no dependency for Iacrms on temperature before 70C ambient
 % temperature
-
 ESR_450 = fpc_450v(:,6)*1e-3./parallel_450(1,:)'; % Ohm
 ESR_300 = 2*fpc_300v(:,6)*1e-3./parallel_300(1,:)'; % Ohm
 thermal_res_300 = fpc_300v(:,11); % mW/C
 thermal_res_450 = fpc_450v(:,11); % mW/C
 lead_space_300 = fpc_300v(:,12); % mW/C
 lead_space_450 = fpc_450v(:,12); % mW/C
-
 Ploss_450 = required_rmscurrent^2.*ESR_450; % W
 Tcore_450 = thermal_res_450.*Ploss_450./parallel_450'+Tambient; % C
 Ploss_300 = required_rmscurrent^2.*ESR_300; % W
 Tcore_300 = thermal_res_300.*Ploss_300./(2*parallel_300')+Tambient; % C
-
 for m = 1:numel(cap_select)
     if Tcore_450(m) > temp_max
         available_450(4,m) = 0;
