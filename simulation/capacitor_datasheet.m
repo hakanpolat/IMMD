@@ -404,3 +404,81 @@ ylabel('Ripple Current - max - 70 C - 10 kHz (A)','FontSize',12,'FontWeight','Bo
 legend('450V series','300V series')
 
 
+%%
+% COST - 300V
+cap = [2.2,3.3,4.7,6.8,8,8.2,10,12,15,20,25,30,47,60];
+cost = [2.25,2.74,3.13,3.82,4.32,4.47,4.76,5.33,5.78,7.6,7.85,9.07,11.72,12.7];
+
+N = 3;
+P = polyfit(cap,cost,N);
+cost2 = zeros(1,numel(cap));
+
+for k = 1:N+1
+    cost2 = cost2+P(k)*cap.^(N-k+1);
+end
+
+% P = polyfit(cap,cost,N);
+% cost2 = P(1)*cap.^2+P(2)*cap+P(3);
+figure;
+plot(cap,cost,'bo-','Linewidth',1.5);
+hold on;
+plot(cap,cost2,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance (uF)','FontSize',12,'FontWeight','Bold')
+ylabel('Cost (dollars)','FontSize',12,'FontWeight','Bold')
+
+a = 1:300;
+b = zeros(1,numel(a));
+for k = 1:N+1
+    b = b+P(k)*a.^(N-k+1);
+end
+%b = P(1)*a.^2+P(2)*a+P(3);
+figure;
+plot(a,b,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance (uF)','FontSize',12,'FontWeight','Bold')
+ylabel('Cost (dollars)','FontSize',12,'FontWeight','Bold')
+xlim([0 100]);
+
+
+%%
+% COST - 450V
+cap = [1.5,2.2,3.3,4.7,5,6,6.8,15,20,35];
+cost = [1.78,1.81,3.14,3.75,4.38,4.32,4.54,9.4,10.09,14.53];
+
+N = 3;
+P = polyfit(cap,cost,N);
+cost2 = zeros(1,numel(cap));
+
+for k = 1:N+1
+    cost2 = cost2+P(k)*cap.^(N-k+1);
+end
+
+% P = polyfit(cap,cost,N);
+% cost2 = P(1)*cap.^2+P(2)*cap+P(3);
+figure;
+plot(cap,cost,'bo-','Linewidth',1.5);
+hold on;
+plot(cap,cost2,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance (uF)','FontSize',12,'FontWeight','Bold')
+ylabel('Cost (dollars)','FontSize',12,'FontWeight','Bold')
+
+a = 1:300;
+b = zeros(1,numel(a));
+for k = 1:N+1
+    b = b+P(k)*a.^(N-k+1);
+end
+%b = P(1)*a.^2+P(2)*a+P(3);
+figure;
+plot(a,b,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Capacitance (uF)','FontSize',12,'FontWeight','Bold')
+ylabel('Cost (dollars)','FontSize',12,'FontWeight','Bold')
+xlim([0 50]);

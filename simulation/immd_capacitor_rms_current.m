@@ -232,21 +232,30 @@ ylabel('Height (mm)','FontSize',12,'FontWeight','Bold')
 legend('450V series','300V series','Limit')
 print(fig,'height','-dpng')
 
+
+%%
 % COST
-cost_300 = 2*parallel_450'.*fpc_300v(:,1)*2/3;
+%cost_300 = 2*parallel_350'.*fpc_300v(:,1)*2/3;
 cost_450 = parallel_450'.*fpc_450v(:,1)*2/3;
 
-fig = figure;
-plot(cap_select,cost_450,'bo-','Linewidth',1.5);
-hold on;
-plot(cap_select,cost_300,'ro-','Linewidth',1.5);
+c = zeros(1,numel(fpc_300v(:,1)));
+for k = 1:N+1
+    c = c+P(k)*fpc_300v(:,1)'.^(N-k+1);
+end
+
+%fig = figure;
+% plot(cap_select,cost_450,'bo-','Linewidth',1.5);
+% hold on;
+plot(cap_select,c,'ro-','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitor No','FontSize',12,'FontWeight','Bold')
 ylabel('Cost (Euro)','FontSize',12,'FontWeight','Bold')
-legend('450V series','300V series','Limit')
-print(fig,'costeuro','-dpng')
+% legend('450V series','300V series','Limit')
+% print(fig,'costeuro','-dpng')
+xlim([1,25]);
+cost_300 = 2*parallel_350'.*c';
 
 
 %%

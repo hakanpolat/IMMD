@@ -233,8 +233,17 @@ legend('450V series','300V series','Limit')
 print(fig,'height','-dpng')
 
 % COST
-cost_300 = 2*parallel_450'.*fpc_300v(:,1)*2/3;
+%cost_300 = 2*parallel_450'.*fpc_300v(:,1)*2/3;
 cost_450 = parallel_450'.*fpc_450v(:,1)*2/3;
+
+N = 3;
+P = polyfit(cap,cost,N);
+cost2_300 = zeros(1,numel(cap));
+
+for k = 1:N+1
+    cost2 = cost2+P(k)*cap.^(N-k+1);
+end
+
 
 fig = figure;
 plot(cap_select,cost_450,'bo-','Linewidth',1.5);
