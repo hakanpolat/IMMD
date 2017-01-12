@@ -1,17 +1,17 @@
 %% Capacitor Analytical RMS
-M = 0.5;
+M = 1;
 cosphi = 0.9;
-module = 4;
-phase_dif = 90; % degrees
+module = 5;
+phase_dif = 0; % degrees
 
 Vdc = 400; % Volts
-Pout1 = 2e3; % W
+Pout1 = 2.4e3; % W
 Sout1 = Pout/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % Volts
 Iline = Sout1/(Vll_rms*sqrt(3)); % Amps
 efficiency = 0.99;
-
-Icrms = (0.275)*module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
+%(0.275)
+Icrms = module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
