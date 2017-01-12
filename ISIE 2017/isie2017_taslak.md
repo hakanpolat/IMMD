@@ -126,7 +126,6 @@ In motor drives, DC link capacitors have the function of taking on the power flu
 
 ## Results
 
-
 ## Conclusions
 
 ## Acknowledgements

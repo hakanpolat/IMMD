@@ -6,3 +6,5 @@
 ![](./resultimages/overall-2.png)
 ![](./resultimages/overall-3.png)
 ![](./resultimages/overall-4.png)
+![](./resultimages/varyingmodule.png)
+![](./resultimages/varyingmodule-rms.png)
