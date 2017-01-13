@@ -1,11 +1,10 @@
-%% Capacitor Analytical RMS
-M = 1;
+%% Capacitor Analytical RMS Current
+M = 0.5;
 cosphi = 0.9;
-module = 5;
+module = 1;
 phase_dif = 0; % degrees
-
 Vdc = 400; % Volts
-Pout1 = 2.4e3; % W
+Pout1 = 2e3; % W
 Sout1 = Pout/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % Volts
 Iline = Sout1/(Vll_rms*sqrt(3)); % Amps
@@ -14,6 +13,18 @@ efficiency = 0.99;
 Icrms = module*Iline*sqrt(2*M*(sqrt(3)/(4*pi) + cosphi^2*(sqrt(3)/pi-9*M/16)));
 Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
+
+% Capacitor Analytical voltage Ripple
+fsw = 10e3; % Hz
+Cdc = 50e-6; % F
+Iapeak = Iline*sqrt(2);
+Icharge_pos = Idc;
+Icharge_neg = Iapeak - Idc;
+volt_ripple1 = M*Icharge_neg/(Cdc*fsw);
+volt_ripple2 = 0.3*Icharge_pos*M/(Cdc*fsw);
+volt_ripple = max(volt_ripple1,volt_ripple2);
+volt_ripple_perc = volt_ripple/Vdc*100;
+
 
 %%
 % 0.612 = sqrt(3/2)/2
@@ -62,7 +73,7 @@ for k = 1:numfreq
     fsw = k*10e3; % Hz
     
     % Constraints
-    perc_ripple_c = 3; % percent
+    perc_ripple_c = 1; % percent
     volt_ripple_c = perc_ripple_c*0.01*Vdc; % V
     temp_max = 45; % C
     power_density_min = 10; % W/cm^3
@@ -76,9 +87,13 @@ for k = 1:numfreq
     %Icrms_perc = 100*Icrms./Idc; % USE LATER
     
     % Block 2 - Required capacitance
-    Icharge = module*Iapeak - Idc;
-    Cap(k,:) = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
-    
+    Icharge_pos = Idc;
+    Icharge_neg = Iapeak*module - Idc;
+    Cap(k,:) = Icharge_neg.*M/(volt_ripple_c*fsw); % F
+    % volt_ripple1 = M*Icharge_neg/(Cdc*fsw);
+    % volt_ripple2 = 0.3*Icharge_pos*M/(Cdc*fsw);
+    % volt_ripple_c = max(volt_ripple1,volt_ripple2);
+    % volt_ripple_perc = volt_ripple/Vdc*100;
     Cap_max(k) = max(Cap(k,:));
     Icrms_max(k) = max(Icrms(k,:));
 end

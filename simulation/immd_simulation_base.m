@@ -206,4 +206,33 @@ xlim([0.096 0.1]);
 legend('w interleaving','w/o interleaving','w interleaving rms','w/o interleaving rms');
 
 
+%%
+% NEW TRIAL for capacitor ripple voltage
+% step time
+Ts = 1e-5; % sec
+% modulation index
+ma = 1;
+% switching frequency
+fsw = 1e3; % Hz
+% DC link voltage
+Vdc = 400; % Volts
+% Load
+pf = 0.9;
+Pout = 2e3; % VA
+Sout = Pout/pf; % VA
+efficiency = 0.99;
+fout = 50; % Hz
+wout = 2*pi*fout; % rad/sec
+%Vll_rms = Vdc/sqrt(2); % Volts
+Vll_rms = ma*Vdc*0.612; % Volts
+Iline = Sout/(Vll_rms*sqrt(3)); % Amps
+Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
+Rload = Zload*pf; % Ohms
+Xload = sqrt(Zload^2-Rload^2); % Ohms
+Lload = Xload/wout; % Henries
+
+R1 = 5; % Ohm
+Rrefl = Vdc^2/(Pout/efficiency);
+V1 = Vdc*(R1+Rrefl)/Rrefl; % V
+Cdc = 50e-6; % F
 
