@@ -1,7 +1,7 @@
-# Evaluation of DC Link Capacitors in Integrated Modular Motor Drives
+# Optimization of DC Link Capacitors in Integrated Modular Motor Drives
 
 ## Abstract
-In this research work, a review of integrated modular motor drive (IMMD) technologies is performed. Current research and future prospects are studied. Challenges of the IMMD technologies are discussed. Inverter topologies and gate drive techniques are evaluated in terms of DC link performance. DC Link capacitor types are discussed and critical aspects in selecting the DC links capacitor are listed. Analytical modeling of DC link capacitor parameters is performed and it is verified by simulations conducted using MATLAB/Simulink. Selection of optimum DC Link capacitor is achieved based on the model, capacitor selection algorithm and simulation results.
+In this research work, selection of optimum DC link capacitor for Integrated Modular Motor Drives (IMMD) is achieved. First, a review of IMMD technologies is performed and current research and future prospects are studied. Challenges of the IMMD technologies are discussed. Inverter topologies and gate drive techniques are evaluated in terms of DC link performance. DC Link capacitor types are discussed and critical aspects in selecting the DC links capacitor are listed. Analytical modeling of DC link capacitor parameters is performed and it is verified by simulations conducted using MATLAB/Simulink. Optimization of DC link capacitor is achieved based on the model, capacitor selection algorithm and simulation results.
 
 ## Keywords
 integrated modular motor drive; split winding motor; DC Link capacitor; interleaving; GaN transistor
