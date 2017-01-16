@@ -1,3 +1,14 @@
+# 16 Ocak - 22 Ocak
+## Planlanan çalışmalar:
+* ISIE makalesi submit.
+* BRB: GaN power loss characterisation ve efficiency çalışmalar.
+* Motor konfigürasyonu çalışmaları.
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 # 09 Ocak - 15 Ocak
 ## Planlanan çalışmalar:
 * ISIE makalesi literatür ve review kısımları bitirilecek (Chp1-2)
