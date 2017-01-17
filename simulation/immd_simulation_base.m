@@ -27,6 +27,7 @@ Vrms = Vrms_sim(numel(Vrms_sim));
 Irms = Irms_sim(numel(Irms_sim));
 Sout = sqrt(3)*Vrms*Irms;
 
+
 %%
 num = 20;
 Vcrms = zeros(1,num);
@@ -209,11 +210,10 @@ legend('w interleaving','w/o interleaving','w interleaving rms','w/o interleavin
 %%
 % NEW TRIAL for capacitor ripple voltage
 % step time
-Ts = 1e-5; % sec
+Ts = 1e-6; % sec
 % modulation index
 ma = 1;
 % switching frequency
-fsw = 1e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
@@ -230,9 +230,15 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-
 R1 = 5; % Ohm
 Rrefl = Vdc^2/(Pout/efficiency);
 V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 50e-6; % F
-
+num = 3;
+for k = 1:num
+    fsw = k*1e3; % Hz
+    tic
+    sim('capacitor1.slx');
+    toc
+    percent_ripple(k) = perc_rip(numel(perc_rip))
+end
