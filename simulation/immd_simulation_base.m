@@ -258,6 +258,8 @@ volt_ripple2 = 0.3*Icharge_pos*M./(Cdc*switching_freq);
 volt_ripple = max(volt_ripple1,volt_ripple2);
 volt_ripple_perc = volt_ripple/Vdc*100;
 
+filename = 'voltageripple.xlsx';
+xlswrite(filename,percent_ripple);
 
 %%
 figure;
