@@ -1,5 +1,5 @@
 %% Capacitor Analytical RMS Current
-M = 0.5;
+M = 1;
 cosphi = 0.9;
 module = 1;
 phase_dif = 0; % degrees
@@ -15,7 +15,7 @@ Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
 % Capacitor Analytical voltage Ripple
-fsw = 10e3; % Hz
+fsw = 1e3; % Hz
 Cdc = 50e-6; % F
 Iapeak = Iline*sqrt(2);
 Icharge_pos = Idc;

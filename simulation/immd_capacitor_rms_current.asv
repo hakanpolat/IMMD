@@ -1,5 +1,5 @@
 %% Capacitor Analytical RMS Current
-M = 0.5;
+M = 1;
 cosphi = 0.9;
 module = 1;
 phase_dif = 0; % degrees
@@ -15,7 +15,7 @@ Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
 % Capacitor Analytical voltage Ripple
-fsw = 10e3; % Hz
+fsw = 1e3; % Hz
 Cdc = 50e-6; % F
 Iapeak = Iline*sqrt(2);
 Icharge_pos = Idc;
@@ -87,16 +87,13 @@ for k = 1:numfreq
     %Icrms_perc = 100*Icrms./Idc; % USE LATER
     
     % Block 2 - Required capacitance
-    Cap(k,:) = Icharge*0.5.*M/(volt_ripple_c*fsw); % F
-    
     Icharge_pos = Idc;
-Icharge_neg = Iapeak - Idc;
-% volt_ripple1 = M*Icharge_neg/(Cdc*fsw);
-% volt_ripple2 = 0.3*Icharge_pos*M/(Cdc*fsw);
-% volt_ripple_c = max(volt_ripple1,volt_ripple2);
-% volt_ripple_perc = volt_ripple/Vdc*100;
-
-
+    Icharge_neg = Iapeak*module - Idc;
+    Cap(k,:) = Icharge_neg.*M/(volt_ripple_c*fsw); % F
+    % volt_ripple1 = M*Icharge_neg/(Cdc*fsw);
+    % volt_ripple2 = 0.3*Icharge_pos*M/(Cdc*fsw);
+    % volt_ripple_c = max(volt_ripple1,volt_ripple2);
+    % volt_ripple_perc = volt_ripple/Vdc*100;
     Cap_max(k) = max(Cap(k,:));
     Icrms_max(k) = max(Icrms(k,:));
 end

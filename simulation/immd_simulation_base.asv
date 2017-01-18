@@ -234,12 +234,33 @@ R1 = 5; % Ohm
 Rrefl = Vdc^2/(Pout/efficiency);
 V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 50e-6; % F
-num = 3;
+num = 10;
+percent_ripple = zeros(1,num);
 for k = 1:num
     fsw = k*1e3; % Hz
-    tic
-    sim('capacitor1.slx');
-    toc
-    percent_ripple(k) = perc_rip(numel(perc_rip))
+    sim('capacitor_voltripple.slx');
+    percent_ripple(k) = perc_rip(numel(perc_rip));
 end
+
+%%
+% Capacitor Analytical voltage Ripple
+fsw = 1e3; % Hz
+Cdc = 50e-6; % F
+Iapeak = Iline*sqrt(2);
+Icharge_pos = Idc;
+Icharge_neg = Iapeak - Idc;
+volt_ripple1 = M*Icharge_neg/(Cdc*fsw);
+volt_ripple2 = 0.3*Icharge_pos*M/(Cdc*fsw);
+volt_ripple = max(volt_ripple1,volt_ripple2);
+volt_ripple_perc = volt_ripple/Vdc*100;
+
+
+%%
+switching_freq = 1e3:1e3:num*1e3;
+figure;
+plot(switching_freq/1e3,percent_ripple,'ro-','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Voltage Ripple (%)','FontSize',12,'FontWeight','Bold')
 
