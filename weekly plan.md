@@ -6,7 +6,7 @@
 
 ## Gerçekleşen çalışmalar:
 * Makale ile ilgili simulasyon çalışmaları tamamlandı.
-* ..
+* 300 Hz harmonik fikri üzerine çalışıldı.
 * .
 
 # 09 Ocak - 15 Ocak

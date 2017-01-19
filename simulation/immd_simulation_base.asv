@@ -302,7 +302,7 @@ V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 50e-6; % F
 fsw = 1e3; % Hz
 phase = zeros(1,n);
-phase2 = 0*pi/180; % rad
+phase2 = 30*pi/180; % rad
 %phase2 = 0; % rad
 sim('sixth_harmonic.slx');
 
