@@ -33,15 +33,31 @@ V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 50e-6; % F
 sim('immd_eff1.slx');
 
+%%
+
+Rds_on = 18e-3; % Ohm
+start = find(timeout==0.48);
+end1 = find(timeout==0.5);
+Econd = 0;
+for k = start:end1
+    Econd = Econd+Rds_on*Igann(k)^2;
+end
+Econd = Econd/(end1-start)
+Pcond = Econd*50;
+
+
+%%
+
 figure;
 plot(timeout,Vgann,'r -','Linewidth',1.5);
 hold on;
-plot(timeout,Igann,'r -','Linewidth',1.5);
+plot(timeout,Igann*10,'b -','Linewidth',1.5);
+hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
-ylabel('GaN voltage (V), ','FontSize',12,'FontWeight','Bold')
-
+ylabel('GaN voltage (V), GaN current (A)','FontSize',12,'FontWeight','Bold')
+xlim([0.46 0.5]);
 
 %%
 Igan(n,l) = Igann(numel(Igann));

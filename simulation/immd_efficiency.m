@@ -35,6 +35,21 @@ sim('immd_eff1.slx');
 
 %%
 
+Rds_on = 18e-3; % Ohm
+start = find(timeout==0.48);
+end1 = find(timeout==0.5);
+Econd = 0; % J
+for k = start:end1
+    if Igann(k) >= 0
+        Econd = Econd+Ts*Rds_on*Igann(k)^2; % J
+    end
+end
+Pcond = Econd*50; % W
+
+
+
+%%
+
 figure;
 plot(timeout,Vgann,'r -','Linewidth',1.5);
 hold on;
