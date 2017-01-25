@@ -1,3 +1,11 @@
+# 23 Ocak - 29 Ocak
+## Planlanan çalışmalar:
+* ISIE makalesi submit
+
+## Gerçekleşen çalışmalar:
+* ..
+* .
+
 # 16 Ocak - 22 Ocak
 ## Planlanan çalışmalar:
 * ISIE makalesi submit. ERTELENDİ
@@ -7,7 +15,7 @@
 ## Gerçekleşen çalışmalar:
 * Makale ile ilgili simulasyon çalışmaları tamamlandı.
 * 300 Hz harmonik fikri üzerine çalışıldı.
-* .
+* otor konfigürasyonu çalışmaları ertelendi.
 
 # 09 Ocak - 15 Ocak
 ## Planlanan çalışmalar:
