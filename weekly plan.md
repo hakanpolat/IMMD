@@ -1,10 +1,17 @@
 # 23 Ocak - 29 Ocak
 ## Planlanan çalışmalar:
-* ISIE makalesi submit
+* ISIE makalesi submit (pazartesi)
+* Pole changing konusu ile ilgili makale okunacak.
 
 ## Gerçekleşen çalışmalar:
 * ..
-* .
+
+# 23 Ocak - 29 Ocak
+## Planlanan çalışmalar:
+* ISIE makalesi submit
+
+## Gerçekleşen çalışmalar:
+* Efficiency çalışmaları
 
 # 16 Ocak - 22 Ocak
 ## Planlanan çalışmalar:
