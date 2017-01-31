@@ -297,10 +297,10 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout_fund; % Henries
 Vp1 = ma1*Vdc/2; % Volts
-Ip1 = Iline_fund*sqrt(2); % Amps
+Ip1 = Iline*sqrt(2); % Amps
 
 % third harmonic
-ma3 = 1;
+ma3 = 0.5;
 
 fout_three = 3*fout_fund; % Hz
 wout_three = 2*pi*fout_three; % rad/sec
@@ -308,13 +308,9 @@ Vll_rms_three = ma3*Vdc*0.612; % Volts
 Xload_three = Lload*wout_three; % Ohms
 Rload_three = Rload; % Ohms
 Zload_three = sqrt(Rload_three^2+Xload_three^2); % Ohms
-Iline_three = Vll_rms_three/(Zload_three*sqrt(3)); % Amps
-pf3 = Rload_three/Zload_three;
+Iline_fund = Vll_rms_three/(Zload_three*sqrt(3)); % Amps
 Vp3 = ma3*Vdc/2; % Volts
 Ip3 = Iline_three*sqrt(2); % Amps
 
 sim('sixth_harmonic.slx');
 
-P1 = Vp1*Ip1*3/2;
-P3 = Vp3*Ip3*3/2;
-P6 = Vp3*Ip3*3/2;

@@ -2,9 +2,11 @@
 ## Planlanan çalışmalar:
 * ISIE makalesi submit (pazartesi)
 * Pole changing konusu ile ilgili makale okunacak.
+* Altıncı harmonik çalışılacak.
 
 ## Gerçekleşen çalışmalar:
-* ..
+* Altıncı harmonik ile ilgili simulasyon yapıldı.
+
 
 # 23 Ocak - 29 Ocak
 ## Planlanan çalışmalar:
