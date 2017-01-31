@@ -5,8 +5,8 @@
 * Altıncı harmonik çalışılacak.
 
 ## Gerçekleşen çalışmalar:
-* Altıncı harmonik ile ilgili simulasyon yapıldı.
-
+* Altıncı harmonik ile ilgili simulasyon yapıldı. Analitik çalışmalar doğrulandı.
+* .
 
 # 23 Ocak - 29 Ocak
 ## Planlanan çalışmalar:

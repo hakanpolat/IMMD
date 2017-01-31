@@ -285,7 +285,7 @@ fsw = 10e3; % Hz
 pf = 0.95;
 
 % fundamental
-ma1 = 1;
+ma1 = 0.8;
 Pout_fund = 10e3; % VA
 Sout_fund = Pout_fund/pf; % VA
 fout_fund = 50; % Hz
@@ -300,7 +300,7 @@ Vp1 = ma1*Vdc/2; % Volts
 Ip1 = Iline_fund*sqrt(2); % Amps
 
 % third harmonic
-ma3 = 1;
+ma3 = 0.3;
 
 fout_three = 3*fout_fund; % Hz
 wout_three = 2*pi*fout_three; % rad/sec
