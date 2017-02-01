@@ -1,5 +1,5 @@
 %% DC Link Capacitor simulation
-
+Ts = 1e-6;
 % modulation index
 ma = 0.66;
 % switching frequency
@@ -82,11 +82,11 @@ n = 4;
 phase = 0:90:270;
 %phase = 0:75:225;
 % step time
-Ts = 1e-7; % sec
+Ts = 1e-6; % sec
 % modulation index
 ma = 1;
 % switching frequency
-fsw = 100e3; % Hz
+fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
