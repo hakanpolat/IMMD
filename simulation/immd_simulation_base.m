@@ -184,26 +184,28 @@ set(gca,'FontSize',12);
 xlim([0.096 0.1]);
 
 %%
-Icapflag1 = Idcin;
-Irms1 = 1.17*ones(1,numel(time));
+Icapflag1 = icrmsdata(:,2);
+Irms1 = 3.472*ones(1,numel(icrmsdata(:,2)));
 %%
-Icapflag2 = Idcin;
-Irms2 = Irms*ones(1,numel(time));
+Icapflag2 = icrmsdata(:,2);
+Irms2 = 5.28*ones(1,numel(icrmsdata(:,2)));
 %%
+time = icrmsdata(:,1);
 figure;
-plot(time,Icapflag1,'b -','Linewidth',1.5);
-hold on;
-plot(time,Icapflag2,'r -','Linewidth',1.5);
-hold on;
-plot(time,Irms1,'m -','Linewidth',1.5);
-hold on;
-plot(time,Irms2,'k -','Linewidth',1.5);
+plot(time,Icapflag2,'b -','Linewidth',1.5);
+% hold on;
+% plot(time,Icapflag1,'r -','Linewidth',1.5);
+% hold on;
+% plot(time,Irms2,'m -','Linewidth',1.5);
+% hold on;
+% plot(time,Irms1,'k -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
 ylabel('DC Link Ripple Current (A)','FontSize',12,'FontWeight','Bold')
-xlim([0.096 0.1]);
+xlim([0.0995 0.1]);
+ylim([-12 9]);
 legend('w interleaving','w/o interleaving','w interleaving rms','w/o interleaving rms');
 
 

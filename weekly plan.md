@@ -6,7 +6,7 @@
 
 ## Gerçekleşen çalışmalar:
 * Altıncı harmonik ile ilgili simulasyon yapıldı. Analitik çalışmalar doğrulandı.
-* Makale devam.
+* Makale submit edildi.
 
 # 23 Ocak - 29 Ocak
 ## Planlanan çalışmalar:

@@ -86,7 +86,7 @@ Ts = 1e-6; % sec
 % modulation index
 ma = 1;
 % switching frequency
-fsw = 100e3; % Hz
+fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
@@ -184,7 +184,7 @@ set(gca,'FontSize',12);
 xlim([0.096 0.1]);
 
 %%
-Icapflag1 = Idcin;
+Icapflag1 = icrmsdata(:,2);
 Irms1 = 1.17*ones(1,numel(time));
 %%
 Icapflag2 = Idcin;
