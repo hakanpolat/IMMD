@@ -85,7 +85,7 @@ Ip1 = Iline_fund*sqrt(2); % Amps
 
 % third harmonic
 ma3 = 0.5;
-
+phase3 = 30*pi/180;
 fout_three = 3*fout_fund; % Hz
 wout_three = 2*pi*fout_three; % rad/sec
 Vll_rms_three = ma3*Vdc/sqrt(2); % Volts
@@ -108,6 +108,7 @@ injfreq = 300*2*pi; % rad/sec
 injphase = 225*pi/180; % rad
 
 phase3 = 0;
+%phasegrid = 120;
 
 % tic
 % num = 360;
@@ -119,7 +120,22 @@ phase3 = 0;
 % end
 % toc
 
-sim('sixth_harmonic_concen2.slx');
+for k = 1:60
+    phasegrid = k;
+    sim('sixth_harmonic_concen2.slx');
+    myfaz(k) = rectifiers(numel(rectifiers));
+end
+    
+
+%%
+gridangle = 1:60;
+figure;
+plot(gridangle,myfaz,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Grid phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('DC link input sixth harmonic phase (degrees)','FontSize',12,'FontWeight','Bold')
+
 
 %%
 angle = 1:360;
@@ -170,3 +186,43 @@ set(gca,'FontSize',12);
 xlabel('Time (Sec)','FontSize',12,'FontWeight','Bold')
 ylabel('DC Link Power (W)','FontSize',12,'FontWeight','Bold')
 xlim([0.08 0.1])
+
+%%
+% power factor
+frequency_fundamental = 50;
+power_factor_fundamental = 0:0.01:1;
+Vdc = 400;
+ma1 = 0.8;
+Pout_fund = 2e3; % VA
+Sout_fund = Pout_fund./power_factor_fundamental; % VA
+wout_fund = 2*pi*frequency_fundamental; % rad/sec
+Vll_rms_fund = ma1*Vdc/sqrt(2); % Volts
+Iline_fund = Sout_fund/(Vll_rms_fund); % Amps
+Zload = Vll_rms_fund./Iline_fund; % Ohms
+Rload = Zload.*power_factor_fundamental; % Ohms
+Xload = sqrt(Zload.^2-Rload.^2); % Ohms
+Lload = Xload/wout_fund; % Henries
+
+Xthird_harm = Xload*3;
+Zthird_harm = sqrt(Rload.^2+Xthird_harm.^2);
+power_factor_thirdharm = Rload./Zthird_harm;
+
+figure;
+plot(power_factor_fundamental,power_factor_thirdharm,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Fundamental power factor','FontSize',12,'FontWeight','Bold')
+ylabel('Third harmonic power factor','FontSize',12,'FontWeight','Bold')
+%xlim([0.08 0.1])
+
+phase_sixth_harmonic = (-acos(power_factor_thirdharm)-pi/2)*180/pi;
+
+
+figure;
+plot(power_factor_fundamental,phase_sixth_harmonic,'r -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Fundamental power factor','FontSize',12,'FontWeight','Bold')
+ylabel('Sixth harmonic phase','FontSize',12,'FontWeight','Bold')
+%xlim([0.08 0.1])
+

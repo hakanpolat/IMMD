@@ -108,6 +108,7 @@ injfreq = 300*2*pi; % rad/sec
 injphase = 225*pi/180; % rad
 
 phase3 = 0;
+%phasegrid = 120;
 
 % tic
 % num = 360;
@@ -119,7 +120,22 @@ phase3 = 0;
 % end
 % toc
 
-sim('sixth_harmonic_concen2.slx');
+for k = 1:60
+    phasegrid = k;
+    sim('sixth_harmonic_concen2.slx');
+    myfaz(k) = rectifiers(numel(rectifiers));
+end
+    
+
+%%
+gridangle = 1:60;
+figure;
+plot(gridangle,myfaz,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Grid phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('DC link input sixth harmonic phase (degrees)','FontSize',12,'FontWeight','Bold')
+
 
 %%
 angle = 1:360;
