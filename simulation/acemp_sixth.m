@@ -60,13 +60,13 @@ phase3t = [0 0 0];
 
 %%
 % Concentrated winding
-Ts = 1e-6; % sec
+Ts = 1e-5; % sec
 % DC link voltage
 Vdc = 400; % Volts
 % switching frequency
-fsw = 10e3; % Hz
+fsw = 2e3; % Hz
 % Load
-pf = 0.95;
+pf = 0.9;
 % fundamental
 efficiency = 0.99;
 ma1 = 0.8;
@@ -103,18 +103,70 @@ V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 100e-6; % F
 
 % harmonic inject
-injvoltmagn = 20; % V
+injvoltmagn = 0; % V
 injfreq = 300*2*pi; % rad/sec
-%injphase = 225*pi/180; % rad
+injphase = 225*pi/180; % rad
 
-num = 2;
-capacitor_sixth = zeros(1,num);
-for k = 1:num
-    injphase = k*pi/180; % rad
-    sim('sixth_harmonic_concen.slx');
-    capacitor_sixth(k) = cap_six(numel(cap_six));
-end
+phase3 = 0;
+
+% tic
+% num = 360;
+% capacitor_sixth = zeros(1,num);
+% for k = 1:num
+%     injphase = k*pi/180; % rad
+%     sim('sixth_harmonic_concen.slx');
+%     capacitor_sixth(k) = cap_six(numel(cap_six));
+% end
+% toc
+
+sim('sixth_harmonic_concen2.slx');
 
 %%
-sim('sixth_harmonic_concen.slx');
+angle = 1:360;
+figure;
+plot(angle,capacitor_sixth,'b -','Linewidth',1.5);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitor sixth Harmonic (A)','FontSize',12,'FontWeight','Bold')
 
+
+%%
+Vp1 = Vll_rms_fund*sqrt(2);
+Ip1 = Iline_fund*sqrt(2);
+Vp3 = Vll_rms_three*sqrt(2);
+Ip3 = Iline_three*sqrt(2);
+phi1rad = acos(pf);
+pf3 = Rload/Zload_three;
+phi3rad = acos(pf3);
+phi1 = phi1rad*180/pi;
+phi3 = phi3rad*180/pi;
+
+tfinal = 0.1;
+timeaxis = 0:Ts:0.1;
+ptotal1 = (3/2)*Vp1*Ip1*cos(phi1rad)*ones(1,numel(timeaxis));
+ptotal2 = (3/2)*Vp3*Ip3*cos(phi3rad)*ones(1,numel(timeaxis));
+ptotal3 = (3/2)*Vp3*Ip3*cos(6*wout_fund*timeaxis-phi3rad);
+ptotal = ptotal1+ptotal2+ptotal3;
+
+itotal1 = (3/2)*Vp1*Ip1*cos(phi1rad)/Vdc;
+itotal2 = (3/2)*Vp3*Ip3*cos(phi3rad)/Vdc;
+itotaldc = itotal1+itotal2;
+itotal3 = (3/2)*Vp3*Ip3/Vdc;
+idcsixthphaserad = -pi/2-phi3rad;
+idcsixthphase = idcsixthphaserad*180/pi;
+
+
+%%
+idcfig = idc(:,2)';
+pdcfig = Vdc*idcfig;
+figure;
+plot(timeaxis,10*ptotal3,'b -','Linewidth',1.5);
+hold on;
+plot(timeaxis,pdcfig,'r -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (Sec)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Power (W)','FontSize',12,'FontWeight','Bold')
+xlim([0.08 0.1])
