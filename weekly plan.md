@@ -6,7 +6,9 @@
 
 ## Gerçekleşen çalışmalar:
 * Altıncı harmonik ile ilgili simulasyon yapıldı. Analitik çalışmalar doğrulandı.
-* Makale submit edildi.
+* ISIE makale submit edildi.
+* Altıncı harmonik çalışmaları dökümante edildi.
+* LaTeX'e giriş.
 
 # 23 Ocak - 29 Ocak
 ## Planlanan çalışmalar:
