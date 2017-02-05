@@ -1,4 +1,14 @@
-# 23 Ocak - 29 Ocak
+# 06.02.2017 - 12.02 2017
+## Planlanan çalışmalar:
+* ISIE makalesi güncelleme.
+* Pole changing konusu ile ilgili makale okunacak.
+* Altıncı harmonik ile ilgili makale yazılması (ACEMP).
+
+## Gerçekleşen çalışmalar:
+* ..
+* .
+
+# 30.01.2017 - 05.02 2017
 ## Planlanan çalışmalar:
 * ISIE makalesi submit (pazartesi)
 * Pole changing konusu ile ilgili makale okunacak.
