@@ -3,6 +3,7 @@
 * ISIE makalesi güncelleme.
 * Pole changing konusu ile ilgili makale okunacak.
 * Altıncı harmonik ile ilgili makale yazılması (ACEMP).
+* LaTeX çalışmalarına devam edilecek.
 
 ## Gerçekleşen çalışmalar:
 * ..
@@ -10,9 +11,9 @@
 
 # 30.01.2017 - 05.02 2017
 ## Planlanan çalışmalar:
-* ISIE makalesi submit (pazartesi)
+* ISIE makalesi submit (pazartesi). OK
 * Pole changing konusu ile ilgili makale okunacak.
-* Altıncı harmonik çalışılacak.
+* Altıncı harmonik çalışılacak. OK
 
 ## Gerçekleşen çalışmalar:
 * Altıncı harmonik ile ilgili simulasyon yapıldı. Analitik çalışmalar doğrulandı.

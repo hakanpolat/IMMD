@@ -1,3 +1,9 @@
+# Plan for 2017
+* ISIE 2017: submitted, waiting for review
+* ACEMP 2017: considering to submit
+* ICEEE 2017: considering to submit
+* ELECO 2017: considering to submit
+
 # Conferences
 
 * **ISIE**: IEEE International Symposium on Industrial Electronics
@@ -60,7 +66,6 @@ Final Paper (Camera Ready) Submission & Early Bird Registration Deadline April 4
 
 May 4 - 5, 2017, Rome, Italy
 
-
 * **IFEEC**: IEEE
 International Future Energy Electronics Conference – ECCE  Asia
 
@@ -70,19 +75,27 @@ June 3-7, Kaohsiung, Taiwan
 
 * **ELECO**: Elektrik, Elektronik ve Biyomedikal Mühendisliği Konferansı
 
-http://www.eleco.org.tr/
+ELECO 2017: http://www.eleco.org.tr/
+
+Paper Submission Deadline August 18, 2017
+
+Notification of Acceptance/Rejection September 22, 2017
+
+Final Paper (Camera Ready) Submission & Early Bird Registration Deadline October 20, 2017
+
+Nov 30 - Dec 2 2017, Bursa, Turkey
 
 * **ICEEE**: International Conference on Electrical and Electronics Engineering
 
 ICEEE 2017: http://www.iceee.org/index.html
 
-Submission of a paper for review: January 25, 2017
+Submission of a paper for review: February 10, 2017
 
-Acceptance notifications: February 20, 2017
+Acceptance notifications: March 1, 2017
 
-Camera-ready due: March 5, 2017
+Camera-ready due: March 10, 2017
 
-April 8-10, 2017, Ankara
+April 8-10, 2017, Ankara, Turkey
 
 * **PEMD**: IET International Conference on Power Electronics, Machines and Drives
 
