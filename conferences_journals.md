@@ -3,6 +3,7 @@
 * ACEMP 2017: considering to submit
 * ICEEE 2017: considering to submit
 * ELECO 2017: considering to submit
+* 1 journal (preferably transaction)
 
 # Conferences
 

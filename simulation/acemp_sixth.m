@@ -125,7 +125,7 @@ for k = 1:60
     sim('sixth_harmonic_concen2.slx');
     myfaz(k) = rectifiers(numel(rectifiers));
 end
-    
+
 
 %%
 gridangle = 1:60;
