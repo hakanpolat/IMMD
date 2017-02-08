@@ -4,10 +4,12 @@
 * Pole changing konusu ile ilgili makale okunacak.
 * Altıncı harmonik ile ilgili makale yazılması (ACEMP).
 * LaTeX çalışmalarına devam edilecek.
+* BAP ön çalışma - iş planı - bütçe - yürütme belgesi
 
 ## Gerçekleşen çalışmalar:
-* ..
-* .
+* Altıncı harmonik ile ilgili rapor yazıldı. Makale yetişmeyecek gibi.
+* LaTeX'te rapora devam edildi
+* BAP ön çalışmaları yapıldı: https://drive.google.com/drive/folders/0BxGq7qjB8gP6azJRM3M4VWkxY2M?usp=sharing
 
 # 30.01.2017 - 05.02 2017
 ## Planlanan çalışmalar:
