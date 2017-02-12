@@ -1,10 +1,117 @@
 \chapter{Description of the Method}
 \addcontentsline{chapter}{Description of the Method}
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor. Cras vestibulum bibendum augue. Praesent egestas leo in pede. Praesent blandit odio eu enim. Pellentesque sed dui ut augue blandit sodales. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam nibh. Mauris ac mauris sed pede pellentesque fermentum. Maecenas adipiscing ante non diam sodales hendrerit. Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar. Nulla sollicitudin. Fusce varius, ligula non tempus aliquam, nunc turpis ullamcorper nibh, in tempus sapien eros vitae ligula. Pellentesque rhoncus nunc et augue. Integer id felis. Curabitur aliquet pellentesque diam. Integer quis metus vitae elit lobortis egestas. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi vel erat non mauris convallis vehicula. Nulla et sapien. Integer tortor tellus, aliquam faucibus, convallis id, congue eu, quam. Mauris ullamcorper felis vitae erat. Proin feugiat, augue non elementum posuere, metus purus iaculis lectus, et tristique ligula justo vitae magna. Aliquam convallis sollicitudin purus. Praesent aliquam, enim at fermentum mollis, ligula massa adipiscing nisl, ac euismod nibh nisl eu lectus. Fusce vulputate sem at sapien. Vivamus leo. Aliquam euismod libero eu enim. Nulla nec felis sed leo placerat imperdiet. Aenean suscipit nulla in justo. Suspendisse cursus rutrum augue. Nulla tincidunt tincidunt mi. Curabitur iaculis, lorem vel rhoncus faucibus, felis magna fermentum augue, et ultricies lacus lorem varius purus. Curabitur eu amet.
+Voltages and current expressions of one inverter module with zero sequence third harmonic injection are shown in \ref{eq:1}-\ref{eq:6}.
 
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "isae-report-template"
-%%% End: 
+\begin{equation} \label{eq:1}
+v_a(t) = V_1sin(2\pi ft-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
+\end{equation}
+\begin{equation} \label{eq:2}
+v_b(t) = V_1sin(2\pi ft-2\pi/3-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
+\end{equation}
+\begin{equation} \label{eq:3}
+v_c(t) = V_1sin(2\pi ft-4\pi/3-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
+\end{equation}
+
+\begin{equation} \label{eq:4}
+i_a(t) = I_1sin(2\pi ft-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
+\end{equation}
+\begin{equation} \label{eq:5}
+i_b(t) = I_1sin(2\pi ft-2\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
+\end{equation}
+\begin{equation} \label{eq:6}
+i_c(t) = I_1sin(2\pi ft-4\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
+\end{equation}
+
+Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}.
+
+\begin{equation} \label{eq:7}
+\phi_{11p} = \phi_{1v}+\phi_{1i}
+\end{equation}
+\begin{equation} \label{eq:8}
+\phi_{33p} = \phi_{3v}+\phi_{3i}
+\end{equation}
+\begin{equation} \label{eq:9}
+\phi_{13p} = \phi_{1v}+\phi_{3i}
+\end{equation}
+\begin{equation} \label{eq:10}
+\phi_{31p} = \phi_{3v}+\phi_{1i}
+\end{equation}
+\begin{equation} \label{eq:11}
+\phi_{11n} = \phi_{1v}-\phi_{1i}
+\end{equation}
+\begin{equation} \label{eq:12}
+\phi_{33n} = \phi_{3v}-\phi_{3i}
+\end{equation}
+\begin{equation} \label{eq:13}
+\phi_{13n} = \phi_{1v}-\phi_{3i}
+\end{equation}
+\begin{equation} \label{eq:14}
+\phi_{31n} = \phi_{3v}-\phi_{1i}
+\end{equation}
+
+The instantaneous power expression for each phase are shown in \ref{eq:15}-\ref{eq:17}.
+
+\begin{equation}
+\label{eq:15}
+\begin{multlined}
+p_a(t) = 
+\frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-\phi_{11p}) \bigg \rbrack
++
+\frac{V_1I_3}{2} \bigg \lbrack cos(4\pi ft+\phi_{13n})-cos(8\pi ft-\phi_{13p}) \bigg \rbrack
+\\
++
+\frac{V_3I_1}{2} \bigg \lbrack cos(4\pi ft-\phi_{31n})-cos(8\pi ft-\phi_{31p}) \bigg \rbrack
++
+\frac{V_3I_3}{2} \bigg \lbrack cos(\phi_{33n})-cos(12\pi ft-\phi_{33p}) \bigg \rbrack,
+\end{multlined}
+\end{equation}
+
+\begin{equation}
+\label{eq:16}
+\begin{multlined}
+p_b(t) = 
+\frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-4\pi/3-\phi_{11p}) \bigg \rbrack
+\\
++
+\frac{V_1I_3}{2} \bigg \lbrack cos(4\pi ft+ 2\pi/3+\phi_{13n})-cos(8\pi ft-2\pi/3-\phi_{13p}) \bigg \rbrack
+\\
++
+\frac{V_3I_1}{2} \bigg \lbrack cos(4\pi ft+2\pi/3-\phi_{31n})-cos(8\pi ft-2\pi/3-\phi_{31p}) \bigg \rbrack
+\\
++
+\frac{V_3I_3}{2} \bigg \lbrack cos(\phi_{33n})-cos(12\pi ft-\phi_{33p}) \bigg \rbrack,
+\end{multlined}
+\end{equation}
+
+\begin{equation}
+\label{eq:17}
+\begin{multlined}
+p_c(t) = 
+\frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-8\pi/3-\phi_{11p}) \bigg \rbrack
+\\
++
+\frac{V_1I_3}{2} \bigg \lbrack cos(4\pi ft+ 4\pi/3+\phi_{13n})-cos(8\pi ft-4\pi/3-\phi_{13p}) \bigg \rbrack
+\\
++
+\frac{V_3I_1}{2} \bigg \lbrack cos(4\pi ft+4\pi/3-\phi_{31n})-cos(8\pi ft-4\pi/3-\phi_{31p}) \bigg \rbrack
+\\
++
+\frac{V_3I_3}{2} \bigg \lbrack cos(\phi_{33n})-cos(12\pi ft-\phi_{33p}) \bigg \rbrack,
+\end{multlined}
+\end{equation}
+
+The total instantaneous power becomes as in \ref{eq:18}. As seen, all the frequency components which are two times and four times the fundamental frequency are cancelled, leaving two DC components and a component at six times the fundamental frequency.
+
+\begin{equation}
+\label{eq:18}
+\begin{multlined}
+p_{total}(t) = 
+\frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n}) \bigg \rbrack
++
+\frac{V_3I_3}{2} \bigg \lbrack cos(\phi_{33n}) \bigg \rbrack
++
+\frac{V_3I_3}{2} \bigg \lbrack cos(12\pi ft-\phi_{33p}) \bigg \rbrack
+\end{multlined}
+\end{equation}
 
