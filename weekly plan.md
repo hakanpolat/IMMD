@@ -5,7 +5,7 @@
 * Research league ilk planlama toplantısı yapılacak.
 
 ## Gerçekleşen çalışmalar:
-* .
+* GaN sample için istenen malzemeler derlendi.
 
 # 06.02.2017 - 12.02 2017
 ## Planlanan çalışmalar:
