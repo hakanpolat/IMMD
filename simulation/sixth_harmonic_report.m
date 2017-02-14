@@ -85,7 +85,7 @@ end
 % DC link current
 Rload = 10; % Ohms
 Ldc = 1e-3; % H
-Cdc = 3e-3; % F
+Cdc = 1e-3; % F
 fs = 50; % Hz
 ws = 2*pi*fs; % rad/sec
 for k = 1:10
@@ -98,10 +98,13 @@ for k = 1:10
     Idc(k) = Vdc(k)/(Zout+Zf);
 end
 
-Vload_6hm = abs(Vload)
-Vload_6hp = phase(Vload)*180/pi
-Idc_6hm = abs(Idc)
-Idc_6hp = phase(Idc)*180/pi
+Vload_6hm = abs(Vload);
+Vload_6hp = phase(Vload)*180/pi;
+Idc_6hm = abs(Idc);
+Idc_6hp = phase(Idc)*180/pi;
+
+Idc_6hm(1)
+Vload_6hm(1)
 
 
 %%

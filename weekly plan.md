@@ -3,11 +3,13 @@
 * Altıncı harmonik ile ilgili rapor sonlandırılacak.
 * GaN sample istenecek.
 * Research league ilk planlama toplantısı yapılacak.
+* BAP raporu bitirilecek.
 
 ## Gerçekleşen çalışmalar:
 * GaN sample için istenen malzemeler derlendi.
-* 3rd harmonic injection motora etkileri analitik olarak incelendi.
+* 3rd harmonic injection motora etkileri analitik olarak incelendi. Maxwell üzerinde çalışma planlandı.
 * Rectifier tarafı analitik modellemesi tamamlandı (filtre ile).
+* BAP raporu yazıldı.
 
 # 06.02.2017 - 12.02 2017
 ## Planlanan çalışmalar:
