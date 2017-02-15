@@ -8,8 +8,8 @@
 ## Gerçekleşen çalışmalar:
 * GaN sample için istenen malzemeler derlendi.
 * 3rd harmonic injection motora etkileri analitik olarak incelendi. Maxwell üzerinde çalışma planlandı.
-* Rectifier tarafı analitik modellemesi tamamlandı (filtre ile).
-* BAP raporu yazıldı.
+* Rectifier tarafı analitik modellemesi tamamlandı (filtre ile). Rectifier modelleri simulasyonla doğrulandı, rapora eklendi.
+* BAP raporu bitirildi.
 
 # 06.02.2017 - 12.02 2017
 ## Planlanan çalışmalar:
