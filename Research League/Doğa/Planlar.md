@@ -1,8 +1,5 @@
-## Proje Planlaması
+## Short term plans (by Mesut)
 
-### 3.1.2017
-
-
-- Converter Loss Karekterleri ve Data-sheet araştırması
-
-- Inverter Simulink simülasyonları
+* Inverter simulation (simulink), topology research
+* Review of IMMD papers
+* GaN datasheet study and loss characterisation
