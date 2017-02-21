@@ -1,6 +1,17 @@
-# 06.02.2017 - 12.02 2017
+# 20.02.2017 - 26.02 2017
 ## Planlanan çalışmalar:
 * Altıncı harmonik ile ilgili rapor sonlandırılacak.
+* ACEMP makalesi yazılacak.
+* Research league ilk planlama toplantısı: 21.02.2017
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
+# 13.02.2017 - 19.02 2017
+## Planlanan çalışmalar:
+* Altıncı harmonik ile ilgili rapor sonlandırılacak. ERTELE
 * GaN sample istenecek.
 * Research league ilk planlama toplantısı yapılacak.
 * BAP raporu bitirilecek.
