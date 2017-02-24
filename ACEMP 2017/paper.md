@@ -14,3 +14,20 @@ Next, an unconventional motor and drive configuration is considered. A machine w
 
 An aexample machine is given in the following:
 * T. M. Jahns, “Hardware Integration for an Integrated Modular Motor Drive Including Distributed Control,” pp. 4881–4887, 2014.
+
+Paper organisation:
+- Abstract:
+
+- Sec1: Introduction:
+
+- Sec2: Rectifier model, 6th harmonic component injection, LC filter characteristics
+
+- Sec3: Proposed method: Sixth harmonic creation on the DC link with third harmonic injection (analytical)
+
+- Sec4: New IMMD scheme for third harmonic injection, practical considerations, effects on other components, torque ripple, copper loss etc.
+
+- Sec5: Simulation results
+
+- Sec6: Conclusions:
+
+- References:
