@@ -5,9 +5,8 @@
 * Research league ilk planlama toplantısı: 21.02.2017
 
 ## Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* Research league ilk planlama toplantısı yapıldı. Github senkronizasyonu yapıldı. Star için duyuru yapıldı.
+
 
 # 13.02.2017 - 19.02 2017
 ## Planlanan çalışmalar:
