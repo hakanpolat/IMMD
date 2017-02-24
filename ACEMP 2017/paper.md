@@ -18,6 +18,8 @@ An aexample machine is given in the following:
 Paper organisation:
 - Abstract:
 
+In this paper, a novel method to eliminate the harmonic component occurring on the DC bus which is six times the grid frequency is proposed. This harmonic component is present due to natural commutation of the passive diode bridge rectifier in motor drive applications. In conventional drives, bulky LC filters are utilized to reduce the effect of this harmonic component to the motor drive inverter. With this method, DC bus capacitance requirement can be minimized which will enhance the power density and decrease the cost of the overall system. Third harmonic injection is used with modular inverters in an integrated modular motor drive application. Both rectifier and inverter side analytical models are presented, the elimination of the sixth harmonic component is described analytically, and verified by simulations performed on MATLAB/Simulink. The possible adverse effects of third harmonic injection method are also discussed.
+
 - Sec1: Introduction:
 
 - Sec2: Rectifier model, 6th harmonic component injection, LC filter characteristics
