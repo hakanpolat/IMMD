@@ -1,3 +1,12 @@
+# 27.02.2017 - 05.03 2017
+## Planlanan çalışmalar:
+* ACEMP makalesi bitirilip submit edilecek.
+* BAP prototip planlaması.
+
+## Gerçekleşen çalışmalar:
+* Research league ilk planlama toplantısı yapıldı. Github senkronizasyonu yapıldı. Star için duyuru yapıldı.
+* ACEMP makalesi bir kısmı yazıldı.
+
 # 20.02.2017 - 26.02 2017
 ## Planlanan çalışmalar:
 * Altıncı harmonik ile ilgili rapor sonlandırılacak.
@@ -6,6 +15,7 @@
 
 ## Gerçekleşen çalışmalar:
 * Research league ilk planlama toplantısı yapıldı. Github senkronizasyonu yapıldı. Star için duyuru yapıldı.
+* ACEMP makalesi bir kısmı yazıldı.
 
 
 # 13.02.2017 - 19.02 2017
