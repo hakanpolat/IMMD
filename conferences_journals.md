@@ -148,6 +148,15 @@ Registration closes: May 05, 2017
 
 MAy 25-27, 2017, Brasov, Romania
 
+* **ICAT**:  International Conference on Advanced Technology & Sciences
+
+ICAT 2017: http://www.icatsconf.org/TURKEY2017/icat17
+
+Abstracts Submission: March 19, 2017
+
+Fulltext Submission: March 26, 2017
+
+May 09-12, 2017, İstanbul, Turkey
 
 # Journals - IEEE
 
