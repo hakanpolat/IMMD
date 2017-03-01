@@ -4,8 +4,8 @@
 * BAP prototip planlaması.
 
 ## Gerçekleşen çalışmalar:
-* Research league ilk planlama toplantısı yapıldı. Github senkronizasyonu yapıldı. Star için duyuru yapıldı.
-* ACEMP makalesi bir kısmı yazıldı.
+* Research league iş paylaşımı yapıldı.
+* 5 yeni makale eklendi. Bu hafta için tüm makaleler okunmuş olacak.
 
 # 20.02.2017 - 26.02 2017
 ## Planlanan çalışmalar:

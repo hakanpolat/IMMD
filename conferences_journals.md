@@ -1,9 +1,8 @@
 # Plan for 2017
 * ISIE 2017: submitted, waiting for review
 * ACEMP 2017: considering to submit
-* ICEEE 2017: considering to submit
 * ELECO 2017: considering to submit
-* 1 journal (preferably transaction)
+* 1 journal
 
 # Conferences
 
