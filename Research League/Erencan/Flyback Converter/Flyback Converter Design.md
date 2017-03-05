@@ -1,7 +1,8 @@
 # Introduction   
 Flyback converter is one of the most used **isolated** DC-DC converter type up to 100 W applications. One of the advantages that Flyback converters  have their multi-output voltage abilities. Its basic circuit is given below. 
 
-![](http://github.com/mesutto/IMMD/Research League/Erencan/Flyback Converter/Images/flyback_basic_circuit.png)
+![](./Images/flyback_basic_circuit.png)  
+In this circuit, V<sub>d</sub> will be yield by diode rectifier and will be almost 310V. Output voltages can be increased by using multiwinding transformer. This is one of the most important feature of Flyback Transformer since the outputs require additional winding, one diode and one capacitor.
 
 - In this design, three isolated output voltages is required. ( +5V,+5V,+15V ) 
 - The output currents will be respectively 2A, 2A and 3A. Therefore, the controller to be designed will be **65W**.
