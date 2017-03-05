@@ -26,7 +26,7 @@ One of the most important parameter in the Flyback Converter is the Controller. 
 
 #Flyback Transformer 
 
-Flyback transformer is commercially exists in the market. Its specific property is its auxillary winding that will supply power to the controller. 
+Flyback transformer commercially exists in the market. Its specific property is its axillary winding that will supply power to the controller. 
 
 - http://productfinder.pulseeng.com/files/datasheets/P719.pdf
 - https://media.digikey.com/pdf/Data%20Sheets/Pulse%20PDFs/PA0367A.pdf
