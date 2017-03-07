@@ -61,6 +61,26 @@ xlim([0.46 0.5]);
 ylim([0 56]);
 ylabel('Load current, iload (A)','FontSize',12,'FontWeight','Bold')
 
+%%
+
+timeaxis = iload(:,1);
+figure;
+plot(timeaxis,vabc(:,2),'b -','Linewidth',1.5);
+hold on;
+plot(timeaxis,vabc(:,3),'r -','Linewidth',1.5);
+hold on;
+plot(timeaxis,vabc(:,4),'k -','Linewidth',1.5);
+hold on;
+plot(timeaxis,vdc(:,2),'b -','Linewidth',1.5);
+hold on;
+plot(timeaxis,vload(:,2),'b -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlim([0.46 0.5]);
+ylabel('Voltage (volts)','FontSize',12,'FontWeight','Bold')
+xlabel('Time (seconds)','FontSize',12,'FontWeight','Bold')
+legend('vsa','vsb','vsc','vdc','vL')
 
 %%
 % Rectifier output voltage
@@ -68,7 +88,7 @@ Ts = 1e-5;
 Vsrms = 230;
 Vspeak = Vsrms*sqrt(2);
 Vllrms = Vsrms*sqrt(3);
-Vdc = (3/pi)*Vllrms*sqrt(2);
+vdc = (3/pi)*Vllrms*sqrt(2);
 Vdc_6m = Vllrms*sqrt(2)*(3/5-3/7)/(pi);
 Vdc_12m = Vllrms*sqrt(2)*(3/11-3/13)/(pi);
 Vdc_18m = Vllrms*sqrt(2)*(3/17-3/19)/(pi);
@@ -85,7 +105,7 @@ end
 % DC link current
 Rload = 10; % Ohms
 Ldc = 1e-3; % H
-Cdc = 1e-3; % F
+Cdc = 4e-3; % F
 fs = 50; % Hz
 ws = 2*pi*fs; % rad/sec
 for k = 1:10
@@ -108,10 +128,14 @@ Icap_6hm = abs(Icap);
 Icap_6hp = phase(Icap)*180/pi;
 Iload_6hm = abs(Iload);
 Iload_6hp = phase(Iload)*180/pi;
-Idc_6hm(1)
-Vload_6hm(1)
-Icap_6hm(1)
-Iload_6hm(1)
+
+disp(Vload_6hm(1))
+disp(Iload_6hm(1))
+disp(Icap_6hm(1))
+disp(Idc_6hm(1))
+disp(Vdc_6hm(1))
+disp(vdc)
+
 
 %%
 % Filter characteristics

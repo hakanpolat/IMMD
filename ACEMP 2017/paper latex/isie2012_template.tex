@@ -34,7 +34,7 @@
 \usepackage[caption=false]{caption}
 \usepackage[font=footnotesize]{subfig}
 \usepackage{fixltx2e}
-
+\usepackage{color}
 \usepackage{mathtools}
 
 %\usepackage{stfloats}
@@ -163,16 +163,16 @@ Most studies consider only one side for DC link characterisation or filter compo
 \section{Problem definition}
 %analytical Rectifier model, 6th harmonic component %injection, LC filter characteristics
 
-A conventional motor drive system block diagram is shown in Fig. \ref{fig:conv_motor_drive}. The rectifier and inverter are connected via the DC link, therefore a harmonic component injected from one side is reflected to the other side. For systems having two active converters on both sides such as back-to-back converters, the only fluctuations seen on the DC link voltage are high frequency components which are directly related to the switching frequencies of each side. On the other hand, in case of passive converters such as diode bridge rectifiers, low frequency components emerge on the DC link voltage which are related to the grid supply frequency. Since grid frequency is usually much smaller than the switching frequencies applied to active converters, filtering of fluctuations on the DC link requires much larger and more expensive components in case of passive rectifiers.
+A conventional motor drive system block diagram is shown in Fig. \ref{fig:conv_motor_drive}. The rectifier and inverter are connected via the DC link, therefore a harmonic component injected from one side may be reflected to the other side, disrupting its operation. For systems having two active converters on both sides such as back-to-back converters, the only fluctuations seen on the DC link voltage are high frequency components which are directly related to the switching frequencies of each side. On the other hand, in case of passive converters such as diode bridge rectifiers, low frequency components emerge on the DC link voltage which are related to the grid supply frequency. Since grid frequency is usually much smaller than the switching frequencies applied to active converters, filtering of fluctuations on the DC link requires much larger and more expensive filter components in case of passive rectifiers.
 
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/conv_motor_drive}
-  \caption{A conventional motor drive block diagram}
+  \caption{A conventional motor drive system block diagram}
   \label{fig:conv_motor_drive}
 \end{figure}
 
-Diode bridge rectifier is a natural-commutated converter, circuit schematic of which is shown in Fig. \ref{fig:rect_circuit}. A second order LC filter which is low-pass type is usually utilized at the rectifier output for filtering.
+The diode bridge rectifier is a natural-commutated converter, circuit schematic of which is shown in Fig. \ref{fig:rect_circuit}. A second order LC filter which is of low-pass type is usually utilized at the rectifier output for filtering. In this section, the harmonic content of the rectifier output voltage and the effect of filtering are shown analytically.
 
 \begin{figure}[htp]
   \centering
@@ -181,7 +181,8 @@ Diode bridge rectifier is a natural-commutated converter, circuit schematic of w
   \label{fig:rect_circuit}
 \end{figure}
 
-The supply voltages are shown in \ref{eq:1}-\ref{eq:3}, where $V_m$ is the RMS value of the supply voltage and $f_s$ is the supply frequency.
+The supply voltages are shown in \ref{eq:1}-\ref{eq:3}, where $V_m$ is the RMS value of the supply voltage and $f_s$ is the supply frequency. With this configuration, integer multiples of the harmonic component frequency of which is six times the grid frequency $f_s$ are present on the rectifier output voltage in addition to the DC component as shown in \ref{eq:4}. 
+
 \begin{equation} \label{eq:1}
 v_{sa}(t) = \sqrt{2}V_msin(2\pi f_s t)
 \end{equation}
@@ -191,33 +192,46 @@ v_{sb}(t) = \sqrt{2}V_msin(2\pi f_s t-2\pi/3)
 \begin{equation} \label{eq:3}
 v_{sc}(t) = \sqrt{2}V_msin(2\pi f_s t-4\pi/3)
 \end{equation}
- 
-With this configuration, integer multiples of sixth harmonic component are present on the rectifier output voltage in addition to the DC component as shown in \ref{eq:4}. 
-
 \begin{equation} \label{eq:4}
 v_{dc}(t) = \frac{3\sqrt{3}}{\pi} \bigg[1-\sum_{k=1}^{\infty} \frac{2}{36k^2-1}cos(6k\omega_{0}t)\bigg] 
 %\sqrt{2}V_msin(2\pi f_s t)
 \end{equation}
 
-The transfer function of the DC link filter is shown in \ref{eq:5}. 
+The transfer function between $v_load$ and $v_dc$ is obtained to show the characteristics of the filter as in \ref{eq:5}. Magnitude and phase of the harmonic components that are of interest are obtained from this model and they are later used in the implementation of the proposed method.
 
 \begin{equation} \label{eq:5}
-v_{dc}(t) = \frac{3\sqrt{3}}{\pi} \bigg[1-\sum_{k=1}^{\infty} \frac{2}{36k^2-1}cos(6k\omega_{0}t)\bigg] 
+H(jw) = \frac{v_{L}(jw)}{v_{dc}(jw)} = \frac{R_{L}}{R_{L}(1-w^2L_{dc}C_{dc})+jwL_{dc}}
 \end{equation}
 
-
-Size of passives are very important for IMMD applications.
-
-A set of voltage and current waveforms are  shown in Fig. \ref{fig:rect_waveform}, for 400V line-to-line grid voltage at 50 Hz, filter inductance of 1 mH, filter capacitance of 3 mF and load resistance of 10 $\Omega$. The three-phase rectifier output voltage and current has large harmonic components frequency of which is six times the grid frequency. This component is filtered by a second order LC filter resulting in a much smoother load voltage and current. Since the harmonic frequency is relatively low in comparison with conventional switching frequencies, large inductance and capacitance values are needed on the DC link filter. Those passive elements constitute a large portion of overall volume and cost, hence it is aimed to minimize their values.
+A simulation is performed for the verification of these analytical models on MATLAB/Simulink, for 400V line-to-line grid voltage at 50 Hz, filter inductance of 1 mH, filter capacitance of 4 mF and load resistance of 10 $\Omega$. In Fig. \ref{fig:rect_wave2}, the three-phase input voltages, the rectifier output voltage and the filtered load voltage waveforms are shown. In Fig. \ref{fig:rect_harm1} and \ref{fig:rect_harm2}, the harmonic spectra of rectifier output voltage and load voltage are shown, respectively.
 
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=10cm]{images/rect_waveform}
+  \includegraphics[width=8cm]{images/rect_wave2}
   \caption{Diode bridge rectifier input and output waveforms}
-  \label{fig:rect_waveform}
+  \label{fig:rect_wave2}
 \end{figure}
 
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_harm1}
+  \caption{Harmonic spectrum of rectifier output voltage}
+  \label{fig:rect_harm1}
+\end{figure}
 
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_harm2}
+  \caption{Harmonic spectrum of load voltage}
+  \label{fig:rect_harm2}
+\end{figure}
+
+A load voltage peak-to-peak ripple of 1\% is usually aimed in case of motor drive inverter applications and the filter values are adjusted here such that a ripple of \textbf{X}\% is obtained. The inductance value is usually determined by the current ripple on this inductor and it has minor effect on the load voltage ripple. Capacitance values on the DC link are usually in a few hundred microfarad range when only high frequency fluctuations are considered, however in this case, capacitance values in milifarad range are needed.
+
+In IMMD applications, decreasing the volume of the passive elements is a major challenge due to having small volume. Therefore, integration of the motor drive with passive rectifiers to the motor is a problem.
+
+
+\textbf{\textcolor{red}{buraya \% 30unu kaplıyor gibi istatistikler gelebilir.}}
 
 
 \section{Description of the proposed method}
