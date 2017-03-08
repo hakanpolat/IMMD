@@ -235,11 +235,15 @@ In IMMD applications, decreasing the volume of the passive elements is a major c
 
 
 \section{Description of the proposed method}
-In the proposed method, a harmonic component which is six times the grid frequency is aimed to be created at the inverter DC input such that there will be no low order harmonic current flowing through the DC link capacitor. By doing so, the DC link capacitance requirement can be reduced significantly.
-
-The harmonic component is created by injecting zero sequence third harmonic components at the motor side. Voltages and current expressions of one inverter module with zero sequence third harmonic injection are shown in \ref{eq:1}-\ref{eq:6}.
-
-\begin{equation} \label{eq:1}
+In the proposed method, a harmonic component which is six times the grid frequency is aimed to be created at the inverter DC input such that there will be no low order harmonic current flowing through the DC link capacitor. By doing so, the DC link capacitance requirement can be reduced significantly. The method is shown in Fig. \ref{fig:6th}. 
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=3cm]{images/6th}
+  \caption{The proposed method}
+  \label{fig:6th}
+\end{figure}
+The harmonic component is created by injecting zero sequence third harmonic components at the motor side. Voltages and current expressions of one inverter module with zero sequence third harmonic injection are shown in \ref{eq:a}-\ref{eq:6}.
+\begin{equation} \label{eq:a}
 v_a(t) = V_1sin(2\pi ft-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
 \end{equation}
 \begin{equation} \label{eq:2}
@@ -258,14 +262,14 @@ i_b(t) = I_1sin(2\pi ft-2\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 i_c(t) = I_1sin(2\pi ft-4\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 \end{equation}
 
-Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}.
-
+Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}, where v denotes voltage, i denotes current, k denotes fundamental component and l denotes third harmonic component.
 \begin{equation} \label{eq:7}
-\phi_{11p} = \phi_{1v}+\phi_{1i}
+\phi_{kl-p} = \phi_{kv}+\phi_{li}
 \end{equation}
 \begin{equation} \label{eq:8}
-\phi_{33p} = \phi_{3v}+\phi_{3i}
+\phi_{kl-n} = \phi_{kv}+\phi_{li}
 \end{equation}
+\iffalse
 \begin{equation} \label{eq:9}
 \phi_{13p} = \phi_{1v}+\phi_{3i}
 \end{equation}
@@ -284,7 +288,7 @@ Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}.
 \begin{equation} \label{eq:14}
 \phi_{31n} = \phi_{3v}-\phi_{1i}
 \end{equation}
-
+\fi
 The instantaneous power expression for each phase are shown in \ref{eq:15}-\ref{eq:17}.
 
 \begin{equation}
@@ -353,15 +357,14 @@ p_{total}(t) =
 \end{multlined}
 \end{equation}
 
-
 \section{Implementation of the method and practical issues}
 
-This method is proposed for IMMD applications where selection of  number of inverter modules, number of stator phases etc. are flexible. This makes the application of the method more convenient. In this paper, a six pole machine is considered. The schematic of the segmented stator and modular inverters is shown in Fig. \ref{fig:rect_circuit}. 
+This method is proposed for IMMD applications where selection of number of inverter modules, number of stator phases etc. are flexible. This makes the application of the method more convenient. In this paper, a \textbf{\textcolor{red}{six}} pole machine is considered. The schematic of the segmented stator and modular inverters is shown in Fig. \ref{fig:rect_circuit}. 
 
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/rect_circuit}
-  \caption{IMMD scheme}
+  \caption{IMMD scheme  \textbf{\textcolor{red}{cizilecek}}}
   \label{fig:rect_circuit}
 \end{figure}
 
@@ -372,7 +375,7 @@ The conventional connection and the proposed connection are shown in Fig. \ref{f
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/rect_circuit}
-  \caption{Conventional connection and proposed connection}
+  \caption{Conventional connection and proposed connection  \textbf{\textcolor{red}{cizilecek}}}
   \label{fig:rect_circuit}
 \end{figure}
 
@@ -406,20 +409,31 @@ A method can be developed to eliminate the third space harmonic
 Simulation results
 
 Give the parameters, specifications
-Total output power
-Switching frequency
-Motor fundamental frequency
-Supply voltage, frequency
-Modulation index
-Number of modules
-Number of series and parallel connected modules
-Give the inductance capacitance, motor parameters etc.
+\begin{itemize}
+  \item Total output power
+  \item Switching frequency
+  \item Motor fundamental frequency
+  \item Supply voltage, frequency
+  \item Modulation index
+  \item Number of modules
+  \item Number of series and parallel connected modules
+  \item Give the inductance capacitance, motor parameters etc.
+\end{itemize}
 
-1. The rectifier output current, the inverter input current, and DC link capacitor current at the same figure
-
-2. DC link capacitor current in a separate figure
-The percent decrease of the sixth harmonic current on the DC link capacitor, percent decrease of the overall capacitor RMS current
-
+1. The rectifier output current, the inverter input current, and DC link capacitor current at the same figure are shown in Fig. \ref{fig:sample}.
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/sample}
+  \caption{The rectifier output current, the inverter input current, and DC link capacitor current  \textbf{\textcolor{red}{elde edilecek}}}
+  \label{fig:sample}
+\end{figure}
+2. DC link capacitor current in a separate figure, with the method and without the method are shown in Fig. \ref{fig:sample}.
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/sample}
+  \caption{DC link capacitor current in a separate figure, with the method and without the method  \textbf{\textcolor{red}{elde edilecek}}}
+  \label{fig:sample}
+\end{figure}
 3. The motor line currents, transistor currents
 The increase on the conduction losses of the switches and the copper losses of the windings
 
@@ -428,6 +442,9 @@ The increase on the conduction losses of the switches and the copper losses of t
 5. Discuss the variable frequency case
 
 6. Discuss the capacitor requirement
+
+The percent decrease of the sixth harmonic current on the DC link capacitor, percent decrease of the overall capacitor RMS current
+
 There is no effect on the capacitance, but the RMS current rating decreases
 This will have no effect on film capacitors unless switching frequency is higher than 150 kHz
 But, the requirement on the RMS current will decrease significantly so that aluminium electrolytic capacitors can be made smaller now

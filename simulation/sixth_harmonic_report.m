@@ -65,19 +65,20 @@ ylabel('Load current, iload (A)','FontSize',12,'FontWeight','Bold')
 
 timeaxis = iload(:,1);
 figure;
-plot(timeaxis,vabc(:,2),'b -','Linewidth',1.5);
+plot(timeaxis,vabc(:,2)-vabc(:,3),'m -','Linewidth',1.5);
 hold on;
-plot(timeaxis,vabc(:,3),'r -','Linewidth',1.5);
+plot(timeaxis,vabc(:,3)-vabc(:,4),'g -','Linewidth',1.5);
 hold on;
-plot(timeaxis,vabc(:,4),'k -','Linewidth',1.5);
+plot(timeaxis,vabc(:,4)-vabc(:,2),'b -','Linewidth',1.5);
 hold on;
-plot(timeaxis,vdc(:,2),'b -','Linewidth',1.5);
+plot(timeaxis,vdc(:,2),'k -','Linewidth',1.5);
 hold on;
-plot(timeaxis,vload(:,2),'b -','Linewidth',1.5);
+plot(timeaxis,vload(:,2),'r -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
 xlim([0.46 0.5]);
+%ylim([450 600]);
 ylabel('Voltage (volts)','FontSize',12,'FontWeight','Bold')
 xlabel('Time (seconds)','FontSize',12,'FontWeight','Bold')
 legend('vsa','vsb','vsc','vdc','vL')
