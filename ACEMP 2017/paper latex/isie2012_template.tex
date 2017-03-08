@@ -34,7 +34,7 @@
 \usepackage[caption=false]{caption}
 \usepackage[font=footnotesize]{subfig}
 \usepackage{fixltx2e}
-
+\usepackage{color}
 \usepackage{mathtools}
 
 %\usepackage{stfloats}
@@ -163,14 +163,17 @@ Most studies consider only one side for DC link characterisation or filter compo
 \section{Problem definition}
 %analytical Rectifier model, 6th harmonic component %injection, LC filter characteristics
 
-A conventional motor drive application block diagram is shown in Fig. \ref{fig:conv_motor_drive}. The rectifier and inverter are connected via the DC link, therefore a harmonic component injected from one side is reflected to the other side. For systems having two active converters on both sides such as back-to-back converters, the only fluctuations seen on the DC link voltage are high frequency components which are directly related to the switching frequency. On the other hand, in case of passive converters such as diode bridge rectifiers, low frequency components are emerge on the DC link voltage which are related to the grid supply frequency.
+A conventional motor drive system block diagram is shown in Fig. \ref{fig:conv_motor_drive}. The rectifier and inverter are connected via the DC link, therefore a harmonic component injected from one side may be reflected to the other side, disrupting its operation. For systems having two active converters on both sides such as back-to-back converters, the only fluctuations seen on the DC link voltage are high frequency components which are directly related to the switching frequencies of each side. On the other hand, in case of passive converters such as diode bridge rectifiers, low frequency components emerge on the DC link voltage which are related to the grid supply frequency. Since grid frequency is usually much smaller than the switching frequencies applied to active converters, filtering of fluctuations on the DC link requires much larger and more expensive filter components in case of passive rectifiers.
 
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/conv_motor_drive}
-  \caption{A conventional motor drive block diagram}
+  \caption{A conventional motor drive system block diagram}
   \label{fig:conv_motor_drive}
 \end{figure}
+
+The diode bridge rectifier is a natural-commutated converter, circuit schematic of which is shown in Fig. \ref{fig:rect_circuit}. A second order LC filter which is of low-pass type is usually utilized at the rectifier output for filtering. In this section, the harmonic content of the rectifier output voltage and the effect of filtering are shown analytically.
+
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/rect_circuit}
@@ -178,7 +181,8 @@ A conventional motor drive application block diagram is shown in Fig. \ref{fig:c
   \label{fig:rect_circuit}
 \end{figure}
 
-Diode bridge rectifier is a natural-commutated converter, circuit schematic of which is shown in Fig. \ref{fig:rect_circuit}. The supply voltages are shown in \ref{eq:1}-\ref{eq:3}, where $V_m$ is the RMS value of the supply voltage and $f_s$ is the supply frequency.
+The supply voltages are shown in \ref{eq:1}-\ref{eq:3}, where $V_m$ is the RMS value of the supply voltage and $f_s$ is the supply frequency. With this configuration, integer multiples of the harmonic component frequency of which is six times the grid frequency $f_s$ are present on the rectifier output voltage in addition to the DC component as shown in \ref{eq:4}. 
+
 \begin{equation} \label{eq:1}
 v_{sa}(t) = \sqrt{2}V_msin(2\pi f_s t)
 \end{equation}
@@ -188,35 +192,58 @@ v_{sb}(t) = \sqrt{2}V_msin(2\pi f_s t-2\pi/3)
 \begin{equation} \label{eq:3}
 v_{sc}(t) = \sqrt{2}V_msin(2\pi f_s t-4\pi/3)
 \end{equation}
- 
-With this configuration, integer multiples of sixth harmonic component are present on the rectifier output voltage in addition to the DC component as shown in \ref{eq:4}. 
-
 \begin{equation} \label{eq:4}
 v_{dc}(t) = \frac{3\sqrt{3}}{\pi} \bigg[1-\sum_{k=1}^{\infty} \frac{2}{36k^2-1}cos(6k\omega_{0}t)\bigg] 
 %\sqrt{2}V_msin(2\pi f_s t)
 \end{equation}
 
-The purpose of the LC filter at the output is to decrease these harmonic components on the load side. The LC filter is bulky and costly.
+The transfer function between $v_load$ and $v_dc$ is obtained to show the characteristics of the filter as in \ref{eq:5}. Magnitude and phase of the harmonic components that are of interest are obtained from this model and they are later used in the implementation of the proposed method.
 
-Size of passives are very important for IMMD applications.
+\begin{equation} \label{eq:5}
+H(jw) = \frac{v_{L}(jw)}{v_{dc}(jw)} = \frac{R_{L}}{R_{L}(1-w^2L_{dc}C_{dc})+jwL_{dc}}
+\end{equation}
 
-A set of voltage and current waveforms are  shown in Fig. \ref{fig:rect_waveform}, for 400V line-to-line grid voltage at 50 Hz, filter inductance of 1 mH, filter capacitance of 3 mF and load resistance of 10 $\Omega$. The three-phase rectifier output voltage and current has large harmonic components frequency of which is six times the grid frequency. This component is filtered by a second order LC filter resulting in a much smoother load voltage and current. Since the harmonic frequency is relatively low in comparison with conventional switching frequencies, large inductance and capacitance values are needed on the DC link filter. Those passive elements constitute a large portion of overall volume and cost, hence it is aimed to minimize their values.
+A simulation is performed for the verification of these analytical models on MATLAB/Simulink, for 400V line-to-line grid voltage at 50 Hz, filter inductance of 1 mH, filter capacitance of 4 mF and load resistance of 10 $\Omega$. In Fig. \ref{fig:rect_wave2}, the three-phase input voltages, the rectifier output voltage and the filtered load voltage waveforms are shown. In Fig. \ref{fig:rect_harm1} and \ref{fig:rect_harm2}, the harmonic spectra of rectifier output voltage and load voltage are shown, respectively.
 
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=10cm]{images/rect_waveform}
+  \includegraphics[width=8cm]{images/rect_wave2}
   \caption{Diode bridge rectifier input and output waveforms}
-  \label{fig:rect_waveform}
+  \label{fig:rect_wave2}
 \end{figure}
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_harm1}
+  \caption{Harmonic spectrum of rectifier output voltage}
+  \label{fig:rect_harm1}
+\end{figure}
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_harm2}
+  \caption{Harmonic spectrum of load voltage}
+  \label{fig:rect_harm2}
+\end{figure}
+
+A load voltage peak-to-peak ripple of 1\% is usually aimed in case of motor drive inverter applications and the filter values are adjusted here such that a ripple of \textbf{X}\% is obtained. The inductance value is usually determined by the current ripple on this inductor and it has minor effect on the load voltage ripple. Capacitance values on the DC link are usually in a few hundred microfarad range when only high frequency fluctuations are considered, however in this case, capacitance values in milifarad range are needed.
+
+In IMMD applications, decreasing the volume of the passive elements is a major challenge due to having small volume. Therefore, integration of the motor drive with passive rectifiers to the motor is a problem.
+
+
+\textbf{\textcolor{red}{buraya \% 30unu kaplıyor gibi istatistikler gelebilir.}}
 
 
 \section{Description of the proposed method}
- Proposed method: Sixth harmonic creation on the DC link with third harmonic injection (analytical)
-
-
-Voltages and current expressions of one inverter module with zero sequence third harmonic injection are shown in \ref{eq:1}-\ref{eq:6}.
-
-\begin{equation} \label{eq:1}
+In the proposed method, a harmonic component which is six times the grid frequency is aimed to be created at the inverter DC input such that there will be no low order harmonic current flowing through the DC link capacitor. By doing so, the DC link capacitance requirement can be reduced significantly. The method is shown in Fig. \ref{fig:6th}. 
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=3cm]{images/6th}
+  \caption{The proposed method}
+  \label{fig:6th}
+\end{figure}
+The harmonic component is created by injecting zero sequence third harmonic components at the motor side. Voltages and current expressions of one inverter module with zero sequence third harmonic injection are shown in \ref{eq:a}-\ref{eq:6}.
+\begin{equation} \label{eq:a}
 v_a(t) = V_1sin(2\pi ft-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
 \end{equation}
 \begin{equation} \label{eq:2}
@@ -225,7 +252,6 @@ v_b(t) = V_1sin(2\pi ft-2\pi/3-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
 \begin{equation} \label{eq:3}
 v_c(t) = V_1sin(2\pi ft-4\pi/3-\phi_{1v})+V_3sin(6\pi ft-\phi_{3v})
 \end{equation}
-
 \begin{equation} \label{eq:4}
 i_a(t) = I_1sin(2\pi ft-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 \end{equation}
@@ -236,14 +262,14 @@ i_b(t) = I_1sin(2\pi ft-2\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 i_c(t) = I_1sin(2\pi ft-4\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 \end{equation}
 
-Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}.
-
+Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}, where v denotes voltage, i denotes current, k denotes fundamental component and l denotes third harmonic component.
 \begin{equation} \label{eq:7}
-\phi_{11p} = \phi_{1v}+\phi_{1i}
+\phi_{kl-p} = \phi_{kv}+\phi_{li}
 \end{equation}
 \begin{equation} \label{eq:8}
-\phi_{33p} = \phi_{3v}+\phi_{3i}
+\phi_{kl-n} = \phi_{kv}+\phi_{li}
 \end{equation}
+\iffalse
 \begin{equation} \label{eq:9}
 \phi_{13p} = \phi_{1v}+\phi_{3i}
 \end{equation}
@@ -262,7 +288,7 @@ Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}.
 \begin{equation} \label{eq:14}
 \phi_{31n} = \phi_{3v}-\phi_{1i}
 \end{equation}
-
+\fi
 The instantaneous power expression for each phase are shown in \ref{eq:15}-\ref{eq:17}.
 
 \begin{equation}
@@ -316,7 +342,7 @@ p_c(t) =
 \end{multlined}
 \end{equation}
 
-The total instantaneous power becomes as in \ref{eq:18}. As seen, all the frequency components which are two times and four times the fundamental frequency are cancelled, leaving two DC components and a component at six times the fundamental frequency.
+The total instantaneous power becomes as in \ref{eq:18}. As seen, all the frequency components which are two times and four times the fundamental frequency are cancelled, leaving two DC components and a component at six times the fundamental frequency. The last term will be used in this method for the cancellation of the sixth harmonic injected by the rectifier.
 
 \begin{equation}
 \label{eq:18}
@@ -331,19 +357,107 @@ p_{total}(t) =
 \end{multlined}
 \end{equation}
 
-
-
 \section{Implementation of the method and practical issues}
-New IMMD scheme for third harmonic injection, practical considerations, effects on other components, torque ripple, copper loss etc.
+
+This method is proposed for IMMD applications where selection of number of inverter modules, number of stator phases etc. are flexible. This makes the application of the method more convenient. In this paper, a \textbf{\textcolor{red}{six}} pole machine is considered. The schematic of the segmented stator and modular inverters is shown in Fig. \ref{fig:rect_circuit}. 
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_circuit}
+  \caption{IMMD scheme  \textbf{\textcolor{red}{cizilecek}}}
+  \label{fig:rect_circuit}
+\end{figure}
+
+It has been shown that, with conventional three-phase connection, injection of third harmonic is impossible, regardless of the winding connection being delta or wye, due to the nature of the three-phase. Therefore, in this paper, an IMMD scheme is proposed such that each stator coil is fed by a separate single-phase bridge inverter.
+
+The conventional connection and the proposed connection are shown in Fig. \ref{fig:rect_circuit}.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/rect_circuit}
+  \caption{Conventional connection and proposed connection  \textbf{\textcolor{red}{cizilecek}}}
+  \label{fig:rect_circuit}
+\end{figure}
+
+The drawbacks of such a connection are as follows: bunları açıkla
+
+\begin{enumerate}
+  \item Increased number of switches: cost, açıkla
+  \item Conduction loss, switching loss
+  \item Copper loss, core loss
+  \item Torque ripple
+\end{enumerate}
+
+Additional advantages: bunları açıkla
+\begin{enumerate}
+  \item Increased modularity
+  \item Conduction loss, switching loss
+\end{enumerate}
+
+New IMMD scheme for third harmonic injection, practical considerations
+
+Give the block diagram and the modular structure with split windings at a separate diagram
+
+DC linkte paralel bağlandığını söyle
+
+Effect on torque ripple
+The discussion on the elimination of the harmonic when there is no third space harmonic
+A method can be developed to eliminate the third space harmonic
+
 
 \section{Results}
 Simulation results
+
+Give the parameters, specifications
+\begin{itemize}
+  \item Total output power
+  \item Switching frequency
+  \item Motor fundamental frequency
+  \item Supply voltage, frequency
+  \item Modulation index
+  \item Number of modules
+  \item Number of series and parallel connected modules
+  \item Give the inductance capacitance, motor parameters etc.
+\end{itemize}
+
+1. The rectifier output current, the inverter input current, and DC link capacitor current at the same figure are shown in Fig. \ref{fig:sample}.
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/sample}
+  \caption{The rectifier output current, the inverter input current, and DC link capacitor current  \textbf{\textcolor{red}{elde edilecek}}}
+  \label{fig:sample}
+\end{figure}
+2. DC link capacitor current in a separate figure, with the method and without the method are shown in Fig. \ref{fig:sample}.
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=8cm]{images/sample}
+  \caption{DC link capacitor current in a separate figure, with the method and without the method  \textbf{\textcolor{red}{elde edilecek}}}
+  \label{fig:sample}
+\end{figure}
+3. The motor line currents, transistor currents
+The increase on the conduction losses of the switches and the copper losses of the windings
+
+4. Current of the inverters separately, show how the sixth harmonic is created
+
+5. Discuss the variable frequency case
+
+6. Discuss the capacitor requirement
+
+The percent decrease of the sixth harmonic current on the DC link capacitor, percent decrease of the overall capacitor RMS current
+
+There is no effect on the capacitance, but the RMS current rating decreases
+This will have no effect on film capacitors unless switching frequency is higher than 150 kHz
+But, the requirement on the RMS current will decrease significantly so that aluminium electrolytic capacitors can be made smaller now
+This will have the effects of:
+- Lower cost
+- Higher power density
+- Lifetime may be extended
+
 
 \section{Conclusion}
 The conclusion goes here.
 
 
-% use section* for acknowledgement
 \section*{Acknowledgment}
 
 The authors would like to thank...
