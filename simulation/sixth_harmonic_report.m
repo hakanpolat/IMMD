@@ -23,10 +23,10 @@ grid on;
 set(gca,'FontSize',12);
 xlim([0.46 0.5]);
 ylabel('Grid currents, ia, ib, ic (A)','FontSize',12,'FontWeight','Bold')
-    
+
 vflag = Vllrms*sqrt(2)*sin(2*pi*50*timeaxis-pi/6);
 subplot(3,2,3)
-plot(timeaxis,vdc(:,2),'b -','Linewidth',1.5);
+plot(timeaxis,vdcc(:,2),'b -','Linewidth',1.5);
 hold on;
 plot(timeaxis,vflag,'r -','Linewidth',1.5);
 hold off;
@@ -71,17 +71,17 @@ plot(timeaxis,vabc(:,3)-vabc(:,4),'g -','Linewidth',1.5);
 hold on;
 plot(timeaxis,vabc(:,4)-vabc(:,2),'b -','Linewidth',1.5);
 hold on;
-plot(timeaxis,vdc(:,2),'k -','Linewidth',1.5);
+plot(timeaxis,vdcc(:,2),'k -','Linewidth',1.5);
 hold on;
 plot(timeaxis,vload(:,2),'r -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlim([0.46 0.5]);
-%ylim([450 600]);
+xlim([0.48 0.5]);
+ylim([400 580]);
 ylabel('Voltage (volts)','FontSize',12,'FontWeight','Bold')
 xlabel('Time (seconds)','FontSize',12,'FontWeight','Bold')
-legend('vsa','vsb','vsc','vdc','vL')
+legend('v_{sa}','v_{sb}','v_{sc}','v_{dc}','v_L')
 
 %%
 % Rectifier output voltage
@@ -136,6 +136,89 @@ disp(Icap_6hm(1))
 disp(Idc_6hm(1))
 disp(Vdc_6hm(1))
 disp(vdc)
+
+%%
+% Direct sixth harmonic method
+Vsrms = 230;
+Vspeak = Vsrms*sqrt(2);
+Vllrms = Vsrms*sqrt(3);
+vdc = (3/pi)*Vllrms*sqrt(2);
+Vdc_6m = Vllrms*sqrt(2)*(3/5-3/7)/(pi);
+Rload = 10; % Ohms
+for l = 1:100
+    Ldc = l*50e-6; % H
+    for k = 1:100
+        Cdc = k*50e-6; % F
+        fs = 50; % Hz
+        ws = 2*pi*fs; % rad/sec
+        wdc = 6*ws;
+        Zc = 1/(1j*wdc*Cdc);
+        Zr = Rload;
+        Zout = (Zc*Zr)/(Zc+Zr);
+        Zf = 1j*wdc*Ldc;
+        Vload(l,k) = Vdc_6m*Zout/(Zout+Zf);
+    end
+end
+Vloadm = abs(Vload);
+%Vloadp = phase(Vload);
+Vloadm_pp = Vloadm*2;
+Vloadm_ppp = 100*Vloadm_pp/vdc;
+dclinkc = 50e-6*(1:100);
+figure;
+hold on;
+plot(dclinkc*1e3,Vloadm_ppp(20,:),'k -','Linewidth',1.5);
+hold on;
+plot(dclinkc*1e3,Vloadm_ppp(40,:),'r -','Linewidth',1.5);
+hold on;
+plot(dclinkc*1e3,Vloadm_ppp(60,:),'b -','Linewidth',1.5);
+hold on;
+plot(dclinkc*1e3,Vloadm_ppp(80,:),'g -','Linewidth',1.5);
+hold on;
+plot(dclinkc*1e3,Vloadm_ppp(100,:),'m -','Linewidth',1.5);
+hold off;
+grid on;
+ylim([0 2])
+set(gca,'FontSize',12);
+ylabel('Peak-to-peak ripple on DC link (%)','FontSize',12,'FontWeight','Bold')
+xlabel('Capacitance (mF)','FontSize',12,'FontWeight','Bold')
+legend('Ldc = 0.5 mH','Ldc = 1.0 mH','Ldc = 1.5 mH','Ldc = 2.0 mH',...
+    'Ldc = 2.5 mH','Ldc = 3.5 mH','Ldc = 3.0 mH','Ldc = 3.5 mH',...
+    'Ldc = 4.0 mH','Ldc = 4.5 mH')
+
+
+%%
+% Direct sixth harmonic method-2
+Vsrms = 230;
+Vspeak = Vsrms*sqrt(2);
+Vllrms = Vsrms*sqrt(3);
+vdc = (3/pi)*Vllrms*sqrt(2);
+Vdc_6m = Vllrms*sqrt(2)*(3/5-3/7)/(pi);
+Rload = 10; % Ohms
+Ldc = 1e-3; % H
+for k = 1:100
+    Cdc = k*100e-6; % F
+    fs = 50; % Hz
+    ws = 2*pi*fs; % rad/sec
+    wdc = 6*ws;
+    Zc = 1/(1j*wdc*Cdc);
+    Zr = Rload;
+    Zout = (Zc*Zr)/(Zc+Zr);
+    Zf = 1j*wdc*Ldc;
+    Vload(k) = Vdc_6m*Zout/(Zout+Zf);
+end
+Vloadm = abs(Vload);
+Vloadp = phase(Vload);
+Vloadm_pp = Vloadm*2;
+Vloadm_ppp = 100*Vloadm_pp/vdc;
+dclinkc = 100e-6*(1:100);
+figure;
+plot(dclinkc*1e3,Vloadm_ppp,'k -','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+ylabel('Percent ripple on DC link','FontSize',12,'FontWeight','Bold')
+xlabel('Capacitance','FontSize',12,'FontWeight','Bold')
+% legend('v_{sa}','v_{sb}','v_{sc}','v_{dc}','v_L')
 
 
 %%
