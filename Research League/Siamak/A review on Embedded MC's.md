@@ -37,7 +37,7 @@ We read and write to memory specifying address.
 ###Read Only Memory (ROM)
 ####The information is programmed or burned into the device, and during normal operation it only allows read access.
 ###Random Access Memory (RAM)
-####Used to stored temporary information, and during normal operation we can read and write data in it. 
+####Used to store temporary information, and during normal operation we can read and write data in it. 
 ####Writing on RAM is 10,000 times faster than writing on ROM.
 ####ROM is much denser than RAM.
 ####The basic storage element is called a Register.
