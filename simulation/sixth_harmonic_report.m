@@ -164,6 +164,7 @@ Vloadm = abs(Vload);
 Vloadm_pp = Vloadm*2;
 Vloadm_ppp = 100*Vloadm_pp/vdc;
 dclinkc = 50e-6*(1:100);
+perclimit = ones(1,numel(dclinkc));
 figure;
 hold on;
 plot(dclinkc*1e3,Vloadm_ppp(20,:),'k -','Linewidth',1.5);
@@ -175,15 +176,16 @@ hold on;
 plot(dclinkc*1e3,Vloadm_ppp(80,:),'g -','Linewidth',1.5);
 hold on;
 plot(dclinkc*1e3,Vloadm_ppp(100,:),'m -','Linewidth',1.5);
+hold on;
+plot(dclinkc*1e3,perclimit,'k* -','Linewidth',1.5);
 hold off;
 grid on;
 ylim([0 2])
 set(gca,'FontSize',12);
 ylabel('Peak-to-peak ripple on DC link (%)','FontSize',12,'FontWeight','Bold')
 xlabel('Capacitance (mF)','FontSize',12,'FontWeight','Bold')
-legend('Ldc = 0.5 mH','Ldc = 1.0 mH','Ldc = 1.5 mH','Ldc = 2.0 mH',...
-    'Ldc = 2.5 mH','Ldc = 3.5 mH','Ldc = 3.0 mH','Ldc = 3.5 mH',...
-    'Ldc = 4.0 mH','Ldc = 4.5 mH')
+legend('Ldc = 1.0 mH','Ldc = 2.0 mH','Ldc = 3.0 mH',...
+    'Ldc = 4.0 mH','Ldc = 5.0 mH','Limit')
 
 
 %%

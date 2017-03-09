@@ -1,4 +1,4 @@
-\textit{\documentclass[conference,a4paper,twocolumn]{IEEEtran}
+\documentclass[conference,a4paper,twocolumn]{IEEEtran}
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \DeclareGraphicsExtensions{.png,.jpg,.pdf}
@@ -34,10 +34,11 @@
 \usepackage{eqparbox}
 \usepackage[tight,footnotesize]{subfigure}
 \usepackage[caption=false]{caption}
-\usepackage[font=footnotesize]{subfig}
+%\usepackage[font=footnotesize]{subfig}
 \usepackage{fixltx2e}
 \usepackage{color}
 \usepackage{mathtools}
+
 
 %\usepackage{stfloats}
 % stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
@@ -101,8 +102,6 @@ In this paper, a novel method is proposed to enhance the power density of integr
 \todo[inline]{Abstract'taki sayılar güncellenecek.}
 \end{abstract}
 \IEEEpeerreviewmaketitle
-
-
 
 \section{Introduction}
 
@@ -361,25 +360,22 @@ This method is proposed for IMMD applications where selection of number of inver
 
 It has been shown that, with conventional three-phase connection, injection of third harmonic is impossible, regardless of the winding connection being delta or wye, due to the nature of the three-phase. Therefore, in this paper, an IMMD scheme is proposed such that each stator coil is fed by a separate single-phase bridge inverter.
 
-The conventional connection and the proposed connection are shown in Fig. \ref{fig:prop_conn} and Fig. \ref{fig:deneme}.
+The conventional connection and the proposed connection are shown in Fig. \ref{fig:conv_conn}.
 
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=8cm]{images/prop_conn}
-  \caption{Conventional connection and proposed connection}
-  \label{fig:prop_conn}
+%\begin{figure}[htp]
+%  \centering
+%  \includegraphics[width=8cm]{images/prop_conn}
+%  \caption{Conventional connection and proposed %connection}
+%  \label{fig:prop_conn}
+%\end{figure}
+
+\begin{figure}[] 
+\centering
+\subfigure[]{\includegraphics[width=2.5in]{conv_conn}\label{conv_conn}} \hfil 
+\subfigure[]{\includegraphics[width=2.5in]{prop_conn}\label{prop_conn}}
+\caption{Inverter schematic a)Conventional, b)Proposed.} 
+\label{fig:conv_conn} 
 \end{figure}
-
-
-%\centerline{\subfloat[Case I]\includegraphics[width=8cm]{images/conv_conn}
-%\label{fig:deneme}}
-%\hfil
-%\subfloat[Case II]{\includegraphics[width=8cm]{images/prop_conn}
-%\label{fig:deneme}}
-%\caption{Simulation results}
-%\label{fig:deneme}
-%\end{figure*}
-
 
 The drawbacks of such a connection are as follows: bunları açıkla
 
@@ -430,6 +426,7 @@ Give the parameters, specifications
   \label{fig:sample}
 \end{figure}
 2. DC link capacitor current in a separate figure, with the method and without the method are shown in Fig. \ref{fig:sample}.
+
 \begin{figure}[htp]
   \centering
   \includegraphics[width=8cm]{images/sample}
@@ -475,6 +472,3 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 
 
 \end{document}
-
-
-}
