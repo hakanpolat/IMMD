@@ -77,11 +77,11 @@ plot(timeaxis,vload(:,2),'r -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlim([0.46 0.5]);
-%ylim([450 600]);
+xlim([0.48 0.5]);
+ylim([400 580]);
 ylabel('Voltage (volts)','FontSize',12,'FontWeight','Bold')
 xlabel('Time (seconds)','FontSize',12,'FontWeight','Bold')
-legend('vsa','vsb','vsc','vdc','vL')
+legend('v_{sa}','v_{sb}','v_{sc}','v_{dc}','v_L')
 
 %%
 % Rectifier output voltage
