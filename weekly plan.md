@@ -1,11 +1,22 @@
+# 06.03.2017 - 12.03 2017
+## Planlanan çalışmalar:
+* ACEMP makalesi son.
+* BAP prototip planlaması.
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 # 27.02.2017 - 05.03 2017
 ## Planlanan çalışmalar:
 * ACEMP makalesi bitirilip submit edilecek.
 * BAP prototip planlaması.
 
 ## Gerçekleşen çalışmalar:
-* Research league iş paylaşımı yapıldı.
-* 5 yeni makale eklendi. Bu hafta için tüm makaleler okunmuş olacak.
+* Research league iş paylaşımı yapıldı. İlk çalışmalar yapıldı.
+* Makale haftaya devam.
+* 5 yeni makale eklendi.
 
 # 20.02.2017 - 26.02 2017
 ## Planlanan çalışmalar:
