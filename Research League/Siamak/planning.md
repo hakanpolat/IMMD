@@ -11,5 +11,3 @@
 * PWM
 * ADC
 * Serial Communication Interface
-
-
