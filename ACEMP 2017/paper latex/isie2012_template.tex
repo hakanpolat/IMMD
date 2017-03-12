@@ -34,10 +34,11 @@
 \usepackage{eqparbox}
 \usepackage[tight,footnotesize]{subfigure}
 \usepackage[caption=false]{caption}
-\usepackage[font=footnotesize]{subfig}
+%\usepackage[font=footnotesize]{subfig}
 \usepackage{fixltx2e}
 \usepackage{color}
 \usepackage{mathtools}
+
 
 %\usepackage{stfloats}
 % stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
@@ -101,8 +102,6 @@ In this paper, a novel method is proposed to enhance the power density of integr
 \todo[inline]{Abstract'taki sayılar güncellenecek.}
 \end{abstract}
 \IEEEpeerreviewmaketitle
-
-
 
 \section{Introduction}
 
@@ -250,11 +249,11 @@ i_b(t) = I_1sin(2\pi ft-2\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 i_c(t) = I_1sin(2\pi ft-4\pi/3-\phi_{1i})+I_3sin(6\pi ft-\phi_{3i})
 \end{equation}
 
-Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}, where v denotes voltage, i denotes current, k denotes fundamental component and l denotes third harmonic component.
-\begin{equation} \label{eq:7}
+Let us make the definitions shown in \ref{eq:def1}-\ref{eq:def2}, where v denotes voltage, i denotes current, k denotes fundamental component and l denotes third harmonic component.
+\begin{equation} \label{eq:def1}
 \phi_{kl-p} = \phi_{kv}+\phi_{li}
 \end{equation}
-\begin{equation} \label{eq:8}
+\begin{equation} \label{eq:def2}
 \phi_{kl-n} = \phi_{kv}+\phi_{li}
 \end{equation}
 
@@ -280,10 +279,10 @@ Let us make the definitions shown in \ref{eq:7}-\ref{eq:14}, where v denotes vol
 \fi
 
 
-The instantaneous power expression for each phase are shown in \ref{eq:15}-\ref{eq:17}.
+The instantaneous power expression for each phase are shown in \ref{eq:pa}-\ref{eq:pc}.
 
 \begin{equation}
-\label{eq:15}
+\label{eq:pa}
 \begin{multlined}
 p_a(t) = 
 \frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-\phi_{11p}) \bigg \rbrack
@@ -300,7 +299,7 @@ p_a(t) =
 \end{equation}
 
 \begin{equation}
-\label{eq:16}
+\label{eq:pb}
 \begin{multlined}
 p_b(t) = 
 \frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-4\pi/3-\phi_{11p}) \bigg \rbrack
@@ -317,7 +316,7 @@ p_b(t) =
 \end{equation}
 
 \begin{equation}
-\label{eq:17}
+\label{eq:pc}
 \begin{multlined}
 p_c(t) = 
 \frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n})-cos(4\pi ft-8\pi/3-\phi_{11p}) \bigg \rbrack
@@ -333,10 +332,10 @@ p_c(t) =
 \end{multlined}
 \end{equation}
 
-The total instantaneous power becomes as in \ref{eq:18}. As seen, all the frequency components which are two times and four times the fundamental frequency are cancelled, leaving two DC components and a component at six times the fundamental frequency. The last term will be used in this method for the cancellation of the sixth harmonic injected by the rectifier.
+The total instantaneous power becomes as in \ref{eq:pt}. As seen, all the frequency components which are two times and four times the fundamental frequency are cancelled, leaving two DC components and a component at six times the fundamental frequency. The last term will be used in this method for the cancellation of the sixth harmonic injected by the rectifier.
 
 \begin{equation}
-\label{eq:18}
+\label{eq:pt}
 \begin{multlined}
 p_{total}(t) = 
 \frac{V_1I_1}{2} \bigg \lbrack cos(\phi_{11n}) \bigg \rbrack
@@ -348,89 +347,113 @@ p_{total}(t) =
 \end{multlined}
 \end{equation}
 
+
+
+
 \section{Implementation of the method and practical issues}
 
-This method is proposed for IMMD applications where selection of number of inverter modules, number of stator phases etc. are flexible. This makes the application of the method more convenient. In this paper, a \textbf{\textcolor{red}{six}} pole machine is considered. The schematic of the segmented stator and modular inverters is shown in Fig. \ref{fig:rect_circuit}. 
+This method is proposed for IMMD applications where selection of number of inverter modules, number of stator phases etc. are flexible. This makes the application of the method more convenient for IMMD applications. The schematic diagram of the segmented stator and modular inverters is shown in Fig. \ref{fig:segmented}. The inverters can be connected in series, parallel or both in IMMD configurations. Each technique has its own advantages and drawbacks. In this paper, a machine with 4 pole pairs is considered, each having three phases. All the modules are connected in parallel on the DC bus.
+\todo[inline]{Bu konuyu daha iyi aciklayalim mi}
 
 \begin{figure}[htp]
   \centering
-  \includegraphics[width=8cm]{images/rect_circuit}
-  \caption{IMMD scheme  \textbf{\textcolor{red}{cizilecek}}}
-  \label{fig:rect_circuit}
+  \includegraphics[width=9cm]{segmented}
+  \caption{The schematic of the segmented stator and modular inverters}
+  \label{fig:segmented}
 \end{figure}
 
 It has been shown that, with conventional three-phase connection, injection of third harmonic is impossible, regardless of the winding connection being delta or wye, due to the nature of the three-phase. Therefore, in this paper, an IMMD scheme is proposed such that each stator coil is fed by a separate single-phase bridge inverter.
 
-The conventional connection and the proposed connection are shown in Fig. \ref{fig:rect_circuit}.
+The conventional connection and the proposed connection are shown in Fig. \ref{fig:conv_conn}, for only one pole pair.
 
-\begin{figure}[htp]
-  \centering
-  \includegraphics[width=8cm]{images/rect_circuit}
-  \caption{Conventional connection and proposed connection  \textbf{\textcolor{red}{cizilecek}}}
-  \label{fig:rect_circuit}
+%\begin{figure}[htp]
+%  \centering
+%  \includegraphics[width=8cm]{images/prop_conn}
+%  \caption{Conventional connection and proposed %connection}
+%  \label{fig:prop_conn}
+%\end{figure}
+
+\begin{figure}[] 
+\centering
+\subfigure[]{\includegraphics[width=2.5in]{conv_conn}\label{conv_conn}} \hfil 
+\subfigure[]{\includegraphics[width=2.5in]{prop_conn}\label{prop_conn}}
+\caption{Inverter schematic a) Conventional, b) Proposed.} 
+\label{fig:conv_conn} 
 \end{figure}
 
-The drawbacks of such a connection are as follows: bunları açıkla
+With this connection, each H-bridge module has the voltage to which third harmonic component is added. All the added components have the same phase so that a harmonic component which is six times the grid frequency is obtained as discussed in Section III. Apart from the elimination of the sixth harmonic component and hence reducing the capacitor size and RMS current requirement, this method has some drawbacks which have been discussed as follows: 
+\begin{enumerate}
+  \item Number of power semiconductor devices, and hence power semiconductor cost is increased. 
+  \item Power semiconductor device conduction and switching losses are increased for two reasons. First of all, the same current now flows through two devices at the same time instead of one, for each coil. Secondly, the injected third harmonic current introduces additional conduction losses to the devices.
+  \item Motor copper losses and core losses are increased due to the injection of the third harmonic component. The RMS current is increased which is directly related to the copper loss. Additionally, the third harmonic component, which does not contribute to the average useful torque creates eddy current losses on the rotor.
+  \item Increase of the power electronics and motor losses makes the cooling of the system more difficult, which has been already difficult due to the integrated structure.
+  \item The injection of the third harmonic may yield low frequency torque ripple on the shaft. It has been shown analytically that, if there is no third space harmonic, the injection does not cause any torque ripple. On the other hand, even if a small third space harmonic is present on the motor, it will cause torque ripple.
+\end{enumerate}
+Furthermore, this method may also bring some additional advantages as follows:
+\todo[inline]{Buraya daha detayli girilmesi lazim}
 
 \begin{enumerate}
-  \item Increased number of switches: cost, açıkla
-  \item Conduction loss, switching loss
-  \item Copper loss, core loss
-  \item Torque ripple
+  \item Separating all the phases apart will further enhance the modularity of the motor drive system.
+  \item Increased modularity neler getiriyor?
+  \item Torque ripple'a yonelik neler yapilabilir motor tarafinda?
 \end{enumerate}
 
-Additional advantages: bunları açıkla
-\begin{enumerate}
-  \item Increased modularity
-  \item Conduction loss, switching loss
-\end{enumerate}
-
-New IMMD scheme for third harmonic injection, practical considerations
-
-Give the block diagram and the modular structure with split windings at a separate diagram
-
-DC linkte paralel bağlandığını söyle
-
-Effect on torque ripple
-The discussion on the elimination of the harmonic when there is no third space harmonic
-A method can be developed to eliminate the third space harmonic
-
+The adverse effects of the method are also studied in addition to the benefits of the method for the reduction of passive element size and cost, and its results are also included in Section V.
 
 \section{Results}
-Simulation results
+The proposed method is verified by simulations carried out in MATLAB/Simulink and the results of the enhanced performance on the Dc link is obtained. Moreover, the results for the drawbacks are also obtained. Then, benefits of the method are discussed quantitatively and the price that is paid to obtain these benefits are obtained. In Table \ref{table:sim_param}, parameters used in the simulation work are listed.
 
-Give the parameters, specifications
-\begin{itemize}
-  \item Total output power
-  \item Switching frequency
-  \item Motor fundamental frequency
-  \item Supply voltage, frequency
-  \item Modulation index
-  \item Number of modules
-  \item Number of series and parallel connected modules
-  \item Give the inductance capacitance, motor parameters etc.
-\end{itemize}
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.4}
+\caption{Parameters used in the simulation}
+\label{table:sim_param}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Total output power & 10 kW & Switching frequency & 20 kHz\\
+\hline
+Motor fund. frequency & 50 Hz & Supply frequency & 50 Hz\\
+\hline
+Supply voltage & 400 V & Motor voltage & 400 V\\
+\hline
+Three-phase modules & 4 & Parallel connected modules & 4\\
+\hline
+DC Bus filter inductance & 1 mH & DC bus filter capacitance & 100 uF\\
+\hline
+Some motor parameters & abc & Some other parameters & xyz\\
+\hline
+\end{tabular}
+\end{table}
 
-1. The rectifier output current, the inverter input current, and DC link capacitor current at the same figure are shown in Fig. \ref{fig:sample}.
-\begin{figure}[htp]
+The rectifier output current ($i_{dc}$), the inverter input current ($i_{inv}$), and DC link capacitor current ($i_{c}$) are shown in Fig. \ref{fig:sample1}. \todo[inline]{Elde edilecek}. The DC link capacitor current is shown in Fig. \ref{fig:sample2} with and without the method, with 0.2 mF capacitance value. \todo[inline]{Elde edilecek}. The same figure is shown in Fig. \ref{fig:sample3} with 3 mF capacitance value. \todo[inline]{Elde edilecek}. 
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=8cm]{images/sample}
-  \caption{The rectifier output current, the inverter input current, and DC link capacitor current  \textbf{\textcolor{red}{elde edilecek}}}
-  \label{fig:sample}
+  \caption{The rectifier output current, the inverter input current, and DC link capacitor current}
+  \label{fig:sample1}
 \end{figure}
-2. DC link capacitor current in a separate figure, with the method and without the method are shown in Fig. \ref{fig:sample}.
-\begin{figure}[htp]
+
+\begin{figure}[h]
   \centering
   \includegraphics[width=8cm]{images/sample}
-  \caption{DC link capacitor current in a separate figure, with the method and without the method  \textbf{\textcolor{red}{elde edilecek}}}
-  \label{fig:sample}
+  \caption{DC link capacitor current with and without the method ($C_{dc} = 0.2 mF$)}
+  \label{fig:sample2}
 \end{figure}
-3. The motor line currents, transistor currents
-The increase on the conduction losses of the switches and the copper losses of the windings
 
-4. Current of the inverters separately, show how the sixth harmonic is created
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=8cm]{images/sample}
+  \caption{DC link capacitor current with and without the method ($C_{dc} = 3 mF$)}
+  \label{fig:sample3}
+\end{figure}
 
-5. Discuss the variable frequency case: grid frequency and motor fundamental frequency are not the same.
+Motor line currentf for only one three-phase module are shown in Fig. \ref{fig:motor_current}. \todo[inline]{Elde edilecek}. Transistor voltage and current waveforms for only one H-bridge module are shown in Fig. \ref{fig:transistor_current}. \todo[inline]{Elde edilecek, The increase on the conduction losses of the switches and the copper losses of the windings}.
+
+In Fig. \ref{fig:motor_current}, inverter currents are shown along with the DC link current, showing the creation of the sixth harmonic component.
+
+In this paper, a case is considered where the grid supply frequency and the motor fundamental frequency are close to each other, which may be the case most of the time, in some applications. On the other hand, in some other applications a variety of frequencies may be needed. When the difference is high, the adverse effects will be more dominant. One precaution to deal with this is using the modularity of the system such that the number of poles to be used can be changed electronically, without needing any additional connections or some mechanical intervention. By doing so, speed range can be enhanced with a smaller range of frequencies and this method can be made more feasible even for applications that need a wide speed range.
+
 
 6. Discuss the capacitor requirement. The percent decrease of the sixth harmonic current on the DC link capacitor, percent decrease of the overall capacitor RMS current.
 
@@ -464,5 +487,3 @@ H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
 
 
 \end{document}
-
-
