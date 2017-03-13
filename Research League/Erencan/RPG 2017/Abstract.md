@@ -1,4 +1,17 @@
-## Cost Investigation between usage of Power Compensation Unit and Reactive Power Control of the Inverter
+## Utilization of grid-connected photovoltaic inverters for reactive power compensation in low voltage systems
+
+* 3-5 tane makale bulunacak. Bunlara atıf yapılacak, biz üstüne ne koyuyoruz bu vurgulanacak.
+* Capacitor analizini abstract'a koyalım
+* Gece normalde çalışmazken şimdi çalışacak. Ekstra loss katacak.
+* Static reactive power compensation units such as STATCOMs are widely used in medium voltage distribution level and high voltage transmission level systems. However, their utilization in low voltage systems is not common due to its costs. In this paper, ststic compensation in low voltage applications is proposed and it is believed that it is more feasible then reactive power compensation units which are mechanically controlled.
+* Zero injection durumunda da çalışacak, bu bir avantaj. Yani active power olmasa bile power factor'ü her türlü unity yapabilecek.
+
+Abtrsact kurgusu:
+* Şu an reactive power compensation unit'ler kullanılıyor. Bunları sıkıntıları var (açıkla). Şöyle case'ler gördük (Ayaslı örneği)
+* Bunun yerine PV sistemin "static" olarak reactive power compensation yapmasını propose ediyoruz.
+* Bu tabi modifikasyonlşar gerektiriyor. Sisteme additional short ve long term cost'lar katıyor.
+* Bunun için iki durumu karşılaştıran cost analizi yapıcaz.
+
 
 **Abstract:** Penetration of the renewable sources are increasing each passing day. Advances in the technology increases this penetration further. Photovoltaic systems especially are observed in the offices, medium scale residential buildings. The high amount of renewable sources and their expected increase in the near future bring some auxiliary services as voltage and frequency support. They can also be used for reactive power generation in places where reactive power compensation is obligatory. In other words, the inverters existing in the panels can be used for capacitive reactive power generation in order to compensate the reactive power demand in their loads. However, it is obvious that this replacement of conventional reactive power compensation units with oversized inverters needs special investigation in terms of cost and performance.  
 
