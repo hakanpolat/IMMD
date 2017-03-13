@@ -18,7 +18,8 @@ Note that in the flyback controller, only control parameter is the duty cycle. T
 - http://ecee.colorado.edu/~ecen4517/materials/flyback.pdf
 
 
-In the DCM operation, high ripple occurs in the current waveform which results in small inductance. However, in DCM operation duty cycle appears in the output power expression.CCM operation, these do not occur. Note that, in CCM operation there is a risk saturation since the flux is not zero at the end of each switching period. Therefore, DCM operation is preferred in this design.
+In the DCM operation, high ripple occurs in the current waveform which results in small inductance. However, in DCM operation duty cycle appears in the output power expression.CCM operation, these do not occur. Note that, in CCM operation there is a risk saturation since the flux is not zero at the end of each switching period. Moreover, using DCM topology, transformer size is reduced. Therefore, DCM operation is preferred in this design.
+
 
 
 # Controller  
@@ -34,8 +35,30 @@ Flyback transformer commercially exists in the market. Its specific property is 
 
 My main problem is their input voltage values. They are like 60 V meanwhile I need almost 310 V input voltage. 
 
-Useful Documents 
+**Isolation Voltage**  
+Isolation Voltaege of the transformers: 500V,1.5kV,2.5kV and 4kV. Since the input voltage will be the output voltage of the diode rectifier, in my opinion 500V isolation will be sufficient. 
+
+#Useful Documents 
 
 - http://www.ti.com/lit/ml/slup072/slup072.pdf
 - https://www.fairchildsemi.com/application-notes/AN/AN-4137.pdf
-- http://www.ti.com/lit/an/slua086/slua086.pdf
+- http://www.ti.com/lit/an/slua086/slua086.pdf  
+- http://pdf.dzsc.com/2000625/200006250943377744.pdf
+
+#Second Week Report  
+
+**Improved Feedback**  
+Note that we will have three isolated output voltages. However, it is not possible to regulate three output voltages. An improved feedback mechanism can be applied to the circuit. In this case, three output voltages can be regulated. Note that in this case, all voltages would not tightly regulated as in the case of one regulated output voltage case.  
+
+![](./Images/Improved_Feedback.png)  
+
+
+**Flyback Transformer options**  
+Since we are asked to have three regulated output voltages, it might be better to either **design the transformer with one controller** or **three controller and three transformer**.  
+
+http://katalog.we-online.de/pbs/datasheet/750311771.pdf
+http://katalog.we-online.de/pbs/datasheet/750311591.pdf
+
+Usefull documents for transformer design:  
+- http://pdf.dzsc.com/2000625/200006250943377744.pdf
+
