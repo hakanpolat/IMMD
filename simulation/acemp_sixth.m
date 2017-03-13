@@ -62,7 +62,7 @@ phase3t = [0 0 0];
 % Concentrated winding
 Ts = 1e-5; % sec
 % DC link voltage
-Vdc = 400; % Volts
+Vdc = 540; % Volts
 % switching frequency
 fsw = 2e3; % Hz
 % Load
@@ -70,7 +70,7 @@ pf = 0.9;
 % fundamental
 efficiency = 0.99;
 ma1 = 0.8;
-Pout_fund = 2e3; % VA
+Pout_fund = 4e3; % VA
 Sout_fund = Pout_fund/pf; % VA
 fout_fund = 50; % Hz
 wout_fund = 2*pi*fout_fund; % rad/sec
@@ -84,7 +84,8 @@ Vp1 = Vll_rms_fund*sqrt(2); % Volts
 Ip1 = Iline_fund*sqrt(2); % Amps
 
 % third harmonic
-ma3 = 0.5;
+ ma3 = 0;
+%ma3 = 0.475;
 phase3 = 30*pi/180;
 fout_three = 3*fout_fund; % Hz
 wout_three = 2*pi*fout_three; % rad/sec
@@ -119,7 +120,7 @@ phase3 = 0;
 %     capacitor_sixth(k) = cap_six(numel(cap_six));
 % end
 % toc
-phasegrid = 10;
+phasegrid = 35.5;
 % for k = 1:60
 %     phasegrid = k;
 %     sim('sixth_harmonic_concen2.slx');
