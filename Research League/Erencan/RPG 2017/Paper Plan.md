@@ -27,4 +27,4 @@ Inverter Disadvantages
 - Loss'ları analitik yap.
 - Cost optimizasyonu en son MATLAB
 - One time, long term, üstüste falan cost'lar çizdirilebilir
--
+
