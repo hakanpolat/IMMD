@@ -84,7 +84,7 @@ Vp1 = Vll_rms_fund*sqrt(2); % Volts
 Ip1 = Iline_fund*sqrt(2); % Amps
 
 % third harmonic
-ma3 = 0.5;
+ma3 = 1;
 phase3 = 30*pi/180;
 fout_three = 3*fout_fund; % Hz
 wout_three = 2*pi*fout_three; % rad/sec
@@ -119,7 +119,7 @@ phase3 = 0;
 %     capacitor_sixth(k) = cap_six(numel(cap_six));
 % end
 % toc
-phasegrid = 10;
+phasegrid = 31;
 % for k = 1:60
 %     phasegrid = k;
 %     sim('sixth_harmonic_concen2.slx');
