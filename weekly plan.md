@@ -1,12 +1,20 @@
+# 13.03.2017 - 19.03 2017
+## Planlanan çalışmalar:
+* 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
+* DC bus full analitic model geliştirilecek.
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+
+## Gerçekleşen çalışmalar:
+* ...
+
+
 # 06.03.2017 - 12.03 2017
 ## Planlanan çalışmalar:
 * ACEMP makalesi son.
 * BAP prototip planlaması.
 
 ## Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* ACEMP makalesi ertelendi. 100 Hz problemi üzerinde çalışılacak.
 
 # 27.02.2017 - 05.03 2017
 ## Planlanan çalışmalar:
