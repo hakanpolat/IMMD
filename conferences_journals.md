@@ -1,7 +1,10 @@
 # Plan for 2017
-* ISIE 2017: submitted, waiting for review
-* ACEMP 2017: considering to submit
-* ELECO 2017: considering to submit
+* **ISIE 2017**: submitted, accepted for presentation.
+* **ACEMP 2017**: postponed
+* **RPG 2017**: abtract submitted, waiting for review
+* **ICAT 2017**: abtract will be submitted
+* **ELECO 2017**: considering to submit
+* **International Symposium on Electrical Railway Transportation Systems**: considering to submit a paper from master thesis subjects
 * 1 journal
 
 # Conferences
@@ -157,6 +160,43 @@ Abstracts Submission: March 19, 2017
 Fulltext Submission: March 26, 2017
 
 May 09-12, 2017, İstanbul, Turkey
+
+* **EEMKON**:
+
+http://eemkon.org.tr/
+
+* **Symposium**: International Symposium on Electrical Railway Transportation Systems
+
+http://erusis.org/
+
+Deadlines:
+
+Special Session Proposal May 15, 2017
+
+Paper Submission July 1, 2017
+
+Notification of Acceptance September 1, 2017
+
+Camera-ready Submission October 1, 2017
+
+Symposium Dates October 27–28, 2017
+
+Eskişehir Osmangazi University, Turkey
+
+* **1. Ulusal Enerji Dönüşümü Kongresi**
+
+http://www.enerjidonusumu.org/
+
+Bildiri Gönderme Son Tarihi 13 Mayıs 2017
+
+Kabul Edilen Bildirilerin İlanı 1 Temmuz 2017
+
+Revizyon İstenen Bildiri İkinci Gönderim Son Tarihi 28 Temmuz 2017
+
+Kongre Tarihi 21-22 Eylül 2017
+
+Fırat Üniversitesi, Elazığ, Turkey
+
 
 # Journals - IEEE
 
