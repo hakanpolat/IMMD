@@ -60,5 +60,21 @@ http://katalog.we-online.de/pbs/datasheet/750311771.pdf
 http://katalog.we-online.de/pbs/datasheet/750311591.pdf
 
 Usefull documents for transformer design:  
-- http://pdf.dzsc.com/2000625/200006250943377744.pdf
+- http://pdf.dzsc.com/2000625/200006250943377744.pdf  
 
+
+#Third Week Report  
+
+In the second week meeting, it is decided that we will have three 15V outputs. One of them will be connected to 
+mainboard. Other two will be connected to a commercial buck converters with 5V outputs.  
+
+For this application, following transformer has been chosen.  
+
+![](./Images/chosen_transformer.jpg)  
+
+http://www.digikey.com/product-detail/en/wurth-electronics-midcom/750311771/732-2667-2-ND/2445674 
+
+Turns ratios are given below.
+
+
+![](./Images/turnsratio.jpg)  
