@@ -78,3 +78,7 @@ Turns ratios are given below.
 
 
 ![](./Images/turnsratio.jpg)  
+
+  For the buck converter **LMZ12002** is chosen. 
+
+ - http://www.ti.com/lit/ds/symlink/lmz12002.pdf
