@@ -81,4 +81,9 @@ Turns ratios are given below.
 
   For the buck converter **LMZ12002** is chosen. 
 
- - http://www.ti.com/lit/ds/symlink/lmz12002.pdf
+ - http://www.ti.com/lit/ds/symlink/lmz12002.pdf 
+
+
+For controller, UCC28610 will be used. Its temperature range is also maximum according to catalog (-40 to 125 C ).
+
+http://www.ti.com/lit/ds/symlink/ucc28610.pdf
