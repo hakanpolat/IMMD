@@ -82,3 +82,22 @@ Turns ratios are given below.
   For the buck converter **LMZ12002** is chosen. 
 
  - http://www.ti.com/lit/ds/symlink/lmz12002.pdf
+
+#Fourth Week Studies  
+
+In previous week, it is decided that flyback converter does not need isolated outputs due to the common ground structure in their communication systems. 
+
+-  Therefore, one output winding(paralleled two winding) will be connected to mainboard with regulated output voltage of 15V.
+-  The other 5V will be achieved with an output winding by using a commercial buck converter. 
+  
+But the problem is it is written that "15V 3A" but in what condition? All of them paralleled or only one winding?  
+ 
+In previous week, the buck converter was already chosen but it is stated that its output current is up to 2A! 
+
+Depending on the Raspberry Pi to be used, this current might not be appropriate ! 
+
+![](./Images/raspberrypi.jpg)  
+ 
+Source: https://www.raspberrypi.org/help/faqs/ 
+
+Moreover, this week Altium is installed and after making sure on all equipment, schematic construction will be started.
