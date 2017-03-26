@@ -1,3 +1,21 @@
+# 27.03.2017 - 02.04 2017
+## Planlanan çalışmalar:
+* 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
+* DC bus full analitic model geliştirilecek.
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+* BAP proje başlama.
+
+## Gerçekleşen çalışmalar:
+* ...
+
+# 20.03.2017 - 26.03 2017
+## Planlanan çalışmalar:
+* Research League organizasyon.
+
+## Gerçekleşen çalışmalar:
+* Research League organizasyon, toplantı, çalıştay.
+* No other work.
+
 # 13.03.2017 - 19.03 2017
 ## Planlanan çalışmalar:
 * 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
@@ -5,8 +23,7 @@
 * ISIE review'ları incelenip final paper planlaması yapılacak.
 
 ## Gerçekleşen çalışmalar:
-* ...
-
+* No work at all.
 
 # 06.03.2017 - 12.03 2017
 ## Planlanan çalışmalar:
