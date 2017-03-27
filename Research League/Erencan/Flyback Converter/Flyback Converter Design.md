@@ -81,6 +81,7 @@ Turns ratios are given below.
 
   For the buck converter **LMZ12002** is chosen. 
 
+<<<<<<< HEAD
  - http://www.ti.com/lit/ds/symlink/lmz12002.pdf
 
 #Fourth Week Studies  
@@ -101,3 +102,11 @@ Depending on the Raspberry Pi to be used, this current might not be appropriate 
 Source: https://www.raspberrypi.org/help/faqs/ 
 
 Moreover, this week Altium is installed and after making sure on all equipment, schematic construction will be started.
+=======
+ - http://www.ti.com/lit/ds/symlink/lmz12002.pdf 
+
+
+For controller, UCC28610 will be used. Its temperature range is also maximum according to catalog (-40 to 125 C ).
+
+http://www.ti.com/lit/ds/symlink/ucc28610.pdf
+>>>>>>> e1f5643fbae52c089c2aa09ae1156a7bceebbb7e
