@@ -16,6 +16,7 @@ In this document, plans for BAP project will be discussed.
 ## Sorular
 * Kaç kW çıkış gücüne çıkabiliriz?
 * Motor nasıl olacak? Frameless, biz mi saracağız vb.
+* Frameless ise üretimde nelere ihtiyacımız olacak?
 * Integration yapılacak mı? Devre ayrı bir yerde mi çalıştırılacak?
 * Devre öne mi arkaya mı gelecek?
 * Master/slave yapılacak mı?
