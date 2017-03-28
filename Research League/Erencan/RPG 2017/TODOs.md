@@ -1,27 +1,28 @@
 ## Literature
-* Technical background of reactive power injection via photovoltaic inverters
-* Similar work on this idea (eliminating reactive power compensation unit, RPCU)
+* Technical background of reactive power injection via photovoltaic inverters **Erencan**
+* Similar work on this idea (eliminating reactive power compensation unit, RPCU) **Mesut**
 
 ## Research
-* Static VAr compensators (STATCOMs), methodology, operating principles
-* Inverter installation costs
-* RPCU installation cost
-* Inverter maintenance requirement **???**
-* RPCU maintenance requirement
-* Discrete operation of RPCUs
-* Limitations via regulations on reactive power, or power factor
-* How commonly are capacitive loads used?
-* Inverter datasheets, critical parameters
+* Static VAr compensators (STATCOMs), methodology, operating principles **Erencan**
+* Inverter installation costs **Erencan**
+* RPCU installation cost **Erencan**
+* Discrete operation of RPCUs  **Erencan**
+* Limitations via regulations on reactive power, or power factor **Erencan**
+* How commonly are capacitive loads used?  **Erencan**
+* Inverter datasheets, critical parameters  **Erencan**
 
 ## Analysis
-* Long term financial loss due to inverter and RPCU losses
+* Power system modeling and simulation platform **Mesut**
+  * Inverter simulation
+  * RPCU
+  * Demand side variations (loads)
+* Long term financial loss due to inverter and RPCU losses  **Mesut**
   * Loss characterisation
   * Tariff estimation
-* Capacitor size requirement (possible change)
+* Capacitor size requirement (possible change) **Mesut**
 * LCL filter size requirement **???**
 * Effect of discrete operation of RPCUs on cost due to limitations (penalty)
 * Comparison of very low active power injection case (power factor getting very poor)
-* Effect of maintenance requirements on long term financial loss
 
 ## Result
 * Cost vs years
