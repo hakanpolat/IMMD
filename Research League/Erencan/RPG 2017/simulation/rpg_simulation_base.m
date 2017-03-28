@@ -1,7 +1,10 @@
 %% Simulation base for RPG
-Ts = 1e-6;
-% RPCU
-% switching frequency
+Ts = 1e-5;
+
+% Grid
+Vphase = 230; % V
+Vline = Vphase*sqrt(3); % V
+fs = 50; % Hz
 
 % Solar panel side
 Vdc = 700; % V
@@ -14,11 +17,15 @@ V1 = Vdc*(Rseries+Rrefl)/Rrefl; % V
 fsw = 5e3; % Hz
 Ls = 1e-3; % H
 RLs = 1e-6; % Ohms
-
-% Grid
-Vphase = 230; % V
-Vline = Vphase*sqrt(3); % V
-fs = 50; % Hz
+Xs = Ls*2*pi*fs; % Ohms
+Ppv = 50e3; % W
+Qpv = 10e3; % VAr
+Idpv = Ppv/(3*Vphase);
+Iqpv = Qpv/(3*Vphase);
+Vc_mag = sqrt((Vphase-Iqpv*Xs)^2+(Idpv*Xs)^2);
+ma = 2*sqrt(2)*Vc_mag/Vdc;
+delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
+delta_degree = phase_delta*180/pi;
 
 % Load
 Pload = 200e3; % W
@@ -32,7 +39,7 @@ Lload = Xload/(2*pi*fs); % H
 
 % RPCU
 rpcu_capacity = 50e3; % VAr
-Qrpcu_each = rpcu_capacity/(3*4)
+Qrpcu_each = rpcu_capacity/(3*4);
 Zrpcu_each = Vphase^2/(Qrpcu_each);
 Crpcu_each = 1/(2*pi*fs*Zrpcu_each);
 % USER SELECTED
