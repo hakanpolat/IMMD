@@ -9,23 +9,25 @@ fs = 50; % Hz
 % Solar panel side
 Vdc = 700; % V
 Rseries = 5; % Ohm
-Pout = 50e3; % W
+Pout = 80e3; % W
 Rrefl = Vdc^2/Pout;
 V1 = Vdc*(Rseries+Rrefl)/Rrefl; % V
+Cdc = 5e-3; % F
+ESR = 1e-3; % Ohms
 
 % Inverter
 fsw = 5e3; % Hz
 Ls = 1e-3; % H
-RLs = 1e-6; % Ohms
+RLs = 1e-3; % Ohms
 Xs = Ls*2*pi*fs; % Ohms
-Ppv = 50e3; % W
-Qpv = 10e3; % VAr
+Ppv = 80e3; % W
+Qpv = 60e3; % VAr
 Idpv = Ppv/(3*Vphase);
 Iqpv = Qpv/(3*Vphase);
 Vc_mag = sqrt((Vphase-Iqpv*Xs)^2+(Idpv*Xs)^2);
 ma = 2*sqrt(2)*Vc_mag/Vdc;
 delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
-delta_degree = phase_delta*180/pi;
+delta_degree = delta*180/pi;
 
 % Load
 Pload = 200e3; % W
