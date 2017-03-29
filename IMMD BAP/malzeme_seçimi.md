@@ -1,7 +1,16 @@
-### Bu dökümanda malzeme seçimleri, örnek malzemeler vb. yer alacaktır.
+### Bu dökümanda malzeme seçimleri, tasarım değerleri, örnek malzemeler vb. yer alacaktır.
+
+* Rectifier, DC bara filtresi ve flyback ayrı devrelerde mi olacak?
 
 #### Rectifier tarafı
-* Rectifier, DC bara filtresi ve flyback ayrı devrelerde mi olacak?
+* Tahmin edilen akım gerelim değerleri: 600V, 8A
+* Gerekli akım gerelim değerleri: 800V, 20A
+* Doğrulamak için benzetim yapılacak
+* Örnek ürünler:
+  * [Vishay VS-26MT100](http://tr.farnell.com/vishay/vs-26mt100/bridge-rectifier-25a-3ph/dp/9098550)
+  * [SEMIKRON SKD2508](http://tr.farnell.com/semikron/skd2508/bridge-rectifier-20a-800v-3ph/dp/9401830)
+  * [VISHAY VS-26MT80](http://tr.farnell.com/vishay/vs-26mt80/bridge-rectifier-25a-3ph/dp/9098542)
+  * Paket büyüklükleri genelde 28.5 mm, yükseklik bacak hariç 10 mm.
 
 #### DC Bara
 
