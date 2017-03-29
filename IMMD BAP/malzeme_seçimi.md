@@ -25,7 +25,25 @@ Example motor (Page-44):
 
 [Installation of frameless motors (video)](http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/)
 
-* Motor için üreticiler listelenecek (Kollmorgan vb.)
+[Webinar about frameless motor technology](https://www.youtube.com/watch?v=L2XrGfEYa2w)
+
+*  **Motor için üreticiler**
+  * [Kollmorgen](http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/)
+  * [BEI KIMCO](http://www.beikimco.com/motor-products/brushless-dc/BLDC-brushless-frameless-parts-kit): All are low voltage.
+  * [ARC SYSTEMS](http://www.arcsystemsinc.com/category/115/Brushless.html?sort=name&size=10&page=3): Most of them are low voltage. Power ratings are very low.
+  * [Allied Motion](http://catalog.alliedmotion.com/ecatalog/frameless-quantum-brushless-servo-motors/si): There are a few motors suitable for us.
+  * [Electromate](https://www.electromate.com/assets/catalog-library/pdfs/applimotion/Applimotion_UTS_Motor_kits_Datasheet.pdf): Something called slotless zero cogging motor kit, don't know what.
+  * [Electromate-2](https://www.electromate.com/assets/catalog-library/pdfs/applimotion/Applimotion_ULT_Motor_Kits_datasheet.pdf): BLDC motor kits.
+  * [Aerotech](https://www.aerotech.com/product-catalog/motors/rotary-motors/s-series.aspx?p=%2fproduct-catalog%2fmotors%2frotary-motors.aspx%3ftype%3dFrameless): Ratings below 1 kW - frameless.
+  * [Koford](http://www.koford.com/129.pdf): 160V - 4.5kW frameless BLDC is avaiable
+  * [US MOTION](http://www.usmotion.com/custom-servo-motors/custom-frameless-motors/): Frameless, "wound conductor or pcb stator" option is interesting.
+  * [Parker Motion](http://www.parkermotion.com/pdfs/bayside_cat/07%20Frameless%20Motors%20&%20Gearmotors.pdf): (Continuous) Torque ratings up to 90Nm.
+  * [Moog](http://www.moog.com/products/motors-servomotors/brushless-motors/inside-rotor-brushless-dc-motors/frameless.html): Does not give any specifications !!!
+  * [Mclennan - HT series](http://www.mclennan.co.uk/product/ht-series-frameless-torque-motors): 24V and 100V options. Peak torque up to 25 Nm.
+  * [Mclennan - Megaflux](http://www.mclennan.co.uk/product/megaflux-frameless-torque-motors): There are a lot of suitable selection.
+
+
+
 * Üretim için gereken altyapı araştırılacak
 * Hazır frameless motorlarda oluk sayılarına bakılacak (3D models)
 * Kollmorgen'a mail atılacak (alttaki seçenekler için)
