@@ -4,9 +4,11 @@
 * DC bus full analitic model geliştirilecek.
 * ISIE review'ları incelenip final paper planlaması yapılacak.
 * BAP proje başlama.
+* RPG için çalışma yapılacak.
 
 ## Gerçekleşen çalışmalar:
-* ...
+* BAP projesi başlatıldı. Fizibilite çalışması yapıldı. Motor seçimi yapılacak.
+* RPG için simulasyon platformu oluşturuldu.
 
 # 20.03.2017 - 26.03 2017
 ## Planlanan çalışmalar:
