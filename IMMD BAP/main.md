@@ -6,24 +6,30 @@ In this document, plans for BAP project will be discussed.
 * GaN ve MCU için sample mailleri: OK
 * Preliminary design: OK
 * Proje başlatma: OK
+* Motor seçimi: OK
 
-## İş paketi-1
-* Motor seçimi: Tipi, faz sayısı, kutup sayısı
-* Sürücü modül sayısı, bağlantı şekli, topoloji seçimi
-* MCU benchmart ve seçimi
+## İş paketi-1: Motor seçimi (PM BLDC)
+* Toplam çıkış gücü
+* Faz sayısı
+* Kutup sayısı
+* Oluk sayısı
+* Boyutlar
+
+## İş paketi-2
+* Sürücü modül sayısı, bağlantı şekli (seri-paralel), topoloji seçimi
+
+## İş paketi-3
+* GaN üretici seçimi, gerilim ratingi seçimi
+
+## İş paketi-4
+* MCU benchmart ve seçimi, master-slave olayı, haberleşme protokolü
+
+## İş paketi-5
 * RL load tasarımı
 
 ## Sorular
-* Kaç kW çıkış gücüne çıkabiliriz?
-* Motor nasıl olacak? Frameless, biz mi saracağız vb.
-* Frameless ise üretimde nelere ihtiyacımız olacak?
 * Integration yapılacak mı? Devre ayrı bir yerde mi çalıştırılacak?
 * Devre öne mi arkaya mı gelecek?
-* Master/slave yapılacak mı?
-* Olursa master ayrı devrede mi olacak?
-* Kaç mödül, kaç seri, kaç parallel?
-* Hangi GaN? 200V EPC or 600V transphorm?
-* Rectifier, DC bara filtresi ve flyback ayrı devrelerde mi olacak?
 * Akım ölçümüne gerek var mı?
 * Heat sink mekanik pozisyonu ve bağlantısı nasıl olacak?
 
