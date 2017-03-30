@@ -1,11 +1,15 @@
 # Plan for 2017
-* **ISIE 2017**: submitted, accepted for presentation.
-* **ACEMP 2017**: postponed
-* **RPG 2017**: abtract submitted, waiting for review
-* **ICAT 2017**: abtract will be submitted
-* **ELECO 2017**: considering to submit
-* **International Symposium on Electrical Railway Transportation Systems**: considering to submit a paper from master thesis subjects
-* 1 journal
+* **ISIE 2017**: Accepted for presentation.
+* **RPG 2017**: Abtract submitted, waiting for review
+* **1st ulusal enerji dönüşümü kongresi**: Deadline 13.05.2017
+* **International Symposium on Electrical Railway Transportation Systems**: considering to submit a paper from master thesis subjects: Deadline 01.07.2017
+* **ICEE 2018**: 11.07.2018
+* **PEMD 2018**: Deadline (abstract) 14.07.2017
+* **ELECO 2017**: Deadline 18.08.2017
+* **ICIT 2018**: Deadline 01.10.2017
+* **Journal**: November
+* **ECCE 2018**: Oregon, USA: Deadline (abstract) 15.01.2018
+* **IPEC 2018**: ECCE ASIA: Deadline 16.10.2017 (extended summary)
 
 # Conferences
 
