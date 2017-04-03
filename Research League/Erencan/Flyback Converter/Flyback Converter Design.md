@@ -102,11 +102,27 @@ Depending on the Raspberry Pi to be used, this current might not be appropriate 
 Source: https://www.raspberrypi.org/help/faqs/ 
 
 Moreover, this week Altium is installed and after making sure on all equipment, schematic construction will be started.
-=======
+
  - http://www.ti.com/lit/ds/symlink/lmz12002.pdf 
 
 
 For controller, UCC28610 will be used. Its temperature range is also maximum according to catalog (-40 to 125 C ).
 
-http://www.ti.com/lit/ds/symlink/ucc28610.pdf
->>>>>>> e1f5643fbae52c089c2aa09ae1156a7bceebbb7e
+http://www.ti.com/lit/ds/symlink/ucc28610.pdf  
+
+
+
+#Fifth Week Report  
+
+Now, we are ready to start schematic design. I started design from the input side. There is a bridge rectifier. Since the designed converter will also be used in IMMD, temperature criteria is considered as one of the most important issues.  
+
+Therefore, while selecting the bridge rectifier structure, highest temperature class is chosen. 
+
+
+http://www.bourns.com/docs/Product-Datasheets/CD2320-B.pdf 
+http://tr.farnell.com/bourns/cd-mbl206sl/diode-bridge-rect-1-ph-600v-smd/dp/2676041 
+
+The lowest current rating 1A will be appropriate for this design.  
+
+There is not much price difference for such a selection. 0.459 Euro for rectifier.
+
