@@ -1,13 +1,118 @@
+# 27.03.2017 - 02.04 2017
+## Planlanan çalışmalar:
+* 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
+* DC bus full analitic model geliştirilecek.
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+* BAP proje başlama.
+* RPG için çalışma yapılacak.
+
+## Gerçekleşen çalışmalar:
+* BAP projesi başlatıldı. Fizibilite çalışması yapıldı. Motor seçimi yapılacak.
+* RPG için simulasyon platformu oluşturuldu.
+
+# 20.03.2017 - 26.03 2017
+## Planlanan çalışmalar:
+* Research League organizasyon.
+
+## Gerçekleşen çalışmalar:
+* Research League organizasyon, toplantı, çalıştay.
+* No other work.
+
+# 13.03.2017 - 19.03 2017
+## Planlanan çalışmalar:
+* 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
+* DC bus full analitic model geliştirilecek.
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+
+## Gerçekleşen çalışmalar:
+* No work at all.
+
+# 06.03.2017 - 12.03 2017
+## Planlanan çalışmalar:
+* ACEMP makalesi son.
+* BAP prototip planlaması.
+
+## Gerçekleşen çalışmalar:
+* ACEMP makalesi ertelendi. 100 Hz problemi üzerinde çalışılacak.
+
+# 27.02.2017 - 05.03 2017
+## Planlanan çalışmalar:
+* ACEMP makalesi bitirilip submit edilecek.
+* BAP prototip planlaması.
+
+## Gerçekleşen çalışmalar:
+* Research league iş paylaşımı yapıldı. İlk çalışmalar yapıldı.
+* Makale haftaya devam.
+* 5 yeni makale eklendi.
+
+# 20.02.2017 - 26.02 2017
+## Planlanan çalışmalar:
+* Altıncı harmonik ile ilgili rapor sonlandırılacak.
+* ACEMP makalesi yazılacak.
+* Research league ilk planlama toplantısı: 21.02.2017
+
+## Gerçekleşen çalışmalar:
+* Research league ilk planlama toplantısı yapıldı. Github senkronizasyonu yapıldı. Star için duyuru yapıldı.
+* ACEMP makalesi bir kısmı yazıldı.
+
+
+# 13.02.2017 - 19.02 2017
+## Planlanan çalışmalar:
+* Altıncı harmonik ile ilgili rapor sonlandırılacak. ERTELE
+* GaN sample istenecek.
+* Research league ilk planlama toplantısı yapılacak.
+* BAP raporu bitirilecek.
+
+## Gerçekleşen çalışmalar:
+* GaN sample için istenen malzemeler derlendi.
+* 3rd harmonic injection motora etkileri analitik olarak incelendi. Maxwell üzerinde çalışma planlandı.
+* Rectifier tarafı analitik modellemesi tamamlandı (filtre ile). Rectifier modelleri simulasyonla doğrulandı, rapora eklendi.
+* BAP raporu bitirildi.
+
+# 06.02.2017 - 12.02 2017
+## Planlanan çalışmalar:
+* ISIE makalesi güncelleme.
+* Altıncı harmonik ile ilgili makale yazılması (ACEMP).
+* LaTeX çalışmalarına devam edilecek.
+* BAP ön çalışma - iş planı - bütçe - yürütme belgesi
+
+## Gerçekleşen çalışmalar:
+* Altıncı harmonik ile ilgili rapor yazıldı. Makale yetişmeyecek gibi.
+* LaTeX'te rapora devam edildi.
+* BAP ön çalışmaları yapıldı: https://drive.google.com/drive/folders/0BxGq7qjB8gP6azJRM3M4VWkxY2M?usp=sharing
+* ACEMP Makale ertelendi.
+* ISIE bitti.
+* Research league afişi hazırlandı.
+
+# 30.01.2017 - 05.02 2017
+## Planlanan çalışmalar:
+* ISIE makalesi submit (pazartesi). OK
+* Pole changing konusu ile ilgili makale okunacak.
+* Altıncı harmonik çalışılacak. OK
+
+## Gerçekleşen çalışmalar:
+* Altıncı harmonik ile ilgili simulasyon yapıldı. Analitik çalışmalar doğrulandı.
+* ISIE makale submit edildi.
+* Altıncı harmonik çalışmaları dökümante edildi.
+* LaTeX'e giriş.
+
+# 23 Ocak - 29 Ocak
+## Planlanan çalışmalar:
+* ISIE makalesi submit
+
+## Gerçekleşen çalışmalar:
+* Efficiency çalışmaları
+
 # 16 Ocak - 22 Ocak
 ## Planlanan çalışmalar:
-* ISIE makalesi submit.
+* ISIE makalesi submit. ERTELENDİ
 * BRB: GaN power loss characterisation ve efficiency çalışmalar.
 * Motor konfigürasyonu çalışmaları.
 
 ## Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* Makale ile ilgili simulasyon çalışmaları tamamlandı.
+* 300 Hz harmonik fikri üzerine çalışıldı.
+* otor konfigürasyonu çalışmaları ertelendi.
 
 # 09 Ocak - 15 Ocak
 ## Planlanan çalışmalar:

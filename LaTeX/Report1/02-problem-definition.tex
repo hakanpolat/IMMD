@@ -1,0 +1,68 @@
+\chapter{Problem Definition}
+\label{chap:problem-definition}
+
+A conventional motor drive application block diagram is shown in Fig. \ref{fig:conv_motor_drive}. The DC link decouples the inverter and rectifier such that, its characteristics is effected from both sides. Most studies consider only one side for DC link characterisation or filter component optimization, although they should be considered simultaneously. This research aims at modeling the system as a whole, investigating the effect of harmonic components injected to the DC link from both sides and eliminating the low frequency harmonic due to the rectifier side by using the modular structure of the inverter side.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=15cm]{images/conv_motor_drive}
+  \caption{A conventional motor drive block diagram}
+  \label{fig:conv_motor_drive}
+\end{figure}
+
+Diode bridge rectifier is a natural-commutated converter, circuit schematic of which is shown in Fig. \ref{fig:rect_circuit}.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=15cm]{images/rect_circuit}
+  \caption{Diode bridge rectifier circuit diagram}
+  \label{fig:rect_circuit}
+\end{figure}
+
+A set of voltage and current waveforms are also shown in Fig. \ref{fig:rect_waveform}, for 400V line-to-line grid voltage at 50 Hz, filter inductance of 1 mH, filter capacitance of 3 mF and load resistance of 
+10 $\Omega$. The three-phase rectifier output voltage and current has large harmonic components frequency of which is six times the grid frequency. This component is filtered by a second order LC filter resulting in a much smoother load voltage and current. Since the harmonic frequency is relatively low in comparison with conventional switching frequencies, large inductance and capacitance values are needed on the DC link filter. Those passive elements constitute a large portion of overall volume and cost, hence it is aimed to minimize their values.
+
+\begin{figure}[htp]
+  \centering
+  \includegraphics[width=15cm]{images/rect_waveform}
+  \caption{Diode bridge rectifier input and output waveforms}
+  \label{fig:rect_waveform}
+\end{figure}
+
+
+
+
+
+
+% \begin{figure}[htp]
+%   \centering
+%   \input{images/tikz_diagram}
+%   \caption{Exemple de diagramme TikZ.}
+%   \label{fig:une-image}
+% \end{figure}
+
+% \section{Une autre section}
+% Lorem (tab. \ref{tab:un-tableau}).
+
+% \begin{table}[ht]
+%   \begin{center}
+%     \begin{tabular}{|c|c|c|c|c|}
+%       \hline
+%       & $h(t,\tau)$ & $S_{\OP{H}}^{(\alpha)} (f,\tau)$ & $L_{\OP{H}}^{(\alpha)} (\nu,t)$ & $H^{(\alpha)}(f,\nu)$ \\
+%       \hline
+%       LTI & $q(\tau)$ & $q(\tau) \delta(f)$ & $Q(\nu)$ & $Q(\nu) \delta(\nu-f)$ \\
+%       \hline
+%       LFI & $m(t) \delta(\tau)$ & $M(f) \delta(\tau)$ & $m(t)$ & $M(f)$\\
+%       \hline
+%       identité & $\delta(t)$ & $\delta(f)\delta(\tau)$ & $1$ & $\delta(\nu-f)$\\
+%       \hline
+%     \end{tabular}
+%     \caption{Exemple de tableau.}
+%     \label{tab:un-tableau}
+%   \end{center}
+% \end{table}
+
+
+% % \section{Une section}
+% % Lorem 
+

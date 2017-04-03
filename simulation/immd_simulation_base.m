@@ -1,5 +1,5 @@
 %% DC Link Capacitor simulation
-
+Ts = 1e-6;
 % modulation index
 ma = 0.66;
 % switching frequency
@@ -26,6 +26,7 @@ sim('capacitor1.slx');
 Vrms = Vrms_sim(numel(Vrms_sim));
 Irms = Irms_sim(numel(Irms_sim));
 Sout = sqrt(3)*Vrms*Irms;
+
 
 %%
 num = 20;
@@ -81,11 +82,11 @@ n = 4;
 phase = 0:90:270;
 %phase = 0:75:225;
 % step time
-Ts = 1e-7; % sec
+Ts = 1e-6; % sec
 % modulation index
 ma = 1;
 % switching frequency
-fsw = 100e3; % Hz
+fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
@@ -183,37 +184,37 @@ set(gca,'FontSize',12);
 xlim([0.096 0.1]);
 
 %%
-Icapflag1 = Idcin;
-Irms1 = 1.17*ones(1,numel(time));
+Icapflag1 = icrmsdata(:,2);
+Irms1 = 3.472*ones(1,numel(icrmsdata(:,2)));
 %%
-Icapflag2 = Idcin;
-Irms2 = Irms*ones(1,numel(time));
+Icapflag2 = icrmsdata(:,2);
+Irms2 = 5.28*ones(1,numel(icrmsdata(:,2)));
 %%
+time = icrmsdata(:,1);
 figure;
-plot(time,Icapflag1,'b -','Linewidth',1.5);
-hold on;
-plot(time,Icapflag2,'r -','Linewidth',1.5);
-hold on;
-plot(time,Irms1,'m -','Linewidth',1.5);
-hold on;
-plot(time,Irms2,'k -','Linewidth',1.5);
+plot(time,Icapflag2,'b -','Linewidth',1.5);
+% hold on;
+% plot(time,Icapflag1,'r -','Linewidth',1.5);
+% hold on;
+% plot(time,Irms2,'m -','Linewidth',1.5);
+% hold on;
+% plot(time,Irms1,'k -','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (sec)','FontSize',12,'FontWeight','Bold')
 ylabel('DC Link Ripple Current (A)','FontSize',12,'FontWeight','Bold')
-xlim([0.096 0.1]);
+xlim([0.0995 0.1]);
+ylim([-12 9]);
 legend('w interleaving','w/o interleaving','w interleaving rms','w/o interleaving rms');
 
 
 %%
 % NEW TRIAL for capacitor ripple voltage
 % step time
-Ts = 1e-5; % sec
+Ts = 1e-6; % sec
 % modulation index
 ma = 1;
-% switching frequency
-fsw = 1e3; % Hz
 % DC link voltage
 Vdc = 400; % Volts
 % Load
@@ -230,9 +231,92 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-
 R1 = 5; % Ohm
 Rrefl = Vdc^2/(Pout/efficiency);
 V1 = Vdc*(R1+Rrefl)/Rrefl; % V
 Cdc = 50e-6; % F
+num = 10;
+percent_ripple = zeros(1,num);
+for k = 1:num
+    fsw = k*1e3; % Hz
+    sim('capacitor_voltripple.slx');
+    percent_ripple(k) = perc_rip(numel(perc_rip));
+end
 
+%%
+M = ma;
+cosphi = pf;
+module = 1;
+phase_dif = 0; % degrees
+
+switching_freq = 1e3:1e3:num*1e3;
+% Capacitor Analytical voltage Ripple
+Cdc = 50e-6; % F
+Iapeak = Iline*sqrt(2);
+Icharge_pos = Idc;
+Icharge_neg = Iapeak - Idc;
+volt_ripple1 = 0.68*M*Icharge_neg./(Cdc*switching_freq);
+volt_ripple2 = 0.3*Icharge_pos*M./(Cdc*switching_freq);
+volt_ripple = max(volt_ripple1,volt_ripple2);
+volt_ripple_perc = volt_ripple/Vdc*100;
+
+filename = 'voltageripple.xlsx';
+xlswrite(filename,percent_ripple);
+
+%%
+figure;
+plot(switching_freq/1e3,percent_ripple,'ro-','Linewidth',1.5);
+hold on;
+plot(switching_freq/1e3,volt_ripple_perc,'bo-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Voltage Ripple (%)','FontSize',12,'FontWeight','Bold')
+legend('Simulation','Analytical');
+
+
+%%
+% 6th harmonic reduction idea
+Ts = 1e-6; % sec
+% DC link voltage
+Vdc = 400; % Volts
+% switching frequency
+fsw = 10e3; % Hz
+% Load
+pf = 0.95;
+
+% fundamental
+ma1 = 0.8;
+Pout_fund = 10e3; % VA
+Sout_fund = Pout_fund/pf; % VA
+fout_fund = 50; % Hz
+wout_fund = 2*pi*fout_fund; % rad/sec
+Vll_rms_fund = ma1*Vdc*0.612; % Volts
+Iline_fund = Sout_fund/(Vll_rms_fund*sqrt(3)); % Amps
+Zload = Vll_rms_fund/(Iline_fund*sqrt(3)); % Ohms
+Rload = Zload*pf; % Ohms
+Xload = sqrt(Zload^2-Rload^2); % Ohms
+Lload = Xload/wout_fund; % Henries
+Vp1 = ma1*Vdc/2; % Volts
+Ip1 = Iline_fund*sqrt(2); % Amps
+
+% third harmonic
+ma3 = 0.3;
+
+fout_three = 3*fout_fund; % Hz
+wout_three = 2*pi*fout_three; % rad/sec
+Vll_rms_three = ma3*Vdc*0.612; % Volts
+Xload_three = Lload*wout_three; % Ohms
+Rload_three = Rload; % Ohms
+Zload_three = sqrt(Rload_three^2+Xload_three^2); % Ohms
+Iline_three = Vll_rms_three/(Zload_three*sqrt(3)); % Amps
+pf3 = Rload_three/Zload_three;
+Vp3 = ma3*Vdc/2; % Volts
+Ip3 = Iline_three*sqrt(2); % Amps
+
+sim('sixth_harmonic.slx');
+
+P1 = Vp1*Ip1*3/2;
+P3 = Vp3*Ip3*3/2;
+P6 = Vp3*Ip3*3/2;

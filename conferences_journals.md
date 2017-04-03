@@ -1,3 +1,16 @@
+# Plan for 2017
+* **ISIE 2017**: Accepted for presentation.
+* **RPG 2017**: Abtract submitted, waiting for review
+* **1st ulusal enerji dönüşümü kongresi**: Deadline 13.05.2017
+* **International Symposium on Electrical Railway Transportation Systems**: considering to submit a paper from master thesis subjects: Deadline 01.07.2017
+* **ICEE 2018**: 11.07.2018
+* **PEMD 2018**: Deadline (abstract) 14.07.2017
+* **ELECO 2017**: Deadline 18.08.2017
+* **ICIT 2018**: Deadline 01.10.2017
+* **Journal**: November
+* **ECCE 2018**: Oregon, USA: Deadline (abstract) 15.01.2018
+* **IPEC 2018**: ECCE ASIA: Deadline 16.10.2017 (extended summary)
+
 # Conferences
 
 * **ISIE**: IEEE International Symposium on Industrial Electronics
@@ -60,7 +73,6 @@ Final Paper (Camera Ready) Submission & Early Bird Registration Deadline April 4
 
 May 4 - 5, 2017, Rome, Italy
 
-
 * **IFEEC**: IEEE
 International Future Energy Electronics Conference – ECCE  Asia
 
@@ -70,19 +82,27 @@ June 3-7, Kaohsiung, Taiwan
 
 * **ELECO**: Elektrik, Elektronik ve Biyomedikal Mühendisliği Konferansı
 
-http://www.eleco.org.tr/
+ELECO 2017: http://www.eleco.org.tr/
+
+Paper Submission Deadline August 18, 2017
+
+Notification of Acceptance/Rejection September 22, 2017
+
+Final Paper (Camera Ready) Submission & Early Bird Registration Deadline October 20, 2017
+
+Nov 30 - Dec 2 2017, Bursa, Turkey
 
 * **ICEEE**: International Conference on Electrical and Electronics Engineering
 
 ICEEE 2017: http://www.iceee.org/index.html
 
-Submission of a paper for review: January 25, 2017
+Submission of a paper for review: February 10, 2017
 
-Acceptance notifications: February 20, 2017
+Acceptance notifications: March 1, 2017
 
-Camera-ready due: March 5, 2017
+Camera-ready due: March 10, 2017
 
-April 8-10, 2017, Ankara
+April 8-10, 2017, Ankara, Turkey
 
 * **PEMD**: IET International Conference on Power Electronics, Machines and Drives
 
@@ -134,6 +154,52 @@ April 25, 2017
 Registration closes: May 05, 2017
 
 MAy 25-27, 2017, Brasov, Romania
+
+* **ICAT**:  International Conference on Advanced Technology & Sciences
+
+ICAT 2017: http://www.icatsconf.org/TURKEY2017/icat17
+
+Abstracts Submission: March 19, 2017
+
+Fulltext Submission: March 26, 2017
+
+May 09-12, 2017, İstanbul, Turkey
+
+* **EEMKON**:
+
+http://eemkon.org.tr/
+
+* **Symposium**: International Symposium on Electrical Railway Transportation Systems
+
+http://erusis.org/
+
+Deadlines:
+
+Special Session Proposal May 15, 2017
+
+Paper Submission July 1, 2017
+
+Notification of Acceptance September 1, 2017
+
+Camera-ready Submission October 1, 2017
+
+Symposium Dates October 27–28, 2017
+
+Eskişehir Osmangazi University, Turkey
+
+* **1. Ulusal Enerji Dönüşümü Kongresi**
+
+http://www.enerjidonusumu.org/
+
+Bildiri Gönderme Son Tarihi 13 Mayıs 2017
+
+Kabul Edilen Bildirilerin İlanı 1 Temmuz 2017
+
+Revizyon İstenen Bildiri İkinci Gönderim Son Tarihi 28 Temmuz 2017
+
+Kongre Tarihi 21-22 Eylül 2017
+
+Fırat Üniversitesi, Elazığ, Turkey
 
 
 # Journals - IEEE

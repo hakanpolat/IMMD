@@ -481,4 +481,4 @@ grid on;
 set(gca,'FontSize',12);
 xlabel('Capacitance (uF)','FontSize',12,'FontWeight','Bold')
 ylabel('Cost (dollars)','FontSize',12,'FontWeight','Bold')
-xlim([0 50]);
+xlim([0 100]);

@@ -1,0 +1,277 @@
+% My very first latex project
+% Copyright (C) 2017 Mesut Uğur
+% Version: 0.1
+% Author: Mesut Uğur
+
+\documentclass[a4paper,12pt]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel} % If you write in English
+\usepackage{a4wide}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage{subfig}
+\usepackage{tikz}
+\usepackage{mathtools}
+\usetikzlibrary{shapes,arrows}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\pgfplotsset{plot coordinates/math parser=false}
+\newlength\figureheight
+\newlength\figurewidth
+\pgfkeys{/pgf/number format/.cd,
+set decimal separator={,\!},
+1000 sep={\,},
+}
+\usepackage{ifthen}
+\usepackage{ifpdf}
+\ifpdf
+\usepackage[pdftex]{hyperref}
+\else
+\usepackage{hyperref}
+\fi
+\usepackage{color}
+\hypersetup{%
+colorlinks=true,
+linkcolor=black,
+citecolor=black,
+urlcolor=black}
+
+\renewcommand{\baselinestretch}{1.05}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot{}
+\fancyhead[LE,RO]{\bfseries\thepage}
+\fancyhead[RE]{\bfseries\nouppercase{\leftmark}}
+\fancyhead[LO]{\bfseries\nouppercase{\rightmark}}
+\setlength{\headheight}{15pt}
+
+\let\headruleORIG\headrule
+\renewcommand{\headrule}{\color{black} \headruleORIG}
+\renewcommand{\headrulewidth}{1.0pt}
+\usepackage{colortbl}
+\arrayrulecolor{black}
+
+\fancypagestyle{plain}{
+  \fancyhead{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+\makeatletter
+\def\@textbottom{\vskip \z@ \@plus 1pt}
+\let\@texttop\relax
+\makeatother
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else%
+  \hbox{}%
+  \thispagestyle{empty}%
+  \newpage%
+  \if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother
+
+\usepackage{amsthm}
+\usepackage{amssymb,amsmath,bbm}
+\usepackage{array}
+\usepackage{bm}
+\usepackage{multirow}
+\usepackage[footnote]{acronym}
+
+\newcommand*{\SET}[1]  {\ensuremath{\mathbf{#1}}}
+\newcommand*{\VEC}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand*{\FAM}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand*{\MAT}[1]  {\ensuremath{\boldsymbol{#1}}}
+\newcommand*{\OP}[1]  {\ensuremath{\mathrm{#1}}}
+\newcommand*{\NORM}[1]  {\ensuremath{\left\|#1\right\|}}
+\newcommand*{\DPR}[2]  {\ensuremath{\left \langle #1,#2 \right \rangle}}
+\newcommand*{\calbf}[1]  {\ensuremath{\boldsymbol{\mathcal{#1}}}}
+\newcommand*{\shift}[1]  {\ensuremath{\boldsymbol{#1}}}
+
+\newcommand{\eqdef}{\stackrel{\mathrm{def}}{=}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+\newcommand{\ud}{\, \mathrm{d}}
+\newcommand{\vect}{\text{Vect}}
+\newcommand{\sinc}{\ensuremath{\mathrm{sinc}}}
+\newcommand{\esp}{\ensuremath{\mathbb{E}}}
+\newcommand{\hilbert}{\ensuremath{\mathcal{H}}}
+\newcommand{\fourier}{\ensuremath{\mathcal{F}}}
+\newcommand{\sgn}{\text{sgn}}
+\newcommand{\intTT}{\int_{-T}^{T}}
+\newcommand{\intT}{\int_{-\frac{T}{2}}^{\frac{T}{2}}}
+\newcommand{\intinf}{\int_{-\infty}^{+\infty}}
+\newcommand{\Sh}{\ensuremath{\boldsymbol{S}}}
+\newcommand{\C}{\SET{C}}
+\newcommand{\R}{\SET{R}}
+\newcommand{\Z}{\SET{Z}}
+\newcommand{\N}{\SET{N}}
+\newcommand{\K}{\SET{K}}
+\newcommand{\reel}{\mathcal{R}}
+\newcommand{\imag}{\mathcal{I}}
+\newcommand{\cmnr}{c_{m,n}^\reel}
+\newcommand{\cmni}{c_{m,n}^\imag}
+\newcommand{\cnr}{c_{n}^\reel}
+\newcommand{\cni}{c_{n}^\imag}
+\newcommand{\tproto}{g}
+\newcommand{\rproto}{\check{g}}
+\newcommand{\LR}{\mathcal{L}_2(\SET{R})}
+\newcommand{\LZ}{\ell_2(\SET{Z})}
+\newcommand{\LZI}[1]{\ell_2(\SET{#1})}
+\newcommand{\LZZ}{\ell_2(\SET{Z}^2)}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\noise}{z}
+\newcommand{\Noise}{Z}
+\newcommand{\filtnoise}{\zeta}
+\newcommand{\tp}{g}
+\newcommand{\rp}{\check{g}}
+\newcommand{\TP}{G}
+\newcommand{\RP}{\check{G}}
+\newcommand{\dmin}{d_{\mathrm{min}}}
+\newcommand{\Dmin}{D_{\mathrm{min}}}
+\newcommand{\Image}{\ensuremath{\text{Im}}}
+\newcommand{\Span}{\ensuremath{\text{Span}}}
+
+\newtheoremstyle{break}
+  {11pt}{11pt}%
+  {\itshape}{}%
+  {\bfseries}{}%
+  {\newline}{}%
+\theoremstyle{break}
+
+%\theoremstyle{definition}
+\newtheorem{definition}{Définition}[chapter]
+
+%\theoremstyle{definition}
+\newtheorem{theoreme}{Théorème}[chapter]
+
+%\theoremstyle{remark}
+\newtheorem{remarque}{Remarque}[chapter]
+
+%\theoremstyle{plain}
+\newtheorem{propriete}{Propriété}[chapter]
+\newtheorem{exemple}{Exemple}[chapter]
+
+\parskip=5pt
+%\sloppy
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%
+%%% First page %%%
+%%%%%%%%%%%%%%%%%%
+
+\begin{titlepage}
+\begin{center}
+
+\includegraphics[width=0.5\textwidth]{metu1}\\[1cm]
+\includegraphics[width=0.2\textwidth]{powerlab}\\[1cm]
+
+
+{\large Middle East Technical University, Electrical and Electronics Engineering}\\[0.5cm]
+
+{\large PowerLab Research Group}\\[0.5cm]
+
+% Title
+\rule{\linewidth}{0.5mm} \\[0.4cm]
+{ \huge \bfseries Elimination of Sixth Harmonic in Integrated Modular Motor Drives with Diode Rectifier Front-end Using Third Harmonic Injection \\[0.4cm] }
+\rule{\linewidth}{0.5mm} \\[1.5cm]
+
+% Author and supervisor
+\noindent
+\begin{minipage}{0.4\textwidth}
+  \begin{flushleft} \large
+    \emph{Author :}\\
+    Mesut Uğur\\
+  \end{flushleft}
+\end{minipage}%
+\begin{minipage}{0.4\textwidth}
+  \begin{flushright} \large
+    \emph{Supervisor :} \\
+    Asst. Prof. Dr. Ozan Keysan\\
+  \end{flushright}
+\end{minipage}
+
+\vfill
+
+% Bottom of the page
+{\large Version 0.1\\ \today}
+
+\end{center}
+\end{titlepage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Non-significant pages %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frontmatter
+
+\chapter*{Abstract}
+This is my very first LaTeX project. I am so excited. Thank you for reading this document. Here is a song for you.\newline
+I look in the mirror & what do i see? Some kinda flacker lookin back at me, aint noting lost to get me found & its never too late to change.\newline
+What goes around comes around, what goes around comes around.\newline
+Well i dont know what ive been toald & the trooth confeced isa good for your soal, ima makin a list anda checkin it twice, itsa never too late to change.\newline
+What goes around comes around, what goes around comes around.\newline
+
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\listoffigures
+
+\clearpage
+\chapter*{Abbreviations}
+\begin{acronym}[CP-OFDMX] % Give the longest acronym here
+\acro{i_{dc}}{\emph{Inverter input DC current}}
+\acro{i_{c}}{\emph{DC link capacitor curren}}
+\acro{i_{rec}}{\emph{Rectifier output current}}
+\acro{I_{in}}{\emph{DC link current}}
+\acro{V_{dc}}{\emph{DC link voltage}}
+\end{acronym}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Content of the report and references %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mainmatter
+\pagestyle{fancy}
+
+\cleardoublepage
+
+\include{01-introduction}
+\include{02-problem-definition}
+\include{03-system-modeling}
+\include{04-description-of-the-method}
+\include{05-results}
+\include{06-conclusions}
+
+\appendix
+
+% \bibliographystyle{authoryear-fr}
+\bibliographystyle{ieeetr}
+% \bibliography{references}
+\bibliography{IMMDref}
+
+
+\clearpage
+
+%%%%%%%%%%%%%%%%
+%%% Abstract %%%
+%%%%%%%%%%%%%%%%
+
+\thispagestyle{empty}
+
+\vspace*{\fill}
+\noindent\rule[2pt]{\textwidth}{0.5pt}\\
+{\textbf{Résumé ---}}
+My name is Mesut Uğur and I a PhD candidate in Electrical and Electronics Engineering Department at Middle East Technical University. I am also working as a Research Assistant in the same department. My main research interests are; power electronics, renewable energy, electric traction systems and embedded hardware system development.
+
+\noindent\rule[2pt]{\textwidth}{0.5pt}
+\begin{center}
+  METU - EEE\\
+  PowerLab
+\end{center}
+\vspace*{\fill}
+
+\end{document}

@@ -1,11 +1,11 @@
 %% Capacitor Analytical RMS Current
-M = 0.5;
+M = 1;
 cosphi = 0.9;
 module = 1;
 phase_dif = 0; % degrees
 Vdc = 400; % Volts
 Pout1 = 2e3; % W
-Sout1 = Pout/(cosphi); % VA
+Sout1 = Pout1/(cosphi); % VA
 Vll_rms = Vdc*0.612*M; % Volts
 Iline = Sout1/(Vll_rms*sqrt(3)); % Amps
 efficiency = 0.99;
@@ -15,7 +15,7 @@ Idc = module*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
 Icrms_perc = 100*Icrms/Idc;
 
 % Capacitor Analytical voltage Ripple
-fsw = 10e3; % Hz
+fsw = 1e3; % Hz
 Cdc = 50e-6; % F
 Iapeak = Iline*sqrt(2);
 Icharge_pos = Idc;
@@ -101,7 +101,7 @@ end
 
 %%
 figure;
-plot(freq1/1e3,Cap_max*1e6,'bo-','Linewidth',1.5);
+plot(freq1/1e3,Cap_max*1e6,'b -','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
@@ -109,7 +109,7 @@ ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
 figure;
 for k = 1:numel(freq1)
-    plot(M,Cap(k,:)*1e6,'k -','Linewidth',1.5);
+    plot(M,Cap(k,:)*1e6,'k -','Linewidth',2);
     hold on;
 end
 hold off;
@@ -119,7 +119,7 @@ xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
 figure;
-plot(M,Icrms(1,:),'ro-','Linewidth',1.5);
+plot(M,Icrms(1,:),'r -','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
@@ -270,7 +270,7 @@ ylabel('Cost (Euro)','FontSize',12,'FontWeight','Bold')
 % legend('450V series','300V series','Limit')
 % print(fig,'costeuro','-dpng')
 xlim([1,25]);
-cost_300 = 2*parallel_350'.*c';
+%cost_300 = 2*parallel_350'.*c';
 
 
 %%
