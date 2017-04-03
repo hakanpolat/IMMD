@@ -25,7 +25,7 @@ conduction losses of the anti-parallel diode:
 **Vd(Id) = Vdo + Rd x If** *Vd=voltage across the diode, Vdo=diode on-state zero-current voltage, Rd= diode on-state resistance, If=current through the diode*
 
 ![](images/RdvsId.jpg "RdvsId")
-![](Images/RdvsId.jpg)
+
 
 
 Rds,on variation:
