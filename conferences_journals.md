@@ -1,15 +1,25 @@
 # Plan for 2017
-* **ISIE 2017**: Accepted for presentation.
-* **RPG 2017**: Abtract submitted, waiting for review
-* **1st ulusal enerji dönüşümü kongresi**: Deadline 13.05.2017
-* **International Symposium on Electrical Railway Transportation Systems**: considering to submit a paper from master thesis subjects: Deadline 01.07.2017
-* **ICEE 2018**: 11.07.2018
-* **PEMD 2018**: Deadline (abstract) 14.07.2017
-* **ELECO 2017**: Deadline 18.08.2017
-* **ICIT 2018**: Deadline 01.10.2017
-* **Journal**: November
-* **ECCE 2018**: Oregon, USA: Deadline (abstract) 15.01.2018
-* **IPEC 2018**: ECCE ASIA: Deadline 16.10.2017 (extended summary)
+
+|Conference Name|Short|Sub. Type|Sub. Date|Conf. Date|Place|Comments|
+|:--:|
+|International Conference on Electrical Machines, Drives and Power Systems|[ELMA 2017](http://e-university.tu-sofia.bg/e-conf/?r=209)|Abstract|28.03.2017|1-3 June 2017|Sofia, Bulgaria|.|
+|International Conference on Electrical Machines and Distribution Systems |[ICEMDS 2018)](https://www.waset.org/conference/2018/02/london/ICEMDS)|Full paper|16.04.2017|15-16 February 2018|London, UK|.|
+|IEEE International Symposium on Industrial Electronics|[ISIE 2017](http://www.anglia.ac.uk/science-and-technology/about/computing-and-technology/isie-conference)|Final|23.04.2017|9-21 June 2017|Edinburgh, Scotland|Accepted, final version update|
+|International Conference on Electrical Machines and Systems |[ICEMS 2018](https://www.waset.org/conference/2018/01/dubai/ICEMS)|Full paper|28.04.2017|22-23 January 2018|Dubai, UAE|.|
+|Elektrik Elektronik Mühendisliği Kongresi |[EEMKON 2017)](http://eemkon.org.tr/2017/02/17/bilgi/)|Özet|30.04.2017|16-18 November 2017|İstanbul, Turkey|.|
+|1. Ulusal Enerji Dönüşümü Kongresi |[UEDK 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|.|
+|Akıllı Sistemlerde Yenilikler ve Uygulamaları Konferansı|[AYSU 2017](http://asyu2017.org/)|Bildiri|03.06.2017|5-7 October 2017|Alanya, Turkey|.|
+|IET International Conference on Renewable Power generation|[RPG 2017](http://rpg2017.events.theiet.org.cn/)|Final|16.06.2017|19-20 October 2017|Wuhan, China|Awaiting for review|
+|International Conference on Advanced Technology & Sciences|[ICAT 2017](https://www.icatsconf.org/LATVIA2017/latvia2017)|Full paper|30.06.2017|12-15 September 2017|Riga, Latvia|.|
+|International Symposium on Electrical Railway Transportation Systems |[RUSİS 2017](http://erusis.org/wp-content/uploads/2017/03/ERUSIS-2017-CFP.pdf)|Full paper|01.07.2017|27-28 October 2017|Eskişehir, Turkey|.|
+|International Conference on Electrical Engineering|[ICEE 2018](https://www.waset.org/conference/2018/05/montreal/ICEE)|Full paper|11.07.2017|14-15 May 2018|Montreal, Canada|.|
+|International Conference on Power Electronics|[PEMD 2018](http://events.theiet.org/pemd/index.cfm?utm_source=redirect&utm_medium=any&utm_campaign=pemd)|Abstract|14.07.2017|17-19 April 2018|Liverpool, UK|.|
+|Yenilenebilir Enerji Kaynakları Sempozyumu|[YEKSEM 2017)](http://yeksem.org)|Bildiri|01.08.2017|3-5 November 2017|Antalya, Turkey|.|
+|International Conference on Electrical and Electronics Engineering|[ELECO 2017](http://www.eleco.org.tr/)|Full paper|18.08.2017|30 Nov-2 Dec 2017|Bursa, Turkey|.|
+|International Conference on Industrial Technology |[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|Full paper|01.10.2017|20-22 February 2018|Lyon, France|.|
+|International Power Electronics Conference |[IPEC 2018 (ECCE ASIA)](http://www.ipec2018.org/)|Extended Summary|16.10.2017|20-24 May 2018|Niigata, Japan|.|
+|International Conference on Electrical and Electronics Engineering|[ICEEE 2018](https://waset.org/conference/2018/08/paris/ICEEE)|Full paper|27.10.2017|27-28 August 2018|Paris, France|.|
+|IEEE Energy Conversion Congress and Exposition|[ECCE 2018](https://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=35340)|Abstract|15.01.2018|23-27 September 2018|Oregon, USA|.|
 
 # Conferences
 
@@ -123,6 +133,8 @@ Presentation submission deadline 	30 March 2018
 17 - 19 April 2018 | Liverpool ACC, Liverpool, UK
 
 * **ICEM**: International Conference on Electrical Machines
+
+http://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=41189
 
 ICEM 2016: http://www.icem.cc/2016/
 
