@@ -1,3 +1,13 @@
+# 03.03.2017 - 09.04 2017
+## Planlanan çalışmalar:
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+* BAP projesi için motor seçimi ve temel kararlar.
+* IMMD machine configuration ile ilgili okuma yapılacak.
+* RPG simulasyona devam edilecek.
+
+## Gerçekleşen çalışmalar:
+* ...
+
 # 27.03.2017 - 02.04 2017
 ## Planlanan çalışmalar:
 * 6th harmonik konusu ile ilgili çıkan 100 Hz problemi üzerinde çalışılacak.
