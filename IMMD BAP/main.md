@@ -9,17 +9,19 @@ In this document, plans for BAP project will be discussed.
 * Motor seçimi: OK
 
 ## İş paketi-1: Motor seçimi (PM BLDC)
-* Toplam çıkış gücü
-* Faz sayısı
-* Kutup sayısı
-* Oluk sayısı
-* Boyutlar
+* Toplam çıkış gücü, Faz sayısı, Kutup sayısı, Oluk sayısı, Boyutlar
+* Kienle Spiess incelenecek.
+* Kollmorgen'a mail atılacak.
+* Bir tasarım aracı geliştirilecek (MATLAB). Bloklar arası ilişkiler zamanla dahil edilecek.
+* Cogging torque araştırılacak. Fractional slot, 10/12 12/14 gibi standart kutup sayısı oranları incelenecek.
+* PM BLDC ile ilgili kitap ve makale okunup tasarıma girdi olacak bilgiler edinilecek.
 
 ## İş paketi-2
 * Sürücü modül sayısı, bağlantı şekli (seri-paralel), topoloji seçimi
 
 ## İş paketi-3
 * GaN üretici seçimi, gerilim ratingi seçimi
+* **Commercial GaN EVMleri için fiyat istenecek.**
 
 ## İş paketi-4
 * MCU benchmart ve seçimi, master-slave olayı, haberleşme protokolü
