@@ -27,11 +27,19 @@ In this document, plans for BAP project will be discussed.
 ## İş paketi-5
 * RL load tasarımı
 
+## Donanım geliştirme yöntemi
+* PCB tasarlanacak, üretilecek.
+* Motor seçilecek veya tasarlanacak, üretilecek.
+* PCB parça parça RL load ile test edilecek.
+* PCB tümüyle RL load ile test edilecek.
+* Motor standart bir sürücü ile test edilecek.
+* PCB motora takılmadan motoru parça parça sürecek.
+* PCB motora takılmadan motoru tümüyle sürecek.
+* PCB motora takılacak ve tümüyle test edilecek.
+
 ## Sorular
-* Integration yapılacak mı? Devre ayrı bir yerde mi çalıştırılacak?
-* Devre öne mi arkaya mı gelecek?
 * Akım ölçümüne gerek var mı?
-* Heat sink mekanik pozisyonu ve bağlantısı nasıl olacak?
+* Heat sink mekanik pozisyonu ve bağlantısı nasıl olacak? Frame yapılacak mı?
 
 ## Sistem parçaları
 * Kaynak
@@ -39,6 +47,7 @@ In this document, plans for BAP project will be discussed.
 * Rectifier tarafı
   * 3-faz Diode bridge rectifier
   * Kesici
+  * Soft start devresi
 * DC Bara
   * 540V DC bara gerilimi
   * %1 ripple hedefi
@@ -66,7 +75,10 @@ In this document, plans for BAP project will be discussed.
   * Sensör ölçüm devreleri
 * Power supply
   * Flyback converter
-  * Input: DC bara, output: 15V veya 24V
-  * Diğer güç dönüştürücüleri: 5V, 3.3V vb.
-* Heat sink
-  * ?????
+  * Input: DC bara (500-600V aralık), Output: 15V veya 24V
+  * Diğer güç dönüştürücüleri: 5V, 3.3V, ISO5V vb.
+* Mekanik
+  * Heat sink
+  * Shaft
+  * Frame
+  * etc.
