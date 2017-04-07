@@ -12,10 +12,7 @@
 % Cooling: Forced air cooling
 % Motor efficiency aim = 98 % 
 % Power stage efficiency aim = 98 % 
-% Average winding temperature rise: 130 C
-% Hot spot temperature rise: 160 C
-% Semiconductor temperature rise: 100 C
-% Maximum winding temperature: 200 C
+% Winding 
 
 
 %% Fundamental blocks:
@@ -41,9 +38,7 @@ winding_configuration = 1;
 
 %% Stator Parameters
 stator_slot_number = 48;
-stator_phase_number = 3;
 stator_pole_number = 8;
-stator_slot_per_pole_per_phase = stator_slot_number/stator_phase_number/stator_pole_number;
 stator_slot_per_mocule = stator_slot_number/number_of_modules;
 stator_layer = 2;
 stator_conductor_per_coil_side = 10;
@@ -71,17 +66,11 @@ rotor_inner_diameter = 30; % mm
 %% Inverter Parameters
 fundamental_frequency = 100; % Hz
 power_factor = 0.87;
-line_to_line_voltage = 400; % Volts
 
 
 
 
 
-%% DC Link parameters
-
-
-
-%% Rectifier parameters
 
 
 
@@ -144,8 +133,81 @@ phase = 3;
 
 
 
-
 %% BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT
+
+
+
+%% Project Specifications
+%%
+% Traction asynchronous squirrel cage induction motor
+%%
+% Rated Power Output: 1280 kW
+%%
+% Line-to-line voltage: 1350 V
+%%
+% Number of poles: 6
+%%
+% Rated Speed: 1520 rpm (72 km/h) (driven with 78 Hz inverter)
+%%
+% Rated Motor Torque: 7843 Nm
+%%
+% Cooling: Forced Air Cooling
+%%
+% Insulating Class: 200
+%%
+% Train Wheel Diameter: 1210 mm
+%%
+% Maximum Speed: 140 km/h
+%%
+% Gear Ratio: 4.821
+
+
+%% Main Design Inputs
+%
+% Duty: Continuous running duty (S1)
+%%
+% Efficiency: IE3, premium efficiency: 96 %
+%%
+% Efficiency: IE4, super premium efficiency: 97 %
+%%
+% The efficiency requirement is obtained by using the IE efficiency classes
+% as shown in Figure below:
+%%
+% An efficiency of 0.95 is aimed
+%%
+% Power factor: 0.87
+%%
+% Average winding temp rise: 130 degree C
+%%
+% Hot spot temp rise: 160 degree C
+%%
+% Maximum winding temp: 200 degree C
+%%
+% Ingress protection: IP54. Limited protection against dust ingress.
+% Protected against splash water from any direction.
+
+I = imread('IE efficiency class.png');
+figure;
+imshow(I);
+title('IE efficiency class','FontSize',18,'FontWeight','Bold');
+
+
+%%
+% Design Inputs
+Prated = 1280e3; % watts
+pole = 6;
+pole_pair = pole/2;
+phase = 3;
+Vrated = 1350; % volts line-to-line
+Nrated = 1520; % rpm
+frated = 78; % Hz
+vrated = 72; % km/h
+vmax = 140; % km/h
+Trated = 7843; % Nm
+wheel_dia = 1.21; % m
+gear_ratio = 4.821;
+power_factor = 0.86; % assumed (not a given data)
+efficiency = 0.965; % assumed (not a given data)
 
 
 %% Main dimensions:
