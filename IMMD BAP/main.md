@@ -84,3 +84,7 @@ In this document, plans for BAP project will be discussed.
   * Shaft
   * Frame
   * etc.
+* Test düzeneği
+  * RÜZGEM'in setup'ına takılacak. Makina yük olarak kullanılacak.
+  * Drive ile sürülecek. torque control modunda çalıştırılacak.
+  * Setup üzerindeki labview arayüzü, torque speed sensörleri vb. kullanılacak.
