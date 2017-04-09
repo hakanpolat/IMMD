@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-07"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
+      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-08"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Inverter Parameters</a></li><li><a href="#10">NOT USED RIGHT NOW</a></li><li><a href="#11">An example motor from Kollmorgen</a></li><li><a href="#13">BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT</a></li><li><a href="#14">Project Specifications</a></li><li><a href="#26">Main Design Inputs</a></li><li><a href="#37">Main dimensions:</a></li><li><a href="#52">Selection of main dimensions</a></li><li><a href="#53">Validation of machine loading and tangential stress</a></li><li><a href="#54">Selection of stator slot number and turn numbers</a></li><li><a href="#59">Selection of flux densities (text book, page: 283) based on the table given below:</a></li><li><a href="#60">Calculation of winding factors for the particular design</a></li><li><a href="#68">Selection of stator turn numbers</a></li><li><a href="#77">MMF Calculation</a></li><li><a href="#86">Correction of Air Gap Distance</a></li><li><a href="#90">Rotor bar number selection</a></li><li><a href="#95">Selection of stator conductors</a></li><li><a href="#102">Selection of rotor conductors</a></li><li><a href="#107">Stator Slot Sizing</a></li><li><a href="#122">Stator MMFS</a></li><li><a href="#124">Rotor Bar Sizing</a></li><li><a href="#134">Equivalent core length with cooling</a></li><li><a href="#135">Effective air gap length</a></li><li><a href="#136">Rotor MMFS</a></li><li><a href="#137">Magnetizing Inductance and Current</a></li><li><a href="#138">Leakage Inductances</a></li><li><a href="#139">Stator copper winding and rotor bar resistance</a></li><li><a href="#142">The per unit values</a></li><li><a href="#143">Mass Calculations</a></li><li><a href="#144">Copper Losses</a></li><li><a href="#145">Core losses</a></li><li><a href="#147">Friction and Windage Losses</a></li><li><a href="#148">Total loss and Efficiency</a></li><li><a href="#149">Core loss resistance</a></li><li><a href="#150">Equivalent Circuit</a></li><li><a href="#151">Torque-Speed Characteristics</a></li><li><a href="#154">Motoranalysis Program Drawings</a></li><li><a href="#159">CONCLUSION</a></li><li><a href="#177">References</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 %</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput">total_output_power = 8e3; <span class="comment">% Watts</span>
+  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Inverter Parameters</a></li><li><a href="#10">DC Link parameters</a></li><li><a href="#11">Rectifier parameters</a></li><li><a href="#12">NOT USED RIGHT NOW</a></li><li><a href="#13">An example motor from Kollmorgen</a></li><li><a href="#15">BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT</a></li><li><a href="#16">Main dimensions:</a></li><li><a href="#31">Selection of main dimensions</a></li><li><a href="#32">Validation of machine loading and tangential stress</a></li><li><a href="#33">Selection of stator slot number and turn numbers</a></li><li><a href="#38">Selection of flux densities (text book, page: 283) based on the table given below:</a></li><li><a href="#39">Calculation of winding factors for the particular design</a></li><li><a href="#47">Selection of stator turn numbers</a></li><li><a href="#56">MMF Calculation</a></li><li><a href="#65">Correction of Air Gap Distance</a></li><li><a href="#69">Rotor bar number selection</a></li><li><a href="#74">Selection of stator conductors</a></li><li><a href="#81">Selection of rotor conductors</a></li><li><a href="#86">Stator Slot Sizing</a></li><li><a href="#101">Stator MMFS</a></li><li><a href="#103">Rotor Bar Sizing</a></li><li><a href="#113">Equivalent core length with cooling</a></li><li><a href="#114">Effective air gap length</a></li><li><a href="#115">Rotor MMFS</a></li><li><a href="#116">Magnetizing Inductance and Current</a></li><li><a href="#117">Leakage Inductances</a></li><li><a href="#118">Stator copper winding and rotor bar resistance</a></li><li><a href="#121">The per unit values</a></li><li><a href="#122">Mass Calculations</a></li><li><a href="#123">Copper Losses</a></li><li><a href="#124">Core losses</a></li><li><a href="#126">Friction and Windage Losses</a></li><li><a href="#127">Total loss and Efficiency</a></li><li><a href="#128">Core loss resistance</a></li><li><a href="#129">Equivalent Circuit</a></li><li><a href="#130">Torque-Speed Characteristics</a></li><li><a href="#133">Motoranalysis Program Drawings</a></li><li><a href="#138">CONCLUSION</a></li><li><a href="#156">References</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 % Average winding temperature rise: 130 C Hot spot temperature rise: 160 C Semiconductor temperature rise: 100 C Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput">total_output_power = 8e3; <span class="comment">% Watts</span>
 number_of_modules = 4;
 rated_speed = 1500; <span class="comment">% rpm</span>
 rated_torque = total_output_power/rated_speed; <span class="comment">% Nm</span>
@@ -75,7 +75,9 @@ inverter_configuration = 0;
 <span class="comment">% winding configuration: 0 for distributed, 1 for concentrated</span>
 winding_configuration = 1;
 </pre><h2>Stator Parameters<a name="7"></a></h2><pre class="codeinput">stator_slot_number = 48;
+stator_phase_number = 3;
 stator_pole_number = 8;
+stator_slot_per_pole_per_phase = stator_slot_number/stator_phase_number/stator_pole_number;
 stator_slot_per_mocule = stator_slot_number/number_of_modules;
 stator_layer = 2;
 stator_conductor_per_coil_side = 10;
@@ -97,8 +99,9 @@ stack_length = 100; <span class="comment">% mm</span>
 rotor_outer_diameter = 100; <span class="comment">% mm</span>
 rotor_inner_diameter = 30; <span class="comment">% mm</span>
 </pre><h2>Inverter Parameters<a name="9"></a></h2><pre class="codeinput">fundamental_frequency = 100; <span class="comment">% Hz</span>
-power_factor = 0.8;
-</pre><h2>NOT USED RIGHT NOW<a name="10"></a></h2><h2>An example motor from Kollmorgen<a name="11"></a></h2><pre class="codeinput"><span class="comment">% Datasheet parameters</span>
+power_factor = 0.87;
+line_to_line_voltage = 400; <span class="comment">% Volts</span>
+</pre><h2>DC Link parameters<a name="10"></a></h2><h2>Rectifier parameters<a name="11"></a></h2><h2>NOT USED RIGHT NOW<a name="12"></a></h2><h2>An example motor from Kollmorgen<a name="13"></a></h2><pre class="codeinput"><span class="comment">% Datasheet parameters</span>
 <span class="comment">% KBM(S)-45X02-X - B</span>
 rotor_pole = 10;
 Prated = 7200; <span class="comment">% W</span>
@@ -144,37 +147,16 @@ stator_slot = 36;
 phase = 3;
 
 <span class="comment">% Drive frequency</span>
-</pre><h2>BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT<a name="13"></a></h2><h2>Project Specifications<a name="14"></a></h2><p>Traction asynchronous squirrel cage induction motor</p><p>Rated Power Output: 1280 kW</p><p>Line-to-line voltage: 1350 V</p><p>Number of poles: 6</p><p>Rated Speed: 1520 rpm (72 km/h) (driven with 78 Hz inverter)</p><p>Rated Motor Torque: 7843 Nm</p><p>Cooling: Forced Air Cooling</p><p>Insulating Class: 200</p><p>Train Wheel Diameter: 1210 mm</p><p>Maximum Speed: 140 km/h</p><p>Gear Ratio: 4.821</p><h2>Main Design Inputs<a name="26"></a></h2><p>Duty: Continuous running duty (S1)</p><p>Efficiency: IE3, premium efficiency: 96 %</p><p>Efficiency: IE4, super premium efficiency: 97 %</p><p>The efficiency requirement is obtained by using the IE efficiency classes as shown in Figure below:</p><p>An efficiency of 0.95 is aimed</p><p>Power factor: 0.87</p><p>Average winding temp rise: 130 degree C</p><p>Hot spot temp rise: 160 degree C</p><p>Maximum winding temp: 200 degree C</p><p>Ingress protection: IP54. Limited protection against dust ingress. Protected against splash water from any direction.</p><pre class="codeinput">I = imread(<span class="string">'IE efficiency class.png'</span>);
-figure;
-imshow(I);
-title(<span class="string">'IE efficiency class'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
-</pre><pre class="codeoutput">Error using imread (line 350)
-File "IE efficiency class.png" does not exist.
-
-Error in IMMD_design_tool_v01 (line 187)
-I = imread('IE efficiency class.png');
-</pre><p>Design Inputs</p><pre class="codeinput">Prated = 1280e3; <span class="comment">% watts</span>
-pole = 6;
-pole_pair = pole/2;
-phase = 3;
-Vrated = 1350; <span class="comment">% volts line-to-line</span>
-Nrated = 1520; <span class="comment">% rpm</span>
-frated = 78; <span class="comment">% Hz</span>
-vrated = 72; <span class="comment">% km/h</span>
-vmax = 140; <span class="comment">% km/h</span>
-Trated = 7843; <span class="comment">% Nm</span>
-wheel_dia = 1.21; <span class="comment">% m</span>
-gear_ratio = 4.821;
-power_factor = 0.86; <span class="comment">% assumed (not a given data)</span>
-efficiency = 0.965; <span class="comment">% assumed (not a given data)</span>
-</pre><h2>Main dimensions:<a name="37"></a></h2><p>Machine length, inner and outer diameter, air gap distance</p><p>Electrical and magnetic loading</p><pre class="codeinput">Vphase = Vrated/sqrt(3); <span class="comment">% volts</span>
+</pre><h2>BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT<a name="15"></a></h2><h2>Main dimensions:<a name="16"></a></h2><p>Machine length, inner and outer diameter, air gap distance</p><p>Electrical and magnetic loading</p><pre class="codeinput">Vphase = Vrated/sqrt(3); <span class="comment">% volts</span>
 Nsync = 120*frated/pole; <span class="comment">% rpm</span>
 wrated = Nrated*2*pi/60; <span class="comment">% rad/sec</span>
 torque = Prated/wrated; <span class="comment">% N</span>
 power_pole_pair = Prated/pole_pair; <span class="comment">% watts</span>
 Pin = Prated/efficiency; <span class="comment">% watts</span>
 Irated = Pin/(sqrt(3)*Vrated*power_factor); <span class="comment">% amps</span>
-</pre><p>Cmech is between 310 and 250 from graph given below. Initially, Cmech = 300 is chosen</p><pre class="codeinput">I = imread(<span class="string">'Cmec.png'</span>);
+</pre><pre class="codeoutput">Undefined function or variable 'Vrated'.
+Error in IMMD_design_tool_v01 (line 156)
+Vphase = Vrated/sqrt(3); % volts</pre><p>Cmech is between 310 and 250 from graph given below. Initially, Cmech = 300 is chosen</p><pre class="codeinput">I = imread(<span class="string">'Cmec.png'</span>);
 figure;
 imshow(I);
 title(<span class="string">'specific Machine Constant vs Power/pole pair'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
@@ -218,7 +200,7 @@ title(<span class="string">'Typical Magnetic Loading Values'</span>,<span class=
 figure;
 imshow(I);
 title(<span class="string">'Typical Electric Loading Values'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
-</pre><h2>Selection of main dimensions<a name="52"></a></h2><p>Choose:</p><pre class="codeinput">inner_diameter = 0.6; <span class="comment">% m</span>
+</pre><h2>Selection of main dimensions<a name="31"></a></h2><p>Choose:</p><pre class="codeinput">inner_diameter = 0.6; <span class="comment">% m</span>
 outer_diameter = 1.12; <span class="comment">% m</span>
 length = 0.45; <span class="comment">% m</span>
 air_gap_distance = 3; <span class="comment">% mm</span>
@@ -232,7 +214,7 @@ fprintf(<span class="string">'Air gap distance = %g mm\n'</span>,air_gap_distanc
 fprintf(<span class="string">'Inner surface area = %g m^2\n'</span>,surface_area);
 fprintf(<span class="string">'Inner volume = %g m^3\n'</span>,inner_volume);
 fprintf(<span class="string">'Inner circumference = %g m\n'</span>,circumference);
-</pre><h2>Validation of machine loading and tangential stress<a name="53"></a></h2><pre class="codeinput">Ftan = torque/inner_radius; <span class="comment">% N</span>
+</pre><h2>Validation of machine loading and tangential stress<a name="32"></a></h2><pre class="codeinput">Ftan = torque/inner_radius; <span class="comment">% N</span>
 tan_stress = Ftan/surface_area; <span class="comment">% P</span>
 Cmech = Prated*1e-3/(inner_diameter^2*length*fsync); <span class="comment">% kWs/m^3</span>
 magnetic_loading = 0.9; <span class="comment">% Tesla</span>
@@ -241,7 +223,7 @@ fprintf(<span class="string">'The resultant tangential stress = %g kPa\n'</span>
 fprintf(<span class="string">'The resultant specific machine constant = %g kWs/m^3\n'</span>,Cmech);
 fprintf(<span class="string">'The resultant magnetic loading = %g Tesla\n'</span>,magnetic_loading);
 fprintf(<span class="string">'The resultant electrical loading = %g kA/m\n'</span>,electric_loading);
-</pre><h2>Selection of stator slot number and turn numbers<a name="54"></a></h2><p>Slot number selection: typical slot pitch for asynchronous motors is in the range of 7-45 mm. From this info, as the circumference is now known, the minimum and maximum number of slots can be calculated:</p><pre class="codeinput">maximum_slot = floor(circumference/0.007);
+</pre><h2>Selection of stator slot number and turn numbers<a name="33"></a></h2><p>Slot number selection: typical slot pitch for asynchronous motors is in the range of 7-45 mm. From this info, as the circumference is now known, the minimum and maximum number of slots can be calculated:</p><pre class="codeinput">maximum_slot = floor(circumference/0.007);
 minimum_slot = ceil(circumference/0.045);
 fprintf(<span class="string">'Minimum number of stator slots is %g\n'</span>,minimum_slot);
 fprintf(<span class="string">'Maximum number of stator slots is %g\n'</span>,maximum_slot);
@@ -265,7 +247,7 @@ fprintf(<span class="string">'It is within acceptable limits.\n'</span>);
 slot_angle = pi/qs/phase; <span class="comment">% radians electrical</span>
 fprintf(<span class="string">'Pitch angle of stator is %g degrees electrical\n'</span>,pitch_angle*180/pi);
 fprintf(<span class="string">'Slot angle of stator is %g degrees electrical\n'</span>,slot_angle*180/pi);
-</pre><h2>Selection of flux densities (text book, page: 283) based on the table given below:<a name="59"></a></h2><pre class="codeinput">Bgap = 0.9; <span class="comment">% T</span>
+</pre><h2>Selection of flux densities (text book, page: 283) based on the table given below:<a name="38"></a></h2><pre class="codeinput">Bgap = 0.9; <span class="comment">% T</span>
 Bsyoke = 1.6; <span class="comment">% T</span>
 Bstooth = 1.9; <span class="comment">% T</span>
 Bryoke = 1.6; <span class="comment">% T</span>
@@ -282,7 +264,7 @@ fprintf(<span class="string">'Selected stator back iron (yoke) flux density is %
 fprintf(<span class="string">'Selected stator teeth flux density is %g Tesla\n'</span>,Bstooth);
 fprintf(<span class="string">'Selected rotor back iron (yoke) flux density is %g Tesla\n'</span>,Bryoke);
 fprintf(<span class="string">'Selected rotor teeth flux density is %g Tesla\n'</span>,Brtooth);
-</pre><h2>Calculation of winding factors for the particular design<a name="60"></a></h2><p>Winding factor is calculated for harmonics up to 31st as well as the fundamental component</p><pre class="codeinput">n = 1:2:31; <span class="comment">% harmonic order</span>
+</pre><h2>Calculation of winding factors for the particular design<a name="39"></a></h2><p>Winding factor is calculated for harmonics up to 31st as well as the fundamental component</p><pre class="codeinput">n = 1:2:31; <span class="comment">% harmonic order</span>
 kd = sin(n*qs*slot_angle/2)./(qs*sin(n*slot_angle/2)); <span class="comment">% distribution factor</span>
 kp = sin(n*pitch_angle/2); <span class="comment">% pitch factor</span>
 kw = kd.*kp; <span class="comment">% winding factor</span>
@@ -320,7 +302,7 @@ set(gca,<span class="string">'xtick'</span>,[1:2:9]);
 xlabel(<span class="string">'Harmonic Order'</span>,<span class="string">'FontSize'</span>,8,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
 set(gca,<span class="string">'ytick'</span>,[-1:0.5:1]);
 xlim([0 10]);
-</pre><h2>Selection of stator turn numbers<a name="68"></a></h2><p>In this part, the turn number selection will be based on the intended induced voltage (from rated voltage rating of the machine), the aimed flux density, the selected dimensions, calculated winding factor and the given rated fundamental frequency of operation.</p><pre class="codeinput">Erms = Vphase; <span class="comment">% volts</span>
+</pre><h2>Selection of stator turn numbers<a name="47"></a></h2><p>In this part, the turn number selection will be based on the intended induced voltage (from rated voltage rating of the machine), the aimed flux density, the selected dimensions, calculated winding factor and the given rated fundamental frequency of operation.</p><pre class="codeinput">Erms = Vphase; <span class="comment">% volts</span>
 flux_per_pole = 4*inner_radius*length*Bgap/pole; <span class="comment">% weber</span>
 Nph = Erms/(4.44*frated*flux_per_pole*kw1);
 fprintf(<span class="string">'The aimed induced voltage per phase is %g Volts-rms\n'</span>,Erms);
@@ -360,7 +342,7 @@ fprintf(<span class="string">'New electric loading is %g kA/m\n'</span>,new_elec
 fprintf(<span class="string">'New flux per pole is %g weber\n'</span>,flux_per_pole);
 </pre><p>The resultant induced voltage turns out to be:</p><pre class="codeinput">Erms = 4.44*Nph*frated*kw1*flux_per_pole;
 fprintf(<span class="string">'Resultant induced voltage is %g Volts rms\n'</span>,Erms);
-</pre><h2>MMF Calculation<a name="77"></a></h2><p>MMF calculation is important to check whether the air gap flux density can be achieved with this machine geometry (air gap distance).</p><pre class="codeinput">peak_current = Irated*sqrt(2); <span class="comment">% amps</span>
+</pre><h2>MMF Calculation<a name="56"></a></h2><p>MMF calculation is important to check whether the air gap flux density can be achieved with this machine geometry (air gap distance).</p><pre class="codeinput">peak_current = Irated*sqrt(2); <span class="comment">% amps</span>
 peak_MMF = (phase/2)*(4/pi)*(Nph*Irated*sqrt(2)/pole)*kw1; <span class="comment">% amps</span>
 fprintf(<span class="string">'The peak current is %g Amps\n'</span>,peak_current);
 fprintf(<span class="string">'The peak MMF is %g Amps\n'</span>,peak_MMF);
@@ -384,7 +366,7 @@ fprintf(<span class="string">'Carters coefficient for stator (kcs) is %g\n'</spa
 fprintf(<span class="string">'Carters coefficient for rotor (kcr) is %g\n'</span>,kcr);
 fprintf(<span class="string">'Effective air gap distance is %g\n'</span>,effective_air_gap_distance);
 fprintf(<span class="string">'Corrected peak flux density is %g Tesla\n'</span>,Bgap_corrected);
-</pre><p>The result show that, the air gap flux desity is still too high. This is actually a design fail and caused by the utilization of air gap diatance calculation formula provided by the book. When we combine the flux density and MMF equations, we observe that the following modifications can be considered to decrease flux density:</p><p>Pole number, phase number, winding factor cannot be changed.</p><p>Turn number should be decreased. This is possible, but it will cause the design to go to the very beginning.</p><p>The air gap distance should be increased. This will be done to obtained the acceptable air gap flux density.</p><h2>Correction of Air Gap Distance<a name="86"></a></h2><p>I am not sure about this, because the original 3 mm air gap distance seems reasonable at the first glance, and many of my friends selected air gap distance as 3 mm or below. But, I saw that none of them checked the MMF and see how much flux density occurs on the MMF.</p><p>There are of course trade-offs for choosing the suitable air gap distance. Increasing the air gap leads to a decrease in eddy current losses and rotor surface losses (and thus better efficiency) while it will yield a higher magnetizing current.</p><p>Now, as the flux density is 3 times higher than the acceptable values, I increase the air gap distance 3 times at first iteration. The effective air gap distance is again calculated as follows.</p><pre class="codeinput">gap_distance_new = air_gap_distance*3.5; <span class="comment">% mm</span>
+</pre><p>The result show that, the air gap flux desity is still too high. This is actually a design fail and caused by the utilization of air gap diatance calculation formula provided by the book. When we combine the flux density and MMF equations, we observe that the following modifications can be considered to decrease flux density:</p><p>Pole number, phase number, winding factor cannot be changed.</p><p>Turn number should be decreased. This is possible, but it will cause the design to go to the very beginning.</p><p>The air gap distance should be increased. This will be done to obtained the acceptable air gap flux density.</p><h2>Correction of Air Gap Distance<a name="65"></a></h2><p>I am not sure about this, because the original 3 mm air gap distance seems reasonable at the first glance, and many of my friends selected air gap distance as 3 mm or below. But, I saw that none of them checked the MMF and see how much flux density occurs on the MMF.</p><p>There are of course trade-offs for choosing the suitable air gap distance. Increasing the air gap leads to a decrease in eddy current losses and rotor surface losses (and thus better efficiency) while it will yield a higher magnetizing current.</p><p>Now, as the flux density is 3 times higher than the acceptable values, I increase the air gap distance 3 times at first iteration. The effective air gap distance is again calculated as follows.</p><pre class="codeinput">gap_distance_new = air_gap_distance*3.5; <span class="comment">% mm</span>
 rotor_bar_pitch = stator_slot_pitch/0.8; <span class="comment">% m</span>
 k = (stator_slot_opening/gap_distance_new)/(5+stator_slot_opening/gap_distance_new);
 be = k*stator_slot_opening;
@@ -398,7 +380,7 @@ fprintf(<span class="string">'Carters coefficient for stator (kcs) is %g\n'</spa
 fprintf(<span class="string">'Carters coefficient for rotor (kcr) is %g\n'</span>,kcr);
 fprintf(<span class="string">'Effective air gap distance is %g\n'</span>,effective_gap_distance_new);
 fprintf(<span class="string">'Corrected peak flux density is %g Tesla\n'</span>,Bgap_corrected_new);
-</pre><p>The desired air gap flux density (0.9 Tesla) is now achieved by an air gap as high as 10.5 mm. Again, I am not sure if this is a reasonable air gap, but the analytical calculations shows that it is.</p><h2>Rotor bar number selection<a name="90"></a></h2><p>In our text book, the equation 7.115 is provided for rotor slot number selection for a skew of one stator slot as follows:</p><pre class="codeinput">Qr_suggested = (6*qs+4)*pole_pair; <span class="comment">% eqn 7.115 of the book</span>
+</pre><p>The desired air gap flux density (0.9 Tesla) is now achieved by an air gap as high as 10.5 mm. Again, I am not sure if this is a reasonable air gap, but the analytical calculations shows that it is.</p><h2>Rotor bar number selection<a name="69"></a></h2><p>In our text book, the equation 7.115 is provided for rotor slot number selection for a skew of one stator slot as follows:</p><pre class="codeinput">Qr_suggested = (6*qs+4)*pole_pair; <span class="comment">% eqn 7.115 of the book</span>
 fprintf(<span class="string">'Suggested rotor slot number is %g.\n'</span>,Qr_suggested);
 </pre><p>A more detailed analysis is required for the selection of rotor slot number. There are various combinations (with the stator slot number) that should be avoided. Some of the reasons are; limiting the synchronous torques, avoiding synchronous torques created by slot harmonics, avoiding synchronous torques during running, avoiding dangerous slot harmonics, avoiding mechanical vibrations.</p><p>In the following routine, possible rotor slot numbers are obtained by the use of pole and phase number and they are checked whether they should be avoided or not.</p><pre class="codeinput"><span class="keyword">for</span> k = 1:10
     Qr = k*pole*phase;
@@ -429,7 +411,7 @@ fprintf(<span class="string">'Suggested rotor slot number is %g.\n'</span>,Qr_su
 qr = Qr/(pole*phase);
 fprintf(<span class="string">'Selected rotor slot number is %g.\n'</span>,Qr);
 fprintf(<span class="string">'Corresponding rotor number of slots per pole per phase is %g.\n'</span>,qr);
-</pre><p>It should be noted that, this rotor slot number in combination with a stator slot number of 90 may cause synchronous torques at standstill.</p><h2>Selection of stator conductors<a name="95"></a></h2><p>First of all, copper conductors will be used for stator and aluminium bars will be used for squirrel cage rotor. the selection of conductors is based on two things: current carrying capability and frequency (skin effect).</p><p>Stator copper conductor design:</p><p>The maximum fundamental frequency that the windings will be subjecdted to can be calculated by the maximum speed of the train. The motor will be driven by an inverter with possibly scalar control techniques with variable voltage - variable frequency capability to adjust the speed of the train.</p><pre class="codeinput">fmax = frated*vmax/vrated; <span class="comment">% Hz</span>
+</pre><p>It should be noted that, this rotor slot number in combination with a stator slot number of 90 may cause synchronous torques at standstill.</p><h2>Selection of stator conductors<a name="74"></a></h2><p>First of all, copper conductors will be used for stator and aluminium bars will be used for squirrel cage rotor. the selection of conductors is based on two things: current carrying capability and frequency (skin effect).</p><p>Stator copper conductor design:</p><p>The maximum fundamental frequency that the windings will be subjecdted to can be calculated by the maximum speed of the train. The motor will be driven by an inverter with possibly scalar control techniques with variable voltage - variable frequency capability to adjust the speed of the train.</p><pre class="codeinput">fmax = frated*vmax/vrated; <span class="comment">% Hz</span>
 fprintf(<span class="string">'The maximum fundamental frequency that the stator windings will be subjected to is %g Hz.\n'</span>,fmax);
 </pre><p>This approach is valid up to a point since only the fundamental components are considered. A three phase inverter do not normally produce low order harmonics by the utilization of sinusoidal pulse width modulation techniques (SPWM). The harmonic frequencies that will show will be around the switching frequency and its integer multiples. From past experience, the converters around such kind of power ratings are driven with switching frequencies up to 1 kHz (usually 800 Hz). In this design, these harmonic components will be neglected for simplicity. One reason is that, an induction motor is an inductive load such that, the harmonics around 1 kHz are easily filtered and not reflected to the current waveform.</p><pre class="codeinput">copper_resistivity = 1.7e-8; <span class="comment">% Ohm*m</span>
 copper_permeability = 1.256629e-6; <span class="comment">% H/m</span>
@@ -458,13 +440,13 @@ wire_area_insulation = pi*(wire_diameter_insulation/2)^2; <span class="comment">
 total_stator_wire_area = wire_strand*wire_area_insulation; <span class="comment">% mm^2</span>
 fprintf(<span class="string">'Wire diameter with insulation is %g mm and area is %g mm^2.\n'</span>,wire_diameter_insulation,wire_area_insulation);
 fprintf(<span class="string">'Total wire area (one turn) is %g mm^2.\n'</span>,total_stator_wire_area);
-</pre><h2>Selection of rotor conductors<a name="102"></a></h2><p>The rotor bars will be aluminium as stated before. From my research, I saw that usually aluminium bars are used for squirrel cage rotors of asynchronous machines. The production is usually achieved by die cast aluminum poured into the rotor after the laminations are stacked.</p><p>The skin effect is much more relaxed at steady state operation for rotor conductors because the rotor induced current frequency for low slip values is very low. At standstill and startup, however, the frequency is close to the stator frequency. The skin depth of aluminium is calculated as follows:</p><pre class="codeinput">aluminium_resistivity = 2.65e-8; <span class="comment">% Ohm*m</span>
+</pre><h2>Selection of rotor conductors<a name="81"></a></h2><p>The rotor bars will be aluminium as stated before. From my research, I saw that usually aluminium bars are used for squirrel cage rotors of asynchronous machines. The production is usually achieved by die cast aluminum poured into the rotor after the laminations are stacked.</p><p>The skin effect is much more relaxed at steady state operation for rotor conductors because the rotor induced current frequency for low slip values is very low. At standstill and startup, however, the frequency is close to the stator frequency. The skin depth of aluminium is calculated as follows:</p><pre class="codeinput">aluminium_resistivity = 2.65e-8; <span class="comment">% Ohm*m</span>
 aluminium_permeability = 1.256665e-6; <span class="comment">% H/m</span>
 angular_frequency = 2*pi*fmax; <span class="comment">% rad/sec</span>
 skin_depth_al = sqrt(aluminium_resistivity*2/(angular_frequency*aluminium_permeability));
 fprintf(<span class="string">'Skin depth of Aluminium @ %g Hz is %g mm\n'</span>,fmax,skin_depth_al*1000);
 fprintf(<span class="string">'A rotor conductor diameter of which is not higher than %g mm should be selected.\n'</span>,2*skin_depth_al*1000);
-</pre><p>This information will be used for the calculation of rotor bar resistance.</p><p>Since the frequency of the rotor windings are low, the induced voltages in the squirrel cage winding is also very low. Therefore, no insulation layer is required between the bars as well as between the bar and rotor core.</p><p>As for the current carrying capability, as discussed before, the rotor induced current will be low at steady state operations. Moreover, the rotor bars are not like conventional conductors and have a much wider area. Therefore, no other means of analysis is required for the rotor bar current carrying capability.</p><h2>Stator Slot Sizing<a name="107"></a></h2><p>The first step selection of the stator slot fill factor. Generally, a fill factor of between 0.4-0.44 is used for machines with such power ratings. In this design, fill factor is selected as 0.44.</p><pre class="codeinput">stator_fill_factor = 0.44;
+</pre><p>This information will be used for the calculation of rotor bar resistance.</p><p>Since the frequency of the rotor windings are low, the induced voltages in the squirrel cage winding is also very low. Therefore, no insulation layer is required between the bars as well as between the bar and rotor core.</p><p>As for the current carrying capability, as discussed before, the rotor induced current will be low at steady state operations. Moreover, the rotor bars are not like conventional conductors and have a much wider area. Therefore, no other means of analysis is required for the rotor bar current carrying capability.</p><h2>Stator Slot Sizing<a name="86"></a></h2><p>The first step selection of the stator slot fill factor. Generally, a fill factor of between 0.4-0.44 is used for machines with such power ratings. In this design, fill factor is selected as 0.44.</p><pre class="codeinput">stator_fill_factor = 0.44;
 </pre><p>As the area that the conductors (with insulation) will utilize is known, the useful slot area can be calculated.</p><pre class="codeinput">useful_slot_area = total_stator_wire_area*zQ*stator_layer/stator_fill_factor; <span class="comment">% mm^2</span>
 fprintf(<span class="string">'Selected stator slot fill factor is %g\n'</span>,stator_fill_factor);
 fprintf(<span class="string">'Useful slot area of the stator is %g mm^2\n'</span>,useful_slot_area);
@@ -500,7 +482,7 @@ outer_diameter_new = (2*hcs_new+(1e3*inner_diameter+2*(hos+hw+hs)))*1e-3; <span 
 fprintf(<span class="string">'The aimed stator back iron flux density is %g Tesla.\n'</span>,Bcs_new);
 fprintf(<span class="string">'The new back iron height is %g mm.\n'</span>,hcs_new);
 fprintf(<span class="string">'The new outer diameter is %g m.\n'</span>,outer_diameter_new);
-</pre><h2>Stator MMFS<a name="122"></a></h2><p>The B-H data of the selected core lamination iron is shown in the figure below.</p><pre class="codeinput">I = imread(<span class="string">'B H.png'</span>);
+</pre><h2>Stator MMFS<a name="101"></a></h2><p>The B-H data of the selected core lamination iron is shown in the figure below.</p><pre class="codeinput">I = imread(<span class="string">'B H.png'</span>);
 figure;
 imshow(I);
 title(<span class="string">'B H Data of the Selected Iron Core Lamination'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
@@ -512,7 +494,7 @@ Hys = 2460; <span class="comment">% A/m</span>
 MMFys = Hys*1e-3*(hcs); <span class="comment">% Amps</span>
 fprintf(<span class="string">'The magnetic field intensity of the stator yoke is %g A/m.\n'</span>,Hys);
 fprintf(<span class="string">'The peak MMF of the yoke is %g A.\n'</span>,MMFys);
-</pre><h2>Rotor Bar Sizing<a name="124"></a></h2><p>The fill factor of the rotor bars will be 1 since the bars are filled with totally aluminium.</p><p>The shape of the rotor slot is selected. In the figure below, the shape of the rotor slot and the corresponding dimensions are shown.</p><pre class="codeinput">I = imread(<span class="string">'rotor_slot.png'</span>);
+</pre><h2>Rotor Bar Sizing<a name="103"></a></h2><p>The fill factor of the rotor bars will be 1 since the bars are filled with totally aluminium.</p><p>The shape of the rotor slot is selected. In the figure below, the shape of the rotor slot and the corresponding dimensions are shown.</p><pre class="codeinput">I = imread(<span class="string">'rotor_slot.png'</span>);
 figure;
 imshow(I);
 title(<span class="string">'Rotor Slot Shape and Dimensions'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
@@ -557,7 +539,7 @@ fprintf(<span class="string">'The height of the rotor back iron (hcr) is %g mm.\
 fprintf(<span class="string">'The maximum shaft diameter is %g mm.\n'</span>,Dshaftmax);
 Dshaft = 150; <span class="comment">% mm</span>
 fprintf(<span class="string">'A shaft diameter of %g mm is selected.\n'</span>,Dshaft);
-</pre><h2>Equivalent core length with cooling<a name="134"></a></h2><pre class="codeinput">nv = 10; <span class="comment">% number of cooling ducts</span>
+</pre><h2>Equivalent core length with cooling<a name="113"></a></h2><pre class="codeinput">nv = 10; <span class="comment">% number of cooling ducts</span>
 bv = 5; <span class="comment">% length of cooling duct, mm</span>
 g = gap_distance_new; <span class="comment">% mm</span>
 k = (bv/g)/(5+bv/g);
@@ -566,7 +548,7 @@ eqv_length = length-1e-3*nv*bve+1e-3*2*g; <span class="comment">% m</span>
 fprintf(<span class="string">'Number of cooling ducts is %g.\n'</span>,nv);
 fprintf(<span class="string">'Length of a cooling duct is %g mm.\n'</span>,bv);
 fprintf(<span class="string">'The euivalent core length with cooling ducts is %g m.\n'</span>,eqv_length);
-</pre><h2>Effective air gap length<a name="135"></a></h2><pre class="codeinput">g = gap_distance_new; <span class="comment">% mm</span>
+</pre><h2>Effective air gap length<a name="114"></a></h2><pre class="codeinput">g = gap_distance_new; <span class="comment">% mm</span>
 b1 = bs1; <span class="comment">% mm</span>
 k = (b1/g)/(5+b1/g);
 be = k*b1; <span class="comment">% mm</span>
@@ -578,7 +560,7 @@ geff = g*kcs*kcr; <span class="comment">% mm</span>
 fprintf(<span class="string">'Carters coefficienct for stator is %g.\n'</span>,kcs);
 fprintf(<span class="string">'Carters coefficienct for rotor is %g.\n'</span>,kcr);
 fprintf(<span class="string">'The effective air gap length is %g mm.\n'</span>,geff);
-</pre><h2>Rotor MMFS<a name="136"></a></h2><p>Same B-H data can be used. The rotor teeth MMF and back iron MMF can be calculated by using the selected tooth and yoke flux density.</p><pre class="codeinput">Htr = 15220; <span class="comment">% A/m</span>
+</pre><h2>Rotor MMFS<a name="115"></a></h2><p>Same B-H data can be used. The rotor teeth MMF and back iron MMF can be calculated by using the selected tooth and yoke flux density.</p><pre class="codeinput">Htr = 15220; <span class="comment">% A/m</span>
 MMFtr = Htr*1e-3*(hr+hor+(d1+d2)/2); <span class="comment">% Amps</span>
 fprintf(<span class="string">'The magnetic field intensity of the rotor teeth is %g A/m.\n'</span>,Htr);
 fprintf(<span class="string">'The peak MMF of the teeth is %g A.\n'</span>,MMFtr);
@@ -586,13 +568,13 @@ Hyr = 2460; <span class="comment">% A/m</span>
 MMFyr = Hyr*1e-3*(hcr); <span class="comment">% Amps</span>
 fprintf(<span class="string">'The magnetic field intensity of the rotor yoke is %g A/m.\n'</span>,Hyr);
 fprintf(<span class="string">'The peak MMF of the yoke is %g A.\n'</span>,MMFyr);
-</pre><h2>Magnetizing Inductance and Current<a name="137"></a></h2><p>Calculation of the magnetizing inductance is based on the equation derived in class. The magnetizing reactance is also calculated at rated frequency. Finally, neglecting the core loss in the equivalent circuit, the magnetizing current is calculated.</p><pre class="codeinput">Lm = (phase/2)*inner_diameter*u0*eqv_length*(kw1*Nph)^2/(pole_pair^2*air_gap_distance*1e-3); <span class="comment">% Henries</span>
+</pre><h2>Magnetizing Inductance and Current<a name="116"></a></h2><p>Calculation of the magnetizing inductance is based on the equation derived in class. The magnetizing reactance is also calculated at rated frequency. Finally, neglecting the core loss in the equivalent circuit, the magnetizing current is calculated.</p><pre class="codeinput">Lm = (phase/2)*inner_diameter*u0*eqv_length*(kw1*Nph)^2/(pole_pair^2*air_gap_distance*1e-3); <span class="comment">% Henries</span>
 Xm = 2*pi*frated*Lm; <span class="comment">% Ohms</span>
 Imag = Erms/Xm; <span class="comment">% amps</span>
 fprintf(<span class="string">'The magnetizing inductance of the machine is %g mH.\n'</span>,Lm*1e3);
 fprintf(<span class="string">'The magnetizing reactance at fundamental frequency is %g Ohms.\n'</span>,Xm);
 fprintf(<span class="string">'The magnetizing current is %g A.\n'</span>,Imag);
-</pre><h2>Leakage Inductances<a name="138"></a></h2><p>Calculation of stator leakage inductance is again based on the equation derived in class. The leakage reactance is also calculated at rated frequency.</p><pre class="codeinput">P1 = u0*eqv_length*((hos/bos)+(hs/(3*bs2))); <span class="comment">% permeance</span>
+</pre><h2>Leakage Inductances<a name="117"></a></h2><p>Calculation of stator leakage inductance is again based on the equation derived in class. The leakage reactance is also calculated at rated frequency.</p><pre class="codeinput">P1 = u0*eqv_length*((hos/bos)+(hs/(3*bs2))); <span class="comment">% permeance</span>
 Lph = P1*4*(Nph*kw1)^2*phase/Qs; <span class="comment">% Henries</span>
 Xph = 2*pi*frated*Lph; <span class="comment">% ohms</span>
 fprintf(<span class="string">'The stator leakage inductance of the machine is %g uH.\n'</span>,Lph*1e6);
@@ -608,7 +590,7 @@ Lrp = P2*4*(Nph*kw1)^2*phase/Qr; <span class="comment">% Henries</span>
 Xrp = 2*pi*frated*Lrp; <span class="comment">% ohms</span>
 fprintf(<span class="string">'The rotor leakage inductance referred to the stator is %g uH.\n'</span>,Lrp*1e6);
 fprintf(<span class="string">'The rotor leakage reactance referred to the stator is %g mOhms.\n'</span>,Xrp*1e3);
-</pre><h2>Stator copper winding and rotor bar resistance<a name="139"></a></h2><p>For the calculation of stator winding resistance of one phase, its length is first calculated considering both machine length and end windings.</p><pre class="codeinput">pole_pitch = phase*stator_slot_pitch*qs; <span class="comment">% m</span>
+</pre><h2>Stator copper winding and rotor bar resistance<a name="118"></a></h2><p>For the calculation of stator winding resistance of one phase, its length is first calculated considering both machine length and end windings.</p><pre class="codeinput">pole_pitch = phase*stator_slot_pitch*qs; <span class="comment">% m</span>
 pitch_factor = pitch_angle/pi;
 y = pitch_factor*pole_pitch; <span class="comment">% m</span>
 lend = pi*y/2+0.018; <span class="comment">% m</span>
@@ -638,7 +620,7 @@ fprintf(<span class="string">'The end winding length is %g m.\n'</span>,ler);
 fprintf(<span class="string">'The aluminium resistivity at 80 0C is %g Ohm.m.\n'</span>,rho_al_80);
 fprintf(<span class="string">'The resiatance of the rotor phase winding is %g uOhms.\n'</span>,Rbe*1e6);
 fprintf(<span class="string">'The rotor resistance referred to the stator is %g mOhms.\n'</span>,R2p*1e3);
-</pre><h2>The per unit values<a name="142"></a></h2><p>Base values</p><pre class="codeinput">Vbase = Vrated; <span class="comment">% volts</span>
+</pre><h2>The per unit values<a name="121"></a></h2><p>Base values</p><pre class="codeinput">Vbase = Vrated; <span class="comment">% volts</span>
 Sbase = Prated/power_factor; <span class="comment">% VA</span>
 Zbase = Vbase^2/Sbase; <span class="comment">% ohms</span>
 <span class="comment">% pu values</span>
@@ -652,7 +634,7 @@ fprintf(<span class="string">'The rotor winding resistance pu is %g %%.\n'</span
 fprintf(<span class="string">'The stator leakage reactance pu is %g %%.\n'</span>,Xph_pu);
 fprintf(<span class="string">'The rotor leakage reactance pu is %g %%.\n'</span>,Xrp_pu);
 fprintf(<span class="string">'The magnetizing reactance pu is %g %%.\n'</span>,Xm_pu);
-</pre><h2>Mass Calculations<a name="143"></a></h2><p>Copper mass</p><pre class="codeinput">copper_area = (1e-6*wire_area*wire_strand); <span class="comment">% m^2</span>
+</pre><h2>Mass Calculations<a name="122"></a></h2><p>Copper mass</p><pre class="codeinput">copper_area = (1e-6*wire_area*wire_strand); <span class="comment">% m^2</span>
 copper_length = phase*le*Nph; <span class="comment">% m</span>
 copper_volume = copper_area*copper_length; <span class="comment">% m^3</span>
 copper_density = 8.96; <span class="comment">% gr/cm^3</span>
@@ -684,13 +666,13 @@ Grteeth = density_iron*Qr*btr*1e-3*(hr+(d1+d2)/2)*1e-3*length*Kfe; <span class="
 fprintf(<span class="string">'Rotor teeth iron mass is %g kg.\n'</span>,Grteeth);
 total_mass = Gs + aluminium_mass + copper_mass + Grteeth; <span class="comment">% kg</span>
 fprintf(<span class="string">'Total mass is %g kg.\n'</span>,total_mass);
-</pre><h2>Copper Losses<a name="144"></a></h2><pre class="codeinput">Pcus = 3*Irated^2*Rph; <span class="comment">% watts</span>
+</pre><h2>Copper Losses<a name="123"></a></h2><pre class="codeinput">Pcus = 3*Irated^2*Rph; <span class="comment">% watts</span>
 Pcur = 3*Irated^2*R2p; <span class="comment">% watts</span>
 Pcu = Pcus + Pcur; <span class="comment">% watts</span>
 fprintf(<span class="string">'Total stator copper loss is %g Watts.\n'</span>,Pcus);
 fprintf(<span class="string">'Total rotor copper loss is %g Watts.\n'</span>,Pcur);
 fprintf(<span class="string">'Total copper loss is %g Watts.\n'</span>,Pcu);
-</pre><h2>Core losses<a name="145"></a></h2><p>stator fundamental teeth core loss</p><pre class="codeinput">Kt = 1.7;
+</pre><h2>Core losses<a name="124"></a></h2><p>stator fundamental teeth core loss</p><pre class="codeinput">Kt = 1.7;
 p10 = 2;
 Pc_stator_teeth1 = Kt*p10*(frated/50)^1.3*Bstooth^1.7*Gsteeth; <span class="comment">% watts</span>
 <span class="comment">% stator fundamental back iron core loss</span>
@@ -700,18 +682,18 @@ Pc_stator_yoke1 = Ky*p10*(frated/50)^1.3*Bsyoke^1.7*Gsyoke; <span class="comment
 Pcs1 = Pc_stator_teeth1+Pc_stator_yoke1; <span class="comment">% watts</span>
 fprintf(<span class="string">'stator core loss only at fundamental frequency is %g Watts.\n'</span>,Pcs1);
 </pre><p>Normally, core loss at both harmonics caused by both the inverter and the machine should be considered. In this design, they are not included.</p><pre class="codeinput">Pc = Pcs1; <span class="comment">% watts</span>
-</pre><h2>Friction and Windage Losses<a name="147"></a></h2><p>Here, only an assumption is used based on the design example.</p><pre class="codeinput">Pfw = 0.008*Prated; <span class="comment">% watts</span>
-</pre><h2>Total loss and Efficiency<a name="148"></a></h2><pre class="codeinput">Ptotal = Pcu + Pc + Pfw; <span class="comment">% watts</span>
+</pre><h2>Friction and Windage Losses<a name="126"></a></h2><p>Here, only an assumption is used based on the design example.</p><pre class="codeinput">Pfw = 0.008*Prated; <span class="comment">% watts</span>
+</pre><h2>Total loss and Efficiency<a name="127"></a></h2><pre class="codeinput">Ptotal = Pcu + Pc + Pfw; <span class="comment">% watts</span>
 efficiency = Prated/(Ptotal+Prated);
 fprintf(<span class="string">'Total loss of the machine is %g Watts.\n'</span>,Ptotal);
 fprintf(<span class="string">'Efficiency of the machine is %g %%.\n'</span>,100*efficiency);
-</pre><h2>Core loss resistance<a name="149"></a></h2><pre class="codeinput">Rc = Erms^2/(Pc/3); <span class="comment">% Ohms</span>
+</pre><h2>Core loss resistance<a name="128"></a></h2><pre class="codeinput">Rc = Erms^2/(Pc/3); <span class="comment">% Ohms</span>
 fprintf(<span class="string">'The core loss resistance is %g Ohms.\n'</span>,Rc);
-</pre><h2>Equivalent Circuit<a name="150"></a></h2><p>The resultant equivalent circuit is shown in the figure below at rated frequency of operation.</p><pre class="codeinput">I = imread(<span class="string">'eqv_circ.png'</span>);
+</pre><h2>Equivalent Circuit<a name="129"></a></h2><p>The resultant equivalent circuit is shown in the figure below at rated frequency of operation.</p><pre class="codeinput">I = imread(<span class="string">'eqv_circ.png'</span>);
 figure;
 imshow(I);
 title(<span class="string">'Equivalent Circuit of the Machine'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
-</pre><h2>Torque-Speed Characteristics<a name="151"></a></h2><p>Obtain the variables that will be used in the torque equation:</p><pre class="codeinput">wsync = Nsync*2*pi/60; <span class="comment">% rad/sec</span>
+</pre><h2>Torque-Speed Characteristics<a name="130"></a></h2><p>Obtain the variables that will be used in the torque equation:</p><pre class="codeinput">wsync = Nsync*2*pi/60; <span class="comment">% rad/sec</span>
 <span class="comment">% Thevenin variables</span>
 Zm = (1j*Xm*Rc)/(1j*Xm+Rc); <span class="comment">% ohms</span>
 Z1 = Rph+1j*Xph; <span class="comment">% ohms</span>
@@ -752,7 +734,7 @@ slip_max_torque = s((Tm==max_torque));
 fprintf(<span class="string">'The starting torque is %d Nm.\n'</span>, starting_torque);
 fprintf(<span class="string">'The maximum torque is %d Nm.\n'</span>, max_torque);
 fprintf(<span class="string">'The slip at maximum torque is %d.\n'</span>, slip_max_torque);
-</pre><h2>Motoranalysis Program Drawings<a name="154"></a></h2><p>The geometry of the machine with the calculated parameters is shown in the following Figure.</p><pre class="codeinput">I = imread(<span class="string">'geometry1.png'</span>);
+</pre><h2>Motoranalysis Program Drawings<a name="133"></a></h2><p>The geometry of the machine with the calculated parameters is shown in the following Figure.</p><pre class="codeinput">I = imread(<span class="string">'geometry1.png'</span>);
 figure;
 imshow(I);
 title(<span class="string">'Geometry of the Machine'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
@@ -772,7 +754,7 @@ title(<span class="string">'Winding Configuration'</span>,<span class="string">'
 figure;
 imshow(I);
 title(<span class="string">'Equations'</span>,<span class="string">'FontSize'</span>,18,<span class="string">'FontWeight'</span>,<span class="string">'Bold'</span>);
-</pre><h2>CONCLUSION<a name="159"></a></h2><p>In this project, a squirrel cage asynchronous traction motor for use in high power AC locomotive traction systems is designed.</p><p>The main machine dimensions are categorized as: Machine length, inner and outer diameter, air gap distance. These dimensions are determined by considering the machine loading; i.e., electrical loading and magnetic loading. First, a specific machine constant value is selected based on the power rating of thr machine. From this selection and calculation of the machine aspect ratio, first selection of machine length and diameter is achieved. By using the rated torque, the tangential stress that the machine will be exerted is calculated. The tangential stress is calculated for verification and it turned out to be in acceptable limits. The air gap distance is also calculated based on some empirical formula. A magnetic loading value (air gap) is selected and the electrical loading is calculated from this selection.</p><p>The main dimensions are selected close to the calculated values above and the tangential stress, electrical loading and magnetic loading values are verified to be acceptable.</p><p>Aimed flux densities at different parts of the machine (gap, yoke, teeth, stator, rotor) are specified.</p><p>The minimum and maximum stator slot number is calculated based on the limits of the stator slot pitch in mm. Then, the stator slot number is selected based on a double layer under-pitched stator winding configuration which can eliminate the 5th harmonic.</p><p>The winding factor is calculated up to 31st harmonic as well as the fundamental component. The winding factor values show that, 5th harmonic is completely eliminated, 3rd and 9th harmonic components can be eliminated on the line to line voltage with the star connection, there is a little 7th harmonic. Therefore, the resultant voltage waveform will be highly sinusoidal. On the other hand, there is 10 percent reduction on the fundamental component. The results that this situation may yield are discussed in the report and it is decided that this reduction is admissible.</p><p>The stator number of turns per phase is determined based on the well-known induced voltage formula. The required modification on the machine parameters based on the selected turn number is achieved so that same amount of voltage is induced. The machine length is increased slightly for this purpose. As some parameter is changed, the machine loading and tangential stress is verified one more time.</p><p>The peak fundamental MMF of the air gap is calculated. This has been a turning point for the design. As it turned out, with the selected air gap distance, the air gap flux density is too high. The required air gap distance to keep the flux at desired magnetic loading is much higher than the firstly determined air gap distance. At this point, I am not really sure which one is the right parameter to choose.</p><p>For the selection of rotor slot number, a subroutine is developed which picks up the usable and non-usable rotor number of slots. Sufficienct discussion about this matter is included in the report.</p><p>Copper material is selected for stator windings and aluminium material is selected for rotor bars. For the sizing of the stator windings, both skin effect and current carrying capability of the windings are considered. A current density values is selected, a wire is selected from standard AWG Gauge and this current density is verified. The required wire area including insulation is calculated for stator slots. Sufficienct discussion is included in the report regarding skin effect consideration. A similar procedure is used for the design of the rotor bar conductors.</p><p>The dimensions of the stator slots are determined based on: fill factor, required slot area, selected slot shape, stator slot pitch and some geometrical manipulations. From the dimensioning of stator slots, flux densities at different parts (teeth, yoke) are verified. finally, Stator core MMF is calculated.</p><p>A different geometry is selected for the rotor bars and the dimensions determined accordingly. a similar procedure is followed. The end rings of the squirrel cage rotor are also considered and dimensioned. Next, a shaft dismeter is selected.</p><p>The effect of cooling ducts on the effective machine length is analyzed and calculations have been done. Moreover, Carter's coefficient for both stator and rotor are calculated and the effective air gap is calculated.</p><p>The equivalent circuit parameters of the machine are calculated includings: magnetizing inductance, leakage inductances, winding and bar resistances, core loss resistance. their per unit values are also determined for verification.</p><p>Mass of different parts of the machine are calculated such as: windings, bars, teeth, yoke etc.</p><p>The copper losses are calculated by the resiatance values and the core losses are calculated by the mass values and empirical equations. From these loss values, efficiency of the machine is calculated and it turned out to be close to the efficiency aim specified at the beginning.</p><p>Finally, torque-speed characteristics of the machine is obtained and some parameters like starting torque, maximum torque, slip at maximum torque etc. are determined. The linear region of the characteristics is very narrow such that the rated torque is in the unstable region. This actually shows that this design is a fail or the calculation  of torque is wrong.</p><p>All in all, this project have been very helpful of understanding how the main dimensions of an electrical machine are chosen. The effect of these dimensions to one another are analyzed very deeply and the significant machine parameters like tangential stress, machine loading etc. are understood. On the other hand, no FEM analysis on a simulation program has been achieved. Therefore, I could not be able to verify my design.</p><h2>References<a name="177"></a></h2><p>1. Ion Boldea, Syed A. Nasar, The Indcution Machine Handbook</p><p>2. juha Pyrh&ouml;nen, Tapani Jokinen, Valeria Hrabovcova, Design of Rotating Electrical Machines</p><p>3. <a href="http://motoranalysis.com/">http://motoranalysis.com/</a></p><p>4. IEC 60034-30 standard on efficiency classes</p><p>5. Low voltage motors, Motor guide, ABB, February 2014</p><p>6. Standard motors up to frame size 315 L, Siemens AG 2008</p><p>7. W. L. Soong, Sizing of Electrical Machines, 26 Sept 2008</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><h2>CONCLUSION<a name="138"></a></h2><p>In this project, a squirrel cage asynchronous traction motor for use in high power AC locomotive traction systems is designed.</p><p>The main machine dimensions are categorized as: Machine length, inner and outer diameter, air gap distance. These dimensions are determined by considering the machine loading; i.e., electrical loading and magnetic loading. First, a specific machine constant value is selected based on the power rating of thr machine. From this selection and calculation of the machine aspect ratio, first selection of machine length and diameter is achieved. By using the rated torque, the tangential stress that the machine will be exerted is calculated. The tangential stress is calculated for verification and it turned out to be in acceptable limits. The air gap distance is also calculated based on some empirical formula. A magnetic loading value (air gap) is selected and the electrical loading is calculated from this selection.</p><p>The main dimensions are selected close to the calculated values above and the tangential stress, electrical loading and magnetic loading values are verified to be acceptable.</p><p>Aimed flux densities at different parts of the machine (gap, yoke, teeth, stator, rotor) are specified.</p><p>The minimum and maximum stator slot number is calculated based on the limits of the stator slot pitch in mm. Then, the stator slot number is selected based on a double layer under-pitched stator winding configuration which can eliminate the 5th harmonic.</p><p>The winding factor is calculated up to 31st harmonic as well as the fundamental component. The winding factor values show that, 5th harmonic is completely eliminated, 3rd and 9th harmonic components can be eliminated on the line to line voltage with the star connection, there is a little 7th harmonic. Therefore, the resultant voltage waveform will be highly sinusoidal. On the other hand, there is 10 percent reduction on the fundamental component. The results that this situation may yield are discussed in the report and it is decided that this reduction is admissible.</p><p>The stator number of turns per phase is determined based on the well-known induced voltage formula. The required modification on the machine parameters based on the selected turn number is achieved so that same amount of voltage is induced. The machine length is increased slightly for this purpose. As some parameter is changed, the machine loading and tangential stress is verified one more time.</p><p>The peak fundamental MMF of the air gap is calculated. This has been a turning point for the design. As it turned out, with the selected air gap distance, the air gap flux density is too high. The required air gap distance to keep the flux at desired magnetic loading is much higher than the firstly determined air gap distance. At this point, I am not really sure which one is the right parameter to choose.</p><p>For the selection of rotor slot number, a subroutine is developed which picks up the usable and non-usable rotor number of slots. Sufficienct discussion about this matter is included in the report.</p><p>Copper material is selected for stator windings and aluminium material is selected for rotor bars. For the sizing of the stator windings, both skin effect and current carrying capability of the windings are considered. A current density values is selected, a wire is selected from standard AWG Gauge and this current density is verified. The required wire area including insulation is calculated for stator slots. Sufficienct discussion is included in the report regarding skin effect consideration. A similar procedure is used for the design of the rotor bar conductors.</p><p>The dimensions of the stator slots are determined based on: fill factor, required slot area, selected slot shape, stator slot pitch and some geometrical manipulations. From the dimensioning of stator slots, flux densities at different parts (teeth, yoke) are verified. finally, Stator core MMF is calculated.</p><p>A different geometry is selected for the rotor bars and the dimensions determined accordingly. a similar procedure is followed. The end rings of the squirrel cage rotor are also considered and dimensioned. Next, a shaft dismeter is selected.</p><p>The effect of cooling ducts on the effective machine length is analyzed and calculations have been done. Moreover, Carter's coefficient for both stator and rotor are calculated and the effective air gap is calculated.</p><p>The equivalent circuit parameters of the machine are calculated includings: magnetizing inductance, leakage inductances, winding and bar resistances, core loss resistance. their per unit values are also determined for verification.</p><p>Mass of different parts of the machine are calculated such as: windings, bars, teeth, yoke etc.</p><p>The copper losses are calculated by the resiatance values and the core losses are calculated by the mass values and empirical equations. From these loss values, efficiency of the machine is calculated and it turned out to be close to the efficiency aim specified at the beginning.</p><p>Finally, torque-speed characteristics of the machine is obtained and some parameters like starting torque, maximum torque, slip at maximum torque etc. are determined. The linear region of the characteristics is very narrow such that the rated torque is in the unstable region. This actually shows that this design is a fail or the calculation  of torque is wrong.</p><p>All in all, this project have been very helpful of understanding how the main dimensions of an electrical machine are chosen. The effect of these dimensions to one another are analyzed very deeply and the significant machine parameters like tangential stress, machine loading etc. are understood. On the other hand, no FEM analysis on a simulation program has been achieved. Therefore, I could not be able to verify my design.</p><h2>References<a name="156"></a></h2><p>1. Ion Boldea, Syed A. Nasar, The Indcution Machine Handbook</p><p>2. juha Pyrh&ouml;nen, Tapani Jokinen, Valeria Hrabovcova, Design of Rotating Electrical Machines</p><p>3. <a href="http://motoranalysis.com/">http://motoranalysis.com/</a></p><p>4. IEC 60034-30 standard on efficiency classes</p><p>5. Low voltage motors, Motor guide, ABB, February 2014</p><p>6. Standard motors up to frame size 315 L, Siemens AG 2008</p><p>7. W. L. Soong, Sizing of Electrical Machines, 26 Sept 2008</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% IMMD DESIGN TOOL
 %% M. Uğur
@@ -788,6 +770,11 @@ title(<span class="string">'Equations'</span>,<span class="string">'FontSize'</s
 % Cooling: Forced air cooling
 % Motor efficiency aim = 98 % 
 % Power stage efficiency aim = 98 % 
+% Average winding temperature rise: 130 C
+% Hot spot temperature rise: 160 C
+% Semiconductor temperature rise: 100 C
+% Maximum winding temperature: 200 C
+
 
 %% Fundamental blocks:
 % Rotor
@@ -812,7 +799,9 @@ winding_configuration = 1;
 
 %% Stator Parameters
 stator_slot_number = 48;
+stator_phase_number = 3;
 stator_pole_number = 8;
+stator_slot_per_pole_per_phase = stator_slot_number/stator_phase_number/stator_pole_number;
 stator_slot_per_mocule = stator_slot_number/number_of_modules;
 stator_layer = 2;
 stator_conductor_per_coil_side = 10;
@@ -839,12 +828,18 @@ rotor_inner_diameter = 30; % mm
 
 %% Inverter Parameters
 fundamental_frequency = 100; % Hz
-power_factor = 0.8;
+power_factor = 0.87;
+line_to_line_voltage = 400; % Volts
 
 
 
 
 
+%% DC Link parameters
+
+
+
+%% Rectifier parameters
 
 
 
@@ -907,81 +902,8 @@ phase = 3;
 
 
 
+
 %% BELOW ARE THE MATLAB CODE FOR 564 MACHINE DESIGN PROJECT
-
-
-
-%% Project Specifications
-%%
-% Traction asynchronous squirrel cage induction motor
-%%
-% Rated Power Output: 1280 kW
-%%
-% Line-to-line voltage: 1350 V
-%%
-% Number of poles: 6
-%%
-% Rated Speed: 1520 rpm (72 km/h) (driven with 78 Hz inverter)
-%%
-% Rated Motor Torque: 7843 Nm
-%%
-% Cooling: Forced Air Cooling
-%%
-% Insulating Class: 200
-%%
-% Train Wheel Diameter: 1210 mm
-%%
-% Maximum Speed: 140 km/h
-%%
-% Gear Ratio: 4.821
-
-
-%% Main Design Inputs
-%
-% Duty: Continuous running duty (S1)
-%%
-% Efficiency: IE3, premium efficiency: 96 %
-%%
-% Efficiency: IE4, super premium efficiency: 97 %
-%%
-% The efficiency requirement is obtained by using the IE efficiency classes
-% as shown in Figure below:
-%%
-% An efficiency of 0.95 is aimed
-%%
-% Power factor: 0.87
-%%
-% Average winding temp rise: 130 degree C
-%%
-% Hot spot temp rise: 160 degree C
-%%
-% Maximum winding temp: 200 degree C
-%%
-% Ingress protection: IP54. Limited protection against dust ingress.
-% Protected against splash water from any direction.
-
-I = imread('IE efficiency class.png');
-figure;
-imshow(I);
-title('IE efficiency class','FontSize',18,'FontWeight','Bold');
-
-
-%%
-% Design Inputs
-Prated = 1280e3; % watts
-pole = 6;
-pole_pair = pole/2;
-phase = 3;
-Vrated = 1350; % volts line-to-line
-Nrated = 1520; % rpm
-frated = 78; % Hz
-vrated = 72; % km/h
-vmax = 140; % km/h
-Trated = 7843; % Nm
-wheel_dia = 1.21; % m
-gear_ratio = 4.821;
-power_factor = 0.86; % assumed (not a given data)
-efficiency = 0.965; % assumed (not a given data)
 
 
 %% Main dimensions:
