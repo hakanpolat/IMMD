@@ -124,5 +124,18 @@ http://tr.farnell.com/bourns/cd-mbl206sl/diode-bridge-rect-1-ph-600v-smd/dp/2676
 
 The lowest current rating 1A will be appropriate for this design.  
 
-There is not much price difference for such a selection. 0.459 Euro for rectifier.
+There is not much price difference for such a selection. 0.459 Euro for rectifier. 
 
+#Sixth Week Report 
+
+**Optocoupler**
+
+http://tr.farnell.com/fairchild-semiconductor/fod817c3sd/opto-cplr-phototrans-5kv-smd/dp/2322516
+
+FOD817C3SD has been chosen. 
+
+**Diode Rectifier**  
+
+FAIRCHILD SEMICONDUCTOR  DF06M  Bridge Rectifier Diode has been chosen.
+
+http://www.farnell.com/datasheets/2212136.pdf?_ga=1.84777817.1794372046.1488194088
