@@ -1,11 +1,27 @@
 ### Bu dökümanda malzeme seçimleri, tasarım değerleri, örnek malzemeler vb. yer alacaktır.
 
-* Rectifier, DC bara filtresi ve flyback ayrı devrelerde mi olacak?
+#### Tanımlar
+* m = faz sayısı
+* p = kutup sayısı
+* n = kutup sayısı
+* Ns = stator slot sayısı
+* pr = rotor kutup sayısı
+
+#### PCBler
+1. m x n x Güç katı devresi
+2. n x Slave kontrol devresi
+3. 1 x Master kontrol devresi
+4. n x 1 x Ölçüm devresi
+5. 1 x Güç kaynağı devresi
+6. 1 x Rectifier devresi (filtre dahil)
+
+**Çizim eklenecek**
+
 
 #### Rectifier tarafı
 * Tahmin edilen akım gerelim değerleri: 600V, 8A
 * Gerekli akım gerelim değerleri: 800V, 20A
-* Doğrulamak için benzetim yapılacak
+* **Doğrulamak için benzetim yapılacak**
 * Örnek ürünler:
   * [Vishay VS-26MT100](http://tr.farnell.com/vishay/vs-26mt100/bridge-rectifier-25a-3ph/dp/9098550)
   * [SEMIKRON SKD2508](http://tr.farnell.com/semikron/skd2508/bridge-rectifier-20a-800v-3ph/dp/9401830)
@@ -13,6 +29,7 @@
   * Paket büyüklükleri genelde 28.5 mm, yükseklik bacak hariç 10 mm.
 
 #### DC Bara
+* Her güç katı kartı üzerinde kendine ait kondansatörler olacak. DC barada (tek kart) ortak bir kondansatör olabilir.
 
 #### Motor sürücü
 * Kaç mödül, kaç seri, kaç parallel?
@@ -52,7 +69,7 @@ Example motor (Page-44):
   * [Mclennan - Megaflux](http://www.mclennan.co.uk/product/megaflux-frameless-torque-motors): There are a lot of suitable selection.
 
 
-
+* distributed or concentrated?
 * Üretim için gereken altyapı araştırılacak
 * Hazır frameless motorlarda oluk sayılarına bakılacak (3D models)
 * Kollmorgen'a mail atılacak (alttaki seçenekler için)
@@ -71,7 +88,8 @@ Example motor (Page-44):
 
 #### Kontrol ve ölçüm devresi
 
-
 #### Güç kaynağı
 
 #### Soğutucu
+
+#### Frame / Mekanik
