@@ -94,7 +94,24 @@ coil span = 3
 ![](./images/fscw/angle3.png)
 
 
+**Distribution, coil-span and winding factors for PM machines with concentrated windings**
 
+![](./images/fscw/table_allt1.png)
+
+![](./images/fscw/table_allt2.png)
+
+![](./images/fscw/table_altert1.png)
+
+![](./images/fscw/table_altert2.png)
+
+
+**Comparison of PM Brushless Motors, Having Either All Teeth or Alternate Teeth Wound**
+
+![](./images/fscw/all_teeth.png)
+
+![](./images/fscw/alter_teeth.png)
+
+![](./images/fscw/teeth.png)
 
 ## Split Winding machine
 Conventional winding:
