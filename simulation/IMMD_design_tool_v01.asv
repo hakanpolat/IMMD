@@ -49,11 +49,17 @@ Tcogging_pp = 0.81; % Nm
 friction_viscous = 0.385; % Nm/kRPM
 Rth = 0.305; % C/W
 pole_number = 46;
+slot_number = 36;
 
+length = 36.37; % mm
+outer_dia = 331.46; % mm
+Di_rotor = 155.02; % mm
+
+% basic inputs and calculations
 module = 4;
 wrated = Nrated*2*pi/60; % rad/s
-Trated = Pout_total/wrated; % Nm
 Pout_total = Prated; % Watts
+Trated = Pout_total/wrated; % Nm
 Pout_module = Pout_total/module; % Watts
 % Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge
 inverter_config = 0;
@@ -61,10 +67,10 @@ inverter_config = 0;
 winding_config = 0;
 
 %% Stator Parameters
-slot_s = 48;
+slot_s = slot_number;
 phase_s = 3;
-pole_s = module*2;
-q_s = slot_s/phase_s/pole_s;
+pole_r = pole_number;
+q_s = slot_s/phase_s/pole_r;
 % slot per module
 y_s = slot_s/module;
 layer_s = 2;

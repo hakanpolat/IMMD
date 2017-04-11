@@ -65,11 +65,33 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Rectifier parameters</a></li><li><a href="#10">DC Link parameters</a></li><li><a href="#11">Inverter Parameters</a></li><li><a href="#12">Motor design continue</a></li><li><a href="#13">RL Load design</a></li><li><a href="#14">NOT USED RIGHT NOW</a></li><li><a href="#15">An example motor from Kollmorgen</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 % Average winding temperature rise: 130 C Hot spot temperature rise: 160 C Semiconductor temperature rise: 100 C Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput">Pout_total = 8e3; <span class="comment">% Watts</span>
+  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Rectifier parameters</a></li><li><a href="#10">DC Link parameters</a></li><li><a href="#11">Inverter Parameters</a></li><li><a href="#12">Motor design continue</a></li><li><a href="#13">RL Load design</a></li><li><a href="#14">NOT USED RIGHT NOW</a></li><li><a href="#15">An example motor from Kollmorgen</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 % Average winding temperature rise: 130 C Hot spot temperature rise: 160 C Semiconductor temperature rise: 100 C Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput"><span class="comment">% motor catalog (Kollmorgen, KBM(S)-88X00-X, B)</span>
+<span class="comment">% http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true</span>
+<span class="comment">% http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/</span>
+Prated = 5.46e3; <span class="comment">% Watts</span>
+Nrated = 1000; <span class="comment">% rpm</span>
+Tstall_cont = 102; <span class="comment">% Nm</span>
+Icont = 20.5; <span class="comment">% Amps</span>
+Tstall_peak = 145; <span class="comment">% Nm</span>
+Ipeak = 48.3; <span class="comment">% amps</span>
+torque_sens = 5.06; <span class="comment">% Nm/Arms</span>
+back_emfc = 306; <span class="comment">% Vrms/kRPM</span>
+motor_cons = 6.10; <span class="comment">% Nm/sqrt(Watt)</span>
+res_ltol = 0.46; <span class="comment">% Omhs</span>
+induct = 4.5; <span class="comment">% mH</span>
+inertia = 5.26e-2; <span class="comment">% kgm^2</span>
+friction_static = 1.08; <span class="comment">% Nm</span>
+Tcogging_pp = 0.81; <span class="comment">% Nm</span>
+friction_viscous = 0.385; <span class="comment">% Nm/kRPM</span>
+Rth = 0.305; <span class="comment">% C/W</span>
+pole_number = 46;
+slot_number = 36;
+
+<span class="comment">% basic inputs and calculations</span>
 module = 4;
-Nrated = 1500; <span class="comment">% rpm</span>
 wrated = Nrated*2*pi/60; <span class="comment">% rad/s</span>
 Trated = Pout_total/wrated; <span class="comment">% Nm</span>
+Pout_total = Prated; <span class="comment">% Watts</span>
 Pout_module = Pout_total/module; <span class="comment">% Watts</span>
 <span class="comment">% Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge</span>
 inverter_config = 0;
@@ -283,11 +305,34 @@ phase = 3;
 % Heat sink
 
 %% General Inputs
-Pout_total = 8e3; % Watts
+
+% motor catalog (Kollmorgen, KBM(S)-88X00-X, B)
+% http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&name=KBM(S)-88&isCate=true
+% http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/
+Prated = 5.46e3; % Watts
+Nrated = 1000; % rpm
+Tstall_cont = 102; % Nm
+Icont = 20.5; % Amps
+Tstall_peak = 145; % Nm
+Ipeak = 48.3; % amps
+torque_sens = 5.06; % Nm/Arms
+back_emfc = 306; % Vrms/kRPM
+motor_cons = 6.10; % Nm/sqrt(Watt)
+res_ltol = 0.46; % Omhs
+induct = 4.5; % mH
+inertia = 5.26e-2; % kgm^2
+friction_static = 1.08; % Nm
+Tcogging_pp = 0.81; % Nm
+friction_viscous = 0.385; % Nm/kRPM
+Rth = 0.305; % C/W
+pole_number = 46;
+slot_number = 36;
+
+% basic inputs and calculations
 module = 4;
-Nrated = 1500; % rpm
 wrated = Nrated*2*pi/60; % rad/s
 Trated = Pout_total/wrated; % Nm
+Pout_total = Prated; % Watts
 Pout_module = Pout_total/module; % Watts
 % Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge
 inverter_config = 0;
