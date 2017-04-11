@@ -65,18 +65,19 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Inverter Parameters</a></li><li><a href="#10">DC Link parameters</a></li><li><a href="#11">Rectifier parameters</a></li><li><a href="#12">NOT USED RIGHT NOW</a></li><li><a href="#13">An example motor from Kollmorgen</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 % Average winding temperature rise: 130 C Hot spot temperature rise: 160 C Semiconductor temperature rise: 100 C Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput">Pout_total = 8e3; <span class="comment">% Watts</span>
+  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#5">Fundamental blocks:</a></li><li><a href="#6">General Inputs</a></li><li><a href="#7">Stator Parameters</a></li><li><a href="#8">Rotor Parameters</a></li><li><a href="#9">Rectifier parameters</a></li><li><a href="#10">DC Link parameters</a></li><li><a href="#11">Inverter Parameters</a></li><li><a href="#12">Motor design continue</a></li><li><a href="#13">RL Load design</a></li><li><a href="#14">NOT USED RIGHT NOW</a></li><li><a href="#15">An example motor from Kollmorgen</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC) Cooling: Forced air cooling Motor efficiency aim = 98 % Power stage efficiency aim = 98 % Average winding temperature rise: 130 C Hot spot temperature rise: 160 C Semiconductor temperature rise: 100 C Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="5"></a></h2><p>Rotor Stator Inverter DC Link Rectifier Controller Heat sink</p><h2>General Inputs<a name="6"></a></h2><pre class="codeinput">Pout_total = 8e3; <span class="comment">% Watts</span>
 module = 4;
 Nrated = 1500; <span class="comment">% rpm</span>
-Trated = Pout_total/rated_speed; <span class="comment">% Nm</span>
+wrated = Nrated*2*pi/60; <span class="comment">% rad/s</span>
+Trated = Pout_total/wrated; <span class="comment">% Nm</span>
 Pout_module = Pout_total/module; <span class="comment">% Watts</span>
 <span class="comment">% Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge</span>
 inverter_config = 0;
 <span class="comment">% winding configuration: 0 for distributed, 1 for concentrated</span>
-winding_config = 1;
+winding_config = 0;
 </pre><h2>Stator Parameters<a name="7"></a></h2><pre class="codeinput">slot_s = 48;
 phase_s = 3;
-pole_s = 8;
+pole_s = module*2;
 q_s = slot_s/phase_s/pole_s;
 <span class="comment">% slot per module</span>
 y_s = slot_s/module;
@@ -84,7 +85,7 @@ layer_s = 2;
 zQ = 10; <span class="comment">% number of turns per coil side</span>
 
 <span class="comment">% Number of turns per phase per module</span>
-Nphm = layer_s*pole_s*zQ*q_s/2;
+Nphm = layer_s*zQ*q_s;
 
 Do_s = 0.15; <span class="comment">% m</span>
 Di_s = 0.1; <span class="comment">% m</span>
@@ -108,10 +109,8 @@ kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
 <span class="comment">% winding factor</span>
 kw1 = kp1*kd1;
 
-<span class="comment">% fill factor</span>
-
-<span class="comment">% flux density and flux</span>
-Bgap = 0.7; <span class="comment">% Tesla</span>
+<span class="comment">% peak flux density and flux</span>
+Bgap = 0.9; <span class="comment">% Tesla</span>
 
 flux_pp = 4*(Di_s/2)*L_s*Bgap/pole_s; <span class="comment">% Weber</span>
 </pre><h2>Rotor Parameters<a name="8"></a></h2><pre class="codeinput">pole_r = 8;
@@ -119,18 +118,94 @@ Do_r = 100; <span class="comment">% mm</span>
 Di_r = 30; <span class="comment">% mm</span>
 
 motor_eff = 0.9;
-</pre><h2>Inverter Parameters<a name="9"></a></h2><pre class="codeinput">ffund = 100; <span class="comment">% Hz</span>
+</pre><h2>Rectifier parameters<a name="9"></a></h2><pre class="codeinput">fs = 50; <span class="comment">% Hz</span>
+Vs_ll = 400; <span class="comment">% Volts</span>
+Vdc = (3/pi)*Vs_ll*sqrt(2); <span class="comment">% Volts</span>
+</pre><h2>DC Link parameters<a name="10"></a></h2><h2>Inverter Parameters<a name="11"></a></h2><pre class="codeinput"><span class="comment">% connection</span>
+series = 2;
+parallel = module/series;
+
+<span class="comment">% modulation technique: 0 for SPWM, 1 for SVPWM</span>
+mod_tech = 1;
+
+<span class="comment">% voltage by module</span>
+Vdc_module = Vdc/series;
+ma = 1;
+<span class="keyword">if</span> mod_tech == 0
+   Vph_module = Vdc_module*ma/(2*sqrt(2)); <span class="comment">% Vrms</span>
+   <span class="comment">% 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage</span>
+<span class="keyword">elseif</span> mod_tech == 1
+   Vph_module = Vdc_module*ma/(sqrt(2*3)); <span class="comment">% Vrms</span>
+<span class="keyword">end</span>
+
+
+<span class="comment">% power by module</span>
 pf = 0.87;
-Vll = 400; <span class="comment">% Volts</span>
+Pout_inv_module = Pout_module/motor_eff; <span class="comment">% W</span>
+Sout_inv_module = Pout_inv_module/pf; <span class="comment">% VA</span>
+Iline = Sout_inv_module/(3*Vph_module); <span class="comment">% Amps</span>
+
+
+<span class="comment">% frequency and speed</span>
+ffund = 100; <span class="comment">% Hz</span>
 Nsync = 120*ffund/pole_s; <span class="comment">% rpm</span>
 wsync = Nsync*2*pi/60; <span class="comment">% rad/s</span>
 fsw = 100e3; <span class="comment">% Hz</span>
-Pout_inv_module = Pout_module/motor_eff;
-Iline = Pout_inv_module/(Vll*sqrt(2)); <span class="comment">% Amps</span>
 
 <span class="comment">% induced_voltage_per_module_per_phase</span>
 Erms = 4.44*ffund*flux_pp*kw1*Nphm; <span class="comment">% Volts</span>
-</pre><h2>DC Link parameters<a name="10"></a></h2><h2>Rectifier parameters<a name="11"></a></h2><h2>NOT USED RIGHT NOW<a name="12"></a></h2><h2>An example motor from Kollmorgen<a name="13"></a></h2><pre class="codeinput"><span class="comment">% Datasheet parameters</span>
+</pre><h2>Motor design continue<a name="12"></a></h2><pre class="codeinput">Ipeak = Iline*sqrt(2); <span class="comment">% Amps</span>
+MMF_peak = (phase/2)*(4/pi)*(Nphm*Ipeak)*kw1; <span class="comment">% A-t</span>
+perm_air = 4*pi*1e-7; <span class="comment">% H/m</span>
+
+<span class="comment">% conductors</span>
+
+<span class="comment">% frequency constraint</span>
+fmax = ffund*2; <span class="comment">% Hz</span>
+copper_res = 1.7e-8; <span class="comment">% Ohm*m</span>
+copper_perm = 1.256629e-6; <span class="comment">% H/m</span>
+ang_freq = 2*pi*fmax; <span class="comment">% rad/sec</span>
+skin_depth = sqrt(copper_res*2/(ang_freq*copper_perm)); <span class="comment">% m</span>
+max_cond_dia = 2*skin_depth; <span class="comment">% m</span>
+
+<span class="comment">% current constraint</span>
+current_density = 7; <span class="comment">% A/mm^2</span>
+copper_area = Iline/current_density; <span class="comment">% mm^2</span>
+copper_radius = sqrt(copper_area/pi); <span class="comment">% mm</span>
+copper_diameter = copper_radius*2; <span class="comment">% mm</span>
+
+<span class="comment">% wire selection: % AWG#16</span>
+wire_diameter = 1.29032; <span class="comment">% mm</span>
+wire_radius = wire_diameter/2; <span class="comment">% mm</span>
+wire_strand = 1;
+wire_area = pi*wire_radius^2; <span class="comment">% mm^2</span>
+stator_current_density = Iline/(wire_area*wire_strand); <span class="comment">% A/mm^2</span>
+
+<span class="comment">% fill factor</span>
+wire_diameter_insulation = wire_diameter*1.1; <span class="comment">% mm</span>
+wire_area_insulation = pi*(wire_diameter_insulation/2)^2; <span class="comment">% mm^2</span>
+total_stator_wire_area = wire_strand*wire_area_insulation; <span class="comment">% mm^2</span>
+total_stator_slot_wire_area = layer_s*zQ*total_stator_wire_area; <span class="comment">% mm^2</span>
+<span class="comment">% this value is not set right now</span>
+slot_area = 100; <span class="comment">% mm^2</span>
+fill_factor = total_stator_slot_wire_area/slot_area;
+</pre><h2>RL Load design<a name="13"></a></h2><pre class="codeinput">V1load = Vph_module; <span class="comment">% V</span>
+S1load = Sout_inv_module/3; <span class="comment">% VA</span>
+I1load = S1load/V1load; <span class="comment">% A</span>
+Z1load = V1load/I1load; <span class="comment">% Ohms</span>
+R1load = Z1load*pf; <span class="comment">% Ohms</span>
+X1load = sqrt(Z1load^2-R1load^2); <span class="comment">% Ohms</span>
+L1load = X1load/(2*pi*ffund); <span class="comment">% Henries</span>
+
+<span class="comment">% resistor</span>
+res_val = R1load; <span class="comment">% Ohms</span>
+res_cur = I1load; <span class="comment">% A</span>
+res_pow = I1load^2*R1load; <span class="comment">% W</span>
+
+<span class="comment">% sample: http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103</span>
+
+<span class="comment">% heat sink design is required</span>
+</pre><h2>NOT USED RIGHT NOW<a name="14"></a></h2><h2>An example motor from Kollmorgen<a name="15"></a></h2><pre class="codeinput"><span class="comment">% Datasheet parameters</span>
 <span class="comment">% KBM(S)-45X02-X - B</span>
 rotor_pole = 10;
 Prated = 7200; <span class="comment">% W</span>
@@ -211,18 +286,18 @@ phase = 3;
 Pout_total = 8e3; % Watts
 module = 4;
 Nrated = 1500; % rpm
-Trated = Pout_total/rated_speed; % Nm
+wrated = Nrated*2*pi/60; % rad/s
+Trated = Pout_total/wrated; % Nm
 Pout_module = Pout_total/module; % Watts
 % Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge
 inverter_config = 0;
 % winding configuration: 0 for distributed, 1 for concentrated
-winding_config = 1;
-
+winding_config = 0;
 
 %% Stator Parameters
 slot_s = 48;
 phase_s = 3;
-pole_s = 8;
+pole_s = module*2;
 q_s = slot_s/phase_s/pole_s;
 % slot per module
 y_s = slot_s/module;
@@ -230,7 +305,7 @@ layer_s = 2;
 zQ = 10; % number of turns per coil side
 
 % Number of turns per phase per module
-Nphm = layer_s*pole_s*zQ*q_s/2;
+Nphm = layer_s*zQ*q_s;
 
 Do_s = 0.15; % m
 Di_s = 0.1; % m
@@ -254,10 +329,8 @@ kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
 % winding factor
 kw1 = kp1*kd1;
 
-% fill factor
-
-% flux density and flux
-Bgap = 0.7; % Tesla
+% peak flux density and flux
+Bgap = 0.9; % Tesla
 
 flux_pp = 4*(Di_s/2)*L_s*Bgap/pole_s; % Weber
 
@@ -269,27 +342,114 @@ Di_r = 30; % mm
 
 motor_eff = 0.9;
 
-%% Inverter Parameters
-ffund = 100; % Hz
-pf = 0.87;
-Vll = 400; % Volts
-Nsync = 120*ffund/pole_s; % rpm
-wsync = Nsync*2*pi/60; % rad/s
-fsw = 100e3; % Hz
-Pout_inv_module = Pout_module/motor_eff;
-Iline = Pout_inv_module/(Vll*sqrt(2)); % Amps
 
-% induced_voltage_per_module_per_phase
-Erms = 4.44*ffund*flux_pp*kw1*Nphm; % Volts
+%% Rectifier parameters
+
+fs = 50; % Hz
+Vs_ll = 400; % Volts
+Vdc = (3/pi)*Vs_ll*sqrt(2); % Volts
+
 
 
 %% DC Link parameters
 
 
 
-%% Rectifier parameters
+
+%% Inverter Parameters
+
+% connection
+series = 2;
+parallel = module/series;
+
+% modulation technique: 0 for SPWM, 1 for SVPWM
+mod_tech = 1;
+
+% voltage by module
+Vdc_module = Vdc/series;
+ma = 1;
+if mod_tech == 0
+   Vph_module = Vdc_module*ma/(2*sqrt(2)); % Vrms
+   % 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage
+elseif mod_tech == 1
+   Vph_module = Vdc_module*ma/(sqrt(2*3)); % Vrms
+end
 
 
+% power by module
+pf = 0.87;
+Pout_inv_module = Pout_module/motor_eff; % W
+Sout_inv_module = Pout_inv_module/pf; % VA
+Iline = Sout_inv_module/(3*Vph_module); % Amps
+
+
+% frequency and speed
+ffund = 100; % Hz
+Nsync = 120*ffund/pole_s; % rpm
+wsync = Nsync*2*pi/60; % rad/s
+fsw = 100e3; % Hz
+
+% induced_voltage_per_module_per_phase
+Erms = 4.44*ffund*flux_pp*kw1*Nphm; % Volts
+
+
+%% Motor design continue
+
+Ipeak = Iline*sqrt(2); % Amps
+MMF_peak = (phase/2)*(4/pi)*(Nphm*Ipeak)*kw1; % A-t
+perm_air = 4*pi*1e-7; % H/m
+
+% conductors
+
+% frequency constraint
+fmax = ffund*2; % Hz
+copper_res = 1.7e-8; % Ohm*m
+copper_perm = 1.256629e-6; % H/m
+ang_freq = 2*pi*fmax; % rad/sec
+skin_depth = sqrt(copper_res*2/(ang_freq*copper_perm)); % m
+max_cond_dia = 2*skin_depth; % m
+
+% current constraint
+current_density = 7; % A/mm^2 
+copper_area = Iline/current_density; % mm^2
+copper_radius = sqrt(copper_area/pi); % mm
+copper_diameter = copper_radius*2; % mm
+
+% wire selection: % AWG#16
+wire_diameter = 1.29032; % mm
+wire_radius = wire_diameter/2; % mm
+wire_strand = 1;
+wire_area = pi*wire_radius^2; % mm^2
+stator_current_density = Iline/(wire_area*wire_strand); % A/mm^2
+
+% fill factor
+wire_diameter_insulation = wire_diameter*1.1; % mm
+wire_area_insulation = pi*(wire_diameter_insulation/2)^2; % mm^2
+total_stator_wire_area = wire_strand*wire_area_insulation; % mm^2
+total_stator_slot_wire_area = layer_s*zQ*total_stator_wire_area; % mm^2
+% this value is not set right now
+slot_area = 100; % mm^2
+fill_factor = total_stator_slot_wire_area/slot_area;
+
+
+
+%% RL Load design
+V1load = Vph_module; % V
+S1load = Sout_inv_module/3; % VA
+I1load = S1load/V1load; % A
+Z1load = V1load/I1load; % Ohms
+R1load = Z1load*pf; % Ohms
+X1load = sqrt(Z1load^2-R1load^2); % Ohms
+L1load = X1load/(2*pi*ffund); % Henries
+
+% resistor
+res_val = R1load; % Ohms
+res_cur = I1load; % A
+res_pow = I1load^2*R1load; % W
+
+% sample: http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103
+
+% heat sink design is required
 
 
 %% NOT USED RIGHT NOW
