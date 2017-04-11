@@ -1,3 +1,12 @@
+# 10.03.2017 - 06.04 2017
+## Planlanan çalışmalar:
+* ISIE review'ları incelenip final paper planlaması yapılacak.
+* BAP için tool geliştirmeye devam.
+* RPG simulasyona devam edilecek.
+
+## Gerçekleşen çalışmalar:
+* ...
+
 # 03.03.2017 - 09.04 2017
 ## Planlanan çalışmalar:
 * ISIE review'ları incelenip final paper planlaması yapılacak.
@@ -6,7 +15,9 @@
 * RPG simulasyona devam edilecek.
 
 ## Gerçekleşen çalışmalar:
-* ...
+* RPG simulasyon PV problemi çözüldü.
+* IMMD BAP için BLDC machine design ile ilgili okuma yapıldı.
+* BAP için design tool geliştirilmeye başlandı.
 
 # 27.03.2017 - 02.04 2017
 ## Planlanan çalışmalar:
