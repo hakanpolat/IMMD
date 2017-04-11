@@ -42,6 +42,58 @@ End windings are not overlapping each other.
 
 One of the key **challenges of using FSCW configurations** is the significant rotor losses (including magnet losses, rotor core losses, and sleeve losses in case of conductive sleeve) particularly at high speeds due to the various sub- and superspace-harmonic components inherent to such winding configurations that are not in synchronism with the rotor.
 
+**Brushless permanent magnet motor design (BOOK)**
+
+**Cogging torque** describes the interaction of the rotor magnets acting on the stator teeth or poles inde- pendent of any current. While this torque is often considered beneficial in step motors, it is considered detrimental in brushless permanent magnet motors.
+
+Simply put, cogging torque is the torque created when the rotor permanent magnets attempt to align themselves with a maxi- mum amount of ferromagnetic material.
+
+![](./images/fscw/cogging.png)
+
+**Phi** is the magnet flux crossing the air gap and **R** is the total reluctance through which the flux passes
+
+Since each magnet produces cogging torque as it passes by stator slots, the relationship between **the number of magnet poles and the number of stator slots** influences cogging torque.
+
+In **fractional slot motors** such as the four pole, fifteen slot motor, each magnet appears in a different position relative to the stator slots. As a result, the cogging torques created by all magnets are out of phase with each other, and the net cogging torque is reduced since the cogging torque from each magnet adds together and at least partially cancels the cogging torque from other magnets. This fact is one of the primary reasons for choosing a fractional slot motor.
+
+**Coil span**:
+
+Number of slots per magnet pole:
+
+![](./images/fscw/eq1.png)
+
+where Ns is the nunber of **stator slots** and Nm is the number of **rotor poles**.
+
+Nominal coil span in slots:
+
+![](./images/fscw/eq2.png)
+
+where fix is the **integer portion**.
+
+
+**FSCW example**
+
+Ns = 15, Nm = 4
+
+![](./images/fscw/4p15s.png)
+
+
+S* = max(fix(Ns/Nm),1)
+
+S* = max(3,1) = 3
+
+coil span = 3
+
+
+**Relative angles and associated In and Out slots**
+
+![](./images/fscw/angle1.png)
+
+![](./images/fscw/angle2.png)
+
+![](./images/fscw/angle3.png)
+
+
 
 
 ## Split Winding machine
