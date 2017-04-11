@@ -28,11 +28,34 @@
 % Heat sink
 
 %% General Inputs
-Pout_total = 8e3; % Watts
+
+% motor catalog (Kollmorgen, KBM(S)-88X00-X, B)
+% http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&name=KBM(S)-88&isCate=true
+% http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/
+Prated = 5.46e3; % Watts
+Nrated = 1000; % rpm
+Tstall_cont = 102; % Nm
+Icont = 20.5; % Amps
+Tstall_peak = 145; % Nm
+Ipeak = 48.3; % amps
+torque_sens = 5.06; % Nm/Arms
+back_emfc = 306; % Vrms/kRPM
+motor_cons = 6.10; % Nm/sqrt(Watt)
+res_ltol = 0.46; % Omhs
+induct = 4.5; % mH
+inertia = 5.26e-2; % kgm^2
+friction_static = 1.08; % Nm
+Tcogging_pp = 0.81; % Nm
+friction_viscous = 0.385; % Nm/kRPM
+Rth = 0.305; % C/W
+pole_number = 46;
+slot_number = 36;
+
+% basic inputs and calculations
 module = 4;
-Nrated = 1500; % rpm
 wrated = Nrated*2*pi/60; % rad/s
 Trated = Pout_total/wrated; % Nm
+Pout_total = Prated; % Watts
 Pout_module = Pout_total/module; % Watts
 % Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge
 inverter_config = 0;
