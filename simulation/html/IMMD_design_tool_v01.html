@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#12">Fundamental blocks:</a></li><li><a href="#19">General Inputs</a></li><li><a href="#22">Stator Parameters</a></li><li><a href="#23">Rotor Parameters</a></li><li><a href="#24">Rectifier parameters</a></li><li><a href="#25">DC Link parameters</a></li><li><a href="#26">Inverter Parameters</a></li><li><a href="#27">Motor design continue</a></li><li><a href="#28">RL Load design</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC)</p><p>Cooling: Forced air cooling</p><p>Motor efficiency aim = 98 %</p><p>Power stage efficiency aim = 98 %</p><p>Average winding temperature rise: 130 C</p><p>Hot spot temperature rise: 160 C</p><p>Semiconductor temperature rise: 100 C</p><p>Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="12"></a></h2><p>Rotor</p><p>Stator</p><p>Inverter</p><p>DC Link</p><p>Rectifier</p><p>Controller</p><p>Heat sink</p><h2>General Inputs<a name="19"></a></h2><p>motor catalog (Kollmorgen, KBM(S)-88X00-X, B)</p><p><a href="http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true">http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true</a></p><p><a href="http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/">http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/</a></p><pre class="codeinput">Prated = 5.46e3; <span class="comment">% Watts</span>
+  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#12">Fundamental blocks:</a></li><li><a href="#19">General Inputs</a></li><li><a href="#22">Stator Parameters</a></li><li><a href="#23">Rotor Parameters</a></li><li><a href="#24">Rectifier parameters</a></li><li><a href="#25">DC Link parameters</a></li><li><a href="#26">Inverter Parameters</a></li><li><a href="#27">Motor design continue</a></li><li><a href="#28">RL Load design</a></li><li><a href="#31">JUST A SMALL TEST CODE</a></li><li><a href="#32">ANOTHER TRIAL</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC)</p><p>Cooling: Forced air cooling</p><p>Motor efficiency aim = 98 %</p><p>Power stage efficiency aim = 98 %</p><p>Average winding temperature rise: 130 C</p><p>Hot spot temperature rise: 160 C</p><p>Semiconductor temperature rise: 100 C</p><p>Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="12"></a></h2><p>Rotor</p><p>Stator</p><p>Inverter</p><p>DC Link</p><p>Rectifier</p><p>Controller</p><p>Heat sink</p><h2>General Inputs<a name="19"></a></h2><p>motor catalog (Kollmorgen, KBM(S)-88X00-X, B)</p><p><a href="http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true">http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true</a></p><p><a href="http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/">http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/</a></p><pre class="codeinput">Prated = 5.46e3; <span class="comment">% Watts</span>
 Nrated = 1000; <span class="comment">% rpm</span>
 Tstall_cont = 102; <span class="comment">% Nm</span>
 Icont = 20.5; <span class="comment">% Amps</span>
@@ -118,19 +118,22 @@ Surface_s = pi*Di_s*L_s; <span class="comment">% m^2</span>
 Circum_s = pi*Di_s; <span class="comment">% m</span>
 Volume_i = Di_s^2*L_s*pi/4; <span class="comment">% m^3</span>
 
-pitch = 2/3;
-pitch_angle = pitch*pi; <span class="comment">% electrical radians</span>
-slot_angle = (pole_s/2)*2*pi/slot_s; <span class="comment">% electrical radians</span>
-slot_pitch =Circum_s/slot_s; <span class="comment">% m</span>
-
-<span class="comment">% pitch factor</span>
-kp1 = sin(pitch_angle/2);
-
-<span class="comment">% distribution factor</span>
-kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
-
 <span class="comment">% winding factor</span>
-kw1 = kp1*kd1;
+<span class="keyword">if</span> winding_config == 0
+    pitch = 2/3;
+    pitch_angle = pitch*pi; <span class="comment">% electrical radians</span>
+    slot_angle = (pole_s/2)*2*pi/slot_s; <span class="comment">% electrical radians</span>
+    slot_pitch =Circum_s/slot_s; <span class="comment">% m</span>
+    <span class="comment">% pitch factor</span>
+    kp1 = sin(pitch_angle/2);
+    <span class="comment">% distribution factor</span>
+    kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
+    <span class="comment">% winding factor</span>
+    kw1 = kp1*kd1;
+<span class="keyword">elseif</span> winding_config == 1
+    kw1 = 0.867; <span class="comment">% 36/46, all teeth wound</span>
+    <span class="comment">%kw1 = 0.87; % 36/46, alternate teeth wound</span>
+<span class="keyword">end</span>
 
 <span class="comment">% peak flux density and flux</span>
 Bgap = 0.9; <span class="comment">% Tesla</span>
@@ -156,10 +159,10 @@ mod_tech = 1;
 Vdc_module = Vdc/series;
 ma = 1;
 <span class="keyword">if</span> mod_tech == 0
-   Vph_module = Vdc_module*ma/(2*sqrt(2)); <span class="comment">% Vrms</span>
-   <span class="comment">% 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage</span>
+    Vph_module = Vdc_module*ma/(2*sqrt(2)); <span class="comment">% Vrms</span>
+    <span class="comment">% 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage</span>
 <span class="keyword">elseif</span> mod_tech == 1
-   Vph_module = Vdc_module*ma/(sqrt(2*3)); <span class="comment">% Vrms</span>
+    Vph_module = Vdc_module*ma/(sqrt(2*3)); <span class="comment">% Vrms</span>
 <span class="keyword">end</span>
 
 
@@ -225,13 +228,34 @@ L1load = X1load/(2*pi*ffund); <span class="comment">% Henries</span>
 res_val = R1load; <span class="comment">% Ohms</span>
 res_cur = I1load; <span class="comment">% A</span>
 res_pow = I1load^2*R1load; <span class="comment">% W</span>
-</pre><p>sample: <a href="http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103">http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103</a></p><p>heat sink design is required for the resistive load</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><p>sample: <a href="http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103">http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103</a></p><p>heat sink design is required for the resistive load</p><h2>JUST A SMALL TEST CODE<a name="31"></a></h2><pre class="codeinput">slot = [6,9,12,15,18,21,24,27,30,33,36];
+<span class="comment">%slot = 6;</span>
+pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
+<span class="comment">%pole = 4;</span>
+<span class="keyword">for</span> k = 1:numel(slot)
+    <span class="keyword">for</span> l = 1:numel(pole)
+        full_pitch = 180/(pole(l)/2);
+        slot_pitch = 360/slot(k);
+        span = slot_pitch/full_pitch;
+        winding = abs(sin(span*pi));
+        <span class="comment">%fprintf('Winding factor for %d slot and %d pole is %1.3g.\n',slot(k),pole(l),winding);</span>
+    <span class="keyword">end</span>
+<span class="keyword">end</span>
+</pre><h2>ANOTHER TRIAL<a name="32"></a></h2><pre class="codeinput">slot = 6;
+pole = 8;
+winding = sin(pole*pi/slot)
+</pre><pre class="codeoutput">
+winding =
+
+   -0.8660
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% IMMD DESIGN TOOL
 %% M. Uğur
 %% 2017
 %%
-% In this file, design of the IMMD system will be conducted. 
+% In this file, design of the IMMD system will be conducted.
 % Analytical design methods will be used with the aid of simulations.
 % The relations between the blocks will be considered.
 % The design is for the prototype on BAP Project.
@@ -241,9 +265,9 @@ res_pow = I1load^2*R1load; <span class="comment">% W</span>
 %%
 % Cooling: Forced air cooling
 %%
-% Motor efficiency aim = 98 % 
+% Motor efficiency aim = 98 %
 %%
-% Power stage efficiency aim = 98 % 
+% Power stage efficiency aim = 98 %
 %%
 % Average winding temperature rise: 130 C
 %%
@@ -330,19 +354,22 @@ Surface_s = pi*Di_s*L_s; % m^2
 Circum_s = pi*Di_s; % m
 Volume_i = Di_s^2*L_s*pi/4; % m^3
 
-pitch = 2/3;
-pitch_angle = pitch*pi; % electrical radians
-slot_angle = (pole_s/2)*2*pi/slot_s; % electrical radians
-slot_pitch =Circum_s/slot_s; % m
-
-% pitch factor
-kp1 = sin(pitch_angle/2);
-
-% distribution factor
-kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
-
 % winding factor
-kw1 = kp1*kd1;
+if winding_config == 0
+    pitch = 2/3;
+    pitch_angle = pitch*pi; % electrical radians
+    slot_angle = (pole_s/2)*2*pi/slot_s; % electrical radians
+    slot_pitch =Circum_s/slot_s; % m
+    % pitch factor
+    kp1 = sin(pitch_angle/2);
+    % distribution factor
+    kd1 = sin(q_s*slot_angle/2)/(q_s*sin(slot_angle/2));
+    % winding factor
+    kw1 = kp1*kd1;
+elseif winding_config == 1
+    kw1 = 0.867; % 36/46, all teeth wound
+    %kw1 = 0.87; % 36/46, alternate teeth wound
+end
 
 % peak flux density and flux
 Bgap = 0.9; % Tesla
@@ -385,10 +412,10 @@ mod_tech = 1;
 Vdc_module = Vdc/series;
 ma = 1;
 if mod_tech == 0
-   Vph_module = Vdc_module*ma/(2*sqrt(2)); % Vrms
-   % 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage
+    Vph_module = Vdc_module*ma/(2*sqrt(2)); % Vrms
+    % 0.612 = sqrt(3/2)/2: Mohan equation for line-line voltage
 elseif mod_tech == 1
-   Vph_module = Vdc_module*ma/(sqrt(2*3)); % Vrms
+    Vph_module = Vdc_module*ma/(sqrt(2*3)); % Vrms
 end
 
 
@@ -426,7 +453,7 @@ skin_depth = sqrt(copper_res*2/(ang_freq*copper_perm)); % m
 max_cond_dia = 2*skin_depth; % m
 
 % current constraint
-current_density = 7; % A/mm^2 
+current_density = 7; % A/mm^2
 copper_area = Iline/current_density; % mm^2
 copper_radius = sqrt(copper_area/pi); % mm
 copper_diameter = copper_radius*2; % mm
@@ -469,6 +496,26 @@ res_pow = I1load^2*R1load; % W
 % heat sink design is required for the resistive load
 
 
+%% JUST A SMALL TEST CODE
+slot = [6,9,12,15,18,21,24,27,30,33,36];
+%slot = 6;
+pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
+%pole = 4;
+for k = 1:numel(slot)
+    for l = 1:numel(pole)
+        full_pitch = 180/(pole(l)/2);
+        slot_pitch = 360/slot(k);
+        span = slot_pitch/full_pitch;
+        winding = abs(sin(span*pi));
+        %fprintf('Winding factor for %d slot and %d pole is %1.3g.\n',slot(k),pole(l),winding);
+    end
+end
+
+%% ANOTHER TRIAL
+
+slot = 6;
+pole = 8;
+winding = sin(pole*pi/slot)
 
 
 ##### SOURCE END #####

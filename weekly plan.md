@@ -1,11 +1,13 @@
 # 10.03.2017 - 06.04 2017
 ## Planlanan çalışmalar:
 * ISIE review'ları incelenip final paper planlaması yapılacak.
-* BAP için tool geliştirmeye devam.
+* BAP için tool geliştirilecek
 * RPG simulasyona devam edilecek.
 
 ## Gerçekleşen çalışmalar:
-* ...
+* Fractional Slot Concentrated Winding motorları incelendi
+* Tool geliştirilmeye devam ediliyor
+
 
 # 03.03.2017 - 09.04 2017
 ## Planlanan çalışmalar:

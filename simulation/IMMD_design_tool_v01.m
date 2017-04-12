@@ -254,7 +254,7 @@ for k = 1:numel(slot)
         slot_pitch = 360/slot(k);
         span = slot_pitch/full_pitch;
         winding = abs(sin(span*pi));
-        fprintf('Winding factor for %d slot and %d pole is %1.3g.\n',slot(k),pole(l),winding);
+        %fprintf('Winding factor for %d slot and %d pole is %1.3g.\n',slot(k),pole(l),winding);
     end
 end
 
