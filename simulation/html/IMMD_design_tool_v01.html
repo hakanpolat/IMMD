@@ -101,6 +101,7 @@ winding_config = 0;
 </pre><h2>Stator Parameters<a name="22"></a></h2><pre class="codeinput">slot_s = slot_number;
 phase_s = 3;
 pole_r = pole_number;
+pole_s = 8;
 q_s = slot_s/phase_s/pole_r;
 <span class="comment">% slot per module</span>
 y_s = slot_s/module;
@@ -245,7 +246,15 @@ pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
 <span class="keyword">end</span>
 </pre><h2>ANOTHER TRIAL<a name="32"></a></h2><pre class="codeinput">slot = 6;
 pole = 8;
+<<<<<<< HEAD
 winding = sin(pole*pi/slot)
+=======
+winding = sin(pole*pi/slot);
+winding = abs(winding);
+disp(winding);
+</pre><pre class="codeoutput">    0.8660
+
+>>>>>>> 598135c6b748081e2813d1c13aad27953625f316
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% IMMD DESIGN TOOL
@@ -334,6 +343,7 @@ winding_config = 0;
 slot_s = slot_number;
 phase_s = 3;
 pole_r = pole_number;
+pole_s = 8;
 q_s = slot_s/phase_s/pole_r;
 % slot per module
 y_s = slot_s/module;
@@ -512,7 +522,10 @@ end
 
 slot = 6;
 pole = 8;
-winding = sin(pole*pi/slot)
+winding = sin(pole*pi/slot);
+winding = abs(winding);
+disp(winding);
+
 
 
 ##### SOURCE END #####

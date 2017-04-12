@@ -84,6 +84,7 @@ winding_config = 0;
 slot_s = slot_number;
 phase_s = 3;
 pole_r = pole_number;
+pole_s = 8;
 q_s = slot_s/phase_s/pole_r;
 % slot per module
 y_s = slot_s/module;
@@ -262,5 +263,8 @@ end
 
 slot = 6;
 pole = 8;
-winding = sin(pole*pi/slot)
+winding = sin(pole*pi/slot);
+winding = abs(winding);
+disp(winding);
+
 
