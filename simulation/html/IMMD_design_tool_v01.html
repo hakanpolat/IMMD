@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-11"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
+      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-12"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -101,6 +101,7 @@ winding_config = 0;
 </pre><h2>Stator Parameters<a name="22"></a></h2><pre class="codeinput">slot_s = slot_number;
 phase_s = 3;
 pole_r = pole_number;
+pole_s = 8;
 q_s = slot_s/phase_s/pole_r;
 <span class="comment">% slot per module</span>
 y_s = slot_s/module;
@@ -243,11 +244,10 @@ pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
 <span class="keyword">end</span>
 </pre><h2>ANOTHER TRIAL<a name="32"></a></h2><pre class="codeinput">slot = 6;
 pole = 8;
-winding = sin(pole*pi/slot)
-</pre><pre class="codeoutput">
-winding =
-
-   -0.8660
+winding = sin(pole*pi/slot);
+winding = abs(winding);
+disp(winding);
+</pre><pre class="codeoutput">    0.8660
 
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
@@ -337,6 +337,7 @@ winding_config = 0;
 slot_s = slot_number;
 phase_s = 3;
 pole_r = pole_number;
+pole_s = 8;
 q_s = slot_s/phase_s/pole_r;
 % slot per module
 y_s = slot_s/module;
@@ -515,7 +516,10 @@ end
 
 slot = 6;
 pole = 8;
-winding = sin(pole*pi/slot)
+winding = sin(pole*pi/slot);
+winding = abs(winding);
+disp(winding);
+
 
 
 ##### SOURCE END #####
