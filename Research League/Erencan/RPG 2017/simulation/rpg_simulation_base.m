@@ -3,8 +3,27 @@ Ts = 1e-5;
 
 % Grid
 Vphase = 230; % V
-Vline = Vphase*sqrt(3); % V
+Vline = 34.5e3; % V
 fs = 50; % Hz
+
+% Transformer
+Vpri = 34.5e3; % V
+Vsec = 400; % V
+Sbase = 100e6; % VA
+ftr = 50; % Hz
+Rpri_pu = 0.002;
+Rsec_pu = 0.002;
+Lpri_pu = 0.08;
+Lsec_pu = 0.08;
+
+% Cable
+Zbase = Vsec^2/Sbase;
+Rcable = Zbase*0.01; % Ohms
+Xcable = Zbase*0.1; % Ohms
+Lcable = Xcable/(2*pi*fs); % H
+
+ri = 34.5e3; % V
+Vsec = 400; % V
 
 % Solar panel side
 Vdc = 700; % V

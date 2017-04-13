@@ -12,7 +12,7 @@ Vdc = 750; % V
 % Case 1: 1200V, 150A
 % Case 2: 1200V, 200A
 % Two alternative devices are selected for each case:
-% Case-1, device-1: Powerex c
+% Case-1, device-1: Powerex CM150DY-24A
 % Case-1, device-2: Infineon FF150R12RT4
 % Case-2, device-1: Powerex CM200DY-24A
 % Case-2, device-2: Infineon FF200R12KT4
@@ -91,22 +91,5 @@ Ploss = Ploss1*6 % W
 efficiency = 100*Pout/(Ploss+Pout)% percent
 % fprintf('Efficiency is %g %%\n',efficiency);
 % fprintf('Power loss is %g W\n',Ploss);
-
-
-
-
-if Ploss == 1
-elseif ccase == 1 && device == 2
-    
-    
-elseif ccase == 2 && device == 1
-    
-    
-elseif ccase == 2 && device == 2
-    
-    
-end
-
-
 
 
