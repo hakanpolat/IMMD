@@ -22,11 +22,8 @@ Rcable = Zbase*0.01; % Ohms
 Xcable = Zbase*0.1; % Ohms
 Lcable = Xcable/(2*pi*fs); % H
 
-ri = 34.5e3; % V
-Vsec = 400; % V
-
 % Solar panel side
-Vdc = 700; % V
+Vdc = 750; % V
 Rseries = 5; % Ohm
 Pout = 50e3; % W
 Rrefl = Vdc^2/Pout;
@@ -89,7 +86,7 @@ elseif rpc_demand > 3*rpcu_capacity/4 && rpc_demand <= rpcu_capacity
     rpcu_s3 = 1;
     rpcu_s4 = 1;
 else
-       rpcu_s1 = 0;
+    rpcu_s1 = 0;
     rpcu_s2 = 0;
     rpcu_s3 = 0;
     rpcu_s4 = 0; 

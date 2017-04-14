@@ -12,13 +12,13 @@ Vdc = 750; % V
 % Case 1: 1200V, 150A
 % Case 2: 1200V, 200A
 % Two alternative devices are selected for each case:
-% Case-1, device-1: Powerex c
+% Case-1, device-1: Powerex CM150DY-24A
 % Case-1, device-2: Infineon FF150R12RT4
 % Case-2, device-1: Powerex CM200DY-24A
 % Case-2, device-2: Infineon FF200R12KT4
 %% SELECTION
-ccase = 1;
-device = 1;
+ccase = 2;
+device = 2;
 %% DATASHEET PARAMETERS
 if ccase == 1 && device == 1
     Vce_sat = 2.3; % V, @102 A peak
@@ -65,15 +65,17 @@ end
 D = Vline/(0.612*Vdc); % modulation depth
 fsw = 5e3; % Hz, switching frequency
 Vce_p = Vdc; % V, peak diode voltage
+cos_phi1 = 1;
+cos_phi2 = 0.714;
 if ccase == 1
-    cos_phi = 1; % power factor
+    cos_phi = cos_phi1; % power factor
     Icp = Iphase1*sqrt(2); % A, peak current
     Iep = Iphase1*sqrt(2); % A, peak current
     Sout = Power1; % VA
     Pout = Sout*cos_phi; % W
     Irr = Iep; % A, peak reverse recovery current
 elseif ccase == 2
-    cos_phi = 0.714; % power factor
+    cos_phi = cos_phi2; % power factor
     Icp = Iphase2*sqrt(2); % A, peak current
     Iep = Iphase2*sqrt(2); % A, peak current
     Sout = Power2; % VA
@@ -82,31 +84,27 @@ elseif ccase == 2
 end
 %% LOSS CALCULATION
 Psc = Icp*Vce_sat*(1/8+D*cos_phi/(3*pi)) % W
-Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)); % W
-Pss = (Eon+Eoff)*fsw*(1/pi); % W
+Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)) % W
+Pss = (Eon+Eoff)*fsw*(1/pi) % W
 %Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
-Pds = (Err)*fsw*(1/pi); % W
+Pds = (Err)*fsw*(1/pi) % W
 Ploss1 = Psc+Pdc+Pss+Pds; % W
-Ploss = Ploss1*6; % W
-efficiency = 100*Pout/(Ploss+Pout);% percent
-fprintf('Efficiency is %g %%\n',efficiency);
-fprintf('Power loss is %g W\n',Ploss);
-
-
-
-
-if Ploss == 1
-elseif ccase == 1 && device == 2
-    
-    
-elseif ccase == 2 && device == 1
-    
-    
-elseif ccase == 2 && device == 2
-    
-    
-end
-
-
-
+Ploss = Ploss1*6 % W
+efficiency = 100*Pout/(Ploss+Pout)% percent
+% fprintf('Efficiency is %g %%\n',efficiency);
+% fprintf('Power loss is %g W\n',Ploss);
+%% CAPACITOR
+% Withstand voltage for one cycle
+Idc = Power1/Vdc; % A
+delta_t = 1/fs; % s
+Vdc_min = 550; % V
+delta_V = Vdc-Vdc_min; % V
+Cmin = Idc*delta_t/delta_V; % F
+% DC Link voltage ripple
+% Does not affect much
+% RMS current
+Icrms1 = Iphase1*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi1^2*(sqrt(3)/pi-9*D/16)))
+Icrms2 = Iphase2*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi2^2*(sqrt(3)/pi-9*D/16)))
+% Selection
+% Two capacitors for each case
 

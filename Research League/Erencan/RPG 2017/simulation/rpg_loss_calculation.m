@@ -65,15 +65,17 @@ end
 D = Vline/(0.612*Vdc); % modulation depth
 fsw = 5e3; % Hz, switching frequency
 Vce_p = Vdc; % V, peak diode voltage
+cos_phi1 = 1;
+cos_phi2 = 0.714;
 if ccase == 1
-    cos_phi = 1; % power factor
+    cos_phi = cos_phi1; % power factor
     Icp = Iphase1*sqrt(2); % A, peak current
     Iep = Iphase1*sqrt(2); % A, peak current
     Sout = Power1; % VA
     Pout = Sout*cos_phi; % W
     Irr = Iep; % A, peak reverse recovery current
 elseif ccase == 2
-    cos_phi = 0.714; % power factor
+    cos_phi = cos_phi2; % power factor
     Icp = Iphase2*sqrt(2); % A, peak current
     Iep = Iphase2*sqrt(2); % A, peak current
     Sout = Power2; % VA
@@ -91,5 +93,15 @@ Ploss = Ploss1*6 % W
 efficiency = 100*Pout/(Ploss+Pout)% percent
 % fprintf('Efficiency is %g %%\n',efficiency);
 % fprintf('Power loss is %g W\n',Ploss);
+%% CAPACITOR
+% Withstand voltage for one cycle
+Idc = Power1/Vdc; % A
+delta_t = 1/fs; % s
+Vdc_min = 550; % V
+delta_V = Vdc-Vdc_min; % V
+Cmin = Idc*delta_t/delta_V; % F
+% RMS current
+Icrms1 = Iphase1*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi1^2*(sqrt(3)/pi-9*D/16)))
+Icrms2 = Iphase2*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi2^2*(sqrt(3)/pi-9*D/16)))
 
 
