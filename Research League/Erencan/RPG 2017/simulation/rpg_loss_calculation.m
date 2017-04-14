@@ -83,14 +83,14 @@ elseif ccase == 2
     Irr = Iep; % A, peak reverse recovery current
 end
 %% LOSS CALCULATION
-Psc = Icp*Vce_sat*(1/8+D*cos_phi/(3*pi)) % W
-Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)) % W
-Pss = (Eon+Eoff)*fsw*(1/pi) % W
+Psc = Icp*Vce_sat*(1/8+D*cos_phi/(3*pi)); % W
+Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)); % W
+Pss = (Eon+Eoff)*fsw*(1/pi); % W
 %Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
-Pds = (Err)*fsw*(1/pi) % W
+Pds = (Err)*fsw*(1/pi); % W
 Ploss1 = Psc+Pdc+Pss+Pds; % W
-Ploss = Ploss1*6 % W
-efficiency = 100*Pout/(Ploss+Pout)% percent
+Ploss = Ploss1*6; % W
+efficiency = 100*Pout/(Ploss+Pout); % percent
 % fprintf('Efficiency is %g %%\n',efficiency);
 % fprintf('Power loss is %g W\n',Ploss);
 %% CAPACITOR
@@ -100,8 +100,12 @@ delta_t = 1/fs; % s
 Vdc_min = 550; % V
 delta_V = Vdc-Vdc_min; % V
 Cmin = Idc*delta_t/delta_V; % F
+% DC Link voltage ripple
+% Does not affect much
 % RMS current
-Icrms1 = Iphase1*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi1^2*(sqrt(3)/pi-9*D/16)))
-Icrms2 = Iphase2*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi2^2*(sqrt(3)/pi-9*D/16)))
-
+Icrms1 = Iphase1*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi1^2*(sqrt(3)/pi-9*D/16)));
+Icrms2 = Iphase2*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi2^2*(sqrt(3)/pi-9*D/16)));
+% Selection
+% Two capacitors for each case
+% http://tr.farnell.com/epcos/b43740a9478m000/cap-alu-elec-4700uf-400v-screw/dp/2284049
 
