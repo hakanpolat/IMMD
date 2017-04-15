@@ -32,5 +32,17 @@ C<sub>bulk</sub>> 118 uF
 
 Following capacitor has been chosen with ratings V = 400V and C = 120 uF  
 
-http://tr.farnell.com/rubycon/400kxw120mefc18x30/cap-alu-elec-120uf-400v-rad/dp/1547017
+http://tr.farnell.com/rubycon/400kxw120mefc18x30/cap-alu-elec-120uf-400v-rad/dp/1547017 
 
+
+#Thirth Week Report 
+
+**Thermal Analysis of Bridge Rectifier**  
+
+According to simulation results from rectifier, Irms=0.85A.  
+
+Losses on the rectifier according to 75W load = 0.68W. Diode data-sheet defines thermal resistance(junction to ambient) as 40C/W.  
+
+T<sub>amb</sub> +P<sub>loss</sub> X R<sub>tj</sub> = T <sub>junct(max)</sub> 
+
+40 C X  40C/W << T <sub>junct(max)</sub>= 150C
