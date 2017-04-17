@@ -21,14 +21,18 @@
 
 ## Poster Structure
 
+![](./poster_plan.png)
+
+## Below are obsolete
+
 |Section|Focus|
 |:--:|:--:|:--:|:--:|:--:|
 |Introduction|Conventional motor drive systems|
 |Motivation for Integration|Power density, EMI|
 |Motivation for Modularization|Fault tolerance, thermal distribution, voltage stress|
 |Challenges|Cooling, fitting, vibration, parasitics|
-|Modular motor with split windings|3|
-|Modular converter topologies|3|
-|WBG semiconductors|3|
-|Capacitor studies and interleaving|3|
-|Conclusions|3|
+|Modular motor with split windings||
+|Modular converter topologies||
+|WBG semiconductors||
+|Capacitor studies and interleaving||
+|Conclusions||
