@@ -40,9 +40,19 @@
 * Enhancement mode GaN: **EPC**, **GaN systems**
 
 
-**Fujitsu webshop**: Burada EVM yok ama device var (Transphorm)
+**Fujitsu**: (Transphorm)
+
+Fujitsu Technology Solutions Bilişim Ltd. Şti.
+
+Adamlar mail adresi vermiyor.
+
+Tel: +90 216 586 40 00
+
+http://tr.fujitsu.com
 
 http://shop.feeu.com/epages/es966226.sf/en_GB/?ObjectPath=/Shops/es966226/Categories/Category1
+
+http://www.fujitsu.com/uk/products/devices/semiconductor/gan/products/demo-boards/
 
 **Transphorm Sales**
 

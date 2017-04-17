@@ -19,4 +19,16 @@
 * Issues, limitations, challenges
 * Project plan (BAP): what we intend to do
 
-## Design?
+## Poster Structure
+
+|Section|Focus|
+|:--:|:--:|:--:|:--:|:--:|
+|Introduction|Conventional motor drive systems|
+|Motivation for Integration|Power density, EMI|
+|Motivation for Modularization|Fault tolerance, thermal distribution, voltage stress|
+|Challenges|Cooling, fitting, vibration, parasitics|
+|Modular motor with split windings|3|
+|Modular converter topologies|3|
+|WBG semiconductors|3|
+|Capacitor studies and interleaving|3|
+|Conclusions|3|
