@@ -3,13 +3,13 @@
 * ISIE review'ları incelenip final paper submit edilecek
 * BAP için tool geliştirilecek: DEVAM
 * RPG simulasyon: DEVAM
-* GaN EVM fiyat teklifi istenecek
+* GaN EVM fiyat teklifi istenecek. OK
 * Motor üreticilerine mail atılacak
 * Motor katalog dataları tablo yapılacak: DEVAM
 * GRW-2017 abstract submit edilecek, poster planlanacak
 
 ## Gerçekleşen çalışmalar:
-* ...
+* GaN EVM için. Digikey ve Mouser'a mail atıldı. Ürünler listelendi. Farnell'de yok.
 * ..
 * .
 

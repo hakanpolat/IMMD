@@ -35,6 +35,91 @@
 * Kaç mödül, kaç seri, kaç parallel?
 * Hangi GaN? 200V EPC or 600V transphorm?
 
+**Manufacturers:**
+* Cascode GaN: **Transphorm**
+* Enhancement mode GaN: **EPC**, **GaN systems**
+
+
+**Fujitsu webshop**: Burada EVM yok ama device var (Transphorm)
+
+http://shop.feeu.com/epages/es966226.sf/en_GB/?ObjectPath=/Shops/es966226/Categories/Category1
+
+**Transphorm Sales**
+
+http://www.fujitsu.com/tr/
+
++90 0 212 557 18 81
+
+
+**EPC Sales Representative**
+
+ISMOSIS TURKEY:
+
+Tel: +90 216 5450025
+
+Email: infoT@ismosys.com
+
+
+**GaN Systems Sales** (mailde öneriler siteler)
+
+http://www2.mouser.com/search/refine.aspx?N=4285500034
+
+http://www.ecomal.com/index.php?id=2&L=3
+
+http://www.richardsonrfpd.com/Pages/home.aspx
+
+**Digikey Ürünleri**
+1. https://www.digikey.com/product-detail/en/transphorm/TDPV1000E0C1-KIT/TDPV1000E0C1-KIT-ND/6207312
+2. https://www.digikey.com/product-detail/en/transphorm/TDHBG2500P100-KIT/TDHBG2500P100-KIT-ND/6605351
+3. https://www.digikey.com/product-detail/en/epc/EPC9101/917-1024-ND/2749209
+4. https://www.digikey.com/product-detail/en/epc/EPC9118/917-1073-ND/4989143
+5. https://www.digikey.com/product-detail/en/epc/EPC9107/917-1033-ND/4071532
+6. https://www.digikey.com/product-detail/en/epc/EPC9102/917-1025-ND/2797428
+7. https://www.digikey.com/product-detail/en/epc/EPC9115/917-1095-ND/513835
+
+**Digikey distributor**
+
+gizem.tekin@ekom-ltd.com
+
+EKOM Elektronik Ltd.
+
+T: +90 212 590 9715 (pbx)
+
+http://www.ekom-ltd.com
+
+**Mouser Distributor**
+
+ROM Elektronik San ve Tic. Sti
+
+Esatpaşa Mah. Kalebaşı Sokak No: 20 34704
+Ataşehir İstanbul
+
+Tel: 0216 492 85 50
+
+E-posta: info@romelektronik.com
+
+http://www.romelektronik.com
+
+tr.mouser@romelektronik.com
+
+**Farnell Distributor**
+
+Yıldırım Elektronik
+
+yasin@yildirimelektronik.com
+
+**Mouser ürünleri**
+1. http://www.mouser.com.tr/ProductDetail/GaN-Systems/GS665MB-EVB/?qs=sGAEpiMZZMtJijNuLr2%252bGS%2f3uRRSUPt70Nqiw7kqmilbcq%252bzpg3iHg%3d%3d
+2. http://www.mouser.com.tr/ProductDetail/GaN-Systems/GS66508B-EVBDB/?qs=sGAEpiMZZMtJijNuLr2%252bGS%2f3uRRSUPt7q8BEuR5%252bWc36ai6VwhXqMQ%3d%3d
+3. http://www.mouser.com.tr/ProductDetail/GaN-Systems/GS66508T-EVBDB/?qs=sGAEpiMZZMtJijNuLr2%252bGS%2f3uRRSUPt76rH3g1Fbtf6Rss%252b8qCJsew%3d%3d
+4. http://www.mouser.com.tr/ProductDetail/GaN-Systems/GS61008P-EVBBK/?qs=sGAEpiMZZMtJijNuLr2%252bGS%2f3uRRSUPt7MuQEEcmVdw3cLwosjl1%252bvg%3d%3d
+5. http://www.mouser.com.tr/ProductDetail/GaN-Systems/GS66504B-EVBDB/?qs=sGAEpiMZZMtJijNuLr2%252bGS%2f3uRRSUPt77zkRkNILdMZ5%252bEhZs%252bJbmQ%3d%3d
+
+**Farnell ürünleri**
+
+No products related to GaN.
+
+
 #### Motor
 [Frameless motor catalog from Kollmorgen](http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/)
 

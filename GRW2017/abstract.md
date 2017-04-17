@@ -8,12 +8,6 @@ Apart from these advantages, integration of the motor and the drive brings some 
 Use of such semiconductor devices brings additional problems related toparasitic components on both power stage and gate drive.
 
 
-
-
-
-
-
-
 Power stage topologies
 Gate drive techniques, interleaving
 
