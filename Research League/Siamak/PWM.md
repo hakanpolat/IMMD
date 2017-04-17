@@ -176,7 +176,7 @@ interrupt void cpu_timer0_isr(void)
 // TITLE:   DSP28335ControlCARD; ePWM1A 1KHz output
 //          solution file for Lab7_3
 //###########################################################################
-// This code produces a varying duty cycle PWM from 0% up to 100% 
+// This code produces a varying duty cycle PWM from 0% up to 100%
 //###########################################################################
 #include "DSP2833x_Device.h"
 
