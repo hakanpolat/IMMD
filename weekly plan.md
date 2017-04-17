@@ -1,4 +1,19 @@
-# 10.03.2017 - 06.04 2017
+# 17.03.2017 - 23.04 2017
+## Planlanan çalışmalar:
+* ISIE review'ları incelenip final paper submit edilecek
+* BAP için tool geliştirilecek: DEVAM
+* RPG simulasyon: DEVAM
+* GaN EVM fiyat teklifi istenecek
+* Motor üreticilerine mail atılacak
+* Motor katalog dataları tablo yapılacak: DEVAM
+* GRW-2017 abstract submit edilecek, poster planlanacak
+
+## Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
+# 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
 * ISIE review'ları incelenip final paper planlaması yapılacak.
 * BAP için tool geliştirilecek
@@ -7,7 +22,8 @@
 ## Gerçekleşen çalışmalar:
 * Fractional Slot Concentrated Winding motorları incelendi
 * Tool geliştirilmeye devam ediliyor
-
+* Motor seçimi için tablo yapıldı
+* RPG loss calculation / capacitor evaluation yapıldı
 
 # 03.03.2017 - 09.04 2017
 ## Planlanan çalışmalar:
