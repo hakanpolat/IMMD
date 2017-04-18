@@ -225,14 +225,13 @@ allowable_height = 3; % cm
 pcb_outer = Do_s*1e2; % cm
 pcb_inner = Di_r*1e2; % cm
 
-pcb_area = pi*((pcb_outer/2)^2-(pcb_inner/2)^2); % cm^2
-area_per_module = pcb_area/module; % cm^2
+pcb_area = pi*((pcb_outer/2)^2-(pcb_inner/2)^2) % cm^2
+area_per_module = pcb_area/module % cm^2
 
+%%
 pcb_volume = pcb_area*allowable_height; % cm^3
 volume_per_module = pcb_volume/module; % cm^3
-volume_per_module_in3 = volume_per_module*0.0610237; % in^3
-
-power_density = Pout_inv_module/volume_per_module_in3; % W/in^3
+power_density = 1e-3*Pout_inv_module/volume_per_module
 
 
 %% RL Load design
