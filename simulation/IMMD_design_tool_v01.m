@@ -235,6 +235,95 @@ volume_per_module_in3 = volume_per_module*0.0610237; % in^3
 power_density = Pout_inv_module/volume_per_module_in3; % W/in^3
 
 
+%% Power stage loss analysis (draft) to estimate efficiency
+
+% WE HAVE SO FAR
+% Pout_inv_module
+% Vdc_module
+% Vph_module
+% ma
+% fsw
+% Iline
+% pf
+% Sout_inv_module
+
+
+% Parameter calculation
+Vce_p = Vdc_module; % V, peak diode voltage
+Icp = Iline*sqrt(2); % A, peak current
+Iep = Iline*sqrt(2); % A, peak current
+Irr = Iep; % A, peak reverse recovery current
+
+% Device selection
+voltage_req_min = Vdc_module; % V
+voltage_rating_min = voltage_req_min*1.5; % V
+current_req_min = Iline*2; % A
+current_rating_min = current_req_min*2; % A
+
+% Suppose an IGBT is selected
+% Infineon SKB15N60HS IGBT + Diode, 600V, 27A
+% http://www.infineon.com/cms/en/product/power/igbt/igbt-discrete/discrete-igbt-with-anti-parallel-diode/SKB15N60HS/productType.html?productType=ff80808112ab681d0112ab6e35f41850
+
+fsw = 20e3; % Hz
+
+% Datasheet values
+Vce_sat = 2.3; % V, @ A peak
+Eon = 0.45e-3; % J, @ 400V
+Eon = Eon*Vdc_module/400; % J, @270V
+Eoff = 0.275e-3; % J, @400V
+Eoff = Eoff*Vdc_module/400; % J, @270V
+% Err = 8e-3; % J, @400V
+% Err = Err*Vdc_module/600; % J, @270V
+Vec = 1.25; % V
+trr = 184e-9; % s, @400V
+trr = trr*Vdc_module/400; % s, @270V
+Irr = 18; % A, @400V
+Irr = Irr*Vdc_module/400; % A, @270V
+
+% Loss calculation
+Psc = Icp*Vce_sat*(1/8+ma*pf/(3*pi)); % W
+Pdc = Iep*Vec*(1/8-ma*pf/(3*pi)); % W
+Pss = (Eon+Eoff)*fsw*(1/pi); % W
+Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+%Pds = (Err)*fsw*(1/pi); % W
+Ploss1 = Psc+Pdc+Pss+Pds; % W
+Ploss = Ploss1*6; % W
+efficiency = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
+
+
+%%
+% Suppose a GaN is selected
+% Transphorm TPH3212PS GaN FET, 650V, 26.5A
+% http://www.transphormusa.com/product/tph3212ps/
+
+% Datasheet values
+Rds_on = 148e-3; % Ohms, @100C, @17A
+
+% THIS PART IS NOT COMPLETE
+
+
+%%
+Eon = 6e-3; % J, @600V
+Eon = Eon*Vdc_module/600; % J, @750V
+Eoff = 10.4e-3; % J, @600V
+Eoff = Eoff*Vdc_module/600; % J, @750V
+Err = 8e-3; % J, @600V
+Err = Err*Vdc_module/600; % J, @750V
+Vec = 1.5; % V
+trr = 150e-9; % s, @600V
+trr = trr*Vdc_module/600; % s, @750V
+
+% Loss calculation
+Psc = Icp*Vce_sat*(1/8+ma*pf/(3*pi)) % W
+Pdc = Iep*Vec*(1/8-ma*pf/(3*pi)) % W
+Pss = (Eon+Eoff)*fsw*(1/pi) % W
+%Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+Pds = (Err)*fsw*(1/pi) % W
+Ploss1 = Psc+Pdc+Pss+Pds % W
+Ploss = Ploss1*6 % W
+efficiency = 100*Pout_inv_module/(Ploss+Pout_inv_module) % percent
+
+
 %% RL Load design
 V1load = Vph_module; % V
 S1load = Sout_inv_module/3; % VA
@@ -255,6 +344,9 @@ res_pow = I1load^2*R1load; % W
 % heat sink design is required for the resistive load
 
 
+
+
+%% DISCARD BELOW
 %% JUST A SMALL TEST CODE
 slot = [6,9,12,15,18,21,24,27,30,33,36];
 %slot = 6;
@@ -276,6 +368,6 @@ slot = 6;
 pole = 8;
 winding = sin(pole*pi/slot);
 winding = abs(winding);
-disp(winding);
+%disp(winding);
 
 
