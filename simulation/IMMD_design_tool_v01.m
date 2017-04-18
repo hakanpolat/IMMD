@@ -128,11 +128,6 @@ flux_pp = 4*(Di_s/2)*L_s*Bgap/pole_s; % Weber
 
 
 %% Rotor Parameters
-pole_r = 8;
-Do_r = 100; % mm
-Di_r = 30; % mm
-shaft_dia = Di_r; % mm
-
 motor_eff = 0.9;
 
 
