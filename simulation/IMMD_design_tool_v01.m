@@ -289,6 +289,7 @@ Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
 Ploss1 = Psc+Pdc+Pss+Pds; % W
 Ploss = Ploss1*6; % W
 efficiency = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
+fprintf('Efficiency value with IGBT with 20kHz is %g %%\n',efficiency);
 
 
 %%
@@ -296,32 +297,41 @@ efficiency = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
 % Transphorm TPH3212PS GaN FET, 650V, 26.5A
 % http://www.transphormusa.com/product/tph3212ps/
 
+%fsw = 10e3:10e3:100e3; % Hz
+fsw = 100e3; % Hz
+
 % Datasheet values
-Rds_on = 148e-3; % Ohms, @100C, @17A
-
-% THIS PART IS NOT COMPLETE
-
-
-%%
-Eon = 6e-3; % J, @600V
-Eon = Eon*Vdc_module/600; % J, @750V
-Eoff = 10.4e-3; % J, @600V
-Eoff = Eoff*Vdc_module/600; % J, @750V
-Err = 8e-3; % J, @600V
-Err = Err*Vdc_module/600; % J, @750V
-Vec = 1.5; % V
-trr = 150e-9; % s, @600V
-trr = trr*Vdc_module/600; % s, @750V
+Rds_onB = 72e-3; % Ohms, @25C, @17A, @8V Vgs
+Tj = 125; % C
+Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
+% It is assumed that, Rds_on is not affected by current amplitude up to 80A
+% This assumption is based on datasheet graph (Ids vs Vds)
+VsdB = 0.5; % V
+Vsd = Iep*0.09163+VsdB; % V
+% The following time values should be normalized
+tdon = 24e-9; % s,VDS=400V, ID = 18A, 25C
+tdoff = 55.5e-9; % s,VDS=400V, ID = 18A, 25C
+tr = 7.5e-9; % s,VDS=400V, ID = 18A, 25C
+tf = 5e-9; % s,VDS=400V, ID = 18A, 25C
+trr = 35e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
+ton = tdon+tr; % s
+toff = tdoff+tf; % s
+Eon = Vdc_module*Icp*ton/6; % J
+Eoff = Vdc_module*Icp*toff/6; % J
+% Irr value was not present in the datasheet. Peak value is taken
+Irr = Iep; % A
 
 % Loss calculation
-Psc = Icp*Vce_sat*(1/8+ma*pf/(3*pi)) % W
-Pdc = Iep*Vec*(1/8-ma*pf/(3*pi)) % W
-Pss = (Eon+Eoff)*fsw*(1/pi) % W
-%Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
-Pds = (Err)*fsw*(1/pi) % W
-Ploss1 = Psc+Pdc+Pss+Pds % W
-Ploss = Ploss1*6 % W
-efficiency = 100*Pout_inv_module/(Ploss+Pout_inv_module) % percent
+Psc = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
+Pdc = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
+Pss = (Eon+Eoff)*fsw*(1/pi); % W
+Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+
+Ploss1 = Psc+Pdc+Pss+Pds; % W
+Ploss = Ploss1*6; % W
+efficiency = 100*Pout_inv_module./(Ploss+Pout_inv_module); % percent
+fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency);
+
 
 
 %% RL Load design
