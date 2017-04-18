@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-12"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
+      --><title>IMMD DESIGN TOOL</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-18"><meta name="DC.source" content="IMMD_design_tool_v01.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#12">Fundamental blocks:</a></li><li><a href="#19">General Inputs</a></li><li><a href="#22">Stator Parameters</a></li><li><a href="#23">Rotor Parameters</a></li><li><a href="#24">Rectifier parameters</a></li><li><a href="#25">DC Link parameters</a></li><li><a href="#26">Inverter Parameters</a></li><li><a href="#27">Motor design continue</a></li><li><a href="#28">RL Load design</a></li><li><a href="#31">JUST A SMALL TEST CODE</a></li><li><a href="#32">ANOTHER TRIAL</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC)</p><p>Cooling: Forced air cooling</p><p>Motor efficiency aim = 98 %</p><p>Power stage efficiency aim = 98 %</p><p>Average winding temperature rise: 130 C</p><p>Hot spot temperature rise: 160 C</p><p>Semiconductor temperature rise: 100 C</p><p>Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="12"></a></h2><p>Rotor</p><p>Stator</p><p>Inverter</p><p>DC Link</p><p>Rectifier</p><p>Controller</p><p>Heat sink</p><h2>General Inputs<a name="19"></a></h2><p>motor catalog (Kollmorgen, KBM(S)-88X00-X, B)</p><p><a href="http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true">http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true</a></p><p><a href="http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/">http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/</a></p><pre class="codeinput">Prated = 5.46e3; <span class="comment">% Watts</span>
+  </style></head><body><div class="content"><h1>IMMD DESIGN TOOL</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">M. U&#287;ur</a></li><li><a href="#2">2017</a></li><li><a href="#4">SPECIFICATIONS</a></li><li><a href="#12">Fundamental blocks:</a></li><li><a href="#19">General Inputs</a></li><li><a href="#22">Stator Parameters</a></li><li><a href="#23">Rotor Parameters</a></li><li><a href="#24">Rectifier parameters</a></li><li><a href="#25">DC Link parameters</a></li><li><a href="#26">Inverter Parameters</a></li><li><a href="#27">Motor design continue</a></li><li><a href="#28">PCB design</a></li><li><a href="#29">RL Load design</a></li><li><a href="#32">JUST A SMALL TEST CODE</a></li><li><a href="#33">ANOTHER TRIAL</a></li></ul></div><h2>M. U&#287;ur<a name="1"></a></h2><h2>2017<a name="2"></a></h2><p>In this file, design of the IMMD system will be conducted. Analytical design methods will be used with the aid of simulations. The relations between the blocks will be considered. The design is for the prototype on BAP Project.</p><h2>SPECIFICATIONS<a name="4"></a></h2><p>Permanent Magnet Brushless DC Motor (PM-BLDC)</p><p>Cooling: Forced air cooling</p><p>Motor efficiency aim = 98 %</p><p>Power stage efficiency aim = 98 %</p><p>Average winding temperature rise: 130 C</p><p>Hot spot temperature rise: 160 C</p><p>Semiconductor temperature rise: 100 C</p><p>Maximum winding temperature: 200 C</p><h2>Fundamental blocks:<a name="12"></a></h2><p>Rotor</p><p>Stator</p><p>Inverter</p><p>DC Link</p><p>Rectifier</p><p>Controller</p><p>Heat sink</p><h2>General Inputs<a name="19"></a></h2><p>motor catalog (Kollmorgen, KBM(S)-88X00-X, B)</p><p><a href="http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true">http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&amp;name=KBM(S)-88&amp;isCate=true</a></p><p><a href="http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/">http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/</a></p><pre class="codeinput">Prated = 5.46e3; <span class="comment">% Watts</span>
 Nrated = 1000; <span class="comment">% rpm</span>
 Tstall_cont = 102; <span class="comment">% Nm</span>
 Icont = 20.5; <span class="comment">% Amps</span>
@@ -85,7 +85,8 @@ pole_number = 46;
 slot_number = 36;
 
 length = 36.37; <span class="comment">% mm</span>
-outer_dia = 331.46; <span class="comment">% mm</span>
+Do_stator = 331.46; <span class="comment">% mm</span>
+Di_stator = 224.16; <span class="comment">% mm</span>
 Di_rotor = 155.02; <span class="comment">% mm</span>
 
 <span class="comment">% basic inputs and calculations</span>
@@ -115,6 +116,7 @@ Nphm = layer_s*zQ*q_s;
 Do_s = 0.15; <span class="comment">% m</span>
 Di_s = 0.1; <span class="comment">% m</span>
 L_s = 0.1; <span class="comment">% m</span>
+Di_r =
 Surface_s = pi*Di_s*L_s; <span class="comment">% m^2</span>
 Circum_s = pi*Di_s; <span class="comment">% m</span>
 Volume_i = Di_s^2*L_s*pi/4; <span class="comment">% m^3</span>
@@ -140,9 +142,7 @@ Volume_i = Di_s^2*L_s*pi/4; <span class="comment">% m^3</span>
 Bgap = 0.9; <span class="comment">% Tesla</span>
 
 flux_pp = 4*(Di_s/2)*L_s*Bgap/pole_s; <span class="comment">% Weber</span>
-</pre><pre class="codeoutput">Undefined function or variable 'pole_s'.
-Error in IMMD_design_tool_v01 (line 108)
-    slot_angle = (pole_s/2)*2*pi/slot_s; % electrical radians</pre><h2>Rotor Parameters<a name="23"></a></h2><pre class="codeinput">pole_r = 8;
+</pre><h2>Rotor Parameters<a name="23"></a></h2><pre class="codeinput">pole_r = 8;
 Do_r = 100; <span class="comment">% mm</span>
 Di_r = 30; <span class="comment">% mm</span>
 shaft_dia = Di_r; <span class="comment">% mm</span>
@@ -219,7 +219,7 @@ total_stator_slot_wire_area = layer_s*zQ*total_stator_wire_area; <span class="co
 <span class="comment">% this value is not set right now</span>
 slot_area = 100; <span class="comment">% mm^2</span>
 fill_factor = total_stator_slot_wire_area/slot_area;
-</pre><h2>RL Load design<a name="28"></a></h2><pre class="codeinput">V1load = Vph_module; <span class="comment">% V</span>
+</pre><h2>PCB design<a name="28"></a></h2><h2>RL Load design<a name="29"></a></h2><pre class="codeinput">V1load = Vph_module; <span class="comment">% V</span>
 S1load = Sout_inv_module/3; <span class="comment">% VA</span>
 I1load = S1load/V1load; <span class="comment">% A</span>
 Z1load = V1load/I1load; <span class="comment">% Ohms</span>
@@ -231,7 +231,7 @@ L1load = X1load/(2*pi*ffund); <span class="comment">% Henries</span>
 res_val = R1load; <span class="comment">% Ohms</span>
 res_cur = I1load; <span class="comment">% A</span>
 res_pow = I1load^2*R1load; <span class="comment">% W</span>
-</pre><p>sample: <a href="http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103">http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103</a></p><p>heat sink design is required for the resistive load</p><h2>JUST A SMALL TEST CODE<a name="31"></a></h2><pre class="codeinput">slot = [6,9,12,15,18,21,24,27,30,33,36];
+</pre><p>sample: <a href="http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103">http://tr.farnell.com/arcol-ohmite/fpa100-100r-j/res-thick-film-100r-5-1kv-screw/dp/2505103</a></p><p>heat sink design is required for the resistive load</p><h2>JUST A SMALL TEST CODE<a name="32"></a></h2><pre class="codeinput">slot = [6,9,12,15,18,21,24,27,30,33,36];
 <span class="comment">%slot = 6;</span>
 pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
 <span class="comment">%pole = 4;</span>
@@ -244,17 +244,11 @@ pole = [4,6,8,10,12,14,16,20,22,24,26,28,30,32,34,42];
         <span class="comment">%fprintf('Winding factor for %d slot and %d pole is %1.3g.\n',slot(k),pole(l),winding);</span>
     <span class="keyword">end</span>
 <span class="keyword">end</span>
-</pre><h2>ANOTHER TRIAL<a name="32"></a></h2><pre class="codeinput">slot = 6;
+</pre><h2>ANOTHER TRIAL<a name="33"></a></h2><pre class="codeinput">slot = 6;
 pole = 8;
-<<<<<<< HEAD
-winding = sin(pole*pi/slot)
-=======
 winding = sin(pole*pi/slot);
 winding = abs(winding);
 disp(winding);
-</pre><pre class="codeoutput">    0.8660
-
->>>>>>> 598135c6b748081e2813d1c13aad27953625f316
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% IMMD DESIGN TOOL
@@ -325,7 +319,8 @@ pole_number = 46;
 slot_number = 36;
 
 length = 36.37; % mm
-outer_dia = 331.46; % mm
+Do_stator = 331.46; % mm
+Di_stator = 224.16; % mm
 Di_rotor = 155.02; % mm
 
 % basic inputs and calculations
@@ -357,6 +352,7 @@ Nphm = layer_s*zQ*q_s;
 Do_s = 0.15; % m
 Di_s = 0.1; % m
 L_s = 0.1; % m
+Di_r = 
 Surface_s = pi*Di_s*L_s; % m^2
 Circum_s = pi*Di_s; % m
 Volume_i = Di_s^2*L_s*pi/4; % m^3
@@ -480,6 +476,9 @@ total_stator_slot_wire_area = layer_s*zQ*total_stator_wire_area; % mm^2
 % this value is not set right now
 slot_area = 100; % mm^2
 fill_factor = total_stator_slot_wire_area/slot_area;
+
+
+%% PCB design
 
 
 
