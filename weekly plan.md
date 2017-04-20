@@ -5,13 +5,15 @@
 * RPG simulasyon: DEVAM
 * GaN EVM fiyat teklifi istenecek. OK
 * Motor üreticilerine mail atılacak
-* Motor katalog dataları tablo yapılacak: DEVAM
+* Motor katalog dataları tablo yapılacak: OK
 * GRW-2017 abstract submit edilecek, poster planlanacak: DEVAM
 
 ## Gerçekleşen çalışmalar:
 * GaN EVM için. Digikey ve Mouser'a mail atıldı. Ürünler listelendi. Farnell'de yok.
-* Kollmorgen'dan bir sürü motor tabloya eklendi. diğer firmalara bakılacak.
+* Kollmorgen'dan bir sürü motor tabloya eklendi. Diğer firmalara bakılacak.
 * GRW abstract yazıldı ve poster planı yapıldı.
+* Tool: PCB dimensions, power density, loss characterisation.
+* Solidworks tutorials, example drawings.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
