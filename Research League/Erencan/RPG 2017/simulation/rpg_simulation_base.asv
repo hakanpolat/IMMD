@@ -1,5 +1,5 @@
 %% Simulation base for RPG
-Ts = 1e-5;
+Ts = 5e-5;
 
 % Grid
 Vphase = 400/sqrt(3); % V
@@ -60,42 +60,10 @@ rpcu_s = zeros(1,12);
 scales = 0:10e3:11*10e3;
 rpcu_s(:) = (rpc_demand>scales(:));
 
-%%
-% PV trial
-Vs = 400; % V
-fs = 50; % Hz
-Vdc = 750; % V
-Ls = 1e-3; % H
-fsw = 1e3; % Hz
-Xs = 2*pi*fs*Ls; % Ohms
-Ppv = 40e3; % W
-Qpv = 30e3; % VAr
-Spv = sqrt(Ppv^2+Qpv^2); % VA
-Ipv = Spv/Vs; % A
-Vc_mag = sqrt(Vs^2+(Xs*Ipv)^2); % V
-ma = Vc_mag*sqrt(2)/Vdc
-delta = atan(Xs*Ipv/Vs)*180/pi
-
-%delta = 5
-%ma = 0.75
-
-sim('pv_trial.slx')
-
-
-%%
-% Solar panel side
-Vdc = 750; % V
-Rseries = 5; % Ohm
-Pout = 50e3; % W
-Rrefl = Vdc^2/Pout;
-V1 = Vdc*(Rseries+Rrefl)/Rrefl; % V
-Cdc = 5e-3; % F
-ESR = 1e-3; % Ohms
-
 % Inverter
 fsw = 5e3; % Hz
-Ls = 5e-3; % H
-RLs = 5e-3; % Ohms
+Ls = 1e-3; % H
+RLs = 0e-3; % Ohms
 Xs = Ls*2*pi*fs; % Ohms
 Ppv = 40e3; % W
 Qpv = 30e3; % VAr
@@ -131,4 +99,36 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
+
+%%
+% Solar panel side
+Vdc = 750; % V
+Rseries = 5; % Ohm
+Pout = 50e3; % W
+Rrefl = Vdc^2/Pout;
+V1 = Vdc*(Rseries+Rrefl)/Rrefl; % V
+Cdc = 5e-3; % F
+ESR = 1e-3; % Ohms
+
+%%
+% PV trial
+Vs = 400; % V
+fs = 50; % Hz
+Vdc = 750; % V
+Ls = 1e-3; % H
+fsw = 2e3; % Hz
+Xs = 2*pi*fs*Ls; % Ohms
+Ppv = 40e3; % W
+Qpv = 30e3; % VAr
+Spv = sqrt(Ppv^2+Qpv^2); % VA
+Idpv = Ppv/(Vs);
+Iqpv = Qpv/(Vs);
+Vc_mag = sqrt((Vs-Iqpv*Xs)^2+(Xs*Idpv)^2); % V
+ma = Vc_mag*sqrt(2)/Vdc
+delta = atan(Idpv*Xs/(Vs-Iqpv*Xs))*180/pi
+
+%delta = 5
+%ma = 0.75
+
+sim('pv_trial.slx')
 
