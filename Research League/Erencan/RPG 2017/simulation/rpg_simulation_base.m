@@ -1,5 +1,5 @@
 %% Simulation base for RPG
-Ts = 5e-5;
+Ts = 1e-5;
 
 % Grid
 Vphase = 400/sqrt(3); % V
@@ -54,7 +54,7 @@ Qrpcu_each = rpcu_capacity/(3*12);
 Zrpcu_each = Vphase^2/(Qrpcu_each);
 Crpcu_each = 1/(2*pi*fs*Zrpcu_each);
 % USER SELECTED
-rpc_demand = 87e3; % VAr
+rpc_demand = 0e3; % VAr
 
 rpcu_s = zeros(1,12);
 scales = 0:10e3:11*10e3;
@@ -65,8 +65,8 @@ fsw = 5e3; % Hz
 Ls = 1e-3; % H
 RLs = 10e-3; % Ohms
 Xs = Ls*2*pi*fs; % Ohms
-Ppv = 40e3; % W
-Qpv = 30e3; % VAr
+Ppv = 50e3; % W
+Qpv = 5e3; % VAr
 Spv = sqrt(Ppv^2+Qpv^2); % VA
 pf = Ppv/Spv;
 Idpv = Ppv/(3*Vphase);
@@ -76,6 +76,22 @@ ma = 2*sqrt(2)*Vc_mag/Vdc;
 delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
 delta_degree = delta*180/pi;
 
+
+%%
+% PV generation profile
+
+hour = 1:24;
+n = numel(hour);
+pv_prod = zeros(1,numel(hour));
+pv_peak = 0.7; % pu
+pv_prod(6:18) = -pv_peak*cos(2*pi*(1/24)*hour(6:18));
+figure;
+plot(hour,pv_prod,'k-','LineWidth',2.0);
+xlabel('Time (hours)','Fontweight','Bold');
+ylabel('PV Generation (pu)','Fontweight','Bold');
+title ('Photovoltaic Generation Profile','Fontweight','Bold');
+grid on;
+pv_prod';
 
 
 %% OBSOLETE

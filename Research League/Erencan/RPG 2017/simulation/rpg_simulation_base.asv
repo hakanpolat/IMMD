@@ -1,5 +1,5 @@
 %% Simulation base for RPG
-Ts = 5e-5;
+Ts = 1e-5;
 
 % Grid
 Vphase = 400/sqrt(3); % V
@@ -63,10 +63,10 @@ rpcu_s(:) = (rpc_demand>scales(:));
 % Inverter
 fsw = 5e3; % Hz
 Ls = 1e-3; % H
-RLs = 0e-3; % Ohms
+RLs = 10e-3; % Ohms
 Xs = Ls*2*pi*fs; % Ohms
-Ppv = 40e3; % W
-Qpv = 30e3; % VAr
+Ppv = 50e3; % W
+Qpv = 5e3; % VAr
 Spv = sqrt(Ppv^2+Qpv^2); % VA
 pf = Ppv/Spv;
 Idpv = Ppv/(3*Vphase);
@@ -76,6 +76,17 @@ ma = 2*sqrt(2)*Vc_mag/Vdc;
 delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
 delta_degree = delta*180/pi;
 
+
+%%
+% PV generation profile
+
+hour = 1:24;
+n = numel(hour);
+pv_prod = zeros(1,numel(hour));
+pv_peak = 0.7; % pu
+pv_prod(6:18) = -pv_peak*cos(2*pi*(1/24)*hour(6:18))
+
+pv_prod'
 
 
 %% OBSOLETE
