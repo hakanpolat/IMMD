@@ -1,17 +1,20 @@
 # 17.03.2017 - 23.04 2017
 ## Planlanan çalışmalar:
 * ISIE review'ları incelenip final paper submit edilecek
-* BAP için tool geliştirilecek: DEVAM
-* RPG simulasyon: DEVAM
+* BAP için tool geliştirilecek: OK
+* RPG simulasyon: OK
 * GaN EVM fiyat teklifi istenecek. OK
 * Motor üreticilerine mail atılacak
-* Motor katalog dataları tablo yapılacak: DEVAM
-* GRW-2017 abstract submit edilecek, poster planlanacak: DEVAM
+* Motor katalog dataları tablo yapılacak: OK
+* GRW-2017 abstract submit edilecek, poster planlanacak: OK
 
 ## Gerçekleşen çalışmalar:
 * GaN EVM için. Digikey ve Mouser'a mail atıldı. Ürünler listelendi. Farnell'de yok.
-* Kollmorgen'dan bir sürü motor tabloya eklendi. diğer firmalara bakılacak.
+* Kollmorgen'dan bir sürü motor tabloya eklendi. Diğer firmalara bakılacak.
 * GRW abstract yazıldı ve poster planı yapıldı.
+* IMMD Tool: PCB dimensions, power density, loss characterisation.
+* Solidworks tutorials, example drawings.
+* RPG simulasyon problemleri çözüldü. PV ve load profilleri girildi.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:

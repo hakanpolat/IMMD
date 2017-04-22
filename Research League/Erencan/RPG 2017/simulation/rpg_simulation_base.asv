@@ -87,7 +87,6 @@ delta_degree = delta*180/pi;
 
 sim('simulation_base.slx');
 
-%%
 timeaxis = timeout;
 Pload1_sim = activepowers(:,1);
 Pload2_sim = activepowers(:,2);
@@ -97,10 +96,12 @@ Qload2_sim = reactivepowers(:,2);
 Qline_sim = reactivepowers(:,4);
 V1_sim = voltages(:,1);
 Vpcc_sim = voltages(:,2);
-pfload1_sim = abs(powerfactors(:,1));
-pfload2_sim = abs(powerfactors(:,2));
-pfline_sim = abs(powerfactors(:,3));
+pfload1_sim = powerfactors(:,1);
+pfload2_sim = powerfactors(:,2);
+pfline_sim = powerfactors(:,3);
 
+for k = 1:numel(timeout)
+    if 
 %%
 figure;
 plot(timeaxis,Pload1_sim,'k-','LineWidth',2.0);
