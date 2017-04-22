@@ -87,6 +87,7 @@ delta_degree = delta*180/pi;
 
 sim('simulation_base.slx');
 
+%%
 timeaxis = timeout;
 Pload1_sim = activepowers(:,1);
 Pload2_sim = activepowers(:,2);
@@ -96,12 +97,10 @@ Qload2_sim = reactivepowers(:,2);
 Qline_sim = reactivepowers(:,4);
 V1_sim = voltages(:,1);
 Vpcc_sim = voltages(:,2);
-pfload1_sim = powerfactors(:,1);
-pfload2_sim = powerfactors(:,2);
-pfline_sim = powerfactors(:,3);
+pfload1_sim = abs(powerfactors(:,1));
+pfload2_sim = abs(powerfactors(:,2));
+pfline_sim = abs(powerfactors(:,3));
 
-for k = 1:numel(timeout)
-    if 
 %%
 figure;
 plot(timeaxis,Pload1_sim,'k-','LineWidth',2.0);
@@ -147,7 +146,7 @@ legend('Load','PCC');
 figure;
 plot(timeaxis,pfload1_sim,'k-','LineWidth',2.0);
 hold on;
-plot(timeaxis,pfload2_sim,'k-','LineWidth',2.0);
+plot(timeaxis,pfload2_sim,'r-','LineWidth',2.0);
 hold on;
 plot(timeaxis,pfline_sim,'b-','LineWidth',2.0);
 hold off;
@@ -155,7 +154,7 @@ xlabel('Time (s)','Fontweight','Bold');
 ylabel('Power factors','Fontweight','Bold');
 %title ('Photovoltaic Generation Profile','Fontweight','Bold');
 grid on;
-%ylim([200 250]);
+ylim([-0.1 1.1]);
 legend('Load-1','Load-2','Line');
 
 
