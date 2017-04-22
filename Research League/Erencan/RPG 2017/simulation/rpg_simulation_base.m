@@ -35,17 +35,25 @@ Xload1 = sqrt(Zload1^2-Rload1^2); % Ohm
 Lload1 = Xload1/(2*pi*fs); % H
 
 % Load-2 (Temiz alan)
-Pload2 = 117.6e3; % W
-Qload2 = 23.9e3; % VAr
-Sload2 = sqrt(Pload2^2+Qload2^2); % VA
-pfload2 = Pload2/Sload2;
-Zload2 = Vphase^2/(Sload2/3); % Ohm
-Rload2 = Zload2*pfload2; % Ohm
-Xload2 = sqrt(Zload2^2-Rload2^2); % Ohm
-Lload2 = Xload2/(2*pi*fs); % H
+Sload2_1 = 100e3; % VA
+Sload2_2 = 20e3; % VA
+pfload2 = 0.98;
+Pload2_1 = Sload2_1*pfload2; % W
+Pload2_2 = Sload2_2*pfload2; % W
+Qload2_1 = sqrt(Sload2_1^2-Pload2_1^2); % VAr
+Qload2_2 = sqrt(Sload2_2^2-Pload2_2^2); % VAr
+Zload2_1 = Vphase^2/(Sload2_1/3); % Ohm
+Rload2_1 = Zload2_1*pfload2; % Ohm
+Lload2_1 = sqrt(Zload2_1^2-Rload2_1^2)/(2*pi*fs); % H
+Zload2_2 = Vphase^2/(Sload2_2/3); % Ohm
+Rload2_2 = Zload2_2*pfload2; % Ohm
+Lload2_2 = sqrt(Zload2_2^2-Rload2_2^2)/(2*pi*fs); % H
 
-% UPS
-Qups = 6e3; % VAr
+% UPS-1
+Qups1 = 6e3; % VAr
+
+% UPS-2
+Qups2 = 18e3; % VAr
 
 % RPCU
 %Qrpcu = 200e3; % VAr
@@ -61,6 +69,7 @@ scales = 0:10e3:11*10e3;
 rpcu_s(:) = (rpc_demand>scales(:));
 
 % Inverter
+Vdc = 750; % V
 fsw = 5e3; % Hz
 Ls = 1e-3; % H
 RLs = 10e-3; % Ohms
@@ -75,6 +84,9 @@ Vc_mag = sqrt((Vphase-Iqpv*Xs)^2+(Idpv*Xs)^2);
 ma = 2*sqrt(2)*Vc_mag/Vdc;
 delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
 delta_degree = delta*180/pi;
+
+sim('simulation_base.slx');
+
 
 
 %%
