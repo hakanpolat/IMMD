@@ -22,7 +22,7 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-phase(1:4) = 0:90:270; % degrees
+%phase(1:4) = 0:90:270; % degrees
 enable(1:4) = 1;
 % Run the simulation
 sim('topology2_module.slx');

@@ -5,6 +5,7 @@
 \usepackage{ifpdf}
 \usepackage{cite}
 \usepackage{todonotes}
+\usepackage{siunitx}
 
 \ifCLASSINFOpdf
   % \usepackage[pdftex]{graphicx}
@@ -39,7 +40,7 @@
 \usepackage{fixltx2e}
 \usepackage{color}
 \usepackage{mathtools}
-
+\usepackage{color}
 
 % correct bad hyphenation here
 \hyphenation{op-tical net-works semi-conduc-tor}
@@ -48,7 +49,7 @@
 
 \begin{document}
 \title{DC Link Capacitor Optimization for Integrated Modular Motor Drives}
-\author{\IEEEauthorblockN{Mesut Uğur}
+\author{\IEEEauthorblockN{Mesut U\u{g}ur}
 \IEEEauthorblockA{Department of Electrical and Electronics Engineering\\
 Middle East Technical University\\
 Ankara, Turkey\\
@@ -80,11 +81,11 @@ integrated modular motor drive, split winding machine, GaN, DC Link capacitor, i
 \section{Introduction}
 
 
-In conventional motor drive systems, drive units are placed in a cabinet and connected to the motor by means of long cables. Placing the motor and its drive separately increases the volume and weight of the system decreasing the system power density. In aerospace and electric traction applications, the motor drives are fundamental elements and power density plays an important role in the design \cite{LoCalzo2016,Wolmarans2008,Hennen2012,Lambert2015a,7352968,Galassini2015}. In addition, due to the long connection cables, high voltage transients on the motor windings caused by PWM operation occurs on the motor terminals causing leakage currents through stator winding insulation, which cause aging of insulations and shorten the motor lifetime \cite{Wang2013,Jahns2014}. One counter-measure for this effect is the utilization of filters between motor and drive, which are bulky and costly \cite{LoCalzo2016}.
+In conventional motor drive systems, drive units are placed in a cabinet and connected to the motor by means of long cables. Placing the motor and its drive separately increases the volume and weight of the system decreasing the system power density. In aerospace and electric traction applications, the motor drives are fundamental elements and power density plays an important role in the design \cite{LoCalzo2016,Wolmarans2008,Hennen2012,Lambert2015a,Lambert2015a,Galassini2015}. In addition, due to the long connection cables, high voltage transients on the motor windings caused by PWM operation occurs on the motor terminals causing leakage currents through stator winding insulation, which cause aging of insulations and shorten the motor lifetime \cite{Wang2013,Jahns2014}. One counter-measure for this effect is the utilization of filters between motor and drive, which are bulky and costly \cite{LoCalzo2016}.
 
-In recent years, a new concept called Integrated Modular Motor Drives (IMMDs) has emerged to overcome the aforementioned problems. This concept suggests that, the drive stage of a motor drive system including the power stage, control electronics, passive elements and heatsink can be integrated into the motor resulting in a single integrated unit \cite{LoCalzo2016}, which brings several advantages. The power density of the motor drive system is significantly increased \cite{Lambert2015a,Wang2013}. A cost reduction of 20-40\% with integration is possible due to the elimination of separate enclosures and cables \cite{LoCalzo2016}. Furthermore, the long cables are eliminated so that the lifetime of the motor is increased and EMI problems are minimized \cite{Wolmarans2008}. In addition, this concept aims to modularize the overall system, dividing it into several identical parts, which share the total power equally. This technique significantly increases the fault tolerance of the motor and the drive as the system can continue its operation even if a fault occurs on one of the modules \cite{Hennen2012,Galassini2015,Wang2013}. In \cite{Wolmarans2008}, fault modes for both machine and power electronics are investigated and increase of fault tolerance for IMMDs has been shown. Moreover, the voltage stress on each module and motor winding group is reduced, which also enables the utilization of power semiconductor devices with low breakdown voltage ratings \cite{Wang2014,Wang2015b}. The thermal performance of the drive is also improved as the heat sources in the system are now distributed on a larger surface area, and hot spot temperatures are reduced. In addition, fabrication, installation, maintenance and repair costs are also reduced thanks to the modular structure \cite{LoCalzo2016,Hennen2012,7352968,Jahns2014}.
+In recent years, a new concept called Integrated Modular Motor Drives (IMMDs) has emerged to overcome the aforementioned problems. This concept suggests that, the drive stage of a motor drive system including the power stage, control electronics, passive elements and heatsink can be integrated into the motor resulting in a single integrated unit \cite{LoCalzo2016}, which brings several advantages. The power density of the motor drive system is significantly increased \cite{Lambert2015a,Wang2013}. A cost reduction of 20-40\% with integration is possible due to the elimination of separate enclosures and cables \cite{LoCalzo2016}. Furthermore, the long cables are eliminated so that the lifetime of the motor is increased and EMI problems are minimized \cite{Wolmarans2008}. In addition, this concept aims to modularize the overall system, dividing it into several identical parts, which share the total power equally. This technique significantly increases the fault tolerance of the motor and the drive as the system can continue its operation even if a fault occurs on one of the modules \cite{Hennen2012,Galassini2015,Wang2013}. In \cite{Wolmarans2008}, fault modes for both machine and power electronics are investigated and increase of fault tolerance for IMMDs has been shown. Moreover, the voltage stress on each module and motor winding group is reduced, which also enables the utilization of power semiconductor devices with low breakdown voltage ratings \cite{Wang2014,Wang2015b}. The thermal performance of the drive is also improved as the heat sources in the system are now distributed on a larger surface area, and hot spot temperatures are reduced. In addition, fabrication, installation, maintenance and repair costs are also reduced thanks to the modular structure \cite{LoCalzo2016,Hennen2012,Lambert2015a,Jahns2014}.
 
-Alongside of these benefits, integration of the motor and drive introduces several challenges \cite{LoCalzo2016,Wang2015b}. First of all, fitting all the drive components in such a small volume requires size optimization and optimum placement of components. Moreover, cooling of motor and drive together is very difficult and detailed thermal analysis is required as presented in \cite{7352968}. In addition, the electronics is directly subjected to the physical vibration caused by the motor. In \cite{Hennen2012}, influence of machine vibration and noise to the power electronics has been investigated for a 67 kW IMMD prototype with 5-phase switched reluctance motor. To demonstrate the thermal, vibrational and EMI effects to the electronics caused by the motor, a 10 pole permanent magnet machine prototype was developed with 6 stator phases in \cite{Jahns2014}. To reduce the size of passive elements, increasing the operation frequency by the utilization of new generation wide bandgap (WBG) power semiconductors is proposed \cite{Lambert2015a,Wang2015b}. Efficiency of 99.3\% has been achieved for a 900 W motor drive application with GaN power FETs \cite{Morita2011}. By increasing frequency, parasitic inductances on both power stage and gate drive circuitry become more significant, which requires careful layout design \cite{LoCalzo2016}. 
+Alongside of these benefits, integration of the motor and drive introduces several challenges \cite{LoCalzo2016,Wang2015b}. First of all, fitting all the drive components in such a small volume requires size optimization and optimum placement of components. Moreover, cooling of motor and drive together is very difficult and detailed thermal analysis is required as presented in \cite{Lambert2015a}. In addition, the electronics is directly subjected to the physical vibration caused by the motor. In \cite{Hennen2012}, influence of machine vibration and noise to the power electronics has been investigated for a 67 kW IMMD prototype with 5-phase switched reluctance motor. To demonstrate the thermal, vibrational and EMI effects to the electronics caused by the motor, a 10 pole permanent magnet machine prototype was developed with 6 stator phases in \cite{Jahns2014}. To reduce the size of passive elements, increasing the operation frequency by the utilization of new generation wide bandgap (WBG) power semiconductors is proposed \cite{Lambert2015a,Wang2015b}. Efficiency of 99.3\% has been achieved for a 900 W motor drive application with GaN power FETs \cite{Morita2011}. By increasing frequency, parasitic inductances on both power stage and gate drive circuitry become more significant, which requires careful layout design \cite{LoCalzo2016}. 
 
 Reduction of DC link capacitor volume is very critical in IMMD design. In motor drive systems, DC link capacitors constitute a significant portion of the overall volume and the limited converter space in IMMDs makes the optimization of DC links capacitors essential. In \cite{Su2010,Bianchi2003,Zhang2010}, methods such as DC link analytical modeling, evaluation of capacitor types and their comparison, application of interleaving technique for size reduction are presented. DC link capacitor selection procedure specific to IMMDs is presented in \cite{LoCalzo2016,Wang2014,Wang2015b}.
 
@@ -92,7 +93,7 @@ In this paper, DC link modeling is studied for an IMMD and optimum capacitor sel
 
 
 
-\section{immd technology review}
+\section{IMMD Technology Review}
 
 \subsection{The Concept of IMMD}
 
@@ -118,7 +119,7 @@ It is also possible to construct a topology by just simply connecting several 3-
 
 WBG power semiconductor devices are good candidates for IMMD applications thanks to their low on-state resistance, high switching speed and high maximum junction temperatures \cite{Morita2011}. For traditional silicon devices such as Insulated Gate Bipolar Transistor (IGBT), switching frequency is usually limited to 20 kHz \cite{Lambert2015a}. With Silicon Carbide (SiC) MOSFET and GaN, switching frequencies up to 100 kHz can be used in applications with tens of kWs [10, 13] \cite{Wang2015b,Morita2011}. In IMMD prototype examples, GaN transistors have been widely utilized due to their very low on-state resistance, which reduces conduction loss drastically, very high switching speed, which enables size reduction for passive elements, and good thermal performance. Moreover, GaN devices do not need external free-wheeling diodes as their reverse conduction performance is good. Their efficiency in IMMD applications has been proven to be good, not only at rated power, but also in the whole output power range \cite{Morita2011}. In \cite{Wang2015b}, GaN transistors with 200 V breakdown voltage rating were utilized at 40 kHz switching frequency in an IMMD prototype where no heatsink was required. On the other hand, due to low voltage rating of a single device, series connected multilevel converter topology had to be utilized \cite{Wang2013}.
 
-\subsection{DC Link capacitor studies}
+\subsection{DC Link Capacitor Studies}
 
 DC link characterisation and capacitor selection for three-phase motor drive applications has been studied several times. In \cite{Bianchi2003} and \cite{Lee2007}, duties of DC link capacitors are listed in a conventional motor drive inverters. DC link capacitors mainly supplies the fluctuating power frequency of which is six times the grid frequency in case of passive diode bridge rectifiers are used, supplies the inverter current at switching frequency, supplies the transient power deviations and supplies the necessary hold-up energy in case of power shutdown \cite{Bianchi2003}.
 
@@ -204,12 +205,12 @@ T_{c} = T_{a}+p_{c}(T_{c})R_{th,c}
 p_{c} = I_{c,rms}^2R_{c}(T_c)
 \end{equation}
 
-Another parameter which effects the ESR of DC link capacitors is the operating frequency. In this paper, a set of film capacitors are considered ESR characteristics of which are shown in Fig. \ref{esr} in terms of frequency [datasheet]. The analysis is based on high switching frequency values (>10kHz), therefore frequency dependency of capacitor ESR is not considered as seen in Fig. \ref{esr}. 
+Another parameter which effects the ESR of DC link capacitors is the operating frequency. In this paper, a set of film capacitors are considered ESR characteristics of which are shown in Fig. \ref{esr} in terms of frequency \cite{Polypropylene2009}. The analysis is based on high switching frequency values (>10kHz), therefore frequency dependency of capacitor ESR is not considered as seen in Fig. \ref{esr}. 
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=9cm]{esr}
-  \caption{Effect of frequency on ESR of selected film capacitors [datasheet]}
+  \caption{Effect of frequency on ESR of selected film capacitors \cite{Polypropylene2009}}
   \label{esr}
 \end{figure}
 
@@ -254,39 +255,33 @@ MMLCs are low cost and high current rating capacitors, however they are not comm
 
 \begin{table}[h]
 \renewcommand{\arraystretch}{1.4}
-\caption{COMPARISON OF CAPACITOR TYPES}
+\caption{Comparison of Capacitor Types}
 \label{table1}
 \centering
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{lccc}
 \hline
-Property & 10 kW & Switching frequency & 20 kHz\\
+\textbf{Property} & \textbf{Alum. Elec.} & \textbf{Metal Film} & \textbf{MLCC}\\
 \hline
-Motor fund. frequency & 50 Hz & Supply frequency & 50 Hz\\
+Cap. per volume & \colorbox{green}{High} & Low & Low\\
 \hline
-Supply voltage & 400 V & Motor voltage & 400 V\\
+Cost & \colorbox{green}{Low} & High & \colorbox{green}{Low}\\
 \hline
-Three-phase modules & 4 & Parallel connected modules & 4\\
+Temperature sensitivity & High & \colorbox{green}{Low} & High\\
 \hline
-DC Bus filter inductance & 1 mH & DC bus filter capacitance & 100 uF\\
+RMS cur. per volume & Low & \colorbox{green}{High} & \colorbox{green}{High}\\
 \hline
-Some motor parameters & abc & Some other parameters & xyz\\
+Mechanical durability & \colorbox{green}{High} & \colorbox{green}{High} & Low\\
+\hline
+ESL & High & \colorbox{green}{Low} & \colorbox{green}{Low}\\
+\hline
+ESR & High & \colorbox{green}{Low} & \colorbox{green}{Low}\\
+\hline
+Available power rating & \colorbox{green}{High} & \colorbox{green}{High} & Low\\
+\hline
+Lifetime & Low & \colorbox{green}{High} & \colorbox{green}{High}\\
 \hline
 \end{tabular}
 \end{table}
-
-
-\begin{tabular}{ |p{4cm}||p{1cm}|p{1cm}|p{1cm}|  }
- \hline
- \multicolumn{2}{|c|}{Country List} \\
- \hline
- 
- Country Name    & ISO  &ISO &ISO \\
- \hline
- Afghanistan   & AF    &AFG&   004\\
- Aland Islands&   AX  & ALA   &248\\
-
- \hline
-\end{tabular}
 
 
 \subsection{Capacitor Selection Aspects}
@@ -314,13 +309,13 @@ In addition, for an IMMD system, the major concerns for the DC link capacitor se
 
 \subsection{Capacitor Selection Algorithm}
 
-Based on the analytical models developed so far, capacitor datasheets, capacitor selection aspects and simulation work, an algorithm for the optimization of DC link capacitor for an IMMD application is developed and implemented. The basic flowchart of the algorithm can be seen in Fig. \ref{fig6}. The algorithm takes the inputs which define the operating conditions and ratings of the motor drive, takes the limitations as constraints and use them in the calculation of critical variables. The capacitor RMS current requirement is calculated with modulation index being variable to cover the whole operating region. Normally, RMS current ratings of DC link film capacitors change with operating frequency [datasheet], as shown in Fig. \ref{rms_f}. In this study, the operating switching frequency range is above 10kHz, therefore constant RMS current ratings are used for each capacitor.
+Based on the analytical models developed so far, capacitor datasheets, capacitor selection aspects and simulation work, an algorithm for the optimization of DC link capacitor for an IMMD application is developed and implemented. The basic flowchart of the algorithm can be seen in Fig. \ref{fig6}. The algorithm takes the inputs which define the operating conditions and ratings of the motor drive, takes the limitations as constraints and use them in the calculation of critical variables. The capacitor RMS current requirement is calculated with modulation index being variable to cover the whole operating region. Normally, RMS current ratings of DC link film capacitors change with operating frequency \cite{Polypropylene2009}, as shown in Fig. \ref{rms_f}. In this study, the operating switching frequency range is above 10kHz, therefore constant RMS current ratings are used for each capacitor.
 
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=9cm]{rms_f}
-  \caption{Capacitor RMS current rating with changing frequency [datasheet]}
+  \caption{Capacitor RMS current rating with changing frequency \cite{Polypropylene2009}}
   \label{rms_f}
 \end{figure}
 
@@ -349,19 +344,19 @@ The results obtained by using the algorithm and a set of film capacitors from [1
 \caption{System parameters and constraints}
 \label{table2}
 \centering
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{cc|cc}
 \hline
-Total output power & 10 kW & Switching frequency & 20 kHz\\
+\multicolumn{2}{c}{\textbf{System Parameters}} &  \multicolumn{2}{c}{\textbf{Constraints}}\\
 \hline
-Motor fund. frequency & 50 Hz & Supply frequency & 50 Hz\\
+Power factor & 0.9 & Power density & 10W/cm^3\\
 \hline
-Supply voltage & 400 V & Motor voltage & 400 V\\
+$V_{dc}$ & 400V & Cost & 35\$\\
 \hline
-Three-phase modules & 4 & Parallel connected modules & 4\\
+Phase shift & 90^0 & Height & 35mm \\
 \hline
-DC Bus filter inductance & 1 mH & DC bus filter capacitance & 100 uF\\
+Power per module & 2kW & Temp. rise & \SI{5}{\celsius} \\
 \hline
-Some motor parameters & abc & Some other parameters & xyz\\
+Ambient temp. & \SI{40}{\celsius} & $V_{dc,r,pp}$ & 1\% \\
 \hline
 \end{tabular}
 \end{table}
@@ -382,35 +377,88 @@ Some motor parameters & abc & Some other parameters & xyz\\
   \label{fig8}
 \end{figure}
 
-Two sets of capacitors, having 25 different capacitors each, were selected from the same datasheet [16], which have voltage rating of 300V and 450V. The algorithm was implemented on these sets and number of series and parallel connections needed for each type of capacitor is found. Some samples from the capacitors are selected and listed in \ref{table3}, and compared, which was achieved with 40 kHz switching frequency. The suitable capacitors according to the selected constraints are highlighted on Table \ref{table3}.
+Two sets of capacitors, having 25 different capacitors each, were selected from the same datasheet \cite{Polypropylene2009}, which have voltage rating of 300V and 450V. The algorithm was implemented on these sets and number of series and parallel connections needed for each type of capacitor is found. Some samples from the capacitors are selected and listed in \ref{table3} \cite{Polypropylene2009}, and compared, which was achieved with 40 kHz switching frequency. The suitable capacitors according to the selected constraints are highlighted on Table \ref{table4}.
 
 Using a single capacitor with large capacitance and large voltage rating (Cap no.12) seems to be a good choice at the first glance as it has a very good power density, low height and lowest cost; however, it has the highest temperature rise since its surface area is too small. On the other hand, using high number of capacitors having low capacitance and low voltage rating (Cap no.1, 2, and 3) gives best thermal performance and lowest height, but their power density is too small and cost increases with this configuration. It can also be deduced that using high number of series connections and low number of parallel connections (Cap no. 4, 5) yields the worst results in terms of all the constraints.
 
 For 450V capacitors, selecting capacitors with low capacitance (Cap no. 6, 7) is not also the best choice as the cost increases due to multiple parallel connection. The best results have been obtained by capacitor no.9 which has 20 µF capacitance and 450 V voltage rating and needs 4 parallel connection.
 
-Although capacitor lifetime is not a major concern for DC link film capacitors, capacitor lifetime has also been investigated for the resultant selected capacitors. Operating DC voltage and operating temperature affect the lifetime of capacitors as seen in Fig. \ref{lifetime}. The Series connection of capacitors is not favored due to power density and cost considerations as shown in \ref{table3}; however, at the same operating temperature, capacitor lifetime for 2-series connected capacitor case is more than two times the lifetime for 1-series connection case, as shown in Fig. \ref{lifetime}. On the other hand, this effect is not considered a priority in this work since the expected lifetimes are more than 50 years.
+Although capacitor lifetime is not a major concern for DC link film capacitors, capacitor lifetime has also been investigated for the resultant selected capacitors. Operating DC voltage and operating temperature affect the lifetime of capacitors as seen in Fig. \ref{lifetime}. The Series connection of capacitors is not favored due to power density and cost considerations as shown in \ref{table4}; however, at the same operating temperature, capacitor lifetime for 2-series connected capacitor case is more than two times the lifetime for 1-series connection case, as shown in Fig. \ref{lifetime}. On the other hand, this effect is not considered a priority in this work since the expected lifetimes are more than 50 years.
 
 \begin{table}[h]
 \renewcommand{\arraystretch}{1.4}
-\caption{Comparison of Selected Capacitors,(s: series, p: parallel)}
+\caption{List of selected capacitors and their connections \newline(s: series, p: parallel)}
 \label{table3}
 \centering
-\begin{tabular}{|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
-Total output power & 10 kW & Switching frequency & 20 kHz\\
+\textbf{No} & \textbf{Capacitor} & \textbf{Capacitance} & \textbf{Voltage} & \textbf{Connection}\\
 \hline
-Motor fund. frequency & 50 Hz & Supply frequency & 50 Hz\\
+1 & B32674D3685 & 6.8 \mu F & 300V & 2 s, 14 p\\
 \hline
-Supply voltage & 400 V & Motor voltage & 400 V\\
+2 & B32674D3106 & 10 \mu F & 300V & 2 s, 10 p\\
 \hline
-Three-phase modules & 4 & Parallel connected modules & 4\\
+3 & B32676T3206 & 20 \mu F & 300V & 2 s, 5 p\\
 \hline
-DC Bus filter inductance & 1 mH & DC bus filter capacitance & 100 uF\\
+4 & B32678G3406 & 40 \mu F & 300V & 2 s, 3 p\\
 \hline
-Some motor parameters & abc & Some other parameters & xyz\\
+5 & B32678J3806 & 80 \mu F & 300V & 2 s, 2 p\\
+\hline
+6 & B32674D4475 & 4.7 \mu F & 450V & 1 s, 15 p\\
+\hline
+7 & B32674D4685 & 6.8 \mu F & 450V & 1 s, 10 p\\
+\hline
+8 & B32676T4136 & 12 \mu F & 450V & 1 s, 7 p\\
+\hline
+9 & B32676G4206 & 20 \mu F & 450V & 1 s, 4 p\\
+\hline
+10 & B32676G4256 & 25 \mu F & 450V & 1 s, 3 p\\
+\hline
+11 & B32678G4406 & 40 \mu F & 450V & 1 s, 2 p\\
+\hline
+12 & B32678J4187 & 180 \mu F & 450V & 1 s, 1 p\\
 \hline
 \end{tabular}
 \end{table}
+
+
+\begin{table}[h]
+\renewcommand{\arraystretch}{1.4}
+\caption{Comparison of Selected Capacitors}
+\label{table4}
+\centering
+\begin{tabular}{ccccc}
+\hline
+\textbf{No} & \textbf{Power density} & \textbf{Cost} & \textbf{Height} & \textbf{Temp. rise}\\
+& ($W/cm^3$) & (\$) & (mm) &  (\SI{}{\celsius}) \\
+\hline
+1 & 4.58 & 106.9 & \colorbox{green}{27.5} & \colorbox{green}{0.2}\\
+\hline
+2 & 4.87 & 95.2 & \colorbox{green}{31} & \colorbox{green}{0.4}\\
+\hline
+3 & 5.10 & 76.0 & \colorbox{green}{22} & \colorbox{green}{2.0}\\
+\hline
+4 & 4.29 & 64.1 & 45 & 6.4\\
+\hline
+5 & 3.39 & 56.6 & 57 & 11.3\\
+\hline
+6 & \colorbox{green}{11.52} & 47.1 & 25 & \colorbox{green}{0.3}\\
+\hline
+7 & \colorbox{green}{12.40} & 43.4 & \colorbox{green}{32} & \colorbox{green}{0.5}\\
+\hline
+8 & \colorbox{green}{11.30} & \colorbox{green}{34.0} & 37 & \colorbox{green}{0.9}\\
+\hline
+9 & \colorbox{green}{12.74} & \colorbox{green}{32.1} & \colorbox{green}{22} & \colorbox{green}{3.8}\\
+\hline
+10 & 11.76 & \colorbox{green}{30.3} & 45 & 5.6\\
+\hline
+11 & 9.94 & \colorbox{green}{29.1} & 50 & 15.5\\
+\hline
+12 & \colorbox{green}{11.15} & \colorbox{green}{18.2} & \colorbox{green}{24} & 48.9\\
+\hline
+\end{tabular}
+\end{table}
+
 
 \begin{figure}[h]
   \centering
