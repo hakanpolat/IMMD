@@ -146,7 +146,7 @@ legend('Load','PCC');
 figure;
 plot(timeaxis,pfload1_sim,'k-','LineWidth',2.0);
 hold on;
-plot(timeaxis,pfload2_sim,'k-','LineWidth',2.0);
+plot(timeaxis,pfload2_sim,'r-','LineWidth',2.0);
 hold on;
 plot(timeaxis,pfline_sim,'b-','LineWidth',2.0);
 hold off;
@@ -154,7 +154,7 @@ xlabel('Time (s)','Fontweight','Bold');
 ylabel('Power factors','Fontweight','Bold');
 %title ('Photovoltaic Generation Profile','Fontweight','Bold');
 grid on;
-%ylim([200 250]);
+ylim([-0.1 1.1]);
 legend('Load-1','Load-2','Line');
 
 
