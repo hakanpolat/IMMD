@@ -46,6 +46,7 @@ volt_ripple_perc = volt_ripple/Vdc*100;
 
 %% MAIN ALGORITHM
 freq1 = 10e3:10e3:400e3;
+%freq1 = 10e3;
 numfreq = numel(freq1);
 M = 0.1:0.01:1;
 numM = numel(M);
@@ -101,12 +102,13 @@ end
 
 %%
 figure;
-plot(freq1/1e3,Cap_max*1e6,'b -','Linewidth',2);
+plot(freq1/1e3,Cap_max*1e6,'b -','Linewidth',3);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
+%%
 figure;
 for k = 1:numel(freq1)
     plot(M,Cap(k,:)*1e6,'k -','Linewidth',2);
@@ -118,8 +120,9 @@ set(gca,'FontSize',12);
 xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 
+%%
 figure;
-plot(M,Icrms(1,:),'r -','Linewidth',2);
+plot(M,Icrms(1,:),'r -','Linewidth',3);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Modulation Index','FontSize',12,'FontWeight','Bold')
