@@ -1,3 +1,18 @@
+# 24.03.2017 - 30.04 2017
+## Planlanan çalışmalar:
+* BAP için tool geliştirilecek: DEVAM
+* RPG simulasyon: DEVAM
+* Motor üreticilerine mail atılacak: OK
+* Motor katalog dataları tool'a eklenecek: OK
+* GRW-2017 abstract submit edilecek, poster planlanacak: OK
+
+## Gerçekleşen çalışmalar:
+* IMMD Tool: motor dataları ile çalıştırıldı.
+* GRW abstract submit edildi.
+* Kollmorgen'a mail atıldı.
+* Mendeley klasörü organize edildi.
+* GRW poster çatısı oluşturuldu.
+
 # 17.03.2017 - 23.04 2017
 ## Planlanan çalışmalar:
 * ISIE review'ları incelenip final paper submit edilecek: OK
@@ -16,9 +31,6 @@
 * Solidworks tutorials, example drawings.
 * RPG simulasyon problemleri çözüldü. PV ve load profilleri girildi.
 * ISIE final paper submit edildi.
-* GRW abstract submit edildi.
-* Kollmorgen'a mail atıldı.
-* Mendeley klasörü organize edildi.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
