@@ -18,6 +18,7 @@
 * ISIE final paper submit edildi.
 * GRW abstract submit edildi.
 * Kollmorgen'a mail atıldı.
+* Mendeley klasörü organize edildi.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:

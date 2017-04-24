@@ -72,8 +72,12 @@ Trated = Pout_total/wrated; % Nm
 Pout_module = Pout_total/module; % Watts
 slot_s = slot_number;
 pole_r = pole_number;
-q_s = slot_s/phase_s/pole_r;
+q_s = slot_s./(phase_s.*pole_r);
 y_s = slot_s/module; % slot per module
+
+%% DRIVE FREQUENCY
+fdrive = pole_number.*Nrated/120
+
 
 %% MECHANICAL CALCULATIONS
 Do_s = Do_stator*1e-3; % m

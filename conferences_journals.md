@@ -9,7 +9,7 @@
 |Elektrik Elektronik Mühendisliği Kongresi |[EEMKON 2017)](http://eemkon.org.tr/2017/02/17/bilgi/)|Özet|30.04.2017|16-18 November 2017|İstanbul, Turkey|.|
 |1. Ulusal Enerji Dönüşümü Kongresi |[UEDK 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|.|
 |Akıllı Sistemlerde Yenilikler ve Uygulamaları Konferansı|[AYSU 2017](http://asyu2017.org/)|Bildiri|03.06.2017|5-7 October 2017|Alanya, Turkey|.|
-|IET International Conference on Renewable Power generation|[RPG 2017](http://rpg2017.events.theiet.org.cn/)|Final|16.06.2017|19-20 October 2017|Wuhan, China|Awaiting for review|
+|IET International Conference on Renewable Power generation|[RPG 2017](http://rpg2017.events.theiet.org.cn/)|Final|16.06.2017|19-20 October 2017|Wuhan, China|Accepted!!!|
 |International Conference on Advanced Technology & Sciences|[ICAT 2017](https://www.icatsconf.org/LATVIA2017/latvia2017)|Full paper|30.06.2017|12-15 September 2017|Riga, Latvia|.|
 |International Symposium on Electrical Railway Transportation Systems |[RUSİS 2017](http://erusis.org/wp-content/uploads/2017/03/ERUSIS-2017-CFP.pdf)|Full paper|01.07.2017|27-28 October 2017|Eskişehir, Turkey|.|
 |International Conference on Electrical Engineering|[ICEE 2018](https://www.waset.org/conference/2018/05/montreal/ICEE)|Full paper|11.07.2017|14-15 May 2018|Montreal, Canada|.|
