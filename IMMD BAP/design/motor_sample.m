@@ -12,6 +12,7 @@
 % 9. Dos: mm
 % 10. Dis: mm
 % 11. Dir: mm
+% 12. Slot number
 
 motor_data = [
 5025,10,3100,21.8,76.1,2.19,133,100.74,139.956,86.19,65.012;
@@ -33,6 +34,19 @@ motor_data = [
 7780,38,830,172,498,6.59,399,50.71,361.11,300.92,225.04
 ];
 
+for k = 1:numel(motor_data(:,1))
+    if motor_data(k,2) == 10
+        motor_data(k,12) = 12;
+    elseif motor_data(k,2) == 38
+        motor_data(k,12) = 30;
+    elseif motor_data(k,2) == 46
+        motor_data(k,12) = 36;
+    else
+        motor_data(k,12) = 0;
+    end
+end
+        
+
 % Motor information
 % Kollmorgen,KBM-3503A 
 % Kollmorgen,KBM-3503B 
@@ -51,4 +65,34 @@ motor_data = [
 % Kollmorgen,KBM-8801B 
 % Kollmorgen,KBM-11800A 
 % Kollmorgen,KBM-11800B 
+
+
+%% General Inputs
+% motor catalog (Kollmorgen, KBM(S)-88X00-X, B)
+%%
+% http://productpage.3dpublisher.net/3dproductpage/Qsvalidlogin.asp?GUID=1249850940083&name=KBM(S)-88&isCate=true
+%%
+% http://www.kollmorgen.com/en-us/products/motors/direct-drive/kbm-series-frameless/_literature/kbm-selection-guide-en-us_revg/
+Prated = 5.46e3; % Watts
+Nrated = 1000; % rpm
+Tstall_cont = 102; % Nm
+Icont = 20.5; % Amps
+Tstall_peak = 145; % Nm
+Ipeak = 48.3; % amps
+torque_sens = 5.06; % Nm/Arms
+back_emfc = 306; % Vrms/kRPM
+motor_cons = 6.10; % Nm/sqrt(Watt)
+res_ltol = 0.46; % Omhs
+induct = 4.5; % mH
+inertia = 5.26e-2; % kgm^2
+friction_static = 1.08; % Nm
+Tcogging_pp = 0.81; % Nm
+friction_viscous = 0.385; % Nm/kRPM
+Rth = 0.305; % C/W
+pole_number = 46;
+slot_number = 36;
+length = 36.37; % mm
+Do_stator = 331.46; % mm
+Di_stator = 224.16; % mm
+Di_rotor = 155.02; % mm
 

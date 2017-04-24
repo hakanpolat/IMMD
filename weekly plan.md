@@ -4,7 +4,7 @@
 * BAP için tool geliştirilecek: OK
 * RPG simulasyon: OK
 * GaN EVM fiyat teklifi istenecek. OK
-* Motor üreticilerine mail atılacak
+* Motor üreticilerine mail atılacak: OK
 * Motor katalog dataları tablo yapılacak: OK
 * GRW-2017 abstract submit edilecek, poster planlanacak: OK
 
@@ -17,6 +17,7 @@
 * RPG simulasyon problemleri çözüldü. PV ve load profilleri girildi.
 * ISIE final paper submit edildi.
 * GRW abstract submit edildi.
+* Kollmorgen'a mail atıldı.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
