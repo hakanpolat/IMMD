@@ -38,7 +38,7 @@ for k = 1:numel(motor_data(:,1))
     if motor_data(k,2) == 10
         motor_data(k,12) = 12;
     elseif motor_data(k,2) == 38
-        motor_data(k,12) = 30;
+        motor_data(k,12) = 36;
     elseif motor_data(k,2) == 46
         motor_data(k,12) = 36;
     else

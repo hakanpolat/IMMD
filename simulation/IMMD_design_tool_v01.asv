@@ -52,18 +52,18 @@ Do_stator = motor_data(:,9); % mm
 Di_stator = motor_data(:,10); % mm
 Di_rotor = motor_data(:,11); % mm
 slot_number = motor_data(:,12);
-
+motor_num = numel(motor_data(:,1))
 %% INPUTS
 module = 4;
 layer = 2;
-zQ = 10; % number of turns per coil side
+zQ = 50; % number of turns per coil side
 phase_s = 3;
 Bgap = 0.9; % Tesla
 motor_eff = 0.9;
 % Inverter configuration: 0 for H-bridge, 1 for 3-phase bridge
-inverter_config = 0;
+inverter_config = 1;
 % winding configuration: 0 for distributed, 1 for concentrated
-winding_config = 0;
+winding_config = 1;
 
 %% BASIC CALCULATIONS
 wrated = Nrated*2*pi/60; % rad/s
@@ -75,17 +75,21 @@ pole_r = pole_number;
 q_s = slot_s./(phase_s.*pole_r);
 y_s = slot_s/module; % slot per module
 
+%% DRIVE FREQUENCY
+fdrive = pole_number.*Nrated/120; % Hz
+
 %% MECHANICAL CALCULATIONS
 Do_s = Do_stator*1e-3; % m
 Di_s = Di_stator*1e-3; % m
 L_s = length*1e-3; % m
 Di_r = Di_rotor*1e-3; % m
-Surface_s = pi*Di_s*L_s; % m^2
+Surface_s = pi*Di_s.*L_s; % m^2
 Circum_s = pi*Di_s; % m
-Volume_i = Di_s^2*L_s*pi/4; % m^3
+Volume_s = Di_s.^2.*L_s*pi/4; % m^3
 
 %% WINDING CALCULATIONS
 % winding factor
+kw1 = zeros(1,numel())
 if winding_config == 0
     pitch = 2/3;
     pitch_angle = pitch*pi; % electrical radians
@@ -98,25 +102,31 @@ if winding_config == 0
     % winding factor
     kw1 = kp1*kd1;
 elseif winding_config == 1
-    kw1 = 0.867; % 36/46, all teeth wound
-    %kw1 = 0.87; % 36/46, alternate teeth wound
+    for k = 1:numel(motor_data(:,1))
+        if slot_s(k) == 12 && pole_r(k) == 10
+            kw1(k) = 0.933; % all teeth wound
+            %kw1 = 0.966; % alternate teeth wound
+        elseif slot_s(k) == 36 && pole_r(k) == 38
+            kw1(k) = 0.953; % all teeth wound
+            %kw1 = 0.956; % alternate teeth wound
+        elseif slot_s(k) == 36 && pole_r(k) == 46
+            kw1(k) = 0.867; % all teeth wound
+            %kw1 = 0.87; % alternate teeth wound
+        end
+    end
 end
-
+kw1 = kw1';
 
 %% Stator Parameters
 % ??????
-pole_s = 8;
+% pole_s = 8;
 % ??????
 
 %% INDUCED VOLTAGE CALCULATION
 Nphm = layer*zQ*q_s; % Number of turns per phase per module
-flux_pp = 4*(Di_s/2)*L_s*Bgap/pole_s; % Weber
-% drive frequency
-ffund = 100; % Hz
-Nsync = 120*ffund/pole_s; % rpm
-wsync = Nsync*2*pi/60; % rad/s
+flux_pp = 4*(Di_s/2).*L_s*Bgap./pole_r; % Weber
 % induced_voltage_per_module_per_phase
-Erms = 4.44*ffund*flux_pp*kw1*Nphm; % Volts
+Erms = 4.44*fdrive.*flux_pp.*kw1.*Nphm % Volts
 
 %% DC LINK CALCULATION
 fs = 50; % Hz
