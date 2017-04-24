@@ -1,6 +1,6 @@
 # 17.03.2017 - 23.04 2017
 ## Planlanan çalışmalar:
-* ISIE review'ları incelenip final paper submit edilecek
+* ISIE review'ları incelenip final paper submit edilecek: OK
 * BAP için tool geliştirilecek: OK
 * RPG simulasyon: OK
 * GaN EVM fiyat teklifi istenecek. OK
@@ -15,6 +15,7 @@
 * IMMD Tool: PCB dimensions, power density, loss characterisation.
 * Solidworks tutorials, example drawings.
 * RPG simulasyon problemleri çözüldü. PV ve load profilleri girildi.
+* ISIE final paper submit edildi.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
