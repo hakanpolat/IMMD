@@ -4,7 +4,7 @@
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |International Conference on Electrical Machines, Drives and Power Systems|[ELMA 2017](http://e-university.tu-sofia.bg/e-conf/?r=209)|Abstract|28.03.2017|1-3 June 2017|Sofia, Bulgaria|Not submitted|
 |International Conference on Electrical Machines and Distribution Systems |[ICEMDS 2018)](https://www.waset.org/conference/2018/02/london/ICEMDS)|Full paper|05.05.2017|15-16 February 2018|London, UK|.|
-|IEEE International Symposium on Industrial Electronics|[ISIE 2017](http://www.anglia.ac.uk/science-and-technology/about/computing-and-technology/isie-conference)|Final|23.04.2017|9-21 June 2017|Edinburgh, Scotland|Accepted, final version update|
+|IEEE International Symposium on Industrial Electronics|[ISIE 2017](http://www.anglia.ac.uk/science-and-technology/about/computing-and-technology/isie-conference)|Final|23.04.2017|9-21 June 2017|Edinburgh, Scotland|Accepted, Final paper submitted|
 |International Conference on Electrical Machines and Systems |[ICEMS 2018](https://www.waset.org/conference/2018/01/dubai/ICEMS)|Full paper|28.04.2017|22-23 January 2018|Dubai, UAE|.|
 |Elektrik Elektronik Mühendisliği Kongresi |[EEMKON 2017)](http://eemkon.org.tr/2017/02/17/bilgi/)|Özet|30.04.2017|16-18 November 2017|İstanbul, Turkey|.|
 |1. Ulusal Enerji Dönüşümü Kongresi |[UEDK 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|.|

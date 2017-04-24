@@ -16,6 +16,7 @@
 * Solidworks tutorials, example drawings.
 * RPG simulasyon problemleri çözüldü. PV ve load profilleri girildi.
 * ISIE final paper submit edildi.
+* GRW abstract submit edildi.
 
 # 10.03.2017 - 16.04 2017
 ## Planlanan çalışmalar:
