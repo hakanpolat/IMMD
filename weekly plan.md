@@ -2,6 +2,7 @@
 ## Planlanan çalışmalar:
 * BAP için tool geliştirilecek: DEVAM
 * RPG simulasyon: DEVAM
+* RPG makale: DEVAM
 * Motor üreticilerine mail atılacak: OK
 * Motor katalog dataları tool'a eklenecek: OK
 * GRW-2017 abstract submit edilecek, poster planlanacak: OK
@@ -12,6 +13,7 @@
 * Kollmorgen'a mail atıldı.
 * Mendeley klasörü organize edildi.
 * GRW poster çatısı oluşturuldu.
+* RPG simulasyona günlük profiller girildi.
 
 # 17.03.2017 - 23.04 2017
 ## Planlanan çalışmalar:
