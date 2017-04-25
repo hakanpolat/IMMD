@@ -85,6 +85,51 @@ ma = 2*sqrt(2)*Vc_mag/Vdc;
 delta = atan((Idpv*Xs)/(Vphase-Iqpv*Xs));
 delta_degree = delta*180/pi;
 
+%%
+% PV generation profile
+
+hour = 1:24;
+n = numel(hour);
+minute = 1:n*60;
+nn = numel(minute);
+pv_prod = zeros(1,nn);
+ayasli1 = zeros(1,nn);
+ayasli2 = zeros(1,nn);
+pv_peak = 0.7; % pu
+pv_peak_prod = 50*pv_peak; % kVA
+for k = 1:nn
+    kalan = minute(k)/60;
+    kalanint = floor(kalan);
+    if (kalanint >= 6) && (kalanint <= 18)
+        pv_prod(k) = -pv_peak_prod*cos(2*pi*(1/nn)*minute(k)); % kVA
+    end
+    ayasli1(k) = 20; % kVA
+    if (kalanint < 7) || (kalanint == 9) ||...
+            (kalanint > 10 && kalanint < 13) || ...
+            (kalanint > 14 && kalanint < 17) ||...
+            (kalanint == 18) || (kalanint > 20)
+        ayasli2(k) = 20;
+    else
+        ayasli2(k) = 120;
+    end
+    houraxis(k) = kalanint;
+end
+
+%%
+figure;
+plot(minute,pv_prod,'b-','LineWidth',2.0);
+hold on;
+plot(minute,ayasli2,'r-','LineWidth',2.0);
+hold off;
+xlabel('Time (hours)','Fontweight','Bold');
+ylabel('PV Generation & Load (kVA)','Fontweight','Bold');
+title ('Photovoltaic Generation and Load Profile','Fontweight','Bold');
+legend('PV Generation','Load');
+grid on;
+ylim([-1 130]);
+
+
+%%
 sim('simulation_base.slx');
 
 %%
@@ -156,24 +201,6 @@ ylabel('Power factors','Fontweight','Bold');
 grid on;
 ylim([-0.1 1.1]);
 legend('Load-1','Load-2','Line');
-
-
-%%
-% PV generation profile
-
-hour = 1:24;
-n = numel(hour);
-pv_prod = zeros(1,numel(hour));
-pv_peak = 0.7; % pu
-pv_prod(6:18) = -pv_peak*cos(2*pi*(1/24)*hour(6:18));
-figure;
-plot(hour,pv_prod,'k-','LineWidth',2.0);
-xlabel('Time (hours)','Fontweight','Bold');
-ylabel('PV Generation (pu)','Fontweight','Bold');
-title ('Photovoltaic Generation Profile','Fontweight','Bold');
-grid on;
-pv_prod';
-
 
 %% OBSOLETE
 % modulation index

@@ -8,4 +8,5 @@
 
 ![](./power_factor.png)
 
-  
+
+![](./profile.png)
