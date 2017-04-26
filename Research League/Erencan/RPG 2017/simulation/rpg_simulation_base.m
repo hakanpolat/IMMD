@@ -96,11 +96,11 @@ pv_prod = zeros(1,nn);
 ayasli1 = zeros(1,nn);
 ayasli2 = zeros(1,nn);
 pv_peak = 0.7; % pu
-pv_peak_prod = 50*pv_peak; % kVA
+pv_peak_prod = 150*pv_peak; % kVA
 for k = 1:nn
     kalan = minute(k)/60;
     kalanint = floor(kalan);
-    if (kalanint >= 6) && (kalanint <= 18)
+    if (kalanint >= 6) && (kalanint < 18)
         pv_prod(k) = -pv_peak_prod*cos(2*pi*(1/nn)*minute(k)); % kVA
     end
     ayasli1(k) = 20; % kVA
@@ -112,14 +112,13 @@ for k = 1:nn
     else
         ayasli2(k) = 120;
     end
-    houraxis(k) = kalanint;
+    %houraxis(k) = kalanint;
 end
 
-%%
 figure;
-plot(minute,pv_prod,'b-','LineWidth',2.0);
+plot(minute/60,pv_prod,'b-','LineWidth',2.0);
 hold on;
-plot(minute,ayasli2,'r-','LineWidth',2.0);
+plot(minute/60,ayasli2,'r-','LineWidth',2.0);
 hold off;
 xlabel('Time (hours)','Fontweight','Bold');
 ylabel('PV Generation & Load (kVA)','Fontweight','Bold');
