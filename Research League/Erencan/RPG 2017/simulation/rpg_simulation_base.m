@@ -108,7 +108,7 @@ for k = 1:nn
             (kalanint > 10 && kalanint < 13) || ...
             (kalanint > 14 && kalanint < 17) ||...
             (kalanint == 18) || (kalanint > 20)
-        ayasli2(k) = 20;
+        ayasli2(k) = 0;
     else
         ayasli2(k) = 120;
     end

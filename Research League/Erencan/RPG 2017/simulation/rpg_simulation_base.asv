@@ -75,7 +75,7 @@ Ls = 1e-3; % H
 RLs = 10e-3; % Ohms
 Xs = Ls*2*pi*fs; % Ohms
 Ppv = 50e3; % W
-Qpv = 5e3; % VAr
+Qpv = 0e3; % VAr
 Spv = sqrt(Ppv^2+Qpv^2); % VA
 pf = Ppv/Spv;
 Idpv = Ppv/(3*Vphase);
@@ -96,11 +96,11 @@ pv_prod = zeros(1,nn);
 ayasli1 = zeros(1,nn);
 ayasli2 = zeros(1,nn);
 pv_peak = 0.7; % pu
-pv_peak_prod = 50*pv_peak; % kVA
+pv_peak_prod = 150*pv_peak; % kVA
 for k = 1:nn
     kalan = minute(k)/60;
     kalanint = floor(kalan);
-    if (kalanint >= 6) && (kalanint <= 18)
+    if (kalanint >= 6) && (kalanint < 18)
         pv_prod(k) = -pv_peak_prod*cos(2*pi*(1/nn)*minute(k)); % kVA
     end
     ayasli1(k) = 20; % kVA
@@ -108,14 +108,13 @@ for k = 1:nn
             (kalanint > 10 && kalanint < 13) || ...
             (kalanint > 14 && kalanint < 17) ||...
             (kalanint == 18) || (kalanint > 20)
-        ayasli2(k) = 20;
+        ayasli2(k) = 0;
     else
         ayasli2(k) = 120;
     end
-    houraxis(k) = kalanint;
+    %houraxis(k) = kalanint;
 end
 
-%%
 figure;
 plot(minute/60,pv_prod,'b-','LineWidth',2.0);
 hold on;
