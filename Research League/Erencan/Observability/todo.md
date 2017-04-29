@@ -11,3 +11,4 @@
 * 11 P = ATheta: ED
 * 12 Unobservable Branch: ED
 * 13 Modify: ED
+* 14 Multiplication: ED
