@@ -1,3 +1,4 @@
+tic
 % IEEE CDF data
 % Data import
 fid = fopen('ieee_cdf.dat');
@@ -40,10 +41,7 @@ Bus_number = Bus_Data(:,1);
 Branch_number_from = Branch_Data(:,1);
 Branch_number_to = Branch_Data(:,2);
 
-
-%%
 % Measurement data
-tic
 fid = fopen('measure.dat');
 no_of_volt = str2double(fgetl(fid));
 counter = 0;

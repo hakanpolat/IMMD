@@ -1,3 +1,4 @@
+tic
 no_of_pi = numel(pi_vect);
 no_of_pf = numel(pf_vect(:,1));
 branch_data = [Branch_number_from Branch_number_to];
@@ -13,3 +14,4 @@ for k = no_of_pi+1:no_of_pi+no_of_pf
     H(k,pf_vect(k-no_of_pi,2)) = -1;
 end
 
+toc

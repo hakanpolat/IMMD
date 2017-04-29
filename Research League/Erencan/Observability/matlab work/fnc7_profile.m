@@ -1,5 +1,5 @@
+tic
 % Profile
-G = H'*H;
 n = numel(G(:,1));
 profile_G = n;
 flag = 0;
@@ -23,4 +23,4 @@ for i = 1:n
     profile_G = profile_G + i - fi;
 end
 profile_G = profile_G - flag;
-
+toc
