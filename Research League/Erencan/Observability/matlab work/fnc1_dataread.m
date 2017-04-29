@@ -7,7 +7,6 @@ Bus_Data = [];
 No_of_Buses = 0;
 while ischar(Line_String_Complete)
     Line_String_Complete = fgetl(fid);
-    %disp(['#' Line_String_Complete '#'] );
     if(strcmp(Line_String_Complete(1:4),'-999') == 1);
         break;
     end
@@ -24,7 +23,6 @@ Branch_Data = [];
 No_of_Branches = 0;
 while ischar(Line_String_Complete)
     Line_String_Complete = fgetl(fid);
-    %     disp(['#' Line_String_Complete '#'] );
     if(strcmp(Line_String_Complete(1:4),'-999') == 1);
         break;
     end
@@ -36,7 +34,6 @@ while ischar(Line_String_Complete)
         [No_of_Branches Line_Numeric]];
 end
 fclose(fid);
-
 
 Bus_number = Bus_Data(:,1);
 Branch_number_from = Branch_Data(:,1);
