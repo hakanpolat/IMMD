@@ -1,7 +1,7 @@
-* 1 Data read: MU
+* 1 Data read: MU => OK
 * 2 Storage(s): MU
-* 3 H oluştur: MU
-* 4 A oluştur: MU
+* 3 H oluştur: MU => OK
+* 4 A oluştur: MU => OK
 * 5 G = HTH: ED
 * 6 Ordering: MU
 * 7 Profile: MU
