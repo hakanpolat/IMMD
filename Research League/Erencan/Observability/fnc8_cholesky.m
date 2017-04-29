@@ -1,22 +1,22 @@
 clear all
 clc
 
-n = 3;
+n = 4;
 % Generate a dense n x n symmetric, positive definite matrix
 
-A = rand(n,n); % generate a random n x n matrix
+G = rand(n,n); % generate a random n x n matrix
 
 % construct a symmetric matrix using either
-A = 0.5*(A+A'); 
-A = A*A';
+G = 0.5*(G+G'); 
+G = G*G';
 % The first is significantly faster: O(n^2) compared to O(n^3)
 
 % since A(i,j) < 1 by construction and a symmetric diagonally dominant matrix
 %   is symmetric positive definite, which can be ensured by adding nI
-A = A + n*eye(n);
+G = G + n*eye(n);
 
 
-G = A;
+
 
 
 
@@ -33,14 +33,16 @@ zerocounter = 0;
 
 
 
-for i = 1:length(G)
+for i = 1:length(G(:,1))-1
    
-    d = B(1,1);
+    
+    d = B(i,i);
+    
     if (d ==0)   % Then it means there is either rank efficiency or slack bus
         
         zerovec(i,1) = zerocounter;   %Flag the number of dependent rows
         zerocounter=zerocounter+1;    
-        B(1,1) = 1;
+       
         d = 1;
         
     end
@@ -48,13 +50,14 @@ for i = 1:length(G)
      
     a = B(2:(n+1-i),1);
     
-    B_temp=B(2:(n+1-i),2:(n+1-i));
+    B=B(2:(n+1-i),2:(n+1-i)); %Taking submatrix
     
-    B = (1/d).*(B_temp-a*a');
+    B = B-(a*a')./d;       % New submatrix
     
 
-        L_temp(i,i) = sqrt(abs(d));
-        L_temp(i+1:n,i) =  a./sqrt(abs(d));
+        L_temp(i,i) = sqrt(d);
+        L_temp(i+1:n,i) =  a./sqrt(d);
         L = L_temp*L; 
+        L_temp = eye(n,n);
     
 end
