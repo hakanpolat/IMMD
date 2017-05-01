@@ -15,6 +15,7 @@ G = G*G';
 %   is symmetric positive definite, which can be ensured by adding nI
 G = G + n*eye(n);
 
+% G = [ 1 , 2, 3, 1, 2, 3; 2, 4, 2, 1, 1, 0 ; 3 ,3 , 4, 3, 2, 1 ; 0, 0, 0, 0,0 ,0 ; 7,8,8,9,20,1; 4,4,5,7,8,9 ]
 rank(G)
 
 B = G;
@@ -25,10 +26,10 @@ L_temp = eye(n,n);
 zerovec = zeros(n,1);
 zerocounter = 0;
 
-for i = 1:length(G(:,1))-1
+for i = 1:length(G(:,1))
    
     
-    d = B(i,i);
+    d = B(1,1);
     
     if (d ==0)   % Then it means there is either rank efficiency or slack bus
         
@@ -48,8 +49,10 @@ for i = 1:length(G(:,1))-1
     
 
         L_temp(i,i) = sqrt(d);
-        L_temp(i+1:n,i) =  a./sqrt(d);
-        L = L_temp*L; 
+        L_temp(i+1:n,i) =  a./sqrt(d)
+        L = L*  L_temp; 
         L_temp = eye(n,n);
     
 end
+
+% alright = chol(G,'lower')-L

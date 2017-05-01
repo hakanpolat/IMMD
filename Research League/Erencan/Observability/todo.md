@@ -5,7 +5,7 @@
 * 5 G = HTH: ED
 * 6 Ordering: MU
 * 7 Profile: MU => OK
-* 8 Cholesky (L): ED
+* 8 Cholesky (L): => OK
 * 9 FPG (eqn #s): MU
 * 10 Substitution (Theta): MU
 * 11 P = ATheta: ED
