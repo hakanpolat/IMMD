@@ -15,12 +15,6 @@ G = G*G';
 %   is symmetric positive definite, which can be ensured by adding nI
 G = G + n*eye(n);
 
-
-
-
-
-
-
 rank(G)
 
 B = G;
@@ -30,8 +24,6 @@ L = eye(n,n);
 L_temp = eye(n,n);
 zerovec = zeros(n,1);
 zerocounter = 0;
-
-
 
 for i = 1:length(G(:,1))-1
    
