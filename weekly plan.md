@@ -1,8 +1,18 @@
 # 24.03.2017 - 30.04 2017
 ## Planlanan çalışmalar:
-* BAP için tool geliştirilecek: DEVAM
-* RPG simulasyon: DEVAM
-* RPG makale: DEVAM
+* BAP için tool
+* RPG makale
+* GRW-2017 poster submit
+
+## Gerçekleşen çalışmalar:
+* ..
+* .
+
+# 24.03.2017 - 30.04 2017
+## Planlanan çalışmalar:
+* BAP için tool geliştirilecek: OK
+* RPG simulasyon: OK
+* RPG makale: OK
 * Motor üreticilerine mail atılacak: OK
 * Motor katalog dataları tool'a eklenecek: OK
 * GRW-2017 abstract submit edilecek, poster planlanacak: OK
