@@ -1,5 +1,5 @@
 * 1 Data read: MU => OK
-* 2 Storage(s): MU
+* 2 Storage(s): MU => OK
 * 3 H oluştur: MU => OK
 * 4 A oluştur: MU => OK
 * 5 G = HTH: ED
