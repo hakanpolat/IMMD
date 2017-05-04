@@ -3,8 +3,8 @@
 % Data import
 fid = fopen('ieee_cdf.dat');
 % Bus Data
-Line_String_Complete = fgetl(fid);
-Line_String_Complete = fgetl(fid);
+Line_String_Complete=fgetl(fid);
+Line_String_Complete=fgetl(fid);
 Bus_Data = [];
 No_of_Buses = 0;
 while ischar(Line_String_Complete)
