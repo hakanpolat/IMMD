@@ -14,7 +14,7 @@
 % 11. Dir: mm
 % 12. Slot number
 
-motor_data = [
+motor_data2 = [
 5025,10,3100,21.8,76.1,2.19,133,100.74,139.956,86.19,65.012;
 5160,10,4800,21.7,76.6,1.59,96.2,100.74,139.956,86.19,65.012;
 5400,10,2800,25.6,92.3,2.44,147,125.60,139.956,86.19,65.012;
@@ -34,19 +34,19 @@ motor_data = [
 7780,38,830,172,498,6.59,399,50.71,361.11,300.92,225.04
 ];
 
-for k = 1:numel(motor_data(:,1))
-    if motor_data(k,2) == 10
-        motor_data(k,12) = 12;
-    elseif motor_data(k,2) == 38
-        motor_data(k,12) = 36;
-    elseif motor_data(k,2) == 46
-        motor_data(k,12) = 36;
+for k = 1:numel(motor_data2(:,1))
+    if motor_data2(k,2) == 10
+        motor_data2(k,12) = 12;
+    elseif motor_data2(k,2) == 38
+        motor_data2(k,12) = 36;
+    elseif motor_data2(k,2) == 46
+        motor_data2(k,12) = 36;
     else
-        motor_data(k,12) = 0;
+        motor_data2(k,12) = 0;
     end
 end
         
-
+motor_data = motor_data2(12,:);
 % Motor information
 % Kollmorgen,KBM-3503A 
 % Kollmorgen,KBM-3503B 

@@ -233,37 +233,40 @@ voltage_rating_min = voltage_req_min*1.5; % V
 current_req_min = Iline*2; % A
 current_rating_min = current_req_min*2; % A
 
+%%
 % Suppose an IGBT is selected
 % Infineon SKB15N60HS IGBT + Diode, 600V, 27A
 % http://www.infineon.com/cms/en/product/power/igbt/igbt-discrete/discrete-igbt-with-anti-parallel-diode/SKB15N60HS/productType.html?productType=ff80808112ab681d0112ab6e35f41850
 
-fsw = 20e3; % Hz
+fsw = 1e3:1e3:20e3; % Hz
+for k = 1:numel(fsw)
+    % Datasheet values
+    Vce_sat = 2.3; % V, @ A peak
+    Eon = 0.45e-3; % J, @ 400V
+    Eon = Eon*Vdc_module/400; % J, @270V
+    Eoff = 0.275e-3; % J, @400V
+    Eoff = Eoff*Vdc_module/400; % J, @270V
+    % Err = 8e-3; % J, @400V
+    % Err = Err*Vdc_module/600; % J, @270V
+    Vec = 1.25; % V
+    trr = 184e-9; % s, @400V
+    trr = trr*Vdc_module/400; % s, @270V
+    Irr = 18; % A, @400V
+    Irr = Irr*Vdc_module/400; % A, @270V
+    
+    % Loss calculation
+    Psc(k) = Icp*Vce_sat*(1/8+ma*pf/(3*pi)); % W
+    Pdc(k) = Iep*Vec*(1/8-ma*pf/(3*pi)); % W
+    Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
+    Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
+    %Pds = (Err)*fsw*(1/pi); % W
+    Ploss1 = Psc+Pdc+Pss+Pds; % W
+    Ploss = Ploss1*6; % W
+    efficiency1(k) = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
+    fprintf('Efficiency value with IGBT with 20kHz is %g %%\n',efficiency1(k));
+end
 
-% Datasheet values
-Vce_sat = 2.3; % V, @ A peak
-Eon = 0.45e-3; % J, @ 400V
-Eon = Eon*Vdc_module/400; % J, @270V
-Eoff = 0.275e-3; % J, @400V
-Eoff = Eoff*Vdc_module/400; % J, @270V
-% Err = 8e-3; % J, @400V
-% Err = Err*Vdc_module/600; % J, @270V
-Vec = 1.25; % V
-trr = 184e-9; % s, @400V
-trr = trr*Vdc_module/400; % s, @270V
-Irr = 18; % A, @400V
-Irr = Irr*Vdc_module/400; % A, @270V
-
-% Loss calculation
-Psc = Icp*Vce_sat*(1/8+ma*pf/(3*pi)); % W
-Pdc = Iep*Vec*(1/8-ma*pf/(3*pi)); % W
-Pss = (Eon+Eoff)*fsw*(1/pi); % W
-Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
-%Pds = (Err)*fsw*(1/pi); % W
-Ploss1 = Psc+Pdc+Pss+Pds; % W
-Ploss = Ploss1*6; % W
-efficiency1 = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
-fprintf('Efficiency value with IGBT with 20kHz is %g %%\n',efficiency1);
-
+%%
 % Suppose a GaN is selected
 % Transphorm TPH3212PS GaN FET, 650V, 26.5A
 % http://www.transphormusa.com/product/tph3212ps/
@@ -301,7 +304,7 @@ Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
 Ploss1 = Psc+Pdc+Pss+Pds; % W
 Ploss = Ploss1*6; % W
 efficiency2 = 100*Pout_inv_module./(Ploss+Pout_inv_module); % percent
-fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency);
+fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency2);
 
 
 %% RL Load design
