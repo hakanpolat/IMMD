@@ -32,7 +32,7 @@ for k = 1:numel(fsw)
     Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
     Ploss = Ploss1*6; % W
     efficiency1(k) = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
-    fprintf('Efficiency value with IGBT with 20kHz is %g %%\n',efficiency1(k));
+    fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency1(k));
 end
 
 figure;
@@ -96,7 +96,7 @@ for k = 1:numel(fsw)
     Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
     Ploss = Ploss1*6; % W
     efficiency2(k) = 100*Pout_inv_module./(Ploss+Pout_inv_module); % percent
-    fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency2(k));
+    fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
 end
 
 figure;
