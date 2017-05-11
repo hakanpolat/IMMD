@@ -4,9 +4,11 @@
 * BAP GaN EVM ve motor alımı
 * RPG makale
 * GRW-2017 poster submit
+* EL-EN Elazığ konferans planlama
 
 #### Gerçekleşen çalışmalar:
-*
+* GRW-2017 poster submit edildi.
+* EL-EN konferans planı yapıldı.
 
 ### 01.05.2017 - 07.05.2017
 #### Planlanan çalışmalar:

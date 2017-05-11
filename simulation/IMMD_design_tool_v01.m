@@ -158,7 +158,7 @@ Iline = Sout_inv_module/(3*Vph_module); % Amps
 fsw = 100e3; % Hz
 
 %% PCB DIMENSIONS
-allowable_height = 3; % cm
+allowable_height = 5; % cm
 pcb_outer = Do_s*1e2; % cm
 pcb_inner = Di_r*1e2; % cm
 
@@ -169,7 +169,8 @@ pcb_volume = pcb_area*allowable_height; % cm^3
 volume_per_module = pcb_volume/module; % cm^3
 volume_per_module_in3 = volume_per_module*0.0610237; % in^3
 
-power_density = Pout_inv_module./volume_per_module_in3; % W/in^3
+%power_density = Pout_inv_module./volume_per_module_in3; % W/in^3
+power_density = Pout_inv_module./volume_per_module; % W/cm^3
 
 %% Motor design continue
 Ipeak = Iline*sqrt(2); % Amps
