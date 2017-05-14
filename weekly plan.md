@@ -1,14 +1,27 @@
-### 08.03.2017 - 14.05.2017
+### 15.03.2017 - 21.05.2017
 #### Planlanan çalışmalar:
 * BAP için tool
 * BAP GaN EVM ve motor alımı
 * RPG makale
+* EL-EN konferans makalesi
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
+### 08.03.2017 - 14.05.2017
+#### Planlanan çalışmalar:
+* BAP için tool: DEVAM
+* BAP GaN EVM ve motor alımı: DEVAM
+* RPG makale: DEVAM
 * GRW-2017 poster submit
 * EL-EN Elazığ konferans planlama
 
 #### Gerçekleşen çalışmalar:
 * GRW-2017 poster submit edildi.
 * EL-EN konferans planı yapıldı.
+* EL-EN ilk kısmı yazıldı.
 
 ### 01.05.2017 - 07.05.2017
 #### Planlanan çalışmalar:
