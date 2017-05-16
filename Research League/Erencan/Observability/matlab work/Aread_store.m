@@ -43,12 +43,12 @@ while strcmp(Line_String_Complete(1:4),'-999')==0
 end
 
 fclose(fid);
-toc
+
 
 
 % Measurement data
 % Data import
-tic
+
 fid = fopen('measure.dat');
 Line_String_Complete = fgetl(fid);
 Line_String_Numeric = str2double(Line_String_Complete);
@@ -64,34 +64,39 @@ end
 
 
 CH = [];
+ValueH = [];
+TotalH = 1;
 for i= 1:Line_String_Numeric
     
     Line_String_Complete = fgetl(fid);
     Line_String_Numeric = str2double(Line_String_Complete(1,1:4));
-    temp = find(CA==Line_String_Numeric)
-    j = length(temp)  % Bu asl?nda N , -1 , -1 deki N de?eri
+    temp = find(CA==Line_String_Numeric);
+    j = length(temp);  % Bu asl?nda N , -1 , -1 deki N de?eri
     
+    Totaltemp = j+1;
     Valuetemp = ones(1,j+1)*-1;
-    Ctemp = zeros(1,j+1);
-    
+    CHtemp = zeros(1,j+1);
+    CHtemp(1,j+1)= Line_String_Numeric;
     for counter = 1:j
       if mod(temp(counter),2)==0
-      CHtemp(counter)=  CA(temp(counter)-1)
+      CHtemp(counter)=  CA(temp(counter)-1);
       else 
-      CHtemp(counter)=  CA(temp(counter)+1) 
+      CHtemp(counter)=  CA(temp(counter)+1);
       end
     end
     
+    CHtemp = sort(CHtemp);
+    Valuetemp(find(CHtemp==Line_String_Numeric))=j;
+    
     CH = horzcat(CH,CHtemp);
-%     end
+    ValueH = horzcat(ValueH,Valuetemp);
+    TotalH = horzcat(TotalH,Totaltemp);
     
-    
-%     ValueH_temp = ones(length(temp)+1)*(-19;
-    
-%     CH
-%     ValueH
-%     CH
-%     TotalH
     
 end
+
+% Correcting TotalH value
+    for counter = 2:length(TotalH)
+        TotalH(counter)= TotalH(counter)+TotalH(counter-1);
+    end
 toc
