@@ -158,7 +158,7 @@ Iline = Sout_inv_module/(3*Vph_module); % Amps
 fsw = 100e3; % Hz
 
 %% PCB DIMENSIONS
-allowable_height = 3; % cm
+allowable_height = 5; % cm
 pcb_outer = Do_s*1e2; % cm
 pcb_inner = Di_r*1e2; % cm
 
@@ -169,7 +169,8 @@ pcb_volume = pcb_area*allowable_height; % cm^3
 volume_per_module = pcb_volume/module; % cm^3
 volume_per_module_in3 = volume_per_module*0.0610237; % in^3
 
-power_density = Pout_inv_module./volume_per_module_in3; % W/in^3
+%power_density = Pout_inv_module./volume_per_module_in3; % W/in^3
+power_density = Pout_inv_module./volume_per_module; % W/cm^3
 
 %% Motor design continue
 Ipeak = Iline*sqrt(2); % Amps
@@ -233,10 +234,12 @@ voltage_rating_min = voltage_req_min*1.5; % V
 current_req_min = Iline*2; % A
 current_rating_min = current_req_min*2; % A
 
+%%
 % Suppose an IGBT is selected
 % Infineon SKB15N60HS IGBT + Diode, 600V, 27A
 % http://www.infineon.com/cms/en/product/power/igbt/igbt-discrete/discrete-igbt-with-anti-parallel-diode/SKB15N60HS/productType.html?productType=ff80808112ab681d0112ab6e35f41850
 
+%fsw = 1e3:1e3:20e3; % Hz
 fsw = 20e3; % Hz
 
 % Datasheet values
@@ -264,6 +267,8 @@ Ploss = Ploss1*6; % W
 efficiency1 = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
 fprintf('Efficiency value with IGBT with 20kHz is %g %%\n',efficiency1);
 
+
+%%
 % Suppose a GaN is selected
 % Transphorm TPH3212PS GaN FET, 650V, 26.5A
 % http://www.transphormusa.com/product/tph3212ps/
@@ -301,7 +306,7 @@ Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
 Ploss1 = Psc+Pdc+Pss+Pds; % W
 Ploss = Ploss1*6; % W
 efficiency2 = 100*Pout_inv_module./(Ploss+Pout_inv_module); % percent
-fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency);
+fprintf('Efficiency value with GaN with 100kHz is %g %%\n',efficiency2);
 
 
 %% RL Load design
