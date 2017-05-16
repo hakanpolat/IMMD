@@ -58,9 +58,7 @@ for i = 1: Line_String_Numeric+1
 end
 %The numeric gives the number of power injections
 Line_String_Numeric = str2double(Line_String_Complete);
-for i = 1: Line_String_Numeric+1
-    Line_String_Complete = fgetl(fid);
-end
+
 
 
 CH = [];
@@ -99,4 +97,44 @@ end
     for counter = 2:length(TotalH)
         TotalH(counter)= TotalH(counter)+TotalH(counter-1);
     end
+    
+% Now, we should also include power flow measurements to H matrix
+
+
+
+ Line_String_Complete = fgetl(fid);
+ Line_String_Numeric = str2double(Line_String_Complete(1,1:4));
+ 
+for i = 1: Line_String_Numeric
+    Line_String_Complete = fgetl(fid);
+end
+
+ Line_String_Complete = fgetl(fid);
+ Line_String_Numeric = str2double(Line_String_Complete(1,1:4));
+ 
+ 
+ Valuetemp = ones(1,2);
+ Ctemp = zeros(1,2);
+ Totaltemp = 2;
+ 
+for i = 1: Line_String_Numeric
+    
+    Line_String_Complete = fgetl(fid);
+    Line_String_Numeric = str2double(Line_String_Complete(1,1:5));
+    Line_String_Numeric2 = str2double(Line_String_Complete(1,6:10));
+    
+    Valuetemp(1,2)= -1;
+    ValueH = horzcat(ValueH,Valuetemp)
+    
+    Ctemp(1,1)=Line_String_Numeric;
+    Ctemp(1,2)=Line_String_Numeric2;
+    
+    CH =horzcat(CH,Ctemp);
+    
+    Totaltemp = TotalH(end)+2
+    TotalH = horzcat(TotalH,Totaltemp);
+    
+end 
+ 
+ 
 toc
