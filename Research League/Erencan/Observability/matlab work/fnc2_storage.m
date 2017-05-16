@@ -17,8 +17,8 @@ arb = [0,16,0,340,74;...
 % This function implements sparse storage of any given matrix with
 % Gustavson's method
 
-%given_matrix = arb;
-given_matrix = H;
+given_matrix = arb;
+% given_matrix = H;
 %given_matrix = A;
 
 size_row = numel(given_matrix(:,1));
