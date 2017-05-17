@@ -6,7 +6,7 @@
 * EL-EN konferans makalesi
 
 #### Gerçekleşen çalışmalar:
-* ...
+* EL-EN devam.
 * ..
 * .
 
