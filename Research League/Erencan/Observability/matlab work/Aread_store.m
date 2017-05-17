@@ -1,7 +1,14 @@
 clear all 
 clc
 tic
+
+% Important Variables :
+% ValueA,CA,TotalA
+% ValueH,CH,TotalH
+% ValueG,CG,TotalG
+
 % IEEE CDF data
+
 % Data import
 fid = fopen('ieee_cdf.dat');
 
@@ -124,17 +131,137 @@ for i = 1: Line_String_Numeric
     Line_String_Numeric2 = str2double(Line_String_Complete(1,6:10));
     
     Valuetemp(1,2)= -1;
-    ValueH = horzcat(ValueH,Valuetemp)
+    ValueH = horzcat(ValueH,Valuetemp);
     
     Ctemp(1,1)=Line_String_Numeric;
     Ctemp(1,2)=Line_String_Numeric2;
     
     CH =horzcat(CH,Ctemp);
     
-    Totaltemp = TotalH(end)+2
+    Totaltemp = TotalH(end)+2;
     TotalH = horzcat(TotalH,Totaltemp);
     
-end 
- 
+end
+
+
+%%======================END OF THE DATA READ=======================
+
+% UNTIL NOW; A AND H MATRICES ARE STORED WHILE DATA READ 
+
+% BU PARÇAYI JACOBIAN TRANSPOSE ICIN KULLANDIM AMA SONRADAN MATRIX
+% TRANSPOSE KODU YAZDIM SOLDA VAR BU KOD.(ONCE CONSTRUCT EDIP TRANSPOSE
+% ALIP SONRA RESTORE ETMISTIM AMA BOYLE YAPMAK BAYA SACMAYDI KABUL EDIYORUM
+
+% Reconstruction part in order to take the transpose
+
+cons_matrix = 0;
+ctr = 0;
+row_num = numel(TotalH)-1;
+
+index = 1;
+
+while(1)
+    ctr = ctr + 1;
+    current_row = ctr;
+    row_elnum = TotalH(ctr+1)-TotalH(ctr);
+    for k = 1:row_elnum
+        col_index = CH(index);
+        cons_matrix(current_row,col_index) = ValueH(index);
+        index = index+1;
+    end
+    if ctr == row_num
+        break;
+    end
+end
+
+HT = cons_matrix';
+
+
+% This function implements sparse storage of any given matrix with
+% Gustavson's method
+
+given_matrix = HT;
+% given_matrix = H;
+%given_matrix = A;
+
+size_row = numel(given_matrix(:,1));
+size_column = numel(given_matrix(1,:));
+
+ctr1 = 0;
+ctr2 = 0;
+TotalHT = zeros(1,size_row);
+TotalHT(1) = 1;
+CHT = 0;
+ValueHT = 0;
+
+
+for i = 1:size_row
+    for j = 1:size_column
+        value = given_matrix(i,j);
+        if value ~= 0
+            ctr2 = ctr2 + 1;
+            ctr1 = ctr1 + 1;
+            CHT(ctr1) = j;
+            ValueHT(ctr1) = value;
+        end
+    end
+    TotalHT(i+1) = TotalHT(i) + ctr2;
+    ctr2 = 0;
+end
+
+
+% ======================================
+
+
+
+% BURASI SPARSE MULTIPLICATION KISMI. YINE SOLDA VAR BU KOD.
+
+% E?ER ÇARPIM 0 GEL?RSE BREAK EDILCEK O KISMI EKLEMEDIM.
+
+% TotalG missing ! 
+
+%Bir de check edersen süper olur çal???yor mu düzgün diye
+
+ % Until now, no gain matrix exists ! 
+ ValueG = [];
+ CG = [];
+ TotalG = [];
+for i = 1:length(TotalHT)-1
+    temp =0;
+    for j = 1:length(TotalHT)-1
+    
+    
+    nonzero = TotalHT(i+1)-TotalHT(i);    % Total Number of zero in a row
+    
+    for k = 1:nonzero
+        
+        
+        a =CHT(TotalHT(i)+k-1); % This gives the nonzero columns
+        
+        % Now, we need to go to rows corresponding to these columns
+        b = TotalH(a+1)-TotalH(a);
+        for say = 1:b
+            
+            c = CH(TotalH(a)+say-1);  %Column number in the corresponding row
+            
+            if c == i
+                temp = temp+ValueHT(TotalHT(i)+k-1)*ValueH(TotalH(a)+say-1);
+
+                
+            end
+            
+            
+        end
+        
+        
+    end
+    Ctemp = j;
+    CG  = horzcat(CG,Ctemp);
+    ValueG  = horzcat(ValueG,temp);
+    end
+    
+    
+end
+
  
 toc

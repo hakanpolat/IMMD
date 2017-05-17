@@ -17,7 +17,7 @@ G = G + n*eye(n);
 
 % G = [ 1 , 2, 3, 1, 2, 3; 2, 4, 2, 1, 1, 0 ; 3 ,3 , 4, 3, 2, 1 ; 0, 0, 0, 0,0 ,0 ; 7,8,8,9,20,1; 4,4,5,7,8,9 ]
 rank(G)
-
+tic
 B = G;
 
 n = length(G);
@@ -49,10 +49,15 @@ for i = 1:length(G(:,1))
     
 
         L_temp(i,i) = sqrt(d);
-        L_temp(i+1:n,i) =  a./sqrt(d)
+        L_temp(i+1:n,i) =  a./sqrt(d);
         L = L*  L_temp; 
         L_temp = eye(n,n);
     
 end
+L
+toc
 
+tic
+chol(G,'lower')
+toc
 % alright = chol(G,'lower')-L

@@ -6,16 +6,16 @@
 
 cons_matrix = 0;
 ctr = 0;
-row_num = numel(vect_total)-1;
+row_num = numel(TotalH)-1;
 index = 1;
 
 while(1)
     ctr = ctr + 1;
     current_row = ctr;
-    row_elnum = vect_total(ctr+1)-vect_total(ctr);
+    row_elnum = TotalH(ctr+1)-TotalH(ctr);
     for k = 1:row_elnum
-        col_index = vect_column(index);
-        cons_matrix(current_row,col_index) = vect_value(index);
+        col_index = CH(index);
+        cons_matrix(current_row,col_index) = ValueH(index);
         index = index+1;
     end
     if ctr == row_num
