@@ -1,9 +1,9 @@
-clear all
+%clear all
 clc
 
-ValueH = [3 2 1 3 5 2 1 3];
-CH = [3 4 5 1 2 1 3 5];
-TotalH = [1 2 4 5 6 9];
+% ValueH = [3 2 1 3 5 2 1 3];
+% CH = [3 4 5 1 2 1 3 5];
+% TotalH = [1 2 4 5 6 9];
 
 %Row Number
 row = numel(TotalH)-1;
@@ -24,7 +24,7 @@ for i = 1:column
         Ctemp = zeros(1,numel(temp));
         for f = 1:row
             if (temp(j)>=TotalH(f) && temp(j)<TotalH(f+1))
-                Ctemp=f
+                Ctemp=f;
                 CT = horzcat(CT,Ctemp);
             end
         end   
