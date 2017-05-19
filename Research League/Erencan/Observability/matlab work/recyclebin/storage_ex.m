@@ -14,7 +14,7 @@ while(1)
     current_row = ctr;
     row_elnum = TotalH(ctr+1)-TotalH(ctr);
     for k = 1:row_elnum
-        col_index = CH(index);
+        col_index = ColumnH(index);
         cons_matrix(current_row,col_index) = ValueH(index);
         index = index+1;
     end

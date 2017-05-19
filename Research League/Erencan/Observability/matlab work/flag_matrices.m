@@ -1,0 +1,9 @@
+% This file is used for the verification of profile and ordering functions
+flag_matrix = [1,0,0,1,0,1,1,0,0;0,1,0,0,1,0,0,1,0;...
+    0,0,1,1,1,0,0,0,0;1,0,1,1,0,1,1,0,1;0,1,1,0,1,0,0,1,0;...
+    1,0,0,1,0,1,0,0,0;1,0,0,1,0,0,1,1,0;0,1,0,0,1,0,1,1,0;...
+    0,0,0,1,0,0,0,0,1];
+
+[flagC,flagV,flagT] = apply_gustavson(flag_matrix);
+
+

@@ -143,7 +143,11 @@ for i = 1: Line_String_Numeric
     
 end
 
+toc
 
+
+%%
+tic
 %======================END OF THE DATA READ=======================
 
 % UNTIL NOW; A AND H MATRICES ARE STORED WHILE DATA READ 
