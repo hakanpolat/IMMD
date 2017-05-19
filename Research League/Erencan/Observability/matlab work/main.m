@@ -1,4 +1,6 @@
 % This is the main code for RR674 project: Observability analysis
+clear all;
+clc;
 
 tic
 
@@ -130,6 +132,23 @@ end
 % using sparse techniques. The output is also retured in Gustavson form
 [ColumnG,ValueG,TotalG] = matrix_multiplication...
     (ColumnHT,ValueHT,TotalHT,ColumnH,ValueH,TotalH);
+
+% Check the profile of a matrix stored with Gustavson
+profile_G = matrix_profile(ColumnG,TotalG);
+
+% Ordering is applied
+%%----------------%%
+Column_newG = ColumnG;
+Total_newG = TotalG;
+
+% New profile is checked
+profile_newG = matrix_profile(Column_newG,Total_newG);
+%%----------------%%
+
+% Cholesky factorisation
+%%----------------%%
+
+
 
 toc
 

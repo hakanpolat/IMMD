@@ -1,52 +1,25 @@
-%function profile = matrix_profile(given_matrix)
-
-num_of_rows = numel(flagT)-1;
+function profile = matrix_profile(vect_column,vect_total)
+num_of_rows = numel(vect_total)-1;
 profile = num_of_rows;
 flag = 0;
+hey = 0;
 for i = 1:num_of_rows
-    if sum(flagC==i) == 0
+    if sum(vect_column==i) == 0
         flag = flag + 1;
+        hey = 1;
         fi = 0;
     end
     ctr = 0;
-    mtrx = flag_matrix(:,i)~=0;
-    while(1)
+    while(hey==0)
         ctr = ctr+1;
-        
-        if mtrx(ctr) == 1 || ctr == n
+        if sum(vect_column(vect_total(i):vect_total(i+1)-1)==ctr)
             fi = ctr;
             break;
         end
     end
     profile = profile + i - fi;
+    hey = 0;
 end
 profile = profile - flag;
+end
 
-
-
-
-
-
-%end
-%
-% n = numel(flag_matrix(:,1));
-% profile = n;
-% flag = 0;
-% for i = 1:n
-%     ctr = 0;
-%     mtrx = flag_matrix(:,i)~=0;
-%     while(1)
-%         ctr = ctr+1;
-%         if sum(mtrx) == 0
-%             flag = flag + 1;
-%             fi = 0;
-%             break;
-%         end
-%         if mtrx(ctr) == 1 || ctr == n
-%             fi = ctr;
-%             break;
-%         end
-%     end
-%     profile = profile + i - fi;
-% end
-% profile = profile - flag;
