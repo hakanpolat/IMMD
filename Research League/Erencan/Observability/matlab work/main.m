@@ -1,4 +1,4 @@
-% This is the main code for RR674 project: Observability analysis
+% This is the main code for EE674 project: Observability Analysis
 clear all;
 clc;
 
@@ -141,7 +141,7 @@ profile_G = matrix_profile(ColumnG,TotalG);
 Column_newG = ColumnG;
 Total_newG = TotalG;
 
-% New profile is checked
+% New profile is checked and verified
 profile_newG = matrix_profile(Column_newG,Total_newG);
 %%----------------%%
 

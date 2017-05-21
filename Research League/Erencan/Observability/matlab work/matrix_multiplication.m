@@ -1,13 +1,4 @@
 function [ColumnG,ValueG,TotalG] = matrix_multiplication(colHT,valHT,totHT,colH,valH,totH)
-
-%ValueHT = [1 2 3 5 2 1 2 1 2];
-%CHT = [1 2 2 5 3 5 4 2 4 ];
-%TotalHT = [1 3 5 7 8 10];
-
-%ValueH = [3 2 1 3 5 2 1 3];
-%CH = [3 4 5 1 2 1 3 5];
-%TotalH = [1 2 4 5 6 9];
-
 sayac = 0;
 ColumnG = [];
 ValueG = [];
@@ -38,7 +29,5 @@ for i = 1:length(totHT)-1
     end
     
 end
-
-
 end
 
