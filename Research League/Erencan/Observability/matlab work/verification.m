@@ -9,4 +9,4 @@ actual_G = recons_G';
 must_be_zero = sum(sum(abs(recons_G - actual_G)));
 
 %%
-chol(flag_matrix,'lower')
+chol(actual_G,'lower')

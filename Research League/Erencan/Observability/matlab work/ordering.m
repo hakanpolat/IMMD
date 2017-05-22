@@ -1,4 +1,5 @@
-function new_order = ordering(col,tot)
+%function new_order = ordering(col,tot)
+tic
 n = numel(tot)-1;
 nodes = 1:n;
 edges = [];
@@ -12,7 +13,7 @@ for k = 1:n
     end
 end
 
-start = 2;
+start = 1;
 edges_mod = edges;
 new_order = [start];
 candidate = edges((edges(:,1)==start),2);
@@ -23,29 +24,30 @@ edges_mod((edges(:,1)==start),:) = [];
 temp = next;
 ctr = 0;
 while(1)
-    ctr = ctr+1;
+    ctr = ctr+1
     for k = 1:numel(temp)
-        candidate = edges_mod((edges_mod(:,2)==temp(k)),1);
-        candidate = [candidate;edges_mod((edges_mod(:,1)==temp(k)),2)];
+        temp(k)
+        candidate = edges_mod((edges_mod(:,2)==temp(k)),1)
+        candidate = [candidate;edges_mod((edges_mod(:,1)==temp(k)),2)]
         for l = 1:numel(candidate)
             if any(candidate(l)==new_order)~=1
-                next = candidate(l);
-                new_order = [new_order;next];
+                next = candidate(l)
+                new_order = [new_order;next]
                 edges_mod((edges_mod(:,2)==temp(k)),:) = [];
                 %temp = next
             end
         end
     end
-    temp = next;
+    temp = next
     
-    if isempty(edges_mod) || numel(new_order) == n
+    if isempty(edges_mod) || numel(new_order) == n || ctr == 30
         break;
     end
 end
 
 new_order
-
-end
+toc
+%end
 
 % The most far away node is detected for staring point
 % distance = zeros(n,1);

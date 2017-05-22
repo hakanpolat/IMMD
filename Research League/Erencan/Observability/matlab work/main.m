@@ -124,25 +124,32 @@ end
 % The following function takes the transpose of a given matrix stored with 
 % with Gustavson using sparse techniques. The output is also retured in
 % Gustavson form
+tic
 [ColumnHT,ValueHT,TotalHT] = matrix_transpose(ColumnH,ValueH,TotalH);
+toc
 
 % Apply sparse multiplication to the Jacobian matrix and its transpose to
 % obtain the gain matrix, G.
 % The following function multiplies two matrices both stored with Gustavson
 % using sparse techniques. The output is also retured in Gustavson form
+tic
 [ColumnG,ValueG,TotalG] = matrix_multiplication...
     (ColumnHT,ValueHT,TotalHT,ColumnH,ValueH,TotalH);
+toc
 
+tic
 % Check the profile of a matrix stored with Gustavson
 profile_G = matrix_profile(ColumnG,TotalG);
-
+toc
 % Ordering is applied
 %%----------------%%
-Column_newG = ColumnG;
-Total_newG = TotalG;
+%new_order = ordering(ColumnG,TotalG)
+% 
+% Column_newG = ColumnG;
+% Total_newG = TotalG;
 
 % New profile is checked and verified
-profile_newG = matrix_profile(Column_newG,Total_newG);
+%profile_newG = matrix_profile(Column_newG,Total_newG);
 %%----------------%%
 
 % Cholesky factorisation
