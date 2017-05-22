@@ -1,4 +1,4 @@
-function new_order = ordering(col,tot)
+function [edges,new_order] = ordering(col,tot)
 %tic
 
 %tot = TotalG;

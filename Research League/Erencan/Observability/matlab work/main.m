@@ -144,7 +144,7 @@ profile_G = matrix_profile(ColumnG,TotalG);
 
 %tic
 % Ordering is applied
-new_order = ordering(ColumnG,TotalG);
+[edges,new_order] = ordering(ColumnG,TotalG);
 %toc
 
 
