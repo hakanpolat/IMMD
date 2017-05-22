@@ -1,8 +1,8 @@
 % This is the main code for EE674 project: Observability Analysis
 clear all;
 clc;
-
 tic
+%tic
 
 % IEEE CDF data
 % Data import
@@ -124,29 +124,29 @@ end
 % The following function takes the transpose of a given matrix stored with 
 % with Gustavson using sparse techniques. The output is also retured in
 % Gustavson form
-tic
+%tic
 [ColumnHT,ValueHT,TotalHT] = matrix_transpose(ColumnH,ValueH,TotalH);
-toc
+%toc
 
 % Apply sparse multiplication to the Jacobian matrix and its transpose to
 % obtain the gain matrix, G.
 % The following function multiplies two matrices both stored with Gustavson
 % using sparse techniques. The output is also retured in Gustavson form
-tic
+%tic
 [ColumnG,ValueG,TotalG] = matrix_multiplication...
     (ColumnHT,ValueHT,TotalHT,ColumnH,ValueH,TotalH);
-toc
+%toc
 
-tic
+%tic
 % Check the profile of a matrix stored with Gustavson
 profile_G = matrix_profile(ColumnG,TotalG);
-toc
+%toc
+
+%tic
 % Ordering is applied
-%%----------------%%
-%new_order = ordering(ColumnG,TotalG)
-% 
-% Column_newG = ColumnG;
-% Total_newG = TotalG;
+new_order = ordering(ColumnG,TotalG);
+%toc
+
 
 % New profile is checked and verified
 %profile_newG = matrix_profile(Column_newG,Total_newG);
