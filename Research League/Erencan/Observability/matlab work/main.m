@@ -149,6 +149,8 @@ end
 
 toc
 
+%reconstruct_gustavson(ColumnG,ValueG,TotalG)
+
 %tic
 % Check the profile of a matrix stored with Gustavson
 profile_G = matrix_profile(ColumnG,TotalG);
@@ -164,6 +166,8 @@ toc
 [ColumnGnew,ValueGnew,TotalGnew] = ordering_new_matrix(edges,new_order,...
     ColumnG,ValueG,TotalG);
 %toc
+
+%reconstruct_gustavson(ColumnGnew,ValueGnew,TotalGnew)
 
 %tic
 % New profile is checked and verified
