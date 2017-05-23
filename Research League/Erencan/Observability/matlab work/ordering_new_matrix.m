@@ -16,10 +16,16 @@ for k = 1:6
     old_order_relation = edges(edges(:,1)==old_order_index,2);
     old_order_relation = [old_order_relation;edges(edges(:,2)==old_order_index,1)]
     temp = numel(old_order_relation)
-    if temp~=0
-        sub_index = 
-        Value_newG(ctr) = ValueG()
+    if temp==0
+        TotalGnew(k+1) = TotalGnew(k)
+    else
+        TotalGnew(k+1) = TotalGnew(k)+temp
     end
+    
+%     if temp~=0
+%         sub_index = 
+%         Value_newG(ctr) = ValueG()
+%     end
     inside_counter = 0
     for l = 1:temp
         new_order_relation = find(new_order==old_order_relation(l))
@@ -38,3 +44,5 @@ for k = 1:6
 %         end
 %     end
 end
+
+
