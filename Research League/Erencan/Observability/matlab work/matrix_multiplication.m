@@ -17,6 +17,7 @@ for i = 1:length(totHT)-1
                     temp = temp+valHT(totHT(i)+k-1)*valH(totH(a)+say-1);
                     sayac = sayac+1;
                 end
+%                 break
             end
         end
         if temp ~= 0
