@@ -8,6 +8,10 @@ for i = 1:num_of_rows
         flag = flag + 1;
         hey = 1;
         fi = 0;
+        add_index = 0;
+    else
+        add_index = i;
+    
     end
     ctr = 0;
     while(hey==0)
@@ -17,9 +21,11 @@ for i = 1:num_of_rows
             break;
         end
     end
-    profile = profile + i - fi;
+    profile = profile + add_index - fi;
     hey = 0;
 end
-profile = profile - flag;
+profile = profile;
+%profile = profile - flag
+
 end
 

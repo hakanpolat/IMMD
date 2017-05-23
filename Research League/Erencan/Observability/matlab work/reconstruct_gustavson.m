@@ -4,9 +4,10 @@ function cons_matrix = reconstruct_gustavson(vect_column,vect_value,vect_total)
 % vect_value
 % vect_total
 
-cons_matrix = 0;
 ctr = 0;
+cons_matrix = 0;
 row_num = numel(vect_total)-1;
+%cons_matrix = zeros(row_num,row_num);
 index = 1;
 
 while(1)
@@ -17,6 +18,10 @@ while(1)
         col_index = vect_column(index);
         cons_matrix(current_row,col_index) = vect_value(index);
         index = index+1;
+    end
+    if ctr == row_num && row_elnum == 0
+        cons_matrix(current_row,:) = 0;
+        cons_matrix(:,current_row) = 0;
     end
     if ctr == row_num
         break;
