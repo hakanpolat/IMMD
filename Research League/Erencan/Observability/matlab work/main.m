@@ -147,26 +147,35 @@ if numel(TotalG)-1 < No_of_Buses
     end
 end
 
+toc
+
 %tic
 % Check the profile of a matrix stored with Gustavson
 profile_G = matrix_profile(ColumnG,TotalG);
 %toc
 
-%tic
+tic
 % Ordering is applied
 [edges,new_order] = ordering(ColumnG,TotalG);
+toc
+
+%tic
+% New matrix G stored with gustavson is obtained using the new order
+[ColumnGnew,ValueGnew,TotalGnew] = ordering_new_matrix(edges,new_order,...
+    ColumnG,ValueG,TotalG);
 %toc
 
-
+%tic
 % New profile is checked and verified
-%profile_newG = matrix_profile(Column_newG,Total_newG);
-%%----------------%%
+profile_Gnew = matrix_profile(ColumnGnew,TotalGnew);
+%toc
+
 
 % Cholesky factorisation
 %%----------------%%
 
 
 
-toc
+%toc
 
 
