@@ -8,6 +8,7 @@ Lnew = [1,0,0,0,0,0;
 b = [0,1,2,0,3,0];
 %%
 %tic
+clc
 % find the fpg array
 n = numel(TotalL)-1;
 myarray = [];
@@ -43,6 +44,40 @@ while(1)
     end
 end
 pathreq = find(b~=0);
+el_say = unique(tree_connections);
+eklenecek = 
+index = 0;
+con_var = [];
+while(1)
+    for m = 1:index
+        combin = combnk(pathreq,2)
+        ctr = 0;
+        for k = 1:numel(tree_connections(:,1))
+            for l = 1:numel(combin(:,1))
+                if tree_connections(k,1)==combin(l,1) && ...
+                        tree_connections(k,2)==combin(l,2) || ...
+                        tree_connections(k,1)==combin(l,2) && ...
+                        tree_connections(k,2)==combin(l,1)
+                    con_var = [con_var;combin(l,:)]
+                    ctr = ctr+1
+                end
+            end
+        end
+        if ctr == numel(combin(:,1))+index-1
+            45
+        end
+    end
+        index = index + 1
+    
+    if index == 3
+        break;
+    end
+end
+
+
+
+
+%%
 % shortest path algorithm
 % possible paths are determined
 single_con = [];
@@ -54,6 +89,10 @@ end
 num_sc = numel(single_con);
 num_of_paths = num_sc*(num_sc-1)/2;
 
+
+
+
+%%
 stop = 0;
 ctr = 0;
 path = 0;
