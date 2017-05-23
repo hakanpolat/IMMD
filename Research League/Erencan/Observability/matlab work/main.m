@@ -134,18 +134,18 @@ end
 % using sparse techniques. The output is also retured in Gustavson form
 %tic
 [ColumnG,ValueG,TotalG] = matrix_multiplication...
-    (ColumnHT,ValueHT,TotalHT,ColumnH,ValueH,TotalH);
+    (ColumnHT,ValueHT,TotalHT,ColumnH,ValueH,TotalH,No_of_Buses);
 %toc
 
 % Correct the number of rows if the last column is full zero and therefore
 % not srored, using the information of number of buses
 
-if numel(TotalG)-1 < No_of_Buses
-    add_zero_row = -No_of_Buses + numel(TotalG)+1;
-    for k = 1:add_zero_row
-        TotalG = [TotalG TotalG(end)];
-    end
-end
+% if numel(TotalG)-1 < No_of_Buses
+%     add_zero_row = -No_of_Buses + numel(TotalG)+1;
+%     for k = 1:add_zero_row
+%         TotalG = [TotalG TotalG(end)];
+%     end
+% end
 
 %tic
 % Check the profile of a matrix stored with Gustavson
