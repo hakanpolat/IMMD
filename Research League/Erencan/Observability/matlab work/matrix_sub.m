@@ -25,8 +25,8 @@ end
 % Column say?s?na kadar saymal?d?r.
 for i = 1:row1  %row1
     
-    nonzeroA = TotalA(i+1)-TotalA(i); % Nonzeros in the corresponding row of A
-    nonzeroB = TotalB(i+1)-TotalB(i); % Nonzeros in the corresponding row of B
+%     nonzeroA = TotalA(i+1)-TotalA(i); % Nonzeros in the corresponding row of A
+%     nonzeroB = TotalB(i+1)-TotalB(i); % Nonzeros in the corresponding row of B
     
     tempA = ColumnA(TotalA(i):TotalA(i+1)-1);
     tempB = ColumnB(TotalB(i):TotalB(i+1)-1);
@@ -35,10 +35,8 @@ for i = 1:row1  %row1
     column =horzcat(tempA,tempB);
     column = unique(column);
     column = sort(column);
-    
-    
-    ColumnC = [ColumnC column];
-    TotalC = [TotalC numel(column)+TotalC(end)];
+    column2 = column;
+   
     
     for j = 1:numel(column)
         if   ismember(column(j),common1) ==0
@@ -64,16 +62,20 @@ for i = 1:row1  %row1
             ValueC = [ValueC result];
             
             if result == 0
+                
                 ValueC(end) = [] ;
-                for k = i:TotalC(end)
-                    TotalC(k) = TotalC(k);
-                    
-                end
+                silincek = find(column2==column(j));
+                column2(silincek)= [];
+
             end
+            
+            
             
         end
         
         
     end
+    ColumnC = [ColumnC column2];
+    TotalC = [TotalC numel(column2)+TotalC(end)];
 end
 end

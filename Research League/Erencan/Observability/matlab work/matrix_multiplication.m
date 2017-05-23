@@ -1,4 +1,4 @@
-function [ColumnG,ValueG,TotalG] = matrix_multiplication(colHT,valHT,totHT,colH,valH,totH)
+function [ColumnG,ValueG,TotalG] = matrix_multiplication(colHT,valHT,totHT,colH,valH,totH,size)
 sayac = 0;
 ColumnG = [];
 ValueG = [];
@@ -28,6 +28,13 @@ for i = 1:length(totHT)-1
             TotalG = [TotalG length(ColumnG)+1];
         end
     end
+    
+end
+if (numel(TotalG)-1) ~= size
+    for i = 1: size-(numel(TotalG))
+        TotalG = [ TotalG TotalG(end)];
+    end
+    
     
 end
 end
