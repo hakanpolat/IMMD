@@ -31,7 +31,7 @@ for i = 1:length(totHT)-1
     
 end
 if (numel(TotalG)-1) ~= size
-    for i = 1: size-(numel(TotalG))
+    for i = 1: size-(numel(TotalG)-1)
         TotalG = [ TotalG TotalG(end)];
     end
     
