@@ -17,7 +17,7 @@
 % 
 % % G = [ 1 , 2, 3, 1, 2, 3; 2, 4, 2, 1, 1, 0 ; 3 ,3 , 4, 3, 2, 1 ; 0, 0, 0, 0,0 ,0 ; 7,8,8,9,20,1; 4,4,5,7,8,9 ]
 % rank(G)
-G = actual_G;
+G = actual_G(1:10,1:10);
 tic
 B = G;
 
@@ -55,7 +55,7 @@ for i = 1:length(G(:,1))
         L_temp = eye(n,n);
     
 end
-L
+L = ceil(abs(L))
 toc
 
 % tic

@@ -14,7 +14,7 @@
 n = numel(TotalL)-1;
 b = zeros(1,30);
 for k = 1:n
-    if k == 18 || k == 19 || k == 20 || k == 22 || k == 24
+    if k == 1 || k == 3 || k == 4 || k == 8 || k == 9
         b(k) = 1;
     end
 end
