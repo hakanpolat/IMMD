@@ -15,14 +15,25 @@ y = zeros(1,n);
 ctr = 0;
 while(1)
     ctr = ctr+1
-    Ly_mult = 0
+    Ly_mult = 0;
     if fpg_eqn(ctr) == 1
+        ctr;
+        indexrange = TotalL(ctr):TotalL(ctr+1)-1
         for k = 1:ctr-1
-            Ly_mult = Ly_mult + myL(ctr,k)*y(k)
+            if sum(ColumnL(indexrange)==k)>0
+                index = TotalL(ctr)+find(ColumnL(indexrange)==k)-1
+                Ly_mult = Ly_mult + ValueL(index)*y(k)
+            end
+            %Ly_mult = Ly_mult + myL(ctr,k)*y(k)
         end
-        y(ctr) = (b(ctr) - Ly_mult)/myL(ctr,ctr)
+        index = TotalL(ctr)+find(ColumnL(indexrange)==ctr)-1
+        y(ctr) = (b(ctr) - Ly_mult)/ValueL(index)
     end
     if ctr == n
         break;
     end
 end
+
+
+
+%TotalG(old_order_index):TotalG(old_order_index+1)-1
