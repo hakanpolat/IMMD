@@ -1,3 +1,5 @@
+clc
+tic
 % Forward substitution
 % Ly = b
 % Given L (Gustavson) and b (vector), find y
@@ -37,7 +39,11 @@ while(1)
     end
 end
 
-%%
+% check
+foundy = y';
+acty = inv(myyL)*b';
+diff = sum(abs(foundy-acty))
+
 % Backward substitution
 % L'x = y
 % Given L' (Gustavson) and y (calculated), find x
@@ -81,8 +87,9 @@ while(1)
     end
 end
 
-foundx = x';
-
 % check
+foundx = x';
 actx = inv(myyLT)*y';
+diff = sum(abs(foundx-actx))
 
+toc
