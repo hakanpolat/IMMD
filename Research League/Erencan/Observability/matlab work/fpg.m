@@ -1,16 +1,25 @@
-Lnew = [1,0,0,0,0,0;
-    0,1,0,0,0,0;
-    1,1,1,0,0,0;
-    0,0,0,1,0,0;
-    0,0,1,0,1,0;
-    0,0,0,0,1,1];
-[ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
-b = [0,1,2,0,3,0];
+% Below is an example
 
-%tic
-clc
-% find the fpg array
+% Lnew = [1,0,0,0,0,0;
+%     0,1,0,0,0,0;
+%     1,1,1,0,0,0;
+%     0,0,0,1,0,0;
+%     0,0,1,0,1,0;
+%     0,0,0,0,1,1];
+% [ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
+% b = [0,1,2,0,3,0];
+
+
+[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
 n = numel(TotalL)-1;
+b = zeros(1,30);
+for k = 1:n
+    if k == 18 || k == 19 || k == 20 || k == 22 || k == 24
+        b(k) = 1;
+    end
+end
+
+% find the fpg array
 myarray = [];
 for k = 1:n
     if numel(find(ColumnL==k))==1
@@ -45,12 +54,15 @@ while(1)
 end
 pathreq = find(b~=0);
 
-%%
+
+% Below is an example
+
+% n = 10;
+% tree_connections = [1,2;2,4;2,3;3,6;6,7;3,5;5,8;5,9;9,10];
+% pathreq = [1,2,3,5];
+% 
+
 tic
-clc
-n = 10;
-tree_connections = [1,2;2,4;2,3;3,6;6,7;3,5;5,8;5,9;9,10];
-pathreq = [1,2,3,5];
 single_con = [];
 for k = 1:n
     if numel(find(tree_connections(:,:)==k)) == 1
@@ -66,7 +78,7 @@ index = 0;
 con_var = [];
 my_break = 0;
 while(1)
-    index = index + 1;
+    index = index + 1
     ekle_num = factorial(ekle_comb)/...
         (factorial(index-1)*factorial(ekle_comb-index+1));
     eklenecekler = combntns(eklenebilir,index-1);

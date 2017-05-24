@@ -1,22 +1,23 @@
-clear all
-clc
+% clear all
+% clc
 
-n = 4;
+% n = 4;
 % Generate a dense n x n symmetric, positive definite matrix
 
-G = rand(n,n); % generate a random n x n matrix
-
-% construct a symmetric matrix using either
-G = 0.5*(G+G'); 
-G = G*G';
-% The first is significantly faster: O(n^2) compared to O(n^3)
-
-% since A(i,j) < 1 by construction and a symmetric diagonally dominant matrix
-%   is symmetric positive definite, which can be ensured by adding nI
-G = G + n*eye(n);
-
-% G = [ 1 , 2, 3, 1, 2, 3; 2, 4, 2, 1, 1, 0 ; 3 ,3 , 4, 3, 2, 1 ; 0, 0, 0, 0,0 ,0 ; 7,8,8,9,20,1; 4,4,5,7,8,9 ]
-rank(G)
+% G = rand(n,n); % generate a random n x n matrix
+% 
+% % construct a symmetric matrix using either
+% G = 0.5*(G+G'); 
+% G = G*G';
+% % The first is significantly faster: O(n^2) compared to O(n^3)
+% 
+% % since A(i,j) < 1 by construction and a symmetric diagonally dominant matrix
+% %   is symmetric positive definite, which can be ensured by adding nI
+% G = G + n*eye(n);
+% 
+% % G = [ 1 , 2, 3, 1, 2, 3; 2, 4, 2, 1, 1, 0 ; 3 ,3 , 4, 3, 2, 1 ; 0, 0, 0, 0,0 ,0 ; 7,8,8,9,20,1; 4,4,5,7,8,9 ]
+% rank(G)
+G = actual_G;
 tic
 B = G;
 
@@ -57,7 +58,7 @@ end
 L
 toc
 
-tic
-chol(G,'lower')
-toc
+% tic
+% chol(G,'lower')
+% toc
 % alright = chol(G,'lower')-L
