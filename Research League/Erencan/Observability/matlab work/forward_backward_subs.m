@@ -59,30 +59,30 @@ end
 x = zeros(1,n);
 ctr = n+1;
 while(1)
-    ctr = ctr-1
-    LTx_mult = 0
+    ctr = ctr-1;
+    LTx_mult = 0;
     if fpg_eqn2(ctr) == 1
         ctr;
-        indexrange = TotalLT(ctr):TotalLT(ctr+1)-1
+        indexrange = TotalLT(ctr):TotalLT(ctr+1)-1;
         for k = ctr+1:n
-            k
+            k;
             if sum(ColumnLT(indexrange)==k)>0
-                index = TotalLT(ctr)+find(ColumnLT(indexrange)==k)-1
-                ValueLT(index)
-                LTx_mult = LTx_mult + ValueLT(index)*x(k)
+                index = TotalLT(ctr)+find(ColumnLT(indexrange)==k)-1;
+                ValueLT(index);
+                LTx_mult = LTx_mult + ValueLT(index)*x(k);
             end
         end
-        index = TotalLT(ctr)+find(ColumnLT(indexrange)==ctr)-1
-        ValueLT(index)
-        x(ctr) = (y(ctr) - LTx_mult)/ValueLT(index)
+        index = TotalLT(ctr)+find(ColumnLT(indexrange)==ctr)-1;
+        ValueLT(index);
+        x(ctr) = (y(ctr) - LTx_mult)/ValueLT(index);
     end
     if ctr == 1
         break;
     end
 end
 
-foundx = x'
+foundx = x';
 
 % check
-actx = inv(myyLT)*y'
+actx = inv(myyLT)*y';
 
