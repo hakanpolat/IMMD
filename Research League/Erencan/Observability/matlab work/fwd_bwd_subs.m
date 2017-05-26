@@ -35,7 +35,7 @@ while(1)
         y(ctr) = (b(ctr) - Ly_mult)/ValueL(index);
     end
     if ctr == n
-        break; The same applies for backward substitution.
+        break;
     end
 end
 

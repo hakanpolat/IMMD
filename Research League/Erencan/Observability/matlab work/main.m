@@ -1,6 +1,6 @@
 % This is the main code for EE674 project: Observability Analysis
-%clear all;
-%clc;
+clear all;
+clc;
 tic
 %tic
 

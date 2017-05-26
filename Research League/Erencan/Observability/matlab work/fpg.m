@@ -1,16 +1,16 @@
 % Below is an example
 
-% Lnew = [1,0,0,0,0,0;
-%     0,1,0,0,0,0;
-%     1,1,1,0,0,0;
-%     0,0,0,1,0,0;
-%     0,0,1,0,1,0;
-%     0,0,0,0,1,1];
-% [ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
-% b = [0,1,2,0,3,0];
+Lnew = [1,0,0,0,0,0;
+    0,1,0,0,0,0;
+    1,1,1,0,0,0;
+    0,0,0,1,0,0;
+    0,0,1,0,1,0;
+    0,0,0,0,1,1];
+[ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
+b = [0,1,2,0,3,0];
 
 
-[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
+%[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
 n = numel(TotalL)-1;
 b = zeros(1,30);
 for k = 1:n
