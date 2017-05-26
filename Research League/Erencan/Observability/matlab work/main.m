@@ -176,7 +176,10 @@ profile_Gnew = matrix_profile(ColumnGnew,TotalGnew);
 
 
 % Cholesky factorisation
-%%----------------%%
+[ColumnL,ValueL,TotalL,zero_locations] = sparsechol(ColumnGnew,ValueGnew,TotalGnew);
+reconstruct_gustavson(ColumnL,ValueL,TotalL)
+zero_locations; 
+
 
 
 
