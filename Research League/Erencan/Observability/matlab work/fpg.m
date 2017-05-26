@@ -1,16 +1,25 @@
-Lnew = [1,0,0,0,0,0;
-    0,1,0,0,0,0;
-    1,1,1,0,0,0;
-    0,0,0,1,0,0;
-    0,0,1,0,1,0;
-    0,0,0,0,1,1];
-[ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
-b = [0,1,2,0,3,0];
-%%
-%tic
-clc
-% find the fpg array
+% Below is an example
+
+% Lnew = [1,0,0,0,0,0;
+%     0,1,0,0,0,0;
+%     1,1,1,0,0,0;
+%     0,0,0,1,0,0;
+%     0,0,1,0,1,0;
+%     0,0,0,0,1,1];
+% [ColumnL,ValueL,TotalL] = apply_gustavson(Lnew);
+% b = [0,1,2,0,3,0];
+
+
+[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
 n = numel(TotalL)-1;
+b = zeros(1,30);
+for k = 1:n
+    if k == 1 || k == 3 || k == 4 || k == 8 || k == 9
+        b(k) = 1;
+    end
+end
+
+% find the fpg array
 myarray = [];
 for k = 1:n
     if numel(find(ColumnL==k))==1
@@ -44,139 +53,81 @@ while(1)
     end
 end
 pathreq = find(b~=0);
-el_say = unique(tree_connections);
-eklenecek = 
-index = 0;
-con_var = [];
-while(1)
-    for m = 1:index
-        combin = combnk(pathreq,2)
-        ctr = 0;
-        for k = 1:numel(tree_connections(:,1))
-            for l = 1:numel(combin(:,1))
-                if tree_connections(k,1)==combin(l,1) && ...
-                        tree_connections(k,2)==combin(l,2) || ...
-                        tree_connections(k,1)==combin(l,2) && ...
-                        tree_connections(k,2)==combin(l,1)
-                    con_var = [con_var;combin(l,:)]
-                    ctr = ctr+1
-                end
-            end
-        end
-        if ctr == numel(combin(:,1))+index-1
-            45
-        end
-    end
-        index = index + 1
-    
-    if index == 3
-        break;
-    end
-end
 
 
+% Below is an example
 
+% n = 10;
+% tree_connections = [1,2;2,4;2,3;3,6;6,7;3,5;5,8;5,9;9,10];
+% pathreq = [1,2,3,5];
+% 
 
-%%
-% shortest path algorithm
-% possible paths are determined
+tic
 single_con = [];
 for k = 1:n
     if numel(find(tree_connections(:,:)==k)) == 1
         single_con = [single_con k];
     end
 end
-num_sc = numel(single_con);
-num_of_paths = num_sc*(num_sc-1)/2;
-
-
-
-
-%%
-stop = 0;
-ctr = 0;
-path = 0;
-possible_path = [];
-for k = 1:num_of_paths
-    %k=1
-    path(1) = single_con(k);
-    pos_con = [tree_connections(find(tree_connections(:,2)==path(1)),1)
-        tree_connections(find(tree_connections(:,1)==path(1)),2)];
-    path(2) = pos_con;
-    for l = k+1:numel(single_con)
-        if path(2)==single_con(l)
-            stop = 1;
+combin = combnk(pathreq,2);
+el_say = unique(tree_connections);
+eklenebilir = setdiff(el_say,pathreq);
+el_req = numel(pathreq);
+ekle_comb = numel(el_say)-el_req;
+index = 0;
+con_var = [];
+my_break = 0;
+while(1)
+    index = index + 1
+    ekle_num = factorial(ekle_comb)/...
+        (factorial(index-1)*factorial(ekle_comb-index+1));
+    eklenecekler = combntns(eklenebilir,index-1);
+    for m = 1:ekle_num
+        if index == 1
+            pathreq_temp = [pathreq];
+        else
+            pathreq_temp = [pathreq eklenecekler(m,:)];
         end
+        combin = combnk(pathreq_temp,2);
+        ctr = 0;
+        con_var = [];
+        for k = 1:numel(tree_connections(:,1))
+            for l = 1:numel(combin(:,1))
+                if tree_connections(k,1)==combin(l,1) && ...
+                        tree_connections(k,2)==combin(l,2) || ...
+                        tree_connections(k,1)==combin(l,2) && ...
+                        tree_connections(k,2)==combin(l,1)
+                    con_var = [con_var;combin(l,:)];
+                    ctr = ctr+1;
+                end
+            end
+        end
+        %if ctr == numel(combin(:,1))+index-1
+        isrepeated = 0;
+        pathreq_temp;
+        for g = 1:numel(pathreq_temp)
+            isrepeated(g) = sum(sum(con_var==pathreq_temp(g)));
+        end
+        uc_var = 0;
+        for h = 1:numel(single_con)
+            uc_var = uc_var + sum(pathreq_temp(:)==single_con(h));
+        end
+        cond1 = ctr == numel(pathreq_temp)-1;
+        cond2 = sum(isrepeated>2)==0;
+        cond3 = uc_var == 2;
+        if ctr == numel(pathreq_temp)-1 && sum(isrepeated>2)==0 && uc_var == 2
+            % Burada uç olup olmadýðýna bakýlacak
+            fprintf('\nPath found!\n');
+            my_break = 1;
+            pathreq_temp
+            break;
+        end 
     end
-    if stop~=1
-        pos_con = [tree_connections(find(tree_connections(:,2)==path(2)),1)
-            tree_connections(find(tree_connections(:,1)==path(2)),2)]
-        for l = 1:numel(pos_con)
-            if sum(pos_con(l) == path(:)) > 0
-                pos_con(l) = []
-                break;
-            end
-        end
-        ctr = 1;
-        for l = 1:numel(pos_con)
-            path(ctr+2) = pos_con(l)
-            for m = k+1:numel(single_con)
-                if path(ctr+2)==single_con(m)
-                    stop2 = 1
-                    break;
-                end
-            end
-            if stop2 == 1
-                possible_path = [possible_path path]
-                mysum = 0;
-                for n = 1:numel(pathreq)
-                    mysum = mysum + any(possible_path==pathreq(n))
-                    
-                end
-                if mysum == numel(pathreq)
-                    4
-                end
-                stop2 = 0
-            else
-                ctr = ctr+1
-                pos_con2 = [tree_connections(find(tree_connections(:,2)==path(ctr+1)),1)
-                    tree_connections(find(tree_connections(:,1)==path(ctr+1)),2)]
-                for o = 1:numel(pos_con2)
-                    if sum(pos_con2(o) == path(:)) > 0
-                        pos_con2(o) = []
-                        break;
-                    end
-                end
-                path(ctr+2) = pos_con2
-                for m = k+1:numel(single_con)
-                    if path(ctr+2)==single_con(m)
-                        stop2 = 1
-                        break;
-                    end
-                end
-                
-                if stop2 == 1
-                    
-                    mysum = 0;
-                    for n = 1:numel(pathreq)
-                        mysum = mysum + any(path==pathreq(n))
-                        
-                    end
-                    if mysum == numel(pathreq)
-                        4
-                    end
-                    stop2 = 0
-                end
-                
-            end
-            %pos_con = [tree_connections(find(tree_connections(:,2)==path(ctr)),1)
-            %    tree_connections(find(tree_connections(:,1)==path(ctr)),2)]
-            
-        end
+    if index == numel(unique(tree_connections))-numel(pathreq)+1 || my_break == 1
+        break;
     end
 end
 
+toc
 
-
-%toc
 

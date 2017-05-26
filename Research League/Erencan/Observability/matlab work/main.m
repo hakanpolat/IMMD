@@ -147,7 +147,7 @@ end
 %     end
 % end
 
-toc
+
 
 %reconstruct_gustavson(ColumnG,ValueG,TotalG)
 
@@ -156,10 +156,10 @@ toc
 profile_G = matrix_profile(ColumnG,TotalG);
 %toc
 
-tic
+%tic
 % Ordering is applied
 [edges,new_order] = ordering(ColumnG,TotalG);
-toc
+%toc
 
 %tic
 % New matrix G stored with gustavson is obtained using the new order
@@ -183,6 +183,6 @@ zero_locations;
 
 
 
-%toc
+toc
 
 
