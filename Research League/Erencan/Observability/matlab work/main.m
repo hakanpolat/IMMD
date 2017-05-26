@@ -1,6 +1,6 @@
 % This is the main code for EE674 project: Observability Analysis
-clear all;
-clc;
+%clear all;
+%clc;
 tic
 %tic
 
@@ -174,11 +174,14 @@ profile_G = matrix_profile(ColumnG,TotalG);
 profile_Gnew = matrix_profile(ColumnGnew,TotalGnew);
 %toc
 
+toc
+
+tic
 
 % Cholesky factorisation
 [ColumnL,ValueL,TotalL,zero_locations] = sparsechol(ColumnGnew,ValueGnew,TotalGnew);
-reconstruct_gustavson(ColumnL,ValueL,TotalL)
-zero_locations; 
+%reconstruct_gustavson(ColumnL,ValueL,TotalL);
+zero_locations;
 
 
 

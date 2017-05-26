@@ -4,7 +4,7 @@
 % algorithm
 
 % ColumnA
-% ValueA
+% ValueA 
 % TotalA
 actualA = reconstruct_gustavson(ColumnA,ValueA,TotalA)
 [ColA,ValA,TotA] = apply_gustavson(actualA(1:10,1:10))

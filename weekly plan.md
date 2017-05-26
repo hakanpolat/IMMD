@@ -1,15 +1,12 @@
 ### 22.03.2017 - 28.05.2017
 #### Planlanan çalışmalar:
-* BAP için tool
-* BAP GaN EVM ve motor alımı
+* GRW poster presentation.
 * RPG makale
 * EL-EN konferans makalesi
 
 #### Gerçekleşen çalışmalar:
-* GRW2017 poster presentation.
-* ..
-* .
-
+* GRW2017 poster presentation is done.
+* GRW2017 poster selected for oral presentation :)
 
 ### 15.03.2017 - 21.05.2017
 #### Planlanan çalışmalar:
