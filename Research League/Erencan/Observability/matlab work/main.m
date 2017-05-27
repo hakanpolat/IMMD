@@ -121,7 +121,7 @@ for i = 1:No_of_power_flows
 end
 
 % Take the transpose of Jacobian (H) matrix
-% The following function takes the transpose of a given matrix stored with 
+% The following function takes the transpose of a given matrix stored with
 % with Gustavson using sparse techniques. The output is also retured in
 % Gustavson form
 %tic
@@ -183,9 +183,78 @@ tic
 %reconstruct_gustavson(ColumnL,ValueL,TotalL);
 zero_locations;
 
+% Find upper triangular matrix (LT)
+[ColumnLT,ValueLT,TotalLT] = matrix_transpose(ColumnL,ValueL,TotalL);
+%reconstruct_gustavson(ColumnLT,ValueLT,TotalLT);
 
-
+% Find the b vector from the zero locations found in Cholesky Factorisation
+ctr = 0;
+temp = 0;
+b = zeros(1,numel(zero_locations));
+while(1)
+    ctr = ctr+1;
+    if zero_locations(ctr) == 1
+        b(ctr) = temp;
+        temp = temp+1;
+    end
+    if ctr == numel(b)
+        break;
+    end
+end
 
 toc
+
+tic
+
+% Apply fast forward backward substitution to obtain theta
+theta = fwd_bwd_subs(ColumnL,ValueL,TotalL,ColumnLT,ValueLT,TotalLT,b)';
+
+% Original order of the theta vector. This is applied since we re-ordered G
+% matrix.
+
+toc
+
+tic
+
+ctr = 0;
+theta_or = zeros(1,numel(theta));
+while(1)
+    ctr = ctr+1;
+    index = new_order(ctr);
+    theta_or(index) = theta(ctr);
+    if ctr == numel(theta)
+        break;
+    end
+end
+theta_or = theta_or';
+
+toc
+
+%%
+
+actA = reconstruct_gustavson(ColumnA,ValueA,TotalA);
+unobs_branchv = actA*theta_or;
+
+n = numel(TotalA)-1;
+unobs_branch = [];
+ctr = 0;
+for k = 1:n
+    if abs(unobs_branchv(k)) > 1e-5
+        ctr = ctr+1;
+        unobs_branch(ctr) = k;
+    end
+end
+
+ctr = 0;
+unobs_bus = [];
+while(1)
+    ctr = ctr+1;
+    mybranch = unobs_branch(ctr);
+    Aindex = TotalA(mybranch):TotalA(mybranch+1)-1;
+    unobs_bus = [unobs_bus;ColumnA(Aindex)]
+    if ctr == numel(unobs_branch)
+        break;
+    end
+end
 
 

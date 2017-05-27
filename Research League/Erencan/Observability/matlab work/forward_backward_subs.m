@@ -4,19 +4,19 @@ tic
 % Ly = b
 % Given L (Gustavson) and b (vector), find y
 
-[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
+%[ColumnL,ValueL,TotalL] = apply_gustavson(myyL);
 n = numel(TotalL)-1;
 b = zeros(1,n);
 fpg_eqn = zeros(1,n);
-for k = 1:n
-    if k == 1 || k == 3 || k == 4 || k == 8
-        b(k) = 1;
-        fpg_eqn(k) = 1;
-    end
-    if k == 2 || k == 5 || k == 6 || k == 7 || k == 9 || k == 10
-        fpg_eqn(k) = 1;
-    end
-end
+% for k = 1:n
+%     if k == 1 || k == 3 || k == 4 || k == 8
+%         b(k) = 1;
+%         fpg_eqn(k) = 1;
+%     end
+%     if k == 2 || k == 5 || k == 6 || k == 7 || k == 9 || k == 10
+%         fpg_eqn(k) = 1;
+%     end
+% end
 y = zeros(1,n);
 ctr = 0;
 while(1)

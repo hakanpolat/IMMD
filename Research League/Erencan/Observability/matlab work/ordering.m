@@ -1,4 +1,4 @@
-%function [edges,new_order] = ordering(col,tot)
+function [edges,new_order] = ordering(col,tot)
 n = numel(tot)-1;
 nodes = 1:n;
 edges = [];
@@ -84,7 +84,7 @@ while(isempty(edges_mod)==0)
     end
 end
 
-%end
+end
 
 
 
