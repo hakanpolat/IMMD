@@ -231,7 +231,30 @@ theta_or = theta_or';
 toc
 
 %%
+ctr = 0;
+n = numel(TotalA)-1;
+while(1)
+    ctr = ctr+1;
+    index = TotalA(ctr):TotalA(ctr+1)-1;
+    columns = ColumnA(index);
+    if theta_or(columns(1)) ~= 0 || theta_or(columns(2)) ~= 0
+        unobs_branchv2(ctr) = theta_or(columns(1))*ValueA(columns(1))...
+            +theta_or(columns(2))*ValueA(columns(2));
+    else
+        unobs_branchv2(ctr) = 0;
+    end
+    
+    
+    if ctr == n
+        break;
+    end
+    
+end
 
+unobs_branchv2'
+
+
+%%
 actA = reconstruct_gustavson(ColumnA,ValueA,TotalA);
 unobs_branchv = actA*theta_or;
 
