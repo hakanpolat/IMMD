@@ -230,7 +230,8 @@ theta_or = theta_or';
 
 toc
 
-%%
+tic
+
 ctr = 0;
 n = numel(TotalA)-1;
 while(1)
@@ -238,25 +239,19 @@ while(1)
     index = TotalA(ctr):TotalA(ctr+1)-1;
     columns = ColumnA(index);
     if theta_or(columns(1)) ~= 0 || theta_or(columns(2)) ~= 0
-        unobs_branchv2(ctr) = theta_or(columns(1))*ValueA(columns(1))...
-            +theta_or(columns(2))*ValueA(columns(2));
+        unobs_branchv(ctr) = theta_or(columns(1))*ValueA(index(1))...
+            +theta_or(columns(2))*ValueA(index(2));
     else
-        unobs_branchv2(ctr) = 0;
+        unobs_branchv(ctr) = 0;
     end
-    
-    
     if ctr == n
         break;
     end
     
 end
 
-unobs_branchv2'
-
-
-%%
-actA = reconstruct_gustavson(ColumnA,ValueA,TotalA);
-unobs_branchv = actA*theta_or;
+%actA = reconstruct_gustavson(ColumnA,ValueA,TotalA);
+%unobs_branchv = actA*theta_or;
 
 n = numel(TotalA)-1;
 unobs_branch = [];
@@ -274,10 +269,11 @@ while(1)
     ctr = ctr+1;
     mybranch = unobs_branch(ctr);
     Aindex = TotalA(mybranch):TotalA(mybranch+1)-1;
-    unobs_bus = [unobs_bus;ColumnA(Aindex)]
+    unobs_bus = [unobs_bus;ColumnA(Aindex)];
     if ctr == numel(unobs_branch)
         break;
     end
 end
 
+toc
 
