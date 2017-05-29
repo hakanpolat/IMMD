@@ -1,5 +1,14 @@
 ### 22.03.2017 - 28.05.2017
 #### Planlanan çalışmalar:
+* GRW oral presentation.
+* RPG makale
+* EL-EN konferans makalesi
+
+#### Gerçekleşen çalışmalar:
+* GRW2017 oral presentation continue.
+
+### 22.03.2017 - 28.05.2017
+#### Planlanan çalışmalar:
 * GRW poster presentation.
 * RPG makale
 * EL-EN konferans makalesi
@@ -7,6 +16,7 @@
 #### Gerçekleşen çalışmalar:
 * GRW2017 poster presentation is done.
 * GRW2017 poster selected for oral presentation :)
+* GRS oral pres. started.
 
 ### 15.03.2017 - 21.05.2017
 #### Planlanan çalışmalar:
