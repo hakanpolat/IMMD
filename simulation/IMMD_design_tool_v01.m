@@ -234,6 +234,8 @@ voltage_rating_min = voltage_req_min*1.5; % V
 current_req_min = Iline*2; % A
 current_rating_min = current_req_min*2; % A
 
+% http://www.gansystems.com/gs66506t.php
+
 %%
 % Suppose an IGBT is selected
 % Infineon SKB15N60HS IGBT + Diode, 600V, 27A
