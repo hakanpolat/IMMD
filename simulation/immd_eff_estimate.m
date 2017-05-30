@@ -8,53 +8,54 @@ clear Pdc;
 clear Pds;
 clear Pss;
 fsw = 1e3:1e3:20e3; % Hz
-for k = 1:numel(fsw)
-    % Datasheet values
-    Vce_sat = 2.3; % V, @ A peak
-    Eon = 0.45e-3; % J, @ 400V
-    Eon = Eon*Vdc_module/400; % J, @270V
-    Eoff = 0.275e-3; % J, @400V
-    Eoff = Eoff*Vdc_module/400; % J, @270V
-    % Err = 8e-3; % J, @400V
-    % Err = Err*Vdc_module/600; % J, @270V
-    Vec = 1.25; % V
-    trr = 184e-9; % s, @400V
-    trr = trr*Vdc_module/400; % s, @270V
-    Irr = 18; % A, @400V
-    Irr = Irr*Vdc_module/400; % A, @270V
-    
-    % Loss calculation
-    Psc(k) = Icp*Vce_sat*(1/8+ma*pf/(3*pi)); % W
-    Pdc(k) = Iep*Vec*(1/8-ma*pf/(3*pi)); % W
-    Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
-    Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
-    %Pds = (Err)*fsw*(1/pi); % W
-    Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
-    Ploss = Ploss1*6; % W
-    efficiency1(k) = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
-    fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency1(k));
-end
+k = numel(fsw)
+%for k = 1:numel(fsw)
+% Datasheet values
+Vce_sat = 2.3; % V, @ A peak
+Eon = 0.45e-3; % J, @ 400V
+Eon = Eon*Vdc_module/400; % J, @270V
+Eoff = 0.275e-3; % J, @400V
+Eoff = Eoff*Vdc_module/400; % J, @270V
+% Err = 8e-3; % J, @400V
+% Err = Err*Vdc_module/600; % J, @270V
+Vec = 1.25; % V
+trr = 184e-9; % s, @400V
+trr = trr*Vdc_module/400; % s, @270V
+Irr = 18; % A, @400V
+Irr = Irr*Vdc_module/400; % A, @270V
 
-figure;
-plot(fsw*1e-3,Psc,'bo-','Linewidth',1.5);
-hold on;
-plot(fsw*1e-3,Pss,'ro-','Linewidth',1.5);
-hold on;
-plot(fsw*1e-3,Pdc,'ko-','Linewidth',1.5);
-hold on;
-plot(fsw*1e-3,Pds,'mo-','Linewidth',1.5);
-hold on;
-grid on;
-set(gca,'FontSize',12);
-xlabel('switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
-%ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
-
-figure;
-plot(fsw*1e-3,efficiency1,'bo-','Linewidth',1.5);
-grid on;
-set(gca,'FontSize',12);
-xlabel('switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
-%ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
+% Loss calculation
+Psc(k) = Icp*Vce_sat*(1/8+ma*pf/(3*pi)); % W
+Pdc(k) = Iep*Vec*(1/8-ma*pf/(3*pi)); % W
+Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
+Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
+%Pds = (Err)*fsw*(1/pi); % W
+Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
+Ploss = Ploss1*6; % W
+efficiency1(k) = 100*Pout_inv_module/(Ploss+Pout_inv_module); % percent
+fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency1(k));
+%end
+%
+% figure;
+% plot(fsw*1e-3,Psc,'bo-','Linewidth',1.5);
+% hold on;
+% plot(fsw*1e-3,Pss,'ro-','Linewidth',1.5);
+% hold on;
+% plot(fsw*1e-3,Pdc,'ko-','Linewidth',1.5);
+% hold on;
+% plot(fsw*1e-3,Pds,'mo-','Linewidth',1.5);
+% hold on;
+% grid on;
+% set(gca,'FontSize',12);
+% xlabel('switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+% %ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
+%
+% figure;
+% plot(fsw*1e-3,efficiency1,'bo-','Linewidth',1.5);
+% grid on;
+% set(gca,'FontSize',12);
+% xlabel('switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+% %ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
 
 %%
 % Suppose a GaN is selected
@@ -64,9 +65,10 @@ clear Psc;
 clear Pdc;
 clear Pds;
 clear Pss;
-%fsw = 10e3:1e3:100e3; % Hz
-fsw = 40e3;
+fsw = 10e3:1e3:100e3; % Hz
+%fsw = 40e3;
 %for k = 1:numel(fsw)
+k = 31
 % Datasheet values
 Rds_onB = 72e-3; % Ohms, @25C, @17A, @8V Vgs
 Tj = 125; % C
@@ -113,7 +115,7 @@ fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k))
 % set(gca,'FontSize',12);
 % xlabel('switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
 % %ylabel('DC Link RMS Current (A)','FontSize',12,'FontWeight','Bold')
-% 
+%
 % figure;
 % plot(fsw*1e-3,efficiency2,'bo-','Linewidth',1.5);
 % grid on;
