@@ -5,7 +5,8 @@
 * EL-EN konferans makalesi
 
 #### Gerçekleşen çalışmalar:
-* GRW2017 oral presentation continue.
+* GRW2017 oral presentation presented.
+
 
 ### 22.03.2017 - 28.05.2017
 #### Planlanan çalışmalar:
