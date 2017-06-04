@@ -47,6 +47,8 @@ for k = 1:numel(motor_data2(:,1))
 end
         
 motor_data = motor_data2(12,:);
+motor_data = motor_data2;
+
 % Motor information
 % Kollmorgen,KBM-3503A 
 % Kollmorgen,KBM-3503B 
