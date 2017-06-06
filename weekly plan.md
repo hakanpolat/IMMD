@@ -1,4 +1,15 @@
-### 22.03.2017 - 28.05.2017
+### 05.06.2017 - 11.06.2017
+#### Planlanan çalışmalar:
+* ISIE presentation finalize.
+* RPG makale
+* EL-EN konferans makalesi finalize.
+* IMMD BAP raporu finalize.
+
+#### Gerçekleşen çalışmalar:
+* IMMD BAP raporu start.
+* Design for EL-EN makale.
+
+### 29.05.2017 - 04.06.2017
 #### Planlanan çalışmalar:
 * GRW oral presentation.
 * RPG makale
@@ -6,9 +17,9 @@
 
 #### Gerçekleşen çalışmalar:
 * GRW2017 oral presentation presented.
+* El-En makale one section.
 
-
-### 22.03.2017 - 28.05.2017
+### 22.05.2017 - 28.05.2017
 #### Planlanan çalışmalar:
 * GRW poster presentation.
 * RPG makale
@@ -19,7 +30,7 @@
 * GRW2017 poster selected for oral presentation :)
 * GRS oral pres. started.
 
-### 15.03.2017 - 21.05.2017
+### 15.05.2017 - 21.05.2017
 #### Planlanan çalışmalar:
 * BAP için tool
 * BAP GaN EVM ve motor alımı
@@ -30,7 +41,7 @@
 * EL-EN devam.
 * GRW2017 poster minor updates
 
-### 08.03.2017 - 14.05.2017
+### 08.05.2017 - 14.05.2017
 #### Planlanan çalışmalar:
 * BAP için tool: DEVAM
 * BAP GaN EVM ve motor alımı: DEVAM
