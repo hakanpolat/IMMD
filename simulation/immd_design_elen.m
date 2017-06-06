@@ -2,6 +2,49 @@
 % This file is associated with the simulation file:
 % immd_design_elen_sim.slx
 
+%%
+% Design with motor
+m = 3;
+Q = 48;
+layer = 2;
+n = 4;
+p = 40;
+Pout = 8e3;
+Poutm = Pout/n;
+Nrated = 540;
+length = 0.15;
+Din = 0.15;
+Dout = 0.23;
+effmotor = 0.9;
+
+w = Q/(n*m);
+ffund = Nrated*p/120;
+kw = 0.933;
+
+Bgapa = 0.6;
+Bgap = Bgapa*pi/2;
+fluxpp = 2*Din*length*Bgap/p;
+
+zQ = 24;
+Nph = zQ*w*layer/2;
+E = 4.44*Nph*ffund*fluxpp*kw;
+
+Vdc = 540;
+Vdcm = Vdc/2;
+
+Vllrms = E*sqrt(3);
+scale = sqrt(3)/(2*sqrt(2));
+ma = Vllrms/(scale*Vdcm);
+
+Pdrout = Poutm/effmotor;
+pf = 0.9;
+Sdrout = Pdrout/pf;
+Iphase = Sdrout/(sqrt(3)*Vllrms);
+
+
+%%
+% Simulation parameters
+
 % Number of modules
 n = 4;
 % Step time
@@ -27,10 +70,51 @@ Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 phase = 0:90:270;
 
-
 %%
 % Run the simulation
 sim('immd_design_elen_sim.slx');
+
+
+%%
+% Design and simulation with series connected modules
+
+% Number of modules
+n = 2;
+ns = 2;
+np = n/ns;
+% Step time
+Ts = 1e-6; % sec
+% Modulation index
+ma = 0.9;
+% Switching frequency
+fsw = 1e3; % Hz
+% DC link voltage
+Vdc = 540; % Volts
+Vdcm = Vdc/ns;
+% Load
+Ptotal = 8e3; % W
+Pout = Ptotal/n; % W
+pf = 0.9;
+Sout = Pout/pf; % VA
+fout = 50; % Hz
+wout = 2*pi*fout; % rad/sec
+Vll_rms = ma*Vdcm*0.612; % Volts
+Iline = Sout/(Vll_rms*sqrt(3)); % Amps
+Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
+Rload = Zload*pf; % Ohms
+Xload = sqrt(Zload^2-Rload^2); % Ohms
+Lload = Xload/wout; % Henries
+phase = [0 0 0 0];
+
+
+%%
+% Run the simulation
+sim('immd_design_elen_sim2.slx');
+
+%%
+Irmss = Iline*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)))
+Idcc = (3/(2*sqrt(2))).*ma.*Iline*pf/0.999
+Irmss/Idcc
 
 
 %%
