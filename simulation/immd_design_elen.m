@@ -209,7 +209,7 @@ phase = [0 0 0 0];
 
 Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 500e-6;
+Cdc = 200e-6;
 
 
 %%
@@ -217,9 +217,9 @@ Cdc = 500e-6;
 sim('immd_design_elen_sim2.slx');
 
 %%
-Irmss = Iline*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)))
-Idcc = (3/(2*sqrt(2))).*ma.*Iline*pf/0.999
-Irmss/Idcc
+Irmss = Iline*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
+Idcc = (3/(2*sqrt(2))).*ma.*Iline*pf/0.999;
+Irmss/Idcc;
 
 
 %%
