@@ -188,7 +188,7 @@ Ts = 1e-6; % sec
 % Modulation index
 ma = 0.9;
 % Switching frequency
-fsw = 1e3; % Hz
+fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 540; % Volts
 Vdcm = Vdc/ns;
@@ -206,6 +206,10 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 phase = [0 0 0 0];
+
+Rin = 10;
+Vin = Vdc + Rin*(Ptotal/Vdc);
+Cdc = 500e-6;
 
 
 %%
