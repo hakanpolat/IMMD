@@ -7,11 +7,11 @@
   * Regulasyon???
   * Ayaslıda problem gerçekten var.
 3. Proposed solution
-  * Atıl duran RPCU yerine Inverter yapsın.
-  * 2 şekilde: ya size artsın ya da P yi azaltsın
-  * Gece yapabilmesi avantaj
-  * Closed loop system, continuous yapıyor
-  * D-Q componenets (teknik olarak nasıl yapıyor)
+  * Atıl duran RPCU yerine Inverter yapsın. OK
+  * 2 şekilde: ya size artsın ya da P yi azaltsın.OK
+  * Gece yapabilmesi avantaj. OK
+  * Closed loop system, continuous yapıyor. OK
+  * D-Q componenets (teknik olarak nasıl yapıyor): OK
 4. Analiz & Comparison
   * UPS lifetime'dan dolayı az kapasitif çalışıyor (şarj deşarj ediyor sürekli)
   * Reaktör olabilir ama istemiyoruz (burada inverter neden daha iyi sözle anlatılabilir)
@@ -27,4 +27,3 @@
   * Bla
   * Bla
   * Bla
-  
