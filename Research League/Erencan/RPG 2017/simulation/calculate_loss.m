@@ -57,10 +57,13 @@ losten2 = zeros(1,nn);
 lost_energy1 = 0;
 lost_energy2 = 0;
 lost_reactive = 0;
+lost_reactive1 = 0;
+lost_reactive2 = 0;
 lostq = zeros(1,nn);
 lostq1 = zeros(1,nn);
 lostq2 = zeros(1,nn);
 
+% Case 2: No size increase
 for k = 1:nn
     
     % Operation parameters
@@ -99,17 +102,16 @@ for k = 1:nn
     Plos = Psc+Pdc+Pss+Pds; % W
     Ploss1(k) = Plos*6+add_loss; % W
     lost_energy1 = lost_energy1+Ploss1(k)/60;
-    losten1(k) = lost_energy1; 
+    losten1(k) = lost_energy1;
+    
     lost_reactive = lost_reactive + qdemand(k)*1e3;
     lostq(k) = lost_reactive;
-    %fprintf('Efficiency is %g %% @ %g kW\n',efficiency(k),pv_prod1(k));
-    %fprintf('Power loss is %g W @ %g kW\n',Ploss(k),pv_prod1(k));
     
     if pqratio1(k) >= 0.2
-        lostq1(k) = lostq(k);
+        lost_reactive1 = lost_reactive1 + qdemand(k)*1e3;
+        lostq1(k) = lost_reactive1;
     else
-        %fprintf('Gotcha % g\n',k);
-        lostq1(k) = lostq(k)-qdemand(k)*1e3;        
+        lostq1(k) = lost_reactive1;
     end
     
 end
@@ -149,21 +151,18 @@ for k = 1:nn
     Plos = Psc+Pdc+Pss+Pds; % W
     Ploss2(k) = Plos*6; % W
     lost_energy2 = lost_energy2+Ploss2(k)/60;
-    losten2(k) = lost_energy2; 
-    %fprintf('Efficiency is %g %% @ %g kW\n',efficiency(k),pv_prod1(k));
-    %fprintf('Power loss is %g W @ %g kW\n',Ploss(k),pv_prod1(k));
-    
+    losten2(k) = lost_energy2;
+
     lost_reactive = lost_reactive + qdemand(k)*1e3;
     lostq(k) = lost_reactive;
     
     if pqratio2(k) >= 0.2
-        lostq2(k) = lostq(k);
+        lost_reactive2 = lost_reactive2 + qdemand(k)*1e3;
+        lostq2(k) = lost_reactive2;
     else
-        %fprintf('Gotcha % g\n',k);
-        lostq1(k) = lostq(k)-qdemand(k)*1e3;        
+        lostq2(k) = lost_reactive2;
     end
-    
-    
+
 end
 
 figure;
@@ -175,14 +174,162 @@ plot(minute/60,losten2,'k--','LineWidth',2.0);
 hold on;
 plot(minute/60,Ploss2*5,'k-','LineWidth',2.0);
 hold on;
-plot(minute/60,lostq*0.2,'r--','LineWidth',2.0);
+plot(minute/60,lostq*2e-4,'r--','LineWidth',2.0);
 hold on;
-plot(minute/60,lostq1*0.2,'r-','LineWidth',2.0);
+plot(minute/60,lostq1*2e-4,'r-','LineWidth',2.0);
+hold on;
+plot(minute/60,lostq2*2e-4,'m-','LineWidth',2.0);
 hold off;
 xlabel('Time (hours)','Fontweight','Bold');
 legend('Energy lost (Wh) - summer','Power loss X10 (W) - summer',...
     'Energy lost (Wh) - winter','Power loss X10 (W) - winter',...
     'Reactive power injection x0.2 (VAr)');
 grid on;
+
+% Penalty
+tl_kwh = 0.23;
+tl_kVarh = 0.11;
+year_p = 1e-3*(losten1(end)*365/2+losten2(end)*365/2); %kWh
+year_cost_p = year_p*tl_kwh; % TL
+year_q = 1e-3*(lostq1(end)*365/2+lostq2(end)*365/2); %kVARh
+year_cost_q = year_q*tl_kVarh; % TL
+
+
+
+
+
+
+
+%%
+% Case 3: Size increase
+
+% Loss calculation
+Vline = 400; % V
+Vdc = 750; % V
+D = Vline/(0.612*Vdc); % modulation depth
+fsw = 5e3; % Hz, switching frequency
+Vce_p = Vdc; % V, peak voltage
+Ploss1 = zeros(1,nn);
+Ploss2 = zeros(1,nn);
+losten1 = zeros(1,nn);
+losten2 = zeros(1,nn);
+lost_energy1 = 0;
+lost_energy2 = 0;
+
+for k = 1:nn
+    
+    % Operation parameters
+    App_power = pv_s1(k)*1e3; % VA
+    Iphase = App_power/(Vline*sqrt(3)); % A
+    pf = pv_prod1(k)/pv_s1(k);
+    Icp = Iphase*sqrt(2); % A, peak current
+    Iep = Iphase*sqrt(2); % A, peak current
+    Irr = Iep; % A, peak reverse recovery current
+    
+    % Datasheet parameters
+    Vce_sat = 6.76*1e-3*Icp+1.08; % V, @102 A peak, 125 C
+    Eon = (0.025*Icp+1)*1e-3; % J, @600V
+    Eon = Eon*Vdc/600; % J, @750V
+    Eoff = (0.13333*Icp+0.66667)*1e-3; % J, @600V
+    Eoff = Eoff*Vdc/600; % J, @750V
+    Err = (0.1*Iep+1)*1e-3; % J, @600V
+    Err = Err*Vdc/600; % J, @750V
+    Vec = 0.0125*Iep+0.75; % V
+    %trr = 150e-9; % s, @600V
+    %trr = trr*Vdc/600; % s, @750V
+    
+    % Loss calculation
+    Psc = Icp*Vce_sat*(1/8+D*pf/(3*pi)); % W
+    Pdc = Iep*Vec*(1/8-D*pf/(3*pi)); % W
+    Pss = (Eon+Eoff)*fsw*(1/pi); % W
+    %Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+    Pds = (Err)*fsw*(1/pi); % W
+    Plos = Psc+Pdc+Pss+Pds; % W
+    Ploss1(k) = Plos*6+add_loss; % W
+    lost_energy1 = lost_energy1+Ploss1(k)/60;
+    losten1(k) = lost_energy1;
+    
+%     lost_reactive = lost_reactive + qdemand(k)*1e3;
+%     lostq(k) = lost_reactive;
+%     
+%     if pqratio1(k) >= 0.2
+%         lost_reactive1 = lost_reactive1 + qdemand(k)*1e3;
+%         lostq1(k) = lost_reactive1;
+%     else
+%         lostq1(k) = lost_reactive1;
+%     end
+    
+end
+
+lost_reactive = 0;
+for k = 1:nn
+    
+    % Operation parameters
+    App_power = pv_s2(k)*1e3; % VA
+    Iphase = App_power/(Vline*sqrt(3)); % A
+    pf = pv_prod2(k)/pv_s2(k);
+    Icp = Iphase*sqrt(2); % A, peak current
+    Iep = Iphase*sqrt(2); % A, peak current
+    Irr = Iep; % A, peak reverse recovery current
+    
+    % Datasheet parameters
+    Vce_sat = 6.76*1e-3*Icp+1.08; % V, @102 A peak, 125 C
+    Eon = (0.025*Icp+1)*1e-3; % J, @600V
+    Eon = Eon*Vdc/600; % J, @750V
+    Eoff = (0.13333*Icp+0.66667)*1e-3; % J, @600V
+    Eoff = Eoff*Vdc/600; % J, @750V
+    Err = (0.1*Iep+1)*1e-3; % J, @600V
+    Err = Err*Vdc/600; % J, @750V
+    Vec = 0.0125*Iep+0.75; % V
+    %trr = 150e-9; % s, @600V
+    %trr = trr*Vdc/600; % s, @750V
+    
+    % Loss calculation
+    Psc = Icp*Vce_sat*(1/8+D*pf/(3*pi)); % W
+    Pdc = Iep*Vec*(1/8-D*pf/(3*pi)); % W
+    Pss = (Eon+Eoff)*fsw*(1/pi); % W
+    %Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+    Pds = (Err)*fsw*(1/pi); % W
+    Plos = Psc+Pdc+Pss+Pds; % W
+    Ploss2(k) = Plos*6; % W
+    lost_energy2 = lost_energy2+Ploss2(k)/60;
+    losten2(k) = lost_energy2;
+
+%     lost_reactive = lost_reactive + qdemand(k)*1e3;
+%     lostq(k) = lost_reactive;
+%     
+%     if pqratio2(k) >= 0.2
+%         lost_reactive2 = lost_reactive2 + qdemand(k)*1e3;
+%         lostq2(k) = lost_reactive2;
+%     else
+%         lostq2(k) = lost_reactive2;
+%     end
+
+end
+
+figure;
+plot(minute/60,losten1,'b--','LineWidth',2.0);
+hold on;
+plot(minute/60,Ploss1*5,'b-','LineWidth',2.0);
+hold on;
+plot(minute/60,losten2,'k--','LineWidth',2.0);
+hold on;
+plot(minute/60,Ploss2*5,'k-','LineWidth',2.0);
+hold off;
+xlabel('Time (hours)','Fontweight','Bold');
+legend('Energy lost (Wh) - summer','Power loss X10 (W) - summer',...
+    'Energy lost (Wh) - winter','Power loss X10 (W) - winter');
+grid on;
+
+
+
+%%
+% Penalty
+tl_kwh = 0.23;
+tl_kVarh = 0.11;
+year_p = 1e-3*(losten1(end)*365/2+losten2(end)*365/2) %kWh
+year_cost_p = year_p*tl_kwh % TL
+year_q = 1e-3*(lostq1(end)*365/2+lostq2(end)*365/2) %kVARh
+year_cost_q = year_q*tl_kVarh % TL
 
 
