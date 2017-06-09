@@ -2,7 +2,7 @@
 % There are two cases considered: 50kVA output power and 70 kVA output
 % power. The required phase currents (rms) are calculated as follows:
 Power1 = 50e3; % VA
-Power2 = 70e3; % VA
+Power2 = 70.7e3; % VA
 Vline = 400; % V
 Iphase1 = Power1/(Vline*sqrt(3)); % A
 Iphase2 = Power2/(Vline*sqrt(3)); % A
@@ -18,11 +18,11 @@ Vdc = 750; % V
 % Case-2, device-2: Infineon FF200R12KT4
 %% SELECTION
 ccase = 2;
-device = 2;
+device = 1;
 %% DATASHEET PARAMETERS
 if ccase == 1 && device == 1
-    Vce_sat = 2.3; % V, @102 A peak
-    Eon = 6e-3; % J, @600V
+    Vce_sat = 2.0; % V, @102 A peak, 125 C
+    Eon = 3e-3; % J, @600V
     Eon = Eon*Vdc/600; % J, @750V
     Eoff = 10.4e-3; % J, @600V
     Eoff = Eoff*Vdc/600; % J, @750V
@@ -42,9 +42,9 @@ elseif ccase == 1 && device == 2
     Vec = 1.42; % V
 elseif ccase == 2 && device == 1
     Vce_sat = 2.15; % V, @102 A peak
-    Eon = 5e-3; % J, @600V
+    Eon = 4.5e-3; % J, @600V
     Eon = Eon*Vdc/600; % J, @750V
-    Eoff = 10.6e-3; % J, @600V
+    Eoff = 16e-3; % J, @600V
     Eoff = Eoff*Vdc/600; % J, @750V
     Err = 10.2e-3; % J, @600V
     Err = Err*Vdc/600; % J, @750V
@@ -65,8 +65,8 @@ end
 D = Vline/(0.612*Vdc); % modulation depth
 fsw = 5e3; % Hz, switching frequency
 Vce_p = Vdc; % V, peak diode voltage
-cos_phi1 = 1;
-cos_phi2 = 0.714;
+cos_phi1 = 0,8;
+cos_phi2 = 0.707;
 if ccase == 1
     cos_phi = cos_phi1; % power factor
     Icp = Iphase1*sqrt(2); % A, peak current
@@ -83,28 +83,60 @@ elseif ccase == 2
     Irr = Iep; % A, peak reverse recovery current
 end
 %% LOSS CALCULATION
-Psc = Icp*Vce_sat*(1/8+D*cos_phi/(3*pi)); % W
-Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)); % W
-Pss = (Eon+Eoff)*fsw*(1/pi); % W
+Psc = Icp*Vce_sat*(1/8+D*cos_phi/(3*pi)) % W
+Pdc = Iep*Vec*(1/8-D*cos_phi/(3*pi)) % W
+Pss = (Eon+Eoff)*fsw*(1/pi) % W
 %Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
-Pds = (Err)*fsw*(1/pi); % W
-Ploss1 = Psc+Pdc+Pss+Pds; % W
-Ploss = Ploss1*6; % W
-efficiency = 100*Pout/(Ploss+Pout); % percent
+Pds = (Err)*fsw*(1/pi) % W
+Ploss1 = Psc+Pdc+Pss+Pds % W
+Ploss = Ploss1*6 % W
+efficiency = 100*Pout/(Ploss+Pout) % percent
 % fprintf('Efficiency is %g %%\n',efficiency);
 % fprintf('Power loss is %g W\n',Ploss);
+
+
 %% CAPACITOR
+Power1 = 50e3; % VA
+Power2 = 50e3; % VA
+cos_phi1 = 1;
+cos_phi2 = 0.8;
+Vline = 400; % V
+Iphase1 = Power1/(Vline*sqrt(3)); % A
+Iphase2 = Power2/(Vline*sqrt(3)); % A
+Vdc = 750; % V
+fs = 50;
+
 % Withstand voltage for one cycle
 Idc = Power1/Vdc; % A
 delta_t = 1/fs; % s
-Vdc_min = 550; % V
+Vdc_min = 500; % V
 delta_V = Vdc-Vdc_min; % V
-Cmin = Idc*delta_t/delta_V; % F
+Cmin = Idc*delta_t/delta_V % F
+
+Idc = Power2/Vdc; % A
+delta_t = 1/fs; % s
+Vdc_min = 500; % V
+delta_V = Vdc-Vdc_min; % V
+Cmin = Idc*delta_t/delta_V % F
+
+
+%%
 % DC Link voltage ripple
-% Does not affect much
+M = Vline/Vdc/0.612;
+Isp = Iphase1*sqrt(2);
+Vdcr = 0.01*Vdc;
+fsw = 5e3;
+Cmin = M*(Isp-Idc)/(sqrt(2)*Vdcr*fsw);
+
+
+%%
 % RMS current
-Icrms1 = Iphase1*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi1^2*(sqrt(3)/pi-9*D/16)));
-Icrms2 = Iphase2*sqrt(2*D*(sqrt(3)/(4*pi) + cos_phi2^2*(sqrt(3)/pi-9*D/16)));
+Icrms1 = Iphase1*sqrt(2*M*(sqrt(3)/(4*pi)...
+    + cos_phi1^2*(sqrt(3)/pi-9*M/16)));
+Icrms2 = Iphase2*sqrt(2*M*(sqrt(3)/(4*pi)...
+    + cos_phi2^2*(sqrt(3)/pi-9*M/16)));
+
+
 % Selection
 % Two capacitors for each case
 % http://tr.farnell.com/epcos/b43740a9478m000/cap-alu-elec-4700uf-400v-screw/dp/2284049
