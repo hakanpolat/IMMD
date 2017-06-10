@@ -67,11 +67,12 @@ hold on;
 plot(minute/60,upsq,'r-','LineWidth',2.0);
 hold off;
 xlabel('Time (hours)','Fontweight','Bold');
-ylabel('PV Generation & Load','Fontweight','Bold');
-title ('Photovoltaic Generation and Load Profile','Fontweight','Bold');
+ylabel('PV Generation, Load and UPS','Fontweight','Bold','Fontsize',16);
+%title ('Photovoltaic Generation and Load Profile','Fontweight','Bold');
 legend('PV Gen (summer) - kW','PV Gen (winter) - kW','Load P - kW','Load Q - kVAr','UPS Q - kVAr');
 grid on;
 ylim([-1 100]);
+set(gca,'fontsize',14)
 
 %%
 figure;
@@ -81,10 +82,12 @@ plot(minute/60,pv_s1,'r-','LineWidth',2.0);
 hold on;
 plot(minute/60,pv_s2,'k-','LineWidth',2.0);
 hold off;
-xlabel('Time (hours)','Fontweight','Bold');
+xlabel('Time (hours)','Fontweight','Bold','Fontsize',16 );
+ylabel('Reactive Power Demand and Apparent Powers','Fontweight','Bold','Fontsize',16);
 legend('Reactive Power Demand','PV Apparent Power (summer) - kVA','PV Apparent Power (winter) - kVA');
 grid on;
 ylim([-1 70]);
+set(gca,'fontsize',14)
 
 %%
 figure;
@@ -94,9 +97,11 @@ plot(minute/60,pccp2,'r-','LineWidth',2.0);
 hold on;
 plot(minute/60,pccq,'k-','LineWidth',2.0);
 hold off;
-xlabel('Time (hours)','Fontweight','Bold');
+ylabel('PCC Active and Reactive Powers','Fontweight','Bold','Fontsize',16);
+xlabel('Time (hours)','Fontweight','Bold','Fontsize',16 );
 legend('PCC Active Power (Summer) - kW','PCC Active Power (winter) - kW','PCC Reactive Power - kVAr');
 grid on;
+set(gca,'fontsize',14)
 ylim([-40 140]);
 
 %%

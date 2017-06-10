@@ -22,7 +22,7 @@ device = 1;
 %% DATASHEET PARAMETERS
 if ccase == 1 && device == 1
     Vce_sat = 2.0; % V, @102 A peak, 125 C
-    Eon = 3e-3; % J, @600V
+    Eon = 6e-3; % J, @600V
     Eon = Eon*Vdc/600; % J, @750V
     Eoff = 10.4e-3; % J, @600V
     Eoff = Eoff*Vdc/600; % J, @750V
@@ -46,7 +46,7 @@ elseif ccase == 2 && device == 1
     Eon = Eon*Vdc/600; % J, @750V
     Eoff = 16e-3; % J, @600V
     Eoff = Eoff*Vdc/600; % J, @750V
-    Err = 10.2e-3; % J, @600V
+    Err = 12e-3; % J, @600V
     Err = Err*Vdc/600; % J, @750V
     Vec = 2.2; % V
     trr = 150e-9; % s, @600V
@@ -65,7 +65,7 @@ end
 D = Vline/(0.612*Vdc); % modulation depth
 fsw = 5e3; % Hz, switching frequency
 Vce_p = Vdc; % V, peak diode voltage
-cos_phi1 = 0,8;
+cos_phi1 = 0.8;
 cos_phi2 = 0.707;
 if ccase == 1
     cos_phi = cos_phi1; % power factor
