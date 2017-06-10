@@ -104,11 +104,11 @@ for k = 1:nn
     lost_energy1 = lost_energy1+Ploss1(k)/60;
     losten1(k) = lost_energy1;
     
-    lost_reactive = lost_reactive + qdemand(k)*1e3;
+    lost_reactive = lost_reactive + qdemand(k)*1e3/60;
     lostq(k) = lost_reactive;
     
     if pqratio1(k) >= 0.2
-        lost_reactive1 = lost_reactive1 + qdemand(k)*1e3;
+        lost_reactive1 = lost_reactive1 + qdemand(k)*1e3/60;
         lostq1(k) = lost_reactive1;
     else
         lostq1(k) = lost_reactive1;
@@ -153,11 +153,11 @@ for k = 1:nn
     lost_energy2 = lost_energy2+Ploss2(k)/60;
     losten2(k) = lost_energy2;
 
-    lost_reactive = lost_reactive + qdemand(k)*1e3;
+    lost_reactive = lost_reactive + qdemand(k)*1e3/60;
     lostq(k) = lost_reactive;
     
     if pqratio2(k) >= 0.2
-        lost_reactive2 = lost_reactive2 + qdemand(k)*1e3;
+        lost_reactive2 = lost_reactive2 + qdemand(k)*1e3/60;
         lostq2(k) = lost_reactive2;
     else
         lostq2(k) = lost_reactive2;
@@ -174,11 +174,11 @@ plot(minute/60,losten2,'k--','LineWidth',2.0);
 hold on;
 plot(minute/60,Ploss2*5,'k-','LineWidth',2.0);
 hold on;
-plot(minute/60,lostq*2e-4,'r--','LineWidth',2.0);
+plot(minute/60,lostq*1e-2,'r--','LineWidth',2.0);
 hold on;
-plot(minute/60,lostq1*2e-4,'r-','LineWidth',2.0);
+plot(minute/60,lostq1*1e-2,'r-','LineWidth',2.0);
 hold on;
-plot(minute/60,lostq2*2e-4,'m-','LineWidth',2.0);
+plot(minute/60,lostq2*1e-2,'m-','LineWidth',2.0);
 hold off;
 xlabel('Time (hours)','Fontweight','Bold');
 legend('Energy lost (Wh) - summer','Power loss X10 (W) - summer',...
