@@ -330,11 +330,8 @@ plot(minute/60,Ploss2*5*1e-3,'k-','LineWidth',2.0);
 % plot(minute/60,lostq2*1e-2,'g-','LineWidth',2.0);
 hold off;
 xlabel('Time (hours)','Fontweight','Bold','Fontsize',14);
-legend('Energy lost (Wh) - summer','P loss X10 (W) - summer',...
-    'Energy lost (Wh) - winter','P loss X10 (W) - winter',...
-    'Q injection x0.01 (VArh)',...
-    'Q charged x0.2 (VArh) - summer',...
-    'Q charged x0.2 (VArh) - winter');
+legend('Energy lost (kWh) - summer','P loss X5 (kW) - summer',...
+    'Energy lost (kWh) - winter','P loss X5 (kW) - winter');
 grid on;
 set(gca,'fontsize',14)
 % Penalty
@@ -459,19 +456,19 @@ for k = 1:nn
 end
 
 figure;
-plot(minute/60,losten1,'b--','LineWidth',2.0);
+plot(minute/60,losten1*1e-3,'b--','LineWidth',2.0);
 hold on;
-plot(minute/60,Ploss1*5,'b-','LineWidth',2.0);
+plot(minute/60,Ploss1*10*1e-3,'b-','LineWidth',2.0);
 hold on;
-plot(minute/60,losten2,'k--','LineWidth',2.0);
+plot(minute/60,losten2*1e-3,'k--','LineWidth',2.0);
 hold on;
-plot(minute/60,Ploss2*5,'k-','LineWidth',2.0);
+plot(minute/60,Ploss2*10*1e-3,'k-','LineWidth',2.0);
 hold off;
-xlabel('Time (hours)','Fontweight','Bold');
-legend('Energy lost (Wh) - summer','Power loss X10 (W) - summer',...
-    'Energy lost (Wh) - winter','Power loss X10 (W) - winter');
+xlabel('Time (hours)','Fontweight','Bold','Fontsize',14);
+legend('Energy lost (kWh) - summer','Power loss X5 (kW) - summer',...
+    'Energy lost (kWh) - winter','Power loss X5 (kW) - winter');
 grid on;
-
+set(gca,'fontsize',14)
 
 
 %%
