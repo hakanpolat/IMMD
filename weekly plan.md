@@ -1,3 +1,14 @@
+### 12.06.2017 - 18.06.2017
+#### Planlanan çalışmalar:
+* ISIE sunumu son rötuşlar.
+* RPG makale submit.
+* EL-EN makale submit.
+
+#### Gerçekleşen çalışmalar:
+* RPG
+* EL-EN
+* ISIE sunum
+
 ### 05.06.2017 - 11.06.2017
 #### Planlanan çalışmalar:
 * ISIE presentation finalize.
@@ -6,8 +17,10 @@
 * IMMD BAP raporu finalize.
 
 #### Gerçekleşen çalışmalar:
-* IMMD BAP raporu start.
-* Design for EL-EN makale.
+* IMMD BAP raporuna başlandı.
+* EL-EN makalesi için tasarım kısmı tamamlandı.
+* ISIE için sunum tamamlandı.
+* RPG makalesi conclusion kısmına kadar tamamlandı.
 
 ### 29.05.2017 - 04.06.2017
 #### Planlanan çalışmalar:

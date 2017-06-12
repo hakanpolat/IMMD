@@ -1,11 +1,11 @@
 1. Introduction
 2. Problem Definition
-  * Buraya şema koyalım
-  * Kompanzasyon ünitesi var çalışmıyor (kapasitiflikten dolayı)
-  * UPS kapasitif çalışıyor, yükü endüktif assume ediyor
-  * 9kW üstünde pf bakılıyor (hatta altı için yeni regulasyon var). düşük P'de UPS yüzünden pf violation oluyor.
-  * Regulasyon???
-  * Ayaslıda problem gerçekten var.
+  * Buraya şema koyalım: OK
+  * Kompanzasyon ünitesi var çalışmıyor (kapasitiflikten dolayı): OK
+  * UPS kapasitif çalışıyor, yükü endüktif assume ediyor: OK
+  * 9kW üstünde pf bakılıyor (hatta altı için yeni regulasyon var). düşük P'de UPS yüzünden pf violation oluyor.: OK
+  * Regulasyon??? OK
+  * Ayaslıda problem gerçekten var.: OK
 3. Proposed solution
   * Atıl duran RPCU yerine Inverter yapsın. OK
   * 2 şekilde: ya size artsın ya da P yi azaltsın.OK
