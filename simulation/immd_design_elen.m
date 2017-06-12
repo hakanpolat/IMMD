@@ -3,7 +3,7 @@
 % immd_design_elen_sim.slx
 
 %%
-% Design with motor
+% Design with GaN
 m = 3;
 Q = 48;
 layer = 2;
@@ -44,6 +44,17 @@ Iphase = Sdrout/(sqrt(3)*Vllrms);
 
 
 %%
+% Design with IGBT
+
+Vdc = 540;
+Vllrms = 0.9*0.8*Vdc;
+Pdrout = Pout/effmotor;
+pf = 0.9;
+Sdrout = Pdrout/pf;
+Iphase = Sdrout/(sqrt(3)*Vllrms);
+
+
+%%
 % Selected GaNs
 % Transphorm: TPH3205WSB, 35A, 650V, 60 mOhm, Cascode
 % GaN Systems: GS66508B, 30A, 650V, 50 mOhm, E-mode
@@ -58,11 +69,12 @@ clear Pss;
 fsw = 10e3:1e3:100e3; % Hz
 for k = 1:numel(fsw)
     % Datasheet values
-    Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
-    Tj = 125; % C
-    Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
+    %Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
+    %Tj = 125; % C
+    %Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
     % It is assumed that, Rds_on is not affected by current amplitude up to 80A
     % This assumption is based on datasheet graph (Ids vs Vds)
+    Rds_on = 93.8*1e-3; % Ohms
     VsdB = 0.5; % V
     Iep = Iphase*sqrt(2);
     Vsd = Iep*0.09163+VsdB; % V
@@ -80,6 +92,7 @@ for k = 1:numel(fsw)
     % Irr value was not present in the datasheet. Peak value is taken
     Irr = Iep; % A
     Vce_p = Vdcm; % V
+    Eon = Eon*7
     
     % Loss calculation
     Psc(k) = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
@@ -91,8 +104,14 @@ for k = 1:numel(fsw)
     Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
     Ploss = Ploss1*6; % W
     efficiency2(k) = 100*Pdrout./(Ploss+Pdrout); % percent
-    fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
+    %fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
 end
+
+ind = find(fsw==40000)
+Psc(ind)
+Pss(ind)
+Pdc(ind)
+Pds(ind)
 
 
 %%
@@ -105,19 +124,21 @@ clear Pss;
 fsw = 10e3:1e3:100e3; % Hz
 for k = 1:numel(fsw)
     % Datasheet values
-    Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
-    Tj = 125; % C
-    Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
+    %Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
+    %Tj = 125; % C
+    %Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
     % It is assumed that, Rds_on is not affected by current amplitude up to 80A
     % This assumption is based on datasheet graph (Ids vs Vds)
-    VsdB = 0.5; % V
-    Iep = Iphase*sqrt(2);
-    Vsd = Iep*0.09163+VsdB; % V
+    Rds_on = 113.2*1e-3; % Ohms
+    %VsdB = 0.5; % V
+    %Iep = Iphase*sqrt(2);
+    %Vsd = Iep*0.09163+VsdB; % V
+    Vsd = 0.836; % V
     % The following time values should be normalized
-    tdon = 36e-9; % s,VDS=400V, ID = 18A, 25C
-    tdoff = 40e-9; % s,VDS=400V, ID = 18A, 25C
-    tr = 7.6e-9; % s,VDS=400V, ID = 18A, 25C
-    tf = 8.6e-9; % s,VDS=400V, ID = 18A, 25C
+    tdon = 4.3e-9; % s,VDS=400V, ID = 18A, 25C
+    tdoff = 8.2e-9; % s,VDS=400V, ID = 18A, 25C
+    tr = 4.9e-9; % s,VDS=400V, ID = 18A, 25C
+    tf = 3.4e-9; % s,VDS=400V, ID = 18A, 25C
     trr = 40e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
     ton = tdon+tr; % s
     toff = tdoff+tf; % s
@@ -127,7 +148,8 @@ for k = 1:numel(fsw)
     % Irr value was not present in the datasheet. Peak value is taken
     Irr = Iep; % A
     Vce_p = Vdcm; % V
-    
+    trr = 0;
+    Eon = 47.5e-6
     % Loss calculation
     Psc(k) = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
     Pdc(k) = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
@@ -138,8 +160,14 @@ for k = 1:numel(fsw)
     Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
     Ploss = Ploss1*6; % W
     efficiency2(k) = 100*Pdrout./(Ploss+Pdrout); % percent
-    fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
+    %fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
 end
+
+ind = find(fsw==100e3)
+Psc(ind)
+Pss(ind)
+Pdc(ind)
+Pds(ind)
 
 
 
