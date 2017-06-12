@@ -55,6 +55,28 @@ Iphase = Sdrout/(sqrt(3)*Vllrms);
 
 
 %%
+% Capacitor selection
+M = 0.8;
+Iline = Iphase;
+cosphi = 0.9;
+module = 4;
+efficiency = 0.98;
+
+Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...
+    cosphi^2*(sqrt(3)/pi-9*M/16)))
+Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency
+Icrms_perc = 100*Icrms/Idc
+
+fsw = 10e3; % Hz
+Cdc = 40e-6; % F
+Iapeak = Iline*sqrt(2);
+volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2))
+volt_ripple_perc = volt_ripple/Vdc*100
+
+
+
+
+%%
 % Selected GaNs
 % Transphorm: TPH3205WSB, 35A, 650V, 60 mOhm, Cascode
 % GaN Systems: GS66508B, 30A, 650V, 50 mOhm, E-mode
@@ -325,14 +347,14 @@ np = n/ns;
 % Step time
 Ts = 1e-6; % sec
 % Modulation index
-ma = 0.9;
+ma = 0.8;
 % Switching frequency
 fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 540; % Volts
 Vdcm = Vdc/ns;
 % Load
-Ptotal = 8e3; % W
+Ptotal = 8e3/0.9; % W
 Pout = Ptotal/n; % W
 pf = 0.9;
 Sout = Pout/pf; % VA
@@ -416,4 +438,3 @@ grid on;
 set(gca,'FontSize',12);
 xlabel('Number of modules','FontSize',12,'FontWeight','Bold')
 ylabel('DC Link RMS Current (%)','FontSize',12,'FontWeight','Bold')
-
