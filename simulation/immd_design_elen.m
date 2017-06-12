@@ -61,114 +61,225 @@ Iphase = Sdrout/(sqrt(3)*Vllrms);
 
 %%
 % 1st device
+% TPH3205WSB
 % Loss analysis
 clear Psc;
 clear Pdc;
 clear Pds;
 clear Pss;
-fsw = 10e3:1e3:100e3; % Hz
-for k = 1:numel(fsw)
-    % Datasheet values
-    %Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
-    %Tj = 125; % C
-    %Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
-    % It is assumed that, Rds_on is not affected by current amplitude up to 80A
-    % This assumption is based on datasheet graph (Ids vs Vds)
-    Rds_on = 93.8*1e-3; % Ohms
-    VsdB = 0.5; % V
+
+fsw = 0;
+while(fsw<100e3)
+    fsw = fsw+10e3
+    %fsw = 100e3; % Hz
+    Icp = Iphase*sqrt(2);
     Iep = Iphase*sqrt(2);
-    Vsd = Iep*0.09163+VsdB; % V
-    % The following time values should be normalized
-    tdon = 36e-9; % s,VDS=400V, ID = 18A, 25C
-    tdoff = 40e-9; % s,VDS=400V, ID = 18A, 25C
-    tr = 7.6e-9; % s,VDS=400V, ID = 18A, 25C
-    tf = 8.6e-9; % s,VDS=400V, ID = 18A, 25C
-    trr = 40e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
-    ton = tdon+tr; % s
-    toff = tdoff+tf; % s
-    Icp = Iep;
-    Eon = Vdcm*Icp*ton/6; % J
-    Eoff = Vdcm*Icp*toff/6; % J
-    % Irr value was not present in the datasheet. Peak value is taken
-    Irr = Iep; % A
-    Vce_p = Vdcm; % V
-    Eon = Eon*7
+    
+    Vceo = 0; % V
+    Ro = 93.8*1e-3; % Ohms
+    Vdo = 0.6; % V
+    Rd = (8-5.4)/(88-60); % Ohms
+    Vnom = 400; % V
+    Inom = 22; % A
+    Eon = 1/6*(Inom*Vnom*(36+7.6)*1e-9); % J
+    Eoff = 1/6*(Inom*Vnom*(40+8.6)*1e-9); % J
+    Err = 1/6*(Inom*Vnom*(40)*1e-9); % J
     
     % Loss calculation
-    Psc(k) = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
-    Pdc(k) = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
-    Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
-    Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
+    Psc = Vceo*Icp/(2*pi) + Ro*Icp^2/8 + ma*pf*Vceo*Icp/8 + ma*pf*Ro*Icp^2/(3*pi); % W
+    Pdc = Vdo*Iep/(2*pi) + Rd*Iep^2/8 - ma*pf*Vdo*Iep/8 - ma*pf*Rd*Iep^2/(3*pi); % W
+    Pss = (Eon+Eoff)*fsw*Vdcm*Icp/(pi*Vnom*Inom); % W
+    Pds = Err*fsw*Vdcm*Icp/(pi*Vnom*Inom) % W
     
-    % Total loss
-    Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
+    Ploss1 = Psc+Pdc+Pss+Pds; % W
     Ploss = Ploss1*6; % W
-    efficiency2(k) = 100*Pdrout./(Ploss+Pdrout); % percent
-    %fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
+    efficiency = 100*Pdrout/(Ploss+Pdrout); % percent
+
 end
 
-ind = find(fsw==40000)
-Psc(ind)
-Pss(ind)
-Pdc(ind)
-Pds(ind)
+
+% 
+% fsw = 10e3:1e3:100e3; % Hz
+% for k = 1:numel(fsw)
+%     % Datasheet values
+%     %Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
+%     %Tj = 125; % C
+%     %Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
+%     % It is assumed that, Rds_on is not affected by current amplitude up to 80A
+%     % This assumption is based on datasheet graph (Ids vs Vds)
+%     Rds_on = 93.8*1e-3; % Ohms
+%     VsdB = 0.5; % V
+%     Iep = Iphase*sqrt(2);
+%     Vsd = Iep*0.09163+VsdB; % V
+%     % The following time values should be normalized
+%     tdon = 36e-9; % s,VDS=400V, ID = 18A, 25C
+%     tdoff = 40e-9; % s,VDS=400V, ID = 18A, 25C
+%     tr = 7.6e-9; % s,VDS=400V, ID = 18A, 25C
+%     tf = 8.6e-9; % s,VDS=400V, ID = 18A, 25C
+%     trr = 40e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
+%     ton = tdon+tr; % s
+%     toff = tdoff+tf; % s
+%     Icp = Iep;
+%     Eon = Vdcm*Icp*ton/6; % J
+%     Eoff = Vdcm*Icp*toff/6; % J
+%     % Irr value was not present in the datasheet. Peak value is taken
+%     Irr = Iep; % A
+%     Vce_p = Vdcm; % V
+%     Eon = Eon*7
+%     
+%     % Loss calculation
+%     Psc(k) = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
+%     Pdc(k) = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
+%     Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
+%     Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
+%     
+%     % Total loss
+%     Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
+%     Ploss = Ploss1*6; % W
+%     efficiency2(k) = 100*Pdrout./(Ploss+Pdrout); % percent
+%     %fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
+% end
 
 
 %%
 % 2nd device
+% GS66508B
 % Loss analysis
 clear Psc;
 clear Pdc;
 clear Pds;
 clear Pss;
-fsw = 10e3:1e3:100e3; % Hz
-for k = 1:numel(fsw)
-    % Datasheet values
-    %Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
-    %Tj = 125; % C
-    %Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
-    % It is assumed that, Rds_on is not affected by current amplitude up to 80A
-    % This assumption is based on datasheet graph (Ids vs Vds)
-    Rds_on = 113.2*1e-3; % Ohms
-    %VsdB = 0.5; % V
-    %Iep = Iphase*sqrt(2);
-    %Vsd = Iep*0.09163+VsdB; % V
-    Vsd = 0.836; % V
-    % The following time values should be normalized
-    tdon = 4.3e-9; % s,VDS=400V, ID = 18A, 25C
-    tdoff = 8.2e-9; % s,VDS=400V, ID = 18A, 25C
-    tr = 4.9e-9; % s,VDS=400V, ID = 18A, 25C
-    tf = 3.4e-9; % s,VDS=400V, ID = 18A, 25C
-    trr = 40e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
-    ton = tdon+tr; % s
-    toff = tdoff+tf; % s
-    Icp = Iep;
-    Eon = Vdcm*Icp*ton/6; % J
-    Eoff = Vdcm*Icp*toff/6; % J
-    % Irr value was not present in the datasheet. Peak value is taken
-    Irr = Iep; % A
-    Vce_p = Vdcm; % V
-    trr = 0;
-    Eon = 47.5e-6
-    % Loss calculation
-    Psc(k) = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
-    Pdc(k) = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
-    Pss(k) = (Eon+Eoff)*fsw(k)*(1/pi); % W
-    Pds(k) = (1/8)*Irr*trr*Vce_p*fsw(k); % W
+
+fsw = 0;
+while(fsw<100e3)
+    fsw = fsw+10e3
+    %fsw = 100e3; % Hz
+    Icp = Iphase*sqrt(2);
+    Iep = Iphase*sqrt(2);
     
-    % Total loss
-    Ploss1 = Psc(k)+Pdc(k)+Pss(k)+Pds(k); % W
+    Vceo = 0; % V
+    Ro = 113.2*1e-3; % Ohms
+    Vdo = 0; % V
+    Rd = (1)/(20); % Ohms
+    Vnom = 400; % V
+    Inom = 15; % A
+    Eon = 47.5e-6; % J
+    Eoff = 7.5e-6; % J
+    Err = 7e-6; % J
+    
+    % Loss calculation
+    Psc = Vceo*Icp/(2*pi) + Ro*Icp^2/8 + ma*pf*Vceo*Icp/8 + ma*pf*Ro*Icp^2/(3*pi); % W
+    Pdc = Vdo*Iep/(2*pi) + Rd*Iep^2/8 - ma*pf*Vdo*Iep/8 - ma*pf*Rd*Iep^2/(3*pi); % W
+    Pss = (Eon+Eoff)*fsw*Vdcm*Icp/(pi*Vnom*Inom); % W
+    Pds = Err*fsw*Vdc*Icp/(pi*Vnom*Inom); % W
+    
+    Ploss1 = Psc+Pdc+Pss+Pds; % W
     Ploss = Ploss1*6; % W
-    efficiency2(k) = 100*Pdrout./(Ploss+Pdrout); % percent
-    %fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw(k),efficiency2(k));
+    efficiency = 100*Pdrout/(Ploss+Pdrout); % percent
+
 end
 
-ind = find(fsw==100e3)
-Psc(ind)
-Pss(ind)
-Pdc(ind)
-Pds(ind)
 
+
+
+% Datasheet values
+%Rds_onB = 49e-3; % Ohms, @25C, @17A, @8V Vgs
+%Tj = 125; % C
+%Rds_on = Rds_onB*(Tj/125+0.8); % Ohms
+% It is assumed that, Rds_on is not affected by current amplitude up to 80A
+% This assumption is based on datasheet graph (Ids vs Vds)
+%Rds_on = 113.2*1e-3; % Ohms
+%VsdB = 0.5; % V
+%Iep = Iphase*sqrt(2);
+%Vsd = Iep*0.09163+VsdB; % V
+%Vsd = 0.836; % V
+% The following time values should be normalized
+% tdon = 4.3e-9; % s,VDS=400V, ID = 18A, 25C
+% tdoff = 8.2e-9; % s,VDS=400V, ID = 18A, 25C
+% tr = 4.9e-9; % s,VDS=400V, ID = 18A, 25C
+% tf = 3.4e-9; % s,VDS=400V, ID = 18A, 25C
+% trr = 40e-9; % s,VDS=400V, ID = 18A, 1000A/ms, 25C
+% ton = tdon+tr; % s
+% toff = tdoff+tf; % s
+% Icp = Iep;
+% Eon = Vdcm*Icp*ton/6; % J
+% Eoff = Vdcm*Icp*toff/6; % J
+% Irr value was not present in the datasheet. Peak value is taken
+% Irr = Iep; % A
+% Vce_p = Vdcm; % V
+% trr = 0;
+% Eon = 47.5e-6
+%
+
+% Loss calculation
+% Psc = Rds_on*Icp^2*(1/8+ma*pf/(3*pi)); % W
+% Pdc = Iep*Vsd*(1/8-ma*pf/(3*pi)); % W
+% Pss = (Eon+Eoff)*fsw*(1/pi); % W
+% Pds = (1/8)*Irr*trr*Vce_p*fsw; % W
+% 
+% % Total loss
+% Ploss1 = Psc+Pdc+Pss+Pds; % W
+% Ploss = Ploss1*6; % W
+% efficiency = 100*Pdrout/(Ploss+Pdrout); % percent
+
+
+%%
+% 3rd device
+% FP35R12KT4P
+% Loss analysis
+clear Psc;
+clear Pdc;
+clear Pds;
+clear Pss;
+
+Vdc = 540;
+scale = sqrt(3)/(2*sqrt(2));
+ma = 0.8;
+Vllrms = ma*scale*Vdc;
+Pdrout = Pout/effmotor;
+pf = 0.9;
+Sdrout = Pdrout/pf;
+Iphase = Sdrout/(sqrt(3)*Vllrms);
+Icp = Iphase*sqrt(2);
+Iep = Iphase*sqrt(2);
+Vce_p = Vdc;
+%fsw = 10e3; % Hz
+
+% Datasheet values - Infineon
+% Vcesat = 2.0; % V
+% Vec = 1.55; % V
+% Eon1 = 2.2e-3; % J
+% Eoff1 = 1.8e-3; % J
+% Err1 = 1.6e-3; % J
+
+Vceo = 0.8; % V
+Ro = (2.5-1.95)/(45-30); % Ohms
+Vdo = 0.95; % V
+Rd = (2-1.55)/(55-30); % Ohms
+Vnom = 600; % V
+Inom = 25; % A
+Eon = 2.65e-3; % J
+Eff = 2.20e-3; % J
+Err = 0.9e-3; % J
+
+% Loss calculation
+Psc = Vceo*Icp/(2*pi) + Ro*Icp^2/8 + ma*pf*Vceo*Icp/8 + ma*pf*Ro*Icp^2/(3*pi); % W
+Pdc = Vdo*Iep/(2*pi) + Rd*Iep^2/8 - ma*pf*Vdo*Iep/8 - ma*pf*Rd*Iep^2/(3*pi); % W
+Pss = (Eon+Eoff)*fsw*Vdc*Icp/(pi*Vnom*Inom); % W
+Pds = Err*fsw*Vdc*Icp/(pi*Vnom*Inom); % W
+
+% Loss calculation
+%Psc = Vcesat*Icp*(1/8+ma*pf/(3*pi)); % W
+% Pdc = Iep*Vec*(1/8-ma*pf/(3*pi)) % W
+%Pss = (Eon1+Eoff1)*fsw*(1/pi); % W
+%Pds = (1/8)*trr*Irr*Vec_p*fsw; % W
+% Pds = Err*fsw*(1/pi); % W
+
+% Total loss
+Ploss1 = Psc+Pdc+Pss+Pds; % W
+Ploss = Ploss1*6; % W
+efficiency = 100*Pdrout./(Ploss+Pdrout); % percent
+% fprintf('Efficiency value with GaN with %gkHz is %g %%\n',fsw,efficiency2);
 
 
 %%
