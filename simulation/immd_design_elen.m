@@ -63,9 +63,9 @@ module = 4;
 efficiency = 0.98;
 
 Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...
-    cosphi^2*(sqrt(3)/pi-9*M/16)))
-Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency
-Icrms_perc = 100*Icrms/Idc
+    cosphi^2*(sqrt(3)/pi-9*M/16)));
+Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
+Icrms_perc = 100*Icrms/Idc;
 
 fsw = 40e3; % Hz
 Cdc = 40e-6; % F
@@ -372,6 +372,74 @@ Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
 Cdc = 50e-6;
 
+%%
+% RMS current
+Idct = Ptotal/Vdc;
+Idcc = np*(3/(2*sqrt(2)))*ma*Iline*pf;
+Irmss = np*Iline*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
+Irms_perc = 100*Irmss/Idcc;
+Irms_int = 6.69;
+Irms_int_perc = 100*Irms_int/Idcc;
+
+%%
+% Voltage ripple
+
+fsw = 10e3; % Hz
+Cdc = 50e-6; % F
+Iapeak = np*Iline*sqrt(2);
+volt_ripple = ma*(Iapeak - Idcc)/(Cdc*fsw*2)
+%volt_ripple_perc = volt_ripple/Vdc*100
+
+%%
+% By waveforms
+timea = Vdcc(:,1);
+Vdc_int = Vdcc(:,2);
+%%
+Vdc_noint = Vdcc(:,2);
+%%
+figure;
+plot(timea,Vdc_int,'b-','Linewidth',3);
+hold on;
+plot(timea,Vdc_noint,'r-','Linewidth',3);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (a)','FontSize',12,'FontWeight','Bold')
+ylabel('DC Link Voltage (V)','FontSize',12,'FontWeight','Bold')
+legend('Interleaving','No interleaving');
+
+
+%%
+% interleaving results
+ang = [0 15 30 45 60 75 90 105 120 135 150 165 180]';
+rms = [12.77 11.58 10.22 8.85 7.89 7.15 6.69 6.71 7.33 8.64 9.65 10.24 10.45]';
+perc = 100*rms/rms(1);
+dca = 16.43;
+perc2 = 100*rms/dca;
+
+figure;
+plot(ang,rms,'bo-','Linewidth',3);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('RMS current (A)','FontSize',12,'FontWeight','Bold')
+
+figure;
+plot(ang,perc,'bo-','Linewidth',3);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('RMS current (%)','FontSize',12,'FontWeight','Bold')
+ylim([0 100]);
+
+figure;
+plot(ang,perc2,'bo-','Linewidth',3);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Phase shift (degrees)','FontSize',12,'FontWeight','Bold')
+ylabel('RMS current (%)','FontSize',12,'FontWeight','Bold')
+ylim([0 100]);
+
 
 %%
 % Run the simulation
@@ -391,50 +459,3 @@ Idc = Icdc(numel(Icdc));
 % Calculation
 Irms_perc = 100*Irms./Idc;
 
-
-%%
-% module phase shift effect on RMS current
-Icrms = n*Iline*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
-perc_an = 100*Icrms/Idc;
-
-rmscp = [53.12 34.97 20.95 18.21 11.12 12.92 8.6 8.9]
-module = 1:8
-rmsc = rmscp*Idc/100
-
-figure;
-plot(module,rmsc,'bo-','Linewidth',1.5);
-grid on;
-set(gca,'FontSize',12);
-xlabel('Number of modules','FontSize',12,'FontWeight','Bold')
-ylabel('DC Link RMS Current (%)','FontSize',12,'FontWeight','Bold')
-
-katsayi = rmsc/rmsc(1)
-%katsayi2 = katsayi.*n.^(3/2)
-k1 = 0.83;
-k2 = 0.1;
-myfunc = k1.^(module/0.6)+k2
-
-figure;
-plot(module,katsayi,'bo-','Linewidth',1.5);
-hold on;
-plot(module,myfunc,'ro-','Linewidth',1.5);
-hold off;
-grid on;
-set(gca,'FontSize',12);
-xlabel('Number of modules','FontSize',12,'FontWeight','Bold')
-ylabel('DC Link RMS Current (%)','FontSize',12,'FontWeight','Bold')
-
-%%
-X = module';
-Y = katsayi';
-FO = fit(X, Y, 'poly2');
-y = feval(FO,X)
-figure;
-plot(module,katsayi,'bo-','Linewidth',1.5);
-hold on;
-plot(module,y,'ro-','Linewidth',1.5);
-hold off;
-grid on;
-set(gca,'FontSize',12);
-xlabel('Number of modules','FontSize',12,'FontWeight','Bold')
-ylabel('DC Link RMS Current (%)','FontSize',12,'FontWeight','Bold')
