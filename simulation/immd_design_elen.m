@@ -67,7 +67,7 @@ Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...
 Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency
 Icrms_perc = 100*Icrms/Idc
 
-fsw = 10e3; % Hz
+fsw = 40e3; % Hz
 Cdc = 40e-6; % F
 Iapeak = Iline*sqrt(2);
 volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2))
@@ -341,7 +341,7 @@ sim('immd_design_elen_sim.slx');
 % Design and simulation with series connected modules
 
 % Number of modules
-n = 2;
+n = 4;
 ns = 2;
 np = n/ns;
 % Step time
@@ -370,7 +370,7 @@ phase = [0 0 0 0];
 
 Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 200e-6;
+Cdc = 50e-6;
 
 
 %%
