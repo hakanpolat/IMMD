@@ -345,11 +345,11 @@ n = 4;
 ns = 2;
 np = n/ns;
 % Step time
-Ts = 0.5e-6; % sec
+Ts = 1e-6; % sec
 % Modulation index
 ma = 0.8;
 % Switching frequency
-fsw = 40e3; % Hz
+fsw = 10e3; % Hz
 % DC link voltage
 Vdc = 540; % Volts
 Vdcm = Vdc/ns;
@@ -371,7 +371,7 @@ phase = [0 90 0 90];
 Rin = 10;
 %Lin = 1e-3;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 16e-6;
+Cdc = 100e-6;
 
 %%
 % RMS current
@@ -383,21 +383,40 @@ Irms_int = 6.69;
 Irms_int_perc = 100*Irms_int/Idcc;
 
 %%
-% IGBT'li sistem RMS akým
+% IGBT'li sistem RMS akým ve Cdc
+Vdc = 540;
+Vllrms = 0.612*0.8*Vdc;
+Pout = 8e3;
+Pdrout = Pout/effmotor;
+pf = 0.9;
+Sdrout = Pdrout/pf;
+Iphase = Sdrout/(sqrt(3)*Vllrms);
+% RMS current
+Idct = Ptotal/Vdc;
+Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf;
+Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
+Irms_perc = 100*Irmss/Idcc
+
+fsw = 10e3; % Hz
+volt_ripple_perc = 1;
+volt_ripple = volt_ripple_perc*Vdc/100;
+Iapeak = np*Iline*sqrt(2);
+Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
+Cdcm = Cdc*1e6;
 
 
 %%
 % Voltage ripple
 
-fsw = 40e3; % Hz
-Cdc = 30e-6; % F
+fsw = 10e3; % Hz
+Cdc = 100e-6; % F
 Iapeak = np*Iline*sqrt(2);
-volt_ripple = ma*(Iapeak - Idcc)/(Cdc*fsw*2)
+volt_ripple = ma*(Iapeak - Idcc)/(Cdc*fsw*2);
 volt_ripple_perc = volt_ripple/Vdc*100
 
 
 %%
-fsw = 40e3; % Hz
+fsw = 10e3; % Hz
 volt_ripple_perc = 1;
 volt_ripple = volt_ripple_perc*Vdc/100;
 Iapeak = np*Iline*sqrt(2);
@@ -405,24 +424,95 @@ Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
 Cdcm = Cdc*1e6;
 Cdcm_int = Cdcm*0.52;
 
+
 %%
 % By waveforms
 timea = Vdcc(:,1);
 Vdc_int = Vdcc(:,2);
+Idc1_int = Idc1(:,2);
+Idc2_int = Idc2(:,2);
+Icap_int = Icap(:,2);
+Idct_int = Idct(:,2);
+
+
 %%
+timea = Vdcc(:,1);
 Vdc_noint = Vdcc(:,2);
+Idc1_noint = Idc1(:,2);
+Idc2_noint = Idc2(:,2);
+Icap_noint = Icap(:,2);
+Idct_noint = Idct(:,2);
+
+
 %%
-%figure;
-plot(timea,Vdc_int,'b-','Linewidth',2);
+figure;
+plot(timea,Vdc_noint,'b-','Linewidth',2);
 hold on;
-plot(timea,Vdc_noint,'r-','Linewidth',2);
+plot(timea,Vdc_int,'r-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Time (a)','FontSize',12,'FontWeight','Bold')
-ylabel('DC Link Voltage (V)','FontSize',12,'FontWeight','Bold')
-legend('Interleaving','No interleaving');
-xlim([0.035 0.04])
+xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DA Bara Gerilimi (Volt)','FontSize',12,'FontWeight','Bold')
+legend('Interleaving yok','Interleaving var');
+xlim([0.03 0.04])
+
+%%
+rms_noint = Irmss*ones(1,numel(timea));
+rms_int = 0.52*Irmss*ones(1,numel(timea));
+figure;
+plot(timea,-Icap_noint,'b-','Linewidth',2);
+hold on;
+plot(timea,-Icap_int,'r-','Linewidth',2);
+hold on;
+plot(timea,rms_noint,'k-','Linewidth',3);
+hold on;
+plot(timea,rms_int,'g-','Linewidth',3);
+hold on;
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DA Bara Kondansatör Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
+legend('Interleaving yok','Interleaving var','Interleaving yok - RMS','Interleaving var - RMS');
+xlim([0.0395 0.04])
+ylim([-20 30])
+
+%%
+figure;
+subplot(2,1,1);
+plot(timea,Idc1_int,'b-','Linewidth',2);
+hold on;
+plot(timea,Idc2_int,'r-','Linewidth',2);
+hold on;
+%plot(timea,Idct_noint,'k-','Linewidth',2);
+hold on;
+%plot(timea,Idct_int,'g-','Linewidth',2);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
+legend('1. modül','2. modül');
+xlim([0.0395 0.04])
+ylim([-5 30]);
+
+subplot(2,1,2);
+%plot(timea,Idc1_int,'b-','Linewidth',2);
+hold on;
+%plot(timea,Idc2_int,'r-','Linewidth',2);
+hold on;
+plot(timea,Idct_noint,'k-','Linewidth',2);
+hold on;
+plot(timea,Idct_int,'b-','Linewidth',2);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
+legend('Toplam - Interleaving yok','Toplam - Interleaving var');
+xlim([0.0395 0.04])
+ylim([-5 60]);
 
 %%
 % interleaving results
