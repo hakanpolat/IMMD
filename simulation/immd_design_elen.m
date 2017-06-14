@@ -44,14 +44,46 @@ Iphase = Sdrout/(sqrt(3)*Vllrms);
 
 
 %%
-% Design with IGBT
+% Design ans Simulation with IGBT
 
-Vdc = 540;
-Vllrms = 0.9*0.8*Vdc;
-Pdrout = Pout/effmotor;
+Ts = 1e-6; % sec
+% Modulation index
+ma = 0.8;
+% Switching frequency
+fsw = 10e3; % Hz
+% DC link voltage
+Vdc = 400; % Volts
+% Load
+Ptotal = 8e3/0.9; % W
+Pout = Ptotal; % W
 pf = 0.9;
-Sdrout = Pdrout/pf;
-Iphase = Sdrout/(sqrt(3)*Vllrms);
+Sout = Pout/pf; % VA
+fout = 50; % Hz
+wout = 2*pi*fout; % rad/sec
+Vll_rms = ma*Vdc*0.612; % Volts
+Iline = Sout/(Vll_rms*sqrt(3)); % Amps
+Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
+Rload = Zload*pf; % Ohms
+Xload = sqrt(Zload^2-Rload^2); % Ohms
+Lload = Xload/wout; % Henries
+
+Rin = 10;
+%Lin = 1e-3;
+Vin = Vdc + Rin*(Ptotal/Vdc);
+Cdc = 200e-6;
+
+Iphase = Iline;
+Idct = Ptotal/Vdc;
+Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf;
+Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
+Irms_perc = 100*Irmss/Idcc;
+
+fsw = 10e3; % Hz
+volt_ripple_perc = 1;
+volt_ripple = volt_ripple_perc*Vdc/100;
+Iapeak = Iphase*sqrt(2);
+Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
+Cdcm = Cdc*1e6;
 
 
 %%
