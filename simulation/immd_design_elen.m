@@ -345,11 +345,11 @@ n = 4;
 ns = 2;
 np = n/ns;
 % Step time
-Ts = 1e-6; % sec
+Ts = 0.5e-6; % sec
 % Modulation index
 ma = 0.8;
 % Switching frequency
-fsw = 10e3; % Hz
+fsw = 40e3; % Hz
 % DC link voltage
 Vdc = 540; % Volts
 Vdcm = Vdc/ns;
@@ -366,11 +366,12 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-phase = [0 0 0 0];
+phase = [0 90 0 90];
 
 Rin = 10;
+%Lin = 1e-3;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 50e-6;
+Cdc = 16e-6;
 
 %%
 % RMS current
@@ -382,13 +383,27 @@ Irms_int = 6.69;
 Irms_int_perc = 100*Irms_int/Idcc;
 
 %%
+% IGBT'li sistem RMS akým
+
+
+%%
 % Voltage ripple
 
-fsw = 10e3; % Hz
-Cdc = 50e-6; % F
+fsw = 40e3; % Hz
+Cdc = 30e-6; % F
 Iapeak = np*Iline*sqrt(2);
 volt_ripple = ma*(Iapeak - Idcc)/(Cdc*fsw*2)
-%volt_ripple_perc = volt_ripple/Vdc*100
+volt_ripple_perc = volt_ripple/Vdc*100
+
+
+%%
+fsw = 40e3; % Hz
+volt_ripple_perc = 1;
+volt_ripple = volt_ripple_perc*Vdc/100;
+Iapeak = np*Iline*sqrt(2);
+Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
+Cdcm = Cdc*1e6;
+Cdcm_int = Cdcm*0.52;
 
 %%
 % By waveforms
@@ -397,17 +412,17 @@ Vdc_int = Vdcc(:,2);
 %%
 Vdc_noint = Vdcc(:,2);
 %%
-figure;
-plot(timea,Vdc_int,'b-','Linewidth',3);
+%figure;
+plot(timea,Vdc_int,'b-','Linewidth',2);
 hold on;
-plot(timea,Vdc_noint,'r-','Linewidth',3);
+plot(timea,Vdc_noint,'r-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (a)','FontSize',12,'FontWeight','Bold')
 ylabel('DC Link Voltage (V)','FontSize',12,'FontWeight','Bold')
 legend('Interleaving','No interleaving');
-
+xlim([0.035 0.04])
 
 %%
 % interleaving results
