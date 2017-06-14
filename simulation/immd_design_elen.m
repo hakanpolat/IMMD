@@ -400,9 +400,9 @@ Irms_perc = 100*Irmss/Idcc
 fsw = 10e3; % Hz
 volt_ripple_perc = 1;
 volt_ripple = volt_ripple_perc*Vdc/100;
-Iapeak = np*Iline*sqrt(2);
-Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
-Cdcm = Cdc*1e6;
+Iapeak = Iphase*sqrt(2);
+Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2)
+Cdcm = Cdc*1e6
 
 
 %%
