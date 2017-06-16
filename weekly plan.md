@@ -1,3 +1,11 @@
+### 19.06.2017 - 25.06.2017
+#### Planlanan çalışmalar:
+* ISIE oral presentation at the conference
+* No other work due to conference
+
+#### Gerçekleşen çalışmalar:
+* .
+
 ### 12.06.2017 - 18.06.2017
 #### Planlanan çalışmalar:
 * ISIE sunumu son rötuşlar.
@@ -5,9 +13,10 @@
 * EL-EN makale submit.
 
 #### Gerçekleşen çalışmalar:
-* RPG
-* EL-EN
-* ISIE sunum
+* RPG submitted
+* EL-EN submitted
+* ISIE presentation finalized
+* Ready to go to Edinburgh to present !!!
 
 ### 05.06.2017 - 11.06.2017
 #### Planlanan çalışmalar:
