@@ -1,6 +1,7 @@
 %%
 % PV generation profile
-
+clear all;
+clc;
 hour = 1:24;
 n = numel(hour);
 minute = 1:n*60;
@@ -115,10 +116,11 @@ plot(minute/60,pf1,'b-','LineWidth',2.0);
 hold on;
 plot(minute/60,pf2,'k-','LineWidth',2.0);
 hold off;
-xlabel('Time (hours)','Fontweight','Bold');
+xlabel('Time (hours)','Fontweight','Bold','Fontsize',16);
 legend('PCC power factor (Summer)','PCC power factor (winter)');
 grid on;
-%ylim([-40 140]);
+set(gca,'fontsize',14)
+ylim([-1 1.5]);
 
 %%
 pqratio1 = abs(pccq)./abs(pccp1);
