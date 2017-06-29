@@ -4,7 +4,8 @@
 * Plan for summer regarding IMMD hardware implementation.
 
 #### Gerçekleşen çalışmalar:
-* .
+* Yaz için kısa zamanlı planlama yapıldı.
+* İlgili konferanslar ve konuları araştırıldı. Makale planlaması yapıldı.
 
 ### 19.06.2017 - 25.06.2017
 #### Planlanan çalışmalar:
