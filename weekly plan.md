@@ -1,10 +1,18 @@
+### 26.06.2017 - 02.07.2017
+#### Planlanan çalışmalar:
+* Ramazan bayramı
+* Plan for summer regarding IMMD hardware implementation.
+
+#### Gerçekleşen çalışmalar:
+* .
+
 ### 19.06.2017 - 25.06.2017
 #### Planlanan çalışmalar:
 * ISIE oral presentation at the conference
 * No other work due to conference
 
 #### Gerçekleşen çalışmalar:
-* .
+* ISIE presented successfully.
 
 ### 12.06.2017 - 18.06.2017
 #### Planlanan çalışmalar:
