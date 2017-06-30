@@ -10,6 +10,15 @@ The idea is to use a novel method called **Optimum Power Point Tracking (OPPT)**
 
 ##### A few notes from literature:
 
+* unavoidable **partially shaded conditions** (PSCs)
+* conventional perturb and observe (P&O) MPPT method
+* modified incremental conductance (INC) algorithm that
+* global peak (GP) track subroutine
+* The methods based on neural network (NN) have
+* particle swarm optimisation (PSO) which
+* optimized reactive power compensation algorithm (RPCA):
+
+![Local and global MPPs under partial shaded conditions](./shaded.png)
 
 
 .

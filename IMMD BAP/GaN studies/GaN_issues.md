@@ -1,0 +1,1 @@
+In this file, issues regarding **GaN FET utilization** in the IMMD system will be discussed. The issues contain, GaN limitations, EMI problems, gate drive strategies, measurement techniques, power stage layout design, gate drive layout design etc.
