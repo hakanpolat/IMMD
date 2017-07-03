@@ -1,3 +1,13 @@
+### 03.07.2017 - 09.07.2017
+#### Planlanan çalışmalar:
+* Literature review for IMMD.
+* Literature review for OPPT.
+* Frameless motor, GaN EVM tedarik.
+
+#### Gerçekleşen çalışmalar:
+* .
+* .
+
 ### 26.06.2017 - 02.07.2017
 #### Planlanan çalışmalar:
 * Ramazan bayramı
@@ -6,6 +16,8 @@
 #### Gerçekleşen çalışmalar:
 * Yaz için kısa zamanlı planlama yapıldı.
 * İlgili konferanslar ve konuları araştırıldı. Makale planlaması yapıldı.
+* ISIE makaleleri incelendi.
+* OPPT ile ilgili ön araştırma yapıldı.
 
 ### 19.06.2017 - 25.06.2017
 #### Planlanan çalışmalar:
