@@ -1,4 +1,4 @@
-In this file, issues regarding **GaN FET utilization** in the IMMD system will be discussed. The issues contain, GaN limitations, EMI problems, gate drive strategies, measurement techniques, power stage layout design, gate drive layout design etc.
+In this file, issues regarding **GaN FET utilization from GaN Systems** in the IMMD system will be discussed. The issues contain, GaN limitations, EMI problems, gate drive strategies, measurement techniques, power stage layout design, gate drive layout design etc.
 
 
 ### GaN Systems, GN001 Application Guide, Design with GaN Enhancement mode HEMT
@@ -13,12 +13,12 @@ In this file, issues regarding **GaN FET utilization** in the IMMD system will b
 * For GS66508 typical 50-100ns is chosen for dead time
 
 
-![](./gan_circuit.png)
+![](./images/gan_circuit.png)
 
-![](./qrr_qss.png)
+![](./images/qrr_qss.png)
 
-![](./id_vs_vds.png)
-![](./reverse_losses.png)
+![](./images/id_vs_vds.png)
+![](./images/reverse_losses.png)
 
 
 ##### Gate Drive Design
@@ -36,13 +36,13 @@ In this file, issues regarding **GaN FET utilization** in the IMMD system will b
 * For GS66508: recommend to start with **RG(ON) = 10-20Ω**
 * Typical starting value range **RG(OFF) = 1-2Ω**
 
-![](./gan_vs_sic.png)
+![](./images/gan_vs_sic.png)
 
-![](./pos_neg_dvdt.png)
+![](./images/pos_neg_dvdt.png)
 
-![](./Vgs_negpk.png) ![](./clamp_diode.png)
+![](./images/Vgs_negpk.png) ![](./images/clamp_diode.png)
 
-![](./gatedrive_recom.png)
+![](./images/gatedrive_recom.png)
 
 
 ##### Ringing and Oscillations
@@ -56,9 +56,9 @@ In this file, issues regarding **GaN FET utilization** in the IMMD system will b
 * Use RC snubber across G-S: example R = 3.3Ohm / C = 200-470pF
 
 
-![](./gate_ind1.png) ![](./gate_ind2.png) ![](./gate_ind3.png)
+![](./images/gate_ind1.png) ![](./images/gate_ind2.png) ![](./images/gate_ind3.png)
 
-![](./kelvin_source.png)
+![](./images/kelvin_source.png)
 
 
 
@@ -69,9 +69,9 @@ In this file, issues regarding **GaN FET utilization** in the IMMD system will b
 * Post-regulation or **voltage clamping** to ensure high side bias <7V  (bootstrap)
 
 
-![](./highside_drive.png) ![](./commode_choke.png)
+![](./images/highside_drive.png) ![](./images/commode_choke.png)
 
-![](./bootstrap.png)
+![](./images/bootstrap.png)
 
 
 
@@ -92,19 +92,19 @@ In this file, issues regarding **GaN FET utilization** in the IMMD system will b
 * Analog device half bridge driver ADuM4223A/B
 
 ###### Isolated gate drive - unipolar
-![](./gd_iso_uni.png)
+![](./images/gd_iso_uni.png)
 ###### Isolated gate drive - bipolar
-![](./gd_iso_bi.png)
+![](./images/gd_iso_bi.png)
 ###### Isolated gate drive - bias offset
-![](./gd_bias_offset.png)
+![](./images/gd_bias_offset.png)
 ###### Bootstrap gate drive - bias offset
-![](./gd_bias_offset2.png)
+![](./images/gd_bias_offset2.png)
 ###### Nonisolated bootstrap
-![](./gd_noniso_boot.png)
+![](./images/gd_noniso_boot.png)
 ###### Nonisolated bootstrap - bias offset
-![](./gd_noniso_boot2.png)
+![](./images/gd_noniso_boot2.png)
 ###### Local driver - gate drive can be located at distance
-![](./gd_local.png)
+![](./images/gd_local.png)
 
 
 ##### PCB layout
@@ -116,8 +116,8 @@ Minimize with the following order:
 5. Isolating coupling capacitance CISO
 
 
-![](./parasitics.png)
+![](./images/parasitics.png)
 
-![](./layout_ex.png)
+![](./images/layout_ex.png)
 
 .
