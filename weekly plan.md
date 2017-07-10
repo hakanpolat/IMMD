@@ -1,3 +1,20 @@
+### 09.07.2017 - 16.07.2017
+#### Planlanan çalışmalar:
+* BAP raporu bitirilecek, teslim edilecek.
+* GaN EVM ve motor tedariği için çalışmalar.
+* Diğer satın alımların planlaması.
+* GaN'lar ile ilgili araştırma (gate drive)
+* PCB şematik güç katı.
+* Mikrokontroller araştırması.
+
+#### Gerçekleşen çalışmalar:
+* ......
+* .....
+* ....
+* ...
+* ..
+* .
+
 ### 03.07.2017 - 09.07.2017
 #### Planlanan çalışmalar:
 * Literature review for IMMD.
@@ -5,8 +22,9 @@
 * Frameless motor, GaN EVM tedarik.
 
 #### Gerçekleşen çalışmalar:
-* .
-* .
+* GaN için teklifler, satın alma süreci.
+* OPPT için makale eklendi, okundu.
+* BAP raporu Ek-3 hariç bitti.
 
 ### 26.06.2017 - 02.07.2017
 #### Planlanan çalışmalar:
