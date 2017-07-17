@@ -113,6 +113,10 @@ coil span = 3
 
 ![](./images/fscw/teeth.png)
 
+###### Örnek FSCW sargı konfigürasyonları (all-teeth-DL, alternate-teeth-SL)
+![](./newimages/all_alter.png)
+
+
 ## Split Winding machine
 Conventional winding:
 
