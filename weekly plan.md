@@ -1,3 +1,16 @@
+### 17.07.2017 - 23.07.2017
+#### Planlanan çalışmalar:
+* BAP raporu bitirilecek, teslim edilecek.
+* Motor tedariği için çalışmalar.
+* Diğer satın alımların planlaması.
+* PCB şematik güç katı ve gate drive.
+* Mikrokontroller araştırması.
+
+#### Gerçekleşen çalışmalar:
+* BAP raporu Ek-3 literatür bitti.
+* GaN EVM tedariği planlandı.
+* GaN araştırmaları dökümante edildi.
+
 ### 09.07.2017 - 16.07.2017
 #### Planlanan çalışmalar:
 * BAP raporu bitirilecek, teslim edilecek.
@@ -8,12 +21,10 @@
 * Mikrokontroller araştırması.
 
 #### Gerçekleşen çalışmalar:
-* ......
-* .....
-* ....
-* ...
-* ..
-* .
+* BAP raporu Ek-3 literatür bitti.
+* GaN EVM tedariği planlandı.
+* GaN araştırmaları dökümante edildi.
+* PCB şematik tasarım alt-modülleri planlandı.
 
 ### 03.07.2017 - 09.07.2017
 #### Planlanan çalışmalar:
