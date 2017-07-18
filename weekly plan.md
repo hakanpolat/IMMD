@@ -7,9 +7,8 @@
 * Mikrokontroller araştırması.
 
 #### Gerçekleşen çalışmalar:
-* BAP raporu Ek-3 literatür bitti.
-* GaN EVM tedariği planlandı.
-* GaN araştırmaları dökümante edildi.
+* BAP raporu Ek-3 tasarım.
+* FSCW PMSM motorlarla ilgili makaleler, tezler ve Maxwell simulasyonları
 
 ### 09.07.2017 - 16.07.2017
 #### Planlanan çalışmalar:
