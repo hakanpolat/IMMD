@@ -32,9 +32,18 @@ Nph = 0.5*conductor*layer*slot/phase;
 %     kd = sin(q*alfa/4)/((q)*sin(alfa/4));    
 % end
 
-kp = 0.933; % bu simdilik dursun, integral falan almak lazim
+% kpn: coil pitch factor
+% kdn: coil disposition factor
+harm = 1;
+if layer == 1
+    kpn = sin(harm*pp*pi/slot);
+    kdn = 1;
+elseif layer == 2
+    kpn = sin(harm*pp*pi/slot);
+    kdn = sin(harm*pp*pi/slot);
+end    
 kd = 1; % concentrated coil
-kw = kp*kd; % winding factor
+kw = kpn*kdn*kd; % winding factor
 
 peak_current = 1; % Amps
 

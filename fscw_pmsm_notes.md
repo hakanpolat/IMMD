@@ -105,6 +105,25 @@ Typical flux and flux density distributions of a 12/10 machine. This example may
 
 ![](./newimages/flux_dens.png)
 
+**Very important information:** The distribution factor is unity, so that the winding factor for a motor in which only alternate teeth carry a coil is higher than that for a motor in which all the teeth are wound. But, motors in which only alternate teeth are wound have higher harmonic winding factors than those in which all the teeth wound.
+
+Another proposition for winding factor (12/10 example):
+
+![](./newimages/wf3.png)
+
+The following table turned out to be very useful:
+![](./newimages/wf4.png)
+
+For 12/10 machine, these equations hold perfectly.
+
+Another important formulation: flux linkage and induced EMF:
+
+![](./newimages/flux_linkage.png)
+
+![](./newimages/emf.png)
+
+
+In the literature, it has been noted that, in HEV applications where FSCW PMSMs are used, **conventional 3-teeth/2-poles concentrated winding** with q=0.5 are utilized. But they have low winding factor (about 86%) for the conventional 3-teeth/2-poles winding compared with the others FSCWs (up to 97%).
 
 
 

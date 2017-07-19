@@ -1,6 +1,6 @@
 ### 17.07.2017 - 23.07.2017
 #### Planlanan çalışmalar:
-* BAP raporu bitirilecek, teslim edilecek.
+* BAP raporu bitirilecek.
 * Motor tedariği için çalışmalar.
 * Diğer satın alımların planlaması.
 * PCB şematik güç katı ve gate drive.
@@ -9,6 +9,8 @@
 #### Gerçekleşen çalışmalar:
 * BAP raporu Ek-3 tasarım.
 * FSCW PMSM motorlarla ilgili makaleler, tezler ve Maxwell simulasyonları
+* GaN EVM'ler ve discrete GaN'lar sipariş verildi.
+* Motor tedariği için iletişime geçilecek.
 
 ### 09.07.2017 - 16.07.2017
 #### Planlanan çalışmalar:
