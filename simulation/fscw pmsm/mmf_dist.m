@@ -6,8 +6,9 @@
 % The machi is fractional slot concentrated winding permanent magnet
 % synchronous machine.
 pole = 10;
-slot = 12;
-layer = 1; % all teeth
+pp = pole/2; % pole pair
+slot = 24;
+layer = 2; % all teeth
 phase = 3;
 
 slot_angle = 2*pi/slot; % mechanical
@@ -19,6 +20,17 @@ q = slot/(phase*pole);
 
 conductor = 10; % per coil side
 Nph = 0.5*conductor*layer*slot/phase;
+
+% Winding factor (OBSOLETE)
+% kp = sin(pi*pp/slot);
+% t = gcd(slot,pp);
+% checkvar = slot/(t*phase);
+% alfa = 30*pi/180;
+% if mod(checkvar,2) == 0
+%     kd = sin(q*alfa/4)/((q/2)*sin(alfa/2));
+% else
+%     kd = sin(q*alfa/4)/((q)*sin(alfa/4));    
+% end
 
 kp = 0.933; % bu simdilik dursun, integral falan almak lazim
 kd = 1; % concentrated coil
@@ -47,14 +59,44 @@ for l = 1:numel(time_instant)
     Ib = peak_current*cos(2*pi*freq*time-2*pi/3);
     Ic = peak_current*cos(2*pi*freq*time-4*pi/3);
     
-    MMFa_layer1 = conductor*[Ia,-Ia,0,0,0,0,-Ia,Ia,0,0,0,0];
-    MMFa_layer2 = conductor*[0,-Ia,Ia,0,0,0,0,Ia,-Ia,0,0,0];
+    %%%%%% Original 12-10 double layer winding 
+%     MMFa_layer1 = conductor*[Ia,-Ia,0,0,0,0,-Ia,Ia,0,0,0,0];
+%     MMFa_layer2 = conductor*[0,-Ia,Ia,0,0,0,0,Ia,-Ia,0,0,0];
+%     
+%     MMFb_layer1 = conductor*[0,0,0,0,Ib,-Ib,0,0,0,0,-Ib,Ib];
+%     MMFb_layer2 = conductor*[-Ib,0,0,0,0,-Ib,Ib,0,0,0,0,Ib];
+%     
+%     MMFc_layer1 = conductor*[0,0,-Ic,Ic,0,0,0,0,Ic,-Ic,0,0];
+%     MMFc_layer2 = conductor*[0,0,0,Ic,-Ic,0,0,0,0,-Ic,Ic,0];
+%     %%%%%%
     
-    MMFb_layer1 = conductor*[0,0,0,0,Ib,-Ib,0,0,0,0,-Ib,Ib];
-    MMFb_layer2 = conductor*[-Ib,0,0,0,0,-Ib,Ib,0,0,0,0,Ib];
+    %%%%%% 
+    MMFa_layer1 = conductor*[Ia,0,0,-Ia,0,Ia,0,0,0,0,Ia,0,...
+        -Ia,0,0,Ia,0,-Ia,0,0,0,0,-Ia,0];
+    MMFa_layer2 = conductor*[Ia,0,-Ia,0,0,Ia,0,-Ia,0,0,0,0,...
+        -Ia,0,Ia,0,0,-Ia,0,Ia,0,0,0,0];
     
-    MMFc_layer1 = conductor*[0,0,-Ic,Ic,0,0,0,0,Ic,-Ic,0,0];
-    MMFc_layer2 = conductor*[0,0,0,Ic,-Ic,0,0,0,0,-Ic,Ic,0];
+    MMFb_layer1 = conductor*[0,0,Ib,0,-Ib,0,0,Ib,0,-Ib,0,0,...
+        0,0,-Ib,0,Ib,0,0,-Ib,0,Ib,0,0];
+    MMFb_layer2 = conductor*[0,0,0,0,-Ib,0,Ib,0,0,-Ib,0,Ib,...
+        0,0,0,0,Ib,0,-Ib,0,0,Ib,0,-Ib];
+    
+    MMFc_layer1 = conductor*[0,-Ic,0,0,0,0,-Ic,0,Ic,0,0,-Ic,...
+        0,Ic,0,0,0,0,Ic,0,-Ic,0,0,Ic];
+    MMFc_layer2 = conductor*[0,-Ic,0,Ic,0,0,0,0,Ic,0,-Ic,0,...
+        0,Ic,0,-Ic,0,0,0,0,-Ic,0,Ic,0];
+    %%%%%%
+    
+    %%%%%% Distributed winding trial, FAIL
+%     MMFa_layer1 = conductor*[Ia,Ia,-Ia,-Ia,0,0,0,0,0,0,0,0];
+%     MMFa_layer2 = conductor*[0,0,-Ia,-Ia,Ia,Ia,0,0,0,0,0,0,];
+%     
+%     MMFb_layer1 = conductor*[0,0,0,0,0,0,0,0,Ib,Ib,-Ib,-Ib];
+%     MMFb_layer2 = conductor*[Ib,Ib,0,0,0,0,0,0,0,0,-Ib,-Ib];
+%     
+%     MMFc_layer1 = conductor*[0,0,0,0,-Ic,-Ic,Ic,Ic,0,0,0,0];
+%     MMFc_layer2 = conductor*[0,0,0,0,0,0,Ic,Ic,-Ic,-Ic,0,0];
+    %%%%%%
     
     for k = 1:slot
         mmfa(l,k) = sum(MMFa_layer1(1:k))+sum(MMFa_layer2(1:k));
@@ -169,13 +211,12 @@ figure;
 stairs(nully,'b- ','Linewidth',1.5)
 grid on;
 set(gca,'FontSize',12);
-xlabel('Slot Number','FontSize',8,'FontWeight','Bold');
-ylabel('Phase A MMF','FontSize',8,'FontWeight','Bold');
+xlabel('Slot Number','FontSize',12,'FontWeight','Bold');
+ylabel('Total MMF','FontSize',12,'FontWeight','Bold');
 %set(gca,'xtick',[0:2:100]);
 ylim([-conductor*2 conductor*2]);
-%xlim([1 slot]);
+xlim([1 slot]);
 
-%%
 window_angle = numel(nully)*slot_angle_d;
 angle_array = 1:window_angle;
 mmf_angle = zeros(1,window_angle);
@@ -193,7 +234,6 @@ ylabel('Phase A MMF','FontSize',8,'FontWeight','Bold');
 ylim([-conductor*2 conductor*2]);
 %xlim([1 slot]);
 
-%%
 % FFT of MMF waveform
 fo = 1; % fundemental frequency
 L = 360; % cycle length
@@ -208,89 +248,13 @@ f1 = 0:res:(n-1)*res-1;
 spect_mmf = abs(fft(mmf_angle(1:((n-1)))))/((n-1)/2);
 
 figure;
-plot(f1/res,spect_mmf(1:349)*sqrt(2)/conductor,'b-o ','Linewidth',1.5)
+%plot(f1/res,spect_mmf(1:349)*sqrt(2)/conductor,'b-o ','Linewidth',1.5)
+bar(f1/res,spect_mmf(1:349)*sqrt(2)/(2*conductor))
 grid on;
 set(gca,'FontSize',12);
-xlabel('Frequency','FontSize',8,'FontWeight','Bold');
+xlabel('Harmonic','FontSize',8,'FontWeight','Bold');
 ylabel('MMF Spectrum','FontSize',8,'FontWeight','Bold');
 %set(gca,'xtick',[0:2:100]);
 %ylim([-conductor*2 conductor*2]);
 xlim([0 25]);
 
-%%
-% correction of phase
-for k = 1:num/n
-    spect_va2(k,:) = unwrap(spect_va2(k,:));
-    spect_va2(k,:) = rem(spect_va2(k,:),2*pi);
-    spect_ia2(k,:) = unwrap(spect_ia2(k,:));
-    spect_ia2(k,:) = rem(spect_ia2(k,:),2*pi);
-    spect_vb2(k,:) = unwrap(spect_vb2(k,:));
-    spect_vb2(k,:) = rem(spect_vb2(k,:),2*pi);
-    spect_ib2(k,:) = unwrap(spect_ib2(k,:));
-    spect_ib2(k,:) = rem(spect_ib2(k,:),2*pi);
-    spect_vc2(k,:) = unwrap(spect_vc2(k,:));
-    spect_vc2(k,:) = rem(spect_vc2(k,:),2*pi);
-    spect_ic2(k,:) = unwrap(spect_ic2(k,:));
-    spect_ic2(k,:) = rem(spect_ic2(k,:),2*pi);
-end
-spect_va2 = (180/pi)*spect_va2;
-spect_ia2 = (180/pi)*spect_ia2;
-spect_vb2 = (180/pi)*spect_vb2;
-spect_ib2 = (180/pi)*spect_ib2;
-spect_vc2 = (180/pi)*spect_vc2;
-spect_ic2 = (180/pi)*spect_ic2;
-for l = 1:num/n
-    for k = 1:numel(f1)
-        if spect_va2(l,k) > 180
-            spect_va2(l,k) = spect_va2(l,k)-360;
-        end
-        if spect_ia2(l,k) > 180
-            spect_ia2(l,k) = spect_ia2(l,k)-360;
-        end
-        if spect_vb2(l,k) > 180
-            spect_vb2(l,k) = spect_vb2(l,k)-360;
-        end
-        if spect_ib2(l,k) > 180
-            spect_ib2(l,k) = spect_ib2(l,k)-360;
-        end
-        if spect_vc2(l,k) > 180
-            spect_vc2(l,k) = spect_vc2(l,k)-360;
-        end
-        if spect_ic2(l,k) > 180
-            spect_ic2(l,k) = spect_ic2(l,k)-360;
-        end
-    end
-end
-% in order to find the real amplitude spectrum;
-% the fft result must be divided by: fft sample/2
-window = 1:num/n;
-window_count = numel(window);
-max_order = 50;
-Va_harmonics_magn = zeros(window_count,max_order);
-Va_harmonics_phase = zeros(window_count,max_order);
-Ia_harmonics_magn = zeros(window_count,max_order);
-Ia_harmonics_phase = zeros(window_count,max_order);
-Vb_harmonics_magn = zeros(window_count,max_order);
-Vb_harmonics_phase = zeros(window_count,max_order);
-Ib_harmonics_magn = zeros(window_count,max_order);
-Ib_harmonics_phase = zeros(window_count,max_order);
-Vc_harmonics_magn = zeros(window_count,max_order);
-Vc_harmonics_phase = zeros(window_count,max_order);
-Ic_harmonics_magn = zeros(window_count,max_order);
-Ic_harmonics_phase = zeros(window_count,max_order);
-for l = 1:window_count
-    for k = 1:max_order
-        Va_harmonics_magn(l,k) = spect_va(l,find(f1==50*k));
-        Va_harmonics_phase(l,k) = spect_va2(l,find(f1==50*k));
-        Ia_harmonics_magn(l,k) = spect_ia(l,find(f1==50*k));
-        Ia_harmonics_phase(l,k) = spect_ia2(l,find(f1==50*k));
-        Vb_harmonics_magn(l,k) = spect_vb(l,find(f1==50*k));
-        Vb_harmonics_phase(l,k) = spect_vb2(l,find(f1==50*k));
-        Ib_harmonics_magn(l,k) = spect_ib(l,find(f1==50*k));
-        Ib_harmonics_phase(l,k) = spect_ib2(l,find(f1==50*k));
-        Vc_harmonics_magn(l,k) = spect_vc(l,find(f1==50*k));
-        Vc_harmonics_phase(l,k) = spect_vc2(l,find(f1==50*k));
-        Ic_harmonics_magn(l,k) = spect_ic(l,find(f1==50*k));
-        Ic_harmonics_phase(l,k) = spect_ic2(l,find(f1==50*k));
-    end
-end
