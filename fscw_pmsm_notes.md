@@ -126,6 +126,22 @@ Another important formulation: flux linkage and induced EMF:
 In the literature, it has been noted that, in HEV applications where FSCW PMSMs are used, **conventional 3-teeth/2-poles concentrated winding** with q=0.5 are utilized. But they have low winding factor (about 86%) for the conventional 3-teeth/2-poles winding compared with the others FSCWs (up to 97%).
 
 
+In the early 90s, a guy named Jack proposed several rules for **fault tolerant machines** such as:
+* Slot/pole should be in the range of 0.7-1.5. (less than 0.5 is good for 3-phase which is our case)
+* Alternate teeth should be used so that the coils are magnetically decoupled. (alternate teeth yields very high harmonic content so all teeth will probably be used)
+* At least four phases should be used for redundancy. (modularity will do this automatically.)
+* Each phase should be connected to a separate H-bridge. (this is not still clear in our design).
+* Per phase sync. reactance should be 1 p.u. to limit short ciruit current (this is not a general knowledge, should be considered in the detailed design)
+* Converter must detech and respond to different open and short circuit fault conditions (this ia a matter of gate drive design)
+
+**Coupling between phases** is important during fault as fault on one phase may affect the other phases since flux of this phase may be linked by other phases. Slot/pole combinations should be evaluated in accordance with magnetic coupling between phases if high number of phases are used (as in our case where the mavhine is moduler and inherently have high number of phases).
+
+This brings the question: Should the machine be designed with exact same modules each can operate on their own (12/10 => 24/20 case) or should be considered as a single machine where a better combination can be used (like 24/22).
+
+The following is an example of m-phase machine:
+
+![](./newimages/m-phase.png)
+
 
 
 .
