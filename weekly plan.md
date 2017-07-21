@@ -12,6 +12,9 @@
 * IMMD için motor ön tasarımı yapıldı.
 * GaN EVM'ler ve discrete GaN'lar sipariş verildi.
 * Motor tedariği için iletişime geçildi.
+* IMMD PCB ön tasarımı, modüller ve bağlantıları.
+* Maxwell'de 12/10 FSCW PMSM 2D FEM simulasyonlarına başlandı.
+* Microcontroller seçildi.
 
 ### 09.07.2017 - 16.07.2017
 #### Planlanan çalışmalar:

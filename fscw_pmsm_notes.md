@@ -142,6 +142,13 @@ The following is an example of m-phase machine:
 
 ![](./newimages/m-phase.png)
 
+The pole number and phase angle between adjacent coils:
+
+![](./newimages/spp.png)
+
+
+
+
 
 
 .
