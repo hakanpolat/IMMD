@@ -1,3 +1,14 @@
+### 24.07.2017 - 30.07.2017
+#### Planlanan çalışmalar:
+* BAP raporu bitirilecek, teslim edilecek.
+* Motor tedariği için çalışmalar: DEVAM.
+* Diğer satın alımların planlaması: DEVAM.
+* PCB şematik tasarımı: DEVAM.
+
+#### Gerçekleşen çalışmalar:
+* BAP raporu
+
+
 ### 17.07.2017 - 23.07.2017
 #### Planlanan çalışmalar:
 * BAP raporu bitirilecek.
@@ -7,12 +18,12 @@
 * Mikrokontroller araştırması.
 
 #### Gerçekleşen çalışmalar:
-* BAP raporu Ek-3 tasarım.
+* BAP raporu Ek-3 tasarım kısmı bitti.
 * FSCW PMSM motorlarla ilgili makaleler, tezler ve Maxwell simulasyonları.
 * IMMD için motor ön tasarımı yapıldı.
 * GaN EVM'ler ve discrete GaN'lar sipariş verildi.
 * Motor tedariği için iletişime geçildi.
-* IMMD PCB ön tasarımı, modüller ve bağlantıları.
+* IMMD PCB ön tasarımı, modüller ve bağlantıları belirlendi.
 * Maxwell'de 12/10 FSCW PMSM 2D FEM simulasyonlarına başlandı.
 * Microcontroller seçildi.
 
