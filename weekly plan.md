@@ -6,8 +6,7 @@
 * PCB şematik tasarımı: DEVAM.
 
 #### Gerçekleşen çalışmalar:
-* BAP raporu
-
+* BAP raporu bitti, teslim edildi.
 
 ### 17.07.2017 - 23.07.2017
 #### Planlanan çalışmalar:
