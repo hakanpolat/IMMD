@@ -17,8 +17,9 @@
 |IEEE Energy Conversion Congress and Exposition|[ECCE 2018](https://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=35340)|Abstract|15.01.2018|23-27 September 2018|Oregon, USA|.|
 |IEEE International Conference on Power Electronics and Motion Control|[PEMC 2018](http://www.ieee-pemc2018.org/)|Full paper|09.02.2018|26-30 August 2018|Budapest, Hungary|.......|
 |IEEE International Symposium on Industrial Electronics|[ISIE 2018](http://www.conference.city/conference.php?e_id=164044)|Full paper|Unknown|12-15 June 2018|Cairns,Australia|.......|
-|IEMDC|
+|IEMDC 2019|
 |ICEM|
+|EPE - ECCE Europe|
 
 
 # Conferences

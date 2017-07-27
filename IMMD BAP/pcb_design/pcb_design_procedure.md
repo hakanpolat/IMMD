@@ -25,3 +25,6 @@ AMC1200 for current measurement
 http://www.ti.com/lit/ds/symlink/amc1200.pdf
 http://www.ti.com/lit/an/sbaa229/sbaa229.pdf
 http://www.ti.com/lit/ug/sbau187a/sbau187a.pdf
+
+Gate drive: https://www.silabs.com/documents/public/data-sheets/Si827x.pdf
+Si8273
