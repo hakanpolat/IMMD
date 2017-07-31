@@ -38,3 +38,26 @@ SOT23
 
 At first, non-isolated bootstrap half-bridge gate driver was studied. However, as it was used in the EVM of the selected GaN FET, isolated separate gate drivers will be used. **SI8271GB-IS**.
 No negative voltage will be used. 5V will be the input to the whole gate drive circuit. +9V will be obtained via **PES1-S5-S9-M**, then it will be converted to 6V which is the gate voltage via **LP2985IM5-6.1**.
+
+Test points will be added.
+
+Fully isolated gate driver is the final decision.
+
+Snubber required?
+
+Current version of the gate drive design (1 phase of 1 module):
+![](./gatedrive_schem.png)
+
+Current version of the power stage design:
+![](./powerstage_schem.png)
+
+Chosen dead time: 50 ns. This is questionable. For a 200 MHz processor (selected), this time corresponds to 10 clock cycles. The processor dead time register should be checked for verification.
+
+Gate resistor (turn-on) is selected as 10 Ohms for starters. Turn off is 1 Ohm. It may be increased to sustain possible oscillations. Switching loss must be calculated. The ratio (10:1) is selected to control the miller effect.
+
+Ferrite bead (in gate) should be: Z=10-20Ω@100MHz
+RC snubber across G-S will be used: R=3R3, C=220pF
+
+For turn-off, using negative voltage (-3V) is not normally recommended. But it is good to sustain gate oscillations. The designed gate driver does not have negative bias voltage.
+
+Kelvin source connection is used to minimize path inductance.
