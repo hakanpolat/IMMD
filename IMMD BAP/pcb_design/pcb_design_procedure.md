@@ -26,6 +26,15 @@ http://www.ti.com/lit/ds/symlink/amc1200.pdf
 http://www.ti.com/lit/an/sbaa229/sbaa229.pdf
 http://www.ti.com/lit/ug/sbau187a/sbau187a.pdf
 
+GaN: http://www.gansystems.com/gs66508b.php
+
+
 Gate drive: https://www.silabs.com/documents/public/data-sheets/Si827x.pdf
 Si8273
 SOIC-16 NB
+
+LP2985IM5-6.1/NOPB
+SOT23
+
+At first, non-isolated bootstrap half-bridge gate driver was studied. However, as it was used in the EVM of the selected GaN FET, isolated separate gate drivers will be used. **SI8271GB-IS**.
+No negative voltage will be used. 5V will be the input to the whole gate drive circuit. +9V will be obtained via **PES1-S5-S9-M**, then it will be converted to 6V which is the gate voltage via **LP2985IM5-6.1**.
