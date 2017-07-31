@@ -1,3 +1,14 @@
+### 31.07.2017 - 06.08.2017
+#### Planlanan çalışmalar:
+* Motor tedariği için çalışmalar: DEVAM.
+* Diğer satın alımların planlaması: DEVAM.
+* PCB şematik tasarımı: DEVAM.
+
+#### Gerçekleşen çalışmalar:
+* BAP raporu bitti, teslim edildi.
+* TÜBİTAK projesi bütçe planlaması.
+* PCB şematik bağlantılar ve güç katı bitti.
+
 ### 24.07.2017 - 30.07.2017
 #### Planlanan çalışmalar:
 * BAP raporu bitirilecek, teslim edilecek.
@@ -7,6 +18,8 @@
 
 #### Gerçekleşen çalışmalar:
 * BAP raporu bitti, teslim edildi.
+* TÜBİTAK projesi bütçe planlaması.
+* PCB şematik bağlantılar ve güç katı bitti.
 
 ### 17.07.2017 - 23.07.2017
 #### Planlanan çalışmalar:

@@ -28,3 +28,4 @@ http://www.ti.com/lit/ug/sbau187a/sbau187a.pdf
 
 Gate drive: https://www.silabs.com/documents/public/data-sheets/Si827x.pdf
 Si8273
+SOIC-16 NB
