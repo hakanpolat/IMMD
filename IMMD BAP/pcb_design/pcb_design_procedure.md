@@ -27,6 +27,22 @@ http://www.ti.com/product/tms320f28374s
 
 The frequency and ADC resolution (and conversion time) are questionable.
 
+We are lucky that it has the same footprint with the F28335 device. Thermal PAD is questionable.
+
+Pin diagram: ![](./mcu_pin.png)
+
+https://www.digikey.com/products/en?mpart=TMS320F28377SPTPS&v=296
+
+S corresponds to single-core. We shall not need dual core MCU.
+
+Launchpad (377S): http://www.ti.com/tool/LAUNCHXL-F28377S
+http://tr.farnell.com/texas-instruments/launchxl-f28377s/dev-board-c2000-launchpad/dp/2483489?ost=F28377S+LaunchPad&searchView=table&iscrfnonsku=false&ddkey=http%3Atr-TR%2FElement14_Turkey%2Fsearch
+
+374S and 377S (both PTP) have the same pin assignment, so we are OK.
+
+First, a launchpad can be used for just proof of concept. Then, microcontroller PCB can be produced.
+
+
 ##### Current measurement
 AMC1200 for current measurement
 http://www.ti.com/lit/ds/symlink/amc1200.pdf
