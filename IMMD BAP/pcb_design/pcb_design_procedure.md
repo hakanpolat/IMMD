@@ -10,24 +10,38 @@
 7. Power supply: The auxiliary supply for the PCB.
 
 
-1. Rectifier:
+##### Rectifier
 http://tr.farnell.com/vishay/vs-26mt100/bridge-rectifier-25a-3ph/dp/9098550
 http://www.farnell.com/datasheets/2049266.pdf
 
 The rectifier packages are not suitable for PCB mount, so they will be mounted to a chasis along with a separate heat sink. In fact, all the rectifier circuit may be a separate unit outside the IMMD system.
 
-Controller: TMS320F28374S	(ACTIVE)
+##### Controller
+TMS320F28374S	(ACTIVE)
 Single-Core Delfino Microcontroller
 
 http://www.ti.com/product/tms320f28374s
 
+176 pin version, SMD mount, 24mmX24mm, TMS320F28374SPTPS, HLQFP
+200 MHz, 3 CPU timers 4 SCI, 3 SPI, 16 HRePWM, 24 ePWM, 3 DAC, 20 channel 12-bit ADC, 97 GPIO
+
+The frequency and ADC resolution (and conversion time) are questionable.
+
+##### Current measurement
 AMC1200 for current measurement
 http://www.ti.com/lit/ds/symlink/amc1200.pdf
 http://www.ti.com/lit/an/sbaa229/sbaa229.pdf
 http://www.ti.com/lit/ug/sbau187a/sbau187a.pdf
 
+
+##### GaN
+
 GaN: http://www.gansystems.com/gs66508b.php
 
+Current version of the power stage design:
+![](./powerstage_schem.png)
+
+##### Gate drive
 
 Gate drive: https://www.silabs.com/documents/public/data-sheets/Si827x.pdf
 Si8273
@@ -47,9 +61,6 @@ Snubber required?
 
 Current version of the gate drive design (1 phase of 1 module):
 ![](./gatedrive_schem.png)
-
-Current version of the power stage design:
-![](./powerstage_schem.png)
 
 Chosen dead time: 50 ns. This is questionable. For a 200 MHz processor (selected), this time corresponds to 10 clock cycles. The processor dead time register should be checked for verification.
 
