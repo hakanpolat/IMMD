@@ -5,9 +5,7 @@
 * PCB şematik tasarımı: DEVAM.
 
 #### Gerçekleşen çalışmalar:
-* BAP raporu bitti, teslim edildi.
-* TÜBİTAK projesi bütçe planlaması.
-* PCB şematik bağlantılar ve güç katı bitti.
+* Microcontroller seçimi.
 
 ### 24.07.2017 - 30.07.2017
 #### Planlanan çalışmalar:
