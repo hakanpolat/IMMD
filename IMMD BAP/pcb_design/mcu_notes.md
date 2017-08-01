@@ -5,7 +5,7 @@
 
 Our design:
 
-![](./ext_clk.png)
+![](./images/ext_clk.png)
 
 #### AUXCLKIN
 Seems optional. Just connect CLK of an external oscillator (3.3V) to this pin.
@@ -24,7 +24,20 @@ fAUXPLLCLK = fAUXOSCCLK * (AUXPLLMULT.IMULT + AUXPLLMULT.FMULT) / AUXCLKDIVSEL.A
 #### Boot modes
 GPIO72 and GPIO84
 
+#### USB
+GPIO42-43-46-47 are the only USB pins.
 
+#### Crossbar (XBAR)
+Input X-BAR is used to route signals from a GPIO to many different IP blocks such as
+the ADC(s), eCAP(s), ePWM(s), and external interrupts.
+
+The available IP destination(s):
+![](./images/xbar.png)
+
+Output X-BAR takes signals from inside the device and brings them out to a GPIO.
+
+#### JTAG
+![](./images/jtag.png)
 
 
 .

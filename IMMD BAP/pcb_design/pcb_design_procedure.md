@@ -29,7 +29,7 @@ The frequency and ADC resolution (and conversion time) are questionable.
 
 We are lucky that it has the same footprint with the F28335 device. Thermal PAD is questionable.
 
-Pin diagram: ![](./mcu_pin.png)
+Pin diagram: ![](./images/mcu_pin.png)
 
 https://www.digikey.com/products/en?mpart=TMS320F28377SPTPS&v=296
 
@@ -41,6 +41,10 @@ http://tr.farnell.com/texas-instruments/launchxl-f28377s/dev-board-c2000-launchp
 374S and 377S (both PTP) have the same pin assignment, so we are OK.
 
 First, a launchpad can be used for just proof of concept. Then, microcontroller PCB can be produced.
+
+VDD_CORE is 1.2V, not 1.8V !!! TPS62080 is suggested.
+http://www.ti.com/product/TPS62080
+
 
 
 ##### Current measurement
@@ -55,7 +59,7 @@ http://www.ti.com/lit/ug/sbau187a/sbau187a.pdf
 GaN: http://www.gansystems.com/gs66508b.php
 
 Current version of the power stage design:
-![](./powerstage_schem.png)
+![](./images/powerstage_schem.png)
 
 ##### Gate drive
 
@@ -76,7 +80,7 @@ Fully isolated gate driver is the final decision.
 Snubber required?
 
 Current version of the gate drive design (1 phase of 1 module):
-![](./gatedrive_schem.png)
+![](./images/gatedrive_schem.png)
 
 Chosen dead time: 50 ns. This is questionable. For a 200 MHz processor (selected), this time corresponds to 10 clock cycles. The processor dead time register should be checked for verification.
 
