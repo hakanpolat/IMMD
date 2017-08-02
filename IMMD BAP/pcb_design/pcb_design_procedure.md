@@ -92,3 +92,10 @@ RC snubber across G-S will be used: R=3R3, C=220pF
 For turn-off, using negative voltage (-3V) is not normally recommended. But it is good to sustain gate oscillations. The designed gate driver does not have negative bias voltage.
 
 Kelvin source connection is used to minimize path inductance.
+
+
+#### Resistors and capacitors
+SMD resistor packages
+![](./images/res_package.png)
+![](./images/res_package2.png)
+![](./images/res_package3.png)
