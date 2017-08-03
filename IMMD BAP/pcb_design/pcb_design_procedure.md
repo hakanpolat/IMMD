@@ -99,3 +99,9 @@ SMD resistor packages
 ![](./images/res_package.png)
 ![](./images/res_package2.png)
 ![](./images/res_package3.png)
+![](./images/TANTALUM.png)
+
+
+
+
+.
