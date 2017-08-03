@@ -1,0 +1,54 @@
+## Space Vector Modulation
+![](/Images/SVM Structure.png)
+
+AS seen in figure above, the commands to switch the DC-AC converter comes from a PWM module. A strategy for pulse wide modulation is space vector modulation. In this method, firstly the dq vector of the reference three phase voltage wave forms are used to produce the Us vector as seen in figure below.
+![](/Images/Vectors of SVM.png)
+
+The vector Us can be produced using the combination of two or three of the vectors u100, u101, u110,... and u000 and u111.
+The difference between u111 ad u00o comes from the point that some times we are obliged to open a switch to balance the load.(????)
+### Switching Time
+![](/Images/Switching Time SVM.png)
+
+The reference vector Us is calculated from two vectors as:
+
+![](/Images/ref vector SVM.png)
+
+Which can be expanded as:
+
+![](/Images/ref vector SVM 2.png)
+
+Where Udc is the DC-link voltage. Us is the amplitude of the reference vector and teta is the angle of the vector as seen in figure above.
+
+![](/Images/combination of vectors SVM.png)
+
+ Figure above shows the combination of the switching times for a period of switching.
+
+ ![](/Images/Switching Time SVM 2.png)
+
+### Switching Sequence
+
+Some switching sequences are given here with pros and cons.
+
+![](/Images/Asymmetric SVM.png)
+
+PWM switching sequence using asymmetric pulsation and u00 as zero vector
+
+This method is not good because two bridge arms have to be switched at a certain time. This would cause much harmonic noises.
+
+![](/Images/Symmetric SVM 1.png)
+
+PWM switching sequence using symmetric pulsation and u111 as zero vector
+
+![](/Images/Symmetric SVM 2.png)
+
+PWM switching sequence using symmetric pulsation and u000 as zero vector
+
+The other two methods are named flattop modulation. A dominant property of such methods is that within one 60° sector of the hexagonal space vector graph of the inverter, only two bridge arms are being switched. This is advantageous to reduce switching loss. However the long time off-state of a bridge arm causes asymmetric load among the arms. And furthermore, this is also a source of more harmonic noises.
+
+![](/Images/Symmetric SVM 3.png)
+
+PWM switching sequence using both u000 and u111 as zero vectors
+
+A better but more complex pulsation method is shown in Figure 8. It is symmetric pulsation and both zeros vectors are applied.
+
+In the next step a SVM application will be modeled in Matlab Simulink..
