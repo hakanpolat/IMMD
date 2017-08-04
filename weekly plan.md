@@ -5,7 +5,10 @@
 * PCB şematik tasarımı: DEVAM.
 
 #### Gerçekleşen çalışmalar:
-* Microcontroller seçimi.
+* Microcontroller seçimi yapıldı, kütüphane oluşturuldu.
+* Microcontroller devresi şematik tasarımı.
+* Ölçüm devresi şematik tasarımı bitti.
+* Gate drive devresi şematik tasarımı bitti.
 
 ### 24.07.2017 - 30.07.2017
 #### Planlanan çalışmalar:
