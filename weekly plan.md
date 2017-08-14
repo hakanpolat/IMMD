@@ -1,3 +1,18 @@
+### 07.08.2017 - 13.08.2017
+#### Planlanan çalışmalar:
+* PCB şematik
+* BAP satın almalara başlanması
+
+#### Gerçekleşen çalışmalar:
+* ..
+* .
+
+#### Planlanan çalışmalar:
+* PhD Qual. Break
+
+#### Gerçekleşen çalışmalar:
+* PhD Qual. Break
+
 ### 31.07.2017 - 06.08.2017
 #### Planlanan çalışmalar:
 * Motor tedariği için çalışmalar: DEVAM.
