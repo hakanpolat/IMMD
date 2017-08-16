@@ -4,7 +4,7 @@
 * BAP satın almalara başlanması
 
 #### Gerçekleşen çalışmalar:
-* ..
+* Github repository is organized.
 * .
 
 #### Planlanan çalışmalar:
