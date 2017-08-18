@@ -21,10 +21,10 @@ Methods proposed to overcome these effects:
 With the given conditions, the harmonic content (space harmonic of MMF) will be: 5,7,11,13,17,19,23,25......
 
 The following is a commonly used winding configuration for a 12/10 motor according to a recent paper. It has low cogging torque, low harmonic content and balanced magnetic force.
-![](./newimages/12s10p.png)
+![](./images/12s10p.png)
 
 The following is its MMF distribution of that m/c.
-![](./newimages/mmfdist.png)
+![](./images/mmfdist.png)
 
 It says that only the fifth harmonic produces torque and the others are undesirable ???????????
 It should have something to do with the magnet pole number. Fifth harmonic is equal to the pole pair number.
@@ -37,19 +37,19 @@ The machines with a number of slots per pole and per phase between 1/2 and 1/3 *
 
 Another illustration for 12/10 m/c is as follows:
 
-![](./newimages/12s10p2.png)
+![](./images/12s10p2.png)
 
-![](./newimages/12s10p3.png)
+![](./images/12s10p3.png)
 
 
 MMF expression and its harmonics are as follows:
 
-![](./newimages/mmf1.png)
-![](./newimages/mmf2.png)
+![](./images/mmf1.png)
+![](./images/mmf2.png)
 
 Using shifted windings:
 
-![](./newimages/mmf3.png)
+![](./images/mmf3.png)
 
 New 24/10 m/c with phase shifted windings: The proposed design takes care of 7th harmonic with proper phase shift, but the 1st harmonic is still problematic. Two methods are proposed for that:
 
@@ -57,22 +57,22 @@ New 24/10 m/c with phase shifted windings: The proposed design takes care of 7th
 
 2) using coil windings with different turns per coil side
 
-![](./newimages/phase_shift.png)
+![](./images/phase_shift.png)
 
 
 A **6 phase** FSCW PMSM example will be introduced here. The machine is **18 slot, 10 pole**.
 
 The previous 9 slot 8 pole stator is as followS:
 
-![](./newimages/9s8p1.png)
+![](./images/9s8p1.png)
 
 
 The new 18 slot 8 pole stator is as follows:
 
-![](./newimages/18s8p1.png)
+![](./images/18s8p1.png)
 MMF comparison of these machines (same pole number, 8)
 
-![](./newimages/mmf4.png)
+![](./images/mmf4.png)
 
 
 
@@ -90,8 +90,8 @@ The results show that, 1t harmonic is partially decreased, 7th and 17th harmonic
 
 
 Formulation for winding factor:
-![](./newimages/wf1.png)
-![](./newimages/wf2.png)
+![](./images/wf1.png)
+![](./images/wf2.png)
 
 This formulation is used in a paper for a five phase machine. Its application to our case does not give correct results.
 
@@ -103,24 +103,24 @@ In a general FSCW machine, the two most important harmonic components causing mo
 
 Typical flux and flux density distributions of a 12/10 machine. This example may be useful in future studies on Maxwell.
 
-![](./newimages/flux_dens.png)
+![](./images/flux_dens.png)
 
 **Very important information:** The distribution factor is unity, so that the winding factor for a motor in which only alternate teeth carry a coil is higher than that for a motor in which all the teeth are wound. But, motors in which only alternate teeth are wound have higher harmonic winding factors than those in which all the teeth wound.
 
 Another proposition for winding factor (12/10 example):
 
-![](./newimages/wf3.png)
+![](./images/wf3.png)
 
 The following table turned out to be very useful:
-![](./newimages/wf4.png)
+![](./images/wf4.png)
 
 For 12/10 machine, these equations hold perfectly.
 
 Another important formulation: flux linkage and induced EMF:
 
-![](./newimages/flux_linkage.png)
+![](./images/flux_linkage.png)
 
-![](./newimages/emf.png)
+![](./images/emf.png)
 
 
 In the literature, it has been noted that, in HEV applications where FSCW PMSMs are used, **conventional 3-teeth/2-poles concentrated winding** with q=0.5 are utilized. But they have low winding factor (about 86%) for the conventional 3-teeth/2-poles winding compared with the others FSCWs (up to 97%).
@@ -140,11 +140,11 @@ This brings the question: Should the machine be designed with exact same modules
 
 The following is an example of m-phase machine:
 
-![](./newimages/m-phase.png)
+![](./images/m-phase.png)
 
 The pole number and phase angle between adjacent coils:
 
-![](./newimages/spp.png)
+![](./images/spp.png)
 
 
 
