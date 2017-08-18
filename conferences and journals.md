@@ -5,7 +5,7 @@
 |International Conference on Electrical Machines, Drives and Power Systems|[ELMA 2017](http://e-university.tu-sofia.bg/e-conf/?r=209)|Abstract|28.03.2017|1-3 June 2017|Sofia, Bulgaria|Not submitted|
 |IEEE International Symposium on Industrial Electronics|[ISIE 2017](http://www.anglia.ac.uk/science-and-technology/about/computing-and-technology/isie-conference)|Final|23.04.2017|9-21 June 2017|Edinburgh, Scotland|Published !|
 |Elektrik Elektronik Mühendisliği Kongresi |[EEMKON 2017)](http://eemkon.org.tr/2017/02/17/bilgi/)|Özet|30.04.2017|16-18 November 2017|İstanbul, Turkey|Not submitted|
-|1. Ulusal Enerji Dönüşümü Kongresi |[UEDK 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|Submitted|
+|1. Ulusal Enerji Dönüşümü Kongresi |[UEDK 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|Accepted !|
 |IET International Conference on Renewable Power generation|[RPG 2017](http://rpg2017.events.theiet.org.cn/)|Final|16.06.2017|19-20 October 2017|Wuhan, China|Accepted !|
 |International Conference on Advanced Technology & Sciences|[ICAT 2017](https://www.icatsconf.org/LATVIA2017/latvia2017)|Full paper|30.06.2017|12-15 September 2017|Riga, Latvia|Not submitted|
 |International Symposium on Electrical Railway Transportation Systems |[RUSİS 2017](http://erusis.org/wp-content/uploads/2017/03/ERUSIS-2017-CFP.pdf)|Full paper|01.07.2017|27-28 October 2017|Eskişehir, Turkey|Not submitted|
@@ -20,6 +20,7 @@
 |IEMDC 2019|
 |ICEM|
 |EPE - ECCE Europe|
+|CIPS 2018|
 
 
 # Conferences

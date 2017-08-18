@@ -1,11 +1,14 @@
 ### 07.08.2017 - 13.08.2017
 #### Planlanan çalışmalar:
-* PCB şematik
-* BAP satın almalara başlanması
+* PCB şematik devam.
+* BAP satın almalara başlanması.
+* ELECO 2017 makale.
 
 #### Gerçekleşen çalışmalar:
 * Github repository is organized.
-* .
+* RPF paper is accepted. Seems to have no review.
+* EL-EN paper is accepted. Reviews are being considered.
+* ELECO paper is started.
 
 #### Planlanan çalışmalar:
 * PhD Qual. Break
