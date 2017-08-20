@@ -1,15 +1,16 @@
-### 07.08.2017 - 13.08.2017
+### 14.08.2017 - 20.08.2017
 #### Planlanan çalışmalar:
 * PCB şematik devam.
 * BAP satın almalara başlanması.
 * ELECO 2017 makale.
 
 #### Gerçekleşen çalışmalar:
-* Github repository is organized.
-* RPF paper is accepted. Seems to have no review.
-* EL-EN paper is accepted. Reviews are being considered.
-* ELECO paper is started.
+* Github repository organize edildi.
+* RPG makalesi kabul edildi. Review gelmedi. Konferans maliyeti çıkarıldı.
+* EL-EN makalesi kabul edildi. Review'lara göre son haline getirildi. Submit etmekte problem var.
+* ELECO makalesine başlandı. 2 bölüm yazıldı. Deadline 5 Eylül'e ertelendi.
 
+### 07.08.2017 - 13.08.2017
 #### Planlanan çalışmalar:
 * PhD Qual. Break
 
