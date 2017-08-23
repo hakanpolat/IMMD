@@ -1,16 +1,16 @@
+### 28.08.2017 - 03.09.2017
+#### Planlanan çalışmalar:
+* Bayram arası
+
 ### 21.08.2017 - 27.08.2017
 #### Planlanan çalışmalar:
 * ELECO 2017 makalesi yazılması
 * ELECO 2017 simulasyon çalışmaları
-* IES ve IET üyelikleri
 * Yeni makaleler incelenecek
 * Education makalesine başlanacak
 
 #### Gerçekleşen çalışmalar:
-* Github repository organize edildi.
-* RPG makalesi kabul edildi. Review gelmedi. Konferans maliyeti çıkarıldı.
-* EL-EN makalesi kabul edildi. Review'lara göre son haline getirildi. Submit edildi.
-* ELECO makalesine başlandı. 2 bölüm yazıldı. Deadline 5 Eylül'e ertelendi.
+* ELECO
 
 ### 14.08.2017 - 20.08.2017
 #### Planlanan çalışmalar:
@@ -25,10 +25,6 @@
 * ELECO makalesine başlandı. 2 bölüm yazıldı. Deadline 5 Eylül'e ertelendi.
 
 ### 07.08.2017 - 13.08.2017
-#### Planlanan çalışmalar:
-* PhD Qual. Break
-
-#### Gerçekleşen çalışmalar:
 * PhD Qual. Break
 
 ### 31.07.2017 - 06.08.2017
