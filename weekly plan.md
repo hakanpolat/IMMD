@@ -1,13 +1,27 @@
+### 21.08.2017 - 27.08.2017
+#### Planlanan çalışmalar:
+* ELECO 2017 makalesi yazılması
+* ELECO 2017 simulasyon çalışmaları
+* IES ve IET üyelikleri
+* Yeni makaleler incelenecek
+* Education makalesine başlanacak
+
+#### Gerçekleşen çalışmalar:
+* Github repository organize edildi.
+* RPG makalesi kabul edildi. Review gelmedi. Konferans maliyeti çıkarıldı.
+* EL-EN makalesi kabul edildi. Review'lara göre son haline getirildi. Submit edildi.
+* ELECO makalesine başlandı. 2 bölüm yazıldı. Deadline 5 Eylül'e ertelendi.
+
 ### 14.08.2017 - 20.08.2017
 #### Planlanan çalışmalar:
-* PCB şematik devam.
-* BAP satın almalara başlanması.
+* RPG 2017 konferans planlama.
+* EL-EN review.
 * ELECO 2017 makale.
 
 #### Gerçekleşen çalışmalar:
 * Github repository organize edildi.
 * RPG makalesi kabul edildi. Review gelmedi. Konferans maliyeti çıkarıldı.
-* EL-EN makalesi kabul edildi. Review'lara göre son haline getirildi. Submit etmekte problem var.
+* EL-EN makalesi kabul edildi. Review'lara göre son haline getirildi. Submit edildi.
 * ELECO makalesine başlandı. 2 bölüm yazıldı. Deadline 5 Eylül'e ertelendi.
 
 ### 07.08.2017 - 13.08.2017
