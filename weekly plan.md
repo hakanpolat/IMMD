@@ -10,7 +10,8 @@
 * Education makalesine başlanacak
 
 #### Gerçekleşen çalışmalar:
-* ELECO
+* ELECO devam.
+* DAAS abstract submitted.
 
 ### 14.08.2017 - 20.08.2017
 #### Planlanan çalışmalar:
