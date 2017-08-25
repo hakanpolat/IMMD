@@ -10,6 +10,6 @@
 * Motor tasarımı ve maxwell simulasyonları
 
 ### Bir ara bakılacak
-* PSIM simulasyon programı: Quote istendi.
-* RPG kim gidecek, masraflar nasıl karşılanacak?
+* PSIM simulasyon programı: İncelenecek.
+* RPG konferans: Erencan gidecek.
 * IES IET üyelikleri: IES için mail atıldı. IET beklemede.
