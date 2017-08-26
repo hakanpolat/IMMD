@@ -11,7 +11,8 @@
 
 #### Gerçekleşen çalışmalar:
 * ELECO devam.
-* DAAS abstract submitted.
+* DAAS abstract gönderildi.
+* ELECO için analitik motor tasarımı kodu geliştirildi.
 
 ### 14.08.2017 - 20.08.2017
 #### Planlanan çalışmalar:
