@@ -12,7 +12,7 @@
 |International Conference on Power Electronics|[PEMD 2018](http://events.theiet.org/pemd/index.cfm?utm_source=redirect&utm_medium=any&utm_campaign=pemd)|**Abstract**|11.09.2017|17-19 April 2018|Liverpool, UK|**SUBMIT**|
 |Yenilenebilir Enerji Kaynakları Sempozyumu|[YEKSEM 2017](http://yeksem.org)|Bildiri|01.08.2017|3-5 November 2017|Antalya, Turkey|Not submitted|
 |10th International Conference on Integrated Power Electronics|[CIPS 2018](https://www.vde.com/en/events/veranstaltung-detailseite?id=12721&type=vde%7cvdb)|Abstract|06.08.2017|20-22 March 2018|Stuttgart,Germany|Submission Missed|
-|IEEE 1st International Conference on Industrial Electronics for Sustainable Energy Systems|[IESES 2018](http://www.ieses2018.org/)|**Full paper**|28.08.2017|31 Jan-2 Feb 2018|Hamilton,New Zealand|**Consider**|
+|IEEE 1st International Conference on Industrial Electronics for Sustainable Energy Systems|[IESES 2018](http://www.ieses2018.org/)|**Full paper**|11.09.2017|31 Jan-2 Feb 2018|Hamilton,New Zealand|**Consider**|
 |International Conference on Electrical and Electronics Engineering|[ELECO 2017](http://www.eleco.org.tr/)|**Full paper**|05.09.2017|30 Nov-2 Dec 2017|Bursa, Turkey|**SUBMIT**|
 |International Symposium on Multidisciplinary Studies and Innovative Technologies|[ISMSIT 2017](http://www.ismsitconf.org/index.php?go=committe)|**Abstract**|15.09.2017|2-4 November 2017|Tokat,Turkey|**SUBMIT**|
 |International Conference on Engineering Technologies|[ICENTE 2017](http://icente.selcuk.edu.tr/)|Abstract|02.10.2017|7-9 December 2017|Konya,Turkey|Consider|

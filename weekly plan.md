@@ -1,3 +1,16 @@
+
+### 04.09.2017 - 10.09.2017
+#### Planlanan çalışmalar:
+* ELECO 2017 makalesi tamamlanacak
+* Yeni makaleler incelenecek
+* Education makalesine başlanacak
+* DAAD poster sunumu yapılacak
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 28.08.2017 - 03.09.2017
 #### Planlanan çalışmalar:
 * Bayram arası
