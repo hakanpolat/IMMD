@@ -38,7 +38,7 @@ A = 50e3; % A/m (rms)
 J = 4; % A/mm^2
 ma = 0.9;
 % w: slot/module/phase
-w = 1;
+w = 2;
 layer = 2;
 
 %% Calculated Inputs
@@ -53,15 +53,16 @@ Pin = Prated/efficiency; % W
 Pinm = Pin/n; % W
 Iline = Pinm/(Vphase*3); % A
 
-pole = 20;
+pole = 44;
 pole_pair = pole/2;
 frated = Nrated*pole/120; % Hz
 
 stress_tensor = B*A; % Pa
 Di2L = 2*Trated/(pi*stress_tensor); % m^3
-aspect = (pi/pole)*(pole_pair)^(1/3);
-Dis = (Di2L/aspect)^(1/3); % m
-L = aspect*Dis; % m
+%aspect = (pi/pole)*(pole_pair)^(1/3);
+aspect = 0.4;
+Dis = (Di2L/aspect)^(1/3) % m
+L = aspect*Dis % m
 ris = Dis/2; % m
 
 % Air gap
@@ -72,22 +73,50 @@ DoDi = 1.2;
 Dos = Dis*1.2; % m
 
 Qs = w*m*n*2; % stator slots
+slot_pitch = pi*Dis/Qs; % m
 
 % Winding factor
-kw = 0.933;
+if Qs == 48 && pole == 40
+    kw = 0.933;
+elseif Qs == 48 && pole == 44
+    kw = 0.949;
+elseif Qs == 48 && pole == 46
+    kw = 0.954;
+end
 
 % Induced EMF
 Erms = Vphase; % volts
 flux_per_pole = 4*ris*L*B/pole; % Wb
 Nphm = Erms/(4.44*frated*flux_per_pole*kw);
-zQ = Nphm*2/(w*layer);
+zQ = Nphm*2/(w*layer)
+
+% Coils
+copper_resistivity = 1.7e-8; % Ohm*m
+copper_permeability = 1.256629e-6; % H/m
+angular_frequency = 2*pi*frated; % rad/sec
+skin_depth = 1e3*sqrt(copper_resistivity*2/(angular_frequency*copper_permeability)); % mm
+copper_area = Iline/J; % mm^2
+copper_radius = sqrt(copper_area/pi); % mm
+copper_diameter = copper_radius*2; % mm
+% AWG - wire #14
+wire_strand = 1;
+wire_diameter = 1.62814; % mm
+wire_radius = wire_diameter/2; % mm
+wire_diameter_insulation = wire_diameter*1.02; % mm
+wire_area_insulation = pi*(wire_diameter_insulation/2)^2; % mm^2
+total_stator_wire_area = wire_strand*wire_area_insulation; % mm^2
+ohm_per_m = 1e-3*8.282; % Ohm/km
+
+% Fill factor
+ht = 20e-3; % m
+bs = 5e-3; % m
+bt = 5e-3; % m
+slot_area = bs*ht; % m^2
+winding_area = wire_area_insulation*zQ*1e-6;
+fill_factor = winding_area/slot_area;
 
 
-%Nph = zQ*w*layer/2;
 
 % MMF waveform
 % Harmonics
-
-
-
 
