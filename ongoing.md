@@ -1,6 +1,5 @@
 ### İşler
-* ELECO yazılacak *****
-* ELECO için maxwell simulasyonları *****
+* Maxwell simulasyonları *****
 * Education makalesi *****
 * Yeni makaleler literatür
 * Parker motor tedariği
@@ -11,5 +10,4 @@
 
 ### Bir ara bakılacak
 * PSIM simulasyon programı: İncelenecek.
-* RPG konferans: Erencan gidecek.
 * IES IET üyelikleri: IES için mail atıldı. IET beklemede.

@@ -1,4 +1,14 @@
 
+### 11.09.2017 - 17.09.2017
+#### Planlanan çalışmalar:
+* PEMD abstract submit edilecek
+* Makale review yapılacak
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 04.09.2017 - 10.09.2017
 #### Planlanan çalışmalar:
 * ELECO 2017 makalesi tamamlanacak
@@ -7,9 +17,10 @@
 * DAAD poster sunumu yapılacak
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* ELECO submission gecikti.
+* Yeni literatür makaleleri okundu.
+* Education makalesi planı yapıldı.
+* DAAD poster sunumu yapıldı.
 
 ### 28.08.2017 - 03.09.2017
 #### Planlanan çalışmalar:

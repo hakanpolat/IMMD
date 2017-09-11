@@ -1,17 +1,16 @@
 ## Makale planlaması
 
-* IMMD design (motor + power electronics) with simulation
-[ELECO 2017] - 5 Eylül-Full paper
-
 * Optimization of IMMD system (simulation verification)
-[PEMD 2018] - 11 Eylül-Abstract
+[PEMD 2018] - **11 Eylül-Abstract**
 
-* Topology comparison for IMMD (simulation verification)
-[ICENTE 2017] - 2 Ekim-Abstract
-[IPEC 2018] - 16 Ekim-Extended Summary
+* IMMD design (motor + power electronics) with simulation
+[ICIT 2017] - **15 Ekim-Full paper**
+
+* Motor drive topology comparison for IMMD (simulation verification)
+[IPEC 2018] - **16 Ekim-Extended Summary**
 
 * Machine topology comparison for IMMD (simulation verification)
-[CPE POWERENG 2018] - 15 Kasım-Full paper
+[CPE POWERENG 2018] - **15 Kasım-Full paper**
 
 * Optimum power point tracking (OPPT) for PV systems: reactive power compensation
 [RPG 2018] - 8 Aralık-Abstract
