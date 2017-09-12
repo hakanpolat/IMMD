@@ -398,7 +398,7 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-phase = [0 90 0 90];
+phase = [0 0 0 0];
 
 Rin = 10;
 %Lin = 1e-3;
@@ -484,10 +484,14 @@ plot(timea,Vdc_int,'r-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
-ylabel('DA Bara Gerilimi (Volt)','FontSize',12,'FontWeight','Bold')
-legend('Interleaving yok','Interleaving var');
+%xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('DA Bara Gerilimi (Volt)','FontSize',12,'FontWeight','Bold')
+%legend('Interleaving yok','Interleaving var');
 xlim([0.03 0.04])
+
+xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DC link voltage (V)','FontSize',12,'FontWeight','Bold')
+legend('without interleaving','with interleaving');
 
 %%
 rms_noint = Irmss*ones(1,numel(timea));
@@ -523,11 +527,15 @@ hold on;
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
-ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
-legend('1. modül','2. modül');
+%xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
+%legend('1. modül','2. modül');
 xlim([0.0395 0.04])
 ylim([-5 30]);
+
+%xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DC link current (A)','FontSize',12,'FontWeight','Bold')
+legend('module-1','module-2');
 
 subplot(2,1,2);
 %plot(timea,Idc1_int,'b-','Linewidth',2);
@@ -540,11 +548,15 @@ plot(timea,Idct_int,'b-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
-ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
-legend('Toplam - Interleaving yok','Toplam - Interleaving var');
+%xlabel('Zaman (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('DA Bara Akýmý (Amper)','FontSize',12,'FontWeight','Bold')
+%legend('Toplam - Interleaving yok','Toplam - Interleaving var');
 xlim([0.0395 0.04])
 ylim([-5 60]);
+
+xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+ylabel('DC link current (A)','FontSize',12,'FontWeight','Bold')
+legend('without interleaving','with interleaving');
 
 %%
 % interleaving results
