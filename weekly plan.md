@@ -1,13 +1,15 @@
 
 ### 11.09.2017 - 17.09.2017
 #### Planlanan çalışmalar:
-* PEMD abstract submit edilecek
-* Makale review yapılacak
+* PEMD abstract submit edilecek.
+* Makale review yapılacak (ulusal dergi).
+* ELECO tamamlanacak.
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* PEMD abstract yüklendi.
+* Maxwell simulasyonları yapıldı.
+* Makale review gerçekleştirildi.
+* ELECO tamamlandı.
 
 ### 04.09.2017 - 10.09.2017
 #### Planlanan çalışmalar:
