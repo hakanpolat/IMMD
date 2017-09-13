@@ -1,8 +1,5 @@
 ## Makale planlaması
 
-* Optimization of IMMD system (simulation verification)
-[PEMD 2018] - **11 Eylül-Abstract**
-
 * IMMD design (motor + power electronics) with simulation
 [ICIT 2017] - **15 Ekim-Full paper**
 
@@ -24,3 +21,10 @@
 * Hardware ile ilgili
 [ECCE 2018] - 15 Ocak-Abstract
 [PEMC 2018] - 9 Şubat-Full paper
+
+### Submit edilenler
+* Optimization of IMMD system (simulation verification)
+[PEMD 2018] - Abstract
+
+* IMMD design (motor + power electronics) with simulation
+[ELECO 2017] - Full (e-mail)

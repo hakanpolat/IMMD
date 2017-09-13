@@ -9,11 +9,11 @@
 |IET International Conference on Renewable Power generation|[RPG 2017](http://rpg2017.events.theiet.org.cn/)|Final|16.06.2017|19-20 October 2017|Wuhan, China|Accepted !|
 |International Conference on Advanced Technology & Sciences|[ICAT 2017](https://www.icatsconf.org/LATVIA2017/latvia2017)|Full paper|30.06.2017|12-15 September 2017|Riga, Latvia|Not submitted|
 |International Symposium on Electrical Railway Transportation Systems |[RUSİS 2017](http://erusis.org/wp-content/uploads/2017/03/ERUSIS-2017-CFP.pdf)|Full paper|01.07.2017|27-28 October 2017|Eskişehir, Turkey|Not submitted|
-|International Conference on Power Electronics|[PEMD 2018](http://events.theiet.org/pemd/index.cfm?utm_source=redirect&utm_medium=any&utm_campaign=pemd)|**Abstract**|11.09.2017|17-19 April 2018|Liverpool, UK|**SUBMIT**|
+|International Conference on Power Electronics|[PEMD 2018](http://events.theiet.org/pemd/index.cfm?utm_source=redirect&utm_medium=any&utm_campaign=pemd)|Abstract|11.09.2017|17-19 April 2018|Liverpool, UK|Submitted|
 |Yenilenebilir Enerji Kaynakları Sempozyumu|[YEKSEM 2017](http://yeksem.org)|Bildiri|01.08.2017|3-5 November 2017|Antalya, Turkey|Not submitted|
 |10th International Conference on Integrated Power Electronics|[CIPS 2018](https://www.vde.com/en/events/veranstaltung-detailseite?id=12721&type=vde%7cvdb)|Abstract|06.08.2017|20-22 March 2018|Stuttgart,Germany|Submission Missed|
 |IEEE 1st International Conference on Industrial Electronics for Sustainable Energy Systems|[IESES 2018](http://www.ieses2018.org/)|**Full paper**|27.09.2017|31 Jan-2 Feb 2018|Hamilton,New Zealand|**Consider**|
-|International Conference on Electrical and Electronics Engineering|[ELECO 2017](http://www.eleco.org.tr/)|Full paper|05.09.2017|30 Nov-2 Dec 2017|Bursa, Turkey|Missed|
+|International Conference on Electrical and Electronics Engineering|[ELECO 2017](http://www.eleco.org.tr/)|Full paper|05.09.2017|30 Nov-2 Dec 2017|Bursa, Turkey|E-mail sent|
 |International Symposium on Multidisciplinary Studies and Innovative Technologies|[ISMSIT 2017](http://www.ismsitconf.org/index.php?go=committe)|Abstract|01.10.2017|2-4 November 2017|Tokat,Turkey|Consider|
 |International Conference on Engineering Technologies|[ICENTE 2017](http://icente.selcuk.edu.tr/)|Abstract|02.10.2017|7-9 December 2017|Konya,Turkey|Consider|
 |International Conference on Industrial Technology|[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|**Full paper**|15.10.2017|20-22 February 2018|Lyon, France|**SUBMIT**|
