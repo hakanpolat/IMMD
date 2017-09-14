@@ -14,14 +14,17 @@
 %gastr.indinit = [] % Initialized members of the initial population
 
 % Define data structure
-clear gastr
-lb = [0,0,1];
-ub = [5,7,4];
+%clear gastr
+clear all
+lb = [0,0];
+ub = [5,7];
 gastr.bounds = [lb;ub];
 gastr.Objvfun = 'objective_func';
 gastr.Nvar = size(gastr.bounds,2);
-gastr.maxgen = gastr.Nvar*20+10;
-gastr.Nind = gastr.Nvar*50;
+%gastr.maxgen = gastr.Nvar*20+10;
+gastr.maxgen = gastr.Nvar*2+10;
+%gastr.Nind = gastr.Nvar*50;
+gastr.Nind = gastr.Nvar*5;
 gastr.alfa = 0;
 gastr.Pc = 0.9;
 gastr.Pm = 0.1;
@@ -48,6 +51,7 @@ if not(isempty(gastr.indinit))
     gastr.Chrom(position0,:) = gastr.indinit;
 end
 
+%%
 while (gastr.gen < gastr.maxgen)
     genctr = genctr + 1;
     gastr.gen = genctr;
@@ -64,6 +68,5 @@ end
 
 
 
-outp = gastr;
-
+%outp = gastr;
 %end

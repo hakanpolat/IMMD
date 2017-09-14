@@ -12,8 +12,8 @@ Objv: Objective function value
 Objvfun: Objective function (cost)
 ObjvfunPar: Bi parametre
 
-xmin: individual which gives minimum value
-fxmin: minimum value in the population
+xmin: individual which gives minimum value (best so far)
+fxmin: minimum value in the population (best so far)
 xmingen: ???
 fxmingen: ???
 rf: populasyondaki bireylerin obv. func.'a göre sýralamasý

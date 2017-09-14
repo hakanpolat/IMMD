@@ -1,4 +1,9 @@
-function NewChrom = ev_cross(OldChrom, XOVR, alpha)
+function NewChrom = ev_cross(OldChrom,XOVR,alpha)
+
+
+%SelCh = lxov(SelCh,gastr.Pc,gastr.alfa);
+
+
 % Linear crossover
 % Produce a~ new population by linear crossover and XOVR crossover probability
 %   NewChroms =lxov(OldChrom, XOVR, alpha, FieldDR)
@@ -9,17 +14,17 @@ function NewChrom = ev_cross(OldChrom, XOVR, alpha)
 %   Child1 = beta1*Parent1+(1-beta1)*Parent2
 %   Child2 = beta2*Parent1+(1-beta2)*Parent2
 
-if nargin==1
+if nargin == 1
     XOVR = 0.7;
     alpha = 0;
-elseif nargin==2
+elseif nargin == 2
     alpha = 0;
 end
 
 n = size(OldChrom,1);   % Number of individuals and chromosome length
 npares = floor(n/2);    % Number of pairs
 cruzar = rand(npares,1)<= XOVR;    % Pairs to crossover
-NewChrom=OldChrom;
+NewChrom = OldChrom;
 
 for i=1:npares
     pin = (i-1)*2+1;

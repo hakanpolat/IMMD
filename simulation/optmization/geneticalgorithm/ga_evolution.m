@@ -26,16 +26,16 @@ FitV = FitV';
 
 % Selection
 % Stochastic Universal Sampling (SUS)
-SelCh = select('sus',Chrom,FitnV,1);
+SelCh = ev_select('sus',Chrom,FitV,1);
 
 % CROSSOVER ---------------------------------------------------
 % Uniform crossover.
 SelCh = lxov(SelCh,gastr.Pc,gastr.alfa);
 
 % MUTATION ------------------------------------------------
-Chrom = mutbga(SelCh,gastr.FieldD,[gastr.Pm 1]); % Codificacin Real.
+Chrom = mutbga(SelCh,gastr.FieldD,[gastr.Pm 1]);
 
-% Reinsert the best individual  ---------------------------
+% Reinsert the best individual
 Chrom(round(gastr.NIND/2),:) = gastr.xmin;
 gastr.Chrom = Chrom;
 
