@@ -1,0 +1,36 @@
+Nvar: number of variables (1x1)
+lb: lower bounds (1xNvar)
+ub: upper bounds (1xNvar)
+alfa: Parameter for linear crossover
+Pc: Crossover probability
+Pm: Mutation probability
+indinit: Initialized members of the initial population
+Nind: Size of the population
+genctr: generation counter
+Chrom: Chromosomes
+Objv: Objective function value
+Objvfun: Objective function (cost)
+ObjvfunPar: Bi parametre
+
+xmin: individual which gives minimum value
+fxmin: minimum value in the population
+xmingen: ???
+fxmingen: ???
+rf: populasyondaki bireylerin obv. func.'a göre sýralamasý
+
+v: minimum value of objective function
+p: individual which gives minimum value
+FitV: Ranking (sorting) of individuals in the population
+
+Functions:
+gacode: main genetic algorithm function
+init_population: initial population creation
+ga_evolution: evolution function
+ev_select: selection of ....
+ev_cross: uniform crossover ....
+ev_mutat: mutation ....
+
+Selef: selection method ('sus' by default, Stochastic unversal sampling selection)
+SelChr: Selected Chromosomes
+GGAP ?????
+
