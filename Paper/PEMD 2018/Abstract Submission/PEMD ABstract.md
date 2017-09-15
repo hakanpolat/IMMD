@@ -1,4 +1,4 @@
-Your abstract title, all authors’ names and affiliations
+Your abstract title, all authors names and affiliations
 Your prepared abstract of up to 1,000 words plus an additional 250 words for references / appendices
 Your preferred topic area is chosen from the conference technical scope*
 
@@ -21,7 +21,7 @@ A6 - EMC and power quality
 A7 - Thermal management and reliability
 A8 - Passive components and sensors
 A9 - Converter packaging
- 
+
 Theme B - Machines
 
 B1 - Induction machines
@@ -32,8 +32,8 @@ B5 - Actuators and linear machines
 B6 - Special machines
 B7 - Magnetic and insulation materials
 B8 - Manufacturing processes
- 
-Theme C – Drives and control
+
+Theme C  Drives and control
 
 C1 - Drive system modelling and efficiency
 C2 - Advanced and sensorless machine control
@@ -41,14 +41,14 @@ C3 - Fault tolerant drives
 C4 - Integrated drives
 C5 - Sensors and condition monitoring
 C6 - Thermal management
- 
+
 Theme D - Transportation
 
 D1 - Automotive systems (incl. electric, fuel cell, hybrid)
 D2 - Aerospace systems
 D3 - Rail transportation systems
 D4 - Marine propulsion, drives and power systems
- 
+
 Theme E - Energy systems
 
 E1 - Renewable energy systems (incl. distributed generation)

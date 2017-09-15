@@ -11,6 +11,7 @@
 * Makale review gerçekleştirildi, submit edildi.
 * ELECO tamamlandı (IMMD design: motor + drive).
 * Multi-physics optimizasyon için ön çalışma yapıldı.
+* Genetic algoritma ile ilgili çalışmalar yapıldı.
 
 ### 04.09.2017 - 10.09.2017
 #### Planlanan çalışmalar:
