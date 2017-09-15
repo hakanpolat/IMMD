@@ -1,15 +1,16 @@
-%%
+clear all;
+close all;
+clc;
 % I. Setup the GA parameters
 ff = inline('sum(x,2)'); % fitness function
-maxit = 20; % maximum number of iterations (for stopping criteria)
-maxcost = 500; % maximum allowable cost (for stopping criteria)
-popsize = 6; % set population size
+maxit = 200; % maximum number of iterations (for stopping criteria)
+maxcost = 999999; % maximum allowable cost (for stopping criteria)
+popsize = 100; % set population size
 mutrate = 0.001; % set mutation rate
-nbits = 5; % number of bits in each parameter
+nbits = 20; % number of bits in each parameter
 npar = 1; % number of parameters in each chromosome
 Nt = nbits*npar; % total number of bits in a chromosome
 
-%%
 % II. Create the initial population
 iga = 0; % generation counter initialized
 pop = round(rand(popsize,Nt)); % random population of 1’s and 0’s (100 x 20 matrix)
@@ -21,16 +22,30 @@ maxc(1) = max(cost); % minc contains min of population
 meanc(1) = mean(cost); % meanc contains mean of population
 probs = cost/sum(cost); % simple normalization for probabilities
 
-%%
 % III. MAIN LOOP
 while iga < maxit
     iga = iga+1; % increments generation counter
     % Choose mates
     M = ceil(popsize/2); % number of matings
-    %ma = RandChooseN(probs,M); % mate #1
-    %pa = RandChooseN(probs,M); % mate #2
-    ma = datasample(pop,3); % mate #1
-    pa = datasample(pop,3); % mate #2
+    % roulette selection
+    binedges = [0,cumsum(probs(:)')];
+    roulette = zeros(1,M);
+    for k = 1:M
+        x1 = rand;
+        counts = histcounts(x1,binedges);
+        roulette(k) = find(counts==1);
+    end
+    ma = roulette;
+    binedges = [0,cumsum(probs(:)')];
+    roulette = zeros(1,M);
+    for k = 1:M
+        x1 = rand;
+        counts = histcounts(x1,binedges);
+        roulette(k) = find(counts==1);
+    end
+    pa = roulette;
+    %ma = randperm(popsize,M); % mate #1
+    %pa = randperm(popsize,M); % mate #2
     % ma and pa contain the indices of the chromosomes that will mate
     xp = ceil(rand(1,M)*(Nt-1)); % crossover point
     pop(1:2:popsize,:) = [pop(ma,1:xp(1)) pop(pa,xp(1)+1:Nt)]; % first offspring
@@ -57,13 +72,11 @@ while iga < maxit
     end
 end
 
-%% VI. Displays the output as shown in Figure
-day = clock;
-disp(datestr(datenum(day(1),day(2),day(3),day(4),day(5),day(6)),0))
-format short g
-disp(['popsize=' num2str(popsize) 'mutrate=' num2str(mutrate) '# par=' num2str(npar)]);
-disp(['#generations = ' num2str(iga) ' best cost = ' num2str(cost(1))]);
-fprintf('best solution\n%s\n',mat2str(int8(pop(1,:))));
+% VI. Displays the output as shown in Figure
+fprintf('\nGeneration number = %g.\n',iga);
+fprintf('Best cost = %g.\n',cost(1));
+fprintf('Best solution =.\n');
+disp(pop(1,:))
 figure(1)
 iters=0:length(maxc)-1;
 plot(1:(iga+1),maxc,1:(iga+1),meanc);
