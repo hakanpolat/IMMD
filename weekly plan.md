@@ -1,4 +1,15 @@
 
+### 18.09.2017 - 24.09.2017
+#### Planlanan çalışmalar:
+* EL-EN sunumu hazırlanacak.
+* EL-EN konferansta sunum yapılacak.
+* BAP satın almaları planlanacak.
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 11.09.2017 - 17.09.2017
 #### Planlanan çalışmalar:
 * PEMD abstract submit edilecek.
@@ -11,6 +22,7 @@
 * Makale review gerçekleştirildi, submit edildi.
 * ELECO tamamlandı (IMMD design: motor + drive).
 * Multi-physics optimizasyon için ön çalışma yapıldı.
+* Genetic algoritma vb. optimizasyon algoritmaları ile ilgili çalışmalar yapıldı.
 
 ### 04.09.2017 - 10.09.2017
 #### Planlanan çalışmalar:
