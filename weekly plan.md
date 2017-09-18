@@ -6,7 +6,7 @@
 * BAP satın almaları planlanacak.
 
 #### Gerçekleşen çalışmalar:
-* ...
+* EL-EN sunum hazırlandı.
 * ..
 * .
 
