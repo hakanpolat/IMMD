@@ -1,4 +1,14 @@
 
+### 25.09.2017 - 01.10.2017
+#### Planlanan çalışmalar:
+* **PHDQ**
+* BAP satın almaları planlanacak.
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 18.09.2017 - 24.09.2017
 #### Planlanan çalışmalar:
 * EL-EN sunumu hazırlanacak.
@@ -7,8 +17,7 @@
 
 #### Gerçekleşen çalışmalar:
 * EL-EN sunum hazırlandı.
-* ..
-* .
+* EL-EN konferans sunumu yapıldı.
 
 ### 11.09.2017 - 17.09.2017
 #### Planlanan çalışmalar:
