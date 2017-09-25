@@ -398,7 +398,7 @@ Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
 Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
-phase = [0 0 0 0];
+phase = [0 80 0 80];
 
 Rin = 10;
 %Lin = 1e-3;
