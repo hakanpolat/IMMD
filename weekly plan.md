@@ -5,7 +5,7 @@
 * BAP satın almaları planlanacak.
 
 #### Gerçekleşen çalışmalar:
-* ...
+* Paper submitted for IESES.
 * ..
 * .
 
