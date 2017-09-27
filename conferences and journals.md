@@ -19,6 +19,7 @@
 |15|International Conference on Industrial Technology|[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|**Full paper**|15.10.2017|20-22 February 2018|Lyon, France|**SUBMIT**|
 |16|The 13th IEEE Conference on Industrial Electronics and Applications|[ICIEA 2018](http://www.ieeeiciea.org/2018/)|Full paper|15.10.2017|31 May-2 June 2018|Wuhan,China|Consider|
 |17|International Power Electronics Conference |[IPEC 2018 (ECCE ASIA)](http://www.ipec2018.org/)|**Extended Summary**|16.10.2017|20-24 May 2018|Niigata, Japan|**SUBMIT**|
+|.|IEEE Power & Energy Society General Meetin|[IEEE PES 2018](http://pes-gm.org/2018/call-for-papers)|Full Paper|7.11.2017|5-10 August 2018|Portland,OR USA|Consider|
 |18|IEEE 12th International Conference on Compatibility, Power Electronics and Power Engineering|[CPE-POWERENG 2018](http://www.cpe-powereng2018.org/for-authors/call-for-papers/)|**Full paper**|15.11.2017|10-12 April 2018|Doha,Qatar|**SUBMIT**|
 |19|IEEE 9th International Symposium on Power Electronics for Distibuted Generation Systems|[PEDG 2018](http://www.ieee-pedg.org/page/14/call-for-papers/)|Extended Abstract|01.12.2017|25-28 June 2018|North Caroline,USA|Consider|
 |20|The 7th International Conference on Renewable Power Generation|[RPG 2018](http://events.theiet.org/rpg/index.cfm)|Abstract|08.12.2017|26-27 September 2018|Copenhagen,Denmark|Consider|
@@ -34,11 +35,19 @@
 |29|20th International Conference on Power Electronics and Applications|[EPE 2018 (ECCE EUROPE)](http://www.epe2018.com/)|Full paper|Unknown|17-21 September 2018|Riga,Latvia|Consider|
 |30|The 44th Annual Conference of the IEEE Industrial Electronics Society|[IECON 2018](http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=7883810)|Full paper|Unknown|21–23 October 2018|Washington,D.C.,United States|Consider|
 |31|IEEE International Electric Machines & Drives Conference|[IEMDC 2019](http://www.psma.com/events/2019-ieee-international-electric-machines-drives-conference-iemdc)|Full paper|Unknown|11-15 May 2019|California,USA|Consider|
+|32|XII International Symposium on Industrial Electronics|[INDEL 2018](http://www.indel.etfbl.net/dates.html)|Full paper|04.05.2018|1-3 Nov 2018|Banja Luka,Bosnia|Consider|
+|.|IEEE Workshop on Control and Modeling for Power Electronics|[COMPEL 2018](http://sites.ieee.org/compel2018/)|Digest|02.03.2018|25-28 June 2018|Padova,Italy|Consider|
 |-|-|-|-|-|-|-|
-|32|International Conference on Optimization of Electrical and Electronic Equipment|[OPTIM-ACEMP 2017](http://www.info-optim.ro/index.php)|
-|33|International Symposium on Power Electronics|[Ee2017](http://www.dee.uns.ac.rs/)|
-|34|IEEE 11th International Symposium on Diagnostics for Electrical Machines, Power Electronics, and Drives|[SDEMPED 2017](https://www.egr.msu.edu/sdemped2017/)|
-|35|International Conference on Renewable Energy Research and Applications|[ICRERA 2017](http://www.icrera.org/)|
+|.|International Conference on Optimization of Electrical and Electronic Equipment|[OPTIM-ACEMP 2017](http://www.info-optim.ro/index.php)|
+|.|International Symposium on Power Electronics|[Ee2017](http://www.dee.uns.ac.rs/)|
+|.|IEEE 11th International Symposium on Diagnostics for Electrical Machines, Power Electronics, and Drives|[SDEMPED 2017](https://www.egr.msu.edu/sdemped2017/)|
+|.|International Conference on Renewable Energy Research and Applications|[ICRERA 2017](http://www.icrera.org/)|
+|.|IEEE Workshop on Wide Bandgap Power Devices and Applications|[WiPDA 2017](http://wipda.org/)|
+|.|IEEE Workshop on Electrical Machines Design, Control and Diagnosis|[WEMDCD 2017](http://w1.icem.cc/wemdcd2017/)|
+|.|IEEE IAS Annual Meeting|[IAS 2017](https://ias.ieee.org/2017annualmeeting/critical-dates.html)|
+|.|IEEE International Conference on Power Electronics and Drive Systems|[PEDS 2017](http://www.rpsonline.com.sg/peds/)|
+|.|IEEE International Conference on Power Electronics, Drives and Energy Systems|[PEDES 2016](https://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=37352)|
+
 
 
 
