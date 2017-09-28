@@ -16,6 +16,7 @@
 |12|International Conference on Electrical and Electronics Engineering|[ELECO 2017](http://www.eleco.org.tr/)|Full paper|05.09.2017|30 Nov-2 Dec 2017|Bursa, Turkey|Missed|
 |13|International Symposium on Multidisciplinary Studies and Innovative Technologies|[ISMSIT 2017](http://www.ismsitconf.org/index.php?go=committe)|Abstract|01.10.2017|2-4 November 2017|Tokat,Turkey|Consider|
 |14|International Conference on Engineering Technologies|[ICENTE 2017](http://icente.selcuk.edu.tr/)|Abstract|02.10.2017|7-9 December 2017|Konya,Turkey|Consider|
+|14.5|5th IEEE International Energy Conference|[ENERGYCON 2018](http://www.energycon2018.org/)|Full Paper|15.10.2017|3-7 June 2018|Limassol,Cyprus|Consider|
 |15|International Conference on Industrial Technology|[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|**Full paper**|15.10.2017|20-22 February 2018|Lyon, France|**SUBMIT**|
 |16|The 13th IEEE Conference on Industrial Electronics and Applications|[ICIEA 2018](http://www.ieeeiciea.org/2018/)|Full paper|15.10.2017|31 May-2 June 2018|Wuhan,China|Consider|
 |17|International Power Electronics Conference |[IPEC 2018 (ECCE ASIA)](http://www.ipec2018.org/)|**Extended Summary**|16.10.2017|20-24 May 2018|Niigata, Japan|**SUBMIT**|
