@@ -1,3 +1,12 @@
+### 02.10.2017 - 08.10.2017
+#### Planlanan çalışmalar:
+* **PHDQ**
+* BAP satın almaları devam edilecek.
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
 
 ### 25.09.2017 - 01.10.2017
 #### Planlanan çalışmalar:
@@ -5,9 +14,10 @@
 * BAP satın almaları planlanacak.
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* IESES konferansına makale yüklendi.
+* BAP satın almaları için excel tablosu luşturuldu. Teçhizat ve hizmet planlandı, teklifler alındı.
+* PCB malzemeleri seçimi ve tedariği için çalışmalara başlandı.
+* Rectifier, DC link filtre vb. giriş devresi tasarımı ve malzeme seçimi yapıldı.
 
 ### 18.09.2017 - 24.09.2017
 #### Planlanan çalışmalar:
