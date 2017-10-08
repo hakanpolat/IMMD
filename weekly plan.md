@@ -1,12 +1,22 @@
+### 09.10.2017 - 15.10.2017
+#### Planlanan çalışmalar:
+* Araştırma grubu toplanması.
+* Master plan hazırlanması.
+* V.1. Prototip satın almaları
+* ICENTE abstract
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 02.10.2017 - 08.10.2017
 #### Planlanan çalışmalar:
 * **PHDQ**
 * BAP satın almaları devam edilecek.
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* **PHDQ**
 
 ### 25.09.2017 - 01.10.2017
 #### Planlanan çalışmalar:
