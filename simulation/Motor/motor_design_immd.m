@@ -26,30 +26,32 @@ Prated = 8e3; % watts
 m = 3;
 Vdc = 540; % volts
 n = 4;
-series = 2;
-parallel = 2;
+ns = 2;
+np = 2;
 Nrated = 600; %rpm
 power_factor = 0.9;
-efficiency = 0.93;
+eff_m = 0.94;
+eff_d = 0.98;
 
 %% Selected Inputs
 B = 0.9; % Tesla
-A = 25e3; % A/m (rms)
+A = 50e3; % A/m (rms)
 J = 4; % A/mm^2
-ma = 0.7;
+ma = 0.85;
 % w: slot/module/phase
 w = 1;
 layer = 2;
+kcu = 0.6;
 
 %% Calculated Inputs
-Vdcm = Vdc/series; % volts
+Vdcm = Vdc/ns; % volts
 Vline = 0.612*ma*Vdcm; % volts
 Vphase = Vline/sqrt(3); % volts
 
 wrated = Nrated*2*pi/60; % rad/s
 Trated = Prated/wrated; % Nm
 
-Pin = Prated/efficiency; % W
+Pin = Prated/eff_m; % W
 Pinm = Pin/n; % W
 Iline = Pinm/(Vphase*3); % A
 

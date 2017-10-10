@@ -3,7 +3,6 @@
 * Araştırma grubu toplanması.
 * Master plan hazırlanması.
 * V.1. Prototip satın almaları
-* ICENTE abstract
 
 #### Gerçekleşen çalışmalar:
 * ...
