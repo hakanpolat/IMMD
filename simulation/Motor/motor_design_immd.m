@@ -39,7 +39,7 @@ A = 50e3; % A/m (rms)
 J = 4; % A/mm^2
 ma = 0.85;
 % w: slot/module/phase
-w = 1;
+w = 2;
 layer = 2;
 kcu = 0.6;
 
@@ -62,19 +62,18 @@ frated = Nrated*pole/120; % Hz
 stress_tensor = B*A; % Pa
 Di2L = 2*Trated/(pi*stress_tensor); % m^3
 %aspect = (pi/pole)*(pole_pair)^(1/3);
-L = 0.15;
-Dis = (Di2L/L)^(1/2); % m
-%L = aspect*Dis % m
+aspect = 0.3;
+Dis = (Di2L/aspect)^(1/3); % m
+L = aspect*Dis; % m
 ris = Dis/2; % m
-
-% Air gap
-lg = 1.6*(0.18+0.006*Prated^0.4); % mm
-
-% The following is assumed, probably wrong
 DoDi = 1.4;
 Dos = Dis*DoDi; % m
 
-Qs = w*m*n*2; % stator slots
+% Air gap
+lg = 1.6*(0.18+0.006*Prated^0.4); % mm
+lg = round(lg*10)/10;
+
+Qs = w*m*n; % stator slots
 slot_pitch = pi*Dis/Qs; % m
 
 % Winding factor
@@ -103,6 +102,8 @@ flux_per_pole = 4*ris*L*B/pole; % Wb
 Nphm = Erms/(4.44*frated*flux_per_pole*kw);
 zQ = Nphm*2/(w*layer);
 
+
+%%
 % Coils
 copper_resistivity = 1.7e-8; % Ohm*m
 copper_permeability = 1.256629e-6; % H/m

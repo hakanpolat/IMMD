@@ -8,6 +8,7 @@
 * Araştırma grubu çalışma düzeni belirlendi. Konular ayrıntılandırıldı.
 * Master plan son haline getirildi.
 * Yük bankası teklifi güncellendi.
+* Excel'de design file yaratıldı, MATLAB ile teyid edildi.
 
 ### 02.10.2017 - 08.10.2017
 #### Planlanan çalışmalar:
