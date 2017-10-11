@@ -5,9 +5,9 @@
 * V.1. Prototip satın almaları
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* Araştırma grubu çalışma düzeni belirlendi. Konular ayrıntılandırıldı.
+* Master plan son haline getirildi.
+* Yük bankası teklifi güncellendi.
 
 ### 02.10.2017 - 08.10.2017
 #### Planlanan çalışmalar:
