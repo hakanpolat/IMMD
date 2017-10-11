@@ -29,7 +29,7 @@ n = 4;
 ns = 2;
 np = 2;
 Nrated = 600; %rpm
-power_factor = 0.9;
+pf = 0.9;
 eff_m = 0.94;
 eff_d = 0.98;
 
@@ -53,7 +53,7 @@ Trated = Prated/wrated; % Nm
 
 Pin = Prated/eff_m; % W
 Pinm = Pin/n; % W
-Iline = Pinm/(Vphase*3); % A
+Iline = Pinm/(Vphase*3*pf); % A
 
 pole = 20;
 pole_pair = pole/2;
