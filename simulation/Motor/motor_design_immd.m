@@ -112,22 +112,22 @@ skin_depth = 1e3*sqrt(copper_resistivity*2/(angular_frequency*copper_permeabilit
 copper_area = Iline/J; % mm^2
 copper_radius = sqrt(copper_area/pi); % mm
 copper_diameter = copper_radius*2; % mm
-% AWG - wire #14
+% AWG - wire #13
 wire_strand = 1;
-wire_diameter = 1.62814; % mm
+wire_diameter = 1.8288; % mm
 wire_radius = wire_diameter/2; % mm
 wire_diameter_insulation = wire_diameter*1.02; % mm
 wire_area_insulation = pi*(wire_diameter_insulation/2)^2; % mm^2
-total_stator_wire_area = wire_strand*wire_area_insulation; % mm^2
-ohm_per_m = 1e-3*8.282; % Ohm/km
+total_wire_area = wire_strand*wire_area_insulation; % mm^2
+slot_winding_area = layer*total_wire_area*zQ; % mm^2
+ohm_per_m = 1e-3*6.56984; % Ohm/km
 
 % Fill factor
 ht = 0.8*(Dos-Dis)/2; % m
 bs = slot_pitch/2; % m
 bt = slot_pitch/2; % m
 slot_area = bs*ht; % m^2
-winding_area = wire_area_insulation*zQ*1e-6;
-fill_factor = winding_area/slot_area
+fill_factor = winding_area*1e-6/slot_area
 
 
 
