@@ -1,3 +1,12 @@
+### 16.10.2017 - 22.10.2017
+#### Planlanan çalışmalar:
+* Excel design file.
+* V.1. Prototip satın almaları
+* **PHDQ**
+
+#### Gerçekleşen çalışmalar:
+* ...
+
 ### 09.10.2017 - 15.10.2017
 #### Planlanan çalışmalar:
 * Araştırma grubu toplanması.
