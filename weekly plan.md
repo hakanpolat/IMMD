@@ -5,8 +5,9 @@
 * **PHDQ**
 
 #### Gerçekleşen çalışmalar:
-* PCB ve load satın alma süreçleri
-* Excel design file V1.1 bitti. Son rötuşlar ve tasarımın teyidi gerekli. Maxwell ile çıkan değerler kontrol edilecek.
+* PCB ve load satın alma süreçleri başlatıldı.
+* Excel design file V1.1 bitti. Son rötuşlar ve tasarımın teyidi gerekli. Maxwell ile çıkan değerler kontrol edildi.
+* Excel design file V1.2 başlandı.
 
 ### 09.10.2017 - 15.10.2017
 #### Planlanan çalışmalar:
