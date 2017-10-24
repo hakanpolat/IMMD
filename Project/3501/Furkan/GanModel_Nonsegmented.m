@@ -13,16 +13,21 @@ K2 = 7.114;
 b2 = 2.054;
 c2 = 0.153;
 
-Cgd = 0.5e-12;
-Cgs = 64.5e-12;
-Cds = 16.5e-12;
-Ls = 1e-9;
-Ld = 1e-9;
-Lg = 1e-9;
+Cgd = 2e-12;
+Cgs = 258e-12;
+Cds = 63e-12;
+
+Ls = 0.05e-9;
+Ld = 3e-9;
+Lg = 3e-9;
 
 Rg = 1;
-Rd = 0.1;
-Rs = 0.1;
+Rd = 25e-3;
+Rs = 25e-3;
+
+%% Gate Driver
+Ron = 12;
+Roff = 2;
 %% Source parameters
 PulseAmplitude = 10;
 fsw = 800e3;
