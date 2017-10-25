@@ -1,3 +1,15 @@
+### 23.10.2017 - 29.10.2017
+#### Planlanan çalışmalar:
+* Excel design file V1.2
+* V.1. Prototip satın almaları
+* Motor için fiyat çıkarılması
+* **PHDQ**
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 16.10.2017 - 22.10.2017
 #### Planlanan çalışmalar:
 * Excel design file.
