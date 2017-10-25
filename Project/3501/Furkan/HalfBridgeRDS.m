@@ -44,7 +44,7 @@ Rload = 10;
 Lload = 0.01e-6;
 %% Run Simulink
 SampleTime = 1e-12;
-model = 'GaN_HalfBridge';
+model = 'HalfBridgeRD';
 load_system(model);
 set_param(model, 'StopTime','1.4e-6' )
 sim(model);
