@@ -29,16 +29,17 @@ Rs = 25e-3;
 Ron = 12;
 Roff = 2;
 %% Source parameters
-PulseAmplitude = 10;
-fsw = 800e3;
+PulseAmplitude = 6;
+fsw = 1000e3;
 Vdc = 300;
 D = 50; % duty cycle 
 
 %% Load parameters
 Rload = 10;
+Lload = 1e-7;
 %% Run Simulink
 SampleTime = 1e-12;
 model = 'GaN_SimScape_Nonsegmented';
 load_system(model);
-set_param(model, 'StopTime','2e-6' )
+set_param(model, 'StopTime','1.6e-6' )
 sim(model);

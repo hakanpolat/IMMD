@@ -41,9 +41,9 @@ DelayBot = 50;
 
 %% Load parameters
 Rload = 10;
-Lload = 0.01e-6;
+Lload = 10e-6;
 %% Run Simulink
-SampleTime = 1e-12;
+SampleTime = 1e-14;
 model = 'GaN_HalfBridge';
 load_system(model);
 set_param(model, 'StopTime','1.4e-6' )
