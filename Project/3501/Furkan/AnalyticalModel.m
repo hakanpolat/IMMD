@@ -2,7 +2,7 @@ close all
 clear all
 clc
 Vgs = -3:1:6;
-Vds = -7:0.001:5;
+Vds = -7:0.001:50;
 K1 = 0.283;
 b1 = 2.035;
 c1 = 0.124;
@@ -14,7 +14,7 @@ K2 = 7.114;
 b2 = 2.054;
 c2 = 0.153;
 for GateIndex = 1:10
-    for i=1:((12/0.001)+1)
+    for i=1:((57/0.001)+1)
         GS = Vgs(GateIndex);
         DS = Vds(i);
         GD = GS - DS;
@@ -27,8 +27,11 @@ for GateIndex = 1:10
 end
 
 hold all
-for j=[1,2,6,9,10]
-    plot(Vds, I(j,:));
+for j=[1,2,6,9]
+    plot(Vds, I(j,:),'Linewidth',2.0);
 end
+xlabel('Vds(V)');
+ylabel('Ids(A)');
+title('Ids vs Vds curves for different Vgs values');
 hold off
-legend ('Vgs = -3','Vgs = -2','Vgs = 2','Vgs = 5','Vgs = 6');
+legend ('Vgs = -3','Vgs = -2','Vgs = 2','Vgs = 5');
