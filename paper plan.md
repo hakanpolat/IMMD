@@ -27,4 +27,4 @@
 [PEMD 2018] - Abstract
 
 * IMMD design (motor + power electronics) with simulation
-[ELECO 2017] - Full (e-mail)
+[IESES 2018] - Full paper

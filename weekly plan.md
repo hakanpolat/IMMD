@@ -1,3 +1,10 @@
+### 30.10.2017 - 05.11.2017
+#### Planlanan çalışmalar:
+* **PHDQ**
+
+#### Gerçekleşen çalışmalar:
+* **PHDQ**
+
 ### 23.10.2017 - 29.10.2017
 #### Planlanan çalışmalar:
 * Excel design file V1.2
@@ -6,9 +13,7 @@
 * **PHDQ**
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* **PHDQ**
 
 ### 16.10.2017 - 22.10.2017
 #### Planlanan çalışmalar:
