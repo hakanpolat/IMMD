@@ -1,8 +1,8 @@
-close all
-clear all
-clc
+% close all
+% clear all
+% clc
 Vgs = -3:1:6;
-Vds = -7:0.001:5;
+Vds = -7:0.001:100;
 % K1 = 0.283;
 % b1 = 2.035;
 % c1 = 0.124;
@@ -13,13 +13,15 @@ Vds = -7:0.001:5;
 % K2 = 7.114;
 % b2 = 2.054;
 % c2 = 0.153;
-cur = 0.4685890625;
-K = cur * 0.8 * ((25-25+273)/300)^(-2.7);
+cur = 4.5057;
+K = cur * 0.8 * (273/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
-slp = 1;
+slp = 2;
+Rd = 3.6*0.95*0.82*18.2*0.25/295;
+Rs = 3.6*0.238*0.82/295;
 for GateIndex = 1:10
-    for i=1:((12/0.001)+1)
+    for i=1:((107/0.001)+1)
         GS = Vgs(GateIndex);
         DS = Vds(i);
         GD = GS - DS;
@@ -29,19 +31,18 @@ for GateIndex = 1:10
 %             I(GateIndex,i) = -K2*log(1+exp((GD-b2)/c2))*(-DS/(1-DS));
 %         end
         if Vds(i)>0
-            I(GateIndex,i) = K*log(1+exp(26*(GS-1.7)/slp))*(DS)/(1+max((x0+x1*(GS+4.1)),2)*DS);
+            I(GateIndex,i) = K*log(1+exp(26*(GS-1.7)/slp))*(DS)/(1+max((x0+x1*(GS+4.1)),0.2)*DS);
         else
-            I(GateIndex,i) = -K*log(1+exp(21*(GD-1.7)/slp))*(-DS)/(1+max((x0+x1*(GD+6.1)),2)*-DS);
+            I(GateIndex,i) = -K*log(1+exp(21*(GD-1.7)/slp))*(-DS)/(1+max((x0+x1*(GD+6.1)),0.2)*(-DS));
         end
     end
 end
 
 hold all
-for j=[4,5,6,7,8,9]
-    plot(Vds, I(j,:),'Linewidth',2.0);
+for j=[1,2,3,4,5,6,7,8,9]
+    plot((Vds), I(j,:),'Linewidth',2.0);
 end
 xlabel('Vds(V)');
 ylabel('Ids(A)');
 title('Ids vs Vds curves for different Vgs values for LT Spice equations');
-hold off
-legend ('Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
+legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
