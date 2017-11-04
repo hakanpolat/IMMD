@@ -13,13 +13,14 @@ clear all;
 % b2 = 2.054;
 % c2 = 0.153;
 
+
 Cgd = 2e-12;
 Cgs = 258e-12;
 Cds = 63e-12;
 
-Ls = 2e-10;
-Ld = 7e-10;
-Lg = 7e-10;
+Ls = 9e-10;
+Ld = 9e-10;
+Lg = 9e-10;
 Lss = 1e-9;
 
 Rg = 1.5;
@@ -28,7 +29,7 @@ Rs = 25e-6;
 
 %% Circuit Parasitics
 Ldc = 2.1e-9;
-Lground = 2.1e-9;
+Lground = 10e-9;
 
 %% Gate Driver
 Ron = 12;
@@ -45,15 +46,15 @@ DelayBot = 50;
 
 
 %% Load parameters
-Rload = 20;
+Rload = 30;
 Lload = 470e-6;
-Cload = 3.188e-6;
+Cload = 330e-9;
 %% Run Simulink
 SampleTime = 0.5e-12;
 model = 'HalfBridgeBottomConnectedLoa';
 load_system(model);
 StopTime = 1.7e-6;
-set_param(model, 'StopTime','3e-6' )
+set_param(model, 'StopTime','1.7e-6' )
 sim(model);
 
 %% Plots
