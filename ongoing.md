@@ -1,13 +1,12 @@
-### İşler
-* Maxwell simulasyonları *****
-* Education makalesi *****
-* Yeni makaleler literatür
-* Parker motor tedariği
-* BAP satın almaları
+### Yapılacak İşler (After the PhDQ)
+* Education makalesi ***
+* Mendeley klasörünün düzenlenmesi
+* Yeni makalelerin okunması
+* Motor tasarımının son hali (mekanik dahil)
+* Motor üretimi planlanması
+* BAP sarf malzeme satın almaları
 * PCB şematik tasarımı
-* MİGEP alımları
-* Motor tasarımı ve maxwell simulasyonları
+* Optimizasyon makalesi (PEMD) ön çalışması
 
 ### Bir ara bakılacak
-* PSIM simulasyon programı: İncelenecek.
-* IES IET üyelikleri: IES için mail atıldı. IET beklemede.
+*

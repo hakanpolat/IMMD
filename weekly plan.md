@@ -1,3 +1,10 @@
+### 06.11.2017 - 12.11.2017
+#### Planlanan çalışmalar:
+* **PHDQ**
+
+#### Gerçekleşen çalışmalar:
+* **PHDQ**
+
 ### 30.10.2017 - 05.11.2017
 #### Planlanan çalışmalar:
 * **PHDQ**
