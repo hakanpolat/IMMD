@@ -46,7 +46,7 @@ DelayBot = 50;
 
 %% Load parameters
 Rload = 20;
-Lload = 470e-6;
+Lload = 220e-6;
 Cload = 3.188e-6;
 %% Run Simulink
 SampleTime = 0.5e-12;
@@ -87,25 +87,25 @@ ylabel('Ids(A)');
 title({'Ids vs Vds curves for different Vgs values for Top Switch','RED ARROW shows TURN OFF','BLUE ARROW shows TURN ON'})
 legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
 
-Isens = 2;
-Vsens = 5;
+Isens = 0.5;
+Vsens = 1;
 Size = size(TopVoltageDS);
 
 drawArrow = @(x,y,varargin) quiver( x(1),y(1),x(2)-x(1),y(2)-y(1),0, varargin{:} );
 Period = 1/fsw;
 % Turn OFF for Top Switch
-    ToffSampleMid = Period/2/SampleTime + 1 ;
-    MarginOff = Period/100/SampleTime;
+    ToffSampleMid = 2.5*Period/SampleTime + 1 ;
+    MarginOff = round(1*Period/100/SampleTime);
     ToffSampleBegin = ToffSampleMid - MarginOff;
     ToffSampleEnd   = ToffSampleMid + MarginOff;
 % Turn ON for Top Switch
-    TonSampleMid = Period/SampleTime + 1 ;
-    MarginOn = 4*Period/100/SampleTime;
-    TonSampleBegin = TonSampleMid - MarginOn;
+    TonSampleMid = 2*Period/SampleTime + 1 ;
+    MarginOn = round(2*Period/100/SampleTime);
+    TonSampleBegin = TonSampleMid;
     TonSampleEnd   = TonSampleMid + MarginOn;%0.48*Period/SampleTime;   
 %Top Switch Plot
 % Turn OFF Plot
-InitI = Vdc/Rload;
+InitI = Vdc*Dtop/100/Rload;
 InitV = 0;
 for j=ToffSampleBegin:ToffSampleEnd
     if abs(TopVoltageDS(j)-InitV) >= Vsens || abs(TopCurrentDS(j)-InitI) >= Isens
@@ -130,13 +130,23 @@ for j=TonSampleBegin:TonSampleEnd
 end 
 % Mark ON - OFF Points
 plot(Vdc,0,'*','Linewidth',10.0);
-plot(0.2,Vdc/Rload,'*','Linewidth',10.0);
+plot(0.2,Vdc*Dtop/100/Rload,'*','Linewidth',10.0);
 hold off
 %Bot Switch Plot
+% Turn OFF for Bottom Switch
+    ToffSampleMid = 2*Period/SampleTime + 1 ;
+    MarginOff = round(Period/100/SampleTime);
+    ToffSampleBegin = ToffSampleMid - MarginOff;
+    ToffSampleEnd   = ToffSampleMid + MarginOff;
+% Turn ON for Bottom Switch
+    TonSampleMid = 2.5*Period/SampleTime + 1 ;
+    MarginOn = round(2.5*Period/100/SampleTime);
+    TonSampleBegin = TonSampleMid - MarginOn;
+    TonSampleEnd   = TonSampleMid + MarginOn;%0.48*Period/SampleTime;   
 figure;
-Vds = -10:0.1:50;
+Vds = -10:0.1:310;
 for GateIndex = 1:10
-    for i=1:((60/0.1)+1)
+    for i=1:((320/0.1)+1)
         GS = Vgs(GateIndex);
         DS = Vds(i);
         GD = GS - DS;
@@ -158,8 +168,8 @@ title({'Ids vs Vds curves for different Vgs values for Bottom Switch','BLACK ARR
 legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
 % Turn ON Plot
 InitI = 0;
-InitV = 300;
-for j=ToffSampleBegin:ToffSampleEnd
+InitV = Vdc;
+for j=TonSampleBegin:TonSampleEnd
     if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
         X = [InitV BotVoltageDS(j)];
         Y = [InitI BotCurrentDS(j)];
@@ -169,9 +179,9 @@ for j=ToffSampleBegin:ToffSampleEnd
     end
 end      
 % Turn OFF Plot
-InitI = -Vdc/Rload;
+InitI = -Vdc*Dtop/100/Rload;
 InitV = 0;
-for j=TonSampleBegin:TonSampleEnd
+for j=ToffSampleBegin:ToffSampleEnd
     if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
         X = [InitV BotVoltageDS(j)];
         Y = [InitI BotCurrentDS(j)];
@@ -182,6 +192,6 @@ for j=TonSampleBegin:TonSampleEnd
 end 
 % Mark ON - OFF Points
 plot(Vdc,0,'*','Linewidth',10.0);
-plot(0.2,-Vdc/Rload,'*','Linewidth',10.0);
-xlim([-15 20])
+plot(0.2,-Vdc*Dtop/100/Rload,'*','Linewidth',10.0);
+xlim([-15 310])
 hold off
