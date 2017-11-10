@@ -13,9 +13,9 @@ clear all;
 % b2 = 2.054;
 % c2 = 0.153;
 
-% Cgd = 2e-12;
-% Cgs = 258e-12;
-% Cds = 63e-12;
+Cgd = 2e-12;
+Cgs = 258e-12;
+Cds = 63e-12;
 
 Ls = 2e-10;
 Ld = 7e-10;
@@ -45,11 +45,11 @@ DelayBot = 50;
 
 
 %% Load parameters
-Rload = 20;
-Lload = 220e-6;
+Rload = 5;
+Lload = 22e-6;
 Cload = 3.188e-6;
 %% Run Simulink
-SampleTime = 0.5e-12;
+SampleTime = 5e-13;
 model = 'HalfBridgeCapacitanceModellin';
 load_system(model);
 StopTime = 1.7e-6;
