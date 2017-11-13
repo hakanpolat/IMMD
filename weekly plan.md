@@ -1,3 +1,15 @@
+
+### 13.11.2017 - 19.11.2017
+#### Planlanan çalışmalar:
+* **PHDQ**
+* Optimizasyon makalesi temelleri
+* V.1. Prototip satın almaları
+* Modelleme çalışmaları yol haritası
+* Makale planlaması
+
+#### Gerçekleşen çalışmalar:
+* **PHDQ**
+
 ### 06.11.2017 - 12.11.2017
 #### Planlanan çalışmalar:
 * **PHDQ**

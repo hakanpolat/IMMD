@@ -15,14 +15,11 @@
 * Hardware ile ilgili
 [ECCE 2018] - **15 Ocak-Abstract**
 [PEMC 2018] - **9 Şubat-Full paper**
-[ISIE 2018] - **15 Aralık-Full paper**
+[ISIE 2018] - **15 Ocak-Full paper**
 
 ### Submit edilenler
-* Optimization of IMMD system (simulation verification)
-[PEMD 2018] - Abstract
+* Optimization of IMMD system (simulation verification) - [PEMD 2018] - **Accepted** - Full paper submission: **12.01.2018**
 
-* IMMD design (motor + power electronics) with simulation
-[IESES 2018] - Full paper
+* IMMD design (motor + power electronics) with simulation - [IESES 2018] - **Full paper Submitted**
 
-* Reactive power compensation
-[IEEE PES 2018] - Full paper
+* Reactive power compensation for PV systems - [IEEE PES 2018] - **Full paper Submitted**
