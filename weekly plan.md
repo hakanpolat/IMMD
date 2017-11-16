@@ -1,14 +1,16 @@
 
+* **ŞU YETERLİLİK GEÇSİN, MENDELEY KLASÖRÜ SİLİP SÜPÜRÜLECEK.**
+
 ### 13.11.2017 - 19.11.2017
 #### Planlanan çalışmalar:
-* **PHDQ**
 * Optimizasyon makalesi temelleri
 * V.1. Prototip satın almaları
 * Modelleme çalışmaları yol haritası
 * Makale planlaması
 
 #### Gerçekleşen çalışmalar:
-* **PHDQ**
+* Konulara göre makale planlamasına başlandı (bkz:tablo)
+* Modelleme ve loss ile ilgili makale yazılabilecek konular
 
 ### 06.11.2017 - 12.11.2017
 #### Planlanan çalışmalar:
@@ -26,9 +28,6 @@
 
 ### 23.10.2017 - 29.10.2017
 #### Planlanan çalışmalar:
-* Excel design file V1.2
-* V.1. Prototip satın almaları
-* Motor için fiyat çıkarılması
 * **PHDQ**
 
 #### Gerçekleşen çalışmalar:
@@ -38,7 +37,6 @@
 #### Planlanan çalışmalar:
 * Excel design file.
 * V.1. Prototip satın almaları
-* **PHDQ**
 
 #### Gerçekleşen çalışmalar:
 * PCB ve load satın alma süreçleri başlatıldı.
