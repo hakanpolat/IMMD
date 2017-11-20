@@ -5,6 +5,7 @@
 * V.1. Prototip BAP satın almaları
 * Yeni makale planlaması
 * Literatür özeti
+* education makalesi giriş
 
 #### Gerçekleşen çalışmalar:
 * Mendeley klasörü düzenlendi. Yeni makaleler okunuyor.
