@@ -1,5 +1,15 @@
+### 20.11.2017 - 26.11.2017
+#### Planlanan çalışmalar:
+* Optimizasyon makalesi taslak (PEMD)
+* Tasarım makalesi review sonrası düzeltmeler (IESES)
+* V.1. Prototip BAP satın almaları
+* Yeni makale planlaması
+* Literatür özeti
 
-* **ŞU YETERLİLİK GEÇSİN, MENDELEY KLASÖRÜ SİLİP SÜPÜRÜLECEK.**
+#### Gerçekleşen çalışmalar:
+* Mendeley klasörü düzenlendi. Yeni makaleler okunuyor.
+* Yeni makale planlaması için bkz: [IMMD Makale Plan](https://docs.google.com/spreadsheets/d/1xoL_TtsiaZJuH-sE4ustUb2qAsAdHLgrL_mqEQJdtnw/edit?usp=sharing)
+* GaN ile ilgili literatür özetine başlandı. Bkz: [Literatür GaN](https://drive.google.com/drive/u/0/folders/1ubTMRptHmwLgJ4jDNLTa7g9dLolP0Rbb)
 
 ### 13.11.2017 - 19.11.2017
 #### Planlanan çalışmalar:
