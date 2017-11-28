@@ -1,8 +1,16 @@
+### 27.11.2017 - 03.12.2017
+#### Planlanan çalışmalar:
+* Optimizasyon makalesi devam (PEMD)
+* Tasarım makalesi geliştirme (POWERENG)
+* GaN modelleme abstract (EPE)
+* V.1. Prototip BAP satın almaları
+* Education makalesi devam
+
+#### Gerçekleşen çalışmalar:
+*
+
 ### 20.11.2017 - 26.11.2017
 #### Planlanan çalışmalar:
-* Optimizasyon makalesi taslak (PEMD)
-* Tasarım makalesi review sonrası düzeltmeler (IESES)
-* V.1. Prototip BAP satın almaları
 * Yeni makale planlaması
 * Literatür özeti
 * Education makalesi giriş
