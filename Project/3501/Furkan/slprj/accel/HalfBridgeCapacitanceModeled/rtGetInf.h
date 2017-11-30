@@ -1,3 +1,9 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4f85d4bb3f80ce5e9f68c1316a26d84e917832fcf514685384a22c694747b379
-size 344
+#include "__cf_HalfBridgeCapacitanceModeled.h"
+#ifndef RTW_HEADER_rtGetInf_h_
+#define RTW_HEADER_rtGetInf_h_
+#include <stddef.h>
+#include "rtwtypes.h"
+#include "rt_nonfinite.h"
+extern real_T rtGetInf ( void ) ; extern real32_T rtGetInfF ( void ) ; extern
+real_T rtGetMinusInf ( void ) ; extern real32_T rtGetMinusInfF ( void ) ;
+#endif

@@ -74,29 +74,31 @@ end
 
 figure(f1);
 hold all
-for j=[1,2,3,4,5,6,7,8,9]
+grid minor
+for j=[1,2,3,4,5,6,7,8,9,10]
     plot((Vds), I_top(j,:),'Linewidth',2.0);
 end
-xlabel('Vds(V)');
-ylabel('Ids(A)');
-title({'Ids vs Vds curves for Top Switch during Turn ON(Blue DS, Red CH)'})
-legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
+xlabel('V_d_s(V)');
+ylabel('I_c_h(A)');
+title({'I_c_h vs V_d_s Curve of Top Switch During Turn ON'})
+legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5','Vgs=6','Location','southeast');
 hold off
 
 figure(f2);
 hold all
-for j=[1,2,3,4,5,6,7,8,9]
+grid minor
+for j=[1,2,3,4,5,6,7,8,9,10]
     plot((Vds), I_top(j,:),'Linewidth',2.0);
 end
-xlabel('Vds(V)');
-ylabel('Ids(A)');
-title({'Ids vs Vds curves for  Top Switch during Turn OFF(Blue DS, Red CH)'})
-legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
+xlabel('V_d_s(V)');
+ylabel('I_c_h(A)');
+title({'I_c_h vs V_d_s Curve of Top Switch During Turn OFF'})
+legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5','Vgs=6','Location','southeast');
 hold off
 
 
-Isens = 5;
-Vsens = 5;
+Isens = 0.5;
+Vsens = 0.5;
 
 
 drawArrow = @(x,y,varargin) quiver( x(1),y(1),x(2)-x(1),y(2)-y(1),0, varargin{:} );
@@ -104,40 +106,41 @@ Period = 1/fsw;
 % Turn OFF for Top Switch
     ToffSampleMid = 2.5*Period/SampleTime + 1 ;
     MarginOff = round(1*Period/100/SampleTime);
-    ToffSampleBegin = ToffSampleMid - MarginOff + 2451 ;
+    ToffSampleBegin = ToffSampleMid - MarginOff ;
     ToffSampleEnd   = ToffSampleMid + MarginOff ;
     DurationTopOFF = ToffSampleEnd - ToffSampleBegin;
 % Turn ON for Top Switch
     TonSampleMid = 2*Period/SampleTime + 1 ;
     MarginOn = round(2*Period/100/SampleTime);
     TonSampleBegin = TonSampleMid ;
-    TonSampleEnd   = TonSampleMid + MarginOn - 20000;%0.48*Period/SampleTime;   
+    TonSampleEnd   = TonSampleMid + MarginOn - 10000;%0.48*Period/SampleTime;   
     DurationTopON = TonSampleEnd - TonSampleBegin; 
 %Top Switch Plot
 % Turn OFF Plot
-InitI = TopCurrentDS(ToffSampleBegin);
-InitV = TopVoltageDS(ToffSampleBegin);
-EnergyTopOFF = 0;
-TopOFFVI = zeros(1,2);
-figure(f2)
-hold all
-for j=ToffSampleBegin:ToffSampleEnd
-    if abs(TopVoltageDS(j)-InitV) >= Vsens || abs(TopCurrentDS(j)-InitI) >= Isens
-        X = [InitV TopVoltageDS(j)];
-        Y = [InitI TopCurrentDS(j)];
-        drawArrow(X,Y,'MaxHeadSize',150,'Color','b','LineWidth',2);
-        InitV = TopVoltageDS(j);
-        InitI = TopCurrentDS(j);
-    end
-    EnergyTopOFF = abs(TopVoltageDS(j) * TopCurrentDS(j)) * SampleTime + EnergyTopOFF;
-    TopOFFVI(j+1-ToffSampleBegin,:) = [TopVoltageDS(j),TopCurrentDS(j)];
-    EnergyTOFinst(j+1-ToffSampleBegin) = EnergyTopOFF;
-end 
-PowerTopOFF = EnergyTopOFF / Period;
-    plot(TopVoltageDS(ToffSampleBegin),TopCurrentDS(ToffSampleBegin),'*','Linewidth',10.0);
-    plot(TopVoltageDS(ToffSampleEnd),TopCurrentDS(ToffSampleEnd),'*','Linewidth',10.0);
-hold off
+%         InitI = TopCurrentDS(ToffSampleBegin);
+%         InitV = TopVoltageDS(ToffSampleBegin);
+%         EnergyTopOFF = 0;
+%         TopOFFVI = zeros(1,2);
+%         figure(f2)
+%         hold all
+%         for j=ToffSampleBegin:ToffSampleEnd
+%             if abs(TopVoltageDS(j)-InitV) >= Vsens || abs(TopCurrentDS(j)-InitI) >= Isens
+%                 X = [InitV TopVoltageDS(j)];
+%                 Y = [InitI TopCurrentDS(j)];
+%                 drawArrow(X,Y,'MaxHeadSize',150,'Color','b','LineWidth',2);
+%                 InitV = TopVoltageDS(j);
+%                 InitI = TopCurrentDS(j);
+%             end
+%             EnergyTopOFF = abs(TopVoltageDS(j) * TopCurrentDS(j)) * SampleTime + EnergyTopOFF;
+%             TopOFFVI(j+1-ToffSampleBegin,:) = [TopVoltageDS(j),TopCurrentDS(j)];
+%             EnergyTOFinst(j+1-ToffSampleBegin) = EnergyTopOFF;
+%         end 
+%         PowerTopOFF = EnergyTopOFF / Period;
+%             plot(TopVoltageDS(ToffSampleBegin),TopCurrentDS(ToffSampleBegin),'*','Linewidth',10.0);
+%             plot(TopVoltageDS(ToffSampleEnd),TopCurrentDS(ToffSampleEnd),'*','Linewidth',10.0);
+%         hold off
 
+%Channel Current Not Zoomed
 InitI = TopChCurr(ToffSampleBegin);
 InitV = TopVoltageDS(ToffSampleBegin);
 figure(f2)
@@ -154,30 +157,32 @@ end
     plot(TopVoltageDS(ToffSampleBegin),TopChCurr(ToffSampleBegin),'*','Linewidth',10.0);
     plot(TopVoltageDS(ToffSampleEnd),TopChCurr(ToffSampleEnd),'*','Linewidth',10.0);
 hold off
-% Turn ON Plot
 
-InitI = TopCurrentDS(TonSampleBegin);
-InitV = TopVoltageDS(TonSampleBegin);
-EnergyTopON = 0;
-TopONVI = zeros(1,2);
-figure(f1)
-hold all
-for j=TonSampleBegin:TonSampleEnd
-    if abs(TopVoltageDS(j)-InitV) >= Vsens || abs(TopCurrentDS(j)-InitI) >= Isens
-        X = [InitV TopVoltageDS(j)];
-        Y = [InitI TopCurrentDS(j)];
-        drawArrow(X,Y,'MaxHeadSize',150,'Color','b','LineWidth',2);
-        InitV = TopVoltageDS(j);
-        InitI = TopCurrentDS(j);
-    end
-    EnergyTopON = abs(TopVoltageDS(j) * TopCurrentDS(j)) * SampleTime + EnergyTopON;
-    TopONVI(j+1-TonSampleBegin,:) = [TopVoltageDS(j),TopCurrentDS(j)];
-    EnergyTONinst(j+1-TonSampleBegin) = EnergyTopON;
-end 
-PowerTopON = EnergyTopON / Period;
-    plot(TopVoltageDS(TonSampleBegin),TopCurrentDS(TonSampleBegin),'*','Linewidth',10.0);
-    plot(TopVoltageDS(TonSampleEnd),TopCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
-hold off;
+
+% Turn ON Plot
+% Drain-Source Current PLOT
+%         InitI = TopCurrentDS(TonSampleBegin);
+%         InitV = TopVoltageDS(TonSampleBegin);
+%         EnergyTopON = 0;
+%         TopONVI = zeros(1,2);
+%         figure(f1)
+%         hold all
+%         for j=TonSampleBegin:TonSampleEnd
+%             if abs(TopVoltageDS(j)-InitV) >= Vsens || abs(TopCurrentDS(j)-InitI) >= Isens
+%                 X = [InitV TopVoltageDS(j)];
+%                 Y = [InitI TopCurrentDS(j)];
+%                 drawArrow(X,Y,'MaxHeadSize',150,'Color','b','LineWidth',2);
+%                 InitV = TopVoltageDS(j);
+%                 InitI = TopCurrentDS(j);
+%             end
+%             EnergyTopON = abs(TopVoltageDS(j) * TopCurrentDS(j)) * SampleTime + EnergyTopON;
+%             TopONVI(j+1-TonSampleBegin,:) = [TopVoltageDS(j),TopCurrentDS(j)];
+%             EnergyTONinst(j+1-TonSampleBegin) = EnergyTopON;
+%         end 
+%         PowerTopON = EnergyTopON / Period;
+%             plot(TopVoltageDS(TonSampleBegin),TopCurrentDS(TonSampleBegin),'*','Linewidth',10.0);
+%             plot(TopVoltageDS(TonSampleEnd),TopCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
+%         hold off;
 
 InitI = TopChCurr(TonSampleBegin);
 InitV = TopVoltageDS(TonSampleBegin);
@@ -203,14 +208,14 @@ hold off;
 % Turn OFF for Bottom Switch
     ToffSampleMid = 2*Period/SampleTime + 1 ;
     MarginOff = round(Period/100/SampleTime);
-    ToffSampleBegin = ToffSampleMid - MarginOff + 3732;
-    ToffSampleEnd   = ToffSampleMid + MarginOff;
+    ToffSampleBegin = ToffSampleMid - MarginOff;
+    ToffSampleEnd   = ToffSampleMid + MarginOff + 10000;
     DurationBotOFF = ToffSampleEnd - ToffSampleBegin;
 % Turn ON for Bottom Switch
     TonSampleMid = 2.5*Period/SampleTime + 1 ;
     MarginOn = round(2.5*Period/100/SampleTime);
     TonSampleBegin = TonSampleMid - MarginOn;
-    TonSampleEnd   = TonSampleMid + MarginOn - 37379;%0.48*Period/SampleTime;  
+    TonSampleEnd   = TonSampleMid + MarginOn;%0.48*Period/SampleTime;  
     DurationBotON = TonSampleEnd - TonSampleBegin;
 Vds = -10:0.1:410;
 for GateIndex = 1:10
@@ -229,49 +234,52 @@ end
 
 figure(f3);
 hold all
-for j=[1,2,3,4,5,6,7,8,9]
+grid minor
+for j=[1,2,3,4,5,6,7,8,9,10]
     plot((Vds), I_bottom(j,:),'Linewidth',2.0);
 end
-xlabel('Vds(V)');
-ylabel('Ids(A)');
-title({'Ids vs Vds curves for Bottom Switch during Turn ON(Blue DS, Red CH)'})
-legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
+xlabel('V_d_s(V)');
+ylabel('I_c_h(A)');
+title({'I_c_h vs V_d_s Curve of Bottom Switch during Turn ON'})
+legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5','Vgs=6','Location','southeast');
 hold off
 
 figure(f4);
 hold all
-for j=[1,2,3,4,5,6,7,8,9]
+grid minor
+for j=[1,2,3,4,5,6,7,8,9,10]
     plot((Vds), I_bottom(j,:),'Linewidth',2.0);
 end
-xlabel('Vds(V)');
-ylabel('Ids(A)');
-title({'Ids vs Vds curves for Bottom Switch during Turn OFF(Blue DS, Red CH)'})
-legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5');
+xlabel('V_d_s(V)');
+ylabel('I_c_h(A)');
+title({'I_c_h vs V_d_s Curve of Bottom Switch during Turn OFF'})
+legend ('Vgs = -3','Vgs = -2','Vgs = -1','Vgs = 0','Vgs = 1','Vgs = 2','Vgs = 3','Vgs = 4','Vgs = 5','Vgs=6','Location','southeast');
 hold off
 
 % Turn ON Plot
-InitI = BotCurrentDS(TonSampleBegin);
-InitV = BotVoltageDS(TonSampleBegin);
-EnergyBotON = 0;
-BotONVI = zeros(1,2);
-figure(f3)
-hold all
-for j=TonSampleBegin:TonSampleEnd
-    if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
-        X = [InitV BotVoltageDS(j)];
-        Y = [InitI BotCurrentDS(j)];
-        drawArrow(X,Y,'MaxHeadSize',20,'Color','b','LineWidth',2);
-        InitV = BotVoltageDS(j);
-        InitI = BotCurrentDS(j);
-    end
-    EnergyBotON = abs(BotVoltageDS(j) * BotCurrentDS(j)) * SampleTime + EnergyBotON;
-    BotONVI(j+1-TonSampleBegin,:) = [BotVoltageDS(j),BotCurrentDS(j)];
-    EnergyBONinst(j+1-TonSampleBegin) = EnergyBotON;
-end      
-PowerBotON = EnergyBotON / Period;
-plot(BotVoltageDS(TonSampleBegin),BotCurrentDS(TonSampleBegin),'*','Linewidth',10.0);
-plot(BotVoltageDS(TonSampleEnd),BotCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
-hold off
+% Drain-Source Current Plot
+%         InitI = BotCurrentDS(TonSampleBegin);
+%         InitV = BotVoltageDS(TonSampleBegin);
+%         EnergyBotON = 0;
+%         BotONVI = zeros(1,2);
+%         figure(f3)
+%         hold all
+%         for j=TonSampleBegin:TonSampleEnd
+%             if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
+%                 X = [InitV BotVoltageDS(j)];
+%                 Y = [InitI BotCurrentDS(j)];
+%                 drawArrow(X,Y,'MaxHeadSize',20,'Color','b','LineWidth',2);
+%                 InitV = BotVoltageDS(j);
+%                 InitI = BotCurrentDS(j);
+%             end
+%             EnergyBotON = abs(BotVoltageDS(j) * BotCurrentDS(j)) * SampleTime + EnergyBotON;
+%             BotONVI(j+1-TonSampleBegin,:) = [BotVoltageDS(j),BotCurrentDS(j)];
+%             EnergyBONinst(j+1-TonSampleBegin) = EnergyBotON;
+%         end      
+%         PowerBotON = EnergyBotON / Period;
+%         plot(BotVoltageDS(TonSampleBegin),BotCurrentDS(TonSampleBegin),'*','Linewidth',10.0);
+%         plot(BotVoltageDS(TonSampleEnd),BotCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
+%         hold off
 
 InitI = BotChCurr(TonSampleBegin);
 InitV = BotVoltageDS(TonSampleBegin);
@@ -290,28 +298,29 @@ end
     plot(BotVoltageDS(TonSampleEnd),BotChCurr(TonSampleEnd),'*','Linewidth',10.0);
 hold off
 % Turn OFF Plot
-InitI = BotCurrentDS(ToffSampleBegin);
-InitV = BotVoltageDS(ToffSampleBegin);
-EnergyBotOFF = 0;
-BotOFFVI = zeros(1,2);
-figure(f4)
-hold all
-for j=ToffSampleBegin:ToffSampleEnd
-    if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
-        X = [InitV BotVoltageDS(j)];
-        Y = [InitI BotCurrentDS(j)];
-        drawArrow(X,Y,'MaxHeadSize',20,'Color','b','LineWidth',2);
-        InitV = BotVoltageDS(j);
-        InitI = BotCurrentDS(j);
-    end
-    EnergyBotOFF = abs(BotVoltageDS(j) * BotCurrentDS(j)) * SampleTime + EnergyBotOFF;
-    BotOFFVI(j+1-ToffSampleBegin,:) = [BotVoltageDS(j),BotCurrentDS(j)];
-    EnergyBOFinst(j+1-ToffSampleBegin) = EnergyBotOFF;
-end
-PowerBotOFF = EnergyBotOFF / Period;
-plot(BotVoltageDS(ToffSampleBegin),BotCurrentDS(ToffSampleBegin),'*','Linewidth',10.0);
-plot(BotVoltageDS(ToffSampleEnd),BotCurrentDS(ToffSampleEnd),'*','Linewidth',10.0);
-hold off
+% Drain Source Current Plot
+%         InitI = BotCurrentDS(ToffSampleBegin);
+%         InitV = BotVoltageDS(ToffSampleBegin);
+%         EnergyBotOFF = 0;
+%         BotOFFVI = zeros(1,2);
+%         figure(f4)
+%         hold all
+%         for j=ToffSampleBegin:ToffSampleEnd
+%             if abs(BotVoltageDS(j)-InitV) >= Vsens || abs(BotCurrentDS(j)-InitI) >= Isens
+%                 X = [InitV BotVoltageDS(j)];
+%                 Y = [InitI BotCurrentDS(j)];
+%                 drawArrow(X,Y,'MaxHeadSize',20,'Color','b','LineWidth',2);
+%                 InitV = BotVoltageDS(j);
+%                 InitI = BotCurrentDS(j);
+%             end
+%             EnergyBotOFF = abs(BotVoltageDS(j) * BotCurrentDS(j)) * SampleTime + EnergyBotOFF;
+%             BotOFFVI(j+1-ToffSampleBegin,:) = [BotVoltageDS(j),BotCurrentDS(j)];
+%             EnergyBOFinst(j+1-ToffSampleBegin) = EnergyBotOFF;
+%         end
+%         PowerBotOFF = EnergyBotOFF / Period;
+%         plot(BotVoltageDS(ToffSampleBegin),BotCurrentDS(ToffSampleBegin),'*','Linewidth',10.0);
+%         plot(BotVoltageDS(ToffSampleEnd),BotCurrentDS(ToffSampleEnd),'*','Linewidth',10.0);
+%         hold off
 
 InitI = BotChCurr(ToffSampleBegin);
 InitV = BotVoltageDS(ToffSampleBegin);

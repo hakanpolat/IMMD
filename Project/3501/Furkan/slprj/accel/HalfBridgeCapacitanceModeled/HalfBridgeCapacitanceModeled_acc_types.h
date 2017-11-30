@@ -1,3 +1,7 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:870b4f184d3f94be4c6d46f19a3f07103d2c8fc515178b2eabad9b7b7ce8c0d2
-size 273
+#include "__cf_HalfBridgeCapacitanceModeled.h"
+#ifndef RTW_HEADER_HalfBridgeCapacitanceModeled_acc_types_h_
+#define RTW_HEADER_HalfBridgeCapacitanceModeled_acc_types_h_
+#include "rtwtypes.h"
+#include "multiword_types.h"
+typedef struct ddcfacl1ei_ ddcfacl1ei ;
+#endif
