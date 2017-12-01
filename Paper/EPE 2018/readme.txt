@@ -14,7 +14,8 @@ Synopsis Guidelines
 
 The synopses should consist of:
 
-    a 3 to maximum 5 pages anonymous summary, including an abstract with no more than 50 words. The topic number(s) and your indication of preference for dialogue or lecture presentation must be clearly mentioned. (Be aware that, if your paper proposal is accepted, it will be the International Scientific Committee who decides upon dialogue or lecture presentation);
+    a 3 to maximum 5 pages anonymous summary, including an abstract with no more than 50 words. The topic number(s) and your indication of preference for dialogue or lecture presentation must be clearly mentioned.
+(Be aware that, if your paper proposal is accepted, it will be the International Scientific Committee who decides upon dialogue or lecture presentation);
     key diagrams;
     a references list.
 
@@ -40,7 +41,8 @@ All operations require that the original file is compliant with the general guid
 Please be careful if you work in a country using special fonts/characters: double byte fonts (Asian countries), east European fonts etc. The help desk will help you by e-mail to solve these problems, if necessary.
 
 Paper headings
-The synopsis will be headed by the paper title.  The origin (University (U), Industry (I), University in collaboration with Industry (UI) or Industry in collaboration with University (IU)) will be indicated on the second line, next to the chosen topics and sub-topics 1 and 2.
+The synopsis will be headed by the paper title.  The origin (University (U), Industry (I), University in collaboration with Industry (UI) or Industry in collaboration with University (IU)) will be indicated on the second line,
+next to the chosen topics and sub-topics 1 and 2.
 
 THE SYNOPSIS MUST BE STRICTLY ANONYMOUS.  NO INDICATION OF THE AUTHOR(S) MAY APPEAR ON THE DOCUMENT. (No address, company name or the alike).
 
