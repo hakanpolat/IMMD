@@ -15,6 +15,8 @@ Rg = 1.5;
 Rd = 25e-6;
 Rs = 25e-6;
 
+Rt = (0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
+
 %% Circuit Parasitics
 Ldc = 5e-9;
 Lground = 5e-9;
@@ -47,12 +49,18 @@ StopTime = 3e-6;
 set_param(model, 'StopTime','3e-6' )
 sim(model);
 
-TopVoltageDS = TopVoltageDS + TopChCurr*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
-BotVoltageDS = BotVoltageDS + BotChCurr*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
-TopVoltageDSCap = TopVoltageDSCap + TopChCurrCap*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
-BotVoltageDSCap = BotVoltageDSCap + BotChCurrCap*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
-TopVoltageDSConstCap = TopVoltageDSConstCap + TopChCurrConstCap*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
-BotVoltageDSConstCap = BotVoltageDSConstCap + BotChCurrConstCap*(0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
+TopVoltDSCons = TopVoltDSCons + TopChCons*Rt;
+BotVoltDSCons = BotVoltDSCons + BotChCons*Rt;
+
+TopVoltDSCap = TopVoltDSCap + TopChCap*Rt;
+BotVoltDSCap = BotVoltDSCap + BotChCap*Rt;
+
+TopVoltDSInd = TopVoltDSInd + TopChInd*Rt;
+BotVoltDSInd = BotVoltDSInd + BotChInd*Rt;
+
+TopChVoltInd = TopChVoltInd + TopChInd*Rt;
+BotChVoltInd = BotChVoltInd + BotChInd*Rt;
+
 %% Plots
 
 Vgs = -10:1:6;
