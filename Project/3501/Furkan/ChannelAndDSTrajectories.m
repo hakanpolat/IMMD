@@ -78,7 +78,7 @@ Period = 1/fsw;
     TonSampleEnd   = TonSampleMid + MarginOn + 12000;%0.48*Period/SampleTime;   
     DurationTopON = TonSampleEnd - TonSampleBegin; 
 %Top Switch Plot
-
+% 
 % Turn OFF Plot
 %         InitI = TopCurrentDS(ToffSampleBegin);
 %         InitV = TopVoltageDS(ToffSampleBegin);
@@ -102,7 +102,7 @@ Period = 1/fsw;
 %             plot(TopVoltageDS(ToffSampleBegin),TopCurrentDS(ToffSampleBegin),'*','Linewidth',10.0);
 %             plot(TopVoltageDS(ToffSampleEnd),TopCurrentDS(ToffSampleEnd),'*','Linewidth',10.0);
 %         hold off
-
+% 
 
 
 InitI = TopChCons(ToffSampleBegin);
