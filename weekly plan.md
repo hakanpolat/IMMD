@@ -1,3 +1,14 @@
+### 04.12.2017 - 10.12.2017
+#### Planlanan çalışmalar:
+* Tasarım makalesi submit (POWERENG)
+* GaN modelleme abstract  submit(EPE)
+* V.1. Prototip BAP satın almaları
+* Education makalesi devam
+* RPG makalesi abstract submit
+
+#### Gerçekleşen çalışmalar:
+* ...
+
 ### 27.11.2017 - 03.12.2017
 #### Planlanan çalışmalar:
 * Optimizasyon makalesi devam (PEMD)
@@ -7,7 +18,7 @@
 * Education makalesi devam
 
 #### Gerçekleşen çalışmalar:
-*
+* EPE, POWERENG, RPG devam edildi.
 
 ### 20.11.2017 - 26.11.2017
 #### Planlanan çalışmalar:
