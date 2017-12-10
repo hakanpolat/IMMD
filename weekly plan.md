@@ -1,13 +1,28 @@
+### 11.12.2017 - 17.12.2017
+#### Planlanan çalışmalar:
+* GaN modelleme abstract submit edilecek (EPE)
+* V.1. Prototip sarf satın alma süreci başlatılacak
+* V.1. Prototip teçhizat ve hizmet prosedürleri bitirilecek
+* Education makalesine devam edilecek
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 04.12.2017 - 10.12.2017
 #### Planlanan çalışmalar:
 * Tasarım makalesi submit (POWERENG)
-* GaN modelleme abstract  submit(EPE)
+* GaN modelleme abstract submit(EPE)
 * V.1. Prototip BAP satın almaları
 * Education makalesi devam
 * RPG makalesi abstract submit
 
 #### Gerçekleşen çalışmalar:
-* ...
+* POWERENG makalesi submit edildi.
+* EPE makalesi review edildi. Submit edilecek.
+* RPG makalesi submit edildi.
+* V.1. satın almalar için malzeme listesi bitirildi. Teklif istendi.
 
 ### 27.11.2017 - 03.12.2017
 #### Planlanan çalışmalar:
