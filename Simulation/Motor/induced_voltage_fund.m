@@ -1,6 +1,6 @@
-ind_vdata = importdata('ind_v.xlsx');
-data2 = ind_vdata(2:7,1);
-data3 = str2num(cell2mat(data2));
+% ind_vdata = importdata('ind_v.xlsx');
+% data2 = ind_vdata(2:7,1);
+% data3 = str2num(cell2mat(data2));
 
 %%
 dataa = [
