@@ -6,9 +6,8 @@
 * Education makalesine devam edilecek
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* V.1. Prototip sarflar için teklif istendi
+* V.1. Prototip hizmet belgeleri verildi
 
 ### 04.12.2017 - 10.12.2017
 #### Planlanan çalışmalar:
@@ -22,7 +21,7 @@
 * POWERENG makalesi submit edildi.
 * EPE makalesi review edildi. Submit edilecek.
 * RPG makalesi submit edildi.
-* V.1. satın almalar için malzeme listesi bitirildi. Teklif istendi.
+* V.1. satın almalar için malzeme listesi bitirildi.
 
 ### 27.11.2017 - 03.12.2017
 #### Planlanan çalışmalar:
