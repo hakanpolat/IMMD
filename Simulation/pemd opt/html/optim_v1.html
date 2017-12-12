@@ -1,0 +1,213 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Multi-physics Optimization of IMMD</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-12-13"><meta name="DC.source" content="optim_v1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Multi-physics Optimization of IMMD</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Definitions</a></li><li><a href="#4">Parameters</a></li><li><a href="#5">Constant parameters with definitions</a></li><li><a href="#6">Everything below is subject to change</a></li></ul></div><p>In this file, the system model is developed for the purpose of multi-physics optimization of the IMMD system for PEMD paper.</p><p>M. U&#287;ur</p><p>12.12.2017</p><p>All rights reserved</p><h2>Definitions<a name="3"></a></h2><p>The system is composed of the following parts:</p><div><ul><li>Drive power electronics (DC link + inverter)</li><li>Machine (windings, geometry)</li><li>Heatsink (geometry)</li></ul></div><h2>Parameters<a name="4"></a></h2><p>The following categories are proposed:</p><div><ul><li>Constant parameters</li><li>Optimization parameters</li><li>Dependent parameters</li><li>Constraint parameters</li><li>Objective parameters</li></ul></div><h2>Constant parameters with definitions<a name="5"></a></h2><pre class="codeinput"><span class="comment">% Number of phases in each module</span>
+m = 3;
+<span class="comment">% Average DC link voltage</span>
+Vdc = 540; <span class="comment">% V</span>
+</pre><h2>Everything below is subject to change<a name="6"></a></h2><p>%% Q = 48; layer = 2; n = 4; p = 40; Pout = 8e3; Poutm = Pout/n; Nrated = 540; length = 0.15; Din = 0.15; Dout = 0.23; effmotor = 0.9;</p><p>w = Q/(n*m); ffund = Nrated*p/120; kw = 0.933;</p><p>Bgapa = 0.6; Bgap = Bgapa*pi/2; fluxpp = 2*Din*length*Bgap/p;</p><p>zQ = 22; Nph = zQ*w*layer/2; E = 4.44*Nph*ffund*fluxpp*kw; Vln = E*1.1;</p><p>Vdc = 540; Vdcm = Vdc/2;</p><p>Vllrms = Vln*sqrt(3); scale = sqrt(3)/(2*sqrt(2)); ma = Vllrms/(scale*Vdcm);</p><p>Pdrout = Poutm/effmotor; pf = 0.9; Sdrout = Pdrout/pf; Iphase = Sdrout/(sqrt(3)*Vllrms);</p><p>%% % Design ans Simulation with IGBT</p><p>Ts = 1e-6; % sec % Modulation index ma = 0.8; % Switching frequency fsw = 10e3; % Hz % DC link voltage Vdc = 400; % Volts % Load Ptotal = 8e3/0.9; % W Pout = Ptotal; % W pf = 0.9; Sout = Pout/pf; % VA fout = 50; % Hz wout = 2*pi*fout; % rad/sec Vll_rms = ma*Vdc*0.612; % Volts Iline = Sout/(Vll_rms*sqrt(3)); % Amps Zload = Vll_rms/(Iline*sqrt(3)); % Ohms Rload = Zload*pf; % Ohms Xload = sqrt(Zload^2-Rload^2); % Ohms Lload = Xload/wout; % Henries</p><p>Rin = 10; %Lin = 1e-3; Vin = Vdc + Rin*(Ptotal/Vdc); Cdc = 200e-6;</p><p>Iphase = Iline; Idct = Ptotal/Vdc; Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf; Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16))); Irms_perc = 100*Irmss/Idcc;</p><p>fsw = 10e3; % Hz volt_ripple_perc = 1; volt_ripple = volt_ripple_perc*Vdc/100; Iapeak = Iphase*sqrt(2); Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2); Cdcm = Cdc*1e6;</p><p>%% % Capacitor selection M = 0.8; Iline = Iphase; cosphi = 0.9; module = 4; efficiency = 0.98;</p><p>Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...     cosphi^2*(sqrt(3)/pi-9*M/16))); Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency; Icrms_perc = 100*Icrms/Idc;</p><p>fsw = 40e3; % Hz Cdc = 40e-6; % F Iapeak = Iline*sqrt(2); volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2)) volt_ripple_perc = volt_ripple/Vdc*100</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Multi-physics Optimization of IMMD
+%%
+% In this file, the system model is developed for the purpose of
+% multi-physics optimization of the IMMD system for PEMD paper.
+%%
+% M. Uğur
+%
+% 12.12.2017
+%
+% All rights reserved
+%% Definitions
+% The system is composed of the following parts:
+%
+% * Drive power electronics (DC link + inverter)
+% * Machine (windings, geometry)
+% * Heatsink (geometry)
+%% Parameters
+% The following categories are proposed:
+%
+% * Constant parameters
+% * Optimization parameters
+% * Dependent parameters
+% * Constraint parameters
+% * Objective parameters
+%
+%% Constant parameters with definitions
+
+% Number of phases in each module
+m = 3;
+% Average DC link voltage
+Vdc = 540; % V
+
+
+%% Everything below is subject to change
+% %%
+% Q = 48;
+% layer = 2;
+% n = 4;
+% p = 40;
+% Pout = 8e3;
+% Poutm = Pout/n;
+% Nrated = 540;
+% length = 0.15;
+% Din = 0.15;
+% Dout = 0.23;
+% effmotor = 0.9;
+% 
+% w = Q/(n*m);
+% ffund = Nrated*p/120;
+% kw = 0.933;
+% 
+% Bgapa = 0.6;
+% Bgap = Bgapa*pi/2;
+% fluxpp = 2*Din*length*Bgap/p;
+% 
+% zQ = 22;
+% Nph = zQ*w*layer/2;
+% E = 4.44*Nph*ffund*fluxpp*kw;
+% Vln = E*1.1;
+% 
+% Vdc = 540;
+% Vdcm = Vdc/2;
+% 
+% Vllrms = Vln*sqrt(3);
+% scale = sqrt(3)/(2*sqrt(2));
+% ma = Vllrms/(scale*Vdcm);
+% 
+% Pdrout = Poutm/effmotor;
+% pf = 0.9;
+% Sdrout = Pdrout/pf;
+% Iphase = Sdrout/(sqrt(3)*Vllrms);
+% 
+% 
+% %%
+% % Design ans Simulation with IGBT
+% 
+% Ts = 1e-6; % sec
+% % Modulation index
+% ma = 0.8;
+% % Switching frequency
+% fsw = 10e3; % Hz
+% % DC link voltage
+% Vdc = 400; % Volts
+% % Load
+% Ptotal = 8e3/0.9; % W
+% Pout = Ptotal; % W
+% pf = 0.9;
+% Sout = Pout/pf; % VA
+% fout = 50; % Hz
+% wout = 2*pi*fout; % rad/sec
+% Vll_rms = ma*Vdc*0.612; % Volts
+% Iline = Sout/(Vll_rms*sqrt(3)); % Amps
+% Zload = Vll_rms/(Iline*sqrt(3)); % Ohms
+% Rload = Zload*pf; % Ohms
+% Xload = sqrt(Zload^2-Rload^2); % Ohms
+% Lload = Xload/wout; % Henries
+% 
+% Rin = 10;
+% %Lin = 1e-3;
+% Vin = Vdc + Rin*(Ptotal/Vdc);
+% Cdc = 200e-6;
+% 
+% Iphase = Iline;
+% Idct = Ptotal/Vdc;
+% Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf;
+% Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16)));
+% Irms_perc = 100*Irmss/Idcc;
+% 
+% fsw = 10e3; % Hz
+% volt_ripple_perc = 1;
+% volt_ripple = volt_ripple_perc*Vdc/100;
+% Iapeak = Iphase*sqrt(2);
+% Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2);
+% Cdcm = Cdc*1e6;
+% 
+% 
+% %%
+% % Capacitor selection
+% M = 0.8;
+% Iline = Iphase;
+% cosphi = 0.9;
+% module = 4;
+% efficiency = 0.98;
+% 
+% Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...
+%     cosphi^2*(sqrt(3)/pi-9*M/16)));
+% Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
+% Icrms_perc = 100*Icrms/Idc;
+% 
+% fsw = 40e3; % Hz
+% Cdc = 40e-6; % F
+% Iapeak = Iline*sqrt(2);
+% volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2))
+% volt_ripple_perc = volt_ripple/Vdc*100
+
+
+
+##### SOURCE END #####
+--></body></html>
