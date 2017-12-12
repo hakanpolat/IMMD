@@ -56,7 +56,7 @@ TopVoltDSCap = TopVoltDSCap + TopChCap*Rt;
 BotVoltDSCap = BotVoltDSCap + BotChCap*Rt;
 
 TopVoltDSInd = TopVoltDSInd + TopChInd*Rt;
-BotVoltDSInd = BotVoltDSInd + BotChInd*Rt;
+BotChVoltInd = BotChVoltInd + BotChInd*Rt;
 
 TopChVoltInd = TopChVoltInd + TopChInd*Rt;
 BotChVoltInd = BotChVoltInd + BotChInd*Rt;
@@ -94,7 +94,7 @@ end
 
 figure(f1);
 hold all
-grid minor
+grid on
 for j=[8,13,14,17]
     plot((Vds2(j,:)), I_top(j,:),'Linewidth',2.0);
     %plot((Vds),  I_top(j,:),'Linewidth',2.0);
@@ -109,7 +109,7 @@ hold off
 
 figure(f2);
 hold all
-grid minor
+grid on
 for j=[8,13,14,17]
     plot((Vds2(j,:)),  I_top(j,:),'Linewidth',2.0);
 end
@@ -167,49 +167,49 @@ Period = 1/fsw;
 
 
 
-InitI = TopChCurrInd(ToffSampleBegin);
-InitV = TopVoltageDSInd(ToffSampleBegin);
+InitI = TopChInd(ToffSampleBegin);
+InitV = TopChVoltInd(ToffSampleBegin);
 figure(f2)
-Isens = 4;
-Vsens = 4;
+Isens = 2;
+Vsens = 2;
 hold all
 for j=ToffSampleBegin:ToffSampleEnd
-    if abs(TopVoltageDSInd(j)-InitV) >= Vsens || abs(TopChCurrInd(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSInd(j)];
-        Y = [InitI TopChCurrInd(j)];
+    if abs(TopChVoltInd(j)-InitV) >= Vsens || abs(TopChInd(j)-InitI) >= Isens
+        X = [InitV TopChVoltInd(j)];
+        Y = [InitI TopChInd(j)];
         drawArrow(X,Y,'MaxHeadSize',150,'Color','r','LineWidth',2);
-        InitV = TopVoltageDSInd(j);
-        InitI = TopChCurrInd(j);
+        InitV = TopChVoltInd(j);
+        InitI = TopChInd(j);
     end
 end 
-    plot(TopVoltageDSCap(ToffSampleBegin),TopChCurrCap(ToffSampleBegin),'*','Linewidth',10.0);
-    plot(TopVoltageDSCap(ToffSampleEnd),TopChCurrCap(ToffSampleEnd),'*','Linewidth',10.0);
+    plot(TopVoltDSCap(ToffSampleBegin),TopChCap(ToffSampleBegin),'*','Linewidth',10.0);
+    plot(TopVoltDSCap(ToffSampleEnd),TopChCap(ToffSampleEnd),'*','Linewidth',10.0);
     
-Isens = 4;
-Vsens = 4;
-InitI = TopChCurrCap(ToffSampleBegin);
-InitV = TopVoltageDSCap(ToffSampleBegin);
+Isens = 2;
+Vsens = 2;
+InitI = TopChCap(ToffSampleBegin);
+InitV = TopVoltDSCap(ToffSampleBegin);
 for j=ToffSampleBegin:ToffSampleEnd
-    if abs(TopVoltageDSCap(j)-InitV) >= Vsens || abs(TopChCurrCap(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSCap(j)];
-        Y = [InitI TopChCurrCap(j)];
+    if abs(TopVoltDSCap(j)-InitV) >= Vsens || abs(TopChCap(j)-InitI) >= Isens
+        X = [InitV TopVoltDSCap(j)];
+        Y = [InitI TopChCap(j)];
         drawArrow(X,Y,'MaxHeadSize',150,'Color','b','LineWidth',2);
-        InitV = TopVoltageDSCap(j);
-        InitI = TopChCurrCap(j);
+        InitV = TopVoltDSCap(j);
+        InitI = TopChCap(j);
     end
 end 
 
-Isens = 4;
-Vsens = 4;
-InitI = TopChCurrConstCap(ToffSampleBegin);
-InitV = TopVoltageDSConstCap(ToffSampleBegin);
+Isens = 2;
+Vsens = 2;
+InitI = TopChCons(ToffSampleBegin);
+InitV = TopVoltDSCons(ToffSampleBegin);
 for j=ToffSampleBegin:ToffSampleEnd
-    if abs(TopVoltageDSConstCap(j)-InitV) >= Vsens || abs(TopChCurrConstCap(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSConstCap(j)];
-        Y = [InitI TopChCurrConstCap(j)];
+    if abs(TopVoltDSCons(j)-InitV) >= Vsens || abs(TopChCons(j)-InitI) >= Isens
+        X = [InitV TopVoltDSCons(j)];
+        Y = [InitI TopChCons(j)];
         drawArrow(X,Y,'MaxHeadSize',150,'Color','k','LineWidth',2);
-        InitV = TopVoltageDSConstCap(j);
-        InitI = TopChCurrConstCap(j);
+        InitV = TopVoltDSCons(j);
+        InitI = TopChCons(j);
     end
 end 
 hold off
@@ -217,8 +217,8 @@ hold off
 
 
 % Turn ON Plot
-Isens = 5;
-Vsens = 5;
+Isens = 2;
+Vsens = 2;
 % Drain-Source Current PLOT
 %         InitI = TopCurrentDS(TonSampleBegin);
 %         InitV = TopVoltageDS(TonSampleBegin);
@@ -243,17 +243,17 @@ Vsens = 5;
 %             plot(TopVoltageDS(TonSampleEnd),TopCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
 %         hold off;
 
-InitI = TopChCurrInd(TonSampleBegin);
-InitV = TopVoltageDSInd(TonSampleBegin);
+InitI = TopChInd(TonSampleBegin);
+InitV = TopChVoltInd(TonSampleBegin);
 figure(f1)
 hold all
 for j=TonSampleBegin:TonSampleEnd
-    if abs(TopVoltageDSInd(j)-InitV) >= Vsens || abs(TopChCurrInd(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSInd(j)];
-        Y = [InitI TopChCurrInd(j)];
+    if abs(TopChVoltInd(j)-InitV) >= Vsens || abs(TopChInd(j)-InitI) >= Isens
+        X = [InitV TopChVoltInd(j)];
+        Y = [InitI TopChInd(j)];
         drawArrow(X,Y,'MaxHeadSize',1000,'Color','r','LineWidth',2);
-        InitV = TopVoltageDSInd(j);
-        InitI = TopChCurrInd(j);
+        InitV = TopChVoltInd(j);
+        InitI = TopChInd(j);
     end
     if InitV<20
         Vsens = 0.5;
@@ -264,20 +264,20 @@ for j=TonSampleBegin:TonSampleEnd
     end
        
 end 
-    plot(TopVoltageDSCap(TonSampleBegin),TopChCurrCap(TonSampleBegin),'*','Linewidth',10.0);
-    plot(TopVoltageDSCap(TonSampleEnd),TopChCurrCap(TonSampleEnd),'*','Linewidth',10.0);
+    plot(TopVoltDSCap(TonSampleBegin),TopChCap(TonSampleBegin),'*','Linewidth',10.0);
+    plot(TopVoltDSCap(TonSampleEnd),TopChCap(TonSampleEnd),'*','Linewidth',10.0);
     
-Isens = 8;
-Vsens = 8;
-InitI = TopChCurrCap(TonSampleBegin);
-InitV = TopVoltageDSCap(TonSampleBegin);
+Isens = 2;
+Vsens = 2;
+InitI = TopChCap(TonSampleBegin);
+InitV = TopVoltDSCap(TonSampleBegin);
 for j=TonSampleBegin:TonSampleEnd
-    if abs(TopVoltageDSCap(j)-InitV) >= Vsens || abs(TopChCurrCap(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSCap(j)];
-        Y = [InitI TopChCurrCap(j)];
+    if abs(TopVoltDSCap(j)-InitV) >= Vsens || abs(TopChCap(j)-InitI) >= Isens
+        X = [InitV TopVoltDSCap(j)];
+        Y = [InitI TopChCap(j)];
         drawArrow(X,Y,'MaxHeadSize',1000,'Color','b','LineWidth',2);
-        InitV = TopVoltageDSCap(j);
-        InitI = TopChCurrCap(j);
+        InitV = TopVoltDSCap(j);
+        InitI = TopChCap(j);
     end
     if InitV<20
         Vsens = 0.5;
@@ -289,17 +289,17 @@ for j=TonSampleBegin:TonSampleEnd
        
 end 
 
-InitI = TopChCurrConstCap(TonSampleBegin);
-InitV = TopVoltageDSConstCap(TonSampleBegin);
-Isens = 8;
-Vsens = 8;
+InitI = TopChCons(TonSampleBegin);
+InitV = TopVoltDSCons(TonSampleBegin);
+Isens = 2;
+Vsens = 2;
 for j=TonSampleBegin:TonSampleEnd
-    if abs(TopVoltageDSConstCap(j)-InitV) >= Vsens || abs(TopChCurrConstCap(j)-InitI) >= Isens
-        X = [InitV TopVoltageDSConstCap(j)];
-        Y = [InitI TopChCurrConstCap(j)];
+    if abs(TopVoltDSCons(j)-InitV) >= Vsens || abs(TopChCons(j)-InitI) >= Isens
+        X = [InitV TopVoltDSCons(j)];
+        Y = [InitI TopChCons(j)];
         drawArrow(X,Y,'MaxHeadSize',1000,'Color','k','LineWidth',2);
-        InitV = TopVoltageDSConstCap(j);
-        InitI = TopChCurrConstCap(j);
+        InitV = TopVoltDSCons(j);
+        InitI = TopChCons(j);
     end
     if InitV<20
         Vsens = 0.5;
@@ -316,7 +316,7 @@ hold off;
 
 
 %Bot Switch Plot
-Isens = 1;
+Isens = 0.5;
 Vsens = 0.5;
 % Turn OFF for Bottom Switch
     ToffSampleMid = 2*Period/SampleTime + 1 ;
@@ -349,8 +349,8 @@ end
 
 figure(f3);
 hold all
-grid minor
-for j=[1,5,8,14,17]
+grid on
+for j=[1,5,17]
     plot((Vds2(j,:)),  I_bottom(j,:),'Linewidth',2.0);
 end
 xlim([-25 5]);
@@ -358,13 +358,13 @@ ylim([-50 5]);
 xlabel('V_d_s(V)');
 ylabel('I_c_h(A)');
 title({'I_c_h vs V_d_s Curve of Bottom Switch during Turn ON'})
-legend ('Vgs = -10','Vgs = -6','Vgs = -3','Vgs = 3','Vgs = 6','Location','southeast');
+legend ('Vgs = -10','Vgs = -6','Vgs = 6','Location','southeast');
 hold off
 
 figure(f4);
 hold all
 grid minor
-for j=[5,8,11,14,17]
+for j=[5,8,17]
    plot((Vds2(j,:)),  I_bottom(j,:),'Linewidth',2.0);
 end
 xlim([-10 5]);
@@ -372,7 +372,7 @@ ylim([-30 5]);
 xlabel('V_d_s(V)');
 ylabel('I_c_h(A)');
 title({'I_c_h vs V_d_s Curve of Bottom Switch during Turn OFF'})
-legend ('Vgs = -6','Vgs = -3','Vgs = 0','Vgs = 3','Vgs = 6','Location','southeast');
+legend ('Vgs = -6','Vgs = -3','Vgs = 6','Location','southeast');
 hold off
 
 % Turn ON Plot
@@ -400,43 +400,43 @@ hold off
 %         plot(BotVoltageDS(TonSampleEnd),BotCurrentDS(TonSampleEnd),'*','Linewidth',10.0);
 %         hold off
 
-InitI = BotChCurrInd(TonSampleBegin);
-InitV = BotVoltageDSInd(TonSampleBegin);
+InitI = BotChInd(TonSampleBegin);
+InitV = BotChVoltInd(TonSampleBegin);
 figure(f3)
 hold all
-for j=TonSampleBegin:(TonSampleEnd-20000)
-    if abs(BotVoltageDSInd(j)-InitV) >= Vsens || abs(BotChCurrInd(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSInd(j)];
-        Y = [InitI BotChCurrInd(j)];
-        drawArrow(X,Y,'MaxHeadSize',20,'Color','r','LineWidth',2);
-        InitV = BotVoltageDSInd(j);
-        InitI = BotChCurrInd(j);
+for j=TonSampleBegin:(TonSampleEnd-10000)
+    if abs(BotChVoltInd(j)-InitV) >= Vsens || abs(BotChInd(j)-InitI) >= Isens
+        X = [InitV BotChVoltInd(j)];
+        Y = [InitI BotChInd(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','r','LineWidth',2);
+        InitV = BotChVoltInd(j);
+        InitI = BotChInd(j);
     end
 end 
-    plot(BotVoltageDSInd(TonSampleBegin),BotChCurrInd(TonSampleBegin),'*','Linewidth',10.0);
-    plot(BotVoltageDSInd(TonSampleEnd),BotChCurrInd(TonSampleEnd),'*','Linewidth',10.0);
+    plot(BotChVoltInd(TonSampleBegin),BotChInd(TonSampleBegin),'*','Linewidth',10.0);
+    plot(BotChVoltInd(TonSampleEnd),BotChInd(TonSampleEnd),'*','Linewidth',10.0);
     
-InitI = BotChCurrCap(TonSampleBegin);
-InitV = BotVoltageDSCap(TonSampleBegin);
+InitI = BotChCap(TonSampleBegin);
+InitV = BotVoltDSCap(TonSampleBegin);
 for j=(TonSampleBegin+5000):TonSampleEnd
-    if abs(BotVoltageDSCap(j)-InitV) >= Vsens || abs(BotChCurrCap(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSCap(j)];
-        Y = [InitI BotChCurrCap(j)];
-        drawArrow(X,Y,'MaxHeadSize',20,'Color','b','LineWidth',2);
-        InitV = BotVoltageDSCap(j);
-        InitI = BotChCurrCap(j);
+    if abs(BotVoltDSCap(j)-InitV) >= Vsens || abs(BotChCap(j)-InitI) >= Isens
+        X = [InitV BotVoltDSCap(j)];
+        Y = [InitI BotChCap(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','b','LineWidth',2);
+        InitV = BotVoltDSCap(j);
+        InitI = BotChCap(j);
     end
 end 
 
-InitI = BotChCurrConstCap(TonSampleBegin);
-InitV = BotVoltageDSConstCap(TonSampleBegin);
+InitI = BotChCons(TonSampleBegin);
+InitV = BotVoltDSCons(TonSampleBegin);
 for j=TonSampleBegin:TonSampleEnd
-    if abs(BotVoltageDSConstCap(j)-InitV) >= Vsens || abs(BotChCurrConstCap(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSConstCap(j)];
-        Y = [InitI BotChCurrConstCap(j)];
-        drawArrow(X,Y,'MaxHeadSize',20,'Color','k','LineWidth',2);
-        InitV = BotVoltageDSConstCap(j);
-        InitI = BotChCurrConstCap(j);
+    if abs(BotVoltDSCons(j)-InitV) >= Vsens || abs(BotChCons(j)-InitI) >= Isens
+        X = [InitV BotVoltDSCons(j)];
+        Y = [InitI BotChCons(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','k','LineWidth',2);
+        InitV = BotVoltDSCons(j);
+        InitI = BotChCons(j);
     end
 end 
 hold off
@@ -466,45 +466,45 @@ hold off
 %         hold off
 Isens = 1;
 Vsens = 1;
-InitI = BotChCurrInd(ToffSampleBegin);
-InitV = BotVoltageDSInd(ToffSampleBegin);
+InitI = BotChInd(ToffSampleBegin);
+InitV = BotChVoltInd(ToffSampleBegin);
 figure(f4)
 hold all
 for j=ToffSampleBegin:(ToffSampleEnd)
-    if abs(BotVoltageDSInd(j)-InitV) >= Vsens || abs(BotChCurrInd(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSInd(j)];
-        Y = [InitI BotChCurrInd(j)];
-        drawArrow(X,Y,'MaxHeadSize',1000,'Color','r','LineWidth',2);
-        InitV = BotVoltageDSInd(j);
-        InitI = BotChCurrInd(j);
+    if abs(BotChVoltInd(j)-InitV) >= Vsens || abs(BotChInd(j)-InitI) >= Isens
+        X = [InitV BotChVoltInd(j)];
+        Y = [InitI BotChInd(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','r','LineWidth',2);
+        InitV = BotChVoltInd(j);
+        InitI = BotChInd(j);
     end
 end
-plot(BotVoltageDSInd(ToffSampleBegin),BotChCurrInd(ToffSampleBegin),'*','Linewidth',10.0);
-plot(BotVoltageDSInd(ToffSampleEnd),BotChCurrInd(ToffSampleEnd),'*','Linewidth',10.0);
+plot(BotChVoltInd(ToffSampleBegin),BotChInd(ToffSampleBegin),'*','Linewidth',10.0);
+plot(BotChVoltInd(ToffSampleEnd),BotChInd(ToffSampleEnd),'*','Linewidth',10.0);
 
 Isens = 1;
 Vsens = 0.5;
-InitI = BotChCurrCap(ToffSampleBegin);
-InitV = BotVoltageDSCap(ToffSampleBegin);
+InitI = BotChCap(ToffSampleBegin);
+InitV = BotVoltDSCap(ToffSampleBegin);
 for j=ToffSampleBegin:(ToffSampleEnd)
-    if abs(BotVoltageDSCap(j)-InitV) >= Vsens || abs(BotChCurrCap(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSCap(j)];
-        Y = [InitI BotChCurrCap(j)];
-        drawArrow(X,Y,'MaxHeadSize',1000,'Color','b','LineWidth',2);
-        InitV = BotVoltageDSCap(j);
-        InitI = BotChCurrCap(j);
+    if abs(BotVoltDSCap(j)-InitV) >= Vsens || abs(BotChCap(j)-InitI) >= Isens
+        X = [InitV BotVoltDSCap(j)];
+        Y = [InitI BotChCap(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','b','LineWidth',2);
+        InitV = BotVoltDSCap(j);
+        InitI = BotChCap(j);
     end
 end
 
-InitI = BotChCurrConstCap(ToffSampleBegin);
-InitV = BotVoltageDSConstCap(ToffSampleBegin);
+InitI = BotChCons(ToffSampleBegin);
+InitV = BotVoltDSCons(ToffSampleBegin);
 for j=ToffSampleBegin:(ToffSampleEnd)
-    if abs(BotVoltageDSConstCap(j)-InitV) >= Vsens || abs(BotChCurrConstCap(j)-InitI) >= Isens
-        X = [InitV BotVoltageDSConstCap(j)];
-        Y = [InitI BotChCurrConstCap(j)];
-        drawArrow(X,Y,'MaxHeadSize',1000,'Color','k','LineWidth',2);
-        InitV = BotVoltageDSConstCap(j);
-        InitI = BotChCurrConstCap(j);
+    if abs(BotVoltDSCons(j)-InitV) >= Vsens || abs(BotChCons(j)-InitI) >= Isens
+        X = [InitV BotVoltDSCons(j)];
+        Y = [InitI BotChCons(j)];
+        drawArrow(X,Y,'MaxHeadSize',0,'Color','k','LineWidth',2);
+        InitV = BotVoltDSCons(j);
+        InitI = BotChCons(j);
     end
 end
 hold off
