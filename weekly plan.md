@@ -4,10 +4,11 @@
 * V.1. Prototip sarf satın alma süreci başlatılacak
 * V.1. Prototip teçhizat ve hizmet prosedürleri bitirilecek
 * Education makalesine devam edilecek
+* PEMD makalesi için sistem modellemesi yapılacak
 
 #### Gerçekleşen çalışmalar:
-* V.1. Prototip sarflar için teklif istendi
-* V.1. Prototip hizmet belgeleri verildi
+* V.1. Prototip sarflar için teklif istendi.
+* V.1. Prototip hizmet belgeleri verildi.
 
 ### 04.12.2017 - 10.12.2017
 #### Planlanan çalışmalar:

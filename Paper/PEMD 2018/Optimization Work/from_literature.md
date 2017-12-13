@@ -10,3 +10,13 @@ constructing the basic structure of the final paper.
 * **Effect of temperature rise**: This may yield an iterative design since winding resistances and Rds_on (and other parameters) of transistors will change with temperature.
 * **Machine specific power**: Defined as power to weight ratio (W/kg). It can be investigated. It should be considered different than power density??? (W/cm3)
 * **Structural configuration**: should be defined before constructing the model. Will the mechanical parts be included???
+* **Assumptions**: are very important ans should be defined in the model. Ex: the flux distribution is assumed uniform in the calculation of abc..., back core permeability is neglected in the magnetic circuit stc.
+* **Error between analytical model and FEA** should be provided numerically for different sub-models.
+* **Vector control** is assumed?? This way, we can relate the n*m*Eph*Iph product to machine's gross mechanical output power.
+* One proposed model for a WECS includes the following sub-models: **mechanical, geometric, thermal, magnetic, electric, economical, losses (converter), cost (converter)**
+* An example of **converter model** is shown: ![](./conv_submodel.png)
+* An example **thermal equivalent model for stator** is shown: ![](./thermal_eqv_motor_ex.png)
+* An example **magnetic equivalent model** is shown: ![](./magnetic_eqv_circuit_ex.png)
+* An example **some cost functions** are shown: ![](./cost_fnc.png)
+
+.
