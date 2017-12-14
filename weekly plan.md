@@ -7,8 +7,11 @@
 * PEMD makalesi için sistem modellemesi yapılacak
 
 #### Gerçekleşen çalışmalar:
-* V.1. Prototip sarflar için teklif istendi.
-* V.1. Prototip hizmet belgeleri verildi.
+* V.1. Prototip sarf prosedür başlatıldı
+* V.1. Prototip hizmet prosedür bitti
+* V.1. Prototip teçhizat prosedür bitti
+* EPE submit edildi
+* PEMD makalesi için literatür taraması, yapıldı, sistem modeline başlandı, makale taslağı oluşturuldu.
 
 ### 04.12.2017 - 10.12.2017
 #### Planlanan çalışmalar:
