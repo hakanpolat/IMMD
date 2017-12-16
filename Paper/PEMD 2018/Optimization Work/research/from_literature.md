@@ -15,7 +15,6 @@ constructing the basic structure of the final paper.
 * **Vector control** is assumed?? This way, we can relate the n*m*Eph*Iph product to machine's gross mechanical output power.
 * One proposed model for a WECS includes the following sub-models: **mechanical, geometric, thermal, magnetic, electric, economical, losses (converter), cost (converter)**
 
-
 * An example of **converter model** is shown: ![](./conv_submodel.png)
 * An example **thermal equivalent model for stator** is shown: ![](./thermal_eqv_motor_ex.png)
 * An example **magnetic equivalent model** is shown: ![](./magnetic_eqv_circuit_ex.png)
