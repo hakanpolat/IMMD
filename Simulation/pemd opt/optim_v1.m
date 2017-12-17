@@ -11,9 +11,10 @@
 %% Definitions
 % The system is composed of the following parts:
 %
-% * Drive power electronics (DC link + inverter)
-% * Machine (windings, geometry)
-% * Heatsink (geometry)
+% * Electrical (DC link + inverter)
+% * Electromagnetic (windings + PM)
+% * Geometry (motor + heatsink)
+% * Thermal (drive + motor)
 %% Parameters
 % The following categories are proposed:
 %
@@ -23,12 +24,115 @@
 % * Constraint parameters
 % * Objective parameters
 %
+%% Universal constants
+
+% Permeability of air
+mu0 = 4*pi*1e-7; % H/m
+% Copper resistivity (20 C)
+roc = 1.7e-8; % Ohm*m
+% Copper permeability
+muc = 1.2e-6; % H/m
+% Density of copper
+dcu = 8.96; % g/cm^3
+% Density of magnet (NeFeB)
+dm = 7.4; % g/cm^3
+% Density of iron
+dc = 7.65; % g/cm^3
+% Temperature coefficient of copper
+Tccu = 4.041e-3; % C-1
+
 %% Constant parameters with definitions
 
 % Number of phases in each module
 m = 3;
 % Average DC link voltage
 Vdc = 540; % V
+% Total mechanical output power
+Pout = 8e3; % W
+% Electrical loading target
+Armst = 35e3; % A/m
+% Magnetic loading target
+Bavgt = 0.6; % T
+% Electric current density target
+Jrmst = 4; % A/mm^2
+% Magnet remamnent flux density
+Br = 1.2; % T
+% Magnet relative permeability
+mur = 1.1;
+% Motor rated speed
+Nr = 600; % rpm
+% Ambient temperature
+Ta = 40; % C
+% Stator stacking factor
+ks = 0.96;
+% Number of stator slot layers
+l = 2;
+
+%% Optimization parameters with definitions
+
+% Switching frequency ([10e3,200e3] Hz)
+fsw = 40e3; % Hz
+% Total number of modules ([2,10])
+n = 4;
+% Number of series connected modules ([2,5])
+ns = 2;
+% Modulation index ([0.55,0.95])
+ma = 0.9;
+% Aspect ratio ([0.2-2])
+ar = 0.5;
+% Magnet embrace ([0.45-0.95])
+em = 0.7;
+% Number of slots per module per phase ([2,10])
+w = 2;
+% Magnet thickness ([1,10] mm)
+lm = 4; % mm
+
+%% Constraint parameters
+
+% Maximum fill factor
+kcu = 0.6;
+% Maximum stator tooth flux density
+Btsmax = 1.8; % T
+% Maximum stator yoke flux density
+Bysmax = 2.0; % T
+% Maximum rotor yoke flux density
+Byrmax = 1.4; % T
+% Maximum total harmonic distortion (THD)
+THDmax = 5; % percent
+% Minimum motor drive efficiency
+effdrmin = 98;% percent
+% Minimum motor efficiency
+effmmin = 94;% percent
+% Maximum cogging torque
+Tcmax = 1; % percent
+% Maximum torque ripple
+Tripmax = 1; % percent
+% Maximum device junction temperature
+Tjmax = 140; % C
+% Maximum winding temperature
+Twmax = 200; % C
+% Maximum magnet temperature
+Tmmax = 120; % C
+% Maximum capacitor temperature
+Tcmax = 70; % C
+% Maximum tip speed
+vtipmax = 10; % m/s
+
+%% Objective parameters
+
+% System power density
+PDmin = 1; % W/cm^3
+% Magnet cost
+Cmmax = 1; %
+% Device cost
+Cdmax = 1; %
+% Capacitor cost
+Ccmax = 1; %
+% Copper cost
+Ccumax = 1; %
+% Iron cost
+Cimax = 1; %
+
 
 
 %% Everything below is subject to change
