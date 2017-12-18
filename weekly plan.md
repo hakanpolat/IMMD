@@ -1,3 +1,15 @@
+### 18.12.2017 - 24.12.2017
+#### Planlanan çalışmalar:
+* V.1. Prototip sarf satın alma prodesürleri
+* PEMD makalesi için sistem modellemesi yapılacak, ilişkiler çıkarılacak
+* Powerlab semineri Research League tanıtımı
+* **361LAB**
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 11.12.2017 - 17.12.2017
 #### Planlanan çalışmalar:
 * GaN modelleme abstract submit edilecek (EPE)
