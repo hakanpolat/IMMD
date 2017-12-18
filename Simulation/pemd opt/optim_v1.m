@@ -24,6 +24,49 @@
 % * Constraint parameters
 % * Objective parameters
 %
+
+%% Global definitiona
+global mu0
+global roc
+global muc
+global dencu
+global denm
+global denc
+global Tccu
+global m
+global Vdc
+global Pout
+global Armst
+global Bavgt
+global Jrmst
+global Br
+global mur
+global Nr
+global Tamb
+global kst
+global layer
+global fsw
+global ma
+global lm
+global em
+global ar
+global w
+global kcumax
+global Btsmax
+global Bysmax
+global Byrmax
+global THDmax
+global effdrmin
+global effmmin
+global pfmin
+global Tcogmax
+global Tripmax
+global Tjmax
+global Twmax
+global Tmmax
+global Tcamax
+global vtipmax
+
 %% Universal constants
 
 % Permeability of air
@@ -33,11 +76,11 @@ roc = 1.7e-8; % Ohm*m
 % Copper permeability
 muc = 1.2e-6; % H/m
 % Density of copper
-dcu = 8.96; % g/cm^3
+dencu = 8.96; % g/cm^3
 % Density of magnet (NeFeB)
-dm = 7.4; % g/cm^3
+denm = 7.4; % g/cm^3
 % Density of iron
-dc = 7.65; % g/cm^3
+denc = 7.65; % g/cm^3
 % Temperature coefficient of copper
 Tccu = 4.041e-3; % C-1
 
@@ -62,11 +105,11 @@ mur = 1.1;
 % Motor rated speed
 Nr = 600; % rpm
 % Ambient temperature
-Ta = 40; % C
+Tamb = 40; % C
 % Stator stacking factor
-ks = 0.96;
+kst = 0.96;
 % Number of stator slot layers
-l = 2;
+layer = 2;
 
 %% Optimization parameters with definitions
 
@@ -90,7 +133,7 @@ lm = 4; % mm
 %% Constraint parameters
 
 % Maximum fill factor
-kcu = 0.6;
+kcumax = 0.6;
 % Maximum stator tooth flux density
 Btsmax = 1.8; % T
 % Maximum stator yoke flux density
@@ -103,8 +146,10 @@ THDmax = 5; % percent
 effdrmin = 98;% percent
 % Minimum motor efficiency
 effmmin = 94;% percent
+% Minimum power factor
+pfmin = 0.9;
 % Maximum cogging torque
-Tcmax = 1; % percent
+Tcogmax = 1; % percent
 % Maximum torque ripple
 Tripmax = 1; % percent
 % Maximum device junction temperature
@@ -114,7 +159,7 @@ Twmax = 200; % C
 % Maximum magnet temperature
 Tmmax = 120; % C
 % Maximum capacitor temperature
-Tcmax = 70; % C
+Tcamax = 70; % C
 % Maximum tip speed
 vtipmax = 10; % m/s
 
@@ -133,7 +178,8 @@ Ccumax = 1; %
 % Iron cost
 Cimax = 1; %
 
-
+%% Electrical model-1: Device selection
+device_parem = device_selection(n,ns);
 
 %% Everything below is subject to change
 % %%

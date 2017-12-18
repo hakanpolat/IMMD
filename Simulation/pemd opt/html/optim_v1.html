@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Multi-physics Optimization of IMMD</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-12-17"><meta name="DC.source" content="optim_v1.m"><style type="text/css">
+      --><title>Multi-physics Optimization of IMMD</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-12-18"><meta name="DC.source" content="optim_v1.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -66,21 +66,107 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Multi-physics Optimization of IMMD</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Definitions</a></li><li><a href="#4">Parameters</a></li><li><a href="#5">Universal constants</a></li><li><a href="#6">Constant parameters with definitions</a></li><li><a href="#7">Optimization parameters with definitions</a></li><li><a href="#8">Constraint parameters</a></li><li><a href="#9">Everything below is subject to change</a></li></ul></div><p>In this file, the system model is developed for the purpose of multi-physics optimization of the IMMD system for PEMD paper.</p><p>M. U&#287;ur</p><p>12.12.2017</p><p>All rights reserved</p><h2>Definitions<a name="3"></a></h2><p>The system is composed of the following parts:</p><div><ul><li>Electrical (DC link + inverter)</li><li>Electromagnetic (windings + PM)</li><li>Geometry (motor + heatsink)</li><li>Thermal (drive + motor)</li></ul></div><h2>Parameters<a name="4"></a></h2><p>The following categories are proposed:</p><div><ul><li>Constant parameters</li><li>Optimization parameters</li><li>Dependent parameters</li><li>Constraint parameters</li><li>Objective parameters</li></ul></div><h2>Universal constants<a name="5"></a></h2><pre class="codeinput"><span class="comment">% Permeability of air</span>
+  </style></head><body><div class="content"><h1>Multi-physics Optimization of IMMD</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#3">Definitions</a></li><li><a href="#4">Parameters</a></li><li><a href="#5">Global definitiona</a></li><li><a href="#6">Universal constants</a></li><li><a href="#7">Constant parameters with definitions</a></li><li><a href="#8">Optimization parameters with definitions</a></li><li><a href="#9">Constraint parameters</a></li><li><a href="#10">Objective parameters</a></li><li><a href="#11">Electrical model-1: Device selection</a></li><li><a href="#12">Everything below is subject to change</a></li></ul></div><p>In this file, the system model is developed for the purpose of multi-physics optimization of the IMMD system for PEMD paper.</p><p>M. U&#287;ur</p><p>12.12.2017</p><p>All rights reserved</p><h2>Definitions<a name="3"></a></h2><p>The system is composed of the following parts:</p><div><ul><li>Electrical (DC link + inverter)</li><li>Electromagnetic (windings + PM)</li><li>Geometry (motor + heatsink)</li><li>Thermal (drive + motor)</li></ul></div><h2>Parameters<a name="4"></a></h2><p>The following categories are proposed:</p><div><ul><li>Constant parameters</li><li>Optimization parameters</li><li>Dependent parameters</li><li>Constraint parameters</li><li>Objective parameters</li></ul></div><h2>Global definitiona<a name="5"></a></h2><pre class="codeinput"><span class="keyword">global</span> mu0
+<span class="keyword">global</span> roc
+<span class="keyword">global</span> muc
+<span class="keyword">global</span> dencu
+<span class="keyword">global</span> denm
+<span class="keyword">global</span> denc
+<span class="keyword">global</span> Tccu
+<span class="keyword">global</span> m
+<span class="keyword">global</span> Vdc
+<span class="keyword">global</span> Pout
+<span class="keyword">global</span> Armst
+<span class="keyword">global</span> Bavgt
+<span class="keyword">global</span> Jrmst
+<span class="keyword">global</span> mur
+<span class="keyword">global</span> Nr
+<span class="keyword">global</span> Tamb
+<span class="keyword">global</span> kst
+<span class="keyword">global</span> layer
+<span class="keyword">global</span> fsw
+<span class="keyword">global</span> n
+<span class="keyword">global</span> ns
+<span class="keyword">global</span> ma
+<span class="keyword">global</span> lm
+<span class="keyword">global</span> em
+<span class="keyword">global</span> ar
+<span class="keyword">global</span> w
+</pre><pre class="codeoutput">Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+Warning: The value of local variables may have been changed to match the
+globals.  Future versions of MATLAB will require that you declare a variable to
+be global before you use that variable. 
+</pre><h2>Universal constants<a name="6"></a></h2><pre class="codeinput"><span class="comment">% Permeability of air</span>
 mu0 = 4*pi*1e-7; <span class="comment">% H/m</span>
 <span class="comment">% Copper resistivity (20 C)</span>
 roc = 1.7e-8; <span class="comment">% Ohm*m</span>
 <span class="comment">% Copper permeability</span>
 muc = 1.2e-6; <span class="comment">% H/m</span>
 <span class="comment">% Density of copper</span>
-dcu = 8.96; <span class="comment">% g/cm^3</span>
+dencu = 8.96; <span class="comment">% g/cm^3</span>
 <span class="comment">% Density of magnet (NeFeB)</span>
-dm = 7.4; <span class="comment">% g/cm^3</span>
+denm = 7.4; <span class="comment">% g/cm^3</span>
 <span class="comment">% Density of iron</span>
-dc = 7.65; <span class="comment">% g/cm^3</span>
+denc = 7.65; <span class="comment">% g/cm^3</span>
 <span class="comment">% Temperature coefficient of copper</span>
 Tccu = 4.041e-3; <span class="comment">% C-1</span>
-</pre><h2>Constant parameters with definitions<a name="6"></a></h2><pre class="codeinput"><span class="comment">% Number of phases in each module</span>
+</pre><h2>Constant parameters with definitions<a name="7"></a></h2><pre class="codeinput"><span class="comment">% Number of phases in each module</span>
 m = 3;
 <span class="comment">% Average DC link voltage</span>
 Vdc = 540; <span class="comment">% V</span>
@@ -99,12 +185,12 @@ mur = 1.1;
 <span class="comment">% Motor rated speed</span>
 Nr = 600; <span class="comment">% rpm</span>
 <span class="comment">% Ambient temperature</span>
-Ta = 40; <span class="comment">% C</span>
+Tamb = 40; <span class="comment">% C</span>
 <span class="comment">% Stator stacking factor</span>
-ks = 0.96;
+kst = 0.96;
 <span class="comment">% Number of stator slot layers</span>
-l = 2;
-</pre><h2>Optimization parameters with definitions<a name="7"></a></h2><pre class="codeinput"><span class="comment">% Switching frequency ([10e3,200e3] Hz)</span>
+layer = 2;
+</pre><h2>Optimization parameters with definitions<a name="8"></a></h2><pre class="codeinput"><span class="comment">% Switching frequency ([10e3,200e3] Hz)</span>
 fsw = 40e3; <span class="comment">% Hz</span>
 <span class="comment">% Total number of modules ([2,10])</span>
 n = 4;
@@ -120,7 +206,7 @@ em = 0.7;
 w = 2;
 <span class="comment">% Magnet thickness ([1,10] mm)</span>
 lm = 4; <span class="comment">% mm</span>
-</pre><h2>Constraint parameters<a name="8"></a></h2><pre class="codeinput"><span class="comment">% Maximum fill factor</span>
+</pre><h2>Constraint parameters<a name="9"></a></h2><pre class="codeinput"><span class="comment">% Maximum fill factor</span>
 kcu = 0.6;
 <span class="comment">% Maximum stator tooth flux density</span>
 Btsmax = 1.8; <span class="comment">% T</span>
@@ -139,8 +225,28 @@ Tcmax = 1; <span class="comment">% percent</span>
 <span class="comment">% Maximum torque ripple</span>
 Tripmax = 1; <span class="comment">% percent</span>
 <span class="comment">% Maximum device junction temperature</span>
-Tjmax = 140; <span class="comment">% 0_C</span>
-</pre><h2>Everything below is subject to change<a name="9"></a></h2><p>%% Q = 48; layer = 2; n = 4; p = 40; Pout = 8e3; Poutm = Pout/n; Nrated = 540; length = 0.15; Din = 0.15; Dout = 0.23; effmotor = 0.9;</p><p>w = Q/(n*m); ffund = Nrated*p/120; kw = 0.933;</p><p>Bgapa = 0.6; Bgap = Bgapa*pi/2; fluxpp = 2*Din*length*Bgap/p;</p><p>zQ = 22; Nph = zQ*w*layer/2; E = 4.44*Nph*ffund*fluxpp*kw; Vln = E*1.1;</p><p>Vdc = 540; Vdcm = Vdc/2;</p><p>Vllrms = Vln*sqrt(3); scale = sqrt(3)/(2*sqrt(2)); ma = Vllrms/(scale*Vdcm);</p><p>Pdrout = Poutm/effmotor; pf = 0.9; Sdrout = Pdrout/pf; Iphase = Sdrout/(sqrt(3)*Vllrms);</p><p>%% % Design ans Simulation with IGBT</p><p>Ts = 1e-6; % sec % Modulation index ma = 0.8; % Switching frequency fsw = 10e3; % Hz % DC link voltage Vdc = 400; % Volts % Load Ptotal = 8e3/0.9; % W Pout = Ptotal; % W pf = 0.9; Sout = Pout/pf; % VA fout = 50; % Hz wout = 2*pi*fout; % rad/sec Vll_rms = ma*Vdc*0.612; % Volts Iline = Sout/(Vll_rms*sqrt(3)); % Amps Zload = Vll_rms/(Iline*sqrt(3)); % Ohms Rload = Zload*pf; % Ohms Xload = sqrt(Zload^2-Rload^2); % Ohms Lload = Xload/wout; % Henries</p><p>Rin = 10; %Lin = 1e-3; Vin = Vdc + Rin*(Ptotal/Vdc); Cdc = 200e-6;</p><p>Iphase = Iline; Idct = Ptotal/Vdc; Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf; Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16))); Irms_perc = 100*Irmss/Idcc;</p><p>fsw = 10e3; % Hz volt_ripple_perc = 1; volt_ripple = volt_ripple_perc*Vdc/100; Iapeak = Iphase*sqrt(2); Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2); Cdcm = Cdc*1e6;</p><p>%% % Capacitor selection M = 0.8; Iline = Iphase; cosphi = 0.9; module = 4; efficiency = 0.98;</p><p>Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...     cosphi^2*(sqrt(3)/pi-9*M/16))); Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency; Icrms_perc = 100*Icrms/Idc;</p><p>fsw = 40e3; % Hz Cdc = 40e-6; % F Iapeak = Iline*sqrt(2); volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2)) volt_ripple_perc = volt_ripple/Vdc*100</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+Tjmax = 140; <span class="comment">% C</span>
+<span class="comment">% Maximum winding temperature</span>
+Twmax = 200; <span class="comment">% C</span>
+<span class="comment">% Maximum magnet temperature</span>
+Tmmax = 120; <span class="comment">% C</span>
+<span class="comment">% Maximum capacitor temperature</span>
+Tcamax = 70; <span class="comment">% C</span>
+<span class="comment">% Maximum tip speed</span>
+vtipmax = 10; <span class="comment">% m/s</span>
+</pre><h2>Objective parameters<a name="10"></a></h2><pre class="codeinput"><span class="comment">% System power density</span>
+PDmin = 1; <span class="comment">% W/cm^3</span>
+<span class="comment">% Magnet cost</span>
+Cmmax = 1; <span class="comment">%</span>
+<span class="comment">% Device cost</span>
+Cdmax = 1; <span class="comment">%</span>
+<span class="comment">% Capacitor cost</span>
+Ccmax = 1; <span class="comment">%</span>
+<span class="comment">% Copper cost</span>
+Ccumax = 1; <span class="comment">%</span>
+<span class="comment">% Iron cost</span>
+Cimax = 1; <span class="comment">%</span>
+</pre><h2>Electrical model-1: Device selection<a name="11"></a></h2><p>There are 5 different GaN transistors</p><h2>Everything below is subject to change<a name="12"></a></h2><p>%% Q = 48; layer = 2; n = 4; p = 40; Pout = 8e3; Poutm = Pout/n; Nrated = 540; length = 0.15; Din = 0.15; Dout = 0.23; effmotor = 0.9;</p><p>w = Q/(n*m); ffund = Nrated*p/120; kw = 0.933;</p><p>Bgapa = 0.6; Bgap = Bgapa*pi/2; fluxpp = 2*Din*length*Bgap/p;</p><p>zQ = 22; Nph = zQ*w*layer/2; E = 4.44*Nph*ffund*fluxpp*kw; Vln = E*1.1;</p><p>Vdc = 540; Vdcm = Vdc/2;</p><p>Vllrms = Vln*sqrt(3); scale = sqrt(3)/(2*sqrt(2)); ma = Vllrms/(scale*Vdcm);</p><p>Pdrout = Poutm/effmotor; pf = 0.9; Sdrout = Pdrout/pf; Iphase = Sdrout/(sqrt(3)*Vllrms);</p><p>%% % Design ans Simulation with IGBT</p><p>Ts = 1e-6; % sec % Modulation index ma = 0.8; % Switching frequency fsw = 10e3; % Hz % DC link voltage Vdc = 400; % Volts % Load Ptotal = 8e3/0.9; % W Pout = Ptotal; % W pf = 0.9; Sout = Pout/pf; % VA fout = 50; % Hz wout = 2*pi*fout; % rad/sec Vll_rms = ma*Vdc*0.612; % Volts Iline = Sout/(Vll_rms*sqrt(3)); % Amps Zload = Vll_rms/(Iline*sqrt(3)); % Ohms Rload = Zload*pf; % Ohms Xload = sqrt(Zload^2-Rload^2); % Ohms Lload = Xload/wout; % Henries</p><p>Rin = 10; %Lin = 1e-3; Vin = Vdc + Rin*(Ptotal/Vdc); Cdc = 200e-6;</p><p>Iphase = Iline; Idct = Ptotal/Vdc; Idcc = (3/(2*sqrt(2)))*ma*Iphase*pf; Irmss = Iphase*sqrt(2*ma*(sqrt(3)/(4*pi) + pf^2*(sqrt(3)/pi-9*ma/16))); Irms_perc = 100*Irmss/Idcc;</p><p>fsw = 10e3; % Hz volt_ripple_perc = 1; volt_ripple = volt_ripple_perc*Vdc/100; Iapeak = Iphase*sqrt(2); Cdc = ma*(Iapeak - Idcc)/(volt_ripple*fsw*2); Cdcm = Cdc*1e6;</p><p>%% % Capacitor selection M = 0.8; Iline = Iphase; cosphi = 0.9; module = 4; efficiency = 0.98;</p><p>Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...     cosphi^2*(sqrt(3)/pi-9*M/16))); Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency; Icrms_perc = 100*Icrms/Idc;</p><p>fsw = 40e3; % Hz Cdc = 40e-6; % F Iapeak = Iline*sqrt(2); volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2)) volt_ripple_perc = volt_ripple/Vdc*100</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 %% Multi-physics Optimization of IMMD
 %%
@@ -168,6 +274,35 @@ Tjmax = 140; <span class="comment">% 0_C</span>
 % * Constraint parameters
 % * Objective parameters
 %
+
+%% Global definitiona
+global mu0
+global roc
+global muc
+global dencu
+global denm
+global denc
+global Tccu
+global m
+global Vdc
+global Pout
+global Armst
+global Bavgt
+global Jrmst
+global mur
+global Nr
+global Tamb
+global kst
+global layer
+global fsw
+global n
+global ns
+global ma
+global lm
+global em
+global ar
+global w
+
 %% Universal constants
 
 % Permeability of air
@@ -177,11 +312,11 @@ roc = 1.7e-8; % Ohm*m
 % Copper permeability
 muc = 1.2e-6; % H/m
 % Density of copper
-dcu = 8.96; % g/cm^3
+dencu = 8.96; % g/cm^3
 % Density of magnet (NeFeB)
-dm = 7.4; % g/cm^3
+denm = 7.4; % g/cm^3
 % Density of iron
-dc = 7.65; % g/cm^3
+denc = 7.65; % g/cm^3
 % Temperature coefficient of copper
 Tccu = 4.041e-3; % C-1
 
@@ -206,11 +341,11 @@ mur = 1.1;
 % Motor rated speed
 Nr = 600; % rpm
 % Ambient temperature
-Ta = 40; % C
+Tamb = 40; % C
 % Stator stacking factor
-ks = 0.96;
+kst = 0.96;
 % Number of stator slot layers
-l = 2;
+layer = 2;
 
 %% Optimization parameters with definitions
 
@@ -252,8 +387,34 @@ Tcmax = 1; % percent
 % Maximum torque ripple
 Tripmax = 1; % percent
 % Maximum device junction temperature
-Tjmax = 140; % 0_C
+Tjmax = 140; % C
+% Maximum winding temperature
+Twmax = 200; % C
+% Maximum magnet temperature
+Tmmax = 120; % C
+% Maximum capacitor temperature
+Tcamax = 70; % C
+% Maximum tip speed
+vtipmax = 10; % m/s
 
+%% Objective parameters
+
+% System power density
+PDmin = 1; % W/cm^3
+% Magnet cost
+Cmmax = 1; %
+% Device cost
+Cdmax = 1; %
+% Capacitor cost
+Ccmax = 1; %
+% Copper cost
+Ccumax = 1; %
+% Iron cost
+Cimax = 1; %
+
+%% Electrical model-1: Device selection
+% There are 5 different GaN transistors
+% 
 
 %% Everything below is subject to change
 % %%
