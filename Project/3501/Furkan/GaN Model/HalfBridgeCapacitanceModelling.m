@@ -38,7 +38,7 @@ DelayBot = 50;
 
 
 %% Load parameters
-Rload = 200/15;
+Rload = 200/20;
 Lload = 10e-6;
 Cload = 0.22e-6;
 %% Run Simulink
@@ -48,18 +48,18 @@ load_system(model);
 StopTime = 3e-6;
 set_param(model, 'StopTime','3e-6' )
 sim(model);
-
-TopVoltDSCons = TopVoltDSCons + TopChCons*Rt;
-BotVoltDSCons = BotVoltDSCons + BotChCons*Rt;
-
-TopVoltDSCap = TopVoltDSCap + TopChCap*Rt;
-BotVoltDSCap = BotVoltDSCap + BotChCap*Rt;
-
-TopVoltDSInd = TopVoltDSInd + TopChInd*Rt;
-BotChVoltInd = BotChVoltInd + BotChInd*Rt;
-
-TopChVoltInd = TopChVoltInd + TopChInd*Rt;
-BotChVoltInd = BotChVoltInd + BotChInd*Rt;
+% 
+% TopVoltDSCons = TopVoltDSCons + TopChCons*Rt;
+% BotVoltDSCons = BotVoltDSCons + BotChCons*Rt;
+% 
+% TopVoltDSCap = TopVoltDSCap + TopChCap*Rt;
+% BotVoltDSCap = BotVoltDSCap + BotChCap*Rt;
+% 
+% TopVoltDSInd = TopVoltDSInd + TopChInd*Rt;
+% BotChVoltInd = BotChVoltInd + BotChInd*Rt;
+% 
+% TopChVoltInd = TopChVoltInd + TopChInd*Rt;
+% BotChVoltInd = BotChVoltInd + BotChInd*Rt;
 
 %% Plots
 
