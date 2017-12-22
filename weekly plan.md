@@ -6,9 +6,10 @@
 * **361LAB**
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* V.1. Prototip sarf prosedür bitti
+* PEMD makalesi için sistem modellemesine başlandı. Modeller belirlendi, MATLAB'ta kuruluyor.
+* Research League tanıtımı yapıldı. Başvuru formu, sunum, afiş vs.
+* 361 Labları bitti :)
 
 ### 11.12.2017 - 17.12.2017
 #### Planlanan çalışmalar:
