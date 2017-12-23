@@ -45,12 +45,14 @@ global Nr
 global Tamb
 global kst
 global layer
-global fsw
-global ma
-global lm
-global em
-global ar
-global w
+% global n
+% global ns
+% global fsw
+% global ma
+% global lm
+% global em
+% global ar
+% global w
 global kcumax
 global Btsmax
 global Bysmax
@@ -179,7 +181,19 @@ Ccumax = 1; %
 Cimax = 1; %
 
 %% Electrical model-1: Device selection
-device_parem = device_selection(n,ns);
+device_parameters = device_selection(n,ns,ma);
+% device parameters:
+% 1. Igan, 2. Vgan, 3. Rdson, 4. Eon, 5. Eoff, 6. Eoss, 7. Rthjc, 8. Cgan
+%[Igan,Vgan,Rdson,Eon,Eoff,Eoss,Rthjc,Cgan]
+
+%% Electrical model-2: Electrical loss model
+pf = 0.9;
+Vln = 0.612*Vdc*ma/(ns*sqrt(3));
+Irms = 100*Pout/(effmmin*pfmin*n*Vln*m);
+Plossdr = electrical_loss(device_parameters,fsw,ma,n,pf,Irms);
+
+
+
 
 %% Everything below is subject to change
 % %%
