@@ -8,7 +8,7 @@ Eoff = device_parameters(5);
 Eoss = device_parameters(6);
 
 % Transistor forward conduction
-Pcf = Rdson*Irms*sqrt(2)/4;
+Pcf = Rdson*(Irms*sqrt(2))^2/4;
 % Transistor reverse conduction
 Pcr = ;
 % Transistor switching

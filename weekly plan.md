@@ -1,3 +1,13 @@
+### 25.12.2017 - 31.12.2017
+#### Planlanan çalışmalar:
+* PEMD makalesi için sistemin MATLAB'ta modellemesi bitirilecek
+* ECCe makalesi planlaması bitirilecek. Makaleye başlanacak.
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 18.12.2017 - 24.12.2017
 #### Planlanan çalışmalar:
 * V.1. Prototip sarf satın alma prodesürleri
