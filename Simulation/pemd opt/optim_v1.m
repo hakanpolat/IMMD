@@ -384,6 +384,7 @@ bs1 = Taos*1e3-bt; % mm
 % In this model, all harmonics are considered
 fs = Nr*p/120; % Hz
 Apole = Taop*La; % m^2
+% em????
 Fluxpph = zeros(1,hnum);
 for k = 1:hnum
     Fluxpph = (2/pi)*(Bgph/k)*Apole; % Weber
@@ -397,7 +398,6 @@ Nphm = Ephm/Ecoil;
 turnc = ceil(2*Nphm/(layer*w));
 Iphm = Pout/(m*n*Ephm); % Arms
 Arms = 1e-3*layer*turnc*Qs*Iphm/(pi*Dis); % kA/m
-
 
 %% Electromagnetic model-6: Winding selection
 Awdgmin = Iphm/Jrmst; % mm^2
@@ -419,13 +419,44 @@ Dss = Dis*1e3+2*hs; % mm
 Taoss = pi*Dss/Qs; % mm
 Dos = Dss+2*hbc; % mm
 
+%% Electromagnetic model-7: Inductances
+% Armature reaction
+%Lgap1 = 16*mu0*Nphm^2*Dis*La/(pi*lg*1e-3*p^3) % Henries
+Agap = em*pi*Dis*La/p; % m^2
+Lgap = w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3) % Henries
+
+% Slot leakage
+bs0 = bs1/2; % mm
+hs0 = 1.5; % mm
+hs1 = 1.5; % mm
+bsavg = (bs1+bs2)/2; % mm
+Lslk1 = Qs*(2*turnc)^2*[mu0*hs*La/(3*bsavg)]; % Henries
+Lslk2 = Qs*(2*turnc)^2*[mu0*La*hs1/((bs0+bsavg)/2)]; % Henries
+Lslk3 = Qs*(2*turnc)^2*[mu0*hs0*La/bs0]; % Henries
+Lslk = Lslk1+Lslk2+Lslk3 % Henries
+
+% End turn leakage
+Lendt = w*mu0*Taos*turnc^2/4*log(Taos*sqrt(pi)/sqrt(2*Aslot*1e-6)) % Henries
+
+% Phase inductance
+Lph = Lgap + Lslk + Lendt % Henries
+
+
+%% Electromagnetic model-8: Resistances
+% Mean length turn
+MLT = 2*(La+pi*Taos/4);
+Lengthph = MLT*Nphm;
+
+% Phase resistance
+Rphm = roc*Lengthph/(Awdg*1e-6) % 20 0C
+
+% Effect of skin depth
+% !!! add later
 
 %% Winding model (copper loss)
-% input is dimensions
-% cable should be selected
-% Nphm, w etc.
-% Output is Rcu, Pcu
-
+Pcuphm = Iphm^2*Rphm
+Pcum = Pcuphm*m
+Pcu = Pcum*n
 
 %% Winding model (inductances)
 % Both leakage and armature reaction will be obtained
