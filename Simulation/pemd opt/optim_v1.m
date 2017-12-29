@@ -394,8 +394,10 @@ end
 Ecoil = Ecoilh(1);
 
 %% Electromagnetic model-5: Winding
-Nphm = Ephm/Ecoil;
+Nphmrev = Ephm/Ecoil;
 turnc = ceil(2*Nphm/(layer*w));
+Nphm = turnc*layer*w/2;
+Ephm = Ecoil*Nphm; % Volts
 Iphm = Pout/(m*n*Ephm); % Arms
 Arms = 1e-3*layer*turnc*Qs*Iphm/(pi*Dis); % kA/m
 
@@ -458,10 +460,6 @@ Pcuphm = Iphm^2*Rphm
 Pcum = Pcuphm*m
 Pcu = Pcum*n
 
-%% Winding model (inductances)
-% Both leakage and armature reaction will be obtained
-% Slot dimensions....
-% pf will be obtained
 
 
 %% Electromagnetic model (core loss)
@@ -472,8 +470,10 @@ Pcu = Pcum*n
 % Output is Pc, Rc
 
 %% Harmonic equivalent circuit
+
 % Use electrical model, Llk, La etc
 % Obtain THD
+
 
 %% Cogging torque model
 % Inputs: Qs, p, em, lm, lg

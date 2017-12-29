@@ -4,9 +4,8 @@
 * ECCe makalesi planlaması bitirilecek. Makaleye başlanacak.
 
 #### Gerçekleşen çalışmalar:
-* ...
-* ..
-* .
+* PEMD için MATLAB modellemesi heat sinke kadar bitirildi.
+* ECCE için makale önerileri yapıldı.
 
 ### 18.12.2017 - 24.12.2017
 #### Planlanan çalışmalar:
