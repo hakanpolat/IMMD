@@ -1,57 +1,60 @@
 %% Initial Configurations
 clear all;
 %% Device Parameters
-Cgd = 2e-12;
-Cgs = 238e-12;
-Cds = 63e-12;
+Cgd = 1.748e-12;
+Cgs = 160e-12;
+Cds = 65.7e-12;
 
-Ls = 0.9e-9;
-Ld = 0.9e-9;
-Lg = 1e-9;
-Lss = 1e-9;
+Ls = 62e-12;
+Ld = 450e-12;
+Lg = 0.65e-9;
+Lss = 0.43e-9;
 
 Rg = 1.5;
-Rd = 25e-6;
-Rs = 25e-6;
+Rd = 1.1e-3;
+Rs = 1.1e-3;
+Rss = 1e-3;
 
 Rt = (0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
 
 %% Circuit Parasitics
-Ldc = 7e-9;
+Ldc = 3e-9;
 Lground = 5e-9;
 
 %% Gate Driver
-Ron = 20;
-Roff = 5;
+Lgex = 3e-9;
+Ron = 10;
+Roff = 2;
 %% Source parameters
 PulseAmplitude = 6;
-fsw = 1000e3;
+fsw = 2000e3;
 Vdc = 400;
 VpulseMax = 6;
 VpulseMin = -3;
 % Quantities in below are in percent
 Dtop = 49; % duty cycle of top
 Dbot = 49; % duty cycle of bot
-DelayTop = 0;
-DelayBot = 50;
+DelayTop = 50;
+DelayBot = 0;
 
 
 %% Load parameters
-Rload = 200/10;
-Lload = 22e-6;
-Cload = 1e-6;
+LoadCurrent = 30;
+Rload = (Vdc*Dtop/100)/LoadCurrent;
+Lload = 40e-6;
+Cload = 100e-6;
 
-LoadAvgCurr = Vdc*Dtop/Rload/100;
-CurrRipple = (LoadAvgCurr*Rload)*(1-0.01*Dtop)/(fsw*Lload);
+CurrRipple = (LoadCurrent*Rload)*(1-0.01*Dtop)/(fsw*Lload);
 VoltRipple = CurrRipple/(8*fsw*Cload);
-ReqTime = Lload*(LoadAvgCurr + CurrRipple/2)/(Vdc - (Vdc*(Dtop/100)-10)); %20 to compensate increase in output voltage
+ReqTime = Lload*(CurrRipple/2)/(Vdc - (Vdc*(Dtop/100)-10)); %20 to compensate increase in output voltage
+InitialCurrent = LoadCurrent + CurrRipple/2;
 %% Run Simulink
-Start = 1;
 SampleTime = 5e-13;
 model = 'LossCalcModel';
 load_system(model);
-StopTime = 3e-6;
-set_param(model, 'StopTime','3e-6' )
+StopTime = ReqTime + 2.01/fsw;
+StopTimeStr = num2str(StopTime);
+set_param(model, 'StopTime','0.55e-6')
 sim(model);
 % 
 % TopVoltDSCons = TopVoltDSCons + TopDSCurrCons*Rt;
