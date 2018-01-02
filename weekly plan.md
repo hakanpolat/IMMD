@@ -1,7 +1,17 @@
+### 01.01.2018 - 07.01.2018
+#### Planlanan çalışmalar:
+* PEMD makalesi için sistemin MATLAB'ta modellemesi
+* PEMD ilk sonuçlar ve yorumlar
+* ECCe makalesi taslağı oluşturulacak. Yazımına başlanacak.
+
+#### Gerçekleşen çalışmalar:
+* PEMD için MATLAB modellemesi için termal tasarıma bakıldı.
+
+
 ### 25.12.2017 - 31.12.2017
 #### Planlanan çalışmalar:
 * PEMD makalesi için sistemin MATLAB'ta modellemesi bitirilecek
-* ECCe makalesi planlaması bitirilecek. Makaleye başlanacak.
+* ECCE makalesi planlaması bitirilecek. Makaleye başlanacak.
 
 #### Gerçekleşen çalışmalar:
 * PEMD için MATLAB modellemesi heat sinke kadar bitirildi.

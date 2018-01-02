@@ -287,7 +287,7 @@ Idcavg = Pout/(effmmin*effdrmin*Vdc); % Amps
 
 Cdcreq1 = (ma*Iline/(16*fsw*(Vdcrip*Vdc/100)))*...
     sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
-    (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
+    (9*ma^2/2) )*pfmin^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
 Cdcreq = Cdcreq1*intc; % Amps
 % Cdcreq2 = 0.7*(Iline*sqrt(2)-Idcavg/2)*ma/(fsw*Vdcrip*Vdc/100)
 
@@ -320,31 +320,31 @@ Dir = Dis/2;
 
 %% Electromagnetic model-1: slot-pole
 Qs = w*n*m;
-p = Qs-2; % This can be different. Check this out. p can be an 
-% optimization parameter
+%p = Qs-2; % This can be different.
 % Use tables for winding factor
-if Qs == 6
-    kwf = 0.866;
-elseif Qs == 12
+if rem(Qs,12) == 0
+    p = Qs/1.2;
     kwf = 0.933;
+end
+
+if Qs == 6
+    p = 4;
+    kwf = 0.866;
 elseif Qs == 18
+    p = 16;
     kwf = 0.945;
-elseif Qs == 24
-    kwf = 0.949;
 elseif Qs == 30
-    kwf = 0.951;
-elseif Qs == 36
-    kwf = 0.953;
+    p = 26;
+    kwf = 0.936;
 elseif Qs == 42
-    kwf = 0.953;
-elseif Qs == 48
-    kwf = 0.954;
+    p = 38;
+    kwf = 0.945;
 elseif Qs == 54
-    kwf = 0.954;
-elseif Qs == 60
-    kwf = 0.954;
-elseif Qs == 66
-    kwf = 0.954;
+    p = 46;
+    kwf = 0.930;
+elseif Qs == 90
+    p = 76;
+    kwf = 0.933;
 end
 
 % !!! What can we do about harmonic winding factors???
@@ -395,7 +395,7 @@ Ecoil = Ecoilh(1);
 
 %% Electromagnetic model-5: Winding
 Nphmrev = Ephm/Ecoil;
-turnc = ceil(2*Nphm/(layer*w));
+turnc = ceil(2*Nphmrev/(layer*w));
 Nphm = turnc*layer*w/2;
 Ephm = Ecoil*Nphm; % Volts
 Iphm = Pout/(m*n*Ephm); % Arms
@@ -412,7 +412,7 @@ Jrms = Iphm/Awdg; % A/mm^2
 Acu = layer*turnc*Awdg; % mm^2
 Aslotmin = Acu/kcumax; % mm^2
 hs = -bs1*Qs/(2*pi) + sqrt((bs1*Qs/pi)^2 + 4*Qs*Aslotmin/pi)/2; % mm
-hs = ceil(hs2); % mm
+hs = ceil(hs); % mm
 bs2 = bs1+2*pi*hs/Qs; % mm
 Aslot = (bs1+bs2)*hs/2; % mm
 kcu = Acu/Aslot;
@@ -495,8 +495,62 @@ Pcu = Pcum*n
 % Volsys = Voldr+Volhs+Volm; % m^3
 % PD = (Pout*1e-3)/(Volsys*1e3); % kW/lt
 
+%% Thermal modeling of heatsink
+clear all;
+clc;
+% Main dimensions (square heat sink is assumed)
+Whs = 50e-3; % m, width
+Lhs = 50e-3; % m, length
+Hfin = 37.5e-3; % m, height
+Hbase = 10e-3; % m, base plate height
+Nfin = 25; % number of fins
+%tfin = Lhs/(2*Nfin); % m, fin width
+tfin = 0.4e-3; % m, fin width
+vel = 2.5; % m/s, velocity of air flow
 
-%%
-% Select the winding diameter somewhere
+% Heat sink height
+Hhs = Hfin+Hbase; % m
+% The space width between fins
+bfins = (Whs-Nfin*tfin)/(Nfin-1); % m
+% Base surface area
+Abase = (Nfin-1)*bfins*Lhs; % m^2
+% Fin surface area
+Afin = 2*Hfin*Lhs; % m^2
+
+% The Prandtl number:
+kair = 0.0290; % W/Km, thermal conductivity of air
+muair = 2e-5; % kg/(ms), dynamic viscosity of air
+cpair = 1008; % J/(kgK), specific heat of air
+Pr = muair*cpair/kair;
+% Pr = 0.708; % @70 C
+% https://www.engineeringtoolbox.com/dry-air-properties-d_973.html
+
+% Reynolds number
+roair = 1.009; % kg/m^3, density of air
+Re = roair*vel*bfins^2/(muair*Lhs);
+
+% Nusselt number
+Nub = ( ( (Re*Pr/2)^(-3) ) +...
+    (0.664*sqrt(Re)*Pr^0.33*sqrt(1+3.65/sqrt(Re)))^(-3) )...
+    ^(-0.33);
+
+% Heat transfer coefficient with convection
+kfluid = 0.0290; % W/Km, thermal conductivity of fluid (air)
+htcoef = Nub*kfluid/bfins;
+
+% Fin efficiency
+kfin = 205; % W/Km, thermal conductivity of fins (aluminum)
+mhs = sqrt(2*htcoef/(kfin*tfin)); % ???
+fineff = tanh(mhs*Hfin)/(mhs*Hfin);
+
+% Thermal resistance of heat sink base (conduction)
+kbase = 205; % W/Km, thermal conductivity of base (aluminum)
+Rthbase = Hbase/(kbase*Whs*Lhs) % C/W
+
+% Thermal resistance of heat sink (convection)
+Rthhs = (htcoef*(Abase+Nfin*fineff*Afin))^(-1) % C/W
+
+% Total thermal resistance of heat sink
+Rthtot = Rthbase+Rthhs % C/W
 
 
