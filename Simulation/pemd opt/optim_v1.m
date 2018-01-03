@@ -32,6 +32,7 @@ global muc
 global dencu
 global denm
 global denc
+global dena
 global Tccu
 global m
 global Vdc
@@ -84,6 +85,8 @@ dencu = 8.96; % g/cm^3
 denm = 7.4; % g/cm^3
 % Density of iron
 denc = 7.65; % g/cm^3
+% Density of aluminum
+dena = 2.70; % g/cm^3
 % Temperature coefficient of copper
 Tccu = 4.041e-3; % C-1
 
@@ -158,7 +161,7 @@ Tcogmax = 1; % percent
 % Maximum torque ripple
 Tripmax = 1; % percent
 % Maximum device junction temperature
-Tjmax = 140; % C
+Tjmax = 150; % C
 % Maximum winding temperature
 Twmax = 200; % C
 % Maximum magnet temperature
@@ -315,8 +318,6 @@ Dis = (Dis2L/ar)^(1/3); % m
 Dis = ceil(Dis*100)/100; % m
 % Axial length
 La = ar*Dis; % m
-% !!!! Rotor inner diameter (what will we do abut this???) 
-Dir = Dis/2;
 
 %% Electromagnetic model-1: slot-pole
 Qs = w*n*m;
@@ -411,12 +412,14 @@ Jrms = Iphm/Awdg; % A/mm^2
 %% Geometric model 1: Stator slot model
 Acu = layer*turnc*Awdg; % mm^2
 Aslotmin = Acu/kcumax; % mm^2
-hs = -bs1*Qs/(2*pi) + sqrt((bs1*Qs/pi)^2 + 4*Qs*Aslotmin/pi)/2; % mm
-hs = ceil(hs); % mm
-bs2 = bs1+2*pi*hs/Qs; % mm
-Aslot = (bs1+bs2)*hs/2; % mm
+hs2 = -bs1*Qs/(2*pi) + sqrt((bs1*Qs/pi)^2 + 4*Qs*Aslotmin/pi)/2; % mm
+hs2 = ceil(hs2); % mm
+bs2 = bs1+2*pi*hs2/Qs; % mm
+Aslot = (bs1+bs2)*hs2/2; % mm
 kcu = Acu/Aslot;
-
+hs0 = 1.5; % mm
+hs1 = 1.5; % mm
+hs = hs0+hs1+hs2;
 Dss = Dis*1e3+2*hs; % mm
 Taoss = pi*Dss/Qs; % mm
 Dos = Dss+2*hbc; % mm
@@ -425,42 +428,41 @@ Dos = Dss+2*hbc; % mm
 % Armature reaction
 %Lgap1 = 16*mu0*Nphm^2*Dis*La/(pi*lg*1e-3*p^3) % Henries
 Agap = em*pi*Dis*La/p; % m^2
-Lgap = w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3) % Henries
+Lgap = w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3); % Henries
 
 % Slot leakage
 bs0 = bs1/2; % mm
-hs0 = 1.5; % mm
-hs1 = 1.5; % mm
 bsavg = (bs1+bs2)/2; % mm
-Lslk1 = Qs*(2*turnc)^2*[mu0*hs*La/(3*bsavg)]; % Henries
+Lslk1 = Qs*(2*turnc)^2*[mu0*hs2*La/(3*bsavg)]; % Henries
 Lslk2 = Qs*(2*turnc)^2*[mu0*La*hs1/((bs0+bsavg)/2)]; % Henries
 Lslk3 = Qs*(2*turnc)^2*[mu0*hs0*La/bs0]; % Henries
-Lslk = Lslk1+Lslk2+Lslk3 % Henries
+Lslk = Lslk1+Lslk2+Lslk3; % Henries
 
 % End turn leakage
-Lendt = w*mu0*Taos*turnc^2/4*log(Taos*sqrt(pi)/sqrt(2*Aslot*1e-6)) % Henries
+Lendt = w*mu0*Taos*turnc^2/4*log(Taos*sqrt(pi)/sqrt(2*Aslot*1e-6)); % Henries
 
 % Phase inductance
-Lph = Lgap + Lslk + Lendt % Henries
+Lph = Lgap + Lslk + Lendt; % Henries
 
 
 %% Electromagnetic model-8: Resistances
 % Mean length turn
-MLT = 2*(La+pi*Taos/4);
-Lengthph = MLT*Nphm;
+MLT = 2*(La+pi*Taos/4); % m
+Lengthph = MLT*Nphm; % m
 
 % Phase resistance
-Rphm = roc*Lengthph/(Awdg*1e-6) % 20 0C
+Rphm = roc*Lengthph/(Awdg*1e-6); % 20 0C
 
 % Effect of skin depth
 % !!! add later
 
+% Effect of temperature
+% !!! add later
+
 %% Winding model (copper loss)
-Pcuphm = Iphm^2*Rphm
-Pcum = Pcuphm*m
-Pcu = Pcum*n
-
-
+Pcuphm = Iphm^2*Rphm;
+Pcum = Pcuphm*m;
+Pcu = Pcum*n;
 
 %% Electromagnetic model (core loss)
 % material should be selected???
@@ -470,9 +472,22 @@ Pcu = Pcum*n
 % Output is Pc, Rc
 
 %% Harmonic equivalent circuit
+Xsh = 2*pi*fs*k*Lph;
+Vdrop = Xsh*Iphm;
+phi = 180/pi*atan(Vdrop/Ephm);
+pf = cos(phi*pi/180);
 
-% Use electrical model, Llk, La etc
-% Obtain THD
+Iphmh = zeros(1,31);
+Ephmh = Nphm*Ecoilh';
+Iharm = 0;
+for k = 3:31
+    Xphmh = 2*pi*fs*k*Lph;
+    Iphmh(k) = Ephmh(k)/Xphmh;
+    Iharm = Iharm+Iphmh(k)^2;
+end
+Iharm = sqrt(Iharm);
+Iphm;
+THD = 100*Iharm/Iphm;
 
 
 %% Cogging torque model
@@ -481,23 +496,50 @@ Pcu = Pcum*n
 
 
 %% Heat sink model (thermal)
-% Plossdr is input
-% PCB dimensions are input
-% Use Ta, Tjmax, Rthdevice
-% Dind Rthpcb
-% Find Rthsa
-% Then, heat sink dimensions will be found
 
-%% Geometric model
-% Volm = pi*(Dos/2)^2*La; % m^3
-% Voldr = pi*(Dos/2)^2*(0.01+hcap); % m^3
-% Volhs = pi*(Dos/2)^2*Lhs; % m^3
-% Volsys = Voldr+Volhs+Volm; % m^3
-% PD = (Pout*1e-3)/(Volsys*1e3); % kW/lt
+% Thermal grease: http://tr.farnell.com/c/cooling-thermal-management/thermal-interface-materials/thermal-grease
+% All GaNs are assumed as bottom cooled
+
+% Inputs
+Plosst; % Loss of each GaN
+Rthjc; % Thermal resistance (junction-case) of each transistor
+Tamb; % Ambient temperature
+Tjmax; % Maximum junction temperature
+Tmargin = 10; % Junction temperature margin
+RthjT = 8.5; % C/W, Junction-to-top thermal resistance
+
+% PCB dimensions
+Nvia = 120; % Number of thermal vias
+Tpcb = 1.6; % mm, PCB thickness (FR4)
+Tcop = 70; % micron, Copper layer thickness
+Dvia = 0.3; % mm, Diameter of thermal via
+Pvia = 0.64; % mm, Pitch of thermal vias
+Layerp = 4; % PCB number of layers
+PadW = 10; % mm
+PadL = 25; % mm
+
+% PCB thermal resistance
+Rthpcb = 4.8; % C/W, Thermal resistance of PCB
+
+% Thermal interface material (TIM)
+Ctim = 3; % W/Km, Thermal conductivity
+Ltim = 0.254; % mm, Thickness
+Atim = 56; % mm^2, Surface area
+
+% TIM thermal resistance
+Rthtim = Ltim*1e-3/(Ctim*Atim*1e-6) % Thermal resistance
+
+
+Rthtot = (Rthjc + Rthpcb + Rthtim)/(2*m) % C/W
+Rthreq = (Tjmax-Tmargin-Tamb)/Plossm - Rthtot
+
 
 %% Thermal modeling of heatsink
-clear all;
-clc;
+
+% https://www.electronics-cooling.com/2003/02/estimating-parallel-plate-fin-heat-sink-thermal-resistance/#
+% https://www.engineeringtoolbox.com/dry-air-properties-d_973.html
+% https://www.myheatsinks.com/calculate/thermal-resistance-plate-fin/
+
 % Main dimensions (square heat sink is assumed)
 Whs = 50e-3; % m, width
 Lhs = 50e-3; % m, length
@@ -545,12 +587,53 @@ fineff = tanh(mhs*Hfin)/(mhs*Hfin);
 
 % Thermal resistance of heat sink base (conduction)
 kbase = 205; % W/Km, thermal conductivity of base (aluminum)
-Rthbase = Hbase/(kbase*Whs*Lhs) % C/W
+Rthbase = Hbase/(kbase*Whs*Lhs); % C/W
 
 % Thermal resistance of heat sink (convection)
-Rthhs = (htcoef*(Abase+Nfin*fineff*Afin))^(-1) % C/W
+Rthhsc = (htcoef*(Abase+Nfin*fineff*Afin))^(-1); % C/W
 
 % Total thermal resistance of heat sink
-Rthtot = Rthbase+Rthhs % C/W
+Rthhs = Rthbase+Rthhsc % C/W
 
+%% Geometric model: power density
+% Volm = pi*(Dos/2)^2*La; % m^3
+% Voldr = pi*(Dos/2)^2*(0.01+hcap); % m^3
+% Volhs = pi*(Dos/2)^2*Hhs; % m^3
+% Volsys = Voldr+Volhs+Volm; % m^3
+% PD = (Pout*1e-3)/(Volsys*1e3); % kW/lt
+
+%% Geometric model: material volume and mass
+% Core material: M250-50A
+% https://perso.uclouvain.be/ernest.matagne/ELEC2311/T2006/NOFP.pdf
+tlam = 0.5; % mm
+sploss15 = 2.5; % W/kg, @50Hz
+sploss10 = 1.05; % W/kg, @50Hz
+% Magnet: NdFeB40H, H grade (120 C)
+
+% Rotor volume
+% !!!! Rotor inner diameter (what will we do abut this???) 
+Dor = Dis*1e3-2*(lg+lm); % mm
+Dir = Dor/2;
+Vrotor = pi/4*(Dor^2-Dir^2)*La; % cm^3
+mrotor = 1e-3*Vrotor*denc; % kg
+
+% Stator volume
+Vstator = pi/4*(Dos^2-Dss^2)*La + hs*bt*La*Qs; % cm^3
+mstator = 1e-3*Vstator*denc; % kg
+
+% Iron volume
+Viron = Vrotor + Vstator; % cm^3
+miron = mrotor + mstator; % kg
+
+% Magnet volume
+Vmagnet = pi*Dor*em*La*lm; % cm^3
+mmagnet = 1e-3*Vmagnet*denm; % kg
+
+% Copper volume
+Vcopper = Lengthph*Awdg*n*m; % cm^3
+mcopper = 1e-3*Vcopper*dencu; % kg
+
+% Heat sink volume
+Vhsink = pi/4*Dos^2*Hbase + Nfin*tfin*Dos*Hfin*1e3; % cm^3
+mhsink = 1e-3*Vhsink*dena; % kg
 
