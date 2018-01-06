@@ -200,52 +200,9 @@ Cimax = 1; %
 Sreq = Pout/(effmmin*pfmin*n);
 Vmll = 0.612*Vdc*ma/(ns);
 Ireq = sqrt(2)*1.5*Sreq/(Vmll*sqrt(3));
-if Ireq < 7
-    Vgan = 650;
-    Igan = 7.5; % A
-    Rdson = 516e-3; % Ohms, 150 C, 2.25 A
-    Eon = 6.9e-6; %NOT FOUND % J, 400 V
-    Eoff = 1.9e-6; %NOT FOUND % J, 400 V
-    Eoss = 1.9e-6; % J, 400 V
-    Rthjc = 2; % C/W
-    Cgan = 0.075;
-elseif Ireq>=7 && Ireq < 14
-    Vgan = 650;
-    Igan = 15; % A
-    Rdson = 258e-3; % Ohms, 150 C, 4.5 A
-    Eon = 18.5e-6; %NOT FOUND % J, 400 V
-    Eoff = 3.7e-6; %NOT FOUND % J, 400 V
-    Eoss = 3.3e-6; % J, 400 V
-    Rthjc = 1; % C/W
-    Cgan = 0.15;
-elseif Ireq>=14 && Ireq < 21
-    Vgan = 650;
-    Igan = 22.5; % A
-    Rdson = 175e-3; % Ohms, 150 C, 6.7 A
-    Eon = 20.7e-6; %NOT FOUND % J, 400 V
-    Eoff = 5.4e-6; %NOT FOUND % J, 400 V
-    Eoss = 5.3e-6; % J, 400 V
-    Rthjc = 0.7; % C/W
-    Cgan = 0.225;
-elseif Ireq>=21 && Ireq < 28
-    Vgan = 650;
-    Igan = 30; % A
-    Rdson = 129e-3; % Ohms, 150 C, 2.25 A
-    Eon = 47.5e-6; % J, 400 V, 15A
-    Eoff = 7.5e-6; % J, 400 V, 15A
-    Eoss = 7e-6; % J, 400 V
-    Rthjc = 0.5; % C/W
-    Cgan = 0.30;
-elseif Ireq>=28 && Ireq < 56
-    Vgan = 650;
-    Igan = 60; % A
-    Rdson = 65e-3; % Ohms, 150 C, 2.25 A
-    Eon = 134.1e-6; % J, 400 V, 20A
-    Eoff = 14.7e-6; % J, 400 V, 20A
-    Eoss = 14.1e-6; % J, 400 V
-    Rthjc = 0.3; % C/W
-    Cgan = 0.60;
-end
+%device_parameters = device_selection(Ireq)
+[Igan,Vgan,Rdson,Eon,Eoff,Eoss,Rthjc,Cgan]...
+    = device_selection(Ireq);
 
 %% Electrical model-2: Inverter model
 Vdcm = Vdc/ns; % Volts dc
@@ -296,14 +253,20 @@ Cdcreq = Cdcreq1*intc; % Amps
 
 % !!! review the capacitance requirement and its relationship with interleaving
 
-%% Electrical model-4: DC link capacitor selection
-% Inputs are Cdc, Icrms, Vdcm
-% Use Ta, n and ns
-% Tcapmax is constraint
-% Outputs are hcap, Ccap
-% !!!! There should be a database
-% Internal parameters are ESR and Rthcap
 
+%% Electrical model-4: DC link capacitor selection
+
+% Capacitor data:
+% 1. Cseri, 2. Capacitance, 3. Wcap, 4. Hcap, 5. Lcap,
+% 6. Current, 7. ESR, 8. Gcap, 9. Cost
+[Cseri,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = ...
+    capacitor_selection(Cdcreq,Idcrms,Vdcm);
+
+TotalCcap = Cseri*ns*Ccap; % dollars
+hcap = Hcap; % mm
+Volcap = Hcap*Wcap*Lcap*Cseri*ns*1e-3; % cm^3
+EqvESR = ESR*Cseri*ns*1e-3; % Ohms
+Plosscap = Idcrms^2*EqvESR; % W
 
 %% Geometrical Model-1: Magnetic stress tensor and machine dimensions
 % Rated torque
@@ -369,7 +332,7 @@ hnum = 31;
 Bgph = zeros(1,hnum);
 for k = 1:hnum
     if rem(k,2)~=0
-    Bgph(k) = (4*Bgp)/(k*pi)*cos(k*(pi/2)*(1-em));
+        Bgph(k) = (4*Bgp)/(k*pi)*cos(k*(pi/2)*(1-em));
     end
 end
 
@@ -527,11 +490,10 @@ Ltim = 0.254; % mm, Thickness
 Atim = 56; % mm^2, Surface area
 
 % TIM thermal resistance
-Rthtim = Ltim*1e-3/(Ctim*Atim*1e-6) % Thermal resistance
+Rthtim = Ltim*1e-3/(Ctim*Atim*1e-6); % Thermal resistance
 
-
-Rthtot = (Rthjc + Rthpcb + Rthtim)/(2*m) % C/W
-Rthreq = (Tjmax-Tmargin-Tamb)/Plossm - Rthtot
+Rthtot = (Rthjc + Rthpcb + Rthtim)/(2*m); % C/W
+Rthreq = (Tjmax-Tmargin-Tamb)/Plossm - Rthtot;
 
 
 %% Thermal modeling of heatsink
@@ -593,7 +555,7 @@ Rthbase = Hbase/(kbase*Whs*Lhs); % C/W
 Rthhsc = (htcoef*(Abase+Nfin*fineff*Afin))^(-1); % C/W
 
 % Total thermal resistance of heat sink
-Rthhs = Rthbase+Rthhsc % C/W
+Rthhs = Rthbase+Rthhsc; % C/W
 
 %% Geometric model: power density
 % Volm = pi*(Dos/2)^2*La; % m^3
@@ -611,7 +573,7 @@ sploss10 = 1.05; % W/kg, @50Hz
 % Magnet: NdFeB40H, H grade (120 C)
 
 % Rotor volume
-% !!!! Rotor inner diameter (what will we do abut this???) 
+% !!!! Rotor inner diameter (what will we do abut this???)
 Dor = Dis*1e3-2*(lg+lm); % mm
 Dir = Dor/2;
 Vrotor = pi/4*(Dor^2-Dir^2)*La; % cm^3
