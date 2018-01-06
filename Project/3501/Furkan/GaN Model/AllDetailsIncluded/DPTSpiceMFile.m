@@ -18,7 +18,7 @@ Rss = 1e-3;
 Rt = (0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
 
 %% Circuit Parasitics
-Ldc = 3e-9;
+Ldc = 1.5e-9;
 Lground = 5e-9;
 
 %% Gate Driver
@@ -32,14 +32,14 @@ Vdc = 400;
 VpulseMax = 6;
 VpulseMin = -3;
 % Quantities in below are in percent
-Dtop = 48; % duty cycle of top
-Dbot = 48; % duty cycle of bot
+Dtop = 49; % duty cycle of top
+Dbot = 49; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 
 
 %% Load parameters
-LoadCurrent = 30;
+LoadCurrent = 10;
 Lload = 480e-6;
 
 CurrRipple = Vdc*(Dbot/100)/(fsw*Lload);
