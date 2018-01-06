@@ -22,3 +22,16 @@ ylabel('Minimum ripple rms current (% of DC)','FontSize',12,'FontWeight','Bold')
 ylim([0,60]);
 legend('Actual','Estimated');
 
+curfcn2 = curfcn/curfcn(1);
+percmin2 = percmin/percmin(1);
+figure;
+plot(module,percmin2,'bo-','Linewidth',1.5);
+hold on;
+plot(module,curfcn2,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Number of nodules','FontSize',12,'FontWeight','Bold')
+ylabel('Minimum ripple rms current (% of DC)','FontSize',12,'FontWeight','Bold')
+ylim([0,1.1]);
+legend('Actual','Estimated');

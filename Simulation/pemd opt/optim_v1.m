@@ -240,18 +240,31 @@ effdr = Poutdr/(Poutdr+Plossdr);
 %% Electrical model-3: DC link model
 Idcrms1 = Iline*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
     pfmin^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
-% Use the interleaving effect using number of parallel modules
 intc = 1;
 Idcrms = Idcrms1*np*intc; % Amps
 Idcavg = Pout/(effmmin*effdrmin*Vdc); % Amps
 
-Cdcreq1 = (ma*Iline/(16*fsw*(Vdcrip*Vdc/100)))*...
+% It has been observed that, series connection interleaving has no effect
+% on the current ripple RMS of the capacitors.
+
+% When no interleaving is used, the rms current requirement can be directly
+% multiplied by the number of parallel connected modules
+
+Cdcreq1 = ns^2*(ma*Iline/(16*fsw*Vdcrip))*...
     sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
     (9*ma^2/2) )*pfmin^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
 Cdcreq = Cdcreq1*intc; % Amps
-% Cdcreq2 = 0.7*(Iline*sqrt(2)-Idcavg/2)*ma/(fsw*Vdcrip*Vdc/100)
 
-% !!! review the capacitance requirement and its relationship with interleaving
+% In order to get the same voltage ripple (percent) on the DC bus of each
+% module, Creq*ns capacitance should be connected on each module DC bus.
+% It has been observed that, although interleaving has positive effect on
+% the ripple of overall DC bus, it has no effect on the percent voltage
+% ripple of each module separately. Therefore, the capacitance requirement
+% depends on the square of number of series modules (for the total 
+% capacitance requirement)
+
+% When no interleaving is used, the ripple voltage (or capacitance)
+% can be directly multiplied by the number of parallel connected modules
 
 
 %% Electrical model-4: DC link capacitor selection
@@ -260,7 +273,7 @@ Cdcreq = Cdcreq1*intc; % Amps
 % 1. Cseri, 2. Capacitance, 3. Wcap, 4. Hcap, 5. Lcap,
 % 6. Current, 7. ESR, 8. Gcap, 9. Cost
 [Cseri,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = ...
-    capacitor_selection(Cdcreq,Idcrms,Vdcm);
+    capacitor_selection(Cdcreq*1e6,Idcrms,Vdcm);
 
 TotalCcap = Cseri*ns*Ccap; % dollars
 hcap = Hcap; % mm
@@ -408,19 +421,40 @@ Lendt = w*mu0*Taos*turnc^2/4*log(Taos*sqrt(pi)/sqrt(2*Aslot*1e-6)); % Henries
 Lph = Lgap + Lslk + Lendt; % Henries
 
 
+%% From maxwell
+Xa = 0.98;
+Xlk = 1.93;
+multip = 2*pi*fs;
+Lamx = Xa/multip*1000; % mH
+
+Agap = em*pi*Dis*La/p;
+Lgap = 1e3*w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3); % mH
+Lslk1 = 1e3*w*(2*turnc)^2*[mu0*hs2*La/(3*bsavg)]; % mH
+Lslk2 = 1e3*w*(2*turnc)^2*[mu0*La*hs1/((bs0+bsavg)/2)]; % mH
+Lslk3 = 1e3*w*(2*turnc)^2*[mu0*hs0*La/bs0]; % mH
+%Lslk = Lslk1+Lslk2+Lslk3 % mH
+
+%Llkmx = Xlk/multip*1000 % mH
+
+%Lgap/Lamx;
+%Lslk/Llkmx
+
+%%
+%Lgap = 1e3*turnc^2*pi*La*Dis*mu0*mur/(p*(mur*lg+lm)*1e-3) % mH
+
+
 %% Electromagnetic model-8: Resistances
 % Mean length turn
-MLT = 2*(La+pi*Taos/4); % m
+MLT = 2*(La+pi*Taos/4+hs*1e-3/2); % m
 Lengthph = MLT*Nphm; % m
 
 % Phase resistance
-Rphm = roc*Lengthph/(Awdg*1e-6); % 20 0C
+Rphm20 = roc*Lengthph/(Awdg*1e-6); % 20 0C
+Rphm = Rphm20*(1+Tccu*(75-20)); % 75 0C
 
 % Effect of skin depth
 % !!! add later
 
-% Effect of temperature
-% !!! add later
 
 %% Winding model (copper loss)
 Pcuphm = Iphm^2*Rphm;
@@ -435,7 +469,7 @@ Pcu = Pcum*n;
 % Output is Pc, Rc
 
 %% Harmonic equivalent circuit
-Xsh = 2*pi*fs*k*Lph;
+Xsh = 2*pi*fs*Lph;
 Vdrop = Xsh*Iphm;
 phi = 180/pi*atan(Vdrop/Ephm);
 pf = cos(phi*pi/180);
