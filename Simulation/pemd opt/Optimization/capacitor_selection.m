@@ -39,6 +39,7 @@ fpc_300v = [
     80.0 45.0 57.0 57.5 47.0 1.6 18.0 1.6 13.5 140 185 52.5 14.15
     80.0 130.0 24.0 57.5 51.0 1.4 4.0 1.5 11.7 80 200 52.5 14.15
     100.0 60.0 45.0 57.5 48.0 1.4 19.0 1.6 13.5 200 192 52.5 15.51
+    270.0 130.0 58.0 57.5 108.0 0.5 6.0 1.6 13.8 40 300 52.5 60
     ];
 
 % 1 dummy capacitor is added
@@ -78,6 +79,7 @@ elseif Vdcm <= 250
     cap_data = fpc_300v;
 end
 capnum = numel(cap_data);
+sec = 0;
 for k = 1:capnum
     if prisel ~= 0
         if Cdcm <= cap_data(k,1) && Irms <= cap_data(k,5)
@@ -88,10 +90,13 @@ for k = 1:capnum
             if Tca <= Tcamax
                 Cseri = 1;
                 break;
+                sec = 1;
             else
                 Cdcm = cap_data(k,1) + 1;
             end
         end
+    end
+    if sec == 0 
     end
     if prisel == 0
         if Cdcm <= cap_data(k,1)/2 && Irms <= cap_data(k,5)

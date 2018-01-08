@@ -38,7 +38,7 @@ Lload = Xload/wout; % Henries
 % Input for DC bus
 Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 50e-6;
+Cdc = 100e-6;
 % Simulation parameters
 Tmax = 0.05; % s
 Tth = 0.04; % s
@@ -83,7 +83,7 @@ np = n/ns;
 % Step time
 Ts = 1e-6; % sec
 % Modulation index
-ma = 0.8;
+ma = 0.9;
 % Switching frequency
 fsw = 10e3; % Hz
 % DC link voltage
@@ -109,25 +109,25 @@ phase = [0 0 0];
 % Input for DC bus
 Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
-Cdc = 100e-6;
+Cdc = 200e-6;
 % Simulation parameters
 Tmax = 0.05; % s
 Tth = 0.04; % s
 
 % Simulation call
-sim('verify_voltrip_3series.slx')
+sim('verify_voltrip_series.slx')
 
 % Simulation outputs
 Poutsima1 = Poutsima(end)
 pfsima1 = pfsima(end)
 Poutsimb1 = Poutsimb(end)
 pfsimb1 = pfsimb(end)
-Poutsimc1 = Poutsimc(end)
-pfsimc1 = pfsimc(end)
+%Poutsimc1 = Poutsimc(end)
+%pfsimc1 = pfsimc(end)
 Vdcsim1 = Vdcsim(end)
 Vdcsima1 = Vdcsima(end)
 Vdcsimb1 = Vdcsimb(end)
-Vdcsimc1 = Vdcsimc(end)
+%Vdcsimc1 = Vdcsimc(end)
 fprintf('\n');
 
 % Simulation rms currents
@@ -138,17 +138,17 @@ fprintf('\n');
 Vripsim1 = Vripsim(end);
 Vripsima1 = Vripsima(end);
 Vripsimb1 = Vripsimb(end);
-Vripsimc1 = Vripsimc(end);
-Vripap = Vripsima1/Vdcsima1;
-Vripbp = Vripsimb1/Vdcsimb1;
-Vripcp = Vripsimc1/Vdcsimc1;
+%Vripsimc1 = Vripsimc(end);
+Vripap = Vripsima1/Vdcsima1*100
+Vripbp = Vripsimb1/Vdcsimb1*100
+%Vripcp = Vripsimc1/Vdcsimc1;
 
 % Analytical calculations
 Irms1 = Iline*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
     pf^2*(sqrt(3)/pi-9*ma/16)) );
 multip = sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
     (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) );
-Vrip1 = ma*Iline*multip/(16*fsw*Cdc);
+Vrip1 = ns*ma*Iline*multip/(16*fsw*Cdc)
 
 % Verification
 % Vripsim1

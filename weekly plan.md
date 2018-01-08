@@ -1,3 +1,14 @@
+### 08.01.2018 - 04.01.2018
+#### Planlanan çalışmalar:
+* PEMD makalesinin sonuçlarının elde edilmesi ve yorumlanması
+* PEMD makalesinin yazımına başlanması
+* ECCe makalesinin yazımına başlanması
+
+#### Gerçekleşen çalışmalar:
+* ...
+* ..
+* .
+
 ### 01.01.2018 - 07.01.2018
 #### Planlanan çalışmalar:
 * PEMD makalesi için sistemin MATLAB'ta modellemesi
@@ -5,8 +16,10 @@
 * ECCe makalesi taslağı oluşturulacak. Yazımına başlanacak.
 
 #### Gerçekleşen çalışmalar:
-* PEMD için MATLAB modellemesi için termal tasarıma bakıldı.
-
+* PEMD için MATLAB modellemesine devam edildi.
+* Termal tasarıma bakıldı.
+* Interleaving etkisi incelendi.
+* Maxwell simulasyonları ile modelin bir kısmı doğrulandı.
 
 ### 25.12.2017 - 31.12.2017
 #### Planlanan çalışmalar:
