@@ -172,7 +172,7 @@ Vrip1 = ns*ma*Iline*multip/(16*fsw*Cdc)
 %%
 % Design and simulation with parallel connected modules
 
-for k = 1:37
+%for k = 1:37
 
 % Number of modules
 n = 4;
@@ -203,7 +203,8 @@ Rload = Zload*pf; % Ohms
 Xload = sqrt(Zload^2-Rload^2); % Ohms
 Lload = Xload/wout; % Henries
 % Interleaving angle
-phase = [0 (k-1)*10 (k-1)*20 (k-1)*30];
+%phase = [0 (k-1)*10 (k-1)*20 (k-1)*30];
+phase = [0 0 0 0];
 % Input for DC bus
 Rin = 10;
 Vin = Vdc + Rin*(Ptotal/Vdc);
@@ -232,25 +233,25 @@ fprintf('\n');
 % Irmssimb1 = Irmssimb(end)
 % Irmssimc1 = Irmssimc(end)
 % Icrmssim1 = Icrmssim(end)
-(k-1)*10
+%(k-1)*10
 % simulation ripple voltages
-Vripsim1(k) = Vripsim(end)
-Vripp(k) = Vripsim1(k)/Vdcsim1*100;
+Vripsim1 = Vripsim(end)
+Vripp = Vripsim1/Vdcsim1*100
 multip = sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
      (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) );
 Vrip1 = np*ma*Iline*multip/(16*fsw*Cdc);
 
-Icrmssim1(k) = Icrmssim(end)
-Irmssima1(k) = Irmssima(end);
+Icrmssim1 = Icrmssim(end)
+Irmssima1 = Irmssima(end)
 
 % Analytical calculations
 Irms1 = np*Iline*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
-    pf^2*(sqrt(3)/pi-9*ma/16)) );
+    pf^2*(sqrt(3)/pi-9*ma/16)) )
 
-Icrmssim1/Irms1;
-Vripp/Vrip1;
+Icrmssim1/Irms1
+Vripp/Vrip1
 
-end
+%end
 
 %%
 anglea = 0:10:360;

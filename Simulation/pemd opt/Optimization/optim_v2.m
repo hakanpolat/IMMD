@@ -114,9 +114,9 @@ layer = 2;
 % Switching frequency ([10e3,200e3] Hz)
 fsw = 10e3; % Hz
 % Total number of modules ([2,10])
-n = 1;
+n = 6;
 % Number of series connected modules ([2,5])
-ns = 1;
+ns = 2;
 % Modulation index ([0.55,0.95])
 ma = 0.9;
 % Aspect ratio ([0.2-2])
@@ -201,7 +201,7 @@ Ephm = pfmin*Vphm; % Volts
 
 %% Electrical model-2: Electrical loss model
 Ip = Iline*sqrt(2);
-Rdson = Rdson*1.05; % Add temperature and current dependence !!!
+Rdson = Rdson*1.0001; % @150C and Ip
 Eond = Eon*(Vdcm*Ip)/(400*(Igan/2));
 Eoffd = Eoff*(Vdcm*Ip)/(400*(Igan/2));
 Eossd = Eoss*Vdcm/400;
@@ -226,9 +226,8 @@ effdr = Poutdr/(Poutdr+Plossdr);
 %% Electrical model-3: DC link model
 Idcrms1 = Iline*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
     pfmin^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
-intc = 1;
-Idcrms = Idcrms1*np*intc; % Amps
-Idcavg = Pout/(effmmin*effdrmin*Vdc); % Amps
+
+%Idcavg = Pout/(effmmin*effdrmin*Vdc); % Amps
 
 % It has been observed that, series connection interleaving has no effect
 % on the current ripple RMS of the capacitors.
@@ -239,7 +238,6 @@ Idcavg = Pout/(effmmin*effdrmin*Vdc); % Amps
 Cdcreq1 = ns*(ma*Iline/(16*fsw*Vdcrip))*...
     sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
     (9*ma^2/2) )*pfmin^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
-Cdcreq = np*Cdcreq1*intc; % Amps
 
 % In order to get the same voltage ripple (percent) on the DC bus of each
 % module, Creq*ns capacitance should be connected on each module DC bus.
@@ -247,11 +245,14 @@ Cdcreq = np*Cdcreq1*intc; % Amps
 % the ripple of overall DC bus, it has no effect on the percent voltage
 % ripple of each module separately. Therefore, the capacitance requirement
 % depends on the square of number of series modules (for the total 
-% capacitance requirement)
+% capacitance requirement) ?????
 
 % When no interleaving is used, the ripple voltage (or capacitance)
 % can be directly multiplied by the number of parallel connected modules
+[intc,intv] = interleaving_effect(n,ns);
 
+Idcrms = Idcrms1*np*intc; % Amps
+Cdcreq = Cdcreq1*np*intv; % Amps
 
 %% Electrical model-4: DC link capacitor selection
 
