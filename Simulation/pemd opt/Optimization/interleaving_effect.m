@@ -1,6 +1,6 @@
 function [intc,intv] = interleaving_effect(n,ns)
 % Interleaving effect with parallel connected modules
-np = n/ns
+np = n/ns;
 if np == 1
     intc = 1;
     intv = 1;
@@ -9,7 +9,7 @@ elseif np == 2
     intv = 0.48;
 elseif np == 3
     intc = 0.36;
-    intv = 0.19;
+    intv = 0.20;
 elseif np == 4
     intc = 0.30;
     intv = 0.19;

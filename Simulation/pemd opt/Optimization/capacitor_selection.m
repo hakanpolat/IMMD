@@ -1,4 +1,4 @@
-function [Cseri,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = capacitor_selection(Cdcm,Irms,Vdcm)
+function [Cseri,Cpar,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = capacitor_selection(Cdcm,Irms,Vdcm)
 global Tamb
 global Tcamax
 % columns:
@@ -78,7 +78,7 @@ elseif Vdcm <= 250
     prisel = 2; % select one 300V capacitor
     cap_data = fpc_300v;
 end
-capnum = numel(cap_data);
+capnum = numel(cap_data(:,1));
 sec = 0;
 for k = 1:capnum
     if prisel ~= 0
@@ -89,14 +89,13 @@ for k = 1:capnum
             Tca = Plosscap1/Gcap + Tamb;
             if Tca <= Tcamax
                 Cseri = 1;
-                break;
+                Cpar = 1;
                 sec = 1;
+                break;
             else
                 Cdcm = cap_data(k,1) + 1;
             end
         end
-    end
-    if sec == 0 
     end
     if prisel == 0
         if Cdcm <= cap_data(k,1)/2 && Irms <= cap_data(k,5)
@@ -106,13 +105,28 @@ for k = 1:capnum
             Tca = Plosscap1/Gcap + Tamb;
             if Tca <= Tcamax
                 Cseri = 2;
+                Cpar = 1;
+                sec = 1;
                 break;
             else
                 Cdcm = cap_data(k,1) + 1;
             end
         end
     end
-    
+end
+
+if sec == 0
+    if prisel ~= 0
+        Cseri = 1;
+        Cpar = 2;
+        ESR = cap_data(k,6); % mOhm
+        Gcap = cap_data(k,11); % mW/C
+    elseif prisel == 0
+        Cseri = 2;
+        Cpar = 2;
+        ESR = cap_data(k,6); % mOhm
+        Gcap = cap_data(k,11); % mW/C
+    end
 end
 
 % Capacitor data:
