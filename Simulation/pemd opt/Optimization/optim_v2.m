@@ -507,15 +507,6 @@ Pcu = Pcum*n;
 % ___________________________________________
 
 
-
-% Electromagnetic model (core loss)
-% material should be selected???
-% material datasheet
-% B values at yoke etc.
-% Harmonics?? (use EM harmonic model)
-% Output is Pc, Rc
-
-
 % %% Harmonic equivalent circuit
 % Xsh = 2*pi*fs*Lph;
 % Vdrop = Xsh*Iphm;
@@ -586,6 +577,15 @@ mcopper = 1e-3*Vcopper*dencu; % kg
 %mhsink = 1e-3*Vhsink*dena; % kg
 % Add later !!!!!
 % ___________________________________________
+
+% ___________________________________________
+% Electromagnetic model-9: Core loss
+% Core material: M250-50A
+% https://perso.uclouvain.be/ernest.matagne/ELEC2311/T2006/NOFP.pdf
+Pcden = 4; % W/kg
+Pc = Pcden*miron; % W
+% ___________________________________________
+
 
 %param(indexa,index,indexo) = 100*effdr;
 %param(indexa,index,indexo) = ns*Cdcreq*1e6;
