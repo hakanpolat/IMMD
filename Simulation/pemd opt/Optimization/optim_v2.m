@@ -25,7 +25,7 @@
 % * Objective parameters
 %
 
-clear all
+%clear all
 clc
 
 % Global definitiona
@@ -157,13 +157,13 @@ vtipmax = 10; % m/s
 % Switching frequency ([10e3,200e3] Hz)
 fsw = 40e3; % Hz
 % Total number of modules ([2,10])
-%n = 2;
+n = 2;
 % Number of series connected modules ([2,5])
-%ns = 2;
+ns = 2;
 % Modulation index ([0.55,0.95])
 ma = 0.9;
 % Aspect ratio ([0.2-2])
-%ar = 0.5;
+ar = 0.5;
 % Magnet embrace ([0.45-0.95])
 em = 0.7;
 % Number of slots per module per phase ([2,10])
@@ -180,26 +180,26 @@ lm = 4; % mm
 % Copper cost
 % Iron cost
 
-clear param;
-clear param1;
-clear param2;
+%clear param;
+%clear param1;
+%clear param2;
 
-%for indexa = 1:3
-indexa = 1;
+for indexa = 1:3
+%indexa = 1;
 ns = 1+indexa;
-    
-%for indexo = 1:6
-indexo = 2;
-n = ns*indexo;
-    
-% The parameter interdependencies
-%for index = 1:20
-ar = 0.5;
 
-%fsw = index*10e3;
+for indexo = 1:8
+%indexo = 2;
+n = ns*indexo;
+
+% The parameter interdependencies
+for index = 1:21
+%ar = 0.5;
+
+fsw = index*10e3;
 %ma = 0.5 + 0.025*index;
 %ar = 0.2+(index-1)*0.09;
-
+%w = 2*index;
 
 % ___________________________________________
 % Electrical model-1: Device selection
@@ -215,7 +215,7 @@ Sreq = Pout/(effmmin*pfmin*n);
 Vmll = 0.612*Vdc*ma/(ns);
 Ireq = sqrt(2)*1.5*Sreq/(Vmll*sqrt(3));
 %device_parameters = device_selection(Ireq)
-[Igan,Vgan,Rdson,Eon,Eoff,Eoss,Rthjc,Cgan]...
+[Igan,Vgan,Eon,Eoff,Eoss,Rthjc,Cgan]...
     = device_selection(Ireq);
 TotalCgan = Cgan*6*n;
 % ___________________________________________
@@ -236,7 +236,32 @@ Ephm = pfmin*Vphm; % Volts
 % ___________________________________________
 % Electrical model-3: Electrical loss model
 Ip = Iline*sqrt(2);
-Rdson = Rdson*1.0001; % @150C and Ip
+% Rdson is % @150C and Ip
+if Igan == 7.5
+    if Ip < 4
+        Rdson = 0.4933 + Ip*0.01;
+    elseif Ip >= 4
+        Rdson = 0.5352 + (Ip-4)*0.0419;
+    end
+elseif Igan == 15
+    if Ip < 7.5
+        Rdson = 0.2466 + Ip*2.5e-3;
+    elseif Ip >= 7.5
+        Rdson = 0.2654 + (Ip-7.5)*6.72e-3;
+    end
+elseif Igan == 30
+    if Ip < 15
+        Rdson = 0.1255 + Ip*6.67e-4;
+    elseif Ip >= 15
+        Rdson = 0.1355 + (Ip-15)*1.74e-3;
+    end
+elseif Igan == 60
+    if Ip < 30
+        Rdson = 60.676e-3 + Ip*0.15e-3;
+    elseif Ip >= 30
+        Rdson = 65.160e-3 + (Ip-30)*0.363e-3;
+    end
+end
 Eond = Eon*(Vdcm*Ip)/(400*(Igan/2));
 Eoffd = Eoff*(Vdcm*Ip)/(400*(Igan/2));
 Eossd = Eoss*Vdcm/400;
@@ -276,7 +301,7 @@ Cdcreq1 = ns*(ma*Iline/(16*fsw*Vdcrip))*...
 % It has been observed that, although interleaving has positive effect on
 % the ripple of overall DC bus, it has no effect on the percent voltage
 % ripple of each module separately. Therefore, the capacitance requirement
-% depends on the square of number of series modules (for the total 
+% depends on the square of number of series modules (for the total
 % capacitance requirement) ?????
 
 % When no interleaving is used, the ripple voltage (or capacitance)
@@ -316,7 +341,7 @@ Vr = Tm/(2*mst); % m^3
 Dis2L = 4*Vr/pi; % m^3
 % Stator inner diameter
 Dis = (Dis2L/ar)^(1/3); % m
-Dis = ceil(Dis*100)/100; % m
+Dis = ceil(Dis*1000)/1000; % m
 % Axial length
 La = ar*Dis; % m
 % ___________________________________________
@@ -448,7 +473,7 @@ Dos = Dss+2*hbc; % mm
 % %Lgap1 = 16*mu0*Nphm^2*Dis*La/(pi*lg*1e-3*p^3) % Henries
 % Agap = em*pi*Dis*La/p; % m^2
 % Lgap = w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3); % Henries
-% 
+%
 % % Slot leakage
 % bs0 = bs1/2; % mm
 % bsavg = (bs1+bs2)/2; % mm
@@ -456,10 +481,10 @@ Dos = Dss+2*hbc; % mm
 % Lslk2 = Qs*(2*turnc)^2*[mu0*La*hs1/((bs0+bsavg)/2)]; % Henries
 % Lslk3 = Qs*(2*turnc)^2*[mu0*hs0*La/bs0]; % Henries
 % Lslk = Lslk1+Lslk2+Lslk3; % Henries
-% 
+%
 % % End turn leakage
 % Lendt = w*mu0*Taos*turnc^2/4*log(Taos*sqrt(pi)/sqrt(2*Aslot*1e-6)); % Henries
-% 
+%
 % % Phase inductance
 % Lph = Lgap + Lslk + Lendt; % Henries
 
@@ -469,7 +494,7 @@ Dos = Dss+2*hbc; % mm
 % Xlk = 1.93;
 % multip = 2*pi*fs;
 % Lamx = Xa/multip*1000; % mH
-% 
+%
 % Agap = em*pi*Dis*La/p;
 % Lgap = 1e3*w*turnc^2*mu0*mur*Agap/((mur*lg+lm)*1e-3); % mH
 % Lslk1 = 1e3*w*(2*turnc)^2*[mu0*hs2*La/(3*bsavg)]; % mH
@@ -478,13 +503,13 @@ Dos = Dss+2*hbc; % mm
 % %Lslk = Lslk1+Lslk2+Lslk3 % mH
 
 % %Llkmx = Xlk/multip*1000 % mH
-% 
+%
 % %Lgap/Lamx;
 % %Lslk/Llkmx
 
 % %%
 % %Lgap = 1e3*turnc^2*pi*La*Dis*mu0*mur/(p*(mur*lg+lm)*1e-3) % mH
-% 
+%
 
 
 % ___________________________________________
@@ -513,7 +538,7 @@ Pcu = Pcum*n;
 % Vdrop = Xsh*Iphm;
 % phi = 180/pi*atan(Vdrop/Ephm);
 % pf = cos(phi*pi/180);
-% 
+%
 % Iphmh = zeros(1,31);
 % Ephmh = Nphm*Ecoilh';
 % Iharm = 0;
@@ -525,8 +550,8 @@ Pcu = Pcum*n;
 % Iharm = sqrt(Iharm);
 % Iphm;
 % THD = 100*Iharm/Iphm;
-% 
-% 
+%
+%
 % %% Cogging torque model
 % % Inputs: Qs, p, em, lm, lg
 % % Tcog
@@ -562,24 +587,14 @@ Rthsareq = (Tjmax-Tmargin-Tamb)/(Plosst*n*2*m) - Rth1/(n*2*m); % C/W
 
 
 % ___________________________________________
-% Thermal model-1: Heat sink thermal model
+% Thermal model-2: Heat sink thermal model
 % Natural convection is assumed
 % Main dimensions (square heat sink is assumed)
-Whs = 200e-3; % m, width
-Lhs = 200e-3; % m, length
-Hfin = 50e-3; % m, height
+%Whs = 200e-3; % m, width
+Whs =  Dos; % mm
+%Lhs = 200e-3; % m, length (also the lengrth of each fin)
+Lhs = Dos; % mm
 Hbase = 10e-3; % m, base plate height
-Nfin = 35; % number of fins
-%tfin = Lhs/(2*Nfin); % m, fin width
-tfin = 3e-3; % m, fin width
-% Heat sink height
-Hhs = Hfin+Hbase; % m
-% The space width between fins
-bfin = (Whs-Nfin*tfin)/(Nfin-1); % m
-% Base surface area
-Abase = (Nfin-1)*bfin*Lhs; % m^2
-% Fin surface area
-Afin = 2*Hfin*Lhs; % m^2
 % Some constants
 cpair = 1000; % J/(kgK), specific heat of air
 grc = 9.81; % m/s^2, gravitational acceleration
@@ -601,28 +616,34 @@ else
 end
 htcoef = Nu*kair/Lhs; % W/(Km^2), heat transfer coefficient
 fineff = 1;
+Nfin = 35; % number of fins
+tfin = Lhs/(2*Nfin); % m, fin width
+% The space width between fins
+bfin = (Whs-Nfin*tfin)/(Nfin-1); % m
+% Base surface area
+Abase = (Nfin-1)*bfin*Lhs*1e-6; % m^2
 % Thermal resistance of heat sink base (conduction)
 kbase = 205; % W/Km, thermal conductivity of base (aluminum)
-Rthbase = Hbase/(kbase*Whs*Lhs); % C/W
-% Thermal resistance of heat sink (convection)
-Rthhsc = (htcoef*(Abase+Nfin*fineff*Afin))^(-1); % C/W
-% Total thermal resistance of heat sink
-Rthhs = Rthbase+Rthhsc; % C/W
-
-
+Rthbase = Hbase/(kbase*Whs*Lhs*1e-6); % C/W
+Rthhscreq = Rthsareq - Rthbase; % C/W
+% Required surface area
+Areq = (htcoef*Rthsareq)^(-1); % m^2
+Areqc = Areq - Abase; % m^2
+Afinc = (Areq - Abase)/(fineff*Nfin); % m^2
+Hfinc = Afinc/(2*Lhs*1e-3); % m
+Hfinc = ceil(Hfinc*1000)/1000; % m
+% Hotal heat sink height
+Hhs = Hfinc+Hbase; % m
 % ___________________________________________
-
-
 
 
 % ___________________________________________
 % Geometric model-3: power density
-Volm = pi*(Dos/2)^2*La; % m^3
-Voldr = pi*(Dos/2)^2*(0.01+hcap); % m^3
-%Volhs = pi*(Dos/2)^2*Hhs; % m^3
-%Volsys = Voldr+Volhs+Volm; % m^3
-Volsys = Voldr+Volm; % m^3
-PD = (Pout*1e-3)/(Volsys*1e3); % kW/lt
+Volm = pi*(Dos*1e-3/2)^2*La; % m^3
+Voldr = pi*(Dos*1e-3/2)^2*(0.010+hcap*1e-3); % m^3
+Volhs = pi*(Dos*1e-3/2)^2*Hhs; % m^3
+Volsys = Voldr+Volhs+Volm; % m^3
+PDv = (Pout*1e-3)/(Volsys*1e3); % kW/lt
 % ___________________________________________
 
 
@@ -630,9 +651,9 @@ PD = (Pout*1e-3)/(Volsys*1e3); % kW/lt
 % Geometric model-4: material volume and mass
 % Core material: M250-50A
 % https://perso.uclouvain.be/ernest.matagne/ELEC2311/T2006/NOFP.pdf
-tlam = 0.5; % mm
-sploss15 = 2.5; % W/kg, @50Hz
-sploss10 = 1.05; % W/kg, @50Hz
+%tlam = 0.5; % mm
+%sploss15 = 2.5; % W/kg, @50Hz
+%sploss10 = 1.05; % W/kg, @50Hz
 % Magnet: NdFeB40H, H grade (120 C)
 % Rotor volume
 % !!!! Rotor inner diameter (what will we do abut this???)
@@ -652,13 +673,11 @@ mmagnet = 1e-3*Vmagnet*denm; % kg
 % Copper volume
 Vcopper = Lengthph*Awdg*n*m; % cm^3
 mcopper = 1e-3*Vcopper*dencu; % kg
-
-% Add later !!!!!
 % Heat sink volume
-%Vhsink = pi/4*Dos^2*Hbase + Nfin*tfin*Dos*Hfin*1e3; % cm^3
-%mhsink = 1e-3*Vhsink*dena; % kg
-% Add later !!!!!
+Vhsink = pi/4*Dos^2*Hbase + Nfin*tfin*Dos*Hfinc*1e3; % cm^3
+mhsink = 1e-3*Vhsink*dena; % kg
 % ___________________________________________
+
 
 % ___________________________________________
 % Electromagnetic model-9: Core loss
@@ -666,27 +685,42 @@ mcopper = 1e-3*Vcopper*dencu; % kg
 % https://perso.uclouvain.be/ernest.matagne/ELEC2311/T2006/NOFP.pdf
 Pcden = 4; % W/kg
 Pc = Pcden*miron; % W
+effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
+objectf = PDv;
 
+if Taos >= 7e-3 && Taos <= 50e-3
+%    ns
+%    np
+%    ar
+else
+    objectf = 0;
+end
+
+%param(indexa,index,indexo) = 1000*Taos;
+%param(indexa,index,indexo) = 100*effm;
 %param(indexa,index,indexo) = 100*effdr;
 %param(indexa,index,indexo) = ns*Cdcreq*1e6;
 %param(indexa,index,indexo) = Volcap;
-
 %param1(indexa,index,indexo) = TotalCcap;
 %param2(indexa,index,indexo) = TotalCgan;
-
-
 %param1(indexa,index,indexo) = La*1e3;
 %param2(indexa,index,indexo) = Dis*1e3;
 
+%param1(indexa,index,indexo) = objectf;
+%param2(indexa,index,indexo) = objectf;
+%param1(indexa,index,indexo) = objectf;
 
-%end
-%end
-%end
+param(indexa,index,indexo) = objectf;
 
-xaxis = 0.2+(0:19)'*0.09;
-%xaxis = (1:20)'*10;
+end
+end
+end
+
+%xaxis = (1:5)*2;
+%xaxis = 0.2+(0:20)'*0.09;
+xaxis = (1:21)'*10;
 %xaxis = 0.5 + (1:20)'*0.025;
 
 
@@ -709,17 +743,25 @@ plot(xaxis,param(1,:,6),'mo-','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
+legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
+title('2 series modules');
 xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall power density (kW/lt)','FontSize',12,'FontWeight','Bold')
+ylim([0.5 1]);
+
+%ylabel('Magnet mass (kg)','FontSize',12,'FontWeight','Bold')
+%xlabel('Slot/module/phase','FontSize',12,'FontWeight','Bold')
+%xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+%ylabel('Motor efficiency (%)','FontSize',12,'FontWeight','Bold')
+%xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
 %xlabel('Modulation index','FontSize',12,'FontWeight','Bold')
 %ylabel('Drive efficiency (%)','FontSize',12,'FontWeight','Bold')
 %ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
-ylabel('Total capacitor volume (cm^3)','FontSize',12,'FontWeight','Bold')
+%ylabel('Total capacitor volume (cm^3)','FontSize',12,'FontWeight','Bold')
 %ylabel('DC bus ripple current requirement (Arms)','FontSize',12,'FontWeight','Bold')
 %xlim([0.0995 0.1]);
-%ylim([95 100]);
-ylim([0 400]);
-legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
-title('2 series modules');
+%ylim([0 400]);
+
 
 subplot(3,1,2)
 plot(xaxis,param(2,:,1),'bo-','Linewidth',1.5);
@@ -736,13 +778,11 @@ plot(xaxis,param(2,:,6),'mo-','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
-ylabel('Total capacitor volume (cm^3)','FontSize',12,'FontWeight','Bold')
-%xlim([0.0995 0.1]);
-%ylim([92 100]);
-ylim([0 400]);
 legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
 title('3 series modules');
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall power density (kW/lt)','FontSize',12,'FontWeight','Bold')
+ylim([0.5 1]);
 
 subplot(3,1,3)
 plot(xaxis,param(3,:,1),'bo-','Linewidth',1.5);
@@ -759,13 +799,11 @@ plot(xaxis,param(3,:,6),'mo-','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
-xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
-ylabel('Total capacitor volume (cm^3)','FontSize',12,'FontWeight','Bold')
-%xlim([0.0995 0.1]);
-%ylim([90 100]);
-ylim([0 600]);
 legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
 title('4 series modules');
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Overall power density (kW/lt)','FontSize',12,'FontWeight','Bold')
+ylim([0.5 1]);
 
 
 %%

@@ -1,7 +1,25 @@
 %%
 
 figure;
+plot(xaxis,param1(1,:,2),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param2(1,:,2),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,param3(1,:,2),'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+ylabel('Active material mass (kgt)','FontSize',12,'FontWeight','Bold')
+%xlim([0.0995 0.1]);
+%ylim([95 100]);
+%ylim([0 400]);
+%legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
+legend('Copper','Magnet','Iron');
 
+
+%%
+figure;
 %subplot(3,1,1)
 plot(xaxis,param1(1,:,1),'bo-','Linewidth',1.5);
 hold on;
@@ -28,6 +46,7 @@ xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
 %ylim([95 100]);
 %ylim([0 400]);
 %legend('1parallel','2parallel','3parallel','4parallel','5parallel','6parallel');
+legend('Axial length','Bore diameter');
 %title('2 series modules');
 
 %%
