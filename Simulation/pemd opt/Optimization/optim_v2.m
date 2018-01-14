@@ -688,14 +688,14 @@ Pc = Pcden*miron; % W
 effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
-objectf = PDv;
+objectf = effdr*100;
 
 if Taos >= 7e-3 && Taos <= 50e-3
 %    ns
 %    np
 %    ar
 else
-    objectf = 0;
+    %objectf = 0;
 end
 
 %param(indexa,index,indexo) = 1000*Taos;
@@ -713,6 +713,7 @@ end
 %param1(indexa,index,indexo) = objectf;
 
 param(indexa,index,indexo) = objectf;
+param2(indexa,index,indexo) = Igan;
 
 end
 end
@@ -722,9 +723,40 @@ end
 %xaxis = 0.2+(0:20)'*0.09;
 xaxis = (1:21)'*10;
 %xaxis = 0.5 + (1:20)'*0.025;
-
+param2(1,1,:)
 
 %%
+
+figure;
+
+%subplot(3,1,1)
+plot(xaxis,param(1,:,1),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,2),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,3),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,4),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,5),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,6),'mo-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,7),'bx-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,8),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('1parallel','2parallel','3parallel','4parallel',...
+    '5parallel','6parallel');%,'7parallel','8parallel');
+title('2 series modules, ma = 0.9');
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Drive efficiency','FontSize',12,'FontWeight','Bold')
+ylim([97 99]);
+
+%%
+
 
 figure;
 

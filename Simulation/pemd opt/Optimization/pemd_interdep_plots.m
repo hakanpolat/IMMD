@@ -1,5 +1,4 @@
 %%
-
 figure;
 plot(xaxis,param1(1,:,2),'bo-','Linewidth',1.5);
 hold on;
