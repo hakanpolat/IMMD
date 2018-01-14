@@ -193,11 +193,11 @@ for indexo = 1:8
 n = ns*indexo;
 
 % The parameter interdependencies
-for index = 1:21
+for index = 1:20
 %ar = 0.5;
 
-fsw = index*10e3;
-%ma = 0.5 + 0.025*index;
+%fsw = index*10e3;
+ma = 0.5 + 0.025*index;
 %ar = 0.2+(index-1)*0.09;
 %w = 2*index;
 
@@ -688,7 +688,7 @@ Pc = Pcden*miron; % W
 effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
-objectf = effdr*100;
+objectf = ns*Cdcreq*1e6;
 
 if Taos >= 7e-3 && Taos <= 50e-3
 %    ns
@@ -707,6 +707,7 @@ end
 %param2(indexa,index,indexo) = TotalCgan;
 %param1(indexa,index,indexo) = La*1e3;
 %param2(indexa,index,indexo) = Dis*1e3;
+%param(indexa,index,indexo) = Idcrms
 
 %param1(indexa,index,indexo) = objectf;
 %param2(indexa,index,indexo) = objectf;
@@ -721,12 +722,11 @@ end
 
 %xaxis = (1:5)*2;
 %xaxis = 0.2+(0:20)'*0.09;
-xaxis = (1:21)'*10;
-%xaxis = 0.5 + (1:20)'*0.025;
-param2(1,1,:)
+%xaxis = (1:21)'*10;
+xaxis = 0.5 + (1:20)'*0.025;
+
 
 %%
-
 figure;
 
 %subplot(3,1,1)
@@ -751,9 +751,10 @@ set(gca,'FontSize',12);
 legend('1parallel','2parallel','3parallel','4parallel',...
     '5parallel','6parallel');%,'7parallel','8parallel');
 title('2 series modules, ma = 0.9');
-xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
-ylabel('Drive efficiency','FontSize',12,'FontWeight','Bold')
-ylim([97 99]);
+xlabel('Modulation index','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
+ylim([94 100]);
+
 
 %%
 

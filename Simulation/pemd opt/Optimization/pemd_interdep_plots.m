@@ -1,3 +1,53 @@
+figure;
+
+%subplot(3,1,1)
+plot(xaxis,param(1,:,1),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,2),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,3),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(2,:,1),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(3,:,2),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(4,:,1),'mo-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,7),'bx-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,8),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('2s-1p','2s2p','2s3p','3s1p','3s2p','4s1p')
+title('2 series modules, ma = 0.9');
+xlabel('Modulation index','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
+%ylim([94 100]);
+
+%%
+figure;
+xaxis = (1:8);
+for k = 1:8
+yaxis1(k) = param(1,16,k);
+yaxis2(k) = param(2,16,k);
+yaxis3(k) = param(3,16,(k));
+end
+%subplot(3,1,1)
+plot(xaxis,yaxis1,'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis2,'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis3,'ro-','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('2series','3series','4series')
+title('fsw = 40kHz, ma = 0.9');
+xlabel('Number of parallel connected modules','FontSize',12,'FontWeight','Bold')
+ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
+%ylim([94 100]);
+
 %%
 figure;
 plot(xaxis,param1(1,:,2),'bo-','Linewidth',1.5);
