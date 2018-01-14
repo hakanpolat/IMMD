@@ -46,7 +46,7 @@ legend('2series','3series','4series')
 title('fsw = 40kHz, ma = 0.9');
 xlabel('Number of parallel connected modules','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
-%ylim([94 100]);
+ylim([94 100]);
 
 %%
 figure;

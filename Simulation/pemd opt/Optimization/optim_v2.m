@@ -193,11 +193,11 @@ for indexo = 1:8
 n = ns*indexo;
 
 % The parameter interdependencies
-for index = 1:20
+for index = 1:21
 %ar = 0.5;
 
-%fsw = index*10e3;
-ma = 0.5 + 0.025*index;
+fsw = index*10e3;
+%ma = 0.5 + 0.025*index;
 %ar = 0.2+(index-1)*0.09;
 %w = 2*index;
 
@@ -674,7 +674,7 @@ mmagnet = 1e-3*Vmagnet*denm; % kg
 Vcopper = Lengthph*Awdg*n*m; % cm^3
 mcopper = 1e-3*Vcopper*dencu; % kg
 % Heat sink volume
-Vhsink = pi/4*Dos^2*Hbase + Nfin*tfin*Dos*Hfinc*1e3; % cm^3
+Vhsink = (pi/4*(Dos*1e-3)^2*Hbase + Nfin*(tfin*1e-3)*(Dos*1e-3)*Hfinc ) *1e6; % cm^3
 mhsink = 1e-3*Vhsink*dena; % kg
 % ___________________________________________
 
@@ -688,7 +688,9 @@ Pc = Pcden*miron; % W
 effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
-objectf = ns*Cdcreq*1e6;
+objectf1 = Volcap*1e-3;
+objectf2 = Vhsink*1e-3;
+
 
 if Taos >= 7e-3 && Taos <= 50e-3
 %    ns
@@ -712,9 +714,10 @@ end
 %param1(indexa,index,indexo) = objectf;
 %param2(indexa,index,indexo) = objectf;
 %param1(indexa,index,indexo) = objectf;
+%param2(indexa,index,indexo) = Igan;
 
-param(indexa,index,indexo) = objectf;
-param2(indexa,index,indexo) = Igan;
+param1(indexa,index,indexo) = objectf1;
+param2(indexa,index,indexo) = objectf2;
 
 end
 end
@@ -722,45 +725,46 @@ end
 
 %xaxis = (1:5)*2;
 %xaxis = 0.2+(0:20)'*0.09;
-%xaxis = (1:21)'*10;
-xaxis = 0.5 + (1:20)'*0.025;
+xaxis = (1:21)'*10;
+%xaxis = 0.5 + (1:20)'*0.025;
 
-
-%%
+%
+%
 figure;
-
 %subplot(3,1,1)
-plot(xaxis,param(1,:,1),'bo-','Linewidth',1.5);
-hold on;
-plot(xaxis,param(1,:,2),'ko-','Linewidth',1.5);
-hold on;
-plot(xaxis,param(1,:,3),'ro-','Linewidth',1.5);
-hold on;
-plot(xaxis,param(1,:,4),'go-','Linewidth',1.5);
-hold on;
-plot(xaxis,param(1,:,5),'co-','Linewidth',1.5);
-hold on;
-plot(xaxis,param(1,:,6),'mo-','Linewidth',1.5);
+%plot(xaxis,param(1,:,1),'bo-','Linewidth',1.5);
+%hold on;
+yyaxis left
+ylabel('Capacitor bank volume (lt)','FontSize',12,'FontWeight','Bold')
+plot(xaxis,param1(1,:,2),'ko-','Linewidth',1.5);
+%hold on;
+ylim([0 0.4])
+
+yyaxis right
+ylabel('Heat sink volume (lt)','FontSize',12,'FontWeight','Bold')
+plot(xaxis,param2(1,:,2),'ro-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,4),'go-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,5),'co-','Linewidth',1.5);
+%hold on;
+%plot(xaxis,param(1,:,6),'mo-','Linewidth',1.5);
 %hold on;
 %plot(xaxis,param(1,:,7),'bx-','Linewidth',1.5);
 %hold on;
 %plot(xaxis,param(1,:,8),'kx','Linewidth',1.5);
-hold off;
+%hold off;
 grid on;
 set(gca,'FontSize',12);
-legend('1parallel','2parallel','3parallel','4parallel',...
-    '5parallel','6parallel');%,'7parallel','8parallel');
+%legend('2parallel','3parallel','4parallel',...
+%    '5parallel','6parallel');%,'7parallel','8parallel');
 title('2 series modules, ma = 0.9');
-xlabel('Modulation index','FontSize',12,'FontWeight','Bold')
-ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
-ylim([94 100]);
-
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Volume (lt)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
 
 %%
-
-
 figure;
-
 subplot(3,1,1)
 plot(xaxis,param(1,:,1),'bo-','Linewidth',1.5);
 hold on;
