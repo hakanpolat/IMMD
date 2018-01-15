@@ -29,9 +29,9 @@ ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
 figure;
 xaxis = (1:8);
 for k = 1:8
-yaxis1(k) = param(1,16,k);
-yaxis2(k) = param(2,16,k);
-yaxis3(k) = param(3,16,(k));
+yaxis1(k) = param(1,4,k);
+yaxis2(k) = param(2,4,k);
+yaxis3(k) = param(3,4,k);
 end
 %subplot(3,1,1)
 plot(xaxis,yaxis1,'bo-','Linewidth',1.5);
@@ -46,7 +46,7 @@ legend('2series','3series','4series')
 title('fsw = 40kHz, ma = 0.9');
 xlabel('Number of parallel connected modules','FontSize',12,'FontWeight','Bold')
 ylabel('Capacitance requirement (uF)','FontSize',12,'FontWeight','Bold')
-ylim([94 100]);
+%ylim([94 100]);
 
 %%
 figure;

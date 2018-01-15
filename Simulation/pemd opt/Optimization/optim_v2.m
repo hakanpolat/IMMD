@@ -184,21 +184,25 @@ lm = 4; % mm
 %clear param1;
 %clear param2;
 
-for indexa = 1:3
+%for indexa = 1:3
 %indexa = 1;
-ns = 1+indexa;
+%ns = 1+indexa;
 
-for indexo = 1:8
+for indexa = 1:8
+ns = 1;
+n = ns*indexa;
+
+%for indexo = 1:3
 %indexo = 2;
-n = ns*indexo;
+%n = ns*indexo;
+%w = 2*indexo;
 
 % The parameter interdependencies
 for index = 1:21
-%ar = 0.5;
 
-fsw = index*10e3;
+%fsw = index*10e3;
 %ma = 0.5 + 0.025*index;
-%ar = 0.2+(index-1)*0.09;
+ar = 0.2+(index-1)*0.09;
 %w = 2*index;
 
 % ___________________________________________
@@ -688,17 +692,21 @@ Pc = Pcden*miron; % W
 effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
-objectf1 = Volcap*1e-3;
-objectf2 = Vhsink*1e-3;
 
+objectf1 = miron;
+objectf2 = mmagnet;
+objectf3 = mcopper;
 
 if Taos >= 7e-3 && Taos <= 50e-3
 %    ns
 %    np
 %    ar
 else
-    %objectf = 0;
+    objectf1 = 0;
+    objectf2 = 0;
+    objectf3 = 0;
 end
+
 
 %param(indexa,index,indexo) = 1000*Taos;
 %param(indexa,index,indexo) = 100*effm;
@@ -716,17 +724,148 @@ end
 %param1(indexa,index,indexo) = objectf;
 %param2(indexa,index,indexo) = Igan;
 
-param1(indexa,index,indexo) = objectf1;
-param2(indexa,index,indexo) = objectf2;
+param1(indexa,index) = objectf1;
+param2(indexa,index) = objectf2;
+param3(indexa,index) = objectf3;
 
 end
-end
+%end
 end
 
 %xaxis = (1:5)*2;
-%xaxis = 0.2+(0:20)'*0.09;
-xaxis = (1:21)'*10;
+xaxis = 0.2+(0:20)'*0.09;
+%xaxis = (1:21)'*10;
 %xaxis = 0.5 + (1:20)'*0.025;
+
+
+
+%%
+figure;
+plot(xaxis,param1(2,:),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(3,:),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(4,:),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(5,:),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(6,:),'mo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(7,:),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(8,:),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
+%'2parallel','3parallel','4parallel',...
+%    '5parallel','6parallel','7parallel','8parallel');
+%title('w = 2');
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+ylabel('Active material mass (kg)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
+ylim([20 40]);
+
+
+%%
+
+clear yaxis
+for uindex = 1:8
+yaxis(uindex,:) = param(uindex,1,:);
+end
+
+
+
+%%
+figure;
+plot(xaxis,yaxis(1,:),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(2,:),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(3,:),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(4,:),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(5,:),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(6,:),'mo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(7,:),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(8,:),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('1parallel','2parallel','3parallel','4parallel',...
+    '5parallel','6parallel','7parallel','8parallel');
+title('w = 2');
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+ylabel('Power density (kW/lt)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
+%ylim([94 98]);
+
+
+%%
+figure;
+plot(xaxis,yaxis(1,:),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(2,:),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(3,:),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(4,:),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(5,:),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(6,:),'mo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(7,:),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,yaxis(8,:),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('1parallel','2parallel','3parallel','4parallel',...
+    '5parallel','6parallel','7parallel','8parallel');
+title('w = 2');
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+ylabel('Motor efficiency (%)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
+ylim([95 98])
+
+
+
+%%
+figure;
+plot(xaxis,param1(1,:,1),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,2),'ko-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,3),'ro-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,4),'go-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,5),'co-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,6),'mo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param(1,:,7),'bo-','Linewidth',1.5);
+hold on;
+plot(xaxis,param1(1,:,8),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+legend('2parallel','3parallel','4parallel',...
+    '5parallel','6parallel','7parallel');
+title('2 series modules, ma = 0.9');
+xlabel('Switching frequency (kHz)','FontSize',12,'FontWeight','Bold')
+ylabel('Power density (kW/lt)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
+ylim([0.5 1])
+
+
+
+%%
 
 %
 %
