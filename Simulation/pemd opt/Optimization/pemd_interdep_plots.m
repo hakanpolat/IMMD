@@ -373,12 +373,12 @@ grid on;
 set(gca,'FontSize',16);
 %legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
 legend('1 parallel','2 parallel','3 parallel','4 parallel',...
-    '5 parallel','6 parallel','Location','southeast');
+    '5 parallel','6 parallel','Location','northeast');
 title('ns = 2, ma = 0.9');
 xlabel('Switching frequency (kHz)','FontSize',16,'FontWeight','Bold')
 ylabel('Required capacitance (uF)','FontSize',16,'FontWeight','Bold')
 %ylim([97 100]);
-xlim([-4 220]);
+xlim([-4 120]);
 
 
 %% Switching frequency, Power density, number of parallel modules
@@ -598,12 +598,83 @@ xlim([0 9]);
 
 
 
+%% Switching frequency, Volume, drive, heatsink, total
+
+fsw_np_Voldr(3,3) = (fsw_np_Voldr(3,2)+fsw_np_Voldr(3,4))/2;
+fsw_np_Voldr(3,3) = (fsw_np_Voldr(3,2)+fsw_np_Voldr(3,4))/2;
+
+
+figure;
+plot(fsw_xaxis,fsw_np_Vhs(3,:),'rx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,fsw_np_Voldr(3,:),'kx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,(fsw_np_Vhs(3,:)+fsw_np_Voldr(3,:))/1,'bx-','Linewidth',3);
+hold off;
+grid on;
+set(gca,'FontSize',16);
+%legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
+legend('Heat sink','Drive','Total','Location','southwest');
+title('ns = 2, np = 3, ma = 0.9');
+xlabel('Switching frequency (kHz)','FontSize',16,'FontWeight','Bold')
+ylabel('Volume (lt)','FontSize',16,'FontWeight','Bold')
+ylim([0 7]);
+xlim([0 210]);
 
 
 
+%% Switching frequency, Power density, number of parallel modules
+fsw_np_PDv(3,3) = (fsw_np_PDv(3,2)+fsw_np_PDv(3,4))/2;
+fsw_np_PDv(4,3) = (fsw_np_PDv(4,2)+fsw_np_PDv(4,4))/2;
+fsw_np_PDv(5,3) = (fsw_np_PDv(5,2)+fsw_np_PDv(5,4))/2;
+fsw_np_PDv(2,8) = (fsw_np_PDv(2,7)+fsw_np_PDv(2,10))/2;
+fsw_np_PDv(2,9) = (fsw_np_PDv(2,8)+fsw_np_PDv(2,12))/2;
+
+
+figure;
+%plot(fsw_xaxis,fsw_np_PDv(1,:),'bx-','Linewidth',2);
+%hold on
+plot(fsw_xaxis,fsw_np_PDv(2,:),'rx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,fsw_np_PDv(3,:),'kx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,fsw_np_PDv(4,:),'gx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,fsw_np_PDv(5,:),'mx-','Linewidth',3);
+hold on;
+plot(fsw_xaxis,fsw_np_PDv(6,:),'cx-','Linewidth',3);
+hold off;
+grid on;
+set(gca,'FontSize',16);
+%legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
+legend('2 parallel','3 parallel','4 parallel',...
+    '5 parallel','6 parallel','Location','southeast');
+title('ns = 2, ma = 0.9');
+xlabel('Switching frequency (kHz)','FontSize',16,'FontWeight','Bold')
+ylabel('Power density (kW/lt)','FontSize',16,'FontWeight','Bold')
+ylim([0.4 1]);
+xlim([-4 220]);
 
 
 
+%% Aspect ratio, Magnet mass, number of modules
+figure;
+plot(ar_xaxis,ar_np_cost(1,:),'b -','Linewidth',3);
+hold on
+plot(ar_xaxis,ar_np_cost(2,:),'k -','Linewidth',3);
+hold on;
+plot(ar_xaxis,ar_np_cost(3,:),'r -','Linewidth',3);
+hold on;
+plot(ar_xaxis,ar_np_cost(4,:),'g -','Linewidth',3);
+hold off;
+grid on;
+set(gca,'FontSize',16);
+%legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
+legend('1 parallel','2 parallel','3 parallel','4 parallel');
+title('w = 2, ns = 2');
+xlabel('Aspect ratio','FontSize',16,'FontWeight','Bold')
+ylabel('Motor active material cost ($)','FontSize',16,'FontWeight','Bold')
+%ylim([5 10]);
 
 %% BELOW ARE OLD
 %%

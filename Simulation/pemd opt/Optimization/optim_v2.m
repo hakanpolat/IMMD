@@ -149,9 +149,9 @@ vtipmax = 10; % m/s
 
 % Optimization parameters with definitions
 % Switching frequency ([10e3,200e3] Hz)
-fsw = 40e3; % Hz
+fsw = 150e3; % Hz
 % Total number of modules ([2,10])
-n = 2;
+n = 8;
 % Number of series connected modules ([2,5])
 ns = 2;
 % Modulation index ([0.55,0.95])
@@ -178,9 +178,9 @@ lm = 4; % mm
 %clear param1;
 %clear param2;
 
-for indexa = 1:3
+%for indexa = 1:3
 %indexa = 1;
-ns = 1+indexa;
+%ns = 1+indexa;
 
 %for indexa = 1:6
 %ns = 2;
@@ -193,9 +193,9 @@ ns = 1+indexa;
 %w = 2*indexa;
 
 % The parameter interdependencies
-for index = 1:8
+%for index = 1:41
 
-n = ns*index;
+%n = ns*index;
 %fsw = index*10e3;
 %ma = 0.5 + 0.025*(index-1);
 %ar = 0.2+(index-1)*0.045;
@@ -710,9 +710,9 @@ end
 
 
 % ma = 0.9, fsw = 40kHz, np = 1,2,3,4,5,6,7,8, ns = 2,3,4
-np_ns_Cdcreq(indexa,index) = ns*Cdcreq*1e6;
-np_ns_effdr(indexa,index) = 100*effdr;
-np_ns_PDv(indexa,index) = PDv;
+% np_ns_Cdcreq(indexa,index) = ns*Cdcreq*1e6;
+% np_ns_effdr(indexa,index) = 100*effdr;
+% np_ns_PDv(indexa,index) = PDv;
 
 
 % ns = 2, ma = 0.9, np = 1,2,3,4,5,6
@@ -741,6 +741,8 @@ np_ns_PDv(indexa,index) = PDv;
 % ar_np_PDv(indexa,index) = PDv;
 
 
+%ar_np_cost(indexa,index) = miron*3 + mcopper*10 + mmagnet*80;
+
 % ns = 2, np = 1, w = 2,4,6,8, Qs = 12,24,36,48
 % ar_Qs_miron(indexa,index) = miron;
 % ar_Qs_mmagnet(indexa,index) = mmagnet;
@@ -748,20 +750,26 @@ np_ns_PDv(indexa,index) = PDv;
 % ar_Qs_effm(indexa,index) = 100*effm;
 % ar_Qs_PDv(indexa,index) = PDv;
 
-end
 %end
-end
+%end
+%end
 
-fsw_xaxis = (1:21)'*10;
-ma_xaxis = 0.5 + (0:20)'*0.025;
-ar_xaxis = 0.2+(0:40)'*0.045;
-np_xaxis = 1:8;
-n_xaxis = (1:5)*2;
+% fsw_xaxis = (1:21)'*10;
+% ma_xaxis = 0.5 + (0:20)'*0.025;
+% ar_xaxis = 0.2+(0:40)'*0.045;
+% np_xaxis = 1:8;
+% n_xaxis = (1:5)*2;
+% 
+% 
+% save('pemd_data.mat');
 
-
-save('pemd_data.mat');
-
-
+Igan
+Costm = miron*3 + mcopper*10 + mmagnet*80
+Driveeff = 100*effdr
+Motoreff = 100*effm
+Powden = PDv
+Cdcr = ns*Cdcreq*1e6
+Icapr = Idcrms
 
 %%
 figure;
