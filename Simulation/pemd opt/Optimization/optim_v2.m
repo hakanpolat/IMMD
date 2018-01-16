@@ -26,7 +26,7 @@
 %
 
 %clear all
-clc
+%clc
 
 % Global definitiona
 global mu0
@@ -66,8 +66,6 @@ global Tcamax
 global vtipmax
 global Vdcrip
 
-
-
 % Universal constants
 
 % Permeability of air
@@ -86,8 +84,6 @@ denc = 7.65; % g/cm^3
 dena = 2.70; % g/cm^3
 % Temperature coefficient of copper
 Tccu = 4.041e-3; % C-1
-
-
 
 % Constant parameters with definitions
 
@@ -115,8 +111,6 @@ Tamb = 40; % C
 kst = 0.96;
 % Number of stator slot layers
 layer = 2;
-
-
 
 % Constraint parameters
 
@@ -184,26 +178,29 @@ lm = 4; % mm
 %clear param1;
 %clear param2;
 
-%for indexa = 1:3
+for indexa = 1:3
 %indexa = 1;
-%ns = 1+indexa;
+ns = 1+indexa;
 
-for indexa = 1:8
-ns = 1;
-n = ns*indexa;
+%for indexa = 1:6
+%ns = 2;
+%n = ns*indexa;
+%n = ns*indexa;
 
 %for indexo = 1:3
 %indexo = 2;
 %n = ns*indexo;
-%w = 2*indexo;
+%w = 2*indexa;
 
 % The parameter interdependencies
-for index = 1:21
+for index = 1:8
 
+n = ns*index;
 %fsw = index*10e3;
-%ma = 0.5 + 0.025*index;
-ar = 0.2+(index-1)*0.09;
+%ma = 0.5 + 0.025*(index-1);
+%ar = 0.2+(index-1)*0.045;
 %w = 2*index;
+
 
 % ___________________________________________
 % Electrical model-1: Device selection
@@ -693,18 +690,10 @@ effm = Pout/(Pout+Pc+Pcu);
 % ___________________________________________
 
 
-objectf1 = miron;
-objectf2 = mmagnet;
-objectf3 = mcopper;
 
-if Taos >= 7e-3 && Taos <= 50e-3
-%    ns
-%    np
-%    ar
-else
-    objectf1 = 0;
-    objectf2 = 0;
-    objectf3 = 0;
+problema = 0;
+if Taos < 7e-3 || Taos > 50e-3
+problema = 1;
 end
 
 
@@ -719,41 +708,105 @@ end
 %param2(indexa,index,indexo) = Dis*1e3;
 %param(indexa,index,indexo) = Idcrms
 
-%param1(indexa,index,indexo) = objectf;
-%param2(indexa,index,indexo) = objectf;
-%param1(indexa,index,indexo) = objectf;
-%param2(indexa,index,indexo) = Igan;
 
-param1(indexa,index) = objectf1;
-param2(indexa,index) = objectf2;
-param3(indexa,index) = objectf3;
+% ma = 0.9, fsw = 40kHz, np = 1,2,3,4,5,6,7,8, ns = 2,3,4
+np_ns_Cdcreq(indexa,index) = ns*Cdcreq*1e6;
+np_ns_effdr(indexa,index) = 100*effdr;
+np_ns_PDv(indexa,index) = PDv;
+
+
+% ns = 2, ma = 0.9, np = 1,2,3,4,5,6
+% fsw_np_effdr(indexa,index) = 100*effdr;
+% fsw_np_Cdcreq(indexa,index) = ns*Cdcreq*1e6;
+% fsw_np_PDv(indexa,index) = PDv;
+% fsw_np_Volcap(indexa,index) = Volcap*1e-3; % lt, actual
+% fsw_np_Volhs(indexa,index) = Vhsink*1e-3; % lt, actual
+% fsw_np_Voldr(indexa,index) = Voldr*1e3; % lt, drive
+% fsw_np_Vhs(indexa,index) = Volhs*1e3; % lt, hetsink
+
+
+% ns = 2, fsw = 40kHz, np = 1,2,3,4,5,6
+% ma_np_effdr(indexa,index) = 100*effdr;
+% ma_np_Cdcreq(indexa,index) = ns*Cdcreq*1e6;
+% ma_np_Icrms(indexa,index) = Idcrms;
+% ma_np_effm(indexa,index) = 100*effm;
+% ma_np_PDv(indexa,index) = PDv;
+
+
+% ns = 2, w = 2, np = 1,2,3,4
+% ar_np_miron(indexa,index) = miron;
+% ar_np_mmagnet(indexa,index) = mmagnet;
+% ar_np_mcopper(indexa,index) = mcopper;
+% ar_np_effm(indexa,index) = 100*effm;
+% ar_np_PDv(indexa,index) = PDv;
+
+
+% ns = 2, np = 1, w = 2,4,6,8, Qs = 12,24,36,48
+% ar_Qs_miron(indexa,index) = miron;
+% ar_Qs_mmagnet(indexa,index) = mmagnet;
+% ar_Qs_mcopper(indexa,index) = mcopper;
+% ar_Qs_effm(indexa,index) = 100*effm;
+% ar_Qs_PDv(indexa,index) = PDv;
 
 end
 %end
 end
 
-%xaxis = (1:5)*2;
-xaxis = 0.2+(0:20)'*0.09;
-%xaxis = (1:21)'*10;
-%xaxis = 0.5 + (1:20)'*0.025;
+fsw_xaxis = (1:21)'*10;
+ma_xaxis = 0.5 + (0:20)'*0.025;
+ar_xaxis = 0.2+(0:40)'*0.045;
+np_xaxis = 1:8;
+n_xaxis = (1:5)*2;
+
+
+save('pemd_data.mat');
 
 
 
 %%
 figure;
-plot(xaxis,param1(2,:),'bo-','Linewidth',1.5);
+plot(xaxis,param1(4,:),'bo-','Linewidth',1.5);
+hold on
+plot(xaxis,param2(4,:),'ko-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(3,:),'ko-','Linewidth',1.5);
+plot(xaxis,param3(4,:),'ro-','Linewidth',1.5);
+% hold on;
+% plot(xaxis,param3(5,:),'go-','Linewidth',1.5);
+% hold on;
+% plot(xaxis,param3(6,:),'mo-','Linewidth',1.5);
+% hold on;
+% plot(xaxis,param3(7,:),'co-','Linewidth',1.5);
+% hold on;
+% plot(xaxis,param3(8,:),'kx','Linewidth',1.5);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+%legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
+legend('Iron mass (1/10)','Magnet mass','Copper mass');
+%'2parallel','3parallel','4parallel',...
+%    '5parallel','6parallel','7parallel','8parallel');
+title('Qs = 24');
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+ylabel('Active material mass (kg)','FontSize',12,'FontWeight','Bold')
+%legend('Capacitor','Heat sink');
+%ylim([5 10]);
+
+
+%%
+figure;
+plot(xaxis,param3(2,:),'bo-','Linewidth',1.5);
+hold on
+plot(xaxis,param3(3,:),'ko-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(4,:),'ro-','Linewidth',1.5);
+plot(xaxis,param3(4,:),'ro-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(5,:),'go-','Linewidth',1.5);
+plot(xaxis,param3(5,:),'go-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(6,:),'mo-','Linewidth',1.5);
+plot(xaxis,param3(6,:),'mo-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(7,:),'co-','Linewidth',1.5);
+plot(xaxis,param3(7,:),'co-','Linewidth',1.5);
 hold on;
-plot(xaxis,param1(8,:),'kx','Linewidth',1.5);
+plot(xaxis,param3(8,:),'kx','Linewidth',1.5);
 hold off;
 grid on;
 set(gca,'FontSize',12);
@@ -764,7 +817,7 @@ legend('Qs=12','Qs=18','Qs=24','Qs=30','Qs=36','Qs=42','Qs=48');
 xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
 ylabel('Active material mass (kg)','FontSize',12,'FontWeight','Bold')
 %legend('Capacitor','Heat sink');
-ylim([20 40]);
+ylim([5 10]);
 
 
 %%
