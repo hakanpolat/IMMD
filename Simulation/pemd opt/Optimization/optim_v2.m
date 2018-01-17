@@ -149,9 +149,9 @@ vtipmax = 10; % m/s
 
 % Optimization parameters with definitions
 % Switching frequency ([10e3,200e3] Hz)
-fsw = 150e3; % Hz
+fsw = 50e3; % Hz
 % Total number of modules ([2,10])
-n = 8;
+n = 4;
 % Number of series connected modules ([2,5])
 ns = 2;
 % Modulation index ([0.55,0.95])
@@ -322,6 +322,7 @@ Cdcreq = Cdcreq1*np*intv; % Amps
 % 6. Current, 7. ESR, 8. Gcap, 9. Cost
 [Cseri,Cpar,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = ...
     capacitor_selection(Cdcreq*1e6,Idcrms,Vdcm);
+Cap
 TotalCcap = Cpar*Cseri*ns*Ccap; % dollars
 hcap = Hcap; % mm
 Volcap = Hcap*Wcap*Lcap*Cseri*Cpar*ns*1e-3; % cm^3
