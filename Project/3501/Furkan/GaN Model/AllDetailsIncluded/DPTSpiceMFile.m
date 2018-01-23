@@ -23,23 +23,23 @@ Lground = 5e-9;
 
 %% Gate Driver
 Lgex = 3e-9;
-Ron = 10;
+Ron = 15;
 Roff = 2;
 %% Source parameters
 PulseAmplitude = 9;
 fsw = 2000e3;
 Vdc = 400;
-VpulseMax = 6;
+VpulseMax = 7;
 VpulseMin = -3;
 % Quantities in below are in percent
-Dtop = 49; % duty cycle of top
-Dbot = 49; % duty cycle of bot
+Dtop = 48; % duty cycle of top
+Dbot = 48; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 
 
 %% Load parameters
-LoadCurrent = 10;
+LoadCurrent = 30;
 Lload = 480e-6;
 
 CurrRipple = Vdc*(Dbot/100)/(fsw*Lload);

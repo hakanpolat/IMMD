@@ -1,15 +1,22 @@
-Ron = 10;
-Rg = 1.5; 
+Cgd = 1.748e-12;
+Cgs = 248e-12;
+Cds = 65.7e-12;
+
+Ls = 62e-12;
+Ld = 450e-12;
+Lg = 0.65e-9;
+Lss = 0.43e-9;
+Lp = 10e-12;
+
+Rg = 1.5;
+Rd = 0.0024 + 1e-4;
 Rs = 0.0433 + 1e-4;
-Req = Ron + Rg + Rs;
+Rss = 1e-3;
 
 Lgex = 3e-9;
-Lg = 0.65e-9;
-Ls = 0.062e-9;
-Leq = Lgex + Lg + Ls;
+VpulseMin = -3;
+VpulseMax = 6;
 
-Cgd = 2e-12;
-Cgs = 258e-12;
-Cds = 63e-12;
-
-
+Req = Rg + Rs + Ron;
+Leq = Lgex + Lg + Ls + Lp;
+Ceq = Cgs + Cgd;
