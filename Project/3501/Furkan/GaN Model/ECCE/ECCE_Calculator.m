@@ -1,9 +1,9 @@
 %% ECCE Loss Model
 %% Initialization
 % Device Parameters
-Cgd = 1.748e-12;
-Cgs = 160e-12;
-Cds = 65.7e-12;
+Cgd = 2e-12;
+Cgs = 258e-12;
+Cds = 63e-12;
 
 Ls = 62e-12;
 Ld = 450e-12;
@@ -39,7 +39,7 @@ DelayBot = 50;
 
 
 % Load parameters
-LoadCurrent = 30;
+LoadCurrent = 5;
 Lload = 480e-6;
 
 CurrRipple = Vdc*(Dbot/100)/(fsw*Lload);
