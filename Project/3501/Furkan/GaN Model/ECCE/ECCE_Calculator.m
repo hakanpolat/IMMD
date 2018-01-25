@@ -284,6 +284,7 @@ ax.FontSize = 12;
 plot(Load, Model1_Eoff,'LineWidth',3.0,'Color','r');
 plot(Load, Model2_Eoff,'LineWidth',3.0,'Color','b');
 plot(Load, Model3_Eoff,'LineWidth',3.0,'Color','m');
+ylim([0 12])
 legend('Model 1','Model 2','Model 3','Location','NorthWest');
 hold off
 %% Eon + Eoff Plots
@@ -313,6 +314,7 @@ ax.FontSize = 12;
 plot(Load, Model1_tcr,'LineWidth',3.0,'Color','r');
 plot(Load, Model2_tcr,'LineWidth',3.0,'Color','b');
 plot(Load, Model3_tcr,'LineWidth',3.0,'Color','g');
+ylim([0 8])
 legend('Model 1','Model 2','Model 3','Location','NorthWest');
 hold off
 %% Voltage Fall Time Plots
@@ -327,6 +329,7 @@ ax.FontSize = 12;
 plot(Load, Model1_tvf,'LineWidth',3.0,'Color','r');
 plot(Load, Model2_tvf,'LineWidth',3.0,'Color','b');
 plot(Load, Model3_tvf,'LineWidth',3.0,'Color','g');
+ylim([0 10])
 legend('Model 1','Model 2','Model 3','Location','NorthWest');
 hold off
 %% Current Fall Time - Voltage Rise Time Plots
@@ -341,5 +344,6 @@ ax.FontSize = 12;
 plot(Load, Model1_tcf,'LineWidth',3.0,'Color','r');
 plot(Load, Model2_tcf,'LineWidth',3.0,'Color','b');
 plot(Load, Model3_tcf,'LineWidth',3.0,'Color','g');
+ylim([0 14])
 legend('Model 1','Model 2','Model 3','Location','NorthEast');
 hold off
