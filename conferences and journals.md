@@ -18,18 +18,18 @@
 |14|International Conference on Engineering Technologies|[ICENTE 2017](http://icente.selcuk.edu.tr/)|Abstract|02.10.2017|7-9 December 2017|Konya,Turkey|Not submitted|
 |15|International Power Electronics Conference |[IPEC 2018 (ECCE ASIA)](http://www.ipec2018.org/)|Extended Summary|30.10.2017|20-24 May 2018|Niigata, Japan|Not submitted|
 |16|5th IEEE International Energy Conference|[ENERGYCON 2018](http://www.energycon2018.org/)|Full Paper|31.10.2017|3-7 June 2018|Limassol,Cyprus|Not submitted|
-|17|IEEE Power & Energy Society General Meetin|[IEEE PES 2018](http://pes-gm.org/2018/call-for-papers)|Full Paper|7.11.2017|5-10 August 2018|Portland,OR USA|**Submitted**|
+|17|IEEE Power & Energy Society General Meetin|[IEEE PES 2018](http://pes-gm.org/2018/call-for-papers)|**Final Paper**|7.11.2017|5-10 August 2018|Portland,OR USA|**Accepted !**|
 |18|19th IEEE Mediterranean Electrotechnical Conference|[IEEE MELECON 2018](http://www.ieee.ma/melecon18/call-for-papers/)|Full Paper|10.11.2017|2-7 May 2018|Marrakesh,Morocco|Not submitted|
-|19|International Conference on Industrial Technology|[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|**Full paper**|20.11.2017|20-22 February 2018|Lyon, France|**Consider**|
+|19|International Conference on Industrial Technology|[ICIT 2018](http://icit2018.org/en/pages/icit-ieee-2018-call-for-papers)|Full paper|20.11.2017|20-22 February 2018|Lyon, France|Not submitted|
 |20|The 13th IEEE Conference on Industrial Electronics and Applications|[ICIEA 2018](http://www.ieeeiciea.org/2018/)|Full paper|30.11.2017|31 May-2 June 2018|Wuhan,China|Not submitted|
-|21|20th International Conference on Power Electronics and Applications|[EPE 2018 (ECCE EUROPE)](http://www.epe2018.com/)|**Extended Abstract**|01.12.2017|17-21 September 2018|Riga,Latvia|**Submit**|
-|22|The 7th International Conference on Renewable Power Generation|[RPG 2018](http://events.theiet.org/rpg/index.cfm)|**Abstract**|08.12.2017|26-27 September 2018|Copenhagen,Denmark|**Submit**|
+|21|20th International Conference on Power Electronics and Applications|[EPE 2018 (ECCE EUROPE)](http://www.epe2018.com/)|**Extended Abstract**|01.12.2017|17-21 September 2018|Riga,Latvia|**Submitted**|
+|22|The 7th International Conference on Renewable Power Generation|[RPG 2018](http://events.theiet.org/rpg/index.cfm)|**Abstract**|08.12.2017|26-27 September 2018|Copenhagen,Denmark|**Submitted**|
 |23|IEEE 9th International Symposium on Power Electronics for Distibuted Generation Systems|[PEDG 2018](http://www.ieee-pedg.org/page/14/call-for-papers/)|Extended Abstract|08.12.2017|25-28 June 2018|North Caroline,USA|Out of scope|
-|24|IEEE 12th International Conference on Compatibility, Power Electronics and Power Engineering|[CPE-POWERENG 2018](http://www.cpe-powereng2018.org/for-authors/call-for-papers/)|**Full paper**|10.12.2017|10-12 April 2018|Doha,Qatar|**Consider**|
-|25|The 5th International Conference on Electrical and Electronics Engineering|[ICEEE 2018](http://www.iceee.org/author.html#id)|**Full Paper**|15.12.2017|3-5 May 2018|İstanbul,Turkey|**Submit**|
+|24|IEEE 12th International Conference on Compatibility, Power Electronics and Power Engineering|[CPE-POWERENG 2018](http://www.cpe-powereng2018.org/for-authors/call-for-papers/)|**Final paper**|10.12.2017|10-12 April 2018|Doha,Qatar|**Accepted !**|
+|25|The 5th International Conference on Electrical and Electronics Engineering|[ICEEE 2018](http://www.iceee.org/author.html#id)|**Full Paper**|15.12.2017|3-5 May 2018|İstanbul,Turkey|**Consider**|
 |26|16th International Conference on Clean Energy|[ICCE 2018](http://icce2018.emu.edu.tr/en)|Full Paper|15.12.2017|9-11 May 2018|Famagusta,North Cyprus|Out of Scope|
 |27|IEEE International Conference on Electronics Technology|[ICET 2018](http://www.wikicfp.com/cfp/servlet/event.showcfp?eventid=66089&copyownerid=13881)|Abstract|10.01.2018|23-27 May 2018|Chengdu,China|Not submitted|
-|28|IEEE Energy Conversion Congress and Exposition|[ECCE 2018](https://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=35340)|**Abstract**|15.01.2018|23-27 September 2018|Oregon, USA|**SUBMIT**|
+|28|IEEE Energy Conversion Congress and Exposition|[ECCE 2018](https://www.ieee.org/conferences_events/conferences/conferencedetails/index.html?Conf_ID=35340)|**Abstract**|15.01.2018|23-27 September 2018|Oregon, USA|**Submitted**|
 |29|IEEE International Symposium on Industrial Electronics|[ISIE 2018](http://www.ieee-isie2018.org/)|**Full paper**|15.01.2018|12-15 June 2018|Cairns,Australia|**SUBMIT**|
 |30|International Conference on Electrical Machines|[ICEM 2018](http://www.icem.cc/2018/index.php/call-for-papers)|**Full paper**|04.02.2018|3-6 September 2018|Atina,Greece|**SUBMIT**|
 |31|IEEE International Conference on Power Electronics and Motion Control|[PEMC 2018](http://www.ieee-pemc2018.org/)|**Full paper**|09.02.2018|26-30 August 2018|Budapest, Hungary|**SUBMIT**|

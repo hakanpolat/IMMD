@@ -1,13 +1,34 @@
-### 08.01.2018 - 04.01.2018
+### 29.01.2018 - 04.02.2018
 #### Planlanan çalışmalar:
-* PEMD makalesinin sonuçlarının elde edilmesi ve yorumlanması
-* PEMD makalesinin yazımına başlanması
-* ECCe makalesinin yazımına başlanması
+* **New Job :)**
+* Dönem planı
+* Yeni makalelerin okunması, literatür özeti
+* CPE-POWERENG düzeltmeler
+* IEEE-PES submit
 
 #### Gerçekleşen çalışmalar:
 * ...
-* ..
-* .
+
+### 22.01.2018 - 28.01.2018
+* **VACATION**
+
+### 15.01.2018 - 21.01.2018
+#### Planlanan çalışmalar:
+* PEMD makalesi
+* ECCE makalesi
+
+#### Gerçekleşen çalışmalar:
+* PEMD makalesi bitti, yüklendi
+* ECCE makalesi bitti, yüklendi
+
+### 08.01.2018 - 14.01.2018
+#### Planlanan çalışmalar:
+* PEMD makalesi
+* ECCE makalesi
+
+#### Gerçekleşen çalışmalar:
+* PEMD makalesinin sonuçları elde edildi, yorumlandı
+* ECCE makalesi temeli oluşturuldu
 
 ### 01.01.2018 - 07.01.2018
 #### Planlanan çalışmalar:
