@@ -27,7 +27,7 @@ Ron = 15;
 Roff = 2;
 %% Source parameters
 PulseAmplitude = 9;
-fsw = 2000e3;
+fsw = 100e3;
 Vdc = 400;
 VpulseMax = 6;
 VpulseMin = -3;
@@ -39,51 +39,51 @@ DelayBot = 50;
 
 
 %% Load parameters
-LoadCurrent = 30;
-Lload = 1e-12;
-Rload = 20;
+LoadCurrent = 10;
+Lload = 100e-6;
+Rload = 0.01;
 InitialCurrent = 0;%LoadCurrent;
 
 %% Initial Conditions
 % Phase A Top
-CurrAT = InitialCurrent;
+CurrAT = 0;
 VoltDSAT = 0;
-VoltGSAT = VpulseMax;
+VoltGSAT = 0;
 VoltGDAT = VoltDSAT - VoltGSAT;
 % Phase A Bot
-CurrAB = 0;
-VoltDSAB = Vdc;
-VoltGSAB = VpulseMin;
+CurrAB = InitialCurrent;
+VoltDSAB = 0;
+VoltGSAB = 0;
 VoltGDAB = VoltDSAB - VoltGSAB;
 % Phase B Top
-CurrBT = 0;
-VoltDSBT = Vdc;
-VoltGSBT = VpulseMin;
+CurrBT = InitialCurrent/2;
+VoltDSBT = 0;
+VoltGSBT = 0;
 VoltGDBT = VoltDSBT - VoltGSBT;
 % Phase B Bot
-CurrBB = InitialCurrent/2;
+CurrBB = 0;
 VoltDSBB = 0;
-VoltGSBB = VpulseMax;
+VoltGSBB = 0;
 VoltGDBB = VoltDSBB - VoltGSBB;
 % Phase C Top
-CurrCT = 0;
-VoltDSCT = Vdc;
-VoltGSCT = VpulseMin;
+CurrCT = InitialCurrent/2;
+VoltDSCT = 0;
+VoltGSCT = 0;
 VoltGDCT = VoltDSCT - VoltGSCT;
 % Phase C Bot
-CurrCB = InitialCurrent/2;
+CurrCB = 0;
 VoltDSCB = 0;
-VoltGSCB = VpulseMax;
+VoltGSCB = 0;
 VoltGDCB = VoltDSCB - VoltGSCB;
 % Load
-LoadA = InitialCurrent;
-LoadB = -InitialCurrent/2;
-LoadC = -InitialCurrent/2;
+LoadA = -InitialCurrent;
+LoadB = InitialCurrent/2;
+LoadC = InitialCurrent/2;
 % Source
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink
-SampleTime = 5e-13;
+SampleTime = 5e-11;
 model = 'InverterModel';
 load_system(model);
 StopTime = ReqTime + 2.01/fsw;
