@@ -1,13 +1,7 @@
-### 29.01.2018 - 04.02.2018
-#### Planlanan çalışmalar:
-* **New Job :)**
-* Dönem planı
-* Yeni makalelerin okunması, literatür özeti
-* CPE-POWERENG düzeltmeler
-* IEEE-PES submit
+**04.02.2018 tarihinden itibaren haftalık plan yerine aylık plan düzenine geçilmiştir.**
 
-#### Gerçekleşen çalışmalar:
-* ...
+### 29.01.2018 - 04.02.2018
+* **New Job :)**
 
 ### 22.01.2018 - 28.01.2018
 * **VACATION**
