@@ -23,11 +23,11 @@ Lground = 5e-9;
 
 %% Gate Driver
 Lgex = 3e-9;
-Ron = 15;
-Roff = 2;
+Ron = 10;
+Roff = 1;
 %% Source parameters
 PulseAmplitude = 9;
-fsw = 100e3;
+fsw = 1e5;
 Vdc = 400;
 VpulseMax = 6;
 VpulseMin = -3;
