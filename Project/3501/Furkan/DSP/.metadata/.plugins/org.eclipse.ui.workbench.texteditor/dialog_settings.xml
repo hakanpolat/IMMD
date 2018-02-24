@@ -2,15 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="Setup_ePWM1()" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Setup_ePWM1A()"/>
+			<item value="ePWM1A"/>
 			<item value="InitPie"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Setup_ePWM1()"/>
+			<item value="ePWM1"/>
+			<item value="ePWM"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

@@ -1,0 +1,32 @@
+Circuit: * C:\Users\kkfrk\Desktop\Loss LTSpice\Loss.asc
+
+WARNING: Less than two connections to node NC_01.  This node is used by L:U2:SS.
+WARNING: Less than two connections to node NC_02.  This node is used by L:U1:SS.
+Direct Newton iteration for .op point skipped.
+Gmin stepping method for .op point skipped.
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+Source Step = 33.3333%
+Source Step = 63.6364%
+Source Step = 93.9394%
+Source stepping succeeded in finding the operating point.
+
+
+Date: Sat Jan 06 14:23:59 2018
+Total elapsed time: 1.660 seconds.
+
+tnom = 27
+temp = 25
+method = modified trap
+totiter = 71309
+traniter = 71230
+tranpoints = 30099
+accept = 30072
+rejected = 27
+matrix size = 81
+fillins = 92
+solver = Normal
+Thread vector: 19.4/11.4[2] 6.8/4.6[2] 1.5/3.4[1] 0.5/1.4[1]  2592/500
+Matrix Compiler1: 8.63 KB object code size  2.6/1.6/[1.0]
+Matrix Compiler2: 7.78 KB object code size  1.4/1.8/[1.3]
+

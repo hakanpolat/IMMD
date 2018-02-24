@@ -1,0 +1,1806 @@
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab3" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+'Finished building: "../main.c"'
+ 
+'Building target: "Lab3.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab3.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab3_linkInfo.xml" --rom_model -o "Lab3.out" "./main.obj" "../28335_RAM_lnk.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab3.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../main.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab3" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="main.d_raw"  "../main.c"
+'Finished building: "../main.c"'
+ 
+'Building target: "Lab3.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab3.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab3_linkInfo.xml" --rom_model -o "Lab3.out" "./main.obj" "../28335_RAM_lnk.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab3.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab3 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab3.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 52: error #137: struct "GPADAT_BITS" has no field "GPI11"
+"../Lab5_1.c", line 55: error #137: struct "GPADAT_BITS" has no field "GPI11"
+"../Lab5_1.c", line 58: error #137: struct "GPBDAT_BITS" has no field "GPI34"
+"../Lab5_1.c", line 61: error #137: struct "GPBDAT_BITS" has no field "GPI34"
+"../Lab5_1.c", line 64: error #137: struct "GPBDAT_BITS" has no field "GPI49"
+"../Lab5_1.c", line 67: error #137: struct "GPBDAT_BITS" has no field "GPI49"
+"../Lab5_1.c", line 109: error #22: invalid hexadecimal number
+"../Lab5_1.c", line 109: error #66: expected a ";"
+"../Lab5_1.c", line 110: error #156: expression must have struct or union type
+"../Lab5_1.c", line 113: error #22: invalid hexadecimal number
+"../Lab5_1.c", line 113: error #66: expected a ";"
+"../Lab5_1.c", line 114: error #22: invalid hexadecimal number
+"../Lab5_1.c", line 114: error #66: expected a ";"
+13 errors detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 110: error #156: expression must have struct or union type
+1 error detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+"../Lab5_1.c", line 69: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+"../Lab5_1.c", line 69: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+"../Lab5_1.c", line 69: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 44: error #18: expected a ")"
+"../Lab5_1.c", line 50: error #18: expected a ")"
+"../Lab5_1.c", line 56: error #18: expected a ")"
+"../Lab5_1.c", line 62: error #18: expected a ")"
+4 errors detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 61: error #137: struct "GPADAT_BITS" has no field "GPIO34"
+"../Lab5_1.c", line 67: error #137: struct "GPADAT_BITS" has no field "GPIO49"
+2 errors detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+"../Lab5_1.c", line 69: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 108: error #137: struct "SYS_CTRL_REGS" has no field "WDCHK"
+1 error detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+
+>> Compilation failure
+subdir_rules.mk:23: recipe for target 'Lab5_1.obj' failed
+"../Lab5_1.c", line 108: error #156: expression must have struct or union type
+1 error detected in the compilation of "../Lab5_1.c".
+gmake: *** [Lab5_1.obj] Error 1
+gmake: Target 'all' not remade because of errors.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab5_1.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab5.pjt" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab5_1.d_raw"  "../Lab5_1.c"
+'Finished building: "../Lab5_1.c"'
+ 
+'Building target: "Lab5.pjt.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./Lab5_1.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+'Finished building target: "Lab5.pjt.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab5.pjt ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab5.pjt.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab6.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab6.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab6 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab6.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/workspace_v7/Lab6" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/include" --include_path="C:/Users/kkfrk/Desktop/tii/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab6.d_raw"  "../Lab6.c"
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab6.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab6.c"'
+ 
+'Building target: "Lab6.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab6.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab6_linkInfo.xml" --rom_model -o "Lab6.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab6.obj" "../28335_RAM_lnk.cmd" "C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab6.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "../Lab7_1_ConstantDutyCyclePWM.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_1_ConstantDutyCyclePWM.d_raw"  "../Lab7_1_ConstantDutyCyclePWM.c"
+warning #99922: "../Lab7_1_ConstantDutyCyclePWM.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_1_ConstantDutyCyclePWM.c", line 93: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_1_ConstantDutyCyclePWM.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_1_ConstantDutyCyclePWM.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_1_ConstantDutyCyclePWM.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_1_ConstantDutyCyclePWM.d_raw"  "../Lab7_1_ConstantDutyCyclePWM.c"
+warning #99922: "../Lab7_1_ConstantDutyCyclePWM.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_1_ConstantDutyCyclePWM.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_1_ConstantDutyCyclePWM.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_1_ConstantDutyCyclePWM.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Clean-only build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 clean -O 
+ 
+DEL /F  "Lab7.hex"  "Lab7.out" 
+DEL /F "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_1_ConstantDutyCyclePWM.obj" 
+DEL /F "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_1_ConstantDutyCyclePWM.d" 
+DEL /F "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+Could Not Find C:\Users\kkfrk\Documents\IMMD\Project\3501\Furkan\DSP\Lab7\Debug\DSP2833x_ADC_cal.d
+'Finished clean'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "../Lab7_2_ThreePhase.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_2_ThreePhase.d_raw"  "../Lab7_2_ThreePhase.c"
+warning #99922: "../Lab7_2_ThreePhase.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_2_ThreePhase.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_2_ThreePhase.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_2_ThreePhase.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_2_ThreePhase.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_2_ThreePhase.d_raw"  "../Lab7_2_ThreePhase.c"
+warning #99922: "../Lab7_2_ThreePhase.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_2_ThreePhase.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_2_ThreePhase.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_2_ThreePhase.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Clean-only build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 clean -O 
+ 
+DEL /F  "Lab7.hex"  "Lab7.out" 
+DEL /F "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_2_ThreePhase.obj" 
+DEL /F "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_2_ThreePhase.d" 
+DEL /F "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+Could Not Find C:\Users\kkfrk\Documents\IMMD\Project\3501\Furkan\DSP\Lab7\Debug\DSP2833x_ADC_cal.d
+'Finished clean'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "../Lab7_3_VariableDutyCyclePWM.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_3_VariableDutyCyclePWM.d_raw"  "../Lab7_3_VariableDutyCyclePWM.c"
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_3_VariableDutyCyclePWM.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_3_VariableDutyCyclePWM.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_3_VariableDutyCyclePWM.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_3_VariableDutyCyclePWM.d_raw"  "../Lab7_3_VariableDutyCyclePWM.c"
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_3_VariableDutyCyclePWM.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_3_VariableDutyCyclePWM.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_3_VariableDutyCyclePWM.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_3_VariableDutyCyclePWM.d_raw"  "../Lab7_3_VariableDutyCyclePWM.c"
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_3_VariableDutyCyclePWM.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_3_VariableDutyCyclePWM.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_3_VariableDutyCyclePWM.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Clean-only build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 clean -O 
+ 
+DEL /F  "Lab7.hex"  "Lab7.out" 
+DEL /F "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_3_VariableDutyCyclePWM.obj" 
+DEL /F "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_3_VariableDutyCyclePWM.d" 
+DEL /F "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+Could Not Find C:\Users\kkfrk\Documents\IMMD\Project\3501\Furkan\DSP\Lab7\Debug\DSP2833x_ADC_cal.d
+'Finished clean'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "../Lab7_4_ComplementaryPWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_4_ComplementaryPWMs.d_raw"  "../Lab7_4_ComplementaryPWMs.c"
+warning #99922: "../Lab7_4_ComplementaryPWMs.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_4_ComplementaryPWMs.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_4_ComplementaryPWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_4_ComplementaryPWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Clean-only build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 clean -O 
+ 
+DEL /F  "Lab7.hex"  "Lab7.out" 
+DEL /F "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_4_ComplementaryPWMs.obj" 
+DEL /F "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_4_ComplementaryPWMs.d" 
+DEL /F "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+Could Not Find C:\Users\kkfrk\Documents\IMMD\Project\3501\Furkan\DSP\Lab7\Debug\DSP2833x_ADC_cal.d
+'Finished clean'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "../Lab7_5_IndependentModulationForSamePWMAB.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_5_IndependentModulationForSamePWMAB.d_raw"  "../Lab7_5_IndependentModulationForSamePWMAB.c"
+warning #99922: "../Lab7_5_IndependentModulationForSamePWMAB.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_5_IndependentModulationForSamePWMAB.c", line 96: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_5_IndependentModulationForSamePWMAB.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_5_IndependentModulationForSamePWMAB.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Clean-only build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 clean -O 
+ 
+DEL /F  "Lab7.hex"  "Lab7.out" 
+DEL /F "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_5_IndependentModulationForSamePWMAB.obj" 
+DEL /F "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_5_IndependentModulationForSamePWMAB.d" 
+DEL /F "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+Could Not Find C:\Users\kkfrk\Documents\IMMD\Project\3501\Furkan\DSP\Lab7\Debug\DSP2833x_ADC_cal.d
+'Finished clean'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CodeStartBranch.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_ADC_cal.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_ADC_cal.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_CpuTimers.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_DefaultIsr.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_DefaultIsr.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_GlobalVariableDefs.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_PieVect.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_usDelay.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_usDelay.asm"'
+ 
+'Building file: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="DSP2833x_SysCtrl.d_raw"  "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"
+'Finished building: "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c"'
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+gmake[1]: 'Lab7.out' is up to date.
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+"../Lab7_6_DeadTimePWMs.c", line 142: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+"../Lab7_6_DeadTimePWMs.c", line 142: warning #70-D: integer conversion resulted in truncation
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
+
+**** Build of configuration Debug for project Lab7 ****
+
+"C:\\ti\\ccsv7\\utils\\bin\\gmake" -k -j 4 all -O 
+ 
+'Building file: "../Lab7_6_DeadTimePWMs.c"'
+'Invoking: C2000 Compiler'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --include_path="C:/Users/kkfrk/Documents/IMMD/Project/3501/Furkan/DSP/Lab7" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/include" --include_path="C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/include" --include_path="C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number --preproc_with_compile --preproc_dependency="Lab7_6_DeadTimePWMs.d_raw"  "../Lab7_6_DeadTimePWMs.c"
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+warning #99922: "../Lab7_6_DeadTimePWMs.c", line 95: Assembly statement "NOP" creates a label, which may not be what was intended. Use a colon after a label or a space before a non-label to silence the warning.
+'Finished building: "../Lab7_6_DeadTimePWMs.c"'
+ 
+'Building target: "Lab7.out"'
+'Invoking: C2000 Linker'
+"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" "./DSP2833x_ADC_cal.obj" "./DSP2833x_CodeStartBranch.obj" "./DSP2833x_CpuTimers.obj" "./DSP2833x_DefaultIsr.obj" "./DSP2833x_GlobalVariableDefs.obj" "./DSP2833x_PieCtrl.obj" "./DSP2833x_PieVect.obj" "./DSP2833x_SysCtrl.obj" "./DSP2833x_usDelay.obj" "./Lab7_6_DeadTimePWMs.obj" "../28335_RAM_lnk.cmd" "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd"  -llibc.a 
+<Linking>
+warning #10247-D: creating output section "ramfuncs" without a SECTIONS specification
+'Finished building target: "Lab7.out"'
+ 
+
+**** Build Finished ****
