@@ -1,0 +1,208 @@
+******************************************************************************
+             TMS320C2000 Linker PC v16.9.7                     
+******************************************************************************
+>> Linked Tue Feb 20 15:31:29 2018
+
+OUTPUT FILE NAME:   <Lab3.out>
+ENTRY POINT SYMBOL: "_c_int00"  address: 00009000
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+PAGE 0:
+  BEGIN                 00000000   00000002  00000000  00000002  RWIX
+  RAMM0                 00000050   000003b0  00000000  000003b0  RWIX
+  RAML0                 00008000   00001000  0000001a  00000fe6  RWIX
+  RAML1                 00009000   00001000  000000f4  00000f0c  RWIX
+  RAML2                 0000a000   00001000  00000000  00001000  RWIX
+  RAML3                 0000b000   00001000  00000000  00001000  RWIX
+  ZONE7A                00200000   0000fc00  00000000  0000fc00  RWIX
+  CSM_RSVD              0033ff80   00000076  00000000  00000076  RWIX
+  CSM_PWL               0033fff8   00000008  00000000  00000008  RWIX
+  ADC_CAL               00380080   00000009  00000000  00000009  RWIX
+  IQTABLES              003fe000   00000b50  00000000  00000b50  RWIX
+  IQTABLES2             003feb50   0000008c  00000000  0000008c  RWIX
+  FPUTABLES             003febdc   000006a0  00000000  000006a0  RWIX
+  BOOTROM               003ff27c   00000d44  00000000  00000d44  RWIX
+  RESET                 003fffc0   00000002  00000000  00000002  RWIX
+
+PAGE 1:
+  BOOT_RSVD             00000002   0000004e  00000000  0000004e  RWIX
+  RAMM1                 00000400   00000400  00000400  00000000  RWIX
+  RAML4                 0000c000   00001000  0000000c  00000ff4  RWIX
+  RAML5                 0000d000   00001000  00000000  00001000  RWIX
+  RAML6                 0000e000   00001000  00000000  00001000  RWIX
+  RAML7                 0000f000   00001000  00000000  00001000  RWIX
+  ZONE7B                0020fc00   00000400  00000000  00000400  RWIX
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.cinit     0    00008000    0000001a     
+                  00008000    0000000e     rts2800_fpu32.lib : exit.obj (.cinit)
+                  0000800e    00000005                       : _lock.obj (.cinit:__lock)
+                  00008013    00000005                       : _lock.obj (.cinit:__unlock)
+                  00008018    00000002     --HOLE-- [fill = 0]
+
+.text      0    00009000    000000f4     
+                  00009000    00000056     rts2800_fpu32.lib : boot28.obj (.text)
+                  00009056    00000029                       : exit.obj (.text)
+                  0000907f    00000024                       : cpy_tbl.obj (.text)
+                  000090a3    0000001e                       : memcpy.obj (.text)
+                  000090c1    00000019                       : args_main.obj (.text)
+                  000090da    0000000e     main.obj (.text)
+                  000090e8    00000009     rts2800_fpu32.lib : _lock.obj (.text)
+                  000090f1    00000002                       : pre_init.obj (.text)
+                  000090f3    00000001                       : startup.obj (.text)
+
+.pinit     0    00008000    00000000     UNINITIALIZED
+
+.stack     1    00000400    00000400     UNINITIALIZED
+                  00000400    00000400     --HOLE--
+
+.ebss      1    0000c000    0000000c     UNINITIALIZED
+                  0000c000    00000006     rts2800_fpu32.lib : exit.obj (.ebss)
+                  0000c006    00000002                       : _lock.obj (.ebss:__lock)
+                  0000c008    00000002                       : _lock.obj (.ebss:__unlock)
+                  0000c00a    00000002     main.obj (.ebss)
+
+.reset     0    003fffc0    00000002     DSECT
+                  003fffc0    00000002     rts2800_fpu32.lib : boot28.obj (.reset)
+
+csm_rsvd   0    0033ff80    00000000     DSECT
+
+csmpasswds 
+*          0    0033fff8    00000000     DSECT
+
+MODULE SUMMARY
+
+       Module          code   initialized data   uninitialized data
+       ------          ----   ----------------   ------------------
+    .\
+       main.obj        14     0                  2                 
+    +--+---------------+------+------------------+--------------------+
+       Total:          14     0                  2                 
+                                                                   
+    C:\ti\ccsv7\tools\compiler\ti-cgt-c2000_16.9.7.LTS\lib\rts2800_fpu32.lib
+       boot28.obj      86     0                  0                 
+       exit.obj        41     14                 6                 
+       cpy_tbl.obj     36     0                  0                 
+       memcpy.obj      30     0                  0                 
+       args_main.obj   25     0                  0                 
+       _lock.obj       9      10                 4                 
+       pre_init.obj    2      0                  0                 
+       startup.obj     1      0                  0                 
+    +--+---------------+------+------------------+--------------------+
+       Total:          230    24                 10                
+                                                                   
+       Stack:          0      0                  1024              
+    +--+---------------+------+------------------+--------------------+
+       Grand Total:    244    24                 1036              
+
+
+GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
+
+address     data page           name
+--------    ----------------    ----
+00000400      10 (00000400)     __stack
+
+0000c000     300 (0000c000)     ___TI_enable_exit_profile_output
+0000c002     300 (0000c000)     ___TI_cleanup_ptr
+0000c004     300 (0000c000)     ___TI_dtors_ptr
+0000c006     300 (0000c000)     __lock
+0000c008     300 (0000c000)     __unlock
+0000c00a     300 (0000c000)     _i
+0000c00b     300 (0000c000)     _k
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+page  address   name                            
+----  -------   ----                            
+0     00009000  .text                           
+0     00009056  C$$EXIT                         
+1     00000800  __STACK_END                     
+abs   00000400  __STACK_SIZE                    
+1     0000c002  ___TI_cleanup_ptr               
+1     0000c004  ___TI_dtors_ptr                 
+1     0000c000  ___TI_enable_exit_profile_output
+abs   ffffffff  ___TI_pprof_out_hndl            
+abs   ffffffff  ___TI_prof_data_size            
+abs   ffffffff  ___TI_prof_data_start           
+abs   ffffffff  ___binit__                      
+abs   ffffffff  ___c_args__                     
+0     00008000  ___cinit__                      
+0     000090f4  ___etext__                      
+abs   ffffffff  ___pinit__                      
+0     00009000  ___text__                       
+0     000090c1  __args_main                     
+1     0000c006  __lock                          
+0     000090f0  __nop                           
+0     000090ec  __register_lock                 
+0     000090e8  __register_unlock               
+1     00000400  __stack                         
+0     000090f3  __system_post_cinit             
+0     000090f1  __system_pre_init               
+1     0000c008  __unlock                        
+0     00009056  _abort                          
+0     00009000  _c_int00                        
+0     0000907f  _copy_in                        
+0     00009058  _exit                           
+1     0000c00a  _i                              
+1     0000c00b  _k                              
+0     000090da  _main                           
+0     000090a3  _memcpy                         
+abs   ffffffff  binit                           
+0     00008000  cinit                           
+0     000090f4  etext                           
+abs   ffffffff  pinit                           
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+page  address   name                            
+----  -------   ----                            
+0     00008000  ___cinit__                      
+0     00008000  cinit                           
+0     00009000  .text                           
+0     00009000  ___text__                       
+0     00009000  _c_int00                        
+0     00009056  C$$EXIT                         
+0     00009056  _abort                          
+0     00009058  _exit                           
+0     0000907f  _copy_in                        
+0     000090a3  _memcpy                         
+0     000090c1  __args_main                     
+0     000090da  _main                           
+0     000090e8  __register_unlock               
+0     000090ec  __register_lock                 
+0     000090f0  __nop                           
+0     000090f1  __system_pre_init               
+0     000090f3  __system_post_cinit             
+0     000090f4  ___etext__                      
+0     000090f4  etext                           
+1     00000400  __stack                         
+1     00000800  __STACK_END                     
+1     0000c000  ___TI_enable_exit_profile_output
+1     0000c002  ___TI_cleanup_ptr               
+1     0000c004  ___TI_dtors_ptr                 
+1     0000c006  __lock                          
+1     0000c008  __unlock                        
+1     0000c00a  _i                              
+1     0000c00b  _k                              
+abs   00000400  __STACK_SIZE                    
+abs   ffffffff  ___TI_pprof_out_hndl            
+abs   ffffffff  ___TI_prof_data_size            
+abs   ffffffff  ___TI_prof_data_start           
+abs   ffffffff  ___binit__                      
+abs   ffffffff  ___c_args__                     
+abs   ffffffff  ___pinit__                      
+abs   ffffffff  binit                           
+abs   ffffffff  pinit                           
+
+[37 symbols]
