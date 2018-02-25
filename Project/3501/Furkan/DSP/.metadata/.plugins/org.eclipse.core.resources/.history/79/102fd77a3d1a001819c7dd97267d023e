@@ -124,15 +124,13 @@ void Gpio_select(void)
 	GpioCtrlRegs.GPCMUX1.all = 0x00000000;	// GPIO79 ... GPIO64 = General Purpose I/O
 	GpioCtrlRegs.GPCMUX2.all = 0x00000000;	// GPIO87 ... GPIO80 = General Purpose I/O
 	 
-	GpioCtrlRegs.GPADIR.all = 0x00000A04;
+	GpioCtrlRegs.GPADIR.all = 0x00000A00;
 	// peripheral explorer: LED LD1 at GPIO9
 	// peripheral explorer: LED LD2 at GPIO11
-	// Peripheral
 	GpioCtrlRegs.GPBDIR.all = 0x00020004;
 	// peripheral explorer: LED LD3 at GPIO34
 	// peripheral explorer: LED LD4 at GPIO49	
 	GpioCtrlRegs.GPCDIR.all = 0x00000000;
-	GpioDataRegs.GPASET.bit.GPIO2 = 1;
 	EDIS;
 }   
 

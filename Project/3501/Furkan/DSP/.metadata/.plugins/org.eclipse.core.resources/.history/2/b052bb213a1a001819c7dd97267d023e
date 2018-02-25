@@ -21,7 +21,7 @@ C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c
 C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c \
 C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c \
 C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c \
-../Lab7_6_DeadTimePWMs.c 
+../Lab7_10_CapturePWM.c 
 
 C_DEPS += \
 ./DSP2833x_CpuTimers.d \
@@ -30,7 +30,7 @@ C_DEPS += \
 ./DSP2833x_PieCtrl.d \
 ./DSP2833x_PieVect.d \
 ./DSP2833x_SysCtrl.d \
-./Lab7_6_DeadTimePWMs.d 
+./Lab7_10_CapturePWM.d 
 
 OBJS += \
 ./DSP2833x_ADC_cal.obj \
@@ -42,7 +42,7 @@ OBJS += \
 ./DSP2833x_PieVect.obj \
 ./DSP2833x_SysCtrl.obj \
 ./DSP2833x_usDelay.obj \
-./Lab7_6_DeadTimePWMs.obj 
+./Lab7_10_CapturePWM.obj 
 
 ASM_DEPS += \
 ./DSP2833x_ADC_cal.d \
@@ -59,7 +59,7 @@ OBJS__QUOTED += \
 "DSP2833x_PieVect.obj" \
 "DSP2833x_SysCtrl.obj" \
 "DSP2833x_usDelay.obj" \
-"Lab7_6_DeadTimePWMs.obj" 
+"Lab7_10_CapturePWM.obj" 
 
 C_DEPS__QUOTED += \
 "DSP2833x_CpuTimers.d" \
@@ -68,7 +68,7 @@ C_DEPS__QUOTED += \
 "DSP2833x_PieCtrl.d" \
 "DSP2833x_PieVect.d" \
 "DSP2833x_SysCtrl.d" \
-"Lab7_6_DeadTimePWMs.d" 
+"Lab7_10_CapturePWM.d" 
 
 ASM_DEPS__QUOTED += \
 "DSP2833x_ADC_cal.d" \
@@ -87,6 +87,6 @@ C_SRCS__QUOTED += \
 "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieCtrl.c" \
 "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c" \
 "C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_SysCtrl.c" \
-"../Lab7_6_DeadTimePWMs.c" 
+"../Lab7_10_CapturePWM.c" 
 
 

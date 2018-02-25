@@ -73,7 +73,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Lab7_8_TripZone_Unsuccessfull_Due_to_Different_Test_Board.c|Lab7_7_ChopperPWM.c|Lab7_6_DeadTimePWMs.c|Lab7_5_IndependentModulationForSamePWMAB.c|Lab7_4_ComplementaryPWMs.c|Lab7_3_VariableDutyCyclePWM.c|Lab7_2_ThreePhase.c|Lab7_1_ConstantDutyCyclePWM.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Lab7_10_CapturePWM.c|Lab7_8_TripZone_Unsuccessfull_Due_to_Different_Test_Board.c|Lab7_7_ChopperPWM.c|Lab7_5_IndependentModulationForSamePWMAB.c|Lab7_4_ComplementaryPWMs.c|Lab7_3_VariableDutyCyclePWM.c|Lab7_2_ThreePhase.c|Lab7_1_ConstantDutyCyclePWM.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
