@@ -29,7 +29,7 @@ Roff = 2;
 PulseAmplitude = 9;
 fsw = 2000e3;
 Vdc = 400;
-VpulseMax = 7;
+VpulseMax = 6;
 VpulseMin = -3;
 % Quantities in below are in percent
 Dtop = 48; % duty cycle of top
