@@ -1,0 +1,162 @@
+//
+//      Lab5_1: TMS320F28335
+//      (c) Frank Bormann
+//
+//###########################################################################
+//
+// FILE:	Lab5_1.c
+// 
+// TITLE:	DSP28335ControlCARD; Digital Output
+//			4 - bit - counter at 4 LEDs LD1(GPIO9), LD2(GPIO11), LD3(GPIO34)
+//			and LD4 (GPIO49) 
+//			software delay loop; watchdog disabled
+//			template file for Lab5_1
+//###########################################################################
+//  Ver | dd mmm yyyy | Who  | Description of changes
+// =====|=============|======|===============================================
+//  3.0 | 02 May 2008 | F.B. | Lab5_1 for F28335; 
+//  3.1 | 06 Nov 2009 | F.B  | Lab5_1 for F28335 and PE revision5
+//###########################################################################
+#include "DSP2833x_Device.h"
+
+// Prototype statements for functions found within this file.
+void Gpio_select(void);
+extern void InitSysCtrl(void);
+interrupt void cpu_timer0_isr(void);
+extern void InitPieCtrl(void);
+extern void InitPieVectTable(void);
+extern void InitCpuTimers(void);
+extern void ConfigCpuTimer(struct CPUTIMER_VARS*, float, float);
+void Setup_ePWM1(void);
+int dir = 0;
+//###########################################################################
+//						main code									
+//###########################################################################
+void main(void)
+{
+	int counter=0;		// binary counter for digital output
+
+	InitSysCtrl();	 	// Basic Core Initialization
+
+	EALLOW;             // Enable Watchdog
+	SysCtrlRegs.WDCR = 0x00AF;
+	EDIS;
+
+	DINT;				// Disable all interrupts
+	
+	Gpio_select();		// GPIO9,GPIO11,GPIO34 and GPIO49 as output (LEDs @ peripheral explorer)
+	Setup_ePWM1();
+	InitPieCtrl();
+	InitPieVectTable();
+
+	EALLOW;             // Assign TIMER0 to Interrupt Service
+	PieVectTable.TINT0 = &cpu_timer0_isr;
+	EDIS;
+
+	InitCpuTimers();    // Initialize Timers
+	ConfigCpuTimer(&CpuTimer0, 150, 10000); //Set CPU Timer-0 overflows @ 100 usecs
+	                                        // Here 150 stands for 150 MHz, 100000 for 100 msecs
+	PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
+	IER |= 1; // Enable Interrupt Core Line
+	EINT;       // Enable Control Interrupts
+	ERTM;       // Enable Debug Interrupts
+	CpuTimer0Regs.TCR.bit.TSS = 0; // Start timer
+
+	while(1)
+	{    
+	  		counter++;
+			// place your code to analyze counter here 
+	  		if ((counter & 0x0001) == 1) // if bit 0 of counter = 1, set GPIO9 to 1
+	  		{
+	  		  GpioDataRegs.GPASET.bit.GPIO9 = 1;
+	  		}
+	  		else
+	  		  GpioDataRegs.GPACLEAR.bit.GPIO9 = 1;
+	  		if (((counter >> 1) & 0x0001) == 1)// if bit 1 of counter = 1, set GPIO11 to 1
+	  		{
+	  		  GpioDataRegs.GPASET.bit.GPIO11 = 1;
+	  		}
+	  		else
+	  		  GpioDataRegs.GPACLEAR.bit.GPIO11 = 1;
+	  		if (((counter >> 2) & 0x0001) == 1)// if bit 2 of counter = 1, set GPIO34 to 1
+	  		{
+	  		  GpioDataRegs.GPBSET.bit.GPIO34 = 1;
+	  		}
+	  		else
+	  		  GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;
+            if (((counter >> 3) & 0x0001) == 1)// if bit 3 of counter = 1, set GPIO49 to 1
+            {
+              GpioDataRegs.GPBSET.bit.GPIO49 = 1;
+            }
+            else
+              GpioDataRegs.GPBCLEAR.bit.GPIO49 = 1;
+
+            while (CpuTimer0.InterruptCount != 1)
+            {
+                asm("NOP");
+                EALLOW;
+                SysCtrlRegs.WDKEY = 0x55;
+                SysCtrlRegs.WDKEY = 0xAA;
+                EDIS;
+            }
+            CpuTimer0.InterruptCount =0;
+
+	}
+} 
+interrupt void cpu_timer0_isr(void)
+{
+    CpuTimer0.InterruptCount++;
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+/*   if ((EPwm1Regs.CMPA.half.CMPA < EPwm1Regs.TBPRD) && (dir == 0))
+        EPwm1Regs.CMPA.half.CMPA++;
+    else if ((EPwm1Regs.CMPA.half.CMPA == EPwm1Regs.TBPRD) && (dir == 0))
+        dir = 1;
+    else if ((dir == 1) && (EPwm1Regs.CMPA.half.CMPA > 0))
+        EPwm1Regs.CMPA.half.CMPA--;
+    else if ((EPwm1Regs.CMPA.half.CMPA == 0)  && (dir == 1))
+        dir = 0;*/
+
+    EALLOW;
+    SysCtrlRegs.WDKEY = 0x55;
+    SysCtrlRegs.WDKEY = 0xAA;
+    EDIS;
+}
+
+void Gpio_select(void)
+{
+	EALLOW;
+	GpioCtrlRegs.GPAMUX1.all = 0x00000005;	// GPIO15 ... GPIO0 = General Puropse I/O
+	GpioCtrlRegs.GPAMUX2.all = 0x00000000;	// GPIO31 ... GPIO16 = General Purpose I/O
+	GpioCtrlRegs.GPBMUX1.all = 0x00000000;	// GPIO47 ... GPIO32 = General Purpose I/O
+	GpioCtrlRegs.GPBMUX2.all = 0x00000000;	// GPIO63 ... GPIO48 = General Purpose I/O
+	GpioCtrlRegs.GPCMUX1.all = 0x00000000;	// GPIO79 ... GPIO64 = General Purpose I/O
+	GpioCtrlRegs.GPCMUX2.all = 0x00000000;	// GPIO87 ... GPIO80 = General Purpose I/O
+	 
+	GpioCtrlRegs.GPADIR.all = 0x00000A00;
+	// peripheral explorer: LED LD1 at GPIO9
+	// peripheral explorer: LED LD2 at GPIO11
+	GpioCtrlRegs.GPBDIR.all = 0x00020004;
+	// peripheral explorer: LED LD3 at GPIO34
+	// peripheral explorer: LED LD4 at GPIO49	
+	GpioCtrlRegs.GPCDIR.all = 0x00000000;
+	EDIS;
+}   
+
+void Setup_ePWM1(void)
+{
+    EPwm1Regs.TBCTL.bit.CLKDIV = 2; //010 -> /4
+    EPwm1Regs.TBCTL.bit.HSPCLKDIV = 5; // 101 -> /10
+    EPwm1Regs.TBCTL.bit.CTRMODE = 2; // both up and down counting
+    EPwm1Regs.TBPRD = 1875; // 1875 Cycle will be counted
+    EPwm1Regs.AQCTLA.all = 0x0060; // Up = set; Down = clear
+    EPwm1Regs.AQCTLB.all = 0x0600; // Up = clear; Down = set
+    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD/2;
+    EPwm1Regs.CMPB = EPwm1Regs.TBPRD/2;
+    EPwm1Regs.PCCTL.bit.CHPDUTY = 3;
+    EPwm1Regs.PCCTL.bit.CHPFREQ = 7;
+    EPwm1Regs.PCCTL.bit.OSHTWTH = 15;
+    EPwm1Regs.PCCTL.bit.CHPEN = 1;
+}
+//===========================================================================
+// End of SourceCode.
+//===========================================================================

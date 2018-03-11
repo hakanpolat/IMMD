@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;Lab7/Lab7_8_TripZone.c&apos; to &apos;Lab7_8_TripZone_Unsuccessfull_Due_to_Different_Test_Board.c&apos;" description="Rename resource &apos;Lab7_8_TripZone.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Lab7_8_TripZone.c" name="Lab7_8_TripZone_Unsuccessfull_Due_to_Different_Test_Board.c" stamp="1519559106714" updateReferences="true"/>
+</session>

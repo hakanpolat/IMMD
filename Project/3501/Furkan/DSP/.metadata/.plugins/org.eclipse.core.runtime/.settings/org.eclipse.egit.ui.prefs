@@ -1,0 +1,3 @@
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>DSP is ready to energize GaN Module and it will be energized &\#x0A;&\#x0A;soon. At the same time, DSP works continue.&\#x0A;&\#x0A;It is committed using the Code Composer Studio interface.</message>\r\n</messages>
+commit_dialog_signed_off_by=true
+eclipse.preferences.version=1

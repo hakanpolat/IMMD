@@ -1,0 +1,20 @@
+Reviewer 1:
+This reviewer entered no comments
+-------------------------------------------------------------------------------
+Reviewer 2:
+You mentioned at least twice the synchronous rectification mode, i.e. turn the device actively on during reverse freewheeling operation, as a problem. Of course, synchronous rectification is not possible during dead time to avoid shot-through and the higher on-state voltage causes additional losses during that time. But is that so dramatic? Maybe the respective passages in your text are just misleading.
+-------------------------------------------------------------------------------
+Reviewer 3:
+I recommend to include a comparison of the forward and reverse I(V) characteristics at high temperatures to show the accuracy of the model.
+The inclusión of experimental results in the final paper is needed.
+-------------------------------------------------------------------------------
+Reviewer 4:
+Dear authors,
+thank you for your contribution.
+
+- Your presentation of the channel current is really interesting, but the simulation results need to be analyzed in more detail, e.g. including parameter variations, an analysis of the gate-voltage, and the effect of cross conduction.
+-  Since you investigate internal quantities by simulation, how will you be able to verify this with the announced experimental results?
+- Could you please comment on the deviation of your reverse conducting model results from the datasheet values?
+- In the final paper, you should describe the model more precisely, e.g. how was the curve fitting for the capacitances derived, and what do the parameters K describe in eq, 1 and 2?
+- Also, I think your explanation concerning soft switching on p.3 is not accurate.
+- Your explanation of the dead time effects in the last section is not new.
