@@ -1,7 +1,7 @@
 %% Initial Configurations
 clear all;
 %% Device Parameters
-Temp = 125; % Junction Temp in Celcius
+Temp = 150; % Junction Temp in Celcius
 Cgd = 1.748e-12;
 Cgs = 160e-12;
 Cds = 65.7e-12;
@@ -39,7 +39,7 @@ DelayBot = 50;
 
 
 %% Load parameters
-LoadCurrent = 30;
+LoadCurrent = 15;
 Lload = 480e-6;
 
 CurrRipple = Vdc*(Dbot/100)/(fsw*Lload);
