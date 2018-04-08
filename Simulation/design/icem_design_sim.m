@@ -2,7 +2,8 @@
 
 Ts = 1e-6; % sec
 Tfinal = 0.1; % sec
-fsw = 10e3; % Hz
+Ripth = 0.08; % sec
+fsw = 20e3; % Hz
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
 Ef = 155; % Volts
@@ -28,23 +29,64 @@ phase = [0 90 0 90];
 Rin = 10;
 %Lin = 1e-3;
 Vin = Vdc + Rin*(Pout/Vdc);
-Cdc = 200e-6;
+Cdc = 100e-6;
+
+
+Idcrms1 = Is*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
+    pf^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
+
+Vdcrip = 1;
+Cdcreq1 = ns*(ma*Is/(16*fsw*Vdcrip))*...
+    sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
+    (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
 
 
 %%
+% Design ans Simulation with GaN
 
-Icrms = module/2*Iphase*sqrt(2*M*(sqrt(3)/(4*pi) +...
-    cosphi^2*(sqrt(3)/pi-9*M/16)));
-Idc = module/2*(3/(2*sqrt(2)))*M*Iline*cosphi/efficiency;
-Icrms_perc = 100*Icrms/Idc;
+Ts = 1e-7; % sec
+Tfinal = 0.06; % sec
+Ripth = 0.05; % sec
+fsw = 50e3; % Hz
+Vdc = 540; % Volts
+Pout = 8e3/0.94; % W
+m = 3;
+np = 2;
+ns = 2;
+n = ns*np;
+Ef = 155/ns; % Volts
+Ls = 13.8e-3/n; % Henries
+Rs = 1e-3/n; % Ohms
+fout = 50; % Hz
+wout = 2*pi*fout; % rad/sec
+Poutm = Pout/n; % Watts
+Is = Poutm/(Ef*m); % amps
+Xs = wout*Ls; % Ohms
+Vdrop = Is*Xs; % Volts
+Vt = sqrt(Ef^2+Vdrop^2); % Volts
+Vdcm = Vdc/ns; % volts
+ma = Vt*sqrt(3)/(Vdcm*0.612);
+delta = acos(Ef/Vt); % radians
+deltad = delta*180/pi; % degrees
+pf = cos(delta);
+phase = [0 90 0 90];
+Rin = 10;
+%Lin = 1e-3;
+Vin = Vdc + Rin*(Pout/Vdc);
+Cdc = 25e-6;
 
-fsw = 40e3; % Hz
-Cdc = 40e-6; % F
-Iapeak = Iline*sqrt(2);
-volt_ripple = M*(Iapeak - Idc/2)/(Cdc*fsw*sqrt(2))
-volt_ripple_perc = volt_ripple/Vdc*100
+Idcrms1 = np*Is*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
+    pf^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
+
+Vdcrip = 1;
+intv = 0.48;
+Cdcreq1 = intv*np*ns*(ma*Is/(16*fsw*Vdcrip))*...
+    sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
+    (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) ); % Farads
 
 
+%Cdc = Cdcreq1;
+%Cdc = round(Cdc*1e5)/1e5;
 
 
 %%
