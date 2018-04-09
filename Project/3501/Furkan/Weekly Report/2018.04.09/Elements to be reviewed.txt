@@ -1,0 +1,8 @@
+- DECISION: 	Layout design for single module
+- DECISION:	Not 6 layer but 4 layer PCB
+- DECISION: 	Placement of capacitor
+- DISCUSSION: 	Capacitor selection
+- DISCUSSION: 	Connections b/w board-to-board
+- DISCUSSION:	Connections b/w board-to-heatsink
+- DISCUSSION: 	Connections b/w board-to-phases
+- DISCUSSION:  	Thermal Isolator Selection
