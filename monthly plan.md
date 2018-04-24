@@ -1,15 +1,17 @@
 ### Nisan 2018
+
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * Güç kartı şematik tasarımın tamamlanması: **OK**
-  * Kontrol kartı şematik tasarımın tamamlanması
-  * Boyutlandırma, yerleşim, komponent seçimi vb. çalışmaların tamamlanması: **OK**
-  * Güç kartı layout tasarımına başlanması: **OK**
+  * Kontrol kartı şematik tasarımın tamamlanması: **Flyback OK, DSP kartı tasarlanacak**
+  * Boyutlandırma, yerleşim, komponent seçimi vb. çalışmaların tamamlanması: **OK, konektör seçilecek**
+  * Güç kartı layout tasarımı: **OK, son boyut bekleniyor**
 2. GaN EVM
-  * Yüksek gerilimde test yapılması
-  * Test setupının iyileştirilmesi, probing
+  * Yüksek gerilimde test yapılması: **OK**
+  * Test setupının iyileştirilmesi, probing: **OK**
   * R ve L yüklerin testi
-3. V.1. Motor
+  * Yük altında test: **Rezistif 100V OK**
+3. V.1. Motor **Motor çapı değişti, yeniden değerlendirilecek**
   * Mekanik tasarımın son haline gelmesi
   * Tüm parçaların çizim ortamında birleşmesi
   * Üretim prosedürünün netleştirilmesi (kim nereyi nasıl üretecek)
@@ -18,12 +20,12 @@
 
 ##### Makale çalışmaları
 1. PEMD 2018
-  * Sunumun prova ile son haline gelmesi
-  * Konferansta sunum yapılması (14-22 Nisan)
+  * Sunumun prova ile son haline gelmesi: **OK**
+  * Konferansta sunum yapılması (14-22 Nisan): **OK**
 2. ICEM 2018
   * Simulasyonların ve hesaplamaların sonlandırılması: **OK**
   * Sonuçların makaleye eklenmesi, discussion ve conclusion yazılması: **OK**
-  * Submittion (Deadline: 15 Nisan)
+  * Submittion (Deadline: 15 Nisan): **OK**
 3. PWM makalesi
   * Makale taslağı oluşturulması
   * İncelenecek tekniklerin belirlenmesi
@@ -45,4 +47,4 @@
 1. Yeni dönem starcılar
   * Rubrik oluşturulması: **OK**
   * Sunumlar ve değerlendirme: **OK**
-  * Yeni ekibe proje atanması
+  * Yeni ekibe proje atanması: **OK**
