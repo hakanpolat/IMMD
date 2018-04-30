@@ -1,7 +1,7 @@
 %% Initial Configurations
 clear all;
 %% Device Parameters
-Temp = 150; % Junction Temp in Celcius
+Temp = 25; % Junction Temp in Celcius
 Cgd = 1.748e-12;
 Cgs = 160e-12;
 Cds = 65.7e-12;
@@ -24,13 +24,13 @@ Lground = 5e-9;
 %% Gate Driver
 Lgex = 3e-9;
 Ron = 10;
-Roff = 2;
+Roff = 1;
 %% Source parameters
 PulseAmplitude = 9;
 fsw = 2000e3;
 Vdc = 400;
 VpulseMax = 6;
-VpulseMin = -3;
+VpulseMin = 0;
 % Quantities in below are in percent
 Dtop = 48; % duty cycle of top
 Dbot = 48; % duty cycle of bot
