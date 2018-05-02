@@ -1,11 +1,12 @@
 %% MATLAB model for code-based IMMD inverter simulations
 % Simulation parameters
-Ts = 1e-7; % sec
-StepN = 1000000; % number of steps
-Tfinal = StepN*Ts; % sec
+Ts = 1e-6; % sec
+Tfinal = 0.1; %sec
+StepN = uint32(Tfinal/Ts);
+StepN2 = Tfinal/Ts;
 
 % Drive parameters
-fsw = 10e3; % Hz
+fsw = 1e3; % Hz
 Vdc = 540; % Volts
 Cdc = 100e-6;
 Pout = 8e3/0.94; % W
@@ -65,12 +66,12 @@ while (1)
     currenttime = count*Ts;
     
     InducedVoltagePhaseA(count) = Ef*sqrt(2)*sin(wout*currenttime);
-    InducedVoltagePhaseB(count) = Ef*sqrt(2)*sin(wout*currenttime+2*pi/3);
-    InducedVoltagePhaseC(count) = Ef*sqrt(2)*sin(wout*currenttime+4*pi/3);
+    InducedVoltagePhaseB(count) = Ef*sqrt(2)*sin(wout*currenttime-2*pi/3);
+    InducedVoltagePhaseC(count) = Ef*sqrt(2)*sin(wout*currenttime-4*pi/3);
     
     ModSignalPhaseA(count) = ma*sin(wout*currenttime+delta);
-    ModSignalPhaseB(count) = ma*sin(wout*currenttime+delta+2*pi/3);
-    ModSignalPhaseC(count) = ma*sin(wout*currenttime+delta+4*pi/3);
+    ModSignalPhaseB(count) = ma*sin(wout*currenttime+delta-2*pi/3);
+    ModSignalPhaseC(count) = ma*sin(wout*currenttime+delta-4*pi/3);
     CarrierSignal(count) = carriergen(currenttime,1,-1,Ts,fsw);
     
     if ModSignalPhaseA(count) >= CarrierSignal(count)
@@ -105,55 +106,79 @@ fprintf('Simulation finished.\n');
 LineCurrentA = LineCurrentA - mean(LineCurrentA);
 LineCurrentB = LineCurrentB - mean(LineCurrentB);
 LineCurrentC = LineCurrentC - mean(LineCurrentC);
-
-for k = 1:StepN+1
-    DCLinkCurrent(k) = LineCurrentA(k)*InverterVoltagePhaseA(k)/Vdcm + ...
-        LineCurrentB(k)*InverterVoltagePhaseB(k)/Vdcm + ...
-        LineCurrentC(k)*InverterVoltagePhaseC(k)/Vdcm;
-end
+InverterVoltagePhaseA = InverterVoltagePhaseA - mean(InverterVoltagePhaseA);
+InverterVoltagePhaseB = InverterVoltagePhaseB - mean(InverterVoltagePhaseB);
+InverterVoltagePhaseC = InverterVoltagePhaseC - mean(InverterVoltagePhaseC);
+LineCurrentA = LineCurrentA(1:end-1);
+LineCurrentB = LineCurrentB(1:end-1);
+LineCurrentC = LineCurrentC(1:end-1);
+InverterVoltageVAB = InverterVoltageVAB - mean(InverterVoltageVAB);
+InverterVoltageVBC = InverterVoltageVBC - mean(InverterVoltageVBC);
+InverterVoltageVCA = InverterVoltageVCA - mean(InverterVoltageVCA);
+DCLinkCurrent2 = LineCurrentA.*InverterVoltagePhaseA/Vdcm + ...
+    LineCurrentB.*InverterVoltagePhaseB/Vdcm + ...
+    LineCurrentC.*InverterVoltagePhaseC/Vdcm;
 DCLinkAverageCurrent = mean(DCLinkCurrent);
 DCLinkCapacitorCurrent = DCLinkCurrent - DCLinkAverageCurrent;
+DCLinkRMSCurrent = sqrt(sum(DCLinkCapacitorCurrent.^2)/(StepN2+1));
+PhaseARMSCurrent = sqrt(sum(LineCurrentA.^2)/(StepN2+1));
+PhaseBRMSCurrent = sqrt(sum(LineCurrentB.^2)/(StepN2+1));
+PhaseCRMSCurrent = sqrt(sum(LineCurrentC.^2)/(StepN2+1));
+InverterVoltagePhaseARMS = sqrt(sum(InverterVoltagePhaseA.^2)/(StepN2+1));
+InverterVoltagePhaseBRMS = sqrt(sum(InverterVoltagePhaseB.^2)/(StepN2+1));
+InverterVoltagePhaseVRMS = sqrt(sum(InverterVoltagePhaseC.^2)/(StepN2+1));
+InverterVoltageVABRMS = sqrt(sum(InverterVoltageVAB.^2)/(StepN2+1));
+InverterVoltageVBCRMS = sqrt(sum(InverterVoltageVBC.^2)/(StepN2+1));
+InverterVoltageVCARMS = sqrt(sum(InverterVoltageVCA.^2)/(StepN2+1));
+InducedVoltageARMS = sqrt(sum(InducedVoltagePhaseA.^2)/(StepN2));
+InducedVoltageBRMS = sqrt(sum(InducedVoltagePhaseB.^2)/(StepN2));
+InducedVoltageCRMS = sqrt(sum(InducedVoltagePhaseC.^2)/(StepN2));
 
-rmsflagIcap = 0;
-rmsflagIsa = 0;
-rmsflagIsb = 0;
-rmsflagIsc = 0;
-for k = 1:StepN+1
-    rmsflagIcap = rmsflagIcap + DCLinkCapacitorCurrent(k)^2;
-    rmsflagIsa = rmsflagIsa + LineCurrentA(k)^2;
-    rmsflagIsb = rmsflagIsb + LineCurrentB(k)^2;
-    rmsflagIsc = rmsflagIsc + LineCurrentC(k)^2;
-end
-DCLinkRMSCurrent = sqrt(rmsflagIcap/StepN+1);
-PhaseARMSCurrent = sqrt(rmsflagIsa/StepN+1);
-PhaseBRMSCurrent = sqrt(rmsflagIsb/StepN+1);
-PhaseCRMSCurrent = sqrt(rmsflagIsc/StepN+1);
 
-for k = 1:StepN+1
+for k = 1:StepN
     DCLinkVoltage(k+1) = DCLinkVoltage(k) + Ts*DCLinkCapacitorCurrent(k)/Cdc;
 end
-
 WindowLength = 0.005;
-
 DCLinkVoltagePeaktoPeak = max(DCLinkVoltage(find(timeaxis == Tfinal-WindowLength):find(timeaxis == Tfinal)))...
     - min(DCLinkVoltage(find(timeaxis == Tfinal-WindowLength):find(timeaxis == Tfinal)));
 DCLinkVoltagePercentRipple = DCLinkVoltagePeaktoPeak/Vdcm*100;
 
 
 
+[InverterVoltageAFundRMS,InverterVoltageAFundPhase] = ...
+    fundamentalcomp(InverterVoltagePhaseA,Ts,fout);
+[InverterVoltageVABFundRMS,InverterVoltageVABFundPhase] = ...
+    fundamentalcomp(InverterVoltageVAB,Ts,fout);
+[LineCurrentAFundRMS,LineCurrentAFundPhase] = ...
+    fundamentalcomp(LineCurrentA,Ts,fout);
+[InducedVoltageAFundRMS,InducedVoltageAFundPhase] = ...
+    fundamentalcomp(InducedVoltagePhaseA,Ts,fout);
+
+THDInverterVoltagePhaseA = 100*sqrt(InverterVoltagePhaseARMS^2-...
+    InverterVoltageAFundRMS^2)/InverterVoltageAFundRMS;
+THDInverterVoltageVAB = 100*sqrt(InverterVoltageVABRMS^2-...
+    InverterVoltageVABFundRMS^2)/InverterVoltageVABFundRMS;
+THDLineCurrentA = 100*sqrt(PhaseARMSCurrent^2-...
+    LineCurrentAFundRMS^2)/LineCurrentAFundRMS; % PROBLEML? (RMS düzgün de?il)
+THDInducedVoltagePhaseA = 100*sqrt(InducedVoltageARMS^2-...
+    InducedVoltageAFundRMS^2)/InducedVoltageAFundRMS;
+
+
+
+
 %% PLAN:
-% 1. Calculate RMS values of all AC quantities
-% 2. Calculate Fundamental values of all AC quantities with Fourier Series
-% 3. Find THD of all AC quantities
-% 4. Find instantaneous power, average power, Active, Reactive, apparent
-% power
-% 5. Find power factor
-% 6. From transistor currents, calculate losses
-% 7. Find AC and DC spsctrums
-% 8. Extend the topology to Series, Parallel, Series/Parallel
-% 9. Try different PWM techniques on this model (2-Level)
-% 10. Convertert the model to 3-Level inverter topology
-% 11. Try different PWM techniques on this model (3-Level)
+% Instantaneous power, average power, Active, Reactive, Apparent power
+% Power factor
+
+% From transistor currents, calculate losses
+% Find AC and DC spsctrums
+
+% Extend the topology to Series, Parallel, Series/Parallel
+% Try different PWM techniques on this model (2-Level)
+
+% Convertert the model to 3-Level inverter topology
+% Try different PWM techniques on this model (3-Level)
+
 
 
 
@@ -212,3 +237,58 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 %Rin = 10;
 %Lin = 1e-3;
 %Vin = Vdc + Rin*(Pout/Vdc);
+
+
+
+% WindowCycle = 1;
+% SampleInWindow = WindowCycle/(Ts*fout);
+% MaxHarmonic = 1;
+% FourierSeriesAk = zeros(1,MaxHarmonic);
+% FourierSeriesBk = zeros(1,MaxHarmonic);
+% FourierSeriesAo = zeros(1,1);
+% %FunctionHarmonic = InducedVoltagePhaseA;
+% %FunctionHarmonic = LineCurrentA;
+% FunctionHarmonic = InverterVoltageVAB;
+% for k = 1:SampleInWindow
+%     radang = (k-1)*pi/(SampleInWindow/2);
+%     radang = double(radang);
+%     FourierSeriesAo = FourierSeriesAo+FunctionHarmonic(1,k);
+%     for l = 1:MaxHarmonic
+%         FourierSeriesAk(l) = FourierSeriesAk(l)+FunctionHarmonic(1,k)*cos(l*radang);
+%         FourierSeriesBk(l) = FourierSeriesBk(l)+FunctionHarmonic(1,k)*sin(l*radang);
+%     end
+% end
+% DCValue = FourierSeriesAo/SampleInWindow;
+%
+%
+% for l = 1:MaxHarmonic
+%     a = 2*FourierSeriesAk(l)/SampleInWindow;
+%     b = 2*FourierSeriesBk(l)/SampleInWindow;
+%     peak_magn(l) = sqrt(a.^2+b.^2);
+%     fprintf('\n%gth:%g\n',l,peak_magn(l)/sqrt(2));
+% end
+
+
+% 
+% 
+% FourierSeriesAk = 0;
+% FourierSeriesBk = 0;
+% FourierSeriesAo = 0;
+% FunctionHarmonic = InverterVoltagePhaseA;
+% %FunctionHarmonic = LineCurrentA;
+% %FunctionHarmonic = InverterVoltageVAB;
+% for k = 1:SampleInWindow
+%     FourierSeriesAo = FourierSeriesAo+FunctionHarmonic(k);
+%     FourierSeriesAk = FourierSeriesAk+FunctionHarmonic(k)*...
+%         cos(double((k-1)*pi/(SampleInWindow/2)));
+%     FourierSeriesBk = FourierSeriesBk+FunctionHarmonic(k)*...
+%         sin(double((k-1)*pi/(SampleInWindow/2)));
+% end
+% DCValue = FourierSeriesAo/SampleInWindow
+% CosValue = 2*FourierSeriesAk/SampleInWindow;
+% SinValue = 2*FourierSeriesBk/SampleInWindow;
+% FundamentalPeak = sqrt(CosValue.^2 + SinValue.^2);
+% FudamentalRMS = FundamentalPeak/sqrt(2)
+% 
+% 
+% 
