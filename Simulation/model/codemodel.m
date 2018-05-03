@@ -6,11 +6,11 @@ StepN = uint32(Tfinal/Ts);
 StepN2 = Tfinal/Ts;
 
 % Drive parameters
-fsw = 10e3; % Hz
+fsw = 1e3; % Hz
 Vdc = 540; % Volts
-Cdc = 100e-6;
-Pout = 8e3/0.94; % W
-np = 1;
+Cdc = 100e-6; % Per series module group
+Pout = 8e3/0.94; % W % Total output power
+np = 2;
 ns = 1;
 n = ns*np;
 
@@ -21,7 +21,9 @@ Vin = Vdc + Rin*(Pout/Vdc);
 
 % Motor parameters
 Ef = 155; % Volts
+Efm = Ef/ns;
 Ls = 13.8e-3; % Henries
+Lsm = Ls/n;
 Rs = 1e-9; % Ohms
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
@@ -29,16 +31,16 @@ m = 3;
 
 % Control parameter calculation
 Poutm = Pout/n; % Watts
-Is = Poutm/(Ef*m); % amps
-Xs = wout*Ls; % Ohms
-Vdrop = Is*Xs; % Volts
-Vt = sqrt(Ef^2+Vdrop^2); % Volts
+Is = Poutm/(Efm*m); % amps
+Xsm = wout*Lsm; % Ohms
+Vdrop = Is*Xsm; % Volts
+Vt = sqrt(Efm^2+Vdrop^2); % Volts
 Vdcm = Vdc/ns; % volts
 ma = Vt*sqrt(3)/(Vdcm*0.612);
-delta = acos(Ef/Vt); % radians
+delta = acos(Efm/Vt); % radians
 deltad = delta*180/pi; % degrees
 pf = cos(delta);
-phase = [0 0 0 0];
+%phase = [0 30 60 90];
 
 currentime = 0;
 count = 0;
@@ -48,23 +50,19 @@ InducedVoltagePhaseC = zeros(1,StepN);
 ModSignalPhaseA = zeros(1,StepN);
 ModSignalPhaseB = zeros(1,StepN);
 ModSignalPhaseC = zeros(1,StepN);
-CarrierSignal = zeros(1,StepN);
-InverterVoltagePhaseA = zeros(1,StepN);
-InverterVoltagePhaseB = zeros(1,StepN);
-InverterVoltagePhaseC = zeros(1,StepN);
-InverterVoltageVAB = zeros(1,StepN);
-InverterVoltageVBC = zeros(1,StepN);
-InverterVoltageVCA = zeros(1,StepN);
-LineCurrentA = zeros(1,StepN);
-LineCurrentB = zeros(1,StepN);
-LineCurrentC = zeros(1,StepN);
-DCLinkCurrent = zeros(1,StepN);
+CarrierSignal = zeros(n,StepN);
+InverterVoltagePhaseA = zeros(np,StepN);
+InverterVoltagePhaseB = zeros(np,StepN);
+InverterVoltagePhaseC = zeros(np,StepN);
+InverterVoltageVAB = zeros(np,StepN);
+InverterVoltageVBC = zeros(np,StepN);
+InverterVoltageVCA = zeros(np,StepN);
+LineCurrentA = zeros(np,StepN);
+LineCurrentB = zeros(np,StepN);
+LineCurrentC = zeros(np,StepN);
+DCLinkCurrent = zeros(np,StepN);
 DCLinkVoltage = zeros(1,StepN);
-DCLinkCapacitorCurrent = zeros(1,StepN);
-
-
-LineCurrentA2 = zeros(1,StepN);
-
+DCLinkCapacitorCurrent = zeros(ns,StepN);
 
 timeaxis = 0:Ts:Tfinal;
 
@@ -74,51 +72,49 @@ while (1)
     count = count+1;
     currenttime = count*Ts;
     
-    InducedVoltagePhaseA(count) = Ef*sqrt(2)*sin(wout*currenttime);
-    InducedVoltagePhaseB(count) = Ef*sqrt(2)*sin(wout*currenttime-2*pi/3);
-    InducedVoltagePhaseC(count) = Ef*sqrt(2)*sin(wout*currenttime-4*pi/3);
+    InducedVoltagePhaseA(count) = Efm*sqrt(2)*sin(wout*currenttime);
+    InducedVoltagePhaseB(count) = Efm*sqrt(2)*sin(wout*currenttime-2*pi/3);
+    InducedVoltagePhaseC(count) = Efm*sqrt(2)*sin(wout*currenttime-4*pi/3);
     
     ModSignalPhaseA(count) = ma*sin(wout*currenttime+delta);
     ModSignalPhaseB(count) = ma*sin(wout*currenttime+delta-2*pi/3);
     ModSignalPhaseC(count) = ma*sin(wout*currenttime+delta-4*pi/3);
-    CarrierSignal(count) = carriergen(currenttime,1,-1,Ts,fsw);
     
-    if ModSignalPhaseA(count) >= CarrierSignal(count)
-        InverterVoltagePhaseA(count) = Vdcm;
-    end
-    if ModSignalPhaseB(count) >= CarrierSignal(count)
-        InverterVoltagePhaseB(count) = Vdcm;
-    end
-    if ModSignalPhaseC(count) >= CarrierSignal(count)
-        InverterVoltagePhaseC(count) = Vdcm;
-    end
-    
-    InverterVoltageVAB(count) = InverterVoltagePhaseA(count) - InverterVoltagePhaseB(count);
-    InverterVoltageVBC(count) = InverterVoltagePhaseB(count) - InverterVoltagePhaseC(count);
-    InverterVoltageVCA(count) = InverterVoltagePhaseC(count) - InverterVoltagePhaseA(count);
-    
-%     LineCurrentA(count+1) = LineCurrentA(count) + ...
-%         Ts*((InverterVoltagePhaseA(count)-Vdcm/2-InducedVoltagePhaseA(count))/Ls);
-%     LineCurrentB(count+1) = LineCurrentB(count) + ...
-%         Ts*((InverterVoltagePhaseB(count)-Vdcm/2-InducedVoltagePhaseB(count))/Ls);
-%     LineCurrentC(count+1) = LineCurrentC(count) + ...
-%         Ts*((InverterVoltagePhaseC(count)-Vdcm/2-InducedVoltagePhaseC(count))/Ls);
-%     
-    LineCurrentA(count+1) = LineCurrentA(count) + ...
-        Ts*(InverterVoltageVAB(count)-InverterVoltageVCA(count)...
-        -2*InducedVoltagePhaseA(count)+InducedVoltagePhaseB(count)...
-        +InducedVoltagePhaseC(count))/(3*Ls);
-    
-    LineCurrentB(count+1) = LineCurrentB(count) + ...
-        Ts*(InverterVoltageVBC(count)-InverterVoltageVAB(count)...
-        -2*InducedVoltagePhaseB(count)+InducedVoltagePhaseA(count)...
-        +InducedVoltagePhaseC(count))/(3*Ls);
-    
-    LineCurrentC(count+1) = LineCurrentC(count) + ...
-        Ts*(InverterVoltageVCA(count)-InverterVoltageVBC(count)...
-        -2*InducedVoltagePhaseC(count)+InducedVoltagePhaseB(count)...
-        +InducedVoltagePhaseA(count))/(3*Ls);
-    
+    phase = [0 80];
+    CarrierSignal(:,count) = carriergen(currenttime,1,-1,fsw,phase)';
+        
+%     for index = 1:np
+%         
+%         if ModSignalPhaseA(count) >= CarrierSignal(count)
+%             InverterVoltagePhaseA(count) = Vdcm;
+%         end
+%         if ModSignalPhaseB(count) >= CarrierSignal(count)
+%             InverterVoltagePhaseB(count) = Vdcm;
+%         end
+%         if ModSignalPhaseC(count) >= CarrierSignal(count)
+%             InverterVoltagePhaseC(count) = Vdcm;
+%         end
+%         
+%         InverterVoltageVAB(count) = InverterVoltagePhaseA(count) - InverterVoltagePhaseB(count);
+%         InverterVoltageVBC(count) = InverterVoltagePhaseB(count) - InverterVoltagePhaseC(count);
+%         InverterVoltageVCA(count) = InverterVoltagePhaseC(count) - InverterVoltagePhaseA(count);
+%         
+%         LineCurrentA(count+1) = LineCurrentA(count) + ...
+%             Ts*(InverterVoltageVAB(count)-InverterVoltageVCA(count)...
+%             -2*InducedVoltagePhaseA(count)+InducedVoltagePhaseB(count)...
+%             +InducedVoltagePhaseC(count))/(3*Lsm);
+%         
+%         LineCurrentB(count+1) = LineCurrentB(count) + ...
+%             Ts*(InverterVoltageVBC(count)-InverterVoltageVAB(count)...
+%             -2*InducedVoltagePhaseB(count)+InducedVoltagePhaseA(count)...
+%             +InducedVoltagePhaseC(count))/(3*Lsm);
+%         
+%         LineCurrentC(count+1) = LineCurrentC(count) + ...
+%             Ts*(InverterVoltageVCA(count)-InverterVoltageVBC(count)...
+%             -2*InducedVoltagePhaseC(count)+InducedVoltagePhaseB(count)...
+%             +InducedVoltagePhaseA(count))/(3*Lsm);
+%         
+%     end
     if currenttime > Tfinal
         break;
         % end of the4 simulation
@@ -126,6 +122,35 @@ while (1)
 end
 toc
 fprintf('Simulation finished.\n');
+
+
+%figure;
+% plot(timeaxis(1:StepN),ModSignalPhaseA(1:StepN),'b-','Linewidth',1);
+% hold on;
+% plot(timeaxis(1:StepN),ModSignalPhaseB(1:StepN),'b-','Linewidth',1);
+% hold on;
+% plot(timeaxis(1:StepN),ModSignalPhaseC(1:StepN),'b-','Linewidth',1);
+% hold on;
+plot(timeaxis(1:StepN),CarrierSignal(1,1:StepN),'r-','Linewidth',1);
+hold on;
+plot(timeaxis(1:StepN),CarrierSignal(2,1:StepN),'k-','Linewidth',1);
+hold on;
+% plot(timeaxis(1:StepN),CarrierSignal(3,1:StepN),'m-','Linewidth',1);
+% hold on;
+% plot(timeaxis(1:StepN),CarrierSignal(4,1:StepN),'g-','Linewidth',1);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('Motor Phase Induced Voltages (Volts)','FontSize',12,'FontWeight','Bold')
+%legend('Phase-A','Phase-B','Phase-C');
+%legend('Carrier Signal','Modulating Signal','PWM Output');
+ylim([-2 2]);
+xlim([0 0.005])
+
+
+
+%%
 
 LineCurrentA = LineCurrentA - mean(LineCurrentA);
 LineCurrentB = LineCurrentB - mean(LineCurrentB);
@@ -358,4 +383,12 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 % FudamentalRMS = FundamentalPeak/sqrt(2)
 %
 %
+%
+
+%     LineCurrentA(count+1) = LineCurrentA(count) + ...
+%         Ts*((InverterVoltagePhaseA(count)-Vdcm/2-InducedVoltagePhaseA(count))/Ls);
+%     LineCurrentB(count+1) = LineCurrentB(count) + ...
+%         Ts*((InverterVoltagePhaseB(count)-Vdcm/2-InducedVoltagePhaseB(count))/Ls);
+%     LineCurrentC(count+1) = LineCurrentC(count) + ...
+%         Ts*((InverterVoltagePhaseC(count)-Vdcm/2-InducedVoltagePhaseC(count))/Ls);
 %
