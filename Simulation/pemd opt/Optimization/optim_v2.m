@@ -117,7 +117,7 @@ layer = 2;
 % DC link maximum voltage ripple
 Vdcrip = 1; % percent, peak-to-peak
 % Maximum fill factor
-kcumax = 0.6;
+kcumax = 0.4;
 % Maximum stator tooth flux density
 Btsmax = 1.8; % T
 % Maximum stator yoke flux density
@@ -159,11 +159,11 @@ ma = 0.9;
 % Aspect ratio ([0.2-2])
 ar = 0.5;
 % Magnet embrace ([0.45-0.95])
-em = 0.7;
+em = 0.8;
 % Number of slots per module per phase ([2,10])
 w = 2;
 % Magnet thickness ([1,10] mm)
-lm = 4; % mm
+lm = 4.5; % mm
 
 % Objective parameters
 
@@ -193,12 +193,12 @@ lm = 4; % mm
 %w = 2*indexa;
 
 % The parameter interdependencies
-%for index = 1:41
+for index = 1:41
 
 %n = ns*index;
 %fsw = index*10e3;
 %ma = 0.5 + 0.025*(index-1);
-%ar = 0.2+(index-1)*0.045;
+ar = 0.2+(index-1)*0.045;
 %w = 2*index;
 
 
@@ -322,7 +322,7 @@ Cdcreq = Cdcreq1*np*intv; % Amps
 % 6. Current, 7. ESR, 8. Gcap, 9. Cost
 [Cseri,Cpar,Cap,Wcap,Hcap,Lcap,Icap,ESR,Gcap,Ccap] = ...
     capacitor_selection(Cdcreq*1e6,Idcrms,Vdcm);
-Cap
+
 TotalCcap = Cpar*Cseri*ns*Ccap; % dollars
 hcap = Hcap; % mm
 Volcap = Hcap*Wcap*Lcap*Cseri*Cpar*ns*1e-3; % cm^3
@@ -764,6 +764,46 @@ end
 % 
 % save('pemd_data.mat');
 
+outerdia(index) = Dos;
+innerdia(index) = Dis*1e3;
+axiallen(index) = La*1e3;
+
+end
+
+aspectratio = 0.2+((1:41)-1)*0.045;
+totalvol = pi*(outerdia/2).^2.*axiallen*1e-6;
+
+
+
+figure;
+yyaxis left
+plot(aspectratio,outerdia,'bo-','Linewidth',1.5);
+hold on
+plot(aspectratio,innerdia,'ko-','Linewidth',1.5);
+hold on;
+plot(aspectratio,axiallen,'ro-','Linewidth',1.5);
+hold off;
+yyaxis right 
+plot(aspectratio,totalvol,'go-','Linewidth',1.5);
+hold off;
+ylabel('Total Volume (lt)');
+ylim([0 10])
+grid on;
+set(gca,'FontSize',12);
+legend('Outer diameter (mm)','Bore diameter (mm)','Axial length (mm)');
+xlabel('Aspect ratio','FontSize',12,'FontWeight','Bold')
+
+
+
+
+
+
+
+
+
+
+
+%%
 Igan
 Costm = miron*3 + mcopper*10 + mmagnet*80
 Driveeff = 100*effdr

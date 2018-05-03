@@ -1,9 +1,9 @@
-% Design ans Simulation with IGBT
+% Design and Simulation with IGBT
 
 Ts = 1e-6; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
-fsw = 20e3; % Hz
+fsw = 1e3; % Hz
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
 Ef = 155; % Volts
@@ -42,7 +42,7 @@ Cdcreq1 = ns*(ma*Is/(16*fsw*Vdcrip))*...
 
 
 %%
-% Design ans Simulation with GaN
+% Design and Simulation with GaN
 
 Ts = 1e-7; % sec
 Tfinal = 0.06; % sec
