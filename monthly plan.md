@@ -32,6 +32,8 @@
   * İncelenecek tekniklerin belirlenmesi
   * MATLAB'ta simulasyon ortamı kurulması
 5. Teorik konuların değerlendirilmesi ve neler üzerine çalışacağımızın konuşulması (Loss konusu, GaN ile ilgili mevzular)
+6. ICEM için review: 6 Mayıs
+7. Ulusal dergi (Fırat Üni): 6 Mayıs
 
 ##### Tez çalışmaları
 1. Literatür
