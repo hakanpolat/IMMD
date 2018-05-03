@@ -7,20 +7,20 @@ SHELL = cmd.exe
 # Add inputs and outputs from these tool invocations to the build variables 
 CMD_SRCS += \
 ../28335_RAM_lnk.cmd \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd 
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd 
 
 ASM_SRCS += \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm 
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm 
 
 C_SRCS += \
-C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c \
-C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c \
-C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c \
+D:/GitHub\ Repositories/IMMD/Project/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c \
+D:/GitHub\ Repositories/IMMD/Project/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c \
+D:/GitHub\ Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c \
 ../Lab6.c 
 
 C_DEPS += \
@@ -76,17 +76,17 @@ ASM_DEPS__QUOTED += \
 "DSP2833x_usDelay.d" 
 
 ASM_SRCS__QUOTED += \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm" 
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_ADC_cal.asm" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_usDelay.asm" 
 
 C_SRCS__QUOTED += \
-"C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c" \
-"C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c" \
+"D:/GitHub Repositories/IMMD/Project/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CpuTimers.c" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_DefaultIsr.c" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_PieCtrl.c" \
+"D:/GitHub Repositories/IMMD/Project/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_PieVect.c" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_common/source/DSP2833x_SysCtrl.c" \
 "../Lab6.c" 
 
 

@@ -4,7 +4,7 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS
+CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
@@ -14,7 +14,7 @@ ORDERED_OBJS += \
 "./DSP2833x_GlobalVariableDefs.obj" \
 "./Lab5_1.obj" \
 "../28335_RAM_lnk.cmd" \
-"C:/Users/kkfrk/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd" \
+"D:/GitHub Repositories/IMMD/Project/3501/Furkan/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd" \
 $(GEN_CMDS__FLAG) \
 -llibc.a \
 
@@ -143,14 +143,14 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab5.pjt.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab5.pjt.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab5.pjt_linkInfo.xml" --rom_model -o "Lab5.pjt.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 Lab5.pjt.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/hex2000"  -o "Lab5.pjt.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/bin/hex2000"  -o "Lab5.pjt.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 

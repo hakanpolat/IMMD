@@ -28,17 +28,17 @@
 		<link>
 			<name>DSP2833x_CodeStartBranch.asm</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/tii/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm</locationURI>
+			<location>C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm</location>
 		</link>
 		<link>
 			<name>DSP2833x_GlobalVariableDefs.c</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/tii/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c</locationURI>
+			<location>C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/source/DSP2833x_GlobalVariableDefs.c</location>
 		</link>
 		<link>
 			<name>DSP2833x_Headers_nonBIOS.cmd</name>
 			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Desktop/tii/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd</locationURI>
+			<location>C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd</location>
 		</link>
 	</linkedResources>
 </projectDescription>

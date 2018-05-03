@@ -4,22 +4,37 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS
+CG_TOOL_ROOT := C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
 "./DSP2833x_ADC_cal.obj" \
+"./DSP2833x_Adc.obj" \
+"./DSP2833x_CSMPasswords.obj" \
 "./DSP2833x_CodeStartBranch.obj" \
 "./DSP2833x_CpuTimers.obj" \
+"./DSP2833x_DBGIER.obj" \
+"./DSP2833x_DMA.obj" \
 "./DSP2833x_DefaultIsr.obj" \
+"./DSP2833x_DisInt.obj" \
+"./DSP2833x_ECan.obj" \
+"./DSP2833x_ECap.obj" \
+"./DSP2833x_EPwm.obj" \
+"./DSP2833x_EQep.obj" \
 "./DSP2833x_GlobalVariableDefs.obj" \
+"./DSP2833x_Gpio.obj" \
+"./DSP2833x_I2C.obj" \
+"./DSP2833x_Mcbsp.obj" \
+"./DSP2833x_MemCopy.obj" \
 "./DSP2833x_PieCtrl.obj" \
 "./DSP2833x_PieVect.obj" \
+"./DSP2833x_Sci.obj" \
+"./DSP2833x_Spi.obj" \
 "./DSP2833x_SysCtrl.obj" \
+"./DSP2833x_Xintf.obj" \
 "./DSP2833x_usDelay.obj" \
-"./Lab7_6_DeadTimePWMs.obj" \
 "../28335_RAM_lnk.cmd" \
 "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -150,23 +165,23 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Lab7.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/bin/cl2000" -v28 -ml -mt --float_support=fpu32 --advice:performance=all -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"Lab7.map" --stack_size=0x400 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="Lab7_linkInfo.xml" --rom_model -o "Lab7.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
 Lab7.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: C2000 Hex Utility'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-c2000_16.9.7.LTS/bin/hex2000"  -o "Lab7.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.1.LTS/bin/hex2000"  -o "Lab7.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "DSP2833x_ADC_cal.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Lab7_6_DeadTimePWMs.obj" 
-	-$(RM) "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Lab7_6_DeadTimePWMs.d" 
-	-$(RM) "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
+	-$(RM) "DSP2833x_ADC_cal.obj" "DSP2833x_Adc.obj" "DSP2833x_CSMPasswords.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DBGIER.obj" "DSP2833x_DMA.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_DisInt.obj" "DSP2833x_ECan.obj" "DSP2833x_ECap.obj" "DSP2833x_EPwm.obj" "DSP2833x_EQep.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_Gpio.obj" "DSP2833x_I2C.obj" "DSP2833x_Mcbsp.obj" "DSP2833x_MemCopy.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_Sci.obj" "DSP2833x_Spi.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_Xintf.obj" "DSP2833x_usDelay.obj" 
+	-$(RM) "DSP2833x_Adc.d" "DSP2833x_CpuTimers.d" "DSP2833x_DMA.d" "DSP2833x_DefaultIsr.d" "DSP2833x_ECan.d" "DSP2833x_ECap.d" "DSP2833x_EPwm.d" "DSP2833x_EQep.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_Gpio.d" "DSP2833x_I2C.d" "DSP2833x_Mcbsp.d" "DSP2833x_MemCopy.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_Sci.d" "DSP2833x_Spi.d" "DSP2833x_SysCtrl.d" "DSP2833x_Xintf.d" 
+	-$(RM) "DSP2833x_ADC_cal.d" "DSP2833x_CSMPasswords.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_DBGIER.d" "DSP2833x_DisInt.d" "DSP2833x_usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 
