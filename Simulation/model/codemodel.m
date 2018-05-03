@@ -6,7 +6,7 @@ StepN = uint32(Tfinal/Ts);
 StepN2 = Tfinal/Ts;
 
 % Drive parameters
-fsw = 1e3; % Hz
+fsw = 10e3; % Hz
 Vdc = 540; % Volts
 Cdc = 100e-6;
 Pout = 8e3/0.94; % W
@@ -14,10 +14,15 @@ np = 1;
 ns = 1;
 n = ns*np;
 
+% For simulations only
+phase = [0 90 0 90];
+Rin = 10;
+Vin = Vdc + Rin*(Pout/Vdc);
+
 % Motor parameters
 Ef = 155; % Volts
 Ls = 13.8e-3; % Henries
-Rs = 1e-3; % Ohms
+Rs = 1e-9; % Ohms
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
@@ -57,6 +62,10 @@ DCLinkCurrent = zeros(1,StepN);
 DCLinkVoltage = zeros(1,StepN);
 DCLinkCapacitorCurrent = zeros(1,StepN);
 
+
+LineCurrentA2 = zeros(1,StepN);
+
+
 timeaxis = 0:Ts:Tfinal;
 
 % Main loop
@@ -88,12 +97,27 @@ while (1)
     InverterVoltageVBC(count) = InverterVoltagePhaseB(count) - InverterVoltagePhaseC(count);
     InverterVoltageVCA(count) = InverterVoltagePhaseC(count) - InverterVoltagePhaseA(count);
     
+%     LineCurrentA(count+1) = LineCurrentA(count) + ...
+%         Ts*((InverterVoltagePhaseA(count)-Vdcm/2-InducedVoltagePhaseA(count))/Ls);
+%     LineCurrentB(count+1) = LineCurrentB(count) + ...
+%         Ts*((InverterVoltagePhaseB(count)-Vdcm/2-InducedVoltagePhaseB(count))/Ls);
+%     LineCurrentC(count+1) = LineCurrentC(count) + ...
+%         Ts*((InverterVoltagePhaseC(count)-Vdcm/2-InducedVoltagePhaseC(count))/Ls);
+%     
     LineCurrentA(count+1) = LineCurrentA(count) + ...
-        Ts*((InverterVoltagePhaseA(count)-Vdcm/2-InducedVoltagePhaseA(count))/Ls);
+        Ts*(InverterVoltageVAB(count)-InverterVoltageVCA(count)...
+        -2*InducedVoltagePhaseA(count)+InducedVoltagePhaseB(count)...
+        +InducedVoltagePhaseC(count))/(3*Ls);
+    
     LineCurrentB(count+1) = LineCurrentB(count) + ...
-        Ts*((InverterVoltagePhaseB(count)-Vdcm/2-InducedVoltagePhaseB(count))/Ls);
+        Ts*(InverterVoltageVBC(count)-InverterVoltageVAB(count)...
+        -2*InducedVoltagePhaseB(count)+InducedVoltagePhaseA(count)...
+        +InducedVoltagePhaseC(count))/(3*Ls);
+    
     LineCurrentC(count+1) = LineCurrentC(count) + ...
-        Ts*((InverterVoltagePhaseC(count)-Vdcm/2-InducedVoltagePhaseC(count))/Ls);
+        Ts*(InverterVoltageVCA(count)-InverterVoltageVBC(count)...
+        -2*InducedVoltagePhaseC(count)+InducedVoltagePhaseB(count)...
+        +InducedVoltagePhaseA(count))/(3*Ls);
     
     if currenttime > Tfinal
         break;
@@ -115,11 +139,11 @@ LineCurrentC = LineCurrentC(1:end-1);
 InverterVoltageVAB = InverterVoltageVAB - mean(InverterVoltageVAB);
 InverterVoltageVBC = InverterVoltageVBC - mean(InverterVoltageVBC);
 InverterVoltageVCA = InverterVoltageVCA - mean(InverterVoltageVCA);
-DCLinkCurrent2 = LineCurrentA.*InverterVoltagePhaseA/Vdcm + ...
+DCLinkCurrent = LineCurrentA.*InverterVoltagePhaseA/Vdcm + ...
     LineCurrentB.*InverterVoltagePhaseB/Vdcm + ...
     LineCurrentC.*InverterVoltagePhaseC/Vdcm;
 DCLinkAverageCurrent = mean(DCLinkCurrent);
-DCLinkCapacitorCurrent = DCLinkCurrent - DCLinkAverageCurrent;
+DCLinkCapacitorCurrent = -DCLinkCurrent + DCLinkAverageCurrent;
 DCLinkRMSCurrent = sqrt(sum(DCLinkCapacitorCurrent.^2)/(StepN2+1));
 PhaseARMSCurrent = sqrt(sum(LineCurrentA.^2)/(StepN2+1));
 PhaseBRMSCurrent = sqrt(sum(LineCurrentB.^2)/(StepN2+1));
@@ -134,7 +158,6 @@ InducedVoltageARMS = sqrt(sum(InducedVoltagePhaseA.^2)/(StepN2));
 InducedVoltageBRMS = sqrt(sum(InducedVoltagePhaseB.^2)/(StepN2));
 InducedVoltageCRMS = sqrt(sum(InducedVoltagePhaseC.^2)/(StepN2));
 
-
 for k = 1:StepN
     DCLinkVoltage(k+1) = DCLinkVoltage(k) + Ts*DCLinkCapacitorCurrent(k)/Cdc;
 end
@@ -142,8 +165,6 @@ WindowLength = 0.005;
 DCLinkVoltagePeaktoPeak = max(DCLinkVoltage(find(timeaxis == Tfinal-WindowLength):find(timeaxis == Tfinal)))...
     - min(DCLinkVoltage(find(timeaxis == Tfinal-WindowLength):find(timeaxis == Tfinal)));
 DCLinkVoltagePercentRipple = DCLinkVoltagePeaktoPeak/Vdcm*100;
-
-
 
 [InverterVoltageAFundRMS,InverterVoltageAFundPhase] = ...
     fundamentalcomp(InverterVoltagePhaseA,Ts,fout);
@@ -163,14 +184,34 @@ THDLineCurrentA = 100*sqrt(PhaseARMSCurrent^2-...
 THDInducedVoltagePhaseA = 100*sqrt(InducedVoltageARMS^2-...
     InducedVoltageAFundRMS^2)/InducedVoltageAFundRMS;
 
+InstPowerMotorPhaseA = InducedVoltagePhaseA.*LineCurrentA;
+AvgPowerMotorPhaseA = mean( InstPowerMotorPhaseA((StepN-(1/Ts)/fout):StepN) );
+InstPowerMotorPhaseB = InducedVoltagePhaseB.*LineCurrentB;
+AvgPowerMotorPhaseB = mean( InstPowerMotorPhaseB((StepN-(1/Ts)/fout):StepN) );
+InstPowerMotorPhaseC = InducedVoltagePhaseC.*LineCurrentC;
+AvgPowerMotorPhaseC = mean( InstPowerMotorPhaseC((StepN-(1/Ts)/fout):StepN) );
+AvgPowerMotor = AvgPowerMotorPhaseA + AvgPowerMotorPhaseB + AvgPowerMotorPhaseC;
+
+InstPowerInverterPhaseA = InverterVoltagePhaseA.*LineCurrentA;
+AvgPowerInverterPhaseA = mean( InstPowerInverterPhaseA((StepN-(1/Ts)/fout):StepN) );
+
+ApperantPowerInverterPhaseA = InverterVoltageAFundRMS*LineCurrentAFundRMS;
+ActivePowerInverterPhaseA = ApperantPowerInverterPhaseA*...
+    cos(pi/180*(InverterVoltageAFundPhase-LineCurrentAFundPhase));
+PowerFactorInverter = ActivePowerInverterPhaseA/ApperantPowerInverterPhaseA;
+ReactivePowerInverter = 3*ApperantPowerInverterPhaseA*...
+    sin(pi/180*(InverterVoltageAFundPhase-LineCurrentAFundPhase));
+ActivePowerInverter = 3*ApperantPowerInverterPhaseA*...
+    cos(pi/180*(InverterVoltageAFundPhase-LineCurrentAFundPhase));
+
+
 
 
 
 %% PLAN:
-% Instantaneous power, average power, Active, Reactive, Apparent power
-% Power factor
 
 % From transistor currents, calculate losses
+
 % Find AC and DC spsctrums
 
 % Extend the topology to Series, Parallel, Series/Parallel
@@ -181,6 +222,32 @@ THDInducedVoltagePhaseA = 100*sqrt(InducedVoltageARMS^2-...
 
 
 
+%%
+figure;
+%plot(timeaxis(1:StepN),DCLinkCurrent(1:StepN),'b-','Linewidth',1);
+plot(timeaxis(1:StepN),DCLinkRipplesim(1:StepN),'b-','Linewidth',1);
+hold on;
+%plot(timeaxis(1:StepN),DCLinkCurrentsim(1:StepN)','r-','Linewidth',1);
+%plot(timeaxis(1:StepN),DCLinkCapacitorCurrent(1:StepN),'k-','Linewidth',1);
+%hold on;
+plot(timeaxis(1:StepN),DCLinkVoltage(1:StepN),'r-','Linewidth',1);
+hold on;
+%plot(timeaxis,InducedVoltagePhaseA,'m-','Linewidth',2);
+%hold on;
+%plot(timeaxis,ModSignalPhaseA*Vdcm*0.612*sqrt(2)/sqrt(3),'g-','Linewidth',2);
+hold off;
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('Motor Phase Induced Voltages (Volts)','FontSize',12,'FontWeight','Bold')
+%legend('Phase-A','Phase-B','Phase-C');
+%legend('Carrier Signal','Modulating Signal','PWM Output');
+%ylim([-2 2]);
+%xlim([0 0.02])
+
+
+%DCLinkCurrentsim
+%DCLinkRipplesim
 
 %%
 
@@ -213,11 +280,11 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 
 %%
 figure;
-plot(timeaxis,DCLinkCurrent(1:StepN+1),'b-','Linewidth',1);
+%plot(timeaxis(1:StepN),DCLinkCurrent(1:StepN),'b-','Linewidth',1);
 hold on;
-plot(timeaxis,DCLinkCapacitorCurrent(1:StepN+1),'k-','Linewidth',1);
+%plot(timeaxis(1:StepN),DCLinkCapacitorCurrent(1:StepN),'k-','Linewidth',1);
 hold on;
-plot(timeaxis,DCLinkVoltage(1:StepN+1),'r-','Linewidth',1);
+plot(timeaxis(1:StepN),DCLinkVoltage(1:StepN),'r-','Linewidth',1);
 hold on;
 %plot(timeaxis,InducedVoltagePhaseA,'m-','Linewidth',2);
 %hold on;
@@ -269,8 +336,8 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 % end
 
 
-% 
-% 
+%
+%
 % FourierSeriesAk = 0;
 % FourierSeriesBk = 0;
 % FourierSeriesAo = 0;
@@ -289,6 +356,6 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 % SinValue = 2*FourierSeriesBk/SampleInWindow;
 % FundamentalPeak = sqrt(CosValue.^2 + SinValue.^2);
 % FudamentalRMS = FundamentalPeak/sqrt(2)
-% 
-% 
-% 
+%
+%
+%
