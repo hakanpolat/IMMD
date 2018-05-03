@@ -39,11 +39,9 @@ DelayBot = 50;
 
 
 %% Load parameters
-LoadCurrent = 15;
-Lload = 480e-6;
-
-CurrRipple = Vdc*(Dbot/100)/(fsw*Lload);
-InitialCurrent = LoadCurrent + CurrRipple/2;
+LoadCurrent = 30;
+Lload = 250e-6;
+InitialCurrent = 0;
 %% Run Simulink
 SampleTime = 5e-13;
 model = 'DPTThermalGaNModelSLX';
