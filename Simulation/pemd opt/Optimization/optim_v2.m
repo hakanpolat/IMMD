@@ -193,13 +193,15 @@ lm = 4.5; % mm
 %w = 2*indexa;
 
 % The parameter interdependencies
-for index = 1:41
+%for index = 1:41
 
 %n = ns*index;
 %fsw = index*10e3;
 %ma = 0.5 + 0.025*(index-1);
-ar = 0.2+(index-1)*0.045;
+%ar = 0.2+(index-1)*0.045;
 %w = 2*index;
+
+ar = 0.66; % change aspect ratio
 
 
 % ___________________________________________
@@ -768,13 +770,13 @@ outerdia(index) = Dos;
 innerdia(index) = Dis*1e3;
 axiallen(index) = La*1e3;
 
-end
+%end
 
-aspectratio = 0.2+((1:41)-1)*0.045;
-totalvol = pi*(outerdia/2).^2.*axiallen*1e-6;
+%aspectratio = 0.2+((1:41)-1)*0.045;
+%totalvol = pi*(outerdia/2).^2.*axiallen*1e-6;
 
 
-
+%%
 figure;
 yyaxis left
 plot(aspectratio,outerdia,'bo-','Linewidth',1.5);

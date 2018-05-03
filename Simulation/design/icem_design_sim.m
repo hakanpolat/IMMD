@@ -3,7 +3,7 @@
 Ts = 1e-6; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
-fsw = 1e3; % Hz
+fsw = 10e3; % Hz
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
 Ef = 155; % Volts
@@ -44,10 +44,10 @@ Cdcreq1 = ns*(ma*Is/(16*fsw*Vdcrip))*...
 %%
 % Design and Simulation with GaN
 
-Ts = 1e-7; % sec
-Tfinal = 0.06; % sec
+Ts = 1e-6; % sec
+Tfinal = 0.2; % sec
 Ripth = 0.05; % sec
-fsw = 50e3; % Hz
+fsw = 1e3; % Hz
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
 m = 3;
@@ -69,11 +69,11 @@ ma = Vt*sqrt(3)/(Vdcm*0.612);
 delta = acos(Ef/Vt); % radians
 deltad = delta*180/pi; % degrees
 pf = cos(delta);
-phase = [0 90 180 270];
+phase = [0 90 0 90];
 Rin = 10;
 %Lin = 1e-3;
 Vin = Vdc + Rin*(Pout/Vdc);
-Cdc = 25e-6;
+Cdc = 100e-6;
 
 Idcrms1 = np*Is*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
     pf^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
