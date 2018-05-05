@@ -63,7 +63,7 @@ interrupt void xint1_isr(void)
     //Code For DPT PWM
     int DeadTimeClock = 100 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
     int GapTimeClock = 5000 / 6.667; // GapTime = 5us & Clock = 6.667ns
-    int LoadCurrent = 15;            // 30 Amps Inductor Current
+    int LoadCurrent = 30;            // 30 Amps Inductor Current
     double Inductance = 250 * 0.000001; // 250 uH Inductance
     int Voltage = 400;               // DC Voltage Level
     double ChargeTime = Inductance*LoadCurrent/Voltage; // t=L*I/Vdc
