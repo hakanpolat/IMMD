@@ -3,17 +3,18 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * Kontrol kartı (DSP) şematik tasarımın tamamlanması
-  * Güç kartı layout tasarımının tamamlanması
+  * Güç kartı layout tasarımının tamamlanması: **OK**
+  * Konektör ve izolatör seçimi
   * Kontrol kartı layout tasarımına başlanması
   * Güç kartı modüllerinin üretimine başlanması
   * Encoder seçimi ve tedariki
 2. GaN EVM
-  * Yük altında testlere devam edilmesi
-  * Syncr. rectifier devresinin tamamen kurulması
+  * Syncr. rectifier devresinin tamamen kurulması: **Yeni devre kuruluyor**
+  * Double pulse testlere başlanması
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması, data alınması
 3. V.1. Motor ve mekanik
-  * Motor tasarımı **son_final_buseferson_final4_bitti.docx**
-  * Mekanik tasarımın son haline gelmesi
+  * Motor tasarımı: **270mm son haline getirilecek**
+  * Mekanik tasarımın son haline gelmesi:
   * Tüm parçaların çizim ortamında birleşmesi (Solid)
   * Motor üretimine başlanması
   * Heat sink boyutlandırma ve malzeme seçilmesi
@@ -30,15 +31,17 @@
 4. PWM makalesi
   * Makale taslağı oluşturulması
   * İncelenecek tekniklerin belirlenmesi
-  * MATLAB'ta simulasyon ortamı kurulması
-5. Teorik konuların değerlendirilmesi ve neler üzerine çalışacağımızın konuşulması (Loss konusu, GaN ile ilgili mevzular)
-6. ICEM için review: 6 Mayıs
-7. Ulusal dergi (Fırat Üni): 6 Mayıs
+  * MATLAB'ta simulasyon ortamı kurulması: **OK**
+5. GaN'larda loss analizi konusunda teorik çalışmalar (ECCE makalesi)
+6. ICEM için review: 6 Mayıs: **OK**
+7. Ulusal dergi (Fırat Üni): 6 Mayıs: **OK**
 
 ##### Tez çalışmaları
 1. Literatür
   * Literatür sonucu teorik olarak odaklanılacak konuların belirlenmesi
-2. **TİK**  
+2. Tez İzleme Komitesi
+  * Sunum hazırlama
+  * Sunma ve feedback
 
 ##### Proje, rapor, satın alma
 1. BAP
@@ -46,6 +49,8 @@
   * Sarf bütçesinin harcanması
 2. 3501
   * Teçhizatların alınması
+  * Hizmet alımı içni avans
+  * Sarf listesi çıkarılması
 
 ________
 
