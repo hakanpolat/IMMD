@@ -11,7 +11,7 @@
 2. GaN EVM
   * Syncr. rectifier devresinin tamamen kurulması: **Yeni devre kuruluyor**
   * Double pulse testlere başlanması
-  * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması, data alınması
+  * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması
 3. V.1. Motor ve mekanik
   * Motor tasarımı: **270mm son haline getirilecek**
   * Mekanik tasarımın son haline gelmesi:
@@ -29,7 +29,7 @@
 3. PEMC 2018
   * Review gelirse (ve accept gelirse :)) güncelleştirmelerin yapılması
 4. PWM makalesi
-  * Makale taslağı oluşturulması
+  * Makale taslağı oluşturulması: **OK**
   * İncelenecek tekniklerin belirlenmesi
   * MATLAB'ta simulasyon ortamı kurulması: **OK**
 5. GaN'larda loss analizi konusunda teorik çalışmalar (ECCE makalesi)
