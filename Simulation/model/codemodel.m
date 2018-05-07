@@ -7,12 +7,12 @@ StepN = uint32(Tfinal/Ts);
 StepN2 = Tfinal/Ts;
 
 % Drive parameters
-fsw = 1e3; % Hz
+fsw = 10e3; % Hz
 Vdc = 540; % Volts
 Cdc = 100e-6; % Per series module group
 Pout = 8e3/0.94; % W % Total output power
-np = 1;
-ns = 2;
+np = 2;
+ns = 1;
 n = ns*np;
 
 % For simulations only
@@ -27,6 +27,7 @@ Ls = 13.8e-3; % Henries
 %Ls = 50e-3; % Henries
 Lsm = Ls/n;
 Rs = 1e-9; % Ohms
+Rsm = 1e-9/n; % Ohms
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
@@ -135,7 +136,7 @@ while (1)
         end
         
         InverterVoltageVAB(index,count) = InverterVoltagePhaseA(index,count)...
-            - InverterVoltagePhaseB(count);
+            - InverterVoltagePhaseB(index,count);
         InverterVoltageVBC(index,count) = InverterVoltagePhaseB(index,count)...
             - InverterVoltagePhaseC(index,count);
         InverterVoltageVCA(index,count) = InverterVoltagePhaseC(index,count)...
@@ -285,13 +286,23 @@ for index = 1:n
     ActivePowerInverter(index) = 3*ApperantPowerInverterPhaseA(index)*...
         cos(pi/180*(InverterVoltageAFundPhase(index)-LineCurrentAFundPhase(index)));
     
-    
-    
 end
 
 toc
 fprintf('Simulation finished.\n');
 
+%%
+tic
+sim('modelsim_2p');
+% LinecurrentsimA
+% VABsim
+% VAOsim
+% DCcapcursim
+% DCLinkRipplesim
+toc
+fprintf('Simulation finished.\n');
+
+%%
 % Plots
 figure;
 plot(timeaxis,LineCurrentA(1,1:StepN+1)*1,'k-','Linewidth',1);
