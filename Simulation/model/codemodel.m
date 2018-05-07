@@ -12,7 +12,7 @@ Vdc = 540; % Volts
 Cdc = 100e-6; % Per series module group
 Pout = 8e3/0.94; % W % Total output power
 np = 1;
-ns = 1;
+ns = 2;
 n = ns*np;
 
 % For simulations only
@@ -24,6 +24,7 @@ Vin = Vdc + Rin*(Pout/Vdc);
 Ef = 155; % Volts
 Efm = Ef/ns;
 Ls = 13.8e-3; % Henries
+%Ls = 50e-3; % Henries
 Lsm = Ls/n;
 Rs = 1e-9; % Ohms
 fout = 50; % Hz
@@ -41,7 +42,7 @@ ma = Vt*sqrt(3)/(Vdcm*0.612);
 delta = acos(Efm/Vt); % radians
 deltad = delta*180/pi; % degrees
 pf = cos(delta);
-%phase = [0 30 60 90];
+phase = [0 0];
 
 currentime = 0;
 count = 0;
@@ -53,7 +54,7 @@ ModSignalPhaseB = zeros(1,StepN);
 ModSignalPhaseC = zeros(1,StepN);
 CarrierSignal = zeros(n,StepN);
 InverterVoltagePhaseA = zeros(n,StepN);
-InverterVoltagePhaseB = zeros(n,StepN);
+InverterVoltagePhaseB = zeros(n,StepN+1);
 InverterVoltagePhaseC = zeros(n,StepN);
 InverterVoltageVAB = zeros(n,StepN);
 InverterVoltageVBC = zeros(n,StepN);
@@ -75,23 +76,20 @@ InverterVoltagePhaseCRMS = zeros(1,n);
 InverterVoltageVABRMS = zeros(1,n);
 InverterVoltageVBCRMS = zeros(1,n);
 InverterVoltageVCARMS = zeros(1,n);
-InducedVoltageARMS = zeros(1,n);
-InducedVoltageBRMS = zeros(1,n);
-InducedVoltageCRMS = zeros(1,n);
 DCLinkVoltagePeaktoPeak = zeros(1,ns);
 DCLinkVoltagePercentRipple = zeros(1,ns);
 InverterVoltageAFundRMS = zeros(1,n);
 InverterVoltageVABFundRMS = zeros(1,n);
 LineCurrentAFundRMS = zeros(1,n);
-InducedVoltageAFundRMS = zeros(1,n);
+InducedVoltageAFundRMS = 0;
 InverterVoltageAFundPhase = zeros(1,n);
 InverterVoltageVABFundPhase = zeros(1,n);
 LineCurrentAFundPhase = zeros(1,n);
-InducedVoltageAFundPhase = zeros(1,n);
+InducedVoltageAFundPhase = 0;
 THDInverterVoltagePhaseA = zeros(1,n);
 THDInverterVoltageVAB = zeros(1,n);
 THDLineCurrentA = zeros(1,n);
-THDInducedVoltagePhaseA = zeros(1,n);
+THDInducedVoltagePhaseA = 0;
 AvgPowerMotorPhaseA = zeros(1,n);
 AvgPowerMotorPhaseB = zeros(1,n);
 AvgPowerMotorPhaseC = zeros(1,n);
@@ -120,7 +118,7 @@ while (1)
     ModSignalPhaseC(count) = ma*sin(wout*currenttime+delta-4*pi/3);
     
     %phase = [0 0 0 0];
-    phase = 0;
+    %phase = 0;
     
     CarrierSignal(:,count) = carriergen(currenttime,1,-1,fsw,phase)';
     
@@ -161,7 +159,7 @@ while (1)
     end
     if currenttime > Tfinal
         break;
-        % end of the4 simulation
+        % end of the simulation
     end
 end
 
@@ -224,14 +222,15 @@ for index = 1:n
         /(StepN2+1));
     InverterVoltageVCARMS(index) = sqrt(sum(InverterVoltageVCA(index,:).^2)...
         /(StepN2+1));
-    InducedVoltageARMS(index) = sqrt(sum(InducedVoltagePhaseA(index,:).^2)...
-        /(StepN2));
-    InducedVoltageBRMS(index) = sqrt(sum(InducedVoltagePhaseB(index,:).^2)...
-        /(StepN2));
-    InducedVoltageCRMS(index) = sqrt(sum(InducedVoltagePhaseC(index,:).^2)...
-        /(StepN2));
 end
 
+InducedVoltageARMS = sqrt(sum(InducedVoltagePhaseA.^2)...
+        /(StepN2));
+InducedVoltageBRMS = sqrt(sum(InducedVoltagePhaseB.^2)...
+        /(StepN2));
+InducedVoltageCRMS = sqrt(sum(InducedVoltagePhaseC.^2)...
+        /(StepN2));
+    
 for index2 = 1:ns
     for k = 1:StepN
         DCLinkVoltage(index2,k+1) = DCLinkVoltage(index2,k) +...
@@ -251,8 +250,8 @@ for index = 1:n
         fundamentalcomp(InverterVoltageVAB(index,:),Ts,fout);
     [LineCurrentAFundRMS(index),LineCurrentAFundPhase(index)] = ...
         fundamentalcomp(LineCurrentA(index,:),Ts,fout);
-    [InducedVoltageAFundRMS(index),InducedVoltageAFundPhase(index)] = ...
-        fundamentalcomp(InducedVoltagePhaseA(index,:),Ts,fout);
+    [InducedVoltageAFundRMS,InducedVoltageAFundPhase] = ...
+        fundamentalcomp(InducedVoltagePhaseA,Ts,fout);
     
     THDInverterVoltagePhaseA(index) = 100*sqrt(InverterVoltagePhaseARMS(index)^2-...
         InverterVoltageAFundRMS(index)^2)/InverterVoltageAFundRMS(index);
@@ -260,31 +259,31 @@ for index = 1:n
         InverterVoltageVABFundRMS(index)^2)/InverterVoltageVABFundRMS(index);
     THDLineCurrentA(index) = 100*sqrt(PhaseARMSCurrent(index)^2-...
         LineCurrentAFundRMS(index)^2)/LineCurrentAFundRMS(index); % PROBLEML? (RMS düzgün de?il)
-    THDInducedVoltagePhaseA(index) = 100*sqrt(InducedVoltageARMS(index)^2-...
-        InducedVoltageAFundRMS(index)^2)/InducedVoltageAFundRMS(index);
+    THDInducedVoltagePhaseA = 100*sqrt(InducedVoltageARMS^2-...
+        InducedVoltageAFundRMS^2)/InducedVoltageAFundRMS;
     
-    InstPowerMotorPhaseA = InducedVoltagePhaseA(index,:).*LineCurrentA(index,:);
+    InstPowerMotorPhaseA = InducedVoltagePhaseA.*LineCurrentA(index,:);
     AvgPowerMotorPhaseA(index) = mean( InstPowerMotorPhaseA((StepN-(1/Ts)/fout):StepN) );
-    InstPowerMotorPhaseB = InducedVoltagePhaseB(index,:).*LineCurrentB(index,:);
+    InstPowerMotorPhaseB = InducedVoltagePhaseB.*LineCurrentB(index,:);
     AvgPowerMotorPhaseB(index) = mean( InstPowerMotorPhaseB((StepN-(1/Ts)/fout):StepN) );
-    InstPowerMotorPhaseC = InducedVoltagePhaseC(index,:).*LineCurrentC(index,:);
+    InstPowerMotorPhaseC = InducedVoltagePhaseC.*LineCurrentC(index,:);
     AvgPowerMotorPhaseC(index) = mean( InstPowerMotorPhaseC((StepN-(1/Ts)/fout):StepN) );
     AvgPowerMotor(index) = AvgPowerMotorPhaseA(index) +...
         AvgPowerMotorPhaseB(index) + AvgPowerMotorPhaseC(index);
     
     InstPowerInverterPhaseA = InverterVoltagePhaseA(index,:).*LineCurrentA(index,:);
-    AvgPowerInverterPhaseA(index,:) = mean( InstPowerInverterPhaseA((StepN-(1/Ts)/fout):StepN) );
+    AvgPowerInverterPhaseA(index) = mean( InstPowerInverterPhaseA((StepN-(1/Ts)/fout):StepN) );
     
-    ApperantPowerInverterPhaseA(index,:) = InverterVoltageAFundRMS(index,:)...
-        *LineCurrentAFundRMS;
-    ActivePowerInverterPhaseA(index,:) = ApperantPowerInverterPhaseA(index,:)*...
-        cos(pi/180*(InverterVoltageAFundPhase(index,:)-LineCurrentAFundPhase(index,:)));
-    PowerFactorInverter(index,:) = ActivePowerInverterPhaseA(index,:)...
-        /ApperantPowerInverterPhaseA(index,:);
-    ReactivePowerInverter(index,:) = 3*ApperantPowerInverterPhaseA(index,:)*...
-        sin(pi/180*(InverterVoltageAFundPhase(index,:)-LineCurrentAFundPhase(index,:)));
-    ActivePowerInverter(index,:) = 3*ApperantPowerInverterPhaseA(index,:)*...
-        cos(pi/180*(InverterVoltageAFundPhase(index,:)-LineCurrentAFundPhase(index,:)));
+    ApperantPowerInverterPhaseA(index) = InverterVoltageAFundRMS(index)...
+        *LineCurrentAFundRMS(index);
+    ActivePowerInverterPhaseA(index) = ApperantPowerInverterPhaseA(index)*...
+        cos(pi/180*(InverterVoltageAFundPhase(index)-LineCurrentAFundPhase(index)));
+    PowerFactorInverter(index) = ActivePowerInverterPhaseA(index)...
+        /ApperantPowerInverterPhaseA(index);
+    ReactivePowerInverter(index) = 3*ApperantPowerInverterPhaseA(index)*...
+        sin(pi/180*(InverterVoltageAFundPhase(index)-LineCurrentAFundPhase(index)));
+    ActivePowerInverter(index) = 3*ApperantPowerInverterPhaseA(index)*...
+        cos(pi/180*(InverterVoltageAFundPhase(index)-LineCurrentAFundPhase(index)));
     
     
     
@@ -292,6 +291,29 @@ end
 
 toc
 fprintf('Simulation finished.\n');
+
+% Plots
+figure;
+plot(timeaxis,LineCurrentA(1,1:StepN+1)*1,'k-','Linewidth',1);
+hold all;
+%plot(timeaxis,LineCurrentB(1,1:StepN+1),'r-','Linewidth',1);
+%plot(timeaxis,LineCurrentC(1,1:StepN+1),'b-','Linewidth',1);
+plot(timeaxis,InverterVoltagePhaseA(1,1:StepN+1),'b-','Linewidth',1);
+%plot(timeaxis,LinecurrentsimA(:,1),'r-','Linewidth',1);
+%plot(timeaxis,DCLinkCurrent(1:StepN+1),'r-','Linewidth',1);
+%plot(timeaxis,DCLinkCapacitorCurrent(1:StepN+1),'k-','Linewidth',1);
+%plot(timeaxis,VABsim(1:StepN+1),'b-','Linewidth',1);
+%plot(timeaxis,InverterVoltageVAB(1:StepN+1),'r-','Linewidth',1);
+plot(timeaxis,InducedVoltagePhaseA(1,:),'m-','Linewidth',2);
+plot(timeaxis,ModSignalPhaseA(1,:)*Vdcm*0.612*sqrt(2)/sqrt(3),'g-','Linewidth',2);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
+%ylabel('Motor Phase Induced Voltages (Volts)','FontSize',12,'FontWeight','Bold')
+%legend('Phase-A','Phase-B','Phase-C');
+%legend('Carrier Signal','Modulating Signal','PWM Output');
+%ylim([-2 2]);
+%xlim([0.08 0.1])
 
 
 %%
@@ -305,55 +327,20 @@ sim('immd_design_icem2');
 toc
 fprintf('Simulation finished.\n');
 
-%%
-
-%%
-% Plots
-figure;
-%plot(timeaxis,LineCurrentA(1,1:StepN+1),'k-','Linewidth',1);
-%hold on;
-%plot(timeaxis,LineCurrentB(1,1:StepN+1),'r-','Linewidth',1);
-%hold on;
-%plot(timeaxis,LineCurrentC(1,1:StepN+1),'b-','Linewidth',1);
-%hold on;
-%plot(timeaxis,LinecurrentsimA(:,1),'r-','Linewidth',1);
-%hold on;
-%plot(timeaxis,DCLinkCurrent(1:StepN+1),'r-','Linewidth',1);
-%hold on;
-%plot(timeaxis,DCLinkCapacitorCurrent(1:StepN+1),'k-','Linewidth',1);
-%hold on;
-plot(timeaxis,VABsim(1:StepN+1),'b-','Linewidth',1);
-hold on;
-plot(timeaxis,InverterVoltageVAB(1:StepN+1),'r-','Linewidth',1);
-%hold on;
-%plot(timeaxis,InducedVoltagePhaseA,'m-','Linewidth',2);
-%hold on;
-%plot(timeaxis,ModSignalPhaseA*Vdcm*0.612*sqrt(2)/sqrt(3),'g-','Linewidth',2);
-hold off;
-grid on;
-set(gca,'FontSize',12);
-xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
-%ylabel('Motor Phase Induced Voltages (Volts)','FontSize',12,'FontWeight','Bold')
-%legend('Phase-A','Phase-B','Phase-C');
-%legend('Carrier Signal','Modulating Signal','PWM Output');
-%ylim([-2 2]);
-%xlim([0.08 0.1])
-
-
 
 %%
 %
 figure;
-plot(timeaxis(1:StepN),ModSignalPhaseA(1:StepN)*Vdcm*0.612*sqrt(2)/(sqrt(3)),'b-','Linewidth',1);
+plot(timeaxis(1:StepN),ModSignalPhaseA(1:StepN),'b-','Linewidth',1);
 hold on;
-plot(timeaxis(1:StepN),InducedVoltagePhaseA(1:StepN),'r-','Linewidth',1);
-hold on;
-plot(timeaxis(1:StepN),InverterVoltagePhaseA(1:StepN),'k-','Linewidth',1);
-hold on;
-%plot(timeaxis(1:StepN),CarrierSignal(1,1:StepN),'k-','Linewidth',1);
+%plot(timeaxis(1:StepN),InducedVoltagePhaseA(1:StepN),'r-','Linewidth',1);
 %hold on;
-%plot(timeaxis(1:StepN),CarrierSignal(2,1:StepN),'k-','Linewidth',1);
+%plot(timeaxis(1:StepN),InverterVoltagePhaseA(1:StepN),'k-','Linewidth',1);
 %hold on;
+plot(timeaxis(1:StepN),CarrierSignal(1,1:StepN),'k-','Linewidth',1);
+hold on;
+plot(timeaxis(1:StepN),CarrierSignal(2,1:StepN),'r-','Linewidth',1);
+hold on;
 %plot(timeaxis(1:StepN),CarrierSignal(3,1:StepN),'m-','Linewidth',1);
 %hold on;
 %plot(timeaxis(1:StepN),CarrierSignal(4,1:StepN),'g-','Linewidth',1);
@@ -364,7 +351,7 @@ xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 %ylabel('Motor Phase Induced Voltages (Volts)','FontSize',12,'FontWeight','Bold')
 %legend('Phase-A','Phase-B','Phase-C');
 %legend('Carrier Signal','Modulating Signal','PWM Output');
-%ylim([-2 2]);
+ylim([-2 2]);
 %xlim([0 0.002])
 
     
