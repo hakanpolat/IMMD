@@ -4,17 +4,17 @@
 1. V.1. PCB
   * Kontrol kartı (DSP) şematik tasarımın tamamlanması
   * Güç kartı layout tasarımının tamamlanması: **OK**
-  * Konektör ve izolatör seçimi
+  * Konektör ve izolatör seçimi: **OK**
   * Kontrol kartı layout tasarımına başlanması
   * Güç kartı modüllerinin üretimine başlanması
   * Encoder seçimi ve tedariki
 2. GaN EVM
-  * Syncr. rectifier devresinin tamamen kurulması: **Yeni devre kuruluyor**
+  * Double pulse test devresinin kurulması
   * Double pulse testlere başlanması
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması
 3. V.1. Motor ve mekanik
-  * Motor tasarımı: **270mm son haline getirilecek**
-  * Mekanik tasarımın son haline gelmesi:
+  * Motor tasarımı (270mm'ye göre tasarım bitirilecek)
+  * Mekanik tasarımın son haline gelmesi
   * Tüm parçaların çizim ortamında birleşmesi (Solid)
   * Motor üretimine başlanması
   * Heat sink boyutlandırma ve malzeme seçilmesi
@@ -26,8 +26,10 @@
   * Makalenin yazılması ve submission
 2. ICEM 2018
   * Review gelirse (ve accept gelirse :)) güncelleştirmelerin yapılması
-3. PEMC 2018
-  * Review gelirse (ve accept gelirse :)) güncelleştirmelerin yapılması
+3. PEMC 2018 (Kabul)
+  * Makale düzeltme planı
+  * Yeni verilerin toplanması
+  * Verilerin yorumlanması ve makalenin yazımı (Camera ready)
 4. PWM makalesi
   * Makale taslağı oluşturulması: **OK**
   * İncelenecek tekniklerin belirlenmesi
@@ -41,7 +43,7 @@
   * Literatür sonucu teorik olarak odaklanılacak konuların belirlenmesi
 2. Tez İzleme Komitesi
   * Sunum hazırlama
-  * Sunma ve feedback
+  * Sunum ve feedback
 
 ##### Proje, rapor, satın alma
 1. BAP
@@ -49,7 +51,7 @@
   * Sarf bütçesinin harcanması
 2. 3501
   * Teçhizatların alınması
-  * Hizmet alımı içni avans
+  * Hizmet alımı içni avans: **OK**
   * Sarf listesi çıkarılması
 
 ________
