@@ -59,40 +59,49 @@ void main(void)
 interrupt void xint1_isr(void)
 {
     //Code For DPT PWM
-    int DeadTimeClock = 100 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
-    int GapTimeClock = 5000 / 6.667; // GapTime = 5us & Clock = 6.667ns
+    int DeadTimeClock = 500 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
+    int GapTimeClock = 1500 / 6.667; // GapTime = 5us & Clock = 6.667ns
     int LoadCurrent = 30;            // 30 Amps Inductor Current
     double Inductance = 250 * 0.000001; // 250 uH Inductance
     int Voltage = 400;               // DC Voltage Level
     double ChargeTime = Inductance*LoadCurrent/Voltage; // t=L*I/Vdc
     Uint32 ChargeTimeClock = ChargeTime * 150000000;    // Clock = Time/Tclock = Time*ClockFreq
-
+    Uint32 temp = 0;
+    Uint32 WhileStop = ChargeTimeClock + GapTimeClock*2 + DeadTimeClock*5;
+    int t1 = ChargeTimeClock;
+    int t2 = t1 + DeadTimeClock;
+    int t3 = t1 + GapTimeClock;
+    int t4 = t3 + DeadTimeClock;
+    int t5 = t4 + 3*DeadTimeClock/5;
     CpuTimer0Regs.TCR.bit.TSS = 0;  //Timer 0 Starts
-    Uint32 temp = 0xFFFFFFFF - CpuTimer0Regs.TIM.all;
-    Uint32 WhileStop = ChargeTimeClock + GapTimeClock + DeadTimeClock*3;
+
     while (temp <= WhileStop )
     {   temp = 0xFFFFFFFF - CpuTimer0Regs.TIM.all;
-        if (temp <= ChargeTimeClock)
+        if (temp <= t1)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;    // GPIO32 is cleared
             GpioDataRegs.GPBSET.bit.GPIO34 = 1;      // GPIO34 is set
+
         }
-        else if(temp <= (ChargeTimeClock + DeadTimeClock))
+        else if(temp <= t2)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   // GPIO34 is cleared
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;   // GPIO32 is cleared
+
         }
-        else if(temp <= (ChargeTimeClock + GapTimeClock))
+        else if(temp <= t3)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   //GPIO34 is cleared
             GpioDataRegs.GPBSET.bit.GPIO32 = 1;     //GPIO32 is set
+
         }
-        else if(temp <= (ChargeTimeClock + GapTimeClock + DeadTimeClock))
+        else if(temp <= t4)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;     //GPIO32 is cleared
             GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   //GPIO34 is cleared
+
         }
-        else if(temp <= (ChargeTimeClock + GapTimeClock + DeadTimeClock*2))
+        else if(temp <= t5)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;     //GPIO32 is cleared
             GpioDataRegs.GPBSET.bit.GPIO34 = 1;   //GPIO34 is set

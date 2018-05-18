@@ -15,25 +15,28 @@ C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm \
 ../DSP2833x_usDelay.asm 
 
 C_SRCS += \
+../DSP2833x_Adc.c \
 ../DSP2833x_CpuTimers.c \
 ../DSP2833x_DefaultIsr.c \
 ../DSP2833x_GlobalVariableDefs.c \
 ../DSP2833x_PieCtrl.c \
 ../DSP2833x_PieVect.c \
 ../DSP2833x_SysCtrl.c \
-../Double\ Pulse\ Test.c 
+../Double\ Pulse\ Test\ (ADC).c 
 
 C_DEPS += \
+./DSP2833x_Adc.d \
 ./DSP2833x_CpuTimers.d \
 ./DSP2833x_DefaultIsr.d \
 ./DSP2833x_GlobalVariableDefs.d \
 ./DSP2833x_PieCtrl.d \
 ./DSP2833x_PieVect.d \
 ./DSP2833x_SysCtrl.d \
-./Double\ Pulse\ Test.d 
+./Double\ Pulse\ Test\ (ADC).d 
 
 OBJS += \
 ./DSP2833x_ADC_cal.obj \
+./DSP2833x_Adc.obj \
 ./DSP2833x_CodeStartBranch.obj \
 ./DSP2833x_CpuTimers.obj \
 ./DSP2833x_DefaultIsr.obj \
@@ -42,7 +45,7 @@ OBJS += \
 ./DSP2833x_PieVect.obj \
 ./DSP2833x_SysCtrl.obj \
 ./DSP2833x_usDelay.obj \
-./Double\ Pulse\ Test.obj 
+./Double\ Pulse\ Test\ (ADC).obj 
 
 ASM_DEPS += \
 ./DSP2833x_ADC_cal.d \
@@ -51,6 +54,7 @@ ASM_DEPS += \
 
 OBJS__QUOTED += \
 "DSP2833x_ADC_cal.obj" \
+"DSP2833x_Adc.obj" \
 "DSP2833x_CodeStartBranch.obj" \
 "DSP2833x_CpuTimers.obj" \
 "DSP2833x_DefaultIsr.obj" \
@@ -59,16 +63,17 @@ OBJS__QUOTED += \
 "DSP2833x_PieVect.obj" \
 "DSP2833x_SysCtrl.obj" \
 "DSP2833x_usDelay.obj" \
-"Double Pulse Test.obj" 
+"Double Pulse Test (ADC).obj" 
 
 C_DEPS__QUOTED += \
+"DSP2833x_Adc.d" \
 "DSP2833x_CpuTimers.d" \
 "DSP2833x_DefaultIsr.d" \
 "DSP2833x_GlobalVariableDefs.d" \
 "DSP2833x_PieCtrl.d" \
 "DSP2833x_PieVect.d" \
 "DSP2833x_SysCtrl.d" \
-"Double Pulse Test.d" 
+"Double Pulse Test (ADC).d" 
 
 ASM_DEPS__QUOTED += \
 "DSP2833x_ADC_cal.d" \
@@ -81,12 +86,13 @@ ASM_SRCS__QUOTED += \
 "../DSP2833x_usDelay.asm" 
 
 C_SRCS__QUOTED += \
+"../DSP2833x_Adc.c" \
 "../DSP2833x_CpuTimers.c" \
 "../DSP2833x_DefaultIsr.c" \
 "../DSP2833x_GlobalVariableDefs.c" \
 "../DSP2833x_PieCtrl.c" \
 "../DSP2833x_PieVect.c" \
 "../DSP2833x_SysCtrl.c" \
-"../Double Pulse Test.c" 
+"../Double Pulse Test (ADC).c" 
 
 

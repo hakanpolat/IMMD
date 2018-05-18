@@ -73,6 +73,9 @@
 							<tool id="com.ti.ccstudio.buildDefinitions.C2000_18.1.hex.1989337525" name="C2000 Hex Utility" superClass="com.ti.ccstudio.buildDefinitions.C2000_18.1.hex"/>
 						</toolChain>
 					</folderInfo>
+					<sourceEntries>
+						<entry excluding="Double Pulse Test(VARY).c|Double Pulse Test.c|Synch.c|Lab7_9.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+					</sourceEntries>
 				</configuration>
 			</storageModule>
 			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
