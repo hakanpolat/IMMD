@@ -48,11 +48,11 @@
 ##### Proje, rapor, satın alma
 1. BAP
   * Gelişme raporunun yazılması ve teslim edilmesi
-  * Sarf bütçesinin harcanması
+  * Sarf bütçesinin harcanması: **OK**
 2. 3501
-  * Teçhizatların alınması
+  * Teçhizatların alınması: Teklif geldi
   * Hizmet alımı içni avans: **OK**
-  * Sarf listesi çıkarılması
+  * Sarf listesi çıkarılması: PCB için çıkarıldı
 
 ________
 
