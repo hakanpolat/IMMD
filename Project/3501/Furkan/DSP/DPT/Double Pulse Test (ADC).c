@@ -17,7 +17,7 @@ extern void InitAdc(void);
 int DeadTimeClock = 500 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
 int GapTimeClock = 1500 / 6.667; // GapTime = 5us & Clock = 6.667ns
 int LoadCurrent = 30;            // 30 Amps Inductor Current
-double Inductance = 250 * 0.000001; // 250 uH Inductance
+double Inductance = 50 * 0.001; // 250 uH Inductance
 int Voltage = 400;               // DC Voltage Level
 int LEMvoltage = 0;
 // Prototype statements for functions found within this file.
@@ -28,7 +28,7 @@ interrupt void adc_isr(void);
 //###########################################################################
 void main(void)
 {
-	InitSystem();	 	// Basic Core Initialization
+ 	InitSystem();	 	// Basic Core Initialization
 	InitSysCtrl();      // Initialize System Control
 	DINT;				// Disable all interrupts
 	Gpio_select();      // Set GPIOs
@@ -51,7 +51,6 @@ void main(void)
 	PieCtrlRegs.PIEIER1.bit.INTx6 = 1;          // Enable ADCINT in PIE
 	IER |= M_INT1;                              // Enable CPU int1
 	EINT;                                       // Enable Global Interrupts
-	ERTM;                                       // Enable Global Realtime Interrupt DBGM
 
 	EALLOW;
     GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 0;         // GPIO
@@ -73,14 +72,7 @@ void main(void)
 interrupt void adc_isr(void)
 {
         LEMvoltage = AdcMirror.ADCRESULT0; // store results global
-        if (LEMvoltage >= 3000)
-        {
-            while(1)
-            {
-                GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1; // Clear Bits
-                GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;
-            }
-        }
+        GpioDataRegs.GPATOGGLE.bit.GPIO1 = 1;
         // Reinitialize for next ADC sequence
         AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;       // Reset SEQ1
         AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
@@ -104,7 +96,7 @@ interrupt void xint1_isr(void)
     AdcRegs.ADCTRL2.bit.RST_SEQ1 = 1;   // Reset Sequencer
     AdcRegs.ADCTRL2.bit.SOC_SEQ1 = 1;   // Start Conversion*/
     CpuTimer0Regs.TCR.bit.TSS = 0;  //Timer 0 Starts
-    while (temp <= WhileStop)
+    while (1)
     {   temp = 0xFFFFFFFF - CpuTimer0Regs.TIM.all;
         if (temp <= t1)
         {
@@ -139,6 +131,7 @@ interrupt void xint1_isr(void)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   // GPIO34 is cleared
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;   // GPIO32 is cleared
+            break;
         }
     }
     GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   // GPIO34 is cleared
@@ -177,6 +170,7 @@ void Gpio_select(void)
     GpioCtrlRegs.GPBDIR.bit.GPIO34 = 1;         // output
     GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;        // GPIO
     GpioCtrlRegs.GPBDIR.bit.GPIO32 = 1;         // output
+    GpioCtrlRegs.GPADIR.bit.GPIO1 = 1;
 	EDIS;
 }   
 
@@ -232,7 +226,7 @@ void SetPWM(void)
          bit 1-0       00:     CTRMODE, 00 = count up mode
         */
 
-        EPwm2Regs.TBPRD = 15; // TPPRD +1  =  TPWM / (HSPCLKDIV * CLKDIV * TSYSCLK)
+        EPwm2Regs.TBPRD = 150; // TPPRD +1  =  TPWM / (HSPCLKDIV * CLKDIV * TSYSCLK)
                                 //           =  100 ns / 6.667 ns
 
         EPwm2Regs.ETPS.all = 0x0100;            // Configure ADC start by ePWM2

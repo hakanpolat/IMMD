@@ -85,13 +85,13 @@ void Gpio_select(void)
 void Setup_EPwm1(void)
 {
     EPwm1Regs.TBCTL.bit.CLKDIV =  0;    // CLKDIV = 1
-    EPwm1Regs.TBCTL.bit.HSPCLKDIV = 3;  // HSPCLKDIV = 6
+    EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;  // HSPCLKDIV = 1
     EPwm1Regs.TBCTL.bit.CTRMODE = 2;    // up-down mode
 
     EPwm1Regs.AQCTLA.all = 0x0006;      // toggle when CMPA = CTR
                                         //
-    EPwm1Regs.TBPRD = 1;                // timer period for 12.5 MHz
-                                        // TBPRD = 1/2 ( 150 MHz / 12.5 MHz / 6)
+    EPwm1Regs.TBPRD = 38;                // timer period for 12.5 MHz
+                                        // TBPRD = 1/2 ( 150 MHz / 12.5 MHz )
     EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD / 2; // 50% duty cycle first
 
     EPwm1Regs.ETSEL.all = 0;
@@ -106,6 +106,7 @@ interrupt void ePWM1A_compare_isr(void)
 // and is triggered by EPwm1 compare event
 // run - time of ISR is 630 ns
 {
+    GpioDataRegs.GPBTOGGLE.bit.GPIO32 = 1;
     EPwm1Regs.ETCLR.bit.INT = 1;        // Clear EPwm1 Interrupt flag
     // Acknowledge this interrupt to receive more interrupts from group 3
     PieCtrlRegs.PIEACK.all = 4;

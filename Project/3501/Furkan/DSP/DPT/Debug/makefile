@@ -20,7 +20,7 @@ ORDERED_OBJS += \
 "./DSP2833x_PieVect.obj" \
 "./DSP2833x_SysCtrl.obj" \
 "./DSP2833x_usDelay.obj" \
-"./Double Pulse Test (ADC).obj" \
+"./Double Pulse Test (TripZone).obj" \
 "../28335_RAM_lnk.cmd" \
 "C:/tidcs/c28/DSP2833x/v131/DSP2833x_headers/cmd/DSP2833x_Headers_nonBIOS.cmd" \
 $(GEN_CMDS__FLAG) \
@@ -165,8 +165,8 @@ Double\ Pulse\ Test.pjt.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "DSP2833x_ADC_cal.obj" "DSP2833x_Adc.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Double Pulse Test (ADC).obj" 
-	-$(RM) "DSP2833x_Adc.d" "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Double Pulse Test (ADC).d" 
+	-$(RM) "DSP2833x_ADC_cal.obj" "DSP2833x_Adc.obj" "DSP2833x_CodeStartBranch.obj" "DSP2833x_CpuTimers.obj" "DSP2833x_DefaultIsr.obj" "DSP2833x_GlobalVariableDefs.obj" "DSP2833x_PieCtrl.obj" "DSP2833x_PieVect.obj" "DSP2833x_SysCtrl.obj" "DSP2833x_usDelay.obj" "Double Pulse Test (TripZone).obj" 
+	-$(RM) "DSP2833x_Adc.d" "DSP2833x_CpuTimers.d" "DSP2833x_DefaultIsr.d" "DSP2833x_GlobalVariableDefs.d" "DSP2833x_PieCtrl.d" "DSP2833x_PieVect.d" "DSP2833x_SysCtrl.d" "Double Pulse Test (TripZone).d" 
 	-$(RM) "DSP2833x_ADC_cal.d" "DSP2833x_CodeStartBranch.d" "DSP2833x_usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

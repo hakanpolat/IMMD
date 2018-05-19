@@ -74,7 +74,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="Double Pulse Test(VARY).c|Double Pulse Test.c|Synch.c|Lab7_9.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="Double Pulse Test (ADC).c|Double Pulse Test(VARY).c|Synch.c|Double Pulse Test.c|Lab7_9.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>

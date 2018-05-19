@@ -22,7 +22,7 @@ C_SRCS += \
 ../DSP2833x_PieCtrl.c \
 ../DSP2833x_PieVect.c \
 ../DSP2833x_SysCtrl.c \
-../Double\ Pulse\ Test\ (ADC).c 
+../Double\ Pulse\ Test\ (TripZone).c 
 
 C_DEPS += \
 ./DSP2833x_Adc.d \
@@ -32,7 +32,7 @@ C_DEPS += \
 ./DSP2833x_PieCtrl.d \
 ./DSP2833x_PieVect.d \
 ./DSP2833x_SysCtrl.d \
-./Double\ Pulse\ Test\ (ADC).d 
+./Double\ Pulse\ Test\ (TripZone).d 
 
 OBJS += \
 ./DSP2833x_ADC_cal.obj \
@@ -45,7 +45,7 @@ OBJS += \
 ./DSP2833x_PieVect.obj \
 ./DSP2833x_SysCtrl.obj \
 ./DSP2833x_usDelay.obj \
-./Double\ Pulse\ Test\ (ADC).obj 
+./Double\ Pulse\ Test\ (TripZone).obj 
 
 ASM_DEPS += \
 ./DSP2833x_ADC_cal.d \
@@ -63,7 +63,7 @@ OBJS__QUOTED += \
 "DSP2833x_PieVect.obj" \
 "DSP2833x_SysCtrl.obj" \
 "DSP2833x_usDelay.obj" \
-"Double Pulse Test (ADC).obj" 
+"Double Pulse Test (TripZone).obj" 
 
 C_DEPS__QUOTED += \
 "DSP2833x_Adc.d" \
@@ -73,7 +73,7 @@ C_DEPS__QUOTED += \
 "DSP2833x_PieCtrl.d" \
 "DSP2833x_PieVect.d" \
 "DSP2833x_SysCtrl.d" \
-"Double Pulse Test (ADC).d" 
+"Double Pulse Test (TripZone).d" 
 
 ASM_DEPS__QUOTED += \
 "DSP2833x_ADC_cal.d" \
@@ -93,6 +93,6 @@ C_SRCS__QUOTED += \
 "../DSP2833x_PieCtrl.c" \
 "../DSP2833x_PieVect.c" \
 "../DSP2833x_SysCtrl.c" \
-"../Double Pulse Test (ADC).c" 
+"../Double Pulse Test (TripZone).c" 
 
 
