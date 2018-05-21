@@ -20,7 +20,35 @@ xlabel('Offset (mm)','FontSize',12,'FontWeight','Bold')
 ylabel('Torque Ripple (Nm)','FontSize',12,'FontWeight','Bold')
 %legend('15mm','20mm','25mm','30mm','35mm','40mm','45mm','50mm');
 %xlim([48 50])
-%ylim([-20 30])
+ylim([0 8])
+
+%%
+num = xlsread('voltage_varied.xlsx');
+
+time_axis(1,:) = double(num(2:end,1));
+offset = 15:5:75;
+for k = 1:numel(offset)
+    torque(k,:) = num(2:end,k+1);
+end
+
+for k = 1:numel(offset)
+    max_value(k) = max(torque(k,4800:5000));
+    min_value(k) = min(torque(k,4800:5000));
+    ripple(k) = max_value(k) - min_value(k);
+end
+
+figure;
+plot(offset,ripple,'b-','Linewidth',2);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Offset (mm)','FontSize',12,'FontWeight','Bold')
+ylabel('Torque Ripple (Nm)','FontSize',12,'FontWeight','Bold')
+%legend('15mm','20mm','25mm','30mm','35mm','40mm','45mm','50mm');
+%xlim([48 50])
+ylim([0 8])
+
+
+
 
 
 %%
