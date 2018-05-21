@@ -47,7 +47,7 @@
 
 ##### Proje, rapor, satın alma
 1. BAP
-  * Gelişme raporunun yazılması ve teslim edilmesi
+  * Gelişme raporunun yazılması ve teslim edilmesi: **OK**
   * Sarf bütçesinin harcanması: **OK**
 2. 3501
   * Teçhizatların alınması: Teklif geldi
