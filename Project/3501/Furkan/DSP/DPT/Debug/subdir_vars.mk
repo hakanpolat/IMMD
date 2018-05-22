@@ -15,7 +15,6 @@ C:/tidcs/c28/DSP2833x/v131/DSP2833x_common/source/DSP2833x_CodeStartBranch.asm \
 ../DSP2833x_usDelay.asm 
 
 C_SRCS += \
-../DSP2833x_Adc.c \
 ../DSP2833x_CpuTimers.c \
 ../DSP2833x_DefaultIsr.c \
 ../DSP2833x_GlobalVariableDefs.c \
@@ -25,7 +24,6 @@ C_SRCS += \
 ../Double\ Pulse\ Test\ (TripZone).c 
 
 C_DEPS += \
-./DSP2833x_Adc.d \
 ./DSP2833x_CpuTimers.d \
 ./DSP2833x_DefaultIsr.d \
 ./DSP2833x_GlobalVariableDefs.d \
@@ -36,7 +34,6 @@ C_DEPS += \
 
 OBJS += \
 ./DSP2833x_ADC_cal.obj \
-./DSP2833x_Adc.obj \
 ./DSP2833x_CodeStartBranch.obj \
 ./DSP2833x_CpuTimers.obj \
 ./DSP2833x_DefaultIsr.obj \
@@ -54,7 +51,6 @@ ASM_DEPS += \
 
 OBJS__QUOTED += \
 "DSP2833x_ADC_cal.obj" \
-"DSP2833x_Adc.obj" \
 "DSP2833x_CodeStartBranch.obj" \
 "DSP2833x_CpuTimers.obj" \
 "DSP2833x_DefaultIsr.obj" \
@@ -66,7 +62,6 @@ OBJS__QUOTED += \
 "Double Pulse Test (TripZone).obj" 
 
 C_DEPS__QUOTED += \
-"DSP2833x_Adc.d" \
 "DSP2833x_CpuTimers.d" \
 "DSP2833x_DefaultIsr.d" \
 "DSP2833x_GlobalVariableDefs.d" \
@@ -86,7 +81,6 @@ ASM_SRCS__QUOTED += \
 "../DSP2833x_usDelay.asm" 
 
 C_SRCS__QUOTED += \
-"../DSP2833x_Adc.c" \
 "../DSP2833x_CpuTimers.c" \
 "../DSP2833x_DefaultIsr.c" \
 "../DSP2833x_GlobalVariableDefs.c" \
