@@ -60,10 +60,12 @@ void main(void)
         GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;
         GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;
         GpioDataRegs.GPASET.bit.GPIO3 = 1;
+        XIntruptRegs.XINT3CR.bit.ENABLE = 1;        // Enable Xint3
     };
 }
 interrupt void ePWM1_TZ_isr(void)
 {
+    XIntruptRegs.XINT3CR.bit.ENABLE = 0;
     EALLOW;
     EPwm1Regs.TZCLR.bit.CBC = 1;
     EPwm1Regs.TZCLR.bit.INT = 1;    // reset interrupt flags
@@ -72,8 +74,10 @@ interrupt void ePWM1_TZ_isr(void)
     //{
         GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;
         GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;
+        GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
    // };
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP2;
+
 }
 interrupt void xint3_isr(void)
 {
@@ -111,7 +115,6 @@ interrupt void xint3_isr(void)
         {
             GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;   // GPIO34 is cleared
             GpioDataRegs.GPBCLEAR.bit.GPIO32 = 1;   // GPIO32 is cleared
-            GpioDataRegs.GPACLEAR.bit.GPIO3 = 1;
         }
         else if(temp <= t3)
         {
