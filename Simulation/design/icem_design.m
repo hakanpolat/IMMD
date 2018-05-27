@@ -57,9 +57,9 @@ THDmax = 1; % percent
 % Minimum motor drive efficiency
 effdrmin = 0.98;
 % Minimum motor efficiency
-effmmin = 0.94;
+effmmin = 0.96;
 % Minimum power factor
-pfmin = 0.9;
+pfmin = 0.96;
 % Maximum cogging torque
 Tcogmax = 1; % percent
 % Maximum torque ripple
@@ -75,7 +75,7 @@ Tcamax = 70; % C
 % Maximum tip speed
 vtipmax = 10; % m/s
 
-fsw = 100e3; % Hz
+fsw = 50e3; % Hz
 % Total number of modules ([2,10])
 n = 4;
 % Number of series connected modules ([2,5])
