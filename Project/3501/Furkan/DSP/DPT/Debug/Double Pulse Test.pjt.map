@@ -1,10 +1,10 @@
 ******************************************************************************
              TMS320C2000 Linker PC v18.1.1                     
 ******************************************************************************
->> Linked Tue May 22 22:10:24 2018
+>> Linked Thu May 31 14:45:16 2018
 
 OUTPUT FILE NAME:   <Double Pulse Test.pjt.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 000096be
+ENTRY POINT SYMBOL: "_c_int00"  address: 000096bc
 
 
 MEMORY CONFIGURATION
@@ -15,7 +15,7 @@ PAGE 0:
   BEGIN                 00000000   00000002  00000002  00000000  RWIX
   RAMM0                 00000050   000003b0  00000004  000003ac  RWIX
   RAML0                 00008000   00001000  0000001a  00000fe6  RWIX
-  RAML1                 00009000   00001000  000007f4  0000080c  RWIX
+  RAML1                 00009000   00001000  000007f2  0000080e  RWIX
   RAML2                 0000a000   00001000  00000000  00001000  RWIX
   RAML3                 0000b000   00001000  00000000  00001000  RWIX
   ZONE7A                00200000   0000fc00  00000000  0000fc00  RWIX
@@ -103,24 +103,24 @@ codestart
                   00008013    00000005                       : _lock.c.obj (.cinit:__unlock)
                   00008018    00000002     --HOLE-- [fill = 0]
 
-.text      0    00009000    000007f4     
+.text      0    00009000    000007f2     
                   00009000    00000316     DSP2833x_DefaultIsr.obj (.text:retain)
                   00009316    000000f8     DSP2833x_SysCtrl.obj (.text)
                   0000940e    000000f7     Double Pulse Test (TripZone).obj (.text:retain)
-                  00009505    000000be     Double Pulse Test (TripZone).obj (.text)
-                  000095c3    00000088     rts2800_fpu32.lib : fs_div28.asm.obj (.text)
-                  0000964b    00000073     DSP2833x_CpuTimers.obj (.text)
-                  000096be    00000056     rts2800_fpu32.lib : boot28.asm.obj (.text)
-                  00009714    00000029                       : exit.c.obj (.text)
-                  0000973d    00000028     DSP2833x_PieCtrl.obj (.text)
-                  00009765    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
-                  00009789    00000020     DSP2833x_PieVect.obj (.text)
-                  000097a9    0000001e     rts2800_fpu32.lib : memcpy.c.obj (.text)
-                  000097c7    00000019                       : args_main.c.obj (.text)
-                  000097e0    00000009                       : _lock.c.obj (.text)
-                  000097e9    00000008     DSP2833x_CodeStartBranch.obj (.text)
-                  000097f1    00000002     rts2800_fpu32.lib : pre_init.c.obj (.text)
-                  000097f3    00000001                       : startup.c.obj (.text)
+                  00009505    000000bc     Double Pulse Test (TripZone).obj (.text)
+                  000095c1    00000088     rts2800_fpu32.lib : fs_div28.asm.obj (.text)
+                  00009649    00000073     DSP2833x_CpuTimers.obj (.text)
+                  000096bc    00000056     rts2800_fpu32.lib : boot28.asm.obj (.text)
+                  00009712    00000029                       : exit.c.obj (.text)
+                  0000973b    00000028     DSP2833x_PieCtrl.obj (.text)
+                  00009763    00000024     rts2800_fpu32.lib : cpy_tbl.c.obj (.text)
+                  00009787    00000020     DSP2833x_PieVect.obj (.text)
+                  000097a7    0000001e     rts2800_fpu32.lib : memcpy.c.obj (.text)
+                  000097c5    00000019                       : args_main.c.obj (.text)
+                  000097de    00000009                       : _lock.c.obj (.text)
+                  000097e7    00000008     DSP2833x_CodeStartBranch.obj (.text)
+                  000097ef    00000002     rts2800_fpu32.lib : pre_init.c.obj (.text)
+                  000097f1    00000001                       : startup.c.obj (.text)
 
 .pinit     0    00008000    00000000     UNINITIALIZED
 
@@ -357,7 +357,7 @@ MODULE SUMMARY
     .\
        DSP2833x_GlobalVariableDefs.obj    0      0                  2679              
        DSP2833x_DefaultIsr.obj            790    0                  0                 
-       Double Pulse Test (TripZone).obj   437    0                  0                 
+       Double Pulse Test (TripZone).obj   435    0                  0                 
        DSP2833x_PieVect.obj               32     256                0                 
        DSP2833x_SysCtrl.obj               248    0                  0                 
        DSP2833x_CpuTimers.obj             115    0                  24                
@@ -366,7 +366,7 @@ MODULE SUMMARY
        DSP2833x_ADC_cal.obj               7      0                  0                 
        DSP2833x_usDelay.obj               4      0                  0                 
     +--+----------------------------------+------+------------------+--------------------+
-       Total:                             1683   256                2703              
+       Total:                             1681   256                2703              
                                                                                       
     C:\ti\ccsv8\tools\compiler\ti-cgt-c2000_18.1.1.LTS\lib\rts2800_fpu32.lib
        fs_div28.asm.obj                   136    0                  0                 
@@ -383,7 +383,7 @@ MODULE SUMMARY
                                                                                       
        Stack:                             0      0                  1024              
     +--+----------------------------------+------+------------------+--------------------+
-       Grand Total:                       2049   280                3737              
+       Grand Total:                       2047   280                3737              
 
 
 GLOBAL DATA SYMBOLS: SORTED BY DATA PAGE
@@ -499,13 +499,13 @@ GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name
 page  address   name                            
 ----  -------   ----                            
 0     00009000  .text                           
-0     00009714  C$$EXIT                         
-0     000095c3  FS$$DIV                         
+0     00009712  C$$EXIT                         
+0     000095c1  FS$$DIV                         
 0     000090e6  _ADCINT_ISR                     
 0     00380080  _ADC_cal                        
 1     00000b00  _AdcMirror                      
 1     00007100  _AdcRegs                        
-0     00009684  _ConfigCpuTimer                 
+0     00009682  _ConfigCpuTimer                 
 1     0000c010  _CpuTimer0                      
 1     00000c00  _CpuTimer0Regs                  
 1     0000c000  _CpuTimer1                      
@@ -575,25 +575,25 @@ page  address   name
 0     000091c2  _EQEP2_INT_ISR                  
 1     00006b00  _EQep1Regs                      
 1     00006b40  _EQep2Regs                      
-0     0000975c  _EnableInterrupts               
+0     0000975a  _EnableInterrupts               
 1     00000a80  _FlashRegs                      
 1     00006f80  _GpioCtrlRegs                   
 1     00006fc0  _GpioDataRegs                   
 1     00006fe0  _GpioIntRegs                    
-0     0000955b  _Gpio_select                    
+0     00009559  _Gpio_select                    
 0     00009244  _I2CINT1A_ISR                   
 0     0000924e  _I2CINT2A_ISR                   
 1     00007900  _I2caRegs                       
 0     0000903c  _ILLEGAL_ISR                    
 0     00009000  _INT13_ISR                      
 0     0000900a  _INT14_ISR                      
-0     0000964b  _InitCpuTimers                  
+0     00009649  _InitCpuTimers                  
 0     00009382  _InitPeripheralClocks           
-0     0000973d  _InitPieCtrl                    
-0     00009789  _InitPieVectTable               
+0     0000973b  _InitPieCtrl                    
+0     00009787  _InitPieVectTable               
 0     00009331  _InitPll                        
 0     00009316  _InitSysCtrl                    
-0     00009581  _InitSystem                     
+0     0000957f  _InitSystem                     
 0     000092f8  _LUF_ISR                        
 0     000092ee  _LVF_ISR                        
 0     000091f4  _MRINTA_ISR                     
@@ -623,7 +623,7 @@ page  address   name
 1     00007750  _ScibRegs                       
 1     00007770  _ScicRegs                       
 0     0000931f  _ServiceDog                     
-0     0000959b  _SetPWM                         
+0     00009599  _SetPWM                         
 1     00007040  _SpiaRegs                       
 1     00007010  _SysCtrlRegs                    
 0     000090f0  _TINT0_ISR                      
@@ -660,31 +660,31 @@ abs   ffffffff  ___TI_prof_data_start
 abs   ffffffff  ___binit__                      
 abs   ffffffff  ___c_args__                     
 0     00008000  ___cinit__                      
-0     000097f4  ___etext__                      
+0     000097f2  ___etext__                      
 abs   ffffffff  ___pinit__                      
 0     00009000  ___text__                       
-0     000097c7  __args_main                     
+0     000097c5  __args_main                     
 1     0000c01e  __lock                          
-0     000097e8  __nop                           
-0     000097e4  __register_lock                 
-0     000097e0  __register_unlock               
+0     000097e6  __nop                           
+0     000097e2  __register_lock                 
+0     000097de  __register_unlock               
 1     00000400  __stack                         
-0     000097f3  __system_post_cinit             
-0     000097f1  __system_pre_init               
+0     000097f1  __system_post_cinit             
+0     000097ef  __system_pre_init               
 1     0000c020  __unlock                        
-0     00009714  _abort                          
-0     000096be  _c_int00                        
-0     00009765  _copy_in                        
+0     00009712  _abort                          
+0     000096bc  _c_int00                        
+0     00009763  _copy_in                        
 0     0000940e  _ePWM1_TZ_isr                   
-0     00009716  _exit                           
+0     00009714  _exit                           
 0     00009505  _main                           
-0     000097a9  _memcpy                         
+0     000097a7  _memcpy                         
 0     0000930c  _rsvd_ISR                       
 0     00009434  _xint3_isr                      
 abs   ffffffff  binit                           
 0     00008000  cinit                           
 0     00000000  code_start                      
-0     000097f4  etext                           
+0     000097f2  etext                           
 abs   ffffffff  pinit                           
 
 
@@ -786,29 +786,29 @@ page  address   name
 0     0000940e  _ePWM1_TZ_isr                   
 0     00009434  _xint3_isr                      
 0     00009505  _main                           
-0     0000955b  _Gpio_select                    
-0     00009581  _InitSystem                     
-0     0000959b  _SetPWM                         
-0     000095c3  FS$$DIV                         
-0     0000964b  _InitCpuTimers                  
-0     00009684  _ConfigCpuTimer                 
-0     000096be  _c_int00                        
-0     00009714  C$$EXIT                         
-0     00009714  _abort                          
-0     00009716  _exit                           
-0     0000973d  _InitPieCtrl                    
-0     0000975c  _EnableInterrupts               
-0     00009765  _copy_in                        
-0     00009789  _InitPieVectTable               
-0     000097a9  _memcpy                         
-0     000097c7  __args_main                     
-0     000097e0  __register_unlock               
-0     000097e4  __register_lock                 
-0     000097e8  __nop                           
-0     000097f1  __system_pre_init               
-0     000097f3  __system_post_cinit             
-0     000097f4  ___etext__                      
-0     000097f4  etext                           
+0     00009559  _Gpio_select                    
+0     0000957f  _InitSystem                     
+0     00009599  _SetPWM                         
+0     000095c1  FS$$DIV                         
+0     00009649  _InitCpuTimers                  
+0     00009682  _ConfigCpuTimer                 
+0     000096bc  _c_int00                        
+0     00009712  C$$EXIT                         
+0     00009712  _abort                          
+0     00009714  _exit                           
+0     0000973b  _InitPieCtrl                    
+0     0000975a  _EnableInterrupts               
+0     00009763  _copy_in                        
+0     00009787  _InitPieVectTable               
+0     000097a7  _memcpy                         
+0     000097c5  __args_main                     
+0     000097de  __register_unlock               
+0     000097e2  __register_lock                 
+0     000097e6  __nop                           
+0     000097ef  __system_pre_init               
+0     000097f1  __system_post_cinit             
+0     000097f2  ___etext__                      
+0     000097f2  etext                           
 0     00380080  _ADC_cal                        
 1     00000400  __stack                         
 1     00000800  __STACK_END                     

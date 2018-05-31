@@ -32,14 +32,15 @@ void main(void)
     SetPWM();
 
     EALLOW;
-    PieVectTable.XINT3 = &xint3_isr;    // Re-mapped ISR
+    PieVectTable.XINT3 = &xint3_isr;
+    // Re-mapped ISR
     PieVectTable.EPWM1_TZINT = &ePWM1_TZ_isr;
     PieCtrlRegs.PIECTRL.bit.ENPIE = 1;          // Enable the PIE block
     //PieCtrlRegs.PIEIER1.bit.INTx4 = 1;          // Enable PIE Group 1 INT4
     PieCtrlRegs.PIEIER2.bit.INTx1 = 1;          // ePWM1-TZ
     PieCtrlRegs.PIEIER12.bit.INTx1 = 1;         // Enable PIE Group 12 INT 1
     IER |= M_INT1 | M_INT12;                    // Enable CPU int1
-    IER |= 2;                                   // enable INT1 and INT2
+    //IER |= 2;                                   // enable INT1 and INT2
     EINT;
     EDIS;
 
@@ -89,11 +90,11 @@ interrupt void xint3_isr(void)
     asm("NOP");
     EINT;
     //Code For DPT PWM
-    int DeadTimeClock = 500 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
-    int GapTimeClock = 1500 / 6.667; // GapTime = 5us & Clock = 6.667ns
-    int LoadCurrent = 30;            // 30 Amps Inductor Current
-    double Inductance = 50*0.001; // 50 mH Inductance
-    int Voltage = 400;               // DC Voltage Level
+    int DeadTimeClock = 1000 / 6.667; // DeadTime = 100ns & Clock = 6.667ns
+    int GapTimeClock = 2000 / 6.667; // GapTime = 5us & Clock = 6.667ns
+    int LoadCurrent = 20;            // 30 Amps Inductor Current
+    double Inductance = 35.4*0.001; // 50 mH Inductance
+    int Voltage = 100;               // DC Voltage Level
     double ChargeTime = Inductance*LoadCurrent/Voltage; // t=L*I/Vdc
     Uint32 ChargeTimeClock = ChargeTime * 150000000;    // Clock = Time/Tclock = Time*ClockFreq
     Uint32 temp = 0;
@@ -153,7 +154,7 @@ interrupt void xint3_isr(void)
     CpuTimer0Regs.TCR.bit.TSS = 1;          // Timer 0 Stops
     CpuTimer0Regs.TCR.bit.TRB = 1;          // Reload Period Value*/
     // Acknowledge this interrupt to get more from group 12
-    //PieCtrlRegs.PIEIER12.all = PIEACK_GROUP12;
+   // PieCtrlRegs.PIEIER12.all = PIEACK_GROUP12;
     DINT;
     PieCtrlRegs.PIEIER12.all = TempPIEIER;
 }
