@@ -12,8 +12,8 @@ Lg = 0.65e-9;
 Lss = 0.43e-9;
 
 Rg = 1.5;
-Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0128*(Temp - 25))) / 295 + 1e-4;
-Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0128*(Temp - 25))) * 18.2 / 295) + 1e-4;
+Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(Temp - 25))) / 295;% + 1e-4;
+Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(Temp - 25))) * 18.2 / 295);% + 1e-4;
 Rss = 1e-3;
 
 Rt = (0.9*0.95*0.82*18.2/295 + 3.6*0.238*0.82/295);
@@ -25,23 +25,24 @@ Lground = 5e-9;
 Lgex = 3e-9;
 Ron = 10;
 Roff = 1;
-%% Source parameters
 PulseAmplitude = 9;
 fsw = 2000e3;
-Vdc = 400;
 VpulseMax = 6;
 VpulseMin = 0;
+RiseTime = 9e-9;
+FallTime = 16e-9;
+%% Source parameters
+Vdc = 100;
 % Quantities in below are in percent
-Dtop = 48; % duty cycle of top
-Dbot = 48; % duty cycle of bot
+Dtop = 30; % duty cycle of top
+Dbot = 30; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 
-
 %% Load parameters
-LoadCurrent = 30;
-Lload = 250e-6;
-InitialCurrent = 0;
+LoadCurrent = 7.5;
+Lload = 35e-3;
+InitialCurrent = LoadCurrent;
 %% Run Simulink
 SampleTime = 5e-13;
 model = 'DPTThermalGaNModelSLX';
