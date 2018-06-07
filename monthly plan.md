@@ -3,13 +3,14 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * Kontrol kartı (DSP) şematik tasarımın tamamlanması
-  * Kontrol kartı layout tasarımına başlanması
-  * Güç kartı modüllerinin üretimine başlanması
+  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması
+  * Güç kartı (gate drive) PCB gözden geçirme
+  * Güç kartı (gate drive) PCB üretimi
   * Encoder seçimi ve tedariki
 2. GaN EVM
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması
 3. V.1. Motor ve mekanik
-  * Solid eğitimi
+  * Solid eğitimi: **OK**
   * Mekanik tasarımın son haline gelmesi
   * Tüm parçaların çizim ortamında birleşmesi
   * Rotor tasarım güncelleme ve üretime başlanması
@@ -20,8 +21,8 @@
 1. EPE 2018
   * Toplanan dataların yorumlanması ve makaleye girdi oluşturulması
   * Makalenin yazılması ve submission
-2. ICEM 2018
-  * Review gelirse (ve accept gelirse :)) güncelleştirmelerin yapılması
+2. ICEM 2018 (Kabul)
+  * Makalenin yazımı (Camera ready)
 3. PEMC 2018 (Kabul)
   * Verilerin yorumlanması
   * Makalenin yazımı (Camera ready)
