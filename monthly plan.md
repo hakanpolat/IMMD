@@ -2,30 +2,31 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı (DSP) şematik tasarımın tamamlanması
+  * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. Power supply kısmı tamam. DSP kartı tasarımı yapılıyor**
   * Kontrol kartı (DSP + flyback) layout tasarımına başlanması
-  * Güç kartı (gate drive) PCB gözden geçirme
-  * Güç kartı (gate drive) PCB üretimi
-  * Encoder seçimi ve tedariki
+  * Güç kartı (gate drive) PCB gözden geçirme: **OK**
+  * Güç kartı (gate drive) PCB üretimi: **Layout'ta gate drive hatları poligona çevriliyor. Sonrasında üretime yollanacak**
+  * Encoder seçimi ve tedariki: **Bakılacak**
 2. GaN EVM
-  * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması
+  * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması: **OK**
 3. V.1. Motor ve mekanik
-  * Solid eğitimi: **OK**
-  * Mekanik tasarımın son haline gelmesi
-  * Tüm parçaların çizim ortamında birleşmesi
-  * Rotor tasarım güncelleme ve üretime başlanması
-  * Heat sink boyutlandırma ve malzeme seçilmesi
-  * Heat sink işlenmesi (kesilmesi)
+  * Solid eğitimi: **OK, Güzel oldu :)**
+  * Mekanik tasarımın son haline gelmesi: **Bireysel tasarımların bitmesi bekleniyor**
+  * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor**
+  * Rotor tasarım güncelleme ve üretime başlanması: **Mıknatıs şekli güncellendi, Rotor için haber bekleniyor**
+  * Heat sink boyutlandırma ve malzeme seçilmesi: **OK**
+  * Heat sink işlenmesi (kesilmesi): **Parça geldikten sonra bakılacak**
 
 ##### Makale çalışmaları
 1. EPE 2018
-  * Toplanan dataların yorumlanması ve makaleye girdi oluşturulması
-  * Makalenin yazılması ve submission
+  * Toplanan dataların yorumlanması ve makaleye girdi oluşturulması: **OK**
+  * Makalenin yazılması ve submission: **Full paper yazımına başlandı**
 2. ICEM 2018 (Kabul)
-  * Makalenin yazımı (Camera ready)
+  * Makalenin yazımı (Camera ready): **Review'lar incelenip değerlendirildi**
 3. PEMC 2018 (Kabul)
-  * Verilerin yorumlanması
-  * Makalenin yazımı (Camera ready)
+  * Kauıp hesabı hatalarının giderilmesi: **OK**
+  * Verilerin yorumlanması: **OK**
+  * Makalenin yazımı (Camera ready): **Planlama yapıldı, yazılmaya başlanacak**
 4. PWM makalesi
   * İncelenecek tekniklerin belirlenmesi: **Makale okunacak**
   * MATLAB'ta simulasyon ortamının bitirilmesi: **3-level bitirilecek**
@@ -35,11 +36,11 @@
 1. Literatür
   * Literatür sonucu teorik olarak odaklanılacak konuların belirlenmesi: **Tezin araştırma odakları belirlenecek**
 2. Tez
-  * Tez yazımına başlanması (latex): **Tez başlığı atılacak**
+  * Tez yazımına başlanması (latex): **Latex template'te tez başlığı atılacak ve outline çıkarılacak**
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Teçhizatların alınması: **Son teklif değerlendirilip sipariş verilecek**
+  * Teçhizatların alınması: **Süreç başlatıldı**
   * Sarf malzemelerin alınması: **PCB malzemeleri BOM'dan avans ile alınacak**
   * Motor üretimi: **Avans kapatılacak**
 ________
