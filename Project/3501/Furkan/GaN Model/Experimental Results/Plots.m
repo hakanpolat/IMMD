@@ -1,3 +1,24 @@
+%% Data Configurations
+fc = 10e6;
+Wn = (2/25000000)*fc;
+filt = fir1(20,Wn,'low',kaiser(21,3));
+BotONIloadF = filter(Hlp2,BotONIload);
+BotOFFIloadF = filter(Hlp2,BotOFFIload);
+% BotONIloadF = BotONIload;
+% BotOFFIloadF = BotOFFIload;
+BotONV25mF = filter(Hlp2,BotONV25m);
+BotOFFV25mF = filter(Hlp2,BotOFFV25m);
+% BotONV25mF = BotONV25m;
+% BotOFFV25mF = BotOFFV25m;
+
+BotOFFIdsBot = 7.408/0.304 * BotOFFV25mF;
+BotONIdsBot = 7.408/0.304 * BotONV25mF;
+
+TopONVdsTop = 100 - (BotOFFVdsBot + BotOFFV25mF);
+TopOFFVdsTop = 100 - (BotONVdsBot + BotONV25mF);
+
+TopONIdsTop = BotOFFIdsBot - 10*BotOFFIloadF;
+TopOFFIdsTop = BotONIdsBot - 10*BotONIloadF;
 %% Plot
 f1 = figure('Name','Experimental Results','units','normalized','outerposition',[0 0 1 1]);
 %% Bot Turn OFF
@@ -12,16 +33,16 @@ f1 = figure('Name','Experimental Results','units','normalized','outerposition',[
     ylabel('Results','FontSize',12,'FontWeight','bold','Color','k');
     ax.FontSize = 12;
 %     ax.YTick = [0:20:120];
-%     xlim([0 5.1])
+%     ylim([-20 20])
     SampleRange = 12499;
     SampleMid = 12500;
     SampleBeg = SampleMid - SampleRange;
     SampleEnd = SampleMid + SampleRange;
-    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopONVdsBot(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , BotOFFVgsBot(SampleBeg:SampleEnd,2),'LineWidth',3.0);    
-    plot( (SampleBeg:SampleEnd)/5e9 , 7.811/0.3625*BotOFFV25m(SampleBeg:SampleEnd,2),'LineWidth',3.0);    
-    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotOFFIload(SampleBeg:SampleEnd,2),'LineWidth',3.0);  
-    legend('Vds(V)','Vgs(V)','Ids(A)','ILoad(A)','Location','Best');
+    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*BotOFFVdsBot(SampleBeg:SampleEnd),'LineWidth',3.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , BotOFFVgsBot(SampleBeg:SampleEnd),'LineWidth',3.0);    
+    plot( (SampleBeg:SampleEnd)/5e9 , BotOFFIdsBot(SampleBeg:SampleEnd),'LineWidth',1.0);    
+    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotOFFIloadF(SampleBeg:SampleEnd),'LineWidth',3.0);  
+    legend('Vds(V)','Vgs(V)','Ids(A)','IloadF(A)','Location','Best');
     hold off
     %saveas(f1, 'I_{DS} vs V_{DS} Graph for Different Temperatures @ V_{gs} = 6V.jpg');
 %% Bot Turn ON    
@@ -37,15 +58,16 @@ f1 = figure('Name','Experimental Results','units','normalized','outerposition',[
     ax.FontSize = 12;
 %     ax.YTick = [0:20:120];
 %     xlim([0 5.1])
+%     ylim([-20 20])
     SampleRange = 12499;
     SampleMid = 12500;
     SampleBeg = SampleMid - SampleRange;
     SampleEnd = SampleMid + SampleRange;
-    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopOFFVdsBot(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , BotONVgsBot(SampleBeg:SampleEnd,2),'LineWidth',3.0);    
-    plot( (SampleBeg:SampleEnd)/5e9 , 7.811/0.3625*BotONV25m(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotONIload(SampleBeg:SampleEnd,2),'LineWidth',3.0);  
-    legend('Vds(V)','Vgs(V)','Ids(A)','ILoad(A)','Location','Best');
+    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*BotONVdsBot(SampleBeg:SampleEnd),'LineWidth',3.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , BotONVgsBot(SampleBeg:SampleEnd),'LineWidth',3.0);    
+    plot( (SampleBeg:SampleEnd)/5e9 , BotONIdsBot(SampleBeg:SampleEnd),'LineWidth',1.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotONIloadF(SampleBeg:SampleEnd),'LineWidth',3.0);  
+    legend('Vds(V)','Vgs(V)','Ids(A)','IloadF(A)','Location','Best');
     hold off
     %saveas(f1, 'I_{DS} vs V_{DS} Graph for Different Temperatures @ V_{gs} = 6V.jpg');   
 %% Top Turn OFF
@@ -61,15 +83,20 @@ f1 = figure('Name','Experimental Results','units','normalized','outerposition',[
     ax.FontSize = 12;
 %     ax.YTick = [0:20:120];
 %     xlim([0 5.1])
+%     ylim([-20 20])
     SampleRange = 12499;
     SampleMid = 12500;
     SampleBeg = SampleMid - SampleRange;
     SampleEnd = SampleMid + SampleRange;
-    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopOFFVdsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , TopOFFVgsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);    
-    plot( (SampleBeg:SampleEnd)/5e9 , TopOFFIdsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotONIload(SampleBeg:SampleEnd,2),'LineWidth',3.0);  
-    legend('Vds(V)','Vgs(V)','Ids(A)','ILoad(A)','Location','Best');
+    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopOFFVdsTop(SampleBeg:SampleEnd),'LineWidth',3.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , TopOFFVgsTop(SampleBeg:SampleEnd),'LineWidth',3.0);    
+    plot( (SampleBeg:SampleEnd)/5e9 , TopOFFIdsTop(SampleBeg:SampleEnd),'LineWidth',1.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotONIloadF(SampleBeg:SampleEnd),'LineWidth',3.0); 
+%     plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopOFFVdsBot(SampleBeg:SampleEnd),'LineWidth',3.0);
+%     plot( (SampleBeg:SampleEnd)/5e9 , TopOFFVgs(SampleBeg:SampleEnd),'LineWidth',3.0);    
+%     plot( (SampleBeg:SampleEnd)/5e9 , 7.811/0.3625*TopOFFV25mF(SampleBeg:SampleEnd),'LineWidth',3.0);
+%     plot( (SampleBeg:SampleEnd)/5e9 , 10*TopOFFIloadF(SampleBeg:SampleEnd),'LineWidth',3.0);  
+    legend('Vds(V)','Vgs(V)','Ids(A)','IloadF(A)','Location','Best');
     hold off
     %saveas(f1, 'I_{DS} vs V_{DS} Graph for Different Temperatures @ V_{gs} = 6V.jpg');
 %% Top Turn ON
@@ -85,15 +112,16 @@ f1 = figure('Name','Experimental Results','units','normalized','outerposition',[
     ax.FontSize = 12;
 %     ax.YTick = [0:20:120];
 %     xlim([0 5.1])
+%     ylim([-20 20])
     SampleRange = 12499;
     SampleMid = 12500;
     SampleBeg = SampleMid - SampleRange;
     SampleEnd = SampleMid + SampleRange;
-    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopONVdsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , TopONVgsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);    
-    plot( (SampleBeg:SampleEnd)/5e9 , TopONIdsTop(SampleBeg:SampleEnd,2),'LineWidth',3.0);
-    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotOFFIload(SampleBeg:SampleEnd,2),'LineWidth',3.0);  
-    legend('Vds(V)','Vgs(V)','Ids(A)','ILoad(A)','Location','Best');
+    plot( (SampleBeg:SampleEnd)/5e9 , 0.1*TopONVdsTop(SampleBeg:SampleEnd),'LineWidth',3.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , TopONVgsTop(SampleBeg:SampleEnd),'LineWidth',3.0);    
+    plot( (SampleBeg:SampleEnd)/5e9 , TopONIdsTop(SampleBeg:SampleEnd),'LineWidth',1.0);
+    plot( (SampleBeg:SampleEnd)/5e9 , 10*BotOFFIloadF(SampleBeg:SampleEnd),'LineWidth',3.0);  
+    legend('Vds(V)','Vgs(V)','Ids(A)','IloadF(A)','Location','Best');
     hold off
     %saveas(f1, 'I_{DS} vs V_{DS} Graph for Different Temperatures @ V_{gs} = 6V.jpg'); 
 %% Dock Figures
