@@ -42,7 +42,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 % Bottom Turn OFF
 FirstDataBeginIndex = 9e-7/SampleTime;
@@ -68,7 +68,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %Top Switch
@@ -109,7 +109,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 % Top Turn OFF
@@ -136,7 +136,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %% Model 2 Plots
@@ -178,7 +178,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 % Bottom Turn OFF
 FirstDataBeginIndex = 9e-7/SampleTime;
@@ -204,7 +204,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %Top Switch
@@ -245,7 +245,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 % Top Turn OFF
@@ -272,7 +272,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %% Model 3 Plots
@@ -314,7 +314,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 % Bottom Turn OFF
 FirstDataBeginIndex = 9e-7/SampleTime;
@@ -340,7 +340,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %Top Switch
@@ -381,7 +381,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 % Top Turn OFF
@@ -408,7 +408,7 @@ grid off;
 xlabel('Time(\musec)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('Current(A),Voltage(V)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('V_d_s(*0.1)','I_d_s','V_c_h(*0.1)','I_c_h','northeast');
+legend ('V_d_s(1/10)','I_d_s','V_c_h(1/10)','I_c_h','northeast');
 hold off
 
 %% Ron Roff Plots

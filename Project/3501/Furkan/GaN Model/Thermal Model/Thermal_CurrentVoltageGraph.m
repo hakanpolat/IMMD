@@ -149,8 +149,9 @@ Vds = -10:0.1:0;
     ylabel('I_{SD}(A)','FontSize',12,'FontWeight','bold','Color','k');
     ax.FontSize = 12;
     ax.XTick = [0:2:10];
-    ax.YTick = [0:20:120];
+    ax.YTick = [-20:20:120];
     xlim([0 10])
+    ylim([-20 120])
     for GateIndex = 1:3
     Ids_dummy(:) = Ids(GateIndex,:);
     Vds_dummy(:) = Vds_modified(GateIndex,:);
