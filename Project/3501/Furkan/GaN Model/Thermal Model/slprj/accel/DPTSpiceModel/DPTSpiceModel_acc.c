@@ -106,9 +106,9 @@ S , 4 , 24 , SS_CALL_MDL_UPDATE ) ; UNUSED_PARAMETER ( tid ) ; }
 #define MDL_UPDATE
 static void mdlUpdateTID1 ( SimStruct * S , int_T tid ) { UNUSED_PARAMETER (
 tid ) ; } static void mdlInitializeSizes ( SimStruct * S ) { ssSetChecksumVal
-( S , 0 , 3514155395U ) ; ssSetChecksumVal ( S , 1 , 1634563581U ) ;
-ssSetChecksumVal ( S , 2 , 1222771332U ) ; ssSetChecksumVal ( S , 3 ,
-2038396864U ) ; { mxArray * slVerStructMat = NULL ; mxArray * slStrMat =
+( S , 0 , 3146911662U ) ; ssSetChecksumVal ( S , 1 , 2888121552U ) ;
+ssSetChecksumVal ( S , 2 , 1860773658U ) ; ssSetChecksumVal ( S , 3 ,
+1748822809U ) ; { mxArray * slVerStructMat = NULL ; mxArray * slStrMat =
 mxCreateString ( "simulink" ) ; char slVerChar [ 10 ] ; int status =
 mexCallMATLAB ( 1 , & slVerStructMat , 1 , & slStrMat , "ver" ) ; if ( status
 == 0 ) { mxArray * slVerMat = mxGetField ( slVerStructMat , 0 , "Version" ) ;

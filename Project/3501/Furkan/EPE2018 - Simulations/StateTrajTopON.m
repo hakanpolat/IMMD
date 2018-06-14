@@ -1,15 +1,15 @@
 %EPE - 2018 - GaN Plots
 %% Static Calculator
-Vgs_static = -10:1:6;
+Vgs_static = -15:1:6;
 Vds_ch = -20:0.1:475;
 cur = 4.5057; % To be updated
-K = cur * 0.8 * (273/300)^(-2.7);
+K = cur * 0.8 * ((125 - 25 + 273)/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
 slp = 2;
-    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(25 - 25))) / 295 + 1e-4;
-    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295) + 1e-4;
-for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
+    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(125 - 25))) / 295 + 1e-4;
+    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(125 - 25))) * 18.2 / 295) + 1e-4;
+for GateIndex = 1:22    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
     for i=1:((495/0.1)+1)
         GS = Vgs_static(GateIndex);
         DS = Vds_ch(i);
@@ -25,22 +25,22 @@ for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model120A125C10and1ohm,'IdsT_I');
+getElement(Model310A125C10and1ohm,'IdsT_I');
 FIRSTCURRENT = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model120A125C10and1ohm,'VdsT_I');
+getElement(Model310A125C10and1ohm,'VdsT_I');
 FIRSTVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model220A125C10and1ohm,'IdsT_I');
+getElement(Model320A125C10and1ohm,'IdsT_I');
 SECONDCURRENT = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model220A125C10and1ohm,'VdsT_I');
+getElement(Model320A125C10and1ohm,'VdsT_I');
 SECONDVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model320A50C10and1ohm,'IdsT_I');
+getElement(Model330A125C10and1ohm,'IdsT_I');
 THIRDCURRENT = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model320A50C10and1ohm,'VdsT_I');
+getElement(Model330A125C10and1ohm,'VdsT_I');
 THIRDVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
 % First Data Set
@@ -66,20 +66,20 @@ figure(f1);
 hold all
 % -10 -9 -8 -7 -6 -5 -4 -3 -2 -1  0  1  2  3  4  5  6
 % 1    2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
-for j=[1,5,11,17]
+for j=[1,6,16,22]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
-xlim([-15 5]);
-ylim([-25 5]);
+xlim([-25 5]);
+ylim([-40 5]);
 ax = gca;
 ax.FontSize = 22;
-ax.XTick = [-15:5:5];
-ax.YTick = [-25:5:5];
+ax.XTick = [-25:5:5];
+ax.YTick = [-50:10:0];
 grid off;
 xlabel('V_c_h(V)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('I_c_h(A)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('Vgs = -10V','Vgs = -6V','Vgs = 0','Vgs = 6V','Location','southeast');
+legend ('Vgs = -15V','Vgs = -10V','Vgs = 0','Vgs = 6V','Location','southeast');
 hold off
 %% State Trajector Plot
 figure(f1);

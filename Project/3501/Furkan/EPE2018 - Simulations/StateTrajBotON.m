@@ -3,12 +3,12 @@
 Vgs_static = -10:1:6;
 Vds_ch = -10:0.1:475;
 cur = 4.5057; % To be updated
-K = cur * 0.8 * (273/300)^(-2.7);
+K = cur * 0.8 * ((125 - 25 + 273)/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
 slp = 2;
-    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(25 - 25))) / 295 + 1e-4;
-    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295) + 1e-4;
+    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(125 - 25))) / 295 + 1e-4;
+    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(125 - 25))) * 18.2 / 295) + 1e-4;
 
 for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
     for i=1:((485/0.1)+1)
@@ -26,17 +26,17 @@ for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model120A125C10and1ohm,'IdsB_I');
+getElement(Model310A125C10and1ohm,'IdsB_I');
 FIRSTCURRENT = ans.Values.Data;
-getElement(Model120A125C10and1ohm,'VdsB_I');
+getElement(Model310A125C10and1ohm,'VdsB_I');
 FIRSTVOLTAGE = ans.Values.Data;
-getElement(Model220A125C10and1ohm,'IdsB_I');
+getElement(Model320A125C10and1ohm,'IdsB_I');
 SECONDCURRENT = ans.Values.Data;
-getElement(Model220A125C10and1ohm,'VdsB_I');
+getElement(Model320A125C10and1ohm,'VdsB_I');
 SECONDVOLTAGE = ans.Values.Data;
-getElement(Model320A50C10and1ohm,'IdsB_I');
+getElement(Model330A125C10and1ohm,'IdsB_I');
 THIRDCURRENT = ans.Values.Data;
-getElement(Model320A50C10and1ohm,'VdsB_I');
+getElement(Model330A125C10and1ohm,'VdsB_I');
 THIRDVOLTAGE = ans.Values.Data;
 % First Data Set
 FirstDataBeginIndex = 4.9e-7/SampleTime;
@@ -67,7 +67,7 @@ for j=[8,13,14,17]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
 xlim([0 415]);
-ylim([0 60]);
+ylim([0 40]);
 ax = gca;
 ax.FontSize = 22;
 ax.XTick = [0:100:400];
@@ -76,7 +76,7 @@ grid off;
 xlabel('V_c_h(V)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('I_c_h(A)','FontSize',22,'FontWeight','bold','Color','k');
 % title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'},'FontSize',22,'FontWeight','bold','Color','k')
-legend ('Vgs = -3V','Vgs = 2V','Vgs = 3V','Vgs = 6V','Location','southwest');
+legend ('Vgs = -3V','Vgs = 2V','Vgs = 3V','Vgs = 6V','Location','northeast');
 hold off
 %% State Trajector Plot
 figure(f1);
@@ -94,8 +94,8 @@ for j=FirstDataBeginIndex:FirstDataEndIndex
         FirstDataCurrentBegin = FIRSTCURRENT(j);
     end
 end 
-    plot(FIRSTVOLTAGE(FirstDataBeginIndex),FIRSTCURRENT(FirstDataBeginIndex),'*','Linewidth',10.0);
-    plot(FIRSTVOLTAGE(FirstDataEndIndex),FIRSTCURRENT(FirstDataEndIndex),'*','Linewidth',10.0);
+    plot(FIRSTVOLTAGE(FirstDataBeginIndex),FIRSTCURRENT(FirstDataBeginIndex),'*','Linewidth',10.0,'Color','r');
+    plot(FIRSTVOLTAGE(FirstDataEndIndex),FIRSTCURRENT(FirstDataEndIndex),'*','Linewidth',10.0,'Color','r');
 % Second State Trajectory
 Isens = 2;
 Vsens = 2;
@@ -109,8 +109,8 @@ for j=SecondDataBeginIndex:SecondDataEndIndex
         SecondDataCurrentBegin = SECONDCURRENT(j);
     end
 end 
-    plot(SECONDVOLTAGE(SecondDataBeginIndex),SECONDCURRENT(SecondDataBeginIndex),'*','Linewidth',10.0);
-    plot(SECONDVOLTAGE(SecondDataEndIndex),SECONDCURRENT(SecondDataEndIndex),'*','Linewidth',10.0);
+    plot(SECONDVOLTAGE(SecondDataBeginIndex),SECONDCURRENT(SecondDataBeginIndex),'*','Linewidth',10.0,'Color','k');
+    plot(SECONDVOLTAGE(SecondDataEndIndex),SECONDCURRENT(SecondDataEndIndex),'*','Linewidth',10.0,'Color','k');
 % Third State Trajectory
 Isens = 2;
 Vsens = 2;
@@ -124,5 +124,5 @@ for j=ThirdDataBeginIndex:ThirdDataEndIndex
         ThirdDataCurrentBegin = THIRDCURRENT(j);
     end
 end 
-    plot(THIRDVOLTAGE(ThirdDataBeginIndex),THIRDCURRENT(ThirdDataBeginIndex),'*','Linewidth',10.0);
-    plot(THIRDVOLTAGE(ThirdDataEndIndex),THIRDCURRENT(ThirdDataEndIndex),'*','Linewidth',10.0);
+    plot(THIRDVOLTAGE(ThirdDataBeginIndex),THIRDCURRENT(ThirdDataBeginIndex),'*','Linewidth',10.0,'Color','b');
+    plot(THIRDVOLTAGE(ThirdDataEndIndex),THIRDCURRENT(ThirdDataEndIndex),'*','Linewidth',10.0,'Color','b');

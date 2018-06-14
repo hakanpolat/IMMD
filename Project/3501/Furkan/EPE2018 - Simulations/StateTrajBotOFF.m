@@ -3,7 +3,7 @@
 Vgs_static = -10:1:6;
 Vds_ch = -10:0.1:475;
 cur = 4.5057; % To be updated
-K = cur * 0.8 * (273/300)^(-2.7);
+K = cur * 0.8 * ((25 - 25 + 273)/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
 slp = 2;
@@ -25,17 +25,17 @@ for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model120A125C10and1ohm,'IdsB_I');
+getElement(Model310A125C10and1ohm,'IdsB_I');
 FIRSTCURRENT = ans.Values.Data;
-getElement(Model120A125C10and1ohm,'VdsB_I');
+getElement(Model310A125C10and1ohm,'VdsB_I');
 FIRSTVOLTAGE = ans.Values.Data;
-getElement(Model220A125C10and1ohm,'IdsB_I');
-SECONDCURRENT = ans.Values.Data;
-getElement(Model220A125C10and1ohm,'VdsB_I');
-SECONDVOLTAGE = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'IdsB_I');
-THIRDCURRENT = ans.Values.Data;
+SECONDCURRENT = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'VdsB_I');
+SECONDVOLTAGE = ans.Values.Data;
+getElement(Model330A125C10and1ohm,'IdsB_I');
+THIRDCURRENT = ans.Values.Data;
+getElement(Model330A125C10and1ohm,'VdsB_I');
 THIRDVOLTAGE = ans.Values.Data;
 % First Data Set
 FirstDataBeginIndex = 9e-7/SampleTime;
@@ -64,12 +64,12 @@ hold all
 for j=[8,13,17]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
-xlim([0 440]);
-ylim([0 25]);
+xlim([0 200]);
+ylim([0 32]);
 ax = gca;
 ax.FontSize = 22;
-ax.XTick = [0:100:400];
-ax.YTick = [0:5:25];
+ax.XTick = [0:50:200];
+ax.YTick = [0:5:30];
 grid off;
 xlabel('V_c_h(V)','FontSize',22,'FontWeight','bold','Color','k');
 ylabel('I_c_h(A)','FontSize',22,'FontWeight','bold','Color','k');
@@ -92,8 +92,8 @@ for j=FirstDataBeginIndex:FirstDataEndIndex
         FirstDataCurrentBegin = FIRSTCURRENT(j);
     end
 end 
-    plot(FIRSTVOLTAGE(FirstDataBeginIndex),FIRSTCURRENT(FirstDataBeginIndex),'*','Linewidth',10.0);
-    plot(FIRSTVOLTAGE(FirstDataEndIndex),FIRSTCURRENT(FirstDataEndIndex),'*','Linewidth',10.0);
+    plot(FIRSTVOLTAGE(FirstDataBeginIndex),FIRSTCURRENT(FirstDataBeginIndex),'*','Linewidth',10.0,'Color','r');
+    plot(FIRSTVOLTAGE(FirstDataEndIndex),FIRSTCURRENT(FirstDataEndIndex),'*','Linewidth',10.0,'Color','r');
 % Second State Trajectory
 Isens = 0.5;
 Vsens = 0.5;
@@ -107,8 +107,8 @@ for j=SecondDataBeginIndex:SecondDataEndIndex
         SecondDataCurrentBegin = SECONDCURRENT(j);
     end
 end 
-    plot(SECONDVOLTAGE(SecondDataBeginIndex),SECONDCURRENT(SecondDataBeginIndex),'*','Linewidth',10.0);
-    plot(SECONDVOLTAGE(SecondDataEndIndex),SECONDCURRENT(SecondDataEndIndex),'*','Linewidth',10.0);
+    plot(SECONDVOLTAGE(SecondDataBeginIndex),SECONDCURRENT(SecondDataBeginIndex),'*','Linewidth',10.0,'Color','k');
+    plot(SECONDVOLTAGE(SecondDataEndIndex),SECONDCURRENT(SecondDataEndIndex),'*','Linewidth',10.0,'Color','k');
 % Third State Trajectory
 Isens = 0.5;
 Vsens = 0.5;
@@ -122,5 +122,5 @@ for j=ThirdDataBeginIndex:ThirdDataEndIndex
         ThirdDataCurrentBegin = THIRDCURRENT(j);
     end
 end 
-    plot(THIRDVOLTAGE(ThirdDataBeginIndex),THIRDCURRENT(ThirdDataBeginIndex),'*','Linewidth',10.0);
-    plot(THIRDVOLTAGE(ThirdDataEndIndex),THIRDCURRENT(ThirdDataEndIndex),'*','Linewidth',10.0);
+    plot(THIRDVOLTAGE(ThirdDataBeginIndex),THIRDCURRENT(ThirdDataBeginIndex),'*','Linewidth',10.0,'Color','b');
+    plot(THIRDVOLTAGE(ThirdDataEndIndex),THIRDCURRENT(ThirdDataEndIndex),'*','Linewidth',10.0,'Color','b');

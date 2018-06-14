@@ -40,7 +40,7 @@ Dbot = 48; % duty cycle of bot
 
 
 %% Load parameters
-LoadCurrent = 20;
+LoadCurrent = 30;
 Lload = 35e-3;
 Rload = 1e-6;
 InitialCurrent = LoadCurrent;
