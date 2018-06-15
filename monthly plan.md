@@ -3,17 +3,20 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. Power supply kısmı tamam. DSP kartı tasarımı yapılıyor**
-  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması
+  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması: **Fiziksel yapı tasarlandı. Şematikten sonra layout'a başlanacak**
   * Güç kartı (gate drive) PCB gözden geçirme: **OK**
   * Güç kartı (gate drive) PCB üretimi: **Layout'ta gate drive hatları poligona çevriliyor. Sonrasında üretime yollanacak**
   * Encoder seçimi ve tedariki: **Bakılacak**
 2. GaN EVM
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması: **OK**
-3. V.1. Motor ve mekanik
+3. V.1. Motor
+  * Mıknatıs boyutlandırma ve üretime başlanması: **OK**
+  * Rotor tasarım güncelleme ve üretime başlanması: **Mıknatıs şekli güncellendi, Rotor için haber bekleniyor**
+4. V.1. Mekanik
   * Solid eğitimi: **OK, Güzel oldu :)**
   * Mekanik tasarımın son haline gelmesi: **Bireysel tasarımların bitmesi bekleniyor**
   * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor**
-  * Rotor tasarım güncelleme ve üretime başlanması: **Mıknatıs şekli güncellendi, Rotor için haber bekleniyor**
+5. V.1. Soğutucu
   * Heat sink boyutlandırma ve malzeme seçilmesi: **OK**
   * Heat sink işlenmesi (kesilmesi): **Parça geldikten sonra bakılacak**
 
