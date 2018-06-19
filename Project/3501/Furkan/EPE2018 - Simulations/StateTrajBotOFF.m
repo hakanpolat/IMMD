@@ -25,17 +25,17 @@ for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model310A125C10and1ohm,'IdsB_I');
+getElement(Model120A125C10and1ohm,'IdsB_I');
 FIRSTCURRENT = ans.Values.Data;
-getElement(Model310A125C10and1ohm,'VdsB_I');
+getElement(Model120A125C10and1ohm,'VdsB_I');
 FIRSTVOLTAGE = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'IdsB_I');
 SECONDCURRENT = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'VdsB_I');
 SECONDVOLTAGE = ans.Values.Data;
-getElement(Model330A125C10and1ohm,'IdsB_I');
+getElement(Model320A75C10and1ohmSOURCE,'IdsB_I');
 THIRDCURRENT = ans.Values.Data;
-getElement(Model330A125C10and1ohm,'VdsB_I');
+getElement(Model320A75C10and1ohmSOURCE,'VdsB_I');
 THIRDVOLTAGE = ans.Values.Data;
 % First Data Set
 FirstDataBeginIndex = 9e-7/SampleTime;
@@ -64,11 +64,11 @@ hold all
 for j=[8,13,17]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
-xlim([0 200]);
+xlim([0 450]);
 ylim([0 32]);
 ax = gca;
 ax.FontSize = 22;
-ax.XTick = [0:50:200];
+ax.XTick = [0:50:450];
 ax.YTick = [0:5:30];
 grid off;
 xlabel('V_c_h(V)','FontSize',22,'FontWeight','bold','Color','k');

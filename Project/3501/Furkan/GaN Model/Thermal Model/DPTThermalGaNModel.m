@@ -40,34 +40,34 @@ Dbot = 48; % duty cycle of bot
 
 
 %% Load parameters
-LoadCurrent = 30;
+LoadCurrent = 20;
 Lload = 35e-3;
 Rload = 1e-6;
 InitialCurrent = LoadCurrent;
 %% Initial Conditions
 % First Bottom ON
-% CurrDSBot = LoadCurrent;
-% VoltDSBot = 0;
-% VoltGSBot = VpulseMax;
-% VoltGDBot = VoltDSBot - VoltGSBot;
-% CurrDSTop = 0;
-% VoltDSTop = Vdc;
-% VoltGSTop = VpulseMin;
-% VoltGDTop = VoltDSTop - VoltGSTop;
-% DelayTop = 50;
-% DelayBot = 0;
+CurrDSBot = LoadCurrent;
+VoltDSBot = 0;
+VoltGSBot = VpulseMax;
+VoltGDBot = VoltDSBot - VoltGSBot;
+CurrDSTop = 0;
+VoltDSTop = Vdc;
+VoltGSTop = VpulseMin;
+VoltGDTop = VoltDSTop - VoltGSTop;
+DelayTop = 50;
+DelayBot = 0;
 
 % First Top ON
-CurrDSBot = 0;
-VoltDSBot = Vdc;
-VoltGSBot = VpulseMin;
-VoltGDBot = VoltDSBot - VoltGSBot;
-CurrDSTop = -LoadCurrent;
-VoltDSTop = 0;
-VoltGSTop = VpulseMax;
-VoltGDTop = VoltDSTop - VoltGSTop;
-DelayTop = 0;
-DelayBot = 50;
+% CurrDSBot = 0;
+% VoltDSBot = Vdc;
+% VoltGSBot = VpulseMin;
+% VoltGDBot = VoltDSBot - VoltGSBot;
+% CurrDSTop = -LoadCurrent;
+% VoltDSTop = 0;
+% VoltGSTop = VpulseMax;
+% VoltGDTop = VoltDSTop - VoltGSTop;
+% DelayTop = 0;
+% DelayBot = 50;
 %% Run Simulink
 SampleTime = 5e-13;
 TrigTime = 0.4e-6;

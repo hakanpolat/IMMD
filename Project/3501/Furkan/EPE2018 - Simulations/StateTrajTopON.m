@@ -25,10 +25,10 @@ for GateIndex = 1:22    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model310A125C10and1ohm,'IdsT_I');
+getElement(Model120A125C10and1ohm,'IdsT_I');
 FIRSTCURRENT = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model310A125C10and1ohm,'VdsT_I');
+getElement(Model120A125C10and1ohm,'VdsT_I');
 FIRSTVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
 getElement(Model320A125C10and1ohm,'IdsT_I');
@@ -37,10 +37,10 @@ clear ans;
 getElement(Model320A125C10and1ohm,'VdsT_I');
 SECONDVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model330A125C10and1ohm,'IdsT_I');
+getElement(Model320A75C10and1ohmSOURCE,'IdsT_I');
 THIRDCURRENT = downsample(ans.Values.Data,2);
 clear ans;
-getElement(Model330A125C10and1ohm,'VdsT_I');
+getElement(Model320A75C10and1ohmSOURCE,'VdsT_I');
 THIRDVOLTAGE = downsample(ans.Values.Data,2);
 clear ans;
 % First Data Set

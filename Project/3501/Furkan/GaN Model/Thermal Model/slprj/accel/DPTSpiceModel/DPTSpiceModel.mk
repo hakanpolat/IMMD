@@ -77,7 +77,7 @@ MAKEFILE           = DPTSpiceModel.mk
 MATLAB_ROOT        = C:/Program Files/MATLAB/R2016a
 ALT_MATLAB_ROOT    = C:/PROGRA~1/MATLAB/R2016a
 MASTER_ANCHOR_DIR  = 
-START_DIR          = D:/GitHub Repositories/IMMD/Project/3501/Furkan/GaN Model/Thermal Model
+START_DIR          = C:/Users/kkfrk/DOCUME~1/IMMD/Project/3501/Furkan/GANMOD~1/THERMA~1
 MATLAB_BIN         = C:/Program Files/MATLAB/R2016a/bin
 ALT_MATLAB_BIN     = C:/PROGRA~1/MATLAB/R2016a/bin
 S_FUNCTIONS        =  sf_sfun.c
@@ -131,7 +131,7 @@ ADD_INCLUDES = \
 	-I$(MATLAB_ROOT)/simulink/include/sf_runtime \
 	-I$(START_DIR)/slprj/accel/DPTSpiceModel \
 	-I$(START_DIR) \
-	-ID:/GitHub Repositories/IMMD/Project/3501/Furkan/GaN Model/AllDetailsIncluded \
+	-IC:/Users/kkfrk/DOCUME~1/IMMD/Project/3501/Furkan/GANMOD~1/ALLDET~1 \
 	-I$(MATLAB_ROOT)/toolbox/physmod/simscape/engine/sli/c \
 	-I$(MATLAB_ROOT)/toolbox/physmod/simscape/engine/core/c \
 	-I$(MATLAB_ROOT)/toolbox/physmod/simscape/compiler/core/c \

@@ -26,17 +26,17 @@ for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
 end
 %% Dataset Configurations
 SampleTime = 5e-13;
-getElement(Model310A125C10and1ohm,'IdsB_I');
+getElement(Model120A125C10and1ohm,'IdsB_I');
 FIRSTCURRENT = ans.Values.Data;
-getElement(Model310A125C10and1ohm,'VdsB_I');
+getElement(Model120A125C10and1ohm,'VdsB_I');
 FIRSTVOLTAGE = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'IdsB_I');
 SECONDCURRENT = ans.Values.Data;
 getElement(Model320A125C10and1ohm,'VdsB_I');
 SECONDVOLTAGE = ans.Values.Data;
-getElement(Model330A125C10and1ohm,'IdsB_I');
+getElement(Model320A75C10and1ohmSOURCE,'IdsB_I');
 THIRDCURRENT = ans.Values.Data;
-getElement(Model330A125C10and1ohm,'VdsB_I');
+getElement(Model320A75C10and1ohmSOURCE,'VdsB_I');
 THIRDVOLTAGE = ans.Values.Data;
 % First Data Set
 FirstDataBeginIndex = 4.9e-7/SampleTime;
@@ -67,7 +67,7 @@ for j=[8,13,14,17]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
 xlim([0 415]);
-ylim([0 40]);
+ylim([0 50]);
 ax = gca;
 ax.FontSize = 22;
 ax.XTick = [0:100:400];
@@ -82,8 +82,8 @@ hold off
 figure(f1);
 hold all
 % First State Trajectory
-Isens = 2;
-Vsens = 2;
+Isens = 0.5;
+Vsens = 0.5;
 for j=FirstDataBeginIndex:FirstDataEndIndex
     if abs(FIRSTVOLTAGE(j)-FirstDataVoltageBegin) >= Vsens || abs(FIRSTCURRENT(j)-FirstDataCurrentBegin) >= Isens
         X = [FirstDataVoltageBegin FIRSTVOLTAGE(j)];
@@ -97,8 +97,8 @@ end
     plot(FIRSTVOLTAGE(FirstDataBeginIndex),FIRSTCURRENT(FirstDataBeginIndex),'*','Linewidth',10.0,'Color','r');
     plot(FIRSTVOLTAGE(FirstDataEndIndex),FIRSTCURRENT(FirstDataEndIndex),'*','Linewidth',10.0,'Color','r');
 % Second State Trajectory
-Isens = 2;
-Vsens = 2;
+Isens = 0.5;
+Vsens = 0.5;
 for j=SecondDataBeginIndex:SecondDataEndIndex
     if abs(SECONDVOLTAGE(j)-SecondDataVoltageBegin) >= Vsens || abs(SECONDCURRENT(j)-SecondDataCurrentBegin) >= Isens
         X = [SecondDataVoltageBegin SECONDVOLTAGE(j)];
@@ -112,8 +112,8 @@ end
     plot(SECONDVOLTAGE(SecondDataBeginIndex),SECONDCURRENT(SecondDataBeginIndex),'*','Linewidth',10.0,'Color','k');
     plot(SECONDVOLTAGE(SecondDataEndIndex),SECONDCURRENT(SecondDataEndIndex),'*','Linewidth',10.0,'Color','k');
 % Third State Trajectory
-Isens = 2;
-Vsens = 2;
+Isens = 0.5;
+Vsens = 0.5;
 for j=ThirdDataBeginIndex:ThirdDataEndIndex
     if abs(THIRDVOLTAGE(j)-ThirdDataVoltageBegin) >= Vsens || abs(THIRDCURRENT(j)-ThirdDataCurrentBegin) >= Isens
         X = [ThirdDataVoltageBegin THIRDVOLTAGE(j)];
