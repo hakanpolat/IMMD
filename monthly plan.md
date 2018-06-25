@@ -2,16 +2,16 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. Power supply kısmı tamam. DSP kartı tasarımı yapılıyor**
+  * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. DSP kartı tasarımı yapılıyor**
   * Kontrol kartı (DSP + flyback) layout tasarımına başlanması: **Fiziksel yapı tasarlandı. Şematikten sonra layout'a başlanacak**
   * Güç kartı (gate drive) PCB gözden geçirme: **OK**
-  * Güç kartı (gate drive) PCB üretimi: **Teklif istendi**
-  * Encoder seçimi ve tedariki:
+  * Güç kartı (gate drive) PCB üretimi: **Üretiliyor**
+  * Encoder seçimi ve tedariki: **Incremental encoder bakılıyor**
 2. GaN EVM
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması: **OK**
 3. V.1. Motor
   * Mıknatıs boyutlandırma ve üretime başlanması: **OK**
-  * Rotor tasarım güncelleme ve üretime başlanması: **Mıknatıs şekli güncellendi, Rotor için haber bekleniyor**
+  * Rotor tasarım güncelleme ve üretime başlanması: **Rotor için haber bekleniyor**
 4. V.1. Mekanik
   * Solid eğitimi: **OK, Güzel oldu :)**
   * Mekanik tasarımın son haline gelmesi: **Bireysel tasarımların bitmesi bekleniyor**
@@ -23,13 +23,13 @@
 ##### Makale çalışmaları
 1. EPE 2018
   * Toplanan dataların yorumlanması ve makaleye girdi oluşturulması: **OK**
-  * Makalenin yazılması ve submission: **Full paper yazımına başlandı**
+  * Makalenin yazılması ve submission: **OK**
 2. ICEM 2018 (Kabul)
   * Makalenin yazımı (Camera ready): **Review'lar incelenip değerlendirildi**
 3. PEMC 2018 (Kabul)
-  * Kauıp hesabı hatalarının giderilmesi: **OK**
+  * Kayıp hesabı hatalarının giderilmesi: **OK**
   * Verilerin yorumlanması: **OK**
-  * Makalenin yazımı (Camera ready): **Planlama yapıldı, yazılmaya başlanacak**
+  * Makalenin yazımı (Camera ready) ve submission: **OK**
 4. PWM makalesi
   * İncelenecek tekniklerin belirlenmesi: **Makale okunacak**
   * MATLAB'ta simulasyon ortamının bitirilmesi: **3-level bitirilecek**
@@ -45,7 +45,7 @@
 1. 3501
   * Teçhizatların alınması: **Süreç başlatıldı**
   * Sarf malzemelerin alınması: **PCB malzemeleri BOM'dan avans ile alınacak**
-  * Motor üretimi: **Avans kapatılacak**
+  * Motor üretimi (hizmet-avans): **OK**
 ________
 
 ### Mayıs 2018
