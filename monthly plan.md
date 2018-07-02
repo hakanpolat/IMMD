@@ -5,8 +5,8 @@
   * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. DSP kartı tasarımı yapılıyor**
   * Kontrol kartı (DSP + flyback) layout tasarımına başlanması: **Fiziksel yapı tasarlandı. Şematikten sonra layout'a başlanacak**
   * Güç kartı (gate drive) PCB gözden geçirme: **OK**
-  * Güç kartı (gate drive) PCB üretimi: **Üretiliyor**
-  * Encoder seçimi ve tedariki: **Incremental encoder bakılıyor**
+  * Güç kartı (gate drive) PCB üretimi: **OK**
+  * Encoder seçimi: **Incremental encoder bakılıyor**
 2. GaN EVM
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması: **OK**
 3. V.1. Motor
@@ -18,6 +18,7 @@
   * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor**
 5. V.1. Soğutucu
   * Heat sink boyutlandırma ve malzeme seçilmesi: **OK**
+  * Heat sink çizimi (solid)
   * Heat sink işlenmesi (kesilmesi): **Parça geldikten sonra bakılacak**
 
 ##### Makale çalışmaları

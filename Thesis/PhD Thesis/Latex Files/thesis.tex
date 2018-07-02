@@ -1,0 +1,151 @@
+\documentclass[chaparabic,ceng,ms,12pt,oneandhalf]{metu}
+\usepackage{appendix}
+\usepackage{longtable}
+\usepackage[pdftex]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage{todonotes}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{rotating}
+\usepackage{xy} 
+\usepackage{booktabs}
+\usepackage{pifont}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{pdfpages}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{lastpage}
+\usepackage{afterpage}
+\usepackage{lipsum}
+\usepackage{adjustbox}
+\captionsetup{belowskip=12pt,aboveskip=8pt}
+\newcommand{\tab}{\hspace*{2em}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+% End of Latex Packages
+
+% End of personal stuff
+%
+% Personal Information 
+% ----------------------------
+%
+% Please check this part and fill in information about your thesis
+%
+% Name and Surname
+\author{Mesut Uğur}
+% Thesis Title English and Turkish
+\title{design of an integrated modular motor drive (immd) for traction applications}
+\turkishtitle{çekiş sistemleri için bir tümleşik modüler motor sürücü (TMMS) sistemi geliştirilmesi}
+
+\date{September 2019}
+ 
+% prof : Prof. Dr.
+% assocprof : Assoc. Prof. Dr.
+% assistprof : Assist. Prof. Dr.
+% dr : Dr.
+%
+% Director of Institute
+\director[prof]{Gülbin Dural Ünver}
+% Head of Department
+\headofdept[prof]{Tolga Çiloğlu}
+%
+% Supervisor : English and Turkish
+\supervisor[prof]{Ozan Keysan}
+% \turkishsupervisor{  } %if you will hard-code the academic title
+%
+% Affiliation of Supervisor in English and possibly in Turkish
+\departmentofsupervisor{Department of Electrical and Electronics Engineering, METU}
+%
+% Committee Members
+% In general members are sorted according to their academic titles
+%
+% Proffesors (1)
+% Associate Professors (2)
+% Assistant Professors (3)
+% Other (4)
+% 
+% IMPORTANT:  All affiliatons should fit in a single line
+% If affiliation line is broken into two lines you should shorten the affiliation by using 
+% abbrevations or any other means
+%
+% First committee member should be the chair of examining committee
+% Typically the chair is one of the highest ranked committee members
+% Ask your supervisor if you are not sure
+\committeememberi[prof]{Muammer Ermiş}
+\affiliationi{Department of Electrical and Electronics Engineering, METU}
+% Second committee member is always your supervisor
+\committeememberii[prof]{Ozan Keysan}
+\affiliationii{Department of Electrical and Electronics Engineering, METU}
+% If you are an M.Sc. student and your Co-Supervisor is in your 
+% examination committee, then third committee member is always your co-supervisor
+%
+% IMPORTANT: If you are Ph.D. student your co-supervisor can not be in your 
+% examination committee.
+\committeememberiii[prof]{Jüri}
+\affiliationiii{JüriBölüm, METU}
+% Fourth committee member
+\committeememberiv[assocprof]{Jüri}
+\affiliationiv{JüriBölüm, METU}
+% Fifth committee member
+\committeememberv[assistprof]{Jüri}
+\affiliationv{JüriBölüm, Ankara University}
+%
+% Keywords : English & Turkish, Comma seperated
+\keywords{Keyword1, Keyword2...}
+\anahtarklm{AnahtarKelime1, AnahtarKelime2...}
+%
+% Abstract in English
+%
+\abstract{Abstract}
+%
+% Turkish Abstract
+%
+\oz{Özet Türkçe} 
+%
+% Dedication 
+\dedication{\textit{İthafen...}}
+%
+%
+% Acknowledgements   
+\acknowledgments{Teşekkür edilecekler}
+%
+% End of Personal and Introductory Information
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+\begin{document}
+% Preliminaries
+\begin{preliminaries}
+% If you are willing to use any custom stuff before Chapters, put it here
+% Such as List of Abbreviations
+% Check the abbreviations.tex for a template list of abbreviations
+
+\input{abbreviations.tex}
+% End of Preliminaries
+\end{preliminaries}
+%   
+% Latex content Goes Here 
+% 
+%
+
+\setlength{\parindent}{0em}
+\setlength{\parskip}{10pt}
+
+\input{chapter1/chapter1.tex}
+%\input{chapter2/chapter2.tex}
+\input{references.tex}
+
+%
+% References in Bibtex format goes into below indicated file with .bib extension
+%\bibliography{thesis_references}
+% You can use full name of authors, however most likely some of the Bibtex entries you will find, will use abbreviated first names
+% If you don't want to correct each of them by hand, you can use abbreviated style for all of the references
+
+%\bibliographystyle{abbrv}
+
+% if you have more that one appendix, then use \appendices, otherwise use 
+\appendix
+\input{appendix1/appendix1.tex}
+\end{document}
