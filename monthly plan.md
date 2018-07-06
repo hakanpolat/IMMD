@@ -1,12 +1,67 @@
+### Temmuz 2018
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * Kontrol kartı (DSP) şematik tasarımın tamamlanması
+  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması
+  * Dizgi ve test setupları kuruldu
+  * Güç kartı dizgi yapılacak
+  * Güç kartı test & debug yapılacak
+2. GaN EVM
+  * Yeni akım ölçüm aparatı alınacak
+  * Vaktinde gelirse ölçümler devam ettirilecek
+3. Yeni GaN'lı devre
+  * Planlama yapılacak (ortak çalışma olabilir)
+4. V.1. Motor
+  * Montaj planı yapılacak
+  * Sarım planı yapılacak
+5. V.1. Mekanik
+  * Rotor çizimi
+  * Şaft çizimi
+  * Ön kapak çizimi
+  * Arka kapak çizimi
+  * Kasa tedariki ve kesilmesi
+  * Rulman seçimi
+  * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor, eldeki parçalar birleştirilecek**
+  * Encoder çizimi
+6. V.1. Soğutucu
+  * Heat sink çizimi
+  * Heat sink işlenmesi
+
+##### Makale çalışmaları
+1. ICEM 2018
+  * Registration yapılacak
+2. PWM makalesi
+  * İncelenecek tekniklerin belirlenmesi: **Makale okunacak**
+  * MATLAB'ta simulasyon ortamının bitirilmesi: **3-level bitirilecek**
+3. GRW 2018
+  * Abstract FK: GaN
+  * Abstract MU: IMMD ile ilgili bişey
+4. Trans. on Education akıbeti belirlenecek
+
+##### Tez çalışmaları
+1. Makale okunacak: **NET !**
+2. Tezin outline çıkarılacak
+3. GaN ile ilgili çalışmalar
+  * Modelleme (matematiksel)
+  * Loss konusunun ilerletilmesi
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * Sarf için yeni avans
+  * Teçhizat prosedürleri
+
+________
+
 ### Haziran 2018
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Kartın genel planlaması yapıldı. DSP kartı tasarımı yapılıyor**
-  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması: **Fiziksel yapı tasarlandı. Şematikten sonra layout'a başlanacak**
+  * Kontrol kartı (DSP) şematik tasarımın tamamlanması: **Devam ediyor.**
+  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması: **Fiziksel yapı tasarlandı. Devam ediyor.**
   * Güç kartı (gate drive) PCB gözden geçirme: **OK**
   * Güç kartı (gate drive) PCB üretimi: **OK**
-  * Encoder seçimi: **Incremental encoder bakılıyor**
+  * Encoder seçimi: **OK**
 2. GaN EVM
   * Test sonuçlarının simulasyon ile karşılaştırılıp yorumlanması: **OK**
 3. V.1. Motor
@@ -18,15 +73,15 @@
   * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor**
 5. V.1. Soğutucu
   * Heat sink boyutlandırma ve malzeme seçilmesi: **OK**
-  * Heat sink çizimi (solid)
-  * Heat sink işlenmesi (kesilmesi): **Parça geldikten sonra bakılacak**
+  * Heat sink çizimi (solid): **Devam ediyor.**
+  * Heat sink işlenmesi (kesilmesi): **Çizimden sonra kesilecek**
 
 ##### Makale çalışmaları
 1. EPE 2018
   * Toplanan dataların yorumlanması ve makaleye girdi oluşturulması: **OK**
   * Makalenin yazılması ve submission: **OK**
 2. ICEM 2018 (Kabul)
-  * Makalenin yazımı (Camera ready): **Review'lar incelenip değerlendirildi**
+  * Makalenin yazımı (Camera ready): **OK**
 3. PEMC 2018 (Kabul)
   * Kayıp hesabı hatalarının giderilmesi: **OK**
   * Verilerin yorumlanması: **OK**
@@ -40,12 +95,12 @@
 1. Literatür
   * Literatür sonucu teorik olarak odaklanılacak konuların belirlenmesi: **Tezin araştırma odakları belirlenecek**
 2. Tez
-  * Tez yazımına başlanması (latex): **Latex template'te tez başlığı atılacak ve outline çıkarılacak**
+  * Tez yazımına başlanması (latex): **Latex template'te tez başlığı atıldı :)**
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Teçhizatların alınması: **Süreç başlatıldı**
-  * Sarf malzemelerin alınması: **PCB malzemeleri BOM'dan avans ile alınacak**
+  * Teçhizatların alınması: **OK**
+  * Sarf malzemelerin alınması: **OK**
   * Motor üretimi (hizmet-avans): **OK**
 ________
 
