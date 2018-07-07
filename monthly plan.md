@@ -25,8 +25,8 @@
   * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor, eldeki parçalar birleştirilecek**
   * Encoder çizimi
 6. V.1. Soğutucu
-  * Heat sink çizimi
-  * Heat sink işlenmesi
+  * Heat sink çizimi yapıldı
+  * Heat sink kesilecek, delikleri açılacak
 
 ##### Makale çalışmaları
 1. ICEM 2018
