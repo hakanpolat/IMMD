@@ -2,9 +2,9 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı (DSP) şematik tasarımın tamamlanması
-  * Kontrol kartı (DSP + flyback) layout tasarımına başlanması
-  * Dizgi ve test setupları kuruldu
+  * Kontrol kartı şematik tasarımın tamamlanması: **DSP kartı yapılıyor**
+  * Kontrol kartı layout tasarımına başlandı
+  * Güç kartı için laba dizgi ve test setupları kuruldu
   * Güç kartı dizgi yapılacak
   * Güç kartı test & debug yapılacak
 2. GaN EVM
@@ -32,7 +32,7 @@
 1. ICEM 2018
   * Registration yapılacak
 2. PWM makalesi
-  * İncelenecek tekniklerin belirlenmesi: **Makale okunacak**
+  * İncelenecek tekniklerin belirlenmesi için makale okunuyor
   * MATLAB'ta simulasyon ortamının bitirilmesi: **3-level bitirilecek**
 3. GRW 2018
   * Abstract FK: GaN
@@ -41,7 +41,7 @@
 
 ##### Tez çalışmaları
 1. Makale okunacak: **NET !**
-2. Tezin outline çıkarılacak
+2. PhD tezin outline'ı çıkarılacak
 3. GaN ile ilgili çalışmalar
   * Modelleme (matematiksel)
   * Loss konusunun ilerletilmesi
@@ -49,7 +49,7 @@
 ##### Proje, rapor, satın almalar
 1. 3501
   * Sarf için yeni avans
-  * Teçhizat prosedürleri
+  * Teçhizat prosedürleri tamamlanacak
 
 ________
 
