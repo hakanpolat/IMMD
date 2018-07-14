@@ -7,11 +7,13 @@
   * Güç kartı için laba dizgi ve test setupları kuruldu
   * Güç kartı dizgi yapılacak
   * Güç kartı test & debug yapılacak
+  * Konektör ve termal izolatör alınacak
 2. GaN EVM
   * Yeni akım ölçüm aparatı alınacak
   * Vaktinde gelirse ölçümler devam ettirilecek
 3. Yeni GaN'lı devre
-  * Planlama yapılacak (ortak çalışma olabilir)
+  * Planlama yapıldı. Parametreler tartışıldı.
+  * PCB mimari tasarımı yapılacak.
 4. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
@@ -48,8 +50,8 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Sarf için yeni avans
-  * Teçhizat prosedürleri tamamlanacak
+  * Sarf için yeni avans alınacak
+  * Teçhizat prosedürleri tamamlandı
 
 ________
 
