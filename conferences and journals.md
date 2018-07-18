@@ -2,15 +2,14 @@
 
 |No|Conference Name|Short|Sub. Type|Sub. Date|Conf. Date|Place|Comments|
 |:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|1|IEEE Workshop on Control and Modeling for Power Electronics|[COMPEL 2018](http://sites.ieee.org/compel2018/)|Digest|02.03.2018|25-28 June 2018|Padova,Italy|Consider|
-|2|International Conference on Development and Application Systems|[DAS 2018](http://www.dasconference.ro/)|Full paper|10.03.2018|24-26 May 2018|Suceava, Romania|Consider|
-|3|The 44th Annual Conference of the IEEE Industrial Electronics Society|[IECON 2018](http://www.iecon2018.org/ImportantDates.html)|Full paper|01.05.2018|21–23 October 2018|Washington,D.C.,United States|Consider|
-|4|XII International Symposium on Industrial Electronics|[INDEL 2018](http://www.indel.etfbl.net/dates.html)|Full paper|04.05.2018|1-3 Nov 2018|Banja Luka,Bosnia|Consider|
-|...|**2019 conferences**|
 |1|IEEE Applied Power Electronics Conference and Exposition|[APEC 2019](http://www.apec-conf.org/about)|Unknown|Unknown|4-8 March 2018|San antonio,USA|Consider|
 |2|IEEE International Electric Machines & Drives Conference|[IEMDC 2019](http://www.psma.com/events/2019-ieee-international-electric-machines-drives-conference-iemdc)|Full paper|Unknown|11-15 May 2019|California,USA|Consider|
 |3 | The 13th IEEE International Conference on Power Electronics and Drive Systems |[PEDS 2019](http://ieee-peds.org)|Extended Summary   | Nov. 15, 2018   | 9-12 July, 2019  |Toulouse, France   |  Consider |
 |...|**Old conferences**|
+|.|IEEE Workshop on Control and Modeling for Power Electronics|[COMPEL 2018](http://sites.ieee.org/compel2018/)|Digest|02.03.2018|25-28 June 2018|Padova,Italy|Consider|
+|.|International Conference on Development and Application Systems|[DAS 2018](http://www.dasconference.ro/)|Full paper|10.03.2018|24-26 May 2018|Suceava, Romania|Consider|
+|.|The 44th Annual Conference of the IEEE Industrial Electronics Society|[IECON 2018](http://www.iecon2018.org/ImportantDates.html)|Full paper|01.05.2018|21–23 October 2018|Washington,D.C.,United States|Consider|
+|.|XII International Symposium on Industrial Electronics|[INDEL 2018](http://www.indel.etfbl.net/dates.html)|Full paper|04.05.2018|1-3 Nov 2018|Banja Luka,Bosnia|Consider|
 |.|IEEE International Symposium on Industrial Electronics|[ISIE 2017](http://www.anglia.ac.uk/science-and-technology/about/computing-and-technology/isie-conference)|Final|23.04.2017|9-21 June 2017|Edinburgh, Scotland|**Published !**|
 |.|Elektrik Elektronik Mühendisliği Kongresi |[EEMKON 2017)](http://eemkon.org.tr/2017/02/17/bilgi/)|Özet|30.04.2017|16-18 November 2017|İstanbul, Turkey|Not submitted|
 |.|1. Ulusal Enerji Dönüşümü Kongresi |[EL-EN 2017](http://www.enerjidonusumu.org/)|Full paper|13.05.2017|21-22 September 2017|Elazığ, Turkey|**Published !**|
