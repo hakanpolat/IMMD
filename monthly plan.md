@@ -1,34 +1,89 @@
-### Temmuz 2018
+### Ağustos 2018
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı şematik tasarımın tamamlanması: **DSP kartı yapılıyor**
-  * Kontrol kartı layout tasarımına başlandı
-  * Güç kartı için laba dizgi ve test setupları kuruldu
-  * Güç kartı dizgi yapılacak
-  * Güç kartı test & debug yapılacak
-  * Konektör ve termal izolatör alınacak
+  * Kontrol kartı layout tasarımı tamamlanacak
+  * Güç kartı fonksiyonel testleri tamamlanacak
+  * Güç kartı layout tasarımı yeniden düzenlenerek tekrar üretilecek
 2. GaN EVM
   * Yeni akım ölçüm aparatı alınacak
   * Vaktinde gelirse ölçümler devam ettirilecek
 3. Yeni GaN'lı devre
-  * Planlama yapıldı. Parametreler tartışıldı.
-  * PCB mimari tasarımı yapılacak.
+  * PCB mimari tasarımı yapılacak
+  * PCB şematik tasarımına başlanacak
 4. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
 5. V.1. Mekanik
-  * Rotor çizimi
-  * Şaft çizimi
-  * Ön kapak çizimi
-  * Arka kapak çizimi
-  * Kasa tedariki ve kesilmesi
-  * Rulman seçimi
-  * Tüm parçaların çizim ortamında birleşmesi: **Bireysel tasarımların bitmesi bekleniyor, eldeki parçalar birleştirilecek**
-  * Encoder çizimi
+  * Tüm parçaların çizim ortamında birleşmesi
+  * Kasa seçimi yapılacak
 6. V.1. Soğutucu
-  * Heat sink çizimi yapıldı
-  * Heat sink kesilecek, delikleri açılacak
+  * Heat sink delikleri açılacak
+  * HEat sinkte termal test yapılacak
+
+##### Makale çalışmaları
+1. ICEM 2018
+  * Sunum hazırlanacak
+2. PEMC 2018
+  * Sunum hazırlanacak
+3. EPE 2018
+  * Poster hazırlanacak
+4. PWM makalesi
+  * İncelenecek tekniklerin belirlenmesi için makale okunuyor
+  * MATLAB'ta simulasyon ortamının bitirilmesi. (3-level bitirilecek)
+5. GRW 2018
+  * Poster hazırlanacak
+
+##### Tez çalışmaları
+1. Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor
+2. Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft)
+3. IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılacak
+3. PhD tezin kabaca outline'ı detaylandırılacak
+3. GaN ile ilgili çalışmalar
+  * Modelleme (matematiksel)
+  * Loss konusunun ilerletilmesi
+  * Akım ölçümü
+  * Inductance via FEA (Doğa)
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * Sarf için yeni avans alınacak. (Malzeme listesi çıkarıldı) https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+
+    ________
+
+
+### Temmuz 2018
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * **Kontrol kartı şematik tasarımın tamamlandı**
+  * **Kontrol kartı layout tasarımına başlandı**
+  * **Güç kartı için laba dizgi ve test setupları kuruldu**
+  * **Güç kartı dizgisi yapıldı**
+  * Güç kartı test & debug yapılacak
+  * **Konektör ve termal izolatör seçildi**
+2. GaN EVM
+  * Yeni akım ölçüm aparatı alınacak
+  * Vaktinde gelirse ölçümler devam ettirilecek
+3. Yeni GaN'lı devre
+  * **Planlama yapıldı. Parametreler tartışıldı.**
+  * PCB mimari tasarımı yapılacak
+4. V.1. Motor
+  * Montaj planı yapılacak
+  * Sarım planı yapılacak
+5. V.1. Mekanik
+  * **Rotor çizimi yapıldı**
+  * **Şaft çizimi yapıldı**
+  * **Ön kapak çizimi yapıldı**
+  * **Arka kapak çizimi yapıldı**
+  * **Kasa tedarik edilecek**
+  * **Rulman seçimi yapıldı**
+  * **Tüm parçaların çizim ortamında birleşmesi kısmen yapıldı**
+  * **Encoder çizimi yapıldı**
+6. V.1. Soğutucu
+  * **Heat sink çizimi yapıldı**
+  * **Heat sink kesimi yapıldı**
+  * HEat sink delikleri açılacak
 
 ##### Makale çalışmaları
 1. ICEM 2018
@@ -37,21 +92,21 @@
   * İncelenecek tekniklerin belirlenmesi için makale okunuyor
   * MATLAB'ta simulasyon ortamının bitirilmesi: **3-level bitirilecek**
 3. GRW 2018
-  * Abstract FK: GaN
-  * Abstract MU: IMMD ile ilgili bişey
-4. Trans. on Education akıbeti belirlenecek
+  * **Abstract FK: GaN**
+4. Trans. on Education gündemimizde yok
 
 ##### Tez çalışmaları
-1. Makale okunacak: **NET !**
-2. PhD tezin outline'ı çıkarılacak
+1. **Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor**
+2. **PhD tezin kabaca outline'ı çıkarıldı**
 3. GaN ile ilgili çalışmalar
-  * Modelleme (matematiksel)
+  * Modelleme (matematiksel) başlanacak
   * Loss konusunun ilerletilmesi
+  * Akım ölçümü ile ilgili araştırma yapılıyor
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Sarf için yeni avans alınacak
-  * Teçhizat prosedürleri tamamlandı
+  * Sarf için yeni avans alınacak. **Malzeme listesi çıkarıldı.** https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+    * **Teçhizat prosedürleri tamamlandı**
 
 ________
 
