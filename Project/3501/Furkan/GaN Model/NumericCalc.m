@@ -1,8 +1,9 @@
 %% Functions
-function [Ich,Cgd,Cgs,Cds] = NumericCalc(x5,x4,x3) %Vgin,Vdin,Vsin
-Vgs = x5-x4;
-Vds = x4-x3;
-Vgd = x5-x4;
+function [Ich,Cgd,Cgs,Cds] = NumericCalc(Vgs,Vds) %Vgin,Vdin,Vsin
+% Vgs = x5-x4;
+% Vds = x4-x3;
+% Vgd = x5-x4;
+Vgd = Vgs - Vds;
 cur = 4.5057; % To be updated
 K = cur * 0.8 * (273/300)^(-2.7);
 x0 = 0.31 ;

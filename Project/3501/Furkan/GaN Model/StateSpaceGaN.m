@@ -43,7 +43,7 @@ for k=2:n-1
     else 
         [x8(k),x9(k),x10(k),x11(k)] = NumericCalc(x5(k),x4(k),x3(k));
     end
-    u1(k) = x6(k-1) + u1(k);
+%     u1(k) = x6(k-1) + u1(k);
     Dx1 = TimeStep * (x2(k-1)/Ld - x3(k-1)/Ld - Rd*x1(k-1)/Ld);
     Dx4 = TimeStep * (x1(k-1)*Rs + x2(k-1)*Ls/Ld - x3(k-1)*Ls/Ld - Ls*Rd*x1(k-1)/Ld);
     
