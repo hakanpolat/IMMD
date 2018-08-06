@@ -3,7 +3,7 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * Kontrol kartı layout tasarımı tamamlanacak
-  * Güç kartı fonksiyonel testleri tamamlanacak
+  * **Güç kartı fonksiyonel testleri tamamlandı**
   * Güç kartı layout tasarımı yeniden düzenlenerek tekrar üretilecek
 2. GaN EVM
   * Yeni akım ölçüm aparatı alınacak
@@ -19,31 +19,33 @@
   * Kasa seçimi yapılacak
 6. V.1. Soğutucu
   * Heat sink delikleri açılacak
-  * HEat sinkte termal test yapılacak
+  * Heat sinkte termal test yapılacak
 
 ##### Makale çalışmaları
 1. ICEM 2018
   * Sunum hazırlanacak
 2. PEMC 2018
-  * Sunum hazırlanacak
+  * Sunum hazırlanacak (HS)
 3. EPE 2018
-  * Poster hazırlanacak
+  * Poster hazırlanacak (FK)
 4. PWM makalesi
   * İncelenecek tekniklerin belirlenmesi için makale okunuyor
   * MATLAB'ta simulasyon ortamının bitirilmesi. (3-level bitirilecek)
 5. GRW 2018
-  * Poster hazırlanacak
+  * Poster hazırlanacak (FK)
+6. PEMD 2018
+  * Journal için mail atılacak
 
 ##### Tez çalışmaları
-1. Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor
+1. **Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor**
 2. Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft)
 3. IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılacak
-3. PhD tezin kabaca outline'ı detaylandırılacak
+3. **PhD tezin kabaca outline'ı detaylandırıldı**
 3. GaN ile ilgili çalışmalar
-  * Modelleme (matematiksel)
+  * **Modelleme (matematiksel) başlandı**
   * Loss konusunun ilerletilmesi
-  * Akım ölçümü
-  * Inductance via FEA (Doğa)
+  * Akım ölçümü konuları
+  * Inductance via FEA
 
 ##### Proje, rapor, satın almalar
 1. 3501
