@@ -36,33 +36,105 @@ A list of IMD examples are provided with different kinds of classifications. Pic
 ### Chapter 3: Design of an 8 kW IMMD Prototype
 
 #### 3.1. Introduction
-Aim of this design: Proof of concept
+Aim of this design: Proof of concept (integration, modularity, fault tolerance, GaN drive etc.)
 
-Specifications of the system
+Specifications of the system (design inputs)
 
-Main decisions: Type of the motor, winding configuration, motor drive topology etc. (parallel-series configuration)
+Main decisions:
+* Type of the motor
+* Winding configuration, slot/pole number
+* Motor drive topology, Parallel-series configuration (intro)
 
 #### 3.2. Design of the Motor
 
 ###### 3.2.1. Main dimensions
+Selection of constraints (A's, B's, efficiency, power factor, current density, fill factor etc.), calculation of shear stress
+Calculation of torque, torque per volume
+Selection of aspect ratio
+Selection of stator, rotor diameter, axial length etc.
+Calculation of voltage and current requirements from the inverter model
+Possible winding configurations for the Qs/p combination
+Calculation of slot pitch, pole pitch, winding factor etc.
 
+###### 3.2.2. Electromagnetic design
+Magnetic circuit model of FSCW PMSM
+Selection of magnet and resultant parameters
+Selection of air gap length
+Calculation of flux density for air gap and in other sections
+Calculation of required tooth width
+Calculation of required back core height
+Calculation of slot width1
 
-###### 3.2.2. Stator winding design
-###### 3.2.3. Slot design
+###### 3.2.3. Stator winding design
+Frequency calculation
+Flux per pole calculation (for each harmonic)
+Induced voltage per coil calculation
+Selection of number of turns
+Selection of wire
 
-###### 3.2.4. Mechanical design and Assembly
+###### 3.2.4. Slot design
+Calculation of slot width2, slot height, slot area
+Outer diameter of the motor
 
+###### 3.2.5. Resistance and inductance
+Leakage, armature reaction
+Resistance, thermal effect
+Copper loss
+
+###### 3.2.6. Core loss
+Calculation
+
+###### 3.2.7. Torque ripple and cogging torque
+Magnet shape design
+Skewing
+Results
+
+###### 3.2.8. Mechanical design and Assembly
+Mechanical design tricks
+Mechanical drawings
+Assembly drawings
 
 #### 3.3. Design of the Drive
 
 ###### 3.3.1. Topology Selection
+Topologies suitable for the applications
+Evaluation of topologies (other than loss, capacitor etc.)
+Selection of the topology (2S-2P-2LVSI) and reasoning
+
 ###### 3.3.2. Power Semiconductor Device Selection and Loss Analysis
+Power semiconductor device selection (for the selected topology) and device parameters
+Loss characterisation (methodology)
+Evaluation of topologies by efficiency
+Loss results for the selected topology
+
 ###### 3.3.3. Capacitor Selection
+Methodology (model) for capacitor selection
+Calculation of required capacitance, current etc.
+Effect of interleaving (relation with topology)
+Some stuff from the ISIE paper
+Practical selection and results
+
 ###### 3.3.4. Gate Drive Design
+Critical points
+Design (schematic)
+Design (layout)
+
 ###### 3.3.5. PCB Design
+Modules on PCB (gate drive, control)
+Explanation of the schematic design
+Selection of major components
+Layout tricks
+
 ###### 3.3.6. Thermal Analysis and Heat Sink Design
+Thermal model (lumped parameter)
+Thermal design on the pcb, isolator etc.
+Heat sink thermal resistance calculation
+Conduction and convection analytical models
+Calculation of heat sink dimensions
+Simulation and experiment on the heat sink for verification
 
 #### 3.4. Design Verification with Simulation Results
+
 
 ###### 3.4.1. Motor Drive Simulations
 
@@ -76,15 +148,27 @@ Main decisions: Type of the motor, winding configuration, motor drive topology e
 
 ###### 3.5.1. Performance of the IMMD
 Efficiency
+Power density
+Temperature
+Fault tolerance
 
 ###### 3.5.1. Shortcomings of the IMMD prototype
 
 
 
-### Chapter 4: Design of the Second IMMD Prototype
+### Chapter 4: Design of a 6 kW IMMD Prototype for an Aircraft Engine Fuel Pump
+
 #### 4.1. Motivation
+Improvements for the shortcomings
+
+
+
 
 
 ### Chapter 5: Results and Discussions
+
+
+
+
 
 ### Chapter 6: Conclusions

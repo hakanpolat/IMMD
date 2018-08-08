@@ -49,7 +49,10 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Sarf için yeni avans alınacak. (Malzeme listesi çıkarıldı) https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+  * **Sarf için yeni avans alındı. (Malzeme listesi çıkarıldı)**
+  * 3501 rapor taslağı oluşturulacak
+
+https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
 
     ________
 
