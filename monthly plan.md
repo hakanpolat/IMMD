@@ -34,13 +34,13 @@
 5. GRW 2018
   * Poster hazırlanacak (FK)
 6. PEMD 2018
-  * Journal için mail atılacak
+  * **Journal için çalışmalar tamamlandı**
 
 ##### Tez çalışmaları
 1. **Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor**
 2. Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft)
 3. IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılacak
-3. **PhD tezin kabaca outline'ı detaylandırıldı**
+3. **PhD tezin içeriği detaylandırıldı**
 3. GaN ile ilgili çalışmalar
   * **Modelleme (matematiksel) başlandı**
   * Loss konusunun ilerletilmesi
@@ -49,7 +49,10 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Sarf için yeni avans alınacak. (Malzeme listesi çıkarıldı) https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+  * **Sarf için yeni avans alındı. (Malzeme listesi çıkarıldı)**
+  * 3501 rapor taslağı oluşturulacak
+
+https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
 
     ________
 
