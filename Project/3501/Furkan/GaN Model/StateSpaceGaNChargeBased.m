@@ -11,7 +11,7 @@ Ld = 0.9e-9;
 Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
-TimeStep = 1e-12; %Time Steps
+TimeStep = 1e-13; %Time Steps
 StopTime = 200e-9; %Stop Time
 % Allocation
 t = (0 : TimeStep : StopTime);
@@ -32,8 +32,8 @@ x14 = zeros(size(t));%Qds
 u1 = zeros(size(t)); %Vgss
 
 %% Input Definition
-u1(t>=10e-9) = 6; 
-x2(t>=20e-9) = 0;
+u1(t>=50e-9) = 6;
+x2(t>=0e-9) = 400;
 x3 = x2;
 [x8(1),x9(1),x10(1),x11(1)] = NumericCalc(x5(1),x3(1));
 x12(1) = x9(1) * (x5(1) - x3(1));
@@ -68,7 +68,7 @@ hold all
 grid on
 plot(t,x1,t,x2,t,u1,'Linewidth',2.0);
 %xlim([0]);
-ylim([-110 110]);
+ylim([-110 450]);
 xlabel('Time');
 ylabel('Voltage,Ampere');
 title({'Ids, Vds, Vgs OUT'})
@@ -80,24 +80,13 @@ hold all
 grid on
 plot(t,x8,t,x14./x11,t,x13./x10,'Linewidth',2.0);
 %xlim([0]);
-ylim([-110 110]);
+ylim([-110 450]);
 xlabel('Time');
 ylabel('Voltage,Ampere');
 title({'Ich, Vds, Vgs IN'})
 legend ('Ich','Vds','Vgs','Location','best');
 hold off
 
-figure;
-hold all
-grid on
-plot(t,x7,t,x8,t,x13./x10,'Linewidth',2.0);
-%xlim([0]);
-ylim([-110 110]);
-xlabel('Time');
-ylabel('Voltage,Ampere');
-title({'Ich, Vds, Vgs IN'})
-legend ('Ig','Ich','Vgs','Location','best');
-hold off
 
 figure;
 hold all
