@@ -4,7 +4,7 @@
 1. V.1. PCB
   * Kontrol kartı layout tasarımı tamamlanacak
   * **Güç kartı fonksiyonel testleri tamamlandı**
-  * Güç kartı layout tasarımı yeniden düzenlenerek tekrar üretilecek
+  * **Güç kartı layout tasarımı yeniden düzenlendi**
 2. GaN EVM
   * Yeni akım ölçüm aparatı alınacak
   * Vaktinde gelirse ölçümler devam ettirilecek
@@ -23,16 +23,16 @@
 
 ##### Makale çalışmaları
 1. ICEM 2018
-  * Sunum hazırlanacak
+  * **Poster hazırlandı**
 2. PEMC 2018
-  * Sunum hazırlanacak (HS)
+  * **Sunum hazırlandı (HS)**
 3. EPE 2018
   * Poster hazırlanacak (FK)
 4. PWM makalesi
   * İncelenecek tekniklerin belirlenmesi için makale okunuyor
   * MATLAB'ta simulasyon ortamının bitirilmesi. (3-level bitirilecek)
 5. GRW 2018
-  * Poster hazırlanacak (FK)
+  * **Poster hazırlandı (FK)**
 6. PEMD 2018
   * **Journal için çalışmalar tamamlandı**
 
@@ -44,17 +44,20 @@
 3. GaN ile ilgili çalışmalar
   * **Modelleme (matematiksel) başlandı**
   * Loss konusunun ilerletilmesi
-  * Akım ölçümü konuları
-  * Inductance via FEA
+  * **Akım ölçümü konularında literatür tarandı**
+  * **Inductance via FEA çalışılıyor**
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * **Sarf için yeni avans alındı. (Malzeme listesi çıkarıldı)**
+  * **Sarf için yeni avans alındı**
+  * **Sarf malzemeler sipariş edildi**
+  * Kontrol kartı üretilecek
+  * Güç kartı üretilecek
   * 3501 rapor taslağı oluşturulacak
 
 https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
 
-    ________
+________
 
 
 ### Temmuz 2018
