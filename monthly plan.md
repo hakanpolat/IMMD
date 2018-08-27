@@ -1,14 +1,57 @@
+### Eylül 2018
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * Kontrol kartı layout tasarımı tamamlanması
+2. GaN Gardaşları
+  * PCB mimari tasarımı yapılacak
+  * PCB şematik tasarımına başlanacak
+3. V.1. Motor
+  * Montaj planı yapılacak
+  * Sarım planı yapılacak
+4. V.1. Mekanik
+  * Tüm parçaların çizim ortamında birleşmesi
+  * Kasa seçimi yapılacak
+5. V.1. Soğutucu
+  * Heat sink delikleri açılacak
+  * Heat sinkte termal teste devam edilecek
+
+##### Makale çalışmaları
+1. PWM makalesi
+  * İncelenecek tekniklerin belirlenmesi için makale okunuyor
+  * MATLAB'ta simulasyon ortamının bitirilmesi. (3-level bitirilecek)
+
+##### Tez çalışmaları
+1. **Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor**
+2. Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft)
+3. IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılacak
+4. GaN ile ilgili çalışmalar
+  * Modelleme (matematiksel) tamamlanacak
+  * Loss konusunun ilerletilmesi
+  * Inductance via FEA çalışmaları devam
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * Kontrol kartı üretilecek
+  * Güç kartı üretilecek
+  * 3501 raporu yazılacak
+
+https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+
+________
+
+
 ### Ağustos 2018
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı layout tasarımı tamamlanacak
+  * **Kontrol kartı layout tasarımı ilerletildi**
   * **Güç kartı fonksiyonel testleri tamamlandı**
   * **Güç kartı layout tasarımı yeniden düzenlendi**
 2. GaN EVM
   * Yeni akım ölçüm aparatı alınacak
   * Vaktinde gelirse ölçümler devam ettirilecek
-3. Yeni GaN'lı devre
+3. GaN Gardaşları
   * PCB mimari tasarımı yapılacak
   * PCB şematik tasarımına başlanacak
 4. V.1. Motor
@@ -19,7 +62,7 @@
   * Kasa seçimi yapılacak
 6. V.1. Soğutucu
   * Heat sink delikleri açılacak
-  * Heat sinkte termal test yapılacak
+  * **Heat sink termal teste başlandı**
 
 ##### Makale çalışmaları
 1. ICEM 2018
