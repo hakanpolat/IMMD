@@ -32,8 +32,8 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
+  * **Güç kartı üretinme gönderildi**
   * Kontrol kartı üretilecek
-  * Güç kartı üretilecek
   * 3501 raporu yazılacak
 
 https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
