@@ -11,7 +11,7 @@ Ld = 0.9e-9;
 Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
-TimeStep = 1e-13; %Time Steps
+TimeStep = 5e-13; %Time Steps
 StopTime = 200e-9; %Stop Time
 % Allocation
 t = (0 : TimeStep : StopTime);
@@ -33,27 +33,33 @@ u1 = zeros(size(t)); %Vgss
 
 %% Input Definition
 u1(t>=50e-9) = 6;
-x2(t>=0e-9) = 400;
+x2(t>=0e-9) = 5;
 x3 = x2;
 [x8(1),x9(1),x10(1),x11(1)] = NumericCalc(x5(1),x3(1));
 x12(1) = x9(1) * (x5(1) - x3(1));
 x13(1) = x10(1) * x5(1);
 x14(1) = x11(1) * x3(1);
 [m,n] = size(t);
-for k=2:n-1
+Dx10 = 0; Dx11 = 0;
+for k = 2:n-1
     
     VgsTemp = x13(k-1)/x10(k-1);
     VdsTemp = x14(k-1)/x11(k-1);
-    [x8(k),x9(k),x10(k),x11(k)] = NumericCalc(VgsTemp,VdsTemp);
+    [x8(k), x9(k), x10(k), x11(k)] = NumericCalc(VgsTemp,VdsTemp);
 
     Dx1 = TimeStep * ((x2(k-1) - x1(k-1)*(Rs+Rd) - x14(k-1)/x11(k))/(Ls + Ld));
     Dx7 = TimeStep * ((u1(k) - x13(k-1)/x10(k))/(Lgin + Lss) - (Rgin + Rss)/(Lgin + Lss)*x7(k-1));
     Dx12 = TimeStep * ((x7(k-1)/x10(k) - x1(k-1)/x11(k) + x8(k)/x11(k)) / (1/x10(k) + 1/x9(k) + 1/x11(k)));
     Dx13 = TimeStep * (x7(k-1) + (x1(k-1)/x11(k) - x7(k-1)/x10(k) - x8(k)/x11(k) ) / (1/x10(k) + 1/x9(k) + 1/x11(k)));
     Dx14 = TimeStep * (x1(k-1) - x8(k) + (x7(k-1)/x10(k) - x1(k-1)/x11(k))/(1/x10(k) + 1/x9(k) + 1/x11(k)));
-
+    
+%     [Dx9,Dx10,Dx11] = CapacitanceDerivative(x10(k-1),Dx10,x11(k-1),Dx11,x13(k-1),Dx13/TimeStep,x14(k-1),Dx14/TimeStep);
+    
     x1(k) = x1(k-1) + Dx1;
     x7(k) = x7(k-1) + Dx7;
+%     x9(k) = x9(k-1) + Dx9;
+%     x10(k) = x10(k-1) + Dx10;
+%     x11(k) = x11(k-1) + Dx11;
     x12(k) = x12(k-1) + Dx12;
     x13(k) = x13(k-1) + Dx13;
     x14(k) = x14(k-1) + Dx14;
@@ -95,7 +101,7 @@ plot(t,x9,t,x10,t,x11,'Linewidth',2.0);
 %xlim([0]);
 ylim([-2e-9 2e-9]);
 xlabel('Time');
-ylabel('Voltage,Ampere');
+ylabel('Capacitance');
 title({'Cgd, Cgs, Cds IN'})
 legend ('Cgd','Cgs','Cds','Location','best');
 hold off
@@ -105,9 +111,9 @@ hold all
 grid on
 plot(t,x12,t,x13,t,x14,'Linewidth',2.0);
 %xlim([0]);
-ylim([-2e-9 20e-9]);
+ylim([-200e-9 20e-9]);
 xlabel('Time');
-ylabel('Voltage,Ampere');
+ylabel('Charge');
 title({'Qgd, Qgs, Qds IN'})
 legend ('Qgd','Qgs','Qds','Location','best');
 hold off
