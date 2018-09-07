@@ -12,7 +12,7 @@ slp = 2;
 if Vds>0
             Ich = K*log(1+exp(26*(Vgs-1.7)/slp))*(Vds)/(1+max((x0+x1*(Vgs+4.1)),0.2)*Vds);
 else
-            Ich = -K*log(1+exp(26*(Vgd-1.7)/slp))*(-Vds)/(1+max((x0+x1*(Vgd+6.1)),0.2)*(Vds));
+            Ich = -K*log(1+exp(26*(Vgd-1.7)/slp))*(-Vds)/(1+max((x0+x1*(Vgd+6.1)),0.2)*(-Vds));
 end
 
 Vds = abs(Vds);
