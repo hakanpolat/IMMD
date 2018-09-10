@@ -13,7 +13,7 @@ Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
 TimeStep = 5e-13; %Time Steps
-StopTime = 400e-9; %Stop Time
+StopTime = 600e-9; %Stop Time
 % Allocation
 t = (0 : TimeStep : StopTime);
 x1 = zeros(size(t)); %Ids
@@ -35,42 +35,43 @@ u1 = zeros(size(t)); %Vgss
 %% Input Definition
 u1(t>=50e-9) = 6;
 x2(t>=0e-9) = 2;
-u1(t>=300e-9) = -3;
+u1(t>=200e-9) = -3;
+% x2(t>=200e-9) = 0;
 x3 = x2;
 [x8(1),x9(1),x10(1),x11(1)] = NumericCalc(x5(1),x3(1));
 x12(1) = x9(1) * (x5(1) - x3(1));
 x13(1) = x10(1) * x5(1);
 x14(1) = x11(1) * x3(1);
 [m,n] = size(t);
-Dx10 = 0; Dx11 = 0;
-x9(2) = x9(1);
-x10(2) = x10(1);
-x11(2) = x11(1);
-for k = 3:n-1
+% Dx10 = 0; Dx11 = 0;
+% x9(2) = x9(1);
+% x10(2) = x10(1);
+% x11(2) = x11(1);
+for k = 2:n-1
     
     VgsTemp = x13(k-1)/x10(k-1);
     VdsTemp = x14(k-1)/x11(k-1);
-    [x8(k), dummy1, dummy2, dummy] = NumericCalc(VgsTemp,VdsTemp);
+    [x8(k), x9(k), x10(k), x11(k)] = NumericCalc(VgsTemp,VdsTemp);
 %     x9(k) = 2e-12;
 %     x10(k) = 258e-12;
 %     x11(k) = 63e-12;
-    Dx1 = TimeStep * ((x2(k-1) - x1(k-1)*(Rs+Rd) - x14(k-1)/x11(k-1))/(Ls + Ld));
-    Dx7 = TimeStep * ((u1(k) - x13(k-1)/x10(k-1))/(Lgin + Lss) - (Rgin + Rss)/(Lgin + Lss)*x7(k-1));
-    Dx12 = TimeStep * ((x7(k-1)/x10(k-1) - x1(k-1)/x11(k-1) + x8(k)/x11(k-1)) / (1/x10(k-1) + 1/x9(k-1) + 1/x11(k-1)));
-    Dx13 = TimeStep * (x7(k-1) + (x1(k-1)/x11(k-1) - x7(k-1)/x10(k-1) - x8(k)/x11(k-1) ) / (1/x10(k-1) + 1/x9(k-1) + 1/x11(k-1)));
+    Dx1 = TimeStep * ((x2(k-1) - x1(k-1)*(Rs+Rd) - x14(k-1)/x11(k))/(Ls + Ld));
+    Dx7 = TimeStep * ((u1(k) - x13(k-1)/x10(k))/(Lgin + Lss) - (Rgin + Rss)/(Lgin + Lss)*x7(k-1));
+    Dx12 = TimeStep * ((x7(k-1)/x10(k) - x1(k-1)/x11(k) + x8(k)/x11(k)) / (1/x10(k) + 1/x9(k) + 1/x11(k)));
+    Dx13 = TimeStep * (x7(k-1) - (x7(k-1)/x10(k) + x8(k)/x11(k) - x1(k-1)/x11(k))/(1/x11(k) + 1/x10(k) + 1/x9(k)) );
 %     Dx14 = TimeStep * (x1(k-1) - x8(k) + (x7(k-1)/x10(k) - x1(k-1)/x11(k))/(1/x10(k) + 1/x9(k) + 1/x11(k)));
-    Dx14 = TimeStep * ((x11(k-1)*x7(k-1)/x10(k-1)) - (x11(k-1)*Dx12/TimeStep/x10(k)) - (x11(k)*Dx13/TimeStep/x9(k)));
-    
-    [Dx9,Dx10,Dx11] = CapacitanceDerivative(x10(k-1),Dx10,x11(k-1),Dx11,x13(k-1),Dx13/TimeStep,x14(k-1),Dx14/TimeStep);
+%     Dx14 = TimeStep * ((x11(k)*x7(k-1)/x10(k)) - (x11(k)*Dx12/TimeStep/x10(k)) - (x11(k)*(x7(k-1)/x10(k) + x8(k)/x11(k) - x1(k-1)/x11(k))/(1/x11(k) + 1/x10(k) + 1/x9(k))/x9(k)));
+%   [Dx9,Dx10,Dx11] = CapacitanceDerivative(x10(k-1),Dx10,x11(k-1),Dx11,x13(k-1),Dx13/TimeStep,x14(k-1),Dx14/TimeStep);
     
     x1(k) = x1(k-1) + Dx1;
     x7(k) = x7(k-1) + Dx7;
-    x9(k) = x9(k-1) + Dx9;
-    x10(k) = x10(k-1) + Dx10;
-    x11(k) = x11(k-1) + Dx11;
+%     x9(k) = x9(k-1) + Dx9;
+%     x10(k) = x10(k-1) + Dx10;
+%     x11(k) = x11(k-1) + Dx11;
     x12(k) = x12(k-1) + Dx12;
     x13(k) = x13(k-1) + Dx13;
-    x14(k) = x14(k-1) + Dx14;
+%     x14(k) = x14(k-1) + Dx14;
+    x14(k) = x11(k) * (x13(k)/x10(k) - x12(k)/x9(k));
     
 end
 
