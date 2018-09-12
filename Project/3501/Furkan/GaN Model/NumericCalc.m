@@ -65,6 +65,9 @@ else
 Crss = a1.*exp(-((Vds-b1)./c1).^2) + a2.*exp(-((Vds-b2)./c2).^2) + a3*exp(-((Vds-b3)./c3).^2)...
     +a5.*exp(-((Vds-b5)./c5).^2);
 end
+if Crss<1
+    Crss = 1;
+end
 Crss = Crss*1e-12;
 %% Ciss Calculation
 %        a1 =        230.4;
@@ -107,7 +110,11 @@ else
        c2 =      8843;
        Ciss = a1.*exp(-((Vgs-b1)./c1).^2) + a2.*exp(-((Vgs-b2)./c2).^2);
 end
+if Ciss<180
+    Ciss = 180;
+end
 Ciss = Ciss*1e-12;
+
 %% Coss Calculation
 %        a1 =         328;
 %        b1 =       -8.43;
@@ -150,6 +157,9 @@ else
        c2 =       2.152e4;
  
 Coss = a1.*exp(-((Vds-b1)./c1).^2) + a2.*exp(-((Vds-b2)./c2).^2);            
+end
+if Coss<60
+    Coss = 60;
 end
 Coss = Coss*1e-12;
 %% Outputs

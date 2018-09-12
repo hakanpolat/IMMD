@@ -1,14 +1,14 @@
 %% State Space Model of GaN
-clear all;
+% clear all;
 close all;
 %% GaN Parameters
-Rgin = 1.5;
-Lgin = 1e-9;
+% Rgin = 1.5;
+Lgin = 0.65e-9;
 Rss = 1e-3;
-Lss = 1e-9;
-Ls = 0.9e-9;
+Lss = 0.43e-9;
+Ls = 42e-12;
 Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(25 - 25))) / 295;
-Ld = 0.9e-9;
+Ld = 450e-12;
 Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
@@ -31,12 +31,16 @@ x12 = zeros(size(t));%Qgd
 x13 = zeros(size(t));%Qgs
 x14 = zeros(size(t));%Qds
 u1 = zeros(size(t)); %Vgss
+Rgin = zeros(size(t));
 
 %% Input Definition
 u1(t>=50e-9) = 6;
+Rgin(t>=0e-9) = 1.5;
 x2(t>=0e-9) = 2;
 u1(t>=200e-9) = -3;
-% x2(t>=200e-9) = 0;
+% u1(t>=400e-9) = 6;
+% Rgin(t>=200e-9) = 2 + 1.5;
+% x2(t>=200e-9) = 400;
 x3 = x2;
 [x8(1),x9(1),x10(1),x11(1)] = NumericCalc(x5(1),x3(1));
 x12(1) = x9(1) * (x5(1) - x3(1));
@@ -52,26 +56,30 @@ for k = 2:n-1
     VgsTemp = x13(k-1)/x10(k-1);
     VdsTemp = x14(k-1)/x11(k-1);
     [x8(k), x9(k), x10(k), x11(k)] = NumericCalc(VgsTemp,VdsTemp);
+    A = (x11(k) - x11(k-1))/TimeStep / x11(k)^2;
+    B = (x10(k) - x10(k-1))/TimeStep / x10(k)^2;
+    C = (x9(k) - x9(k-1))/TimeStep / x9(k)^2;
 %     x9(k) = 2e-12;
-%     x10(k) = 258e-12;
+% %     x10(k) = 258e-12;
 %     x11(k) = 63e-12;
-    Dx1 = TimeStep * ((x2(k-1) - x1(k-1)*(Rs+Rd) - x14(k-1)/x11(k))/(Ls + Ld));
-    Dx7 = TimeStep * ((u1(k) - x13(k-1)/x10(k))/(Lgin + Lss) - (Rgin + Rss)/(Lgin + Lss)*x7(k-1));
+    Dx1 = TimeStep * ((x2(k) - x1(k-1)*(Rs+Rd) - x14(k-1)/x11(k))/(Ls + Ld));
+    Dx7 = TimeStep * ((u1(k) - x13(k-1)/x10(k))/(Lgin + Lss) - (Rgin(k) + Rss)/(Lgin + Lss)*x7(k-1));
     Dx12 = TimeStep * ((x7(k-1)/x10(k) - x1(k-1)/x11(k) + x8(k)/x11(k)) / (1/x10(k) + 1/x9(k) + 1/x11(k)));
-    Dx13 = TimeStep * (x7(k-1) - (x7(k-1)/x10(k) + x8(k)/x11(k) - x1(k-1)/x11(k))/(1/x11(k) + 1/x10(k) + 1/x9(k)) );
+%     Dx13 = TimeStep * (x7(k-1) - (x7(k-1)/x10(k) + x8(k)/x11(k) - x1(k-1)/x11(k) + (A*x14(k) - B*x13(k) + C*x12(k)))/(1/x11(k) + 1/x10(k) + 1/x9(k)) );
+% %     Dx13 = TimeStep * (x7(k-1) - Dx12/TimeStep);
 %     Dx14 = TimeStep * (x1(k-1) - x8(k) + (x7(k-1)/x10(k) - x1(k-1)/x11(k))/(1/x10(k) + 1/x9(k) + 1/x11(k)));
 %     Dx14 = TimeStep * ((x11(k)*x7(k-1)/x10(k)) - (x11(k)*Dx12/TimeStep/x10(k)) - (x11(k)*(x7(k-1)/x10(k) + x8(k)/x11(k) - x1(k-1)/x11(k))/(1/x11(k) + 1/x10(k) + 1/x9(k))/x9(k)));
 %   [Dx9,Dx10,Dx11] = CapacitanceDerivative(x10(k-1),Dx10,x11(k-1),Dx11,x13(k-1),Dx13/TimeStep,x14(k-1),Dx14/TimeStep);
     
     x1(k) = x1(k-1) + Dx1;
     x7(k) = x7(k-1) + Dx7;
-%     x9(k) = x9(k-1) + Dx9;
-%     x10(k) = x10(k-1) + Dx10;
-%     x11(k) = x11(k-1) + Dx11;
     x12(k) = x12(k-1) + Dx12;
-    x13(k) = x13(k-1) + Dx13;
+%     x12(k) = x9(k)/x10(k)*x13(k-1) - x9(k)/x11(k)*x14(k-1);
+%     Dx12 = x12(k) - x12(k-1);
+    x13(k) = x13(k-1) + TimeStep*(x7(k) - Dx12/TimeStep);
 %     x14(k) = x14(k-1) + Dx14;
-    x14(k) = x11(k) * (x13(k)/x10(k) - x12(k)/x9(k));
+%     x14(k) = x11(k) * (x13(k)/x10(k) - x12(k)/x9(k));
+    x14(k) = x14(k-1) + TimeStep*(x1(k)-x8(k) + Dx12/TimeStep);
     
 end
 
