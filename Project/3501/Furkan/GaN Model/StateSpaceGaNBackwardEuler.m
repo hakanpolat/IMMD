@@ -46,17 +46,37 @@ for k = 2:n-1
 %     x9(k) = 2e-12;
 %     x10(k) = 258e-12;
 %     x11(k) = 63e-12;
-    Dx1 = SampleTime * ((x2(k) - x4(k-1) + x5(k-1) - (Rs + Rd)*x1(k-1)) / (Ls + Ld));
-    Dx7 = SampleTime * ((u1(k) - x4(k-1) - (Rgin(k) + Rss)*x7(k-1)) / (Lgin + Lss));
-    Dx4 = SampleTime * ((x9(k)*x1(k-1) - x9(k)*x8(k) + x11(k)*x7(k-1)) / (x11(k)*x9(k) + x10(k)*x9(k) + x10(k)*x11(k)));
-    Dx5 = SampleTime * ( (x7(k-1)/x9(k)) - (x10(k)*x1(k-1) - x10(k)*x8(k) + x10(k)*x11(k)*x7(k-1)/x9(k)) / (x11(k)*x9(k) + x10(k)*x9(k) + x10(k)*x11(k)));
+    CC = x9(k)*x10(k) + x9(k)*x11(k) + x10(k)*x11(k);
+    a11 = -(Rs+Rd)/(Ls+Ld);
+    a13 = -1/(Ls+Ld);
+    a14 = 1/(Ls+Ld);
+    a22 = -(Rgin(k)+Rss)/(Lss+Lgin);
+    a23 = -1/(Lgin + Lss);
+    a31 = x9(k)/CC;
+    a32 = x11(k)/CC;
+    a41 = -x10(k)/CC;
+    a42 = 1/x9(k) - x10(k)*x11(k)/(x9(k)*CC);
     
-    x1(k) = x1(k-1) + Dx1;
-    x7(k) = x7(k-1) + Dx7;
-    x4(k) = x4(k-1) + Dx4;
-    x5(k) = x5(k-1) + Dx5;
-    x3(k) = x4(k) - x5(k);
+    A = [a11 0 a13 a14;0 a22 a23 0;a31 a32 0 0;a41 a42 0 0];
+    
+    b12 = 1/(Ls+Ld);
+    b21 = 1/(Lgin+Lss);
+    b33 = -x9(k)/CC;
+    b43 = x10(k)/CC;
+    
+    B = [0 b12 0;b21 0 0;0 0 b33;0 0 b43];
+ 
+    CurrVect = [x1(k-1);x7(k-1);x4(k-1);x5(k-1)];
+    InpVect = [u1(k); x2(k); x8(k)];
 
+    NextVect = inv(eye(4) - A*SampleTime)*(CurrVect + B*InpVect*SampleTime);
+    
+    x1(k) = NextVect(1,1); 
+    x7(k) = NextVect(2,1);
+    x4(k) = NextVect(3,1);
+    x5(k) = NextVect(4,1);
+    
+    x3(k) = x4(k) - x5(k);
     
 end
 
