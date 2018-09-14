@@ -4,14 +4,14 @@
 1. V.1. PCB
   * Kontrol kartı layout tasarımı tamamlanması
 2. GaN Gardaşları
-  * PCB mimari tasarımı yapılacak
-  * PCB şematik tasarımına başlanacak
+  * **PCB mimari tasarımı yapılıyor**
+  * **PCB şematik tasarımına başlandı**
 3. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
 4. V.1. Mekanik
   * Tüm parçaların çizim ortamında birleşmesi
-  * Kasa seçimi yapılacak
+  * Kasa seçimi yapılacak: **ACİL**
 5. V.1. Soğutucu
   * Heat sink delikleri açılacak
   * Heat sinkte termal teste devam edilecek
@@ -32,9 +32,10 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * **Güç kartı üretinme gönderildi**
+  * **Güç kartı üretildi**
   * Kontrol kartı üretilecek
   * 3501 raporu yazılacak
+  * Avans kapatılacak
 
 https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
 
