@@ -2,7 +2,7 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı layout tasarımı tamamlanması
+  * **Kontrol kartı layout tasarımı bitmek üzere**
 2. GaN Gardaşları
   * **PCB mimari tasarımı yapılıyor**
   * **PCB şematik tasarımına başlandı**
@@ -34,7 +34,7 @@
 1. 3501
   * **Güç kartı üretildi**
   * Kontrol kartı üretilecek
-  * 3501 raporu yazılacak
+  * **3501 raporu yazılıyor**
   * Avans kapatılacak
 
 https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
