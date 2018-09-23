@@ -147,8 +147,8 @@ ylabel('DC Link Voltage (Volts)','FontSize',12,'FontWeight','Bold')
 legend('Total DC link voltage','DC link voltage of module-1',...
     'DC link voltage of module-2');
 
-%xlim([0.03 0.04])
-ylim([500 600])
+xlim([0.1 0.11])
+% ylim([500 600])
 % xlabel('Time (s)','FontSize',12,'FontWeight','Bold')
 % ylabel('DC link voltage (V)','FontSize',12,'FontWeight','Bold')
 % legend('without interleaving','with interleaving');

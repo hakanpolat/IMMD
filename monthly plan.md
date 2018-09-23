@@ -34,6 +34,7 @@
 1. 3501
   * **Güç kartı üretildi**
   * Kontrol kartı üretilecek
+  * Stencil üretilecek
   * **3501 raporu yazılıyor**
   * Avans kapatılacak
 
