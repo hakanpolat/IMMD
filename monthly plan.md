@@ -1,8 +1,51 @@
+### Ekim 2018
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * Güç kartı fonksiyonel testleri yapılacak
+  * Güç kartı soğutucu ile yük altında test edilecek
+2. GaN Gardaşları
+  * PCB şematik tasarımı devam
+3. V.1. Motor
+  * Montaj planı yapılacak
+  * Sarım planı yapılacak
+4. V.1. Mekanik
+  * Kasaya göre mekanik parçalara son rötuşlar verilecek
+  * Tüm mekanik parçaların üretimi yapılacak
+5. V.1. Soğutucu
+  * Heat sink üretimi ve delinmesi (Güç kartı için)
+  * Heat sinkte termal teste devam edilecek
+
+##### Makale çalışmaları
+1. Dergi makalesi için bir outline çıkarılacak
+2. [Konferanslar](www.google.com)
+
+##### Tez çalışmaları
+1. Outline tamamlanacak
+2. Tezin yazımına başlanacak
+3. IMMD ile ilgili pratik sorunlar üzerine çalışmalar
+4. GaN ile ilgili çalışmalar
+  * Matematik modeli ile inverter
+  * Loss konusunun ilerletilmesi
+  * Inductance çalışmalarının ilerletilmesi
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * Kontrol kartı üretilecek
+  * 3501 raporu göndrilecek
+  * Sarf avans kapatılacak
+  * Hizmet avans aktarılacak
+  * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
+
+________
+
+
 ### Eylül 2018
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * **Kontrol kartı layout tasarımı bitmek üzere**
+  * **Kontrol kartı layout tasarımı tamamlandı**
+  * **Güç kartı yeniden üretildi, stencil üretildi**
 2. GaN Gardaşları
   * **PCB mimari tasarımı yapılıyor**
   * **PCB şematik tasarımına başlandı**
@@ -10,8 +53,8 @@
   * Montaj planı yapılacak
   * Sarım planı yapılacak
 4. V.1. Mekanik
-  * Tüm parçaların çizim ortamında birleşmesi
-  * Kasa seçimi yapılacak: **ACİL**
+  * **Tüm parçaların çizim ortamında birleştirildi**
+  * **Kasa bulundu, tedarik ediliyor**
 5. V.1. Soğutucu
   * Heat sink delikleri açılacak
   * Heat sinkte termal teste devam edilecek
@@ -20,25 +63,25 @@
 1. PWM makalesi
   * İncelenecek tekniklerin belirlenmesi için makale okunuyor
   * MATLAB'ta simulasyon ortamının bitirilmesi. (3-level bitirilecek)
+2. [Konferanslar](www.google.com)
 
 ##### Tez çalışmaları
 1. **Aerospace applications, integration, fault tolerant drives and motors konularında makale okunuyor**
-2. Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft)
-3. IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılacak
+2. **Versiyon 2 IMMD için isterler, parametreler ve temel tasarım kararları (first draft) çıkarıldı**
+3. **IMMD ile ilgili pratik sorunlar (circulating currents, voltage balancing, fault detection vb.) üzerine çalışmalar yapılıyor**
 4. GaN ile ilgili çalışmalar
-  * Modelleme (matematiksel) tamamlanacak
+  * **Modelleme (matematiksel) çalıştı**
   * Loss konusunun ilerletilmesi
-  * Inductance via FEA çalışmaları devam
+  * **Inductance via FEA çalışmaları devam ediyor**
 
 ##### Proje, rapor, satın almalar
 1. 3501
   * **Güç kartı üretildi**
   * Kontrol kartı üretilecek
-  * Stencil üretilecek
-  * **3501 raporu yazılıyor**
-  * Avans kapatılacak
-
-https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0
+  * **Stencil üretildi**
+  * **3501 raporu yazıldı**
+  * Sarf avans kapatılacak
+  * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 
 ________
 
