@@ -385,6 +385,7 @@ Taop = pi*Dis/p;
 % ___________________________________________
 
 
+%%
 % ___________________________________________
 % Electromagnetic model-2: Magnetic equivalent circuit
 % For air gap flux density
@@ -407,6 +408,7 @@ end
 % ___________________________________________
 
 
+%%
 % ___________________________________________
 % Electromagnetic model-3: Magnetic equivalent circuit
 % For tooth and yoke (stator)

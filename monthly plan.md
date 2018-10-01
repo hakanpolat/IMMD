@@ -18,7 +18,7 @@
 
 ##### Makale çalışmaları
 1. Dergi makalesi için bir outline çıkarılacak
-2. [Konferanslar](www.google.com)
+2. [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
 1. Outline tamamlanacak
