@@ -19,12 +19,12 @@ Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
 SampleTime = 1e-11; %Time Steps
-StopTime = 400e-9; %Stop Time
+StopTime = 400e-6; %Stop Time
 % Allocation
 t = (0 : SampleTime : StopTime);
 x1 = zeros(size(t)); %Ids
-% x3 = zeros(size(t)); %Vdsin
-% x4 = zeros(size(t)); %Vgsin
+x3 = zeros(size(t)); %Vdsin
+x4 = zeros(size(t)); %Vgsin
 % x5 = zeros(size(t)); %Vgdin
 x7 = zeros(size(t)); %Ig
 % x8 = zeros(size(t)); %Ich
