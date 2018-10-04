@@ -7,7 +7,6 @@
 profile on
 tic
 %% GaN Parameters
-
 Rgin = 1.5;
 Lgin = 0.65e-9;
 Rss = 1e-3;
@@ -18,8 +17,8 @@ Ld = 450e-12;
 Rd = (3.6/8) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295);
 
 %% Simulation Parameters
-SampleTime = 1e-11; %Time Steps
-StopTime = 400e-6; %Stop Time
+SampleTime = 1e-12; %Time Steps
+StopTime = 400e-9; %Stop Time
 % Allocation
 t = (0 : SampleTime : StopTime);
 x1 = zeros(size(t)); %Ids
