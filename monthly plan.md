@@ -14,7 +14,7 @@
   * Tüm mekanik parçaların üretimi yapılacak
 5. V.1. Soğutucu
   * Heat sink üretimi ve delinmesi (Güç kartı için)
-  * Heat sinkte termal teste devam edilecek
+  * **Heat sinkte termal teste devam ediliyor**
 
 ##### Makale çalışmaları
 1. Dergi makalesi için bir outline çıkarılacak
@@ -31,10 +31,11 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
+  * güç kartları dizilecek
   * Kontrol kartı üretilecek
-  * 3501 raporu göndrilecek
+  * **3501 raporu tamamlandı (8 Ekim gönderim)**
   * Sarf avans kapatılacak
-  * Hizmet avans aktarılacak
+  * Hizmet + sarf avans aktarılacak
   * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 
 ________
