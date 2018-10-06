@@ -3,9 +3,9 @@
 % induced emf waveforms are obtained. the results will be input for Maxwell
 % simulation.
 
-% The machi is fractional slot concentrated winding permanent magnet
+% The machine is fractional slot concentrated winding permanent magnet
 % synchronous machine.
-pole = 10;
+pole = 20;
 pp = pole/2; % pole pair
 slot = 24;
 layer = 2; % all teeth
@@ -127,8 +127,6 @@ for l = 1:numel(time_instant)
 end
 
 
-%%
-% Part e)
 
 subplot(4,1,1)
 stairs(mmfa(2,:),'b- ','Linewidth',1.5)
@@ -163,7 +161,7 @@ stairs(mmftotal(2,:),'b- ','Linewidth',1.5)
 grid on;
 set(gca,'FontSize',12);
 xlabel('Slot Number','FontSize',8,'FontWeight','Bold');
-ylabel('Phase A MMF','FontSize',8,'FontWeight','Bold');
+ylabel('Total MMF','FontSize',8,'FontWeight','Bold');
 set(gca,'xtick',[0:2:30]);
 ylim([-conductor*2 conductor*2]);
 xlim([1 slot]);
