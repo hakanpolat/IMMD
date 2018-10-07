@@ -1,0 +1,31 @@
+% Design and Simulation with IGBT
+
+Ts = 1e-6; % sec
+Tfinal = 0.1; % sec
+Ripth = 0.08; % sec
+fsw = 10e3; % Hz
+Vdc = 540; % Volts
+Pout = 8e3/0.96; % W
+Ef = 160; % Volts
+Ls = 3e-3; % Henries
+Rs = 0.277; % Ohms
+fout = 100; % Hz
+wout = 2*pi*fout; % rad/sec
+m = 3;
+np = 1;
+ns = 1;
+n = ns*np;
+Poutm = Pout/n; % Watts
+Is = Poutm/(Ef*m); % amps
+Xs = wout*Ls; % Ohms
+Vdrop = Is*Xs; % Volts
+Vt = sqrt(Ef^2+Vdrop^2); % Volts
+Vdcm = Vdc/ns; % volts
+ma = Vt*sqrt(3)/(Vdcm*0.612);
+delta = acos(Ef/Vt); % radians
+deltad = delta*180/pi; % degrees
+pf = cos(delta);
+phase = [0 90 0 90];
+Rin = 1;
+Vin = Vdc + Rin*(Pout/Vdc);
+Cdc = 100e-6;
