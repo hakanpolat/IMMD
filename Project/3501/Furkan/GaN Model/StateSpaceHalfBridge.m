@@ -60,7 +60,7 @@ hold all
 grid on
 plot(t,x1T,t,u2T,t,x7T,t,u1T,'Linewidth',2.0);
 %xlim([0]);
-ylim([-80 200]);
+ylim([-50 120]);
 xlabel('Time');
 ylabel('Voltage,Ampere');
 title({'Top Switch Ids, Vds, Ig, Vgs'})
@@ -72,7 +72,7 @@ hold all
 grid on
 plot(t,x1B,t,u2B,t,x7B,t,u1B,'Linewidth',2.0);
 %xlim([0]);
-ylim([-80 200]);
+ylim([-50 120]);
 xlabel('Time');
 ylabel('Voltage,Ampere');
 title({'Bottom Switch Ids, Vds, Ig, Vgs'})

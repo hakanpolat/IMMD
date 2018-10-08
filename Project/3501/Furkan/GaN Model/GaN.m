@@ -101,8 +101,7 @@ vds = abs(vds);
 end
 function u=calculateInp(t)
 u2 = 2;
-tmod = mod(t,2e-5);
-if (50e-9<tmod) && (tmod<10000e-9)
+if (50e-9<t) && (t<200e-9)
     u1 = 6;
 else
     u1 = -3;

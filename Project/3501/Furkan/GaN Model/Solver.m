@@ -1,6 +1,6 @@
 profile on
 tic
-tspan = [0 400e-6];
+tspan = [0 400e-9];
 x0 = zeros(4,1);
 [tout,xout] = ode45(@GaN, tspan, x0);
 toc
