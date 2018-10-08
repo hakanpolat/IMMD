@@ -2,7 +2,7 @@ profile on
 tic
 tspan = [0 400e-6];
 x0 = zeros(4,1);
-[tout,xout] = ode23(@GaN, tspan, x0);
+[tout,xout] = ode45(@GaN, tspan, x0);
 toc
 profile off
 profile viewer
