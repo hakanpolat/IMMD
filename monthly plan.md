@@ -2,23 +2,30 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Güç kartı fonksiyonel testleri yapılacak
+  * Kontrol kartına son eklemeler tamamlanacak
+  * Kontrol kartı üretilecek, dizgi planlanacak
+  * Kontrol kartı BOM gözden geçirilecek ve sipariş listesi oluşturulacak
+  * **Güç kartı fonksiyonel testleri yapıldı**
   * Güç kartı soğutucu ile yük altında test edilecek
 2. GaN Gardaşları
-  * PCB şematik tasarımı devam
+  * **PCB şematik tasarımı devam ediyor**
+  * Akım koruması devresi tamamlanacak
 3. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
 4. V.1. Mekanik
   * Kasaya göre mekanik parçalara son rötuşlar verilecek
   * Tüm mekanik parçaların üretimi yapılacak
+  * Kasa kesilecek mi? akıbeti belirlenecek
 5. V.1. Soğutucu
   * Heat sink üretimi ve delinmesi (Güç kartı için)
   * **Heat sinkte termal teste devam ediliyor**
 
 ##### Makale çalışmaları
-1. Dergi makalesi için bir outline çıkarılacak
-2. [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+1. **Dergi makalesi için bir outline çıkarıldı**
+2. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Kasım)
+3. **PEDS 2019:** Fault Analysis anc Comparison of Modular PMSMs (<=3 page extended summary, 15 Kasım)
+4. **ECCE 2019:** GaN (Abstract, 15 Ocak) [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
 1. Outline tamamlanacak
@@ -31,11 +38,12 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * güç kartları dizilecek
-  * Kontrol kartı üretilecek
-  * **3501 raporu tamamlandı (8 Ekim gönderim)**
-  * Sarf avans kapatılacak
-  * Hizmet + sarf avans aktarılacak
+  * **Güç kartları 2 tane dizildi**
+  * Kontrol kartı üretilecek, dizilecek
+  * **3501 raporu tamamlandı, gönderildi**
+  * **Sarf avans kapatıldı**
+  * Hizmet + sarf avans çekilecek
+  * Hizmetten aktarım ve eksik malzemelerin alımları tamamlanacak
   * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 
 ________
