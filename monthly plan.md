@@ -31,7 +31,9 @@
 1. Outline tamamlanacak
 2. Tezin yazımına başlanacak
 3. IMMD ile ilgili pratik sorunlar üzerine çalışmalar
-4. GaN ile ilgili çalışmalar
+4. **Fault tolerance, topologies vs. üzerine okumalar (bkz. sunum)**
+5. **Versiyon-2 parametreleri belirlenmesi**
+6. GaN ile ilgili çalışmalar
   * Matematik modeli ile inverter
   * Loss konusunun ilerletilmesi
   * Inductance çalışmalarının ilerletilmesi

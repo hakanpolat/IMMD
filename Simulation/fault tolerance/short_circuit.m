@@ -18,5 +18,10 @@ Zscreq = Ephm/Iscreq; % Ohms
 Xscreq = sqrt(Zscreq^2-Rs^2); % Ohms
 Lscreq = Xscreq/(2*pi*fs); % H
 
-
+Vtm = sqrt(Ephm^2+(Xs*Iphm)^2)
+pf = Ephm/Vtm;
+delta = 180/pi*acos(pf);
+Vtm2 = sqrt(Ephm^2+(Xscreq*Iphm)^2)
+pf2 = Ephm/Vtm2;
+delta2 = 180/pi*acos(pf2);
 
