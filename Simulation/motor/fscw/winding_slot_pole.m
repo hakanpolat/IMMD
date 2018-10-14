@@ -34,4 +34,17 @@ per = gcd(p,Qs);
 
 % Cogging torque
 % The number of cogging torque periods per slot-pitch
-Np = p/(per)
+Np = p/(per);
+
+Qs/t
+Qs/(2*t)
+
+num = (1:10);
+% 1-layer harmonics
+v1 = (2*num-1)*t
+
+% 2-layer harmonics
+v2 = (2*num-1)*t
+
+
+
