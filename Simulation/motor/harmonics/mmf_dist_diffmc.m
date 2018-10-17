@@ -8,7 +8,7 @@
 pole = 20;
 pp = pole/2; % pole pair
 slotn = 24;
-layer = 2; % all teeth
+layer = 1; % alternate teeth
 phase = 3;
 
 slot_angle = 2*pi/slotn; % mechanical
@@ -20,30 +20,6 @@ q = slotn/(phase*pole);
 
 conductor = 40; % per coil side
 Nph = 0.5*conductor*layer*slotn/phase;
-
-% Winding factor (OBSOLETE)
-% kp = sin(pi*pp/slot);
-% t = gcd(slot,pp);
-% checkvar = slot/(t*phase);
-% alfa = 30*pi/180;
-% if mod(checkvar,2) == 0
-%     kd = sin(q*alfa/4)/((q/2)*sin(alfa/2));
-% else
-%     kd = sin(q*alfa/4)/((q)*sin(alfa/4));    
-% end
-
-% kpn: coil pitch factor
-% kdn: coil disposition factor
-% harm = 1;
-% if layer == 1
-%     kpn = sin(harm*pp*pi/slot);
-%     kdn = 1;
-% elseif layer == 2
-%     kpn = sin(harm*pp*pi/slot);
-%     kdn = sin(harm*pp*pi/slot);
-% end    
-% kd = 1; % concentrated coil
-% kw = kpn*kdn*kd; % winding factor
 
 peak_current = 12; % Amps
 
@@ -81,9 +57,13 @@ for l = 1:numel(time_instant)
     [slot' MMFb_layer1' MMFb_layer2'];
     [slot' MMFc_layer1' MMFc_layer2'];
         
-    MMFa_total = MMFa_layer1 + MMFa_layer2;
-    MMFb_total = MMFb_layer1 + MMFb_layer2;
-    MMFc_total = MMFc_layer1 + MMFc_layer2;
+%     MMFa_total = MMFa_layer1 + MMFa_layer2;
+%     MMFb_total = MMFb_layer1 + MMFb_layer2;
+%     MMFc_total = MMFc_layer1 + MMFc_layer2;
+    
+    MMFa_total = MMFa_layer2;
+    MMFb_total = MMFb_layer2;
+    MMFc_total = MMFc_layer2;
     
     for k = 1:slotn
         mmfa(l,k) = sum(MMFa_total(1:k));
@@ -135,6 +115,31 @@ fun_order = 1/res;
 
 fun_val = spect_mmf(int8(fun_order))/sqrt(2);
 
+
+%%
+
+figure;
+hold all;
+%plot(f1/res,spect_mmf(1:349)*sqrt(2)/conductor,'b-o ','Linewidth',1.5)
+%bar(f1/res,spect_mmf(1:numel(f1))/sqrt(2)/fun_val);
+%bar(f1/res,flag);
+%y = [1 2 3; 4 5 6];
+flag1 = spect_mmf(1:numel(f1))/sqrt(2)/fun_val;
+flag2 = flag;
+y = zeros(2,numel(flag1));
+x = f1/res;
+y(1,:) = flag1(1,:);
+y(2,:) = flag2(1,:);
+bar(x,flag1,'b');
+%bar(x,flag2,'r');
+grid on;
+set(gca,'FontSize',14);
+xlabel('Harmonic','FontSize',14,'FontWeight','Bold');
+ylabel('MMF Spectrum','FontSize',14,'FontWeight','Bold');
+%set(gca,'xtick',[0:2:100]);
+ylim([0 1.5]);
+xlim([0 100]);
+
 %%
 figure;
 %plot(f1/res,spect_mmf(1:349)*sqrt(2)/conductor,'b-o ','Linewidth',1.5)
@@ -144,7 +149,7 @@ set(gca,'FontSize',14);
 xlabel('Harmonic','FontSize',12,'FontWeight','Bold');
 ylabel('MMF Spectrum','FontSize',12,'FontWeight','Bold');
 %set(gca,'xtick',[0:2:100]);
-ylim([0 1.05]);
+ylim([0 1.5]);
 xlim([0 100]);
 
 

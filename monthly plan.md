@@ -2,7 +2,7 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartına son eklemeler tamamlanacak
+  * **Kontrol kartına son eklemeler tamamlandı**
   * Kontrol kartı üretilecek, dizgi planlanacak
   * Kontrol kartı BOM gözden geçirilecek ve sipariş listesi oluşturulacak
   * **Güç kartı fonksiyonel testleri yapıldı**
@@ -16,9 +16,12 @@
 4. V.1. Mekanik
   * Kasaya göre mekanik parçalara son rötuşlar verilecek
   * Tüm mekanik parçaların üretimi yapılacak
-  * Kasa kesilecek mi? akıbeti belirlenecek
+  * Kasa kesilecek, uzunluk belirlenecek
 5. V.1. Soğutucu
-  * Heat sink üretimi ve delinmesi (Güç kartı için)
+  * Güç kartına göre soğutucu8 simulasyonu yapılacak
+  * Heat sink çizimi son haline getirilecek
+  * Heat sink üretilecek
+  * Heat sink delikleri açılacak
   * **Heat sinkte termal teste devam ediliyor**
 
 ##### Makale çalışmaları
@@ -30,22 +33,23 @@
 ##### Tez çalışmaları
 1. Outline tamamlanacak
 2. Tezin yazımına başlanacak
-3. IMMD ile ilgili pratik sorunlar üzerine çalışmalar
-4. **Fault tolerance, topologies vs. üzerine okumalar (bkz. sunum)**
-5. **Versiyon-2 parametreleri belirlenmesi**
+3. **IMMD ile ilgili pratik sorunlar üzerine çalışmalar (dengesizlik vb.) devam ediyor**
+4. **Fault tolerance, topologies vs. üzerine okumalar devam ediyor (bkz. sunum)**
+5. **Versiyon-2 parametreleri belirlenmesi üzerine çalışılıyor**
 6. GaN ile ilgili çalışmalar
-  * Matematik modeli ile inverter
-  * Loss konusunun ilerletilmesi
+  * Matematik modeli ile inverter kurulacak
+  * Loss konusunun ilerletilmesi (belki EPE veya ECCE'ye yazılabilir)
   * Inductance çalışmalarının ilerletilmesi
 
 ##### Proje, rapor, satın almalar
 1. 3501
   * **Güç kartları 2 tane dizildi**
-  * Kontrol kartı üretilecek, dizilecek
+  * Kontrol kartı üretilecek
   * **3501 raporu tamamlandı, gönderildi**
   * **Sarf avans kapatıldı**
   * Hizmet + sarf avans çekilecek
-  * Hizmetten aktarım ve eksik malzemelerin alımları tamamlanacak
+  * Hizmetten aktarım yapılacak (avans)
+  * Eksik malzemelerin siparişi verilecek (avans)
   * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 
 ________

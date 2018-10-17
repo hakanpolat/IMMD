@@ -1,11 +1,11 @@
 % Number of stator slots
 Qs = 24;
 % Number of pole pairs
-pp = 10;
+pp = 11;
 % Number of poles
 p = 2*pp;
 % Number of phases
-m = 3;
+m = 4;
 % Number of modules
 n = 4;
 % Electrical periodicity of the machine
@@ -36,15 +36,17 @@ per = gcd(p,Qs);
 % The number of cogging torque periods per slot-pitch
 Np = p/(per);
 
-Qs/t
-Qs/(2*t)
+Qs/t;
+Qs/(2*t);
 
 num = (1:10);
 % 1-layer harmonics
-v1 = (2*num-1)*t
+v1 = (2*num-1)*t;
 
 % 2-layer harmonics
-v2 = (2*num-1)*t
+v2 = (2*num-1)*t;
 
-
-
+% 1-layer
+Qs/(2*m*t)
+% 2-layer
+Qs/(m*t)
