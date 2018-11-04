@@ -2,27 +2,68 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * **Kontrol kartına son eklemeler tamamlandı**
-  * Kontrol kartı üretilecek, dizgi planlanacak
+  * Kontrol kartı üretilecek
+  * Kontrol kartı 1 tane dizilecek
+  * Güç kartı 3 tane dizilecek
   * Kontrol kartı BOM gözden geçirilecek ve sipariş listesi oluşturulacak
-  * **Güç kartı fonksiyonel testleri yapıldı**
   * Güç kartı soğutucu ile yük altında test edilecek
 2. GaN Gardaşları
-  * **PCB şematik tasarımı devam ediyor**
-  * Akım koruması devresi tamamlanacak
+  * PCB şematik tasarımı: **Toplantı yapılacak**
 3. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
 4. V.1. Mekanik
-  * Kasaya göre mekanik parçalara son rötuşlar verilecek
   * Tüm mekanik parçaların üretimi yapılacak
-  * Kasa kesilecek, uzunluk belirlenecek
+  * Kasa kesilecek (uzunluk belirlenmeli)
 5. V.1. Soğutucu
-  * Güç kartına göre soğutucu8 simulasyonu yapılacak
-  * Heat sink çizimi son haline getirilecek
-  * Heat sink üretilecek
+  * Güç kartına göre soğutucu simulasyonu yapılacak
   * Heat sink delikleri açılacak
-  * **Heat sinkte termal teste devam ediliyor**
+  * Heat sinkte termal test ?
+
+##### Makale çalışmaları
+1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Kasım)
+2. **PEDS 2019:** Fault Analysis and Comparison of Modular PMSMs (<=3 page extended summary, 15 Kasım): **3-faz vs 4-faz motor karşılaştırması**
+3. **ECCE 2019:** GaN (Abstract, 15 Ocak) [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+
+##### Tez çalışmaları
+1. Outline tamamlanacak
+2. Tezin yazımına başlanacak
+3. IMMD ile ilgili pratik sorunlar üzerine simulasyon çalışmaları
+4. Fault tolerance, topologies vs. üzerine okumalar (bkz. sunum)
+5. Versiyon-2 parametreleri belirlenmesi
+6. GaN ile ilgili çalışmalar
+  * Matematik modeli
+  * Loss konusunun ilerletilmesi (belki EPE veya ECCE'ye yazılabilir)
+  * Inductance çalışmaları
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * Hizmetten aktarım yapılacak (avans)
+  * Eksik malzemelerin siparişi verilecek (avans)
+  * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
+2. BAP
+  * 3. Gelişme Raporu (Mart 2018-Eylül 2018)
+
+________
+
+
+### Ekim 2018
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * **Kontrol kartına son eklemeler tamamlandı**
+  * **Güç kartı fonksiyonel testleri yapıldı**
+2. GaN Gardaşları
+  * **PCB şematik tasarımı devam ediyor**
+  * **Akım koruması devresi tamamlandı**
+3. V.1. Motor
+
+4. V.1. Mekanik
+  * **Kasaya göre mekanik parçalara son rötuşlar verildi**
+5. V.1. Soğutucu
+  * **Heat sink çizimi son haline getirildi**
+  * **Heat sink kesildi**
+  * **Heat sinkte termal teste devam edildi**
 
 ##### Makale çalışmaları
 1. **Dergi makalesi için bir outline çıkarıldı**
@@ -31,25 +72,19 @@
 4. **ECCE 2019:** GaN (Abstract, 15 Ocak) [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. Outline tamamlanacak
-2. Tezin yazımına başlanacak
-3. **IMMD ile ilgili pratik sorunlar üzerine çalışmalar (dengesizlik vb.) devam ediyor**
-4. **Fault tolerance, topologies vs. üzerine okumalar devam ediyor (bkz. sunum)**
-5. **Versiyon-2 parametreleri belirlenmesi üzerine çalışılıyor**
-6. GaN ile ilgili çalışmalar
-  * Matematik modeli ile inverter kurulacak
-  * Loss konusunun ilerletilmesi (belki EPE veya ECCE'ye yazılabilir)
-  * Inductance çalışmalarının ilerletilmesi
+1. **IMMD ile ilgili pratik sorunlar üzerine çalışmalar (dengesizlik vb.) devam edildi**
+2. **Fault tolerance, topologies vs. üzerine okumalara devam edildi (bkz. sunum)**
+3. **Versiyon-2 parametreleri belirlenmesi üzerine çalışıldı**
+4. GaN ile ilgili çalışmalar
+  * **Matematik modeli ilerletildi**
+  * **Inductance çalışmalarının ilerletildi**
 
 ##### Proje, rapor, satın almalar
 1. 3501
   * **Güç kartları 2 tane dizildi**
-  * Kontrol kartı üretilecek
   * **3501 raporu tamamlandı, gönderildi**
   * **Sarf avans kapatıldı**
-  * Hizmet + sarf avans çekilecek
-  * Hizmetten aktarım yapılacak (avans)
-  * Eksik malzemelerin siparişi verilecek (avans)
+  * **Hizmet + sarf avans çekildi**
   * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 
 ________
