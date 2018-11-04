@@ -57,7 +57,7 @@ Tfault = 0; % s
 Ripth = 0.15; % s
 fsw = 10e3; % Hz
 Vdc = 540; % Volts
-Pout = 7e3/0.96; % W
+Pout = 8e3; % W
 Ls = 3e-3; % Henries
 %Rs = 0.277; % Ohms
 Rs = 0.277e-6; % Ohms
@@ -81,7 +81,7 @@ scale2 = 1;
 shift = 0;
 
 Efnom = 160; % Volts
-Isnom = Poutm/(Ef*m); % Amps
+Isnom = Poutm/(Efnom*m); % Amps
 Iam = Isnom*scale;
 Ibm = Isnom*scale;
 Icm = Isnom*scale2;
@@ -119,13 +119,13 @@ maa = Vtam*sqrt(3)/(Vdcm*0.612);
 mab = Vtbm*sqrt(3)/(Vdcm*0.612);
 mac = Vtcm*sqrt(3)/(Vdcm*0.612);
 
-pf = cos(delta);
+pf = cos(deltada*pi/180);
 phase = [0 90 0 90];
 Rin = 10;
 Vin = Vdc + Rin*(Pout/Vdc);
 Cdc = 200e-6;
 So = Pout/pf; % VA
-Vcon = Ef*sqrt(2)*sqrt(3)/Nr*1000;
+Vcon = Efa*sqrt(2)*sqrt(3)/Nr*1000;
 Jm = 0.003; % kgm^2
 Fs = 0.0005; % Nms
 
