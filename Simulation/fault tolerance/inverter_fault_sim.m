@@ -40,9 +40,10 @@ Vcon = Ef*sqrt(2)*sqrt(3)/Nr*1000;
 Jm = 0.003; % kgm^2
 Fs = 0.0005; % Nms
 Foct = 0;
-Fsct = 0;
-Focw = 1;
+Fsct = 1;
+Focw = 0;
 Fscw = 0;
+Fcsf = 0;
 Roc = 1e4;
 
 %%

@@ -1,4 +1,4 @@
-### Ekim 2018
+### Kasım 2018
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
