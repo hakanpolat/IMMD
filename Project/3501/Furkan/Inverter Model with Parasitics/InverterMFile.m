@@ -5,6 +5,7 @@ clear all;clc;
 PulseAmplitude = 9;
 fsw = 50e3;
 ffund = 50;
+ModulationIndex = 0.85;
 Vdc = 270;
 VpulseMax = 6; 
 VpulseMin = -3;
@@ -14,12 +15,13 @@ Dbot = 45; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 
-
+Ls = 0.9e-9;
+Ld = 0.9e-9;
 
 %% Load parameters
 LoadCurrent = 10;
 Lload = 400e-6;
-Rload = 20;
+Rload = 10;
 Zload = sqrt(Rload^2 + (2*pi*ffund*Lload)^2);
 InitialCurrent = Vdc/Zload;
 %% Initial Conditions
@@ -64,6 +66,6 @@ SourceCurrent = InitialCurrent;
 %% Run Simulink 
 model = 'Inverter';
 load_system(model);
-set_param(model, 'StopTime','60e-3')
+set_param(model, 'StopTime','20e-3')
 sim(model);
 
