@@ -4,8 +4,8 @@
 1. V.1. PCB
   * Kontrol kartı üretilecek
   * Kontrol kartı 1 tane dizilecek
-  * Güç kartı 3 tane dizilecek
-  * Kontrol kartı BOM gözden geçirilecek ve sipariş listesi oluşturulacak
+  * Güç kartı 3 tane daha dizilecek
+  * **Kontrol kartı BOM gözden geçirildi ve sipariş listesi oluşturuldu**
   * Güç kartı soğutucu ile yük altında test edilecek
 2. GaN Gardaşları
   * PCB şematik tasarımı: **Toplantı yapılacak**
@@ -17,12 +17,12 @@
   * Kasa kesilecek (uzunluk belirlenmeli)
 5. V.1. Soğutucu
   * Güç kartına göre soğutucu simulasyonu yapılacak
-  * Heat sink delikleri açılacak
+  * **Heat sink delikleri açıldı**
   * Heat sinkte termal test ?
 
 ##### Makale çalışmaları
-1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Kasım)
-2. **PEDS 2019:** Fault Analysis and Comparison of Modular PMSMs (<=3 page extended summary, 15 Kasım): **3-faz vs 4-faz motor karşılaştırması**
+1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Aralık)
+2. **PEDS 2019:** Fault Analysis and Comparison of Modular PMSMs (<=3 page extended summary, 6 aralık): **Outline çıkarıldı**
 3. **ECCE 2019:** GaN (Abstract, 15 Ocak) [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
@@ -35,11 +35,12 @@
   * Matematik modeli
   * Loss konusunun ilerletilmesi (belki EPE veya ECCE'ye yazılabilir)
   * Inductance çalışmaları
+7. **PCB'de parasitik modelleme sonucu kapasitanlara etkisi incelendi**
 
 ##### Proje, rapor, satın almalar
 1. 3501
   * Hizmetten aktarım yapılacak (avans)
-  * Eksik malzemelerin siparişi verilecek (avans)
+  * **Eksik malzemelerin siparişi verildi (avans)**
   * [Eksik malzemeler burada](https://docs.google.com/spreadsheets/d/1sfCz6HN4rGlijo-bTDD3Y9WSTPjLGswah7e4vqFpGgs/edit#gid=0)
 2. BAP
   * 3. Gelişme Raporu (Mart 2018-Eylül 2018)
