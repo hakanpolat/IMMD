@@ -1,0 +1,58 @@
+$begin '$base_index$'
+  $begin 'properties'
+    all_levels=000000000000
+    time(year=000000002018, month=000000000011, day=000000000015, hour=000000000012, min=000000000059, sec=000000000037)
+    version=000000000000
+  $end 'properties'
+  $begin '$base_index$'
+    $index$(pos=000000001275, lin=000000000039, lvl=000000000000)
+  $end '$base_index$'
+$end '$base_index$'
+$begin 'SolutionBlock1'
+	ProductName='Twin Builder'
+	CircuitName='CapacitorModel'
+	VersionID=60
+	PostProcess=false
+	LossLess=true
+	NextUniqueID=61
+	MoveBackwards=false
+	$begin 'VariationIDs'
+		Map(V='', ID=8)
+	$end 'VariationIDs'
+$end 'SolutionBlock1'
+$begin 'BlockMapName'
+	FileHeader='SolutionBlock1'
+	'SolutionKey(SimSetup=2, Instance=\'SetupDefinition\', Solution=-1, VersionID=60)'='SolutionBlock7'
+	'SolutionKey(SimSetup=2, Instance=\'SolutionDefinition\', Solution=1, VersionID=60)'='SolutionBlock6'
+$end 'BlockMapName'
+$begin 'SolutionBlock6'
+	DXasNominal=-1
+	$begin 'SolVars'
+	$end 'SolVars'
+	SolutionName='TR'
+	SolutionID=1
+	V=60
+	$begin 'States'
+	$end 'States'
+	$begin 'Definition'
+		SamplingInterpolation=false
+		Frequencies()
+		SolutionType=1
+		CenterFreq=0
+	$end 'Definition'
+$end 'SolutionBlock6'
+$begin 'SolutionBlock7'
+	SimSetupID=2
+	SimSetupName='TR'
+	VersionID=60
+$end 'SolutionBlock7'
+$begin '$index$'
+	$begin '$index$'
+		SolutionBlock7(pos=1182, lin=34, lvl=0)
+		SolutionBlock1(pos=370, lin=1, lvl=0)
+		BlockMapName(pos=622, lin=13, lvl=0)
+		SolutionBlock6(pos=897, lin=18, lvl=0)
+		$base_index$(pos=0, lin=1, lvl=0)
+		$index$(pos=1275, lin=39, lvl=0)
+	$end '$index$'
+$end '$index$'

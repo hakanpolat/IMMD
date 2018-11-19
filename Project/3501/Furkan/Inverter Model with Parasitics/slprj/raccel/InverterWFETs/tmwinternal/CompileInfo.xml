@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MF0 version="1.1">
+  <ModelRefInfoRepo.ModelRefInfoRoot type="ModelRefInfoRepo.ModelRefInfoRoot" uuid="643dfb26-1314-404f-b62e-f47cbf51d923">
+    <dataTransferInfos>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAAAAAABAAAAAQAAAAAAAAAFAAQAAQAAAAEAAAAAAAAA</dataTransferInfos>
+    <hasBwsAccessed>true</hasBwsAccessed>
+    <hasBwsAccessedByAnyModel>true</hasBwsAccessedByAnyModel>
+    <hasNonVirtualConstantTs>true</hasNonVirtualConstantTs>
+    <hasNonVirtualParameterChangeEvents>true</hasNonVirtualParameterChangeEvents>
+    <hasSignalLogging>true</hasSignalLogging>
+    <inportSignalObjects>AAFJTQAAAAAOAAAAKAAAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAA=</inportSignalObjects>
+    <needAbsoluteTimeForNonLoggingPurpose>true</needAbsoluteTimeForNonLoggingPurpose>
+    <outportSignalObjects>AAFJTQAAAAAOAAAAKAAAAAYAAAAIAAAAAQAAAAAAAAAFAAAACAAAAAEAAAAAAAAAAQAAAAAAAAA=</outportSignalObjects>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="751502b8-fb61-4bac-8807-0f98bcb92f65">
+      <blockSID>InverterWFETs:2053:2152:2156:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="17cfb2b1-b598-4c2e-9f7a-94523d787fdd">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="760a05a4-08f1-4a13-b2b5-d24446f57d6e">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="93d56fc9-71d8-4d9c-a11f-e4075b9df4e2">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="c796b626-1d3a-46b4-9848-9fcd4675a365">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="54ecbf10-6160-4506-acfc-6498b6d824ec">
+      <blockSID>InverterWFETs:2053:2152:2168:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="b034dc3a-55ee-454b-ae54-2f93751170b8">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="e90dd5d0-063f-441d-ba5b-03423005cb34">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="142c2c4d-db41-419d-ab71-85aeddfca2fe">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="6db4de77-b088-43f2-923d-de199d32770f">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="d4619fab-8d19-45df-a6c0-f9b193e22642">
+      <blockSID>InverterWFETs:2053:2151:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="7e80e25c-2d4b-40c1-8ebb-74db533a98f2">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="36f01ce6-13ca-4719-91bd-7d1783eaba72">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="f445dd60-21f4-430f-b0f5-df26182319eb">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="fcc66b67-f514-4f51-b044-2ad5b34e8dab">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="660d4a56-fbc2-4666-8bc8-d59982aaad39">
+      <blockSID>InverterWFETs:2046:2152:2156:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="20b10b6b-c1a7-473c-b8df-ff5f64aa7860">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="d7168984-e254-409f-aa76-f5ae16e40ec6">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="35cc8001-fbf7-472e-8c64-a7c22e80a240">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="db6831b2-a7f7-4ccc-b1f2-373a9c8ed830">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="0a87575d-7b29-4816-a32e-e361b592463f">
+      <blockSID>InverterWFETs:2046:2152:2168:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="6d2d548b-0048-4ceb-8f97-348ff424990e">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="efdfe0e5-c30d-4fa3-b469-fd121e90f5db">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="e0c5cbe2-2a69-4e64-845e-28850d1180b6">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="9dcbe054-0e25-4ddd-83ca-bd8e47d69c04">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="e2ce2d97-6027-4a05-8246-a821c4575929">
+      <blockSID>InverterWFETs:2046:2151:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="1119df54-526f-4597-abea-e06d0c74d9f3">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAJ4CR5/iepQ/</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="617c8eac-1c56-4627-9460-da5ac6f10059">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="204847cf-d44e-48d0-8ae7-0422cf044570">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="65fa70c5-7909-48b3-a605-dbe719f77290">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="426b4a94-b283-4174-bac8-563b16c698ee">
+      <blockSID>InverterWFETs:2054:2152:2156:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="16ecfa07-4a7f-43f6-9c38-c3afee7688f3">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAACU7eB7DAPU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="55f1fd37-2a20-43ea-827c-b5211a992ac3">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="2beb4578-d727-4a63-bd35-d3bbe928c950">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="7f49249e-f258-4564-a014-ffd0916719de">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="c97e0ad2-ed41-4acb-b6bd-032d2296106e">
+      <blockSID>InverterWFETs:2054:2152:2168:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="5002ae23-7cbc-45fb-8ae2-30b74a4a7794">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAACU7eB7DAPU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="7e0ea370-5f73-4151-9506-0e19781a6c52">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="766e2997-3a66-40fd-b0aa-2806207be482">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="2ea27974-c806-4c4e-88b2-fb073b671fbb">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <sFcnInfo type="ModelRefInfoRepo.SFcnInformation" uuid="bcf0936c-fd1b-474b-8223-594ddfb85f47">
+      <blockSID>InverterWFETs:2054:2151:34:70:5</blockSID>
+      <mexPath>C:\Program Files\MATLAB\R2018a\toolbox\physmod\powersys\powersys\sfun_discreteVariableDelay.mexw64</mexPath>
+      <name>sfun_discreteVariableDelay</name>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="53b71a43-c89b-42fb-9365-987dfaea9ab0">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAACU7eB7DAPU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="b8a4b8e4-9285-4fd8-878d-61fd87ad680d">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAADqMMOKOeUU+</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="36f312dc-a74c-47b8-b0d3-2f7d6037d98a">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAAAA</parameter>
+      </parameters>
+      <parameters type="ModelRefInfoRepo.SFcnParameter" uuid="578bc242-cdbf-4191-a7da-6d9606f0323c">
+        <parameter>AAFJTQAAAAAOAAAAOAAAAAYAAAAIAAAABgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAJAAAACAAAAAAAAAAAAPA/</parameter>
+      </parameters>
+      <sourceCodeExists>true</sourceCodeExists>
+    </sFcnInfo>
+    <timingAndTaskingRegistry></timingAndTaskingRegistry>
+    <FMUBlockMap type="ModelRefInfoRepo.FMUBlockInfo" uuid="66a24334-d94f-4aed-9096-4dd523737408"/>
+    <periodicEventPortUnsupportedBlockInfo type="ModelRefInfoRepo.PeriodicEventPortUnsupportedBlockInfo" uuid="fb93147e-a2e9-435c-99f6-329d48813722">
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_1_1_1</multiRateBlocks>
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_2_1_1</multiRateBlocks>
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_3_1_1</multiRateBlocks>
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_4_1_1</multiRateBlocks>
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_5_1_1</multiRateBlocks>
+      <multiRateBlocks>InverterWFETs/Solver Configuration/EVAL_KEY/INPUT_6_1_1</multiRateBlocks>
+    </periodicEventPortUnsupportedBlockInfo>
+    <simulinkFunctions type="ModelRefInfoRepo.SimulinkFunctions" uuid="b4322bcd-8a8f-44b0-98db-325cb85f4467">
+      <compSimulinkFunctionCatalog>AAFJTQAAAAAOAAAA0AAAAAYAAAAIAAAAAgAAAAAAAAAFAAAACAAAAAEAAAABAAAAAQAAAAAAAAAFAAQAEQAAAAEAAAAiAAAAQ29tcEZ1bmN0aW9ucwAAAABDb21wU2VydmljZVBvcnRzAAAAAAAAAA4AAAAwAAAABgAAAAgAAAAGAAAAAAAAAAUAAAAIAAAAAAAAAAAAAAABAAAAAAAAAAkAAAAAAAAADgAAADAAAAAGAAAACAAAAAYAAAAAAAAABQAAAAgAAAAAAAAAAAAAAAEAAAAAAAAACQAAAAAAAAA=</compSimulinkFunctionCatalog>
+      <variantSimulinkFunctions type="ModelRefInfoRepo.VariantSimulinkFunctions" uuid="ec48757c-f16b-4bdf-ac9b-561e013dedfc"/>
+    </simulinkFunctions>
+    <stateWriterToOwnerMap type="ModelRefInfoRepo.StateWriterInfo" uuid="ae0a9239-1003-4d73-99e5-ff1586b997ba"/>
+    <unionTsContainedTs type="ModelRefInfoRepo.UnionTsContainedTsInfo" uuid="0b8eb5a6-69aa-4e8b-ae81-591f423550fa"/>
+  </ModelRefInfoRepo.ModelRefInfoRoot>
+</MF0>
