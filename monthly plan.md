@@ -2,13 +2,13 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı üretilecek
+  * **Kontrol kartı üretiliyor**
   * Kontrol kartı 1 tane dizilecek
   * Güç kartı 3 tane daha dizilecek
   * **Kontrol kartı BOM gözden geçirildi ve sipariş listesi oluşturuldu**
   * Güç kartı soğutucu ile yük altında test edilecek
 2. GaN Gardaşları
-  * PCB şematik tasarımı: **Toplantı yapılacak**
+  * **PCB şematik tasarımı toplantısı yapıldı**
 3. V.1. Motor
   * Montaj planı yapılacak
   * Sarım planı yapılacak
@@ -28,13 +28,13 @@
 ##### Tez çalışmaları
 1. Outline tamamlanacak
 2. Tezin yazımına başlanacak
-3. IMMD ile ilgili pratik sorunlar üzerine simulasyon çalışmaları
-4. Fault tolerance, topologies vs. üzerine okumalar (bkz. sunum)
-5. Versiyon-2 parametreleri belirlenmesi
+3. **IMMD ile ilgili pratik sorunlar üzerine simulasyon çalışmaları yapıldı**
+4. **Fault tolerance, topologies vs. üzerine okumalar (bkz. sunum)**
+5. **Versiyon-2 parametreleri ve uygulama üzerine çalışıldı**
 6. GaN ile ilgili çalışmalar
-  * Matematik modeli
+  * **Matematik modeli tamamlandı. Inverter devresi kuruluyor**
   * Loss konusunun ilerletilmesi (belki EPE veya ECCE'ye yazılabilir)
-  * Inductance çalışmaları
+  * **Inductance'lar çıkarıldı**
 7. **PCB'de parasitik modelleme sonucu kapasitanlara etkisi incelendi**
 
 ##### Proje, rapor, satın almalar
