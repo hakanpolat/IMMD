@@ -2,14 +2,16 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı 1 tane dizilecek
+  * Kontrol kartı 1 tane dizilecek (+3 DSP)
   * Güç kartı 3 tane daha dizilecek
-  * Güç kartı soğutucu ile yük altında teste devam edilecek (bkz: [Test](https://github.com/mesutto/IMMD/tree/master/Prototype/Test))**
+  * Güç kartı overshoot problemi üzerine simulasyon yapılacak
+  * **Güç kartı soğutucu ile yük altında teste devam ediliyor (bkz: [Test](https://github.com/mesutto/IMMD/tree/master/Prototype/Test))**
 2. GaN Gardaşları
   * PCB şematik tasarımı tamamlanacak
   * PCB layout tasarımına başlanacak
 3. V.1. Motor
-  * Montaj planı yapılacak
+  * **Üretim planı yapıldı**
+  * **Montaj planı yapıldı**
   * Stator sarımı yapılacak
 4. V.1. Mekanik
   * Mekanik parçaların üretimi yapılacak
@@ -20,19 +22,20 @@
   * Heat sink uzunluğu gözden geçirilecek
 
 ##### Makale çalışmaları
-1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Aralık)
-2. **PEDS 2019:** Fault Analysis and Comparison of Modular PMSMs (<=3 page extended summary, 6 aralık):
-3. **ECCE 2019:** IMMD PCB effect of parasitic inductances (Abstract, 15 Ocak) [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Aralık).
+2. **PEDS 2019:** Fault Analysis and Comparison of Modular PMSMs (<=3 page extended summary, 6 aralık).
+3. **ECCE 2019:** IMMD PCB effect of parasitic inductances (Abstract, 15 Ocak). [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. TİK sunumu hazırlanacak
-2. TİK jürisi
-3. Outline tamamlanacak
-4. Tezin yazımına başlanacak
-5. Fault durumları ve tespiti üzerine simulasyonlar
-6. Fault tolerance, topologies vb. üzerine okumalar ve derlemeler (bkz. [Sunum](https://github.com/mesutto/IMMD/blob/master/Literature/immd_ver2_research.pptx))
-7. Versiyon-2 parametreleri geliştirilecek (bkz: [Ver.2](https://github.com/mesutto/IMMD/tree/master/Project/3501/IMMD%20Version%202.0))
-8. GaN ile ilgili çalışmalar
+1. TİK raporu hazırlanıp gönderilecek
+2. TİK sunumu hazırlanacak
+3. TİK jürisi
+4. Outline tamamlanacak
+5. Tezin yazımına başlanacak
+6. Fault durumları ve tespiti üzerine simulasyonlar
+7. **Fault tolerance, topologies vb. üzerine okumalar ve derlemeler (bkz. [Sunum](https://github.com/mesutto/IMMD/blob/master/Literature/immd_ver2_research.pptx))**
+8. Versiyon-2 parametreleri geliştirilecek (bkz: [Ver.2](https://github.com/mesutto/IMMD/tree/master/Project/3501/IMMD%20Version%202.0))
+9. GaN ile ilgili çalışmalar
   * Matematik modelinin half-bridge şeklinde geliştirilmesi
   * Loss modellemesi **???**
   * PCB'ler arası endüktanslar çıkarılacak
@@ -40,6 +43,7 @@
 
 ##### Proje, rapor, satın almalar
 1. 3501
+  * Hizmetten aktarım yapılacak (avans)
 2. BAP
   * 3. Gelişme Raporu (Mart 2018-Eylül 2018)
 
