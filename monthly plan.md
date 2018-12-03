@@ -45,7 +45,7 @@
 1. 3501
   * Hizmetten aktarım yapılacak (avans)
 2. BAP
-  * 3. Gelişme Raporu (Mart 2018-Eylül 2018)
+  * 3.Gelişme Raporu (Mart 2018-Eylül 2018)
 
 ________
 
