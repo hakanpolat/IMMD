@@ -27,7 +27,7 @@
 3. **ECCE 2019:** IMMD PCB effect of parasitic inductances (Abstract, 15 Ocak). [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. TİK raporu hazırlanıp gönderilecek
+1. **TİK raporu hazırlanıyor**
 2. TİK sunumu hazırlanacak
 3. TİK jürisi
 4. Outline tamamlanacak
