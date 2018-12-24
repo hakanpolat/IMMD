@@ -2,9 +2,10 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı 1 tane dizilecek (+3 DSP)
+  * Kontrol kartı 1 tane dizilecek (+2 DSP)
   * Güç kartı 3 tane daha dizilecek
   * **Güç kartı overshoot problemi üzerine simulasyon yapıldı, beraberinde DPT testi yapıldı.**
+  * **Güç kartı tüm fazlara DPT yapıldı, C fazı 225 V'ta patlıyor. Problem çözülemedi**
   * **Güç kartı soğutucu ile yük altında teste devam ediliyor (bkz: [Test](https://github.com/mesutto/IMMD/tree/master/Prototype/Test))**
 2. GaN Gardaşları
   * PCB şematik tasarımı tamamlanacak
@@ -12,23 +13,23 @@
 3. V.1. Motor
   * **Üretim planı yapıldı**
   * **Montaj planı yapıldı**
-  * Stator sarımı yapılacak
+  * **Stator sarımı yapıldı**
 4. V.1. Mekanik
-  * Mekanik parçaların üretimi yapılacak
-  * Kasa uzunluğu belirlenecek
+  * **Mekanik parçaların üretimi yapılıyor (önce çizimler son haline gelecek)**
+  * **Kasa uzunluğu belirlendi**
   * Kasa kesilecek
 5. V.1. Soğutucu
   * **Güç kartına göre soğutucu simulasyonu yapıldı**
   * Heat sink uzunluğu gözden geçirilecek
 
 ##### Makale çalışmaları
-1. **EPE 2019:** GaN matematik modeli yazılabilir (3-5 page Synopsis, 15 Aralık).
-2. **PEDS 2019 abstract submit edildi**
-3. **ECCE 2019:** IMMD PCB effect of parasitic inductances (Abstract, 15 Ocak). [Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+1. **PEDS 2019: Abstract submit edildi**
+2. **ECCE 2019: "IMMD PCB effect of parasitic inductances" üzerine yazılacak (Digest, 15 Ocak), [tık](http://www.ieee-ecce.org/2019/).**
+3. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
 1. **TİK raporu verildi**
-2. **TİK sunumu hazırlanıyor**
+2. **TİK sunumu hazırlandı**
 3. TİK jürisi
 4. Outline tamamlanacak
 5. Tezin yazımına başlanacak
