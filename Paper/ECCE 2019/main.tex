@@ -1,0 +1,106 @@
+\documentclass[pdftex,11pt,oneside,letter]{article}
+\usepackage[font=footnotesize,labelfont=bf]{caption}
+\usepackage{tabularx}
+\usepackage{color}
+\usepackage{amsmath,amsfonts,amssymb,amscd}
+\usepackage[pdftex]{graphicx}
+\usepackage{cite}
+\usepackage{booktabs}
+\usepackage{paralist}
+\usepackage{enumitem}
+\usepackage[export]{adjustbox}
+\usepackage{multicol}
+\usepackage{gensymb}
+\usepackage{steinmetz}
+\usepackage{mathtools}
+\usepackage{siunitx}
+\usepackage[draft]{hyperref}
+\usepackage{wrapfig}
+\usepackage{subfig}
+
+\usepackage[english]{babel}
+\usepackage{blindtext}
+
+\usepackage[compact]{titlesec}
+\titlespacing{\section}{0pt}{*0}{*0}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+
+
+\usepackage[left=1in,top=1in,right=1in,bottom=1in]{geometry}
+
+\setdescription{leftmargin=\parindent,labelindent=\parindent}
+\setdescription{leftmargin=0.5\parindent}
+
+
+\usepackage{setspace}
+
+\doublespacing
+
+%---folder for graphics and plots
+\graphicspath{{./figures/}}
+
+%---------------settings to better handle the floats
+    %   General parameters, for ALL pages:
+    \renewcommand{\topfraction}{0.98}	% max fraction of floats at top
+    \renewcommand{\bottomfraction}{0.98}	% max fraction of floats at bottom
+    %   Parameters for TEXT pages (not float pages):
+    \setcounter{topnumber}{5}
+    \setcounter{bottomnumber}{5}
+    \setcounter{totalnumber}{5}     % 2 may work better
+    \setcounter{dbltopnumber}{5}    % for 2-column pages
+    \renewcommand{\dbltopfraction}{0.9}	% fit big float above 2-col. text
+    \renewcommand{\textfraction}{0.07}	% allow minimal text w. figs
+    %   Parameters for FLOAT pages (not text pages):
+    \renewcommand{\floatpagefraction}{0.7}	% require fuller float pages
+	% N.B.: floatpagefraction MUST be less than topfraction !!
+    \renewcommand{\dblfloatpagefraction}{0.9}	% require fuller float pages
+
+    \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+
+%-------------TO MAKE FANCY HEADERS AND FOOTERS
+\usepackage{fancyhdr}
+    \setlength{\headheight}{0.6in}
+    \setlength{\headsep}{15pt}
+    \setlength{\voffset}{-0.5in}
+    \pagestyle{fancy}
+    \renewcommand{\headrulewidth}{0pt} % remove lines as well
+    \renewcommand{\footrulewidth}{0pt}
+
+    \fancyhf{}
+
+\usepackage{lipsum}
+
+\let\OLDthebibliography\thebibliography
+\renewcommand\thebibliography[1]{
+  \OLDthebibliography{#1}
+  \setlength{\parskip}{0pt}
+  \setlength{\itemsep}{0pt plus 0.3ex}
+}
+\begin{document}
+
+
+\title {\large  \bf \vspace{-8ex}
+Tigers without a Doctoral Degree in Power Electronics Cannot Make a Successful ECCE 5-Page Digest Paper Submission
+\vspace{-10ex}}
+\date{}
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\renewcommand{\figurename}{Fig.}
+
+\input{abstract.tex}
+\input{introduction.tex}
+\input{section1.tex}
+\input{section2.tex}
+\input{section3.tex}
+\input{conclusion.tex}
+
+
+{\setstretch{1}\vspace{\baselineskip}
+\bibliographystyle{IEEEtran}
+\bibliography{bibligraphy}
+}
+
+\end{document}
