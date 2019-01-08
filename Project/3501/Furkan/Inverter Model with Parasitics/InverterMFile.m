@@ -7,7 +7,8 @@ fsw = 40e3;
 ffund = 50;
 frms = 50;
 ModulationIndex = 0.9;
-Vdc = 270;
+Vdc = 2*270;
+Vmodule = 270;
 VpulseMax = 6; 
 VpulseMin = -3;
 Lesl = 19e-9;
@@ -18,7 +19,7 @@ Dbot = 0.1; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 Module1Phase = 0; %in rad
-Module2Phase = pi/3/4*3; %in rad
+Module2Phase = 2*pi/3; %in rad
 
 Ls = 0.9e-9;
 Ld = 0.9e-9;
@@ -77,7 +78,7 @@ NEG2 = 100e-9;
 
 %% Load parameters
 ModuleNumber = 2;
-Vln = 0.612*Vdc/sqrt(3)*ModulationIndex;
+Vln = 0.612*Vmodule/sqrt(3)*ModulationIndex;
 PF = 0.98;
 P_module = 2e3;
 S = P_module/PF;
@@ -132,7 +133,7 @@ LoadC = InitialCurrent/2;
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink 
-model = 'InverterModulesInParallel';
+model = 'InverterModulesInSeries';
 SampleTime = 1e-7;
 load_system(model);
 set_param(model, 'StopTime','30e-3')
