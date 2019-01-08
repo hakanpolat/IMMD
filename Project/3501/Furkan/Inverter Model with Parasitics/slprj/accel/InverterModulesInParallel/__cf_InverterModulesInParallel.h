@@ -1,0 +1,3 @@
+#ifndef CF_InverterModulesInParallel_H__
+#define CF_InverterModulesInParallel_H__
+#endif

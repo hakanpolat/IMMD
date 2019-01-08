@@ -3,11 +3,11 @@ clear all;clc;
 
 %% Source parameters
 PulseAmplitude = 9;
-fsw = 10e3;
+fsw = 40e3;
 ffund = 50;
 frms = 50;
 ModulationIndex = 0.9;
-Vdc = 80;
+Vdc = 270;
 VpulseMax = 6; 
 VpulseMin = -3;
 Lesl = 19e-9;
@@ -17,6 +17,8 @@ Dtop = 0.1; % duty cycle of top
 Dbot = 0.1; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
+Module1Phase = 0; %in rad
+Module2Phase = pi/3/4*3; %in rad
 
 Ls = 0.9e-9;
 Ld = 0.9e-9;
@@ -66,19 +68,29 @@ CNegToCap = 31.2e-9;
 % CPosToCap = 1e-15;
 % CNegToCap = 1e-15;
 
+%Module 1 Connection Inductances
+POS1 = 100e-9;
+NEG1 = 100e-9;
+%Module 2 Connection Inductances
+POS2 = 100e-9;
+NEG2 = 100e-9;
+
 %% Load parameters
+ModuleNumber = 2;
 Vln = 0.612*Vdc/sqrt(3)*ModulationIndex;
 PF = 0.98;
-P = 1e-3; %2e3;
-S = P/PF;
+P_module = 2e3;
+S = P_module/PF;
 Z = Vln^2/(S/3);
 Rload = Z*PF;
 Xload = sqrt(Z^2 - Rload^2);
 Lload = Xload/(2*pi*ffund);
 Iload = Vln/Z;
 
+P = ModuleNumber*P_module;
 Idc = P/Vdc;
 Rin = 10;
+Lin = Lload;
 Vin = Vdc + Idc*Rin;
 %% Initial Conditions
 % % Phase A Top
@@ -112,7 +124,7 @@ Vin = Vdc + Idc*Rin;
 % VoltGSCB = 0;
 % VoltGDCB = VoltDSCB - VoltGSCB;
 % % Load
-InitialCurrent = 0;
+InitialCurrent = Iload;
 LoadA = -InitialCurrent;
 LoadB = InitialCurrent/2;
 LoadC = InitialCurrent/2;
@@ -120,9 +132,9 @@ LoadC = InitialCurrent/2;
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink 
-model = 'InverterWFETs';
-SampleTime = 1e-9;
+model = 'InverterModulesInParallel';
+SampleTime = 1e-7;
 load_system(model);
-set_param(model, 'StopTime','1e-3')
+set_param(model, 'StopTime','30e-3')
 sim(model);
 
