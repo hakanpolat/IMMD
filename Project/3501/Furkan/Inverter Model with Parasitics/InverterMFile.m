@@ -7,7 +7,7 @@ fsw = 40e3;
 ffund = 50;
 frms = 50;
 ModulationIndex = 0.9;
-Vdc = 2*270;
+Vdc = 270;
 Vmodule = 270;
 VpulseMax = 6; 
 VpulseMin = -3;
@@ -18,8 +18,8 @@ Dtop = 0.1; % duty cycle of top
 Dbot = 0.1; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
-Module1Phase = 0; %in rad
-Module2Phase = 2*pi/3; %in rad
+Module1Phase = 0; %in degree
+Module2Phase = 180; %in degree
 
 Ls = 0.9e-9;
 Ld = 0.9e-9;
@@ -32,14 +32,14 @@ ASourceToLoad = 3.724e-9;
 ADrainToLoad = 3.724e-9;
 APosToCap = 29.8e-9;
 ANegToCap = 48.6e-9;
-
+% 
 BCapToDrain = 7.233e-9;
 BCapToSource = 5.434e-9;
 BSourceToLoad = 3.933e-9;
 BDrainToLoad = 3.933e-9;
 BPosToCap = 2.63e-9;
 BNegToCap = 3.183e-9;
-
+% 
 CCapToDrain = 7.145e-9;
 CCapToSource = 5.4e-9;
 CSourceToLoad = 3.242e-9;
@@ -54,14 +54,14 @@ CNegToCap = 31.2e-9;
 % ADrainToLoad = 1e-15;
 % APosToCap = 1e-15;
 % ANegToCap = 1e-15;
-% 
+
 % BCapToDrain = 1e-15;
 % BCapToSource = 1e-15;
 % BSourceToLoad = 1e-15;
 % BDrainToLoad = 1e-15;
 % BPosToCap = 1e-15;
 % BNegToCap = 1e-15;
-% 
+
 % CCapToDrain = 1e-15;
 % CCapToSource = 1e-15;
 % CSourceToLoad = 1e-15;
@@ -70,11 +70,11 @@ CNegToCap = 31.2e-9;
 % CNegToCap = 1e-15;
 
 %Module 1 Connection Inductances
-POS1 = 100e-9;
-NEG1 = 100e-9;
+POS1 = 100e-15;
+NEG1 = 100e-15;
 %Module 2 Connection Inductances
-POS2 = 100e-9;
-NEG2 = 100e-9;
+POS2 = 100e-15;
+NEG2 = 100e-15;
 
 %% Load parameters
 ModuleNumber = 2;
@@ -133,7 +133,7 @@ LoadC = InitialCurrent/2;
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink 
-model = 'InverterModulesInSeries';
+model = 'InverterModulesInParallel';
 SampleTime = 1e-7;
 load_system(model);
 set_param(model, 'StopTime','30e-3')

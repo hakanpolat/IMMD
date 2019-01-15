@@ -85,543 +85,466 @@ blkIdx , char_T * * path ) { _ssGetBlockPath ( S , sysIdx , blkIdx , path ) ;
 _ssIsErrorStatusAslErrMsg ( S ) ) { _ssSet_slErrMsg ( S , diag ) ; } } void
 rt_ssReportDiagnosticAsWarning ( SimStruct * S , void * diag ) {
 _ssReportDiagnosticAsWarning ( S , diag ) ; } static void mdlOutputs (
-SimStruct * S , int_T tid ) { real_T rtb_B_20_206_0 ; real_T rtb_B_20_191_0 ;
-real_T rtb_B_20_174_0 ; real_T rtb_B_20_159_0 ; real_T rtb_B_20_142_0 ;
-real_T rtb_B_20_127_0 ; real_T rtb_B_20_110_0 ; real_T rtb_B_20_95_0 ; real_T
-rtb_B_20_78_0 ; real_T rtb_B_20_63_0 ; real_T rtb_B_20_35_0 ; real_T
-rtb_B_20_20_0 ; real_T rtb_B_20_7_0 ; boolean_T rtb_B_20_207_0 ; boolean_T
-rtb_B_20_192_0 ; boolean_T rtb_B_20_175_0 ; boolean_T rtb_B_20_160_0 ;
-boolean_T rtb_B_20_143_0 ; boolean_T rtb_B_20_128_0 ; boolean_T
-rtb_B_20_111_0 ; boolean_T rtb_B_20_96_0 ; boolean_T rtb_B_20_79_0 ;
-boolean_T rtb_B_20_64_0 ; boolean_T rtb_B_20_36_0 ; boolean_T rtb_B_20_21_0 ;
-real_T rtb_B_20_200_0 ; real_T rtb_B_20_183_0 ; real_T rtb_B_20_168_0 ;
-real_T rtb_B_20_151_0 ; real_T rtb_B_20_136_0 ; real_T rtb_B_20_119_0 ;
-real_T rtb_B_20_104_0 ; real_T rtb_B_20_87_0 ; real_T rtb_B_20_72_0 ; real_T
-rtb_B_20_44_0 ; real_T rtb_B_20_29_0 ; real_T rtb_B_20_1_0 ; int32_T isHit ;
+SimStruct * S , int_T tid ) { real_T rtb_B_18_206_0 ; real_T rtb_B_18_191_0 ;
+real_T rtb_B_18_174_0 ; real_T rtb_B_18_159_0 ; real_T rtb_B_18_142_0 ;
+real_T rtb_B_18_127_0 ; real_T rtb_B_18_110_0 ; real_T rtb_B_18_95_0 ; real_T
+rtb_B_18_78_0 ; real_T rtb_B_18_63_0 ; real_T rtb_B_18_35_0 ; real_T
+rtb_B_18_20_0 ; real_T rtb_B_18_7_0 ; boolean_T rtb_B_18_207_0 ; boolean_T
+rtb_B_18_192_0 ; boolean_T rtb_B_18_175_0 ; boolean_T rtb_B_18_160_0 ;
+boolean_T rtb_B_18_143_0 ; boolean_T rtb_B_18_128_0 ; boolean_T
+rtb_B_18_111_0 ; boolean_T rtb_B_18_96_0 ; boolean_T rtb_B_18_79_0 ;
+boolean_T rtb_B_18_64_0 ; boolean_T rtb_B_18_36_0 ; boolean_T rtb_B_18_21_0 ;
+real_T rtb_B_18_200_0 ; real_T rtb_B_18_183_0 ; real_T rtb_B_18_168_0 ;
+real_T rtb_B_18_151_0 ; real_T rtb_B_18_136_0 ; real_T rtb_B_18_119_0 ;
+real_T rtb_B_18_104_0 ; real_T rtb_B_18_87_0 ; real_T rtb_B_18_72_0 ; real_T
+rtb_B_18_44_0 ; real_T rtb_B_18_29_0 ; real_T rtb_B_18_1_0 ; int32_T isHit ;
 B_InverterModulesInParallel_T * _rtB ; P_InverterModulesInParallel_T * _rtP ;
 X_InverterModulesInParallel_T * _rtX ; DW_InverterModulesInParallel_T * _rtDW
 ; _rtDW = ( ( DW_InverterModulesInParallel_T * ) ssGetRootDWork ( S ) ) ;
 _rtX = ( ( X_InverterModulesInParallel_T * ) ssGetContStates ( S ) ) ; _rtP =
 ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) ; _rtB = ( (
 B_InverterModulesInParallel_T * ) _ssGetModelBlockIO ( S ) ) ; isHit =
-ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_1_0 = _rtP -> P_52
-; _rtB -> B_20_2_0 = _rtB -> B_20_0_0 * _rtP -> P_52 ; } _rtB -> B_20_4_0 =
-muDoubleScalarSin ( _rtP -> P_56 * ssGetTaskTime ( S , 0 ) + _rtP -> P_57 ) *
-_rtP -> P_54 + _rtP -> P_55 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
-isHit != 0 ) { _rtB -> B_20_6_0 = _rtP -> P_58 ; } rtb_B_20_7_0 = ssGetT ( S
-) + _rtB -> B_20_6_0 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0
-) { _rtB -> B_20_8_0 = _rtP -> P_59 ; } rtb_B_20_7_0 = look1_pbinlxpw ( _rtP
--> P_60 * muDoubleScalarRem ( rtb_B_20_7_0 , _rtB -> B_20_8_0 ) , _rtP ->
-P_62 , _rtP -> P_61 , & _rtDW -> m_bpIndex , 2U ) ; isHit = ssIsSampleHit ( S
-, 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_20_12_0 = _rtP -> P_63 ; } _rtB ->
-B_20_13_0 = rtb_B_20_7_0 - _rtB -> B_20_12_0 ; _rtB -> B_20_14_0 = _rtB ->
-B_20_4_0 - _rtB -> B_20_13_0 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
+ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_1_0 = _rtP -> P_41
+; _rtB -> B_18_2_0 = _rtB -> B_18_0_0 * _rtP -> P_41 ; } _rtB -> B_18_4_0 =
+muDoubleScalarSin ( _rtP -> P_45 * ssGetTaskTime ( S , 0 ) + _rtP -> P_46 ) *
+_rtP -> P_43 + _rtP -> P_44 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
+isHit != 0 ) { _rtB -> B_18_6_0 = _rtP -> P_47 ; } rtb_B_18_7_0 = ssGetT ( S
+) + _rtB -> B_18_6_0 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0
+) { _rtB -> B_18_8_0 = _rtP -> P_48 ; } rtb_B_18_7_0 = look1_pbinlxpw ( _rtP
+-> P_49 * muDoubleScalarRem ( rtb_B_18_7_0 , _rtB -> B_18_8_0 ) , _rtP ->
+P_51 , _rtP -> P_50 , & _rtDW -> m_bpIndex , 2U ) ; isHit = ssIsSampleHit ( S
+, 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_12_0 = _rtP -> P_52 ; } _rtB ->
+B_18_13_0 = rtb_B_18_7_0 - _rtB -> B_18_12_0 ; _rtB -> B_18_14_0 = _rtB ->
+B_18_4_0 - _rtB -> B_18_13_0 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
 isHit != 0 ) { if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode =
-( _rtB -> B_20_14_0 > InverterModulesInParallel_rtC ( S ) -> B_20_15_0 ) ; }
-if ( _rtDW -> Compare_Mode ) { _rtB -> B_20_18_0 = _rtB -> B_20_3_0 ; } else
-{ _rtB -> B_20_18_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
-0 ) ; if ( isHit != 0 ) { _rtB -> B_20_19_0 = _rtDW -> DelayInput2_DSTATE ; }
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_20_0 =
-_rtB -> B_20_18_0 - _rtB -> B_20_19_0 ; rtb_B_20_21_0 = ( rtb_B_20_20_0 >
-_rtB -> B_20_2_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
-) { _rtB -> B_20_23_0 = _rtB -> B_20_22_0 * rtb_B_20_1_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_21_0 ) {
-rtb_B_20_20_0 = _rtB -> B_20_2_0 ; } else { if ( rtb_B_20_20_0 < _rtB ->
-B_20_23_0 ) { rtb_B_20_20_0 = _rtB -> B_20_23_0 ; } } _rtB -> B_20_26_0 =
-rtb_B_20_20_0 + _rtB -> B_20_19_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_27_0 [ 0 ] = _rtB -> B_20_26_0 ; _rtB ->
-B_20_27_0 [ 1 ] = 0.0 ; _rtB -> B_20_27_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_1_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_27_0 [ 0 ] == _rtDW ->
+( _rtB -> B_18_14_0 > InverterModulesInParallel_rtC ( S ) -> B_18_15_0 ) ; }
+if ( _rtDW -> Compare_Mode ) { _rtB -> B_18_18_0 = _rtB -> B_18_3_0 ; } else
+{ _rtB -> B_18_18_0 = _rtB -> B_18_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
+0 ) ; if ( isHit != 0 ) { _rtB -> B_18_19_0 = _rtDW -> DelayInput2_DSTATE ; }
+isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_20_0 =
+_rtB -> B_18_18_0 - _rtB -> B_18_19_0 ; rtb_B_18_21_0 = ( rtb_B_18_20_0 >
+_rtB -> B_18_2_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
+) { _rtB -> B_18_23_0 = _rtB -> B_18_22_0 * rtb_B_18_1_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_21_0 ) {
+rtb_B_18_20_0 = _rtB -> B_18_2_0 ; } else { if ( rtb_B_18_20_0 < _rtB ->
+B_18_23_0 ) { rtb_B_18_20_0 = _rtB -> B_18_23_0 ; } } _rtB -> B_18_26_0 =
+rtb_B_18_20_0 + _rtB -> B_18_19_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_27_0 [ 0 ] = _rtB -> B_18_26_0 ; _rtB ->
+B_18_27_0 [ 1 ] = 0.0 ; _rtB -> B_18_27_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_1_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_27_0 [ 0 ] == _rtDW ->
 INPUT_1_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_1_1_1_discrete [ 1 ] = _rtB ->
-B_20_27_0 [ 0 ] ; _rtB -> B_20_27_0 [ 0 ] = _rtDW -> INPUT_1_1_1_discrete [ 1
-] ; _rtB -> B_20_27_0 [ 3 ] = _rtDW -> INPUT_1_1_1_discrete [ 0 ] ;
-rtb_B_20_29_0 = _rtP -> P_69 ; _rtB -> B_20_30_0 = _rtB -> B_20_28_0 * _rtP
--> P_69 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if (
+B_18_27_0 [ 0 ] ; _rtB -> B_18_27_0 [ 0 ] = _rtDW -> INPUT_1_1_1_discrete [ 1
+] ; _rtB -> B_18_27_0 [ 3 ] = _rtDW -> INPUT_1_1_1_discrete [ 0 ] ;
+rtb_B_18_29_0 = _rtP -> P_58 ; _rtB -> B_18_30_0 = _rtB -> B_18_28_0 * _rtP
+-> P_58 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if (
 ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_g = ( _rtB ->
-B_20_14_0 < InverterModulesInParallel_rtC ( S ) -> B_20_31_0 ) ; } if ( _rtDW
--> Compare_Mode_g ) { _rtB -> B_20_33_0 = _rtB -> B_20_3_0 ; } else { _rtB ->
-B_20_33_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_20_34_0 = _rtDW -> DelayInput2_DSTATE_c ; } isHit
-= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_35_0 = _rtB ->
-B_20_33_0 - _rtB -> B_20_34_0 ; rtb_B_20_36_0 = ( rtb_B_20_35_0 > _rtB ->
-B_20_30_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
-_rtB -> B_20_38_0 = _rtB -> B_20_37_0 * rtb_B_20_29_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_36_0 ) {
-rtb_B_20_35_0 = _rtB -> B_20_30_0 ; } else { if ( rtb_B_20_35_0 < _rtB ->
-B_20_38_0 ) { rtb_B_20_35_0 = _rtB -> B_20_38_0 ; } } _rtB -> B_20_41_0 =
-rtb_B_20_35_0 + _rtB -> B_20_34_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_42_0 [ 0 ] = _rtB -> B_20_41_0 ; _rtB ->
-B_20_42_0 [ 1 ] = 0.0 ; _rtB -> B_20_42_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_2_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_42_0 [ 0 ] == _rtDW ->
+B_18_14_0 < InverterModulesInParallel_rtC ( S ) -> B_18_31_0 ) ; } if ( _rtDW
+-> Compare_Mode_g ) { _rtB -> B_18_33_0 = _rtB -> B_18_3_0 ; } else { _rtB ->
+B_18_33_0 = _rtB -> B_18_17_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
+( isHit != 0 ) { _rtB -> B_18_34_0 = _rtDW -> DelayInput2_DSTATE_c ; } isHit
+= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_35_0 = _rtB ->
+B_18_33_0 - _rtB -> B_18_34_0 ; rtb_B_18_36_0 = ( rtb_B_18_35_0 > _rtB ->
+B_18_30_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
+_rtB -> B_18_38_0 = _rtB -> B_18_37_0 * rtb_B_18_29_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_36_0 ) {
+rtb_B_18_35_0 = _rtB -> B_18_30_0 ; } else { if ( rtb_B_18_35_0 < _rtB ->
+B_18_38_0 ) { rtb_B_18_35_0 = _rtB -> B_18_38_0 ; } } _rtB -> B_18_41_0 =
+rtb_B_18_35_0 + _rtB -> B_18_34_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_42_0 [ 0 ] = _rtB -> B_18_41_0 ; _rtB ->
+B_18_42_0 [ 1 ] = 0.0 ; _rtB -> B_18_42_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_2_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_42_0 [ 0 ] == _rtDW ->
 INPUT_2_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_2_1_1_discrete [ 1 ] = _rtB ->
-B_20_42_0 [ 0 ] ; _rtB -> B_20_42_0 [ 0 ] = _rtDW -> INPUT_2_1_1_discrete [ 1
-] ; _rtB -> B_20_42_0 [ 3 ] = _rtDW -> INPUT_2_1_1_discrete [ 0 ] ;
-rtb_B_20_44_0 = _rtP -> P_74 ; _rtB -> B_20_45_0 = _rtB -> B_20_43_0 * _rtP
--> P_74 ; } _rtB -> B_20_47_0 = muDoubleScalarSin ( _rtP -> P_78 *
-ssGetTaskTime ( S , 0 ) + _rtP -> P_79 ) * _rtP -> P_76 + _rtP -> P_77 ;
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_20_49_0 =
-_rtP -> P_80 ; } rtb_B_20_29_0 = ssGetT ( S ) + _rtB -> B_20_49_0 ; isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_20_51_0 = _rtP ->
-P_81 ; } rtb_B_20_29_0 = look1_pbinlxpw ( _rtP -> P_82 * muDoubleScalarRem (
-rtb_B_20_29_0 , _rtB -> B_20_51_0 ) , _rtP -> P_84 , _rtP -> P_83 , & _rtDW
+B_18_42_0 [ 0 ] ; _rtB -> B_18_42_0 [ 0 ] = _rtDW -> INPUT_2_1_1_discrete [ 1
+] ; _rtB -> B_18_42_0 [ 3 ] = _rtDW -> INPUT_2_1_1_discrete [ 0 ] ;
+rtb_B_18_44_0 = _rtP -> P_63 ; _rtB -> B_18_45_0 = _rtB -> B_18_43_0 * _rtP
+-> P_63 ; } _rtB -> B_18_47_0 = muDoubleScalarSin ( _rtP -> P_67 *
+ssGetTaskTime ( S , 0 ) + _rtP -> P_68 ) * _rtP -> P_65 + _rtP -> P_66 ;
+isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_49_0 =
+_rtP -> P_69 ; } rtb_B_18_29_0 = ssGetT ( S ) + _rtB -> B_18_49_0 ; isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_51_0 = _rtP ->
+P_70 ; } rtb_B_18_29_0 = look1_pbinlxpw ( _rtP -> P_71 * muDoubleScalarRem (
+rtb_B_18_29_0 , _rtB -> B_18_51_0 ) , _rtP -> P_73 , _rtP -> P_72 , & _rtDW
 -> m_bpIndex_a , 2U ) ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0
-) { _rtB -> B_20_55_0 = _rtP -> P_85 ; } _rtB -> B_20_56_0 = rtb_B_20_29_0 -
-_rtB -> B_20_55_0 ; _rtB -> B_20_57_0 = _rtB -> B_20_47_0 - _rtB -> B_20_56_0
+) { _rtB -> B_18_55_0 = _rtP -> P_74 ; } _rtB -> B_18_56_0 = rtb_B_18_29_0 -
+_rtB -> B_18_55_0 ; _rtB -> B_18_57_0 = _rtB -> B_18_47_0 - _rtB -> B_18_56_0
 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if (
 ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_h = ( _rtB ->
-B_20_57_0 > InverterModulesInParallel_rtC ( S ) -> B_20_58_0 ) ; } if ( _rtDW
--> Compare_Mode_h ) { _rtB -> B_20_61_0 = _rtB -> B_20_46_0 ; } else { _rtB
--> B_20_61_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_62_0 = _rtDW -> DelayInput2_DSTATE_o ; }
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_63_0 =
-_rtB -> B_20_61_0 - _rtB -> B_20_62_0 ; rtb_B_20_64_0 = ( rtb_B_20_63_0 >
-_rtB -> B_20_45_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
-) { _rtB -> B_20_66_0 = _rtB -> B_20_65_0 * rtb_B_20_44_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_64_0 ) {
-rtb_B_20_63_0 = _rtB -> B_20_45_0 ; } else { if ( rtb_B_20_63_0 < _rtB ->
-B_20_66_0 ) { rtb_B_20_63_0 = _rtB -> B_20_66_0 ; } } _rtB -> B_20_69_0 =
-rtb_B_20_63_0 + _rtB -> B_20_62_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_70_0 [ 0 ] = _rtB -> B_20_69_0 ; _rtB ->
-B_20_70_0 [ 1 ] = 0.0 ; _rtB -> B_20_70_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_11_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_70_0 [ 0 ] == _rtDW ->
+B_18_57_0 > InverterModulesInParallel_rtC ( S ) -> B_18_58_0 ) ; } if ( _rtDW
+-> Compare_Mode_h ) { _rtB -> B_18_61_0 = _rtB -> B_18_46_0 ; } else { _rtB
+-> B_18_61_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_62_0 = _rtDW -> DelayInput2_DSTATE_o ; }
+isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_63_0 =
+_rtB -> B_18_61_0 - _rtB -> B_18_62_0 ; rtb_B_18_64_0 = ( rtb_B_18_63_0 >
+_rtB -> B_18_45_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
+) { _rtB -> B_18_66_0 = _rtB -> B_18_65_0 * rtb_B_18_44_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_64_0 ) {
+rtb_B_18_63_0 = _rtB -> B_18_45_0 ; } else { if ( rtb_B_18_63_0 < _rtB ->
+B_18_66_0 ) { rtb_B_18_63_0 = _rtB -> B_18_66_0 ; } } _rtB -> B_18_69_0 =
+rtb_B_18_63_0 + _rtB -> B_18_62_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_70_0 [ 0 ] = _rtB -> B_18_69_0 ; _rtB ->
+B_18_70_0 [ 1 ] = 0.0 ; _rtB -> B_18_70_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_11_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_70_0 [ 0 ] == _rtDW ->
 INPUT_11_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_11_1_1_discrete [ 1 ] = _rtB
--> B_20_70_0 [ 0 ] ; _rtB -> B_20_70_0 [ 0 ] = _rtDW -> INPUT_11_1_1_discrete
-[ 1 ] ; _rtB -> B_20_70_0 [ 3 ] = _rtDW -> INPUT_11_1_1_discrete [ 0 ] ;
-rtb_B_20_72_0 = _rtP -> P_91 ; _rtB -> B_20_73_0 = _rtB -> B_20_71_0 * _rtP
--> P_91 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if (
+-> B_18_70_0 [ 0 ] ; _rtB -> B_18_70_0 [ 0 ] = _rtDW -> INPUT_11_1_1_discrete
+[ 1 ] ; _rtB -> B_18_70_0 [ 3 ] = _rtDW -> INPUT_11_1_1_discrete [ 0 ] ;
+rtb_B_18_72_0 = _rtP -> P_80 ; _rtB -> B_18_73_0 = _rtB -> B_18_71_0 * _rtP
+-> P_80 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if (
 ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_i = ( _rtB ->
-B_20_57_0 < InverterModulesInParallel_rtC ( S ) -> B_20_74_0 ) ; } if ( _rtDW
--> Compare_Mode_i ) { _rtB -> B_20_76_0 = _rtB -> B_20_46_0 ; } else { _rtB
--> B_20_76_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_77_0 = _rtDW -> DelayInput2_DSTATE_k ; }
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_78_0 =
-_rtB -> B_20_76_0 - _rtB -> B_20_77_0 ; rtb_B_20_79_0 = ( rtb_B_20_78_0 >
-_rtB -> B_20_73_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
-) { _rtB -> B_20_81_0 = _rtB -> B_20_80_0 * rtb_B_20_72_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_79_0 ) {
-rtb_B_20_78_0 = _rtB -> B_20_73_0 ; } else { if ( rtb_B_20_78_0 < _rtB ->
-B_20_81_0 ) { rtb_B_20_78_0 = _rtB -> B_20_81_0 ; } } _rtB -> B_20_84_0 =
-rtb_B_20_78_0 + _rtB -> B_20_77_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_85_0 [ 0 ] = _rtB -> B_20_84_0 ; _rtB ->
-B_20_85_0 [ 1 ] = 0.0 ; _rtB -> B_20_85_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_12_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_85_0 [ 0 ] == _rtDW ->
+B_18_57_0 < InverterModulesInParallel_rtC ( S ) -> B_18_74_0 ) ; } if ( _rtDW
+-> Compare_Mode_i ) { _rtB -> B_18_76_0 = _rtB -> B_18_46_0 ; } else { _rtB
+-> B_18_76_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_77_0 = _rtDW -> DelayInput2_DSTATE_k ; }
+isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_78_0 =
+_rtB -> B_18_76_0 - _rtB -> B_18_77_0 ; rtb_B_18_79_0 = ( rtb_B_18_78_0 >
+_rtB -> B_18_73_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0
+) { _rtB -> B_18_81_0 = _rtB -> B_18_80_0 * rtb_B_18_72_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_79_0 ) {
+rtb_B_18_78_0 = _rtB -> B_18_73_0 ; } else { if ( rtb_B_18_78_0 < _rtB ->
+B_18_81_0 ) { rtb_B_18_78_0 = _rtB -> B_18_81_0 ; } } _rtB -> B_18_84_0 =
+rtb_B_18_78_0 + _rtB -> B_18_77_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_85_0 [ 0 ] = _rtB -> B_18_84_0 ; _rtB ->
+B_18_85_0 [ 1 ] = 0.0 ; _rtB -> B_18_85_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_12_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_85_0 [ 0 ] == _rtDW ->
 INPUT_12_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_12_1_1_discrete [ 1 ] = _rtB
--> B_20_85_0 [ 0 ] ; _rtB -> B_20_85_0 [ 0 ] = _rtDW -> INPUT_12_1_1_discrete
-[ 1 ] ; _rtB -> B_20_85_0 [ 3 ] = _rtDW -> INPUT_12_1_1_discrete [ 0 ] ;
-rtb_B_20_87_0 = _rtP -> P_96 ; _rtB -> B_20_88_0 = _rtB -> B_20_86_0 * _rtP
--> P_96 ; } _rtB -> B_20_89_0 = muDoubleScalarSin ( _rtP -> P_99 *
-ssGetTaskTime ( S , 0 ) + _rtP -> P_100 ) * _rtP -> P_97 + _rtP -> P_98 ;
-_rtB -> B_20_90_0 = _rtB -> B_20_89_0 - _rtB -> B_20_13_0 ; isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S
-) != 0 ) { _rtDW -> Compare_Mode_p = ( _rtB -> B_20_90_0 >
-InverterModulesInParallel_rtC ( S ) -> B_20_91_0 ) ; } if ( _rtDW ->
-Compare_Mode_p ) { _rtB -> B_20_93_0 = _rtB -> B_20_3_0 ; } else { _rtB ->
-B_20_93_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_20_94_0 = _rtDW -> DelayInput2_DSTATE_d ; } isHit
-= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_95_0 = _rtB ->
-B_20_93_0 - _rtB -> B_20_94_0 ; rtb_B_20_96_0 = ( rtb_B_20_95_0 > _rtB ->
-B_20_88_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
-_rtB -> B_20_98_0 = _rtB -> B_20_97_0 * rtb_B_20_87_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_96_0 ) {
-rtb_B_20_95_0 = _rtB -> B_20_88_0 ; } else { if ( rtb_B_20_95_0 < _rtB ->
-B_20_98_0 ) { rtb_B_20_95_0 = _rtB -> B_20_98_0 ; } } _rtB -> B_20_101_0 =
-rtb_B_20_95_0 + _rtB -> B_20_94_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_102_0 [ 0 ] = _rtB -> B_20_101_0 ; _rtB ->
-B_20_102_0 [ 1 ] = 0.0 ; _rtB -> B_20_102_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_3_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_102_0 [ 0 ] == _rtDW ->
-INPUT_3_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_3_1_1_discrete [ 1 ] = _rtB ->
-B_20_102_0 [ 0 ] ; _rtB -> B_20_102_0 [ 0 ] = _rtDW -> INPUT_3_1_1_discrete [
-1 ] ; _rtB -> B_20_102_0 [ 3 ] = _rtDW -> INPUT_3_1_1_discrete [ 0 ] ;
-rtb_B_20_104_0 = _rtP -> P_105 ; _rtB -> B_20_105_0 = _rtB -> B_20_103_0 *
-_rtP -> P_105 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
-if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_j = ( _rtB ->
-B_20_90_0 < InverterModulesInParallel_rtC ( S ) -> B_20_106_0 ) ; } if (
-_rtDW -> Compare_Mode_j ) { _rtB -> B_20_108_0 = _rtB -> B_20_3_0 ; } else {
-_rtB -> B_20_108_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
-0 ) ; if ( isHit != 0 ) { _rtB -> B_20_109_0 = _rtDW -> DelayInput2_DSTATE_f
-; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_110_0
-= _rtB -> B_20_108_0 - _rtB -> B_20_109_0 ; rtb_B_20_111_0 = ( rtb_B_20_110_0
-> _rtB -> B_20_105_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
-!= 0 ) { _rtB -> B_20_113_0 = _rtB -> B_20_112_0 * rtb_B_20_104_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_111_0 ) {
-rtb_B_20_110_0 = _rtB -> B_20_105_0 ; } else { if ( rtb_B_20_110_0 < _rtB ->
-B_20_113_0 ) { rtb_B_20_110_0 = _rtB -> B_20_113_0 ; } } _rtB -> B_20_116_0 =
-rtb_B_20_110_0 + _rtB -> B_20_109_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_117_0 [ 0 ] = _rtB -> B_20_116_0 ; _rtB ->
-B_20_117_0 [ 1 ] = 0.0 ; _rtB -> B_20_117_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_4_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_117_0 [ 0 ] == _rtDW ->
-INPUT_4_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_4_1_1_discrete [ 1 ] = _rtB ->
-B_20_117_0 [ 0 ] ; _rtB -> B_20_117_0 [ 0 ] = _rtDW -> INPUT_4_1_1_discrete [
-1 ] ; _rtB -> B_20_117_0 [ 3 ] = _rtDW -> INPUT_4_1_1_discrete [ 0 ] ;
-rtb_B_20_119_0 = _rtP -> P_110 ; _rtB -> B_20_120_0 = _rtB -> B_20_118_0 *
-_rtP -> P_110 ; } _rtB -> B_20_121_0 = muDoubleScalarSin ( _rtP -> P_113 *
-ssGetTaskTime ( S , 0 ) + _rtP -> P_114 ) * _rtP -> P_111 + _rtP -> P_112 ;
-_rtB -> B_20_122_0 = _rtB -> B_20_121_0 - _rtB -> B_20_13_0 ; isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S
-) != 0 ) { _rtDW -> Compare_Mode_hp = ( _rtB -> B_20_122_0 >
-InverterModulesInParallel_rtC ( S ) -> B_20_123_0 ) ; } if ( _rtDW ->
-Compare_Mode_hp ) { _rtB -> B_20_125_0 = _rtB -> B_20_3_0 ; } else { _rtB ->
-B_20_125_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_20_126_0 = _rtDW -> DelayInput2_DSTATE_n ; } isHit
-= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_127_0 = _rtB ->
-B_20_125_0 - _rtB -> B_20_126_0 ; rtb_B_20_128_0 = ( rtb_B_20_127_0 > _rtB ->
-B_20_120_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
-_rtB -> B_20_130_0 = _rtB -> B_20_129_0 * rtb_B_20_119_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_128_0 ) {
-rtb_B_20_127_0 = _rtB -> B_20_120_0 ; } else { if ( rtb_B_20_127_0 < _rtB ->
-B_20_130_0 ) { rtb_B_20_127_0 = _rtB -> B_20_130_0 ; } } _rtB -> B_20_133_0 =
-rtb_B_20_127_0 + _rtB -> B_20_126_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_134_0 [ 0 ] = _rtB -> B_20_133_0 ; _rtB ->
-B_20_134_0 [ 1 ] = 0.0 ; _rtB -> B_20_134_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_5_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_134_0 [ 0 ] == _rtDW ->
+-> B_18_85_0 [ 0 ] ; _rtB -> B_18_85_0 [ 0 ] = _rtDW -> INPUT_12_1_1_discrete
+[ 1 ] ; _rtB -> B_18_85_0 [ 3 ] = _rtDW -> INPUT_12_1_1_discrete [ 0 ] ;
+rtb_B_18_87_0 = _rtP -> P_85 ; _rtB -> B_18_88_0 = _rtB -> B_18_86_0 * _rtP
+-> P_85 ; } _rtB -> B_18_89_0 = muDoubleScalarSin ( _rtP -> P_88 *
+ssGetTaskTime ( S , 0 ) + _rtP -> P_89 ) * _rtP -> P_86 + _rtP -> P_87 ; _rtB
+-> B_18_90_0 = _rtB -> B_18_89_0 - _rtB -> B_18_13_0 ; isHit = ssIsSampleHit
+( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S ) != 0 ) {
+_rtDW -> Compare_Mode_p = ( _rtB -> B_18_90_0 > InverterModulesInParallel_rtC
+( S ) -> B_18_91_0 ) ; } if ( _rtDW -> Compare_Mode_p ) { _rtB -> B_18_93_0 =
+_rtB -> B_18_3_0 ; } else { _rtB -> B_18_93_0 = _rtB -> B_18_17_0 ; } } isHit
+= ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_94_0 = _rtDW
+-> DelayInput2_DSTATE_d ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit
+!= 0 ) { rtb_B_18_95_0 = _rtB -> B_18_93_0 - _rtB -> B_18_94_0 ;
+rtb_B_18_96_0 = ( rtb_B_18_95_0 > _rtB -> B_18_88_0 ) ; } isHit =
+ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_98_0 = _rtB ->
+B_18_97_0 * rtb_B_18_87_0 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
+isHit != 0 ) { if ( rtb_B_18_96_0 ) { rtb_B_18_95_0 = _rtB -> B_18_88_0 ; }
+else { if ( rtb_B_18_95_0 < _rtB -> B_18_98_0 ) { rtb_B_18_95_0 = _rtB ->
+B_18_98_0 ; } } _rtB -> B_18_101_0 = rtb_B_18_95_0 + _rtB -> B_18_94_0 ; }
+isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_102_0
+[ 0 ] = _rtB -> B_18_101_0 ; _rtB -> B_18_102_0 [ 1 ] = 0.0 ; _rtB ->
+B_18_102_0 [ 2 ] = 0.0 ; _rtDW -> INPUT_3_1_1_discrete [ 0 ] = ! ( _rtB ->
+B_18_102_0 [ 0 ] == _rtDW -> INPUT_3_1_1_discrete [ 1 ] ) ; _rtDW ->
+INPUT_3_1_1_discrete [ 1 ] = _rtB -> B_18_102_0 [ 0 ] ; _rtB -> B_18_102_0 [
+0 ] = _rtDW -> INPUT_3_1_1_discrete [ 1 ] ; _rtB -> B_18_102_0 [ 3 ] = _rtDW
+-> INPUT_3_1_1_discrete [ 0 ] ; rtb_B_18_104_0 = _rtP -> P_94 ; _rtB ->
+B_18_105_0 = _rtB -> B_18_103_0 * _rtP -> P_94 ; } isHit = ssIsSampleHit ( S
+, 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW
+-> Compare_Mode_j = ( _rtB -> B_18_90_0 < InverterModulesInParallel_rtC ( S )
+-> B_18_106_0 ) ; } if ( _rtDW -> Compare_Mode_j ) { _rtB -> B_18_108_0 =
+_rtB -> B_18_3_0 ; } else { _rtB -> B_18_108_0 = _rtB -> B_18_17_0 ; } }
+isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_109_0
+= _rtDW -> DelayInput2_DSTATE_f ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if
+( isHit != 0 ) { rtb_B_18_110_0 = _rtB -> B_18_108_0 - _rtB -> B_18_109_0 ;
+rtb_B_18_111_0 = ( rtb_B_18_110_0 > _rtB -> B_18_105_0 ) ; } isHit =
+ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB -> B_18_113_0 = _rtB
+-> B_18_112_0 * rtb_B_18_104_0 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if (
+isHit != 0 ) { if ( rtb_B_18_111_0 ) { rtb_B_18_110_0 = _rtB -> B_18_105_0 ;
+} else { if ( rtb_B_18_110_0 < _rtB -> B_18_113_0 ) { rtb_B_18_110_0 = _rtB
+-> B_18_113_0 ; } } _rtB -> B_18_116_0 = rtb_B_18_110_0 + _rtB -> B_18_109_0
+; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtB ->
+B_18_117_0 [ 0 ] = _rtB -> B_18_116_0 ; _rtB -> B_18_117_0 [ 1 ] = 0.0 ; _rtB
+-> B_18_117_0 [ 2 ] = 0.0 ; _rtDW -> INPUT_4_1_1_discrete [ 0 ] = ! ( _rtB ->
+B_18_117_0 [ 0 ] == _rtDW -> INPUT_4_1_1_discrete [ 1 ] ) ; _rtDW ->
+INPUT_4_1_1_discrete [ 1 ] = _rtB -> B_18_117_0 [ 0 ] ; _rtB -> B_18_117_0 [
+0 ] = _rtDW -> INPUT_4_1_1_discrete [ 1 ] ; _rtB -> B_18_117_0 [ 3 ] = _rtDW
+-> INPUT_4_1_1_discrete [ 0 ] ; rtb_B_18_119_0 = _rtP -> P_99 ; _rtB ->
+B_18_120_0 = _rtB -> B_18_118_0 * _rtP -> P_99 ; } _rtB -> B_18_121_0 =
+muDoubleScalarSin ( _rtP -> P_102 * ssGetTaskTime ( S , 0 ) + _rtP -> P_103 )
+* _rtP -> P_100 + _rtP -> P_101 ; _rtB -> B_18_122_0 = _rtB -> B_18_121_0 -
+_rtB -> B_18_13_0 ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
+if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_hp = ( _rtB ->
+B_18_122_0 > InverterModulesInParallel_rtC ( S ) -> B_18_123_0 ) ; } if (
+_rtDW -> Compare_Mode_hp ) { _rtB -> B_18_125_0 = _rtB -> B_18_3_0 ; } else {
+_rtB -> B_18_125_0 = _rtB -> B_18_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
+0 ) ; if ( isHit != 0 ) { _rtB -> B_18_126_0 = _rtDW -> DelayInput2_DSTATE_n
+; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_127_0
+= _rtB -> B_18_125_0 - _rtB -> B_18_126_0 ; rtb_B_18_128_0 = ( rtb_B_18_127_0
+> _rtB -> B_18_120_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
+!= 0 ) { _rtB -> B_18_130_0 = _rtB -> B_18_129_0 * rtb_B_18_119_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_128_0 ) {
+rtb_B_18_127_0 = _rtB -> B_18_120_0 ; } else { if ( rtb_B_18_127_0 < _rtB ->
+B_18_130_0 ) { rtb_B_18_127_0 = _rtB -> B_18_130_0 ; } } _rtB -> B_18_133_0 =
+rtb_B_18_127_0 + _rtB -> B_18_126_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_134_0 [ 0 ] = _rtB -> B_18_133_0 ; _rtB ->
+B_18_134_0 [ 1 ] = 0.0 ; _rtB -> B_18_134_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_5_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_134_0 [ 0 ] == _rtDW ->
 INPUT_5_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_5_1_1_discrete [ 1 ] = _rtB ->
-B_20_134_0 [ 0 ] ; _rtB -> B_20_134_0 [ 0 ] = _rtDW -> INPUT_5_1_1_discrete [
-1 ] ; _rtB -> B_20_134_0 [ 3 ] = _rtDW -> INPUT_5_1_1_discrete [ 0 ] ;
-rtb_B_20_136_0 = _rtP -> P_119 ; _rtB -> B_20_137_0 = _rtB -> B_20_135_0 *
-_rtP -> P_119 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
+B_18_134_0 [ 0 ] ; _rtB -> B_18_134_0 [ 0 ] = _rtDW -> INPUT_5_1_1_discrete [
+1 ] ; _rtB -> B_18_134_0 [ 3 ] = _rtDW -> INPUT_5_1_1_discrete [ 0 ] ;
+rtb_B_18_136_0 = _rtP -> P_108 ; _rtB -> B_18_137_0 = _rtB -> B_18_135_0 *
+_rtP -> P_108 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
 if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_iz = ( _rtB ->
-B_20_122_0 < InverterModulesInParallel_rtC ( S ) -> B_20_138_0 ) ; } if (
-_rtDW -> Compare_Mode_iz ) { _rtB -> B_20_140_0 = _rtB -> B_20_3_0 ; } else {
-_rtB -> B_20_140_0 = _rtB -> B_20_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
-0 ) ; if ( isHit != 0 ) { _rtB -> B_20_141_0 = _rtDW -> DelayInput2_DSTATE_m
-; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_142_0
-= _rtB -> B_20_140_0 - _rtB -> B_20_141_0 ; rtb_B_20_143_0 = ( rtb_B_20_142_0
-> _rtB -> B_20_137_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
-!= 0 ) { _rtB -> B_20_145_0 = _rtB -> B_20_144_0 * rtb_B_20_136_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_143_0 ) {
-rtb_B_20_142_0 = _rtB -> B_20_137_0 ; } else { if ( rtb_B_20_142_0 < _rtB ->
-B_20_145_0 ) { rtb_B_20_142_0 = _rtB -> B_20_145_0 ; } } _rtB -> B_20_148_0 =
-rtb_B_20_142_0 + _rtB -> B_20_141_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_149_0 [ 0 ] = _rtB -> B_20_148_0 ; _rtB ->
-B_20_149_0 [ 1 ] = 0.0 ; _rtB -> B_20_149_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_6_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_149_0 [ 0 ] == _rtDW ->
+B_18_122_0 < InverterModulesInParallel_rtC ( S ) -> B_18_138_0 ) ; } if (
+_rtDW -> Compare_Mode_iz ) { _rtB -> B_18_140_0 = _rtB -> B_18_3_0 ; } else {
+_rtB -> B_18_140_0 = _rtB -> B_18_17_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
+0 ) ; if ( isHit != 0 ) { _rtB -> B_18_141_0 = _rtDW -> DelayInput2_DSTATE_m
+; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_142_0
+= _rtB -> B_18_140_0 - _rtB -> B_18_141_0 ; rtb_B_18_143_0 = ( rtb_B_18_142_0
+> _rtB -> B_18_137_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
+!= 0 ) { _rtB -> B_18_145_0 = _rtB -> B_18_144_0 * rtb_B_18_136_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_143_0 ) {
+rtb_B_18_142_0 = _rtB -> B_18_137_0 ; } else { if ( rtb_B_18_142_0 < _rtB ->
+B_18_145_0 ) { rtb_B_18_142_0 = _rtB -> B_18_145_0 ; } } _rtB -> B_18_148_0 =
+rtb_B_18_142_0 + _rtB -> B_18_141_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_149_0 [ 0 ] = _rtB -> B_18_148_0 ; _rtB ->
+B_18_149_0 [ 1 ] = 0.0 ; _rtB -> B_18_149_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_6_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_149_0 [ 0 ] == _rtDW ->
 INPUT_6_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_6_1_1_discrete [ 1 ] = _rtB ->
-B_20_149_0 [ 0 ] ; _rtB -> B_20_149_0 [ 0 ] = _rtDW -> INPUT_6_1_1_discrete [
-1 ] ; _rtB -> B_20_149_0 [ 3 ] = _rtDW -> INPUT_6_1_1_discrete [ 0 ] ;
-rtb_B_20_151_0 = _rtP -> P_124 ; _rtB -> B_20_152_0 = _rtB -> B_20_150_0 *
-_rtP -> P_124 ; } _rtB -> B_20_153_0 = muDoubleScalarSin ( _rtP -> P_127 *
-ssGetTaskTime ( S , 0 ) + _rtP -> P_128 ) * _rtP -> P_125 + _rtP -> P_126 ;
-_rtB -> B_20_154_0 = _rtB -> B_20_153_0 - _rtB -> B_20_56_0 ; isHit =
+B_18_149_0 [ 0 ] ; _rtB -> B_18_149_0 [ 0 ] = _rtDW -> INPUT_6_1_1_discrete [
+1 ] ; _rtB -> B_18_149_0 [ 3 ] = _rtDW -> INPUT_6_1_1_discrete [ 0 ] ;
+rtb_B_18_151_0 = _rtP -> P_113 ; _rtB -> B_18_152_0 = _rtB -> B_18_150_0 *
+_rtP -> P_113 ; } _rtB -> B_18_153_0 = muDoubleScalarSin ( _rtP -> P_116 *
+ssGetTaskTime ( S , 0 ) + _rtP -> P_117 ) * _rtP -> P_114 + _rtP -> P_115 ;
+_rtB -> B_18_154_0 = _rtB -> B_18_153_0 - _rtB -> B_18_56_0 ; isHit =
 ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S
-) != 0 ) { _rtDW -> Compare_Mode_ja = ( _rtB -> B_20_154_0 >
-InverterModulesInParallel_rtC ( S ) -> B_20_155_0 ) ; } if ( _rtDW ->
-Compare_Mode_ja ) { _rtB -> B_20_157_0 = _rtB -> B_20_46_0 ; } else { _rtB ->
-B_20_157_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_20_158_0 = _rtDW -> DelayInput2_DSTATE_dc ; }
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_159_0 =
-_rtB -> B_20_157_0 - _rtB -> B_20_158_0 ; rtb_B_20_160_0 = ( rtb_B_20_159_0 >
-_rtB -> B_20_152_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit !=
-0 ) { _rtB -> B_20_162_0 = _rtB -> B_20_161_0 * rtb_B_20_151_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_160_0 ) {
-rtb_B_20_159_0 = _rtB -> B_20_152_0 ; } else { if ( rtb_B_20_159_0 < _rtB ->
-B_20_162_0 ) { rtb_B_20_159_0 = _rtB -> B_20_162_0 ; } } _rtB -> B_20_165_0 =
-rtb_B_20_159_0 + _rtB -> B_20_158_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_166_0 [ 0 ] = _rtB -> B_20_165_0 ; _rtB ->
-B_20_166_0 [ 1 ] = 0.0 ; _rtB -> B_20_166_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_7_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_166_0 [ 0 ] == _rtDW ->
+) != 0 ) { _rtDW -> Compare_Mode_ja = ( _rtB -> B_18_154_0 >
+InverterModulesInParallel_rtC ( S ) -> B_18_155_0 ) ; } if ( _rtDW ->
+Compare_Mode_ja ) { _rtB -> B_18_157_0 = _rtB -> B_18_46_0 ; } else { _rtB ->
+B_18_157_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
+( isHit != 0 ) { _rtB -> B_18_158_0 = _rtDW -> DelayInput2_DSTATE_dc ; }
+isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_159_0 =
+_rtB -> B_18_157_0 - _rtB -> B_18_158_0 ; rtb_B_18_160_0 = ( rtb_B_18_159_0 >
+_rtB -> B_18_152_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit !=
+0 ) { _rtB -> B_18_162_0 = _rtB -> B_18_161_0 * rtb_B_18_151_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_160_0 ) {
+rtb_B_18_159_0 = _rtB -> B_18_152_0 ; } else { if ( rtb_B_18_159_0 < _rtB ->
+B_18_162_0 ) { rtb_B_18_159_0 = _rtB -> B_18_162_0 ; } } _rtB -> B_18_165_0 =
+rtb_B_18_159_0 + _rtB -> B_18_158_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_166_0 [ 0 ] = _rtB -> B_18_165_0 ; _rtB ->
+B_18_166_0 [ 1 ] = 0.0 ; _rtB -> B_18_166_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_7_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_166_0 [ 0 ] == _rtDW ->
 INPUT_7_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_7_1_1_discrete [ 1 ] = _rtB ->
-B_20_166_0 [ 0 ] ; _rtB -> B_20_166_0 [ 0 ] = _rtDW -> INPUT_7_1_1_discrete [
-1 ] ; _rtB -> B_20_166_0 [ 3 ] = _rtDW -> INPUT_7_1_1_discrete [ 0 ] ;
-rtb_B_20_168_0 = _rtP -> P_133 ; _rtB -> B_20_169_0 = _rtB -> B_20_167_0 *
-_rtP -> P_133 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
+B_18_166_0 [ 0 ] ; _rtB -> B_18_166_0 [ 0 ] = _rtDW -> INPUT_7_1_1_discrete [
+1 ] ; _rtB -> B_18_166_0 [ 3 ] = _rtDW -> INPUT_7_1_1_discrete [ 0 ] ;
+rtb_B_18_168_0 = _rtP -> P_122 ; _rtB -> B_18_169_0 = _rtB -> B_18_167_0 *
+_rtP -> P_122 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
 if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_c = ( _rtB ->
-B_20_154_0 < InverterModulesInParallel_rtC ( S ) -> B_20_170_0 ) ; } if (
-_rtDW -> Compare_Mode_c ) { _rtB -> B_20_172_0 = _rtB -> B_20_46_0 ; } else {
-_rtB -> B_20_172_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
-0 ) ; if ( isHit != 0 ) { _rtB -> B_20_173_0 = _rtDW -> DelayInput2_DSTATE_dj
-; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_174_0
-= _rtB -> B_20_172_0 - _rtB -> B_20_173_0 ; rtb_B_20_175_0 = ( rtb_B_20_174_0
-> _rtB -> B_20_169_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
-!= 0 ) { _rtB -> B_20_177_0 = _rtB -> B_20_176_0 * rtb_B_20_168_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_175_0 ) {
-rtb_B_20_174_0 = _rtB -> B_20_169_0 ; } else { if ( rtb_B_20_174_0 < _rtB ->
-B_20_177_0 ) { rtb_B_20_174_0 = _rtB -> B_20_177_0 ; } } _rtB -> B_20_180_0 =
-rtb_B_20_174_0 + _rtB -> B_20_173_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_181_0 [ 0 ] = _rtB -> B_20_180_0 ; _rtB ->
-B_20_181_0 [ 1 ] = 0.0 ; _rtB -> B_20_181_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_8_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_181_0 [ 0 ] == _rtDW ->
+B_18_154_0 < InverterModulesInParallel_rtC ( S ) -> B_18_170_0 ) ; } if (
+_rtDW -> Compare_Mode_c ) { _rtB -> B_18_172_0 = _rtB -> B_18_46_0 ; } else {
+_rtB -> B_18_172_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
+0 ) ; if ( isHit != 0 ) { _rtB -> B_18_173_0 = _rtDW -> DelayInput2_DSTATE_dj
+; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_174_0
+= _rtB -> B_18_172_0 - _rtB -> B_18_173_0 ; rtb_B_18_175_0 = ( rtb_B_18_174_0
+> _rtB -> B_18_169_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
+!= 0 ) { _rtB -> B_18_177_0 = _rtB -> B_18_176_0 * rtb_B_18_168_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_175_0 ) {
+rtb_B_18_174_0 = _rtB -> B_18_169_0 ; } else { if ( rtb_B_18_174_0 < _rtB ->
+B_18_177_0 ) { rtb_B_18_174_0 = _rtB -> B_18_177_0 ; } } _rtB -> B_18_180_0 =
+rtb_B_18_174_0 + _rtB -> B_18_173_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_181_0 [ 0 ] = _rtB -> B_18_180_0 ; _rtB ->
+B_18_181_0 [ 1 ] = 0.0 ; _rtB -> B_18_181_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_8_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_181_0 [ 0 ] == _rtDW ->
 INPUT_8_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_8_1_1_discrete [ 1 ] = _rtB ->
-B_20_181_0 [ 0 ] ; _rtB -> B_20_181_0 [ 0 ] = _rtDW -> INPUT_8_1_1_discrete [
-1 ] ; _rtB -> B_20_181_0 [ 3 ] = _rtDW -> INPUT_8_1_1_discrete [ 0 ] ;
-rtb_B_20_183_0 = _rtP -> P_138 ; _rtB -> B_20_184_0 = _rtB -> B_20_182_0 *
-_rtP -> P_138 ; } _rtB -> B_20_185_0 = muDoubleScalarSin ( _rtP -> P_141 *
-ssGetTaskTime ( S , 0 ) + _rtP -> P_142 ) * _rtP -> P_139 + _rtP -> P_140 ;
-_rtB -> B_20_186_0 = _rtB -> B_20_185_0 - _rtB -> B_20_56_0 ; isHit =
+B_18_181_0 [ 0 ] ; _rtB -> B_18_181_0 [ 0 ] = _rtDW -> INPUT_8_1_1_discrete [
+1 ] ; _rtB -> B_18_181_0 [ 3 ] = _rtDW -> INPUT_8_1_1_discrete [ 0 ] ;
+rtb_B_18_183_0 = _rtP -> P_127 ; _rtB -> B_18_184_0 = _rtB -> B_18_182_0 *
+_rtP -> P_127 ; } _rtB -> B_18_185_0 = muDoubleScalarSin ( _rtP -> P_130 *
+ssGetTaskTime ( S , 0 ) + _rtP -> P_131 ) * _rtP -> P_128 + _rtP -> P_129 ;
+_rtB -> B_18_186_0 = _rtB -> B_18_185_0 - _rtB -> B_18_56_0 ; isHit =
 ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( ssIsMajorTimeStep ( S
-) != 0 ) { _rtDW -> Compare_Mode_l = ( _rtB -> B_20_186_0 >
-InverterModulesInParallel_rtC ( S ) -> B_20_187_0 ) ; } if ( _rtDW ->
-Compare_Mode_l ) { _rtB -> B_20_189_0 = _rtB -> B_20_46_0 ; } else { _rtB ->
-B_20_189_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_20_190_0 = _rtDW -> DelayInput2_DSTATE_a ; } isHit
-= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_191_0 = _rtB ->
-B_20_189_0 - _rtB -> B_20_190_0 ; rtb_B_20_192_0 = ( rtb_B_20_191_0 > _rtB ->
-B_20_184_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
-_rtB -> B_20_194_0 = _rtB -> B_20_193_0 * rtb_B_20_183_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_192_0 ) {
-rtb_B_20_191_0 = _rtB -> B_20_184_0 ; } else { if ( rtb_B_20_191_0 < _rtB ->
-B_20_194_0 ) { rtb_B_20_191_0 = _rtB -> B_20_194_0 ; } } _rtB -> B_20_197_0 =
-rtb_B_20_191_0 + _rtB -> B_20_190_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_198_0 [ 0 ] = _rtB -> B_20_197_0 ; _rtB ->
-B_20_198_0 [ 1 ] = 0.0 ; _rtB -> B_20_198_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_9_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_198_0 [ 0 ] == _rtDW ->
+) != 0 ) { _rtDW -> Compare_Mode_l = ( _rtB -> B_18_186_0 >
+InverterModulesInParallel_rtC ( S ) -> B_18_187_0 ) ; } if ( _rtDW ->
+Compare_Mode_l ) { _rtB -> B_18_189_0 = _rtB -> B_18_46_0 ; } else { _rtB ->
+B_18_189_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if
+( isHit != 0 ) { _rtB -> B_18_190_0 = _rtDW -> DelayInput2_DSTATE_a ; } isHit
+= ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_191_0 = _rtB ->
+B_18_189_0 - _rtB -> B_18_190_0 ; rtb_B_18_192_0 = ( rtb_B_18_191_0 > _rtB ->
+B_18_184_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) {
+_rtB -> B_18_194_0 = _rtB -> B_18_193_0 * rtb_B_18_183_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_192_0 ) {
+rtb_B_18_191_0 = _rtB -> B_18_184_0 ; } else { if ( rtb_B_18_191_0 < _rtB ->
+B_18_194_0 ) { rtb_B_18_191_0 = _rtB -> B_18_194_0 ; } } _rtB -> B_18_197_0 =
+rtb_B_18_191_0 + _rtB -> B_18_190_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_198_0 [ 0 ] = _rtB -> B_18_197_0 ; _rtB ->
+B_18_198_0 [ 1 ] = 0.0 ; _rtB -> B_18_198_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_9_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_198_0 [ 0 ] == _rtDW ->
 INPUT_9_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_9_1_1_discrete [ 1 ] = _rtB ->
-B_20_198_0 [ 0 ] ; _rtB -> B_20_198_0 [ 0 ] = _rtDW -> INPUT_9_1_1_discrete [
-1 ] ; _rtB -> B_20_198_0 [ 3 ] = _rtDW -> INPUT_9_1_1_discrete [ 0 ] ;
-rtb_B_20_200_0 = _rtP -> P_147 ; _rtB -> B_20_201_0 = _rtB -> B_20_199_0 *
-_rtP -> P_147 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
+B_18_198_0 [ 0 ] ; _rtB -> B_18_198_0 [ 0 ] = _rtDW -> INPUT_9_1_1_discrete [
+1 ] ; _rtB -> B_18_198_0 [ 3 ] = _rtDW -> INPUT_9_1_1_discrete [ 0 ] ;
+rtb_B_18_200_0 = _rtP -> P_136 ; _rtB -> B_18_201_0 = _rtB -> B_18_199_0 *
+_rtP -> P_136 ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
 if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW -> Compare_Mode_o = ( _rtB ->
-B_20_186_0 < InverterModulesInParallel_rtC ( S ) -> B_20_202_0 ) ; } if (
-_rtDW -> Compare_Mode_o ) { _rtB -> B_20_204_0 = _rtB -> B_20_46_0 ; } else {
-_rtB -> B_20_204_0 = _rtB -> B_20_60_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
-0 ) ; if ( isHit != 0 ) { _rtB -> B_20_205_0 = _rtDW -> DelayInput2_DSTATE_nv
-; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_20_206_0
-= _rtB -> B_20_204_0 - _rtB -> B_20_205_0 ; rtb_B_20_207_0 = ( rtb_B_20_206_0
-> _rtB -> B_20_201_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
-!= 0 ) { _rtB -> B_20_209_0 = _rtB -> B_20_208_0 * rtb_B_20_200_0 ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_20_207_0 ) {
-rtb_B_20_206_0 = _rtB -> B_20_201_0 ; } else { if ( rtb_B_20_206_0 < _rtB ->
-B_20_209_0 ) { rtb_B_20_206_0 = _rtB -> B_20_209_0 ; } } _rtB -> B_20_212_0 =
-rtb_B_20_206_0 + _rtB -> B_20_205_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_20_213_0 [ 0 ] = _rtB -> B_20_212_0 ; _rtB ->
-B_20_213_0 [ 1 ] = 0.0 ; _rtB -> B_20_213_0 [ 2 ] = 0.0 ; _rtDW ->
-INPUT_10_1_1_discrete [ 0 ] = ! ( _rtB -> B_20_213_0 [ 0 ] == _rtDW ->
+B_18_186_0 < InverterModulesInParallel_rtC ( S ) -> B_18_202_0 ) ; } if (
+_rtDW -> Compare_Mode_o ) { _rtB -> B_18_204_0 = _rtB -> B_18_46_0 ; } else {
+_rtB -> B_18_204_0 = _rtB -> B_18_60_0 ; } } isHit = ssIsSampleHit ( S , 2 ,
+0 ) ; if ( isHit != 0 ) { _rtB -> B_18_205_0 = _rtDW -> DelayInput2_DSTATE_nv
+; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { rtb_B_18_206_0
+= _rtB -> B_18_204_0 - _rtB -> B_18_205_0 ; rtb_B_18_207_0 = ( rtb_B_18_206_0
+> _rtB -> B_18_201_0 ) ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
+!= 0 ) { _rtB -> B_18_209_0 = _rtB -> B_18_208_0 * rtb_B_18_200_0 ; } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { if ( rtb_B_18_207_0 ) {
+rtb_B_18_206_0 = _rtB -> B_18_201_0 ; } else { if ( rtb_B_18_206_0 < _rtB ->
+B_18_209_0 ) { rtb_B_18_206_0 = _rtB -> B_18_209_0 ; } } _rtB -> B_18_212_0 =
+rtb_B_18_206_0 + _rtB -> B_18_205_0 ; } isHit = ssIsSampleHit ( S , 2 , 0 ) ;
+if ( isHit != 0 ) { _rtB -> B_18_213_0 [ 0 ] = _rtB -> B_18_212_0 ; _rtB ->
+B_18_213_0 [ 1 ] = 0.0 ; _rtB -> B_18_213_0 [ 2 ] = 0.0 ; _rtDW ->
+INPUT_10_1_1_discrete [ 0 ] = ! ( _rtB -> B_18_213_0 [ 0 ] == _rtDW ->
 INPUT_10_1_1_discrete [ 1 ] ) ; _rtDW -> INPUT_10_1_1_discrete [ 1 ] = _rtB
--> B_20_213_0 [ 0 ] ; _rtB -> B_20_213_0 [ 0 ] = _rtDW ->
-INPUT_10_1_1_discrete [ 1 ] ; _rtB -> B_20_213_0 [ 3 ] = _rtDW ->
-INPUT_10_1_1_discrete [ 0 ] ; ssCallAccelRunBlock ( S , 20 , 214 ,
-SS_CALL_MDL_OUTPUTS ) ; ssCallAccelRunBlock ( S , 20 , 215 ,
-SS_CALL_MDL_OUTPUTS ) ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( ( isHit
-!= 0 ) && ( ssIsMajorTimeStep ( S ) != 0 ) ) { if ( _rtB -> B_20_217_0 ) { if
-( ! _rtDW -> TrueRMS_MODE_e ) { if ( ssGetTaskTime ( S , 1 ) != ssGetTStart (
-S ) ) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } ( void ) memset
-( & ( ( ( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) )
--> integrator_CSTATE_c ) , 0 , 3 * sizeof ( boolean_T ) ) ; _rtDW ->
+-> B_18_213_0 [ 0 ] ; _rtB -> B_18_213_0 [ 0 ] = _rtDW ->
+INPUT_10_1_1_discrete [ 1 ] ; _rtB -> B_18_213_0 [ 3 ] = _rtDW ->
+INPUT_10_1_1_discrete [ 0 ] ; ssCallAccelRunBlock ( S , 18 , 214 ,
+SS_CALL_MDL_OUTPUTS ) ; ssCallAccelRunBlock ( S , 18 , 215 ,
+SS_CALL_MDL_OUTPUTS ) ; { if ( ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule1_at_outport_5_PWORK . AQHandles ||
+_rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule1_at_outport_5_PWORK .
+SlioLTF ) && ssGetLogOutput ( S ) ) { sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule1_at_outport_5_PWORK . AQHandles ,
+_rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule1_at_outport_5_PWORK .
+SlioLTF , 0 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_215_0 [ 30
+] ) ; } } if ( _rtB -> B_18_215_0 [ 25 ] > _rtP -> P_145 ) { _rtB ->
+B_18_217_0 = _rtP -> P_145 ; } else if ( _rtB -> B_18_215_0 [ 25 ] < _rtP ->
+P_146 ) { _rtB -> B_18_217_0 = _rtP -> P_146 ; } else { _rtB -> B_18_217_0 =
+_rtB -> B_18_215_0 [ 25 ] ; } if ( _rtB -> B_18_215_0 [ 23 ] > _rtP -> P_147
+) { _rtB -> B_18_218_0 = _rtP -> P_147 ; } else if ( _rtB -> B_18_215_0 [ 23
+] < _rtP -> P_148 ) { _rtB -> B_18_218_0 = _rtP -> P_148 ; } else { _rtB ->
+B_18_218_0 = _rtB -> B_18_215_0 [ 23 ] ; } if ( _rtB -> B_18_215_0 [ 24 ] >
+_rtP -> P_149 ) { _rtB -> B_18_219_0 = _rtP -> P_149 ; } else if ( _rtB ->
+B_18_215_0 [ 24 ] < _rtP -> P_150 ) { _rtB -> B_18_219_0 = _rtP -> P_150 ; }
+else { _rtB -> B_18_219_0 = _rtB -> B_18_215_0 [ 24 ] ; } { if ( ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK . AQHandles [ 0
+] || _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK .
+SlioLTF ) && ssGetLogOutput ( S ) ) { sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK . AQHandles [ 0
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK .
+SlioLTF , 0 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_217_0 ) ;
+sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK . AQHandles [ 1
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK .
+SlioLTF , 1 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_218_0 ) ;
+sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK . AQHandles [ 2
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_2_1_PWORK .
+SlioLTF , 2 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_219_0 ) ; }
+} { if ( ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK . AQHandles [ 0
+] || _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK .
+SlioLTF ) && ssGetLogOutput ( S ) ) { sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK . AQHandles [ 0
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK .
+SlioLTF , 0 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_215_0 [ 3 ]
+) ; sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK . AQHandles [ 1
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK .
+SlioLTF , 1 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_215_0 [ 1 ]
+) ; sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK . AQHandles [ 2
+] , _rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_3_1_PWORK .
+SlioLTF , 2 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_215_0 [ 2 ]
+) ; } } { if ( ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_5_PWORK . AQHandles ||
+_rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_5_PWORK .
+SlioLTF ) && ssGetLogOutput ( S ) ) { sdiSlioSdiWriteSignal ( _rtDW ->
+HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_5_PWORK . AQHandles ,
+_rtDW -> HiddenToAsyncQueue_InsertedFor_3phModule_at_outport_5_PWORK .
+SlioLTF , 0 , ssGetTaskTime ( S , 2 ) , ( void * ) & _rtB -> B_18_215_0 [ 4 ]
+) ; } } ssCallAccelRunBlock ( S , 18 , 223 , SS_CALL_MDL_OUTPUTS ) ;
+ssCallAccelRunBlock ( S , 18 , 224 , SS_CALL_MDL_OUTPUTS ) ; if ( _rtB ->
+B_18_215_0 [ 26 ] > _rtP -> P_151 ) { _rtB -> B_18_225_0 = _rtP -> P_151 ; }
+else if ( _rtB -> B_18_215_0 [ 26 ] < _rtP -> P_152 ) { _rtB -> B_18_225_0 =
+_rtP -> P_152 ; } else { _rtB -> B_18_225_0 = _rtB -> B_18_215_0 [ 26 ] ; }
+if ( _rtB -> B_18_215_0 [ 52 ] > _rtP -> P_153 ) { _rtB -> B_18_226_0 = _rtP
+-> P_153 ; } else if ( _rtB -> B_18_215_0 [ 52 ] < _rtP -> P_154 ) { _rtB ->
+B_18_226_0 = _rtP -> P_154 ; } else { _rtB -> B_18_226_0 = _rtB -> B_18_215_0
+[ 52 ] ; } ssCallAccelRunBlock ( S , 18 , 227 , SS_CALL_MDL_OUTPUTS ) ;
+ssCallAccelRunBlock ( S , 18 , 228 , SS_CALL_MDL_OUTPUTS ) ; }
+ssCallAccelRunBlock ( S , 18 , 295 , SS_CALL_MDL_OUTPUTS ) ;
+ssCallAccelRunBlock ( S , 18 , 485 , SS_CALL_MDL_OUTPUTS ) ; isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( ( isHit != 0 ) && ( ssIsMajorTimeStep ( S
+) != 0 ) ) { if ( _rtB -> B_18_635_0 ) { if ( ! _rtDW -> RMS_MODE_h ) { if (
+ssGetTaskTime ( S , 1 ) != ssGetTStart ( S ) ) {
+ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } ( void ) memset ( & ( (
+( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
+integrator_CSTATE_a ) , 0 , 6 * sizeof ( boolean_T ) ) ; _rtDW -> RMS_MODE_h
+= true ; } } else { if ( _rtDW -> RMS_MODE_h ) {
+ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( void ) memset ( & ( ( (
+XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
+integrator_CSTATE_a ) , 1 , 6 * sizeof ( boolean_T ) ) ; _rtDW -> RMS_MODE_h
+= false ; } } } if ( _rtDW -> RMS_MODE_h ) { rtb_B_18_200_0 =
+muDoubleScalarSin ( _rtP -> P_5 * ssGetTaskTime ( S , 0 ) + _rtP -> P_6 ) *
+_rtP -> P_3 + _rtP -> P_4 ; _rtB -> B_12_3_0 [ 0 ] = _rtB -> B_18_215_0 [ 3 ]
+* rtb_B_18_200_0 ; _rtB -> B_12_3_0 [ 1 ] = _rtB -> B_18_215_0 [ 1 ] *
+rtb_B_18_200_0 ; _rtB -> B_12_3_0 [ 2 ] = _rtB -> B_18_215_0 [ 2 ] *
+rtb_B_18_200_0 ; rtb_B_18_200_0 = muDoubleScalarSin ( _rtP -> P_9 *
+ssGetTaskTime ( S , 0 ) + _rtP -> P_10 ) * _rtP -> P_7 + _rtP -> P_8 ; _rtB
+-> B_12_5_0 [ 0 ] = _rtB -> B_18_215_0 [ 3 ] * rtb_B_18_200_0 ; _rtB ->
+B_12_5_0 [ 1 ] = _rtB -> B_18_215_0 [ 1 ] * rtb_B_18_200_0 ; _rtB -> B_12_5_0
+[ 2 ] = _rtB -> B_18_215_0 [ 2 ] * rtb_B_18_200_0 ; if ( ssIsMajorTimeStep (
+S ) != 0 ) { srUpdateBC ( _rtDW -> RMS_SubsysRanBC_n ) ; } } isHit =
+ssIsSampleHit ( S , 1 , 0 ) ; if ( ( isHit != 0 ) && ( ssIsMajorTimeStep ( S
+) != 0 ) ) { if ( _rtB -> B_18_634_0 ) { if ( ! _rtDW -> TrueRMS_MODE_e ) {
+if ( ssGetTaskTime ( S , 1 ) != ssGetTStart ( S ) ) {
+ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } ( void ) memset ( & ( (
+( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
+integrator_CSTATE_c ) , 0 , 3 * sizeof ( boolean_T ) ) ; _rtDW ->
 TrueRMS_MODE_e = true ; } } else { if ( _rtDW -> TrueRMS_MODE_e ) {
 ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( void ) memset ( & ( ( (
 XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
 integrator_CSTATE_c ) , 1 , 3 * sizeof ( boolean_T ) ) ; _rtDW ->
 TrueRMS_MODE_e = false ; } } } if ( _rtDW -> TrueRMS_MODE_e ) { _rtB ->
-B_16_1_0 [ 0 ] = _rtX -> integrator_CSTATE_c [ 0 ] ; _rtB -> B_16_1_0 [ 1 ] =
-_rtX -> integrator_CSTATE_c [ 1 ] ; _rtB -> B_16_1_0 [ 2 ] = _rtX ->
+B_14_1_0 [ 0 ] = _rtX -> integrator_CSTATE_c [ 0 ] ; _rtB -> B_14_1_0 [ 1 ] =
+_rtX -> integrator_CSTATE_c [ 1 ] ; _rtB -> B_14_1_0 [ 2 ] = _rtX ->
 integrator_CSTATE_c [ 2 ] ; { real_T * * uBuffer = ( real_T * * ) & _rtDW ->
 TransportDelay_PWORK_b . TUbufferPtrs [ 0 ] ; real_T * * tBuffer = ( real_T *
 * ) & _rtDW -> TransportDelay_PWORK_b . TUbufferPtrs [ 3 ] ; real_T simTime =
 ssGetT ( S ) ; real_T tMinusDelay ; { int_T i1 ; real_T * y0 = & _rtB ->
-B_16_2_0 [ 0 ] ; int_T * iw_Tail = & _rtDW -> TransportDelay_IWORK_g . Tail [
+B_14_2_0 [ 0 ] ; int_T * iw_Tail = & _rtDW -> TransportDelay_IWORK_g . Tail [
 0 ] ; int_T * iw_Head = & _rtDW -> TransportDelay_IWORK_g . Head [ 0 ] ;
 int_T * iw_Last = & _rtDW -> TransportDelay_IWORK_g . Last [ 0 ] ; int_T *
 iw_CircularBufSize = & _rtDW -> TransportDelay_IWORK_g . CircularBufSize [ 0
-] ; for ( i1 = 0 ; i1 < 3 ; i1 ++ ) { tMinusDelay = ( ( _rtP -> P_25 > 0.0 )
-? _rtP -> P_25 : 0.0 ) ; tMinusDelay = simTime - tMinusDelay ; y0 [ i1 ] =
+] ; for ( i1 = 0 ; i1 < 3 ; i1 ++ ) { tMinusDelay = ( ( _rtP -> P_14 > 0.0 )
+? _rtP -> P_14 : 0.0 ) ; tMinusDelay = simTime - tMinusDelay ; y0 [ i1 ] =
 InverterModulesInParallel_acc_rt_TDelayInterpolate ( tMinusDelay , 0.0 , *
 tBuffer , * uBuffer , iw_CircularBufSize [ i1 ] , & iw_Last [ i1 ] , iw_Tail
-[ i1 ] , iw_Head [ i1 ] , _rtP -> P_26 , 0 , ( boolean_T ) (
+[ i1 ] , iw_Head [ i1 ] , _rtP -> P_15 , 0 , ( boolean_T ) (
 ssIsMinorTimeStep ( S ) && ( ssGetTimeOfLastOutput ( S ) == ssGetT ( S ) ) )
 ) ; tBuffer ++ ; uBuffer ++ ; } } } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_16_3_0 = _rtP -> P_27 ; _rtB -> B_16_4_0 [ 0 ] =
-_rtDW -> Memory_PreviousInput_k [ 0 ] ; _rtB -> B_16_4_0 [ 1 ] = _rtDW ->
-Memory_PreviousInput_k [ 1 ] ; _rtB -> B_16_4_0 [ 2 ] = _rtDW ->
-Memory_PreviousInput_k [ 2 ] ; } if ( ssGetT ( S ) >= _rtB -> B_16_3_0 ) {
-_rtB -> B_15_0_0 [ 0 ] = _rtB -> B_16_1_0 [ 0 ] - _rtB -> B_16_2_0 [ 0 ] ;
-_rtB -> B_15_1_0 [ 0 ] = _rtP -> P_22 * _rtB -> B_15_0_0 [ 0 ] ; _rtB ->
-B_16_7_0 [ 0 ] = _rtB -> B_15_1_0 [ 0 ] ; _rtB -> B_15_0_0 [ 1 ] = _rtB ->
-B_16_1_0 [ 1 ] - _rtB -> B_16_2_0 [ 1 ] ; _rtB -> B_15_1_0 [ 1 ] = _rtP ->
-P_22 * _rtB -> B_15_0_0 [ 1 ] ; _rtB -> B_16_7_0 [ 1 ] = _rtB -> B_15_1_0 [ 1
-] ; _rtB -> B_15_0_0 [ 2 ] = _rtB -> B_16_1_0 [ 2 ] - _rtB -> B_16_2_0 [ 2 ]
-; _rtB -> B_15_1_0 [ 2 ] = _rtP -> P_22 * _rtB -> B_15_0_0 [ 2 ] ; _rtB ->
-B_16_7_0 [ 2 ] = _rtB -> B_15_1_0 [ 2 ] ; } else { _rtB -> B_16_7_0 [ 0 ] =
-_rtB -> B_16_4_0 [ 0 ] ; _rtB -> B_16_7_0 [ 1 ] = _rtB -> B_16_4_0 [ 1 ] ;
-_rtB -> B_16_7_0 [ 2 ] = _rtB -> B_16_4_0 [ 2 ] ; } _rtB -> B_16_8_0 [ 0 ] =
-_rtB -> B_20_215_0 [ 3 ] * _rtB -> B_20_215_0 [ 3 ] ; _rtB -> B_16_8_0 [ 1 ]
-= _rtB -> B_20_215_0 [ 1 ] * _rtB -> B_20_215_0 [ 1 ] ; _rtB -> B_16_8_0 [ 2
-] = _rtB -> B_20_215_0 [ 2 ] * _rtB -> B_20_215_0 [ 2 ] ; if (
+( isHit != 0 ) { _rtB -> B_14_3_0 = _rtP -> P_16 ; _rtB -> B_14_4_0 [ 0 ] =
+_rtDW -> Memory_PreviousInput_k [ 0 ] ; _rtB -> B_14_4_0 [ 1 ] = _rtDW ->
+Memory_PreviousInput_k [ 1 ] ; _rtB -> B_14_4_0 [ 2 ] = _rtDW ->
+Memory_PreviousInput_k [ 2 ] ; } if ( ssGetT ( S ) >= _rtB -> B_14_3_0 ) {
+_rtB -> B_13_0_0 [ 0 ] = _rtB -> B_14_1_0 [ 0 ] - _rtB -> B_14_2_0 [ 0 ] ;
+_rtB -> B_13_1_0 [ 0 ] = _rtP -> P_11 * _rtB -> B_13_0_0 [ 0 ] ; _rtB ->
+B_14_7_0 [ 0 ] = _rtB -> B_13_1_0 [ 0 ] ; _rtB -> B_13_0_0 [ 1 ] = _rtB ->
+B_14_1_0 [ 1 ] - _rtB -> B_14_2_0 [ 1 ] ; _rtB -> B_13_1_0 [ 1 ] = _rtP ->
+P_11 * _rtB -> B_13_0_0 [ 1 ] ; _rtB -> B_14_7_0 [ 1 ] = _rtB -> B_13_1_0 [ 1
+] ; _rtB -> B_13_0_0 [ 2 ] = _rtB -> B_14_1_0 [ 2 ] - _rtB -> B_14_2_0 [ 2 ]
+; _rtB -> B_13_1_0 [ 2 ] = _rtP -> P_11 * _rtB -> B_13_0_0 [ 2 ] ; _rtB ->
+B_14_7_0 [ 2 ] = _rtB -> B_13_1_0 [ 2 ] ; } else { _rtB -> B_14_7_0 [ 0 ] =
+_rtB -> B_14_4_0 [ 0 ] ; _rtB -> B_14_7_0 [ 1 ] = _rtB -> B_14_4_0 [ 1 ] ;
+_rtB -> B_14_7_0 [ 2 ] = _rtB -> B_14_4_0 [ 2 ] ; } _rtB -> B_14_8_0 [ 0 ] =
+_rtB -> B_18_215_0 [ 3 ] * _rtB -> B_18_215_0 [ 3 ] ; _rtB -> B_14_8_0 [ 1 ]
+= _rtB -> B_18_215_0 [ 1 ] * _rtB -> B_18_215_0 [ 1 ] ; _rtB -> B_14_8_0 [ 2
+] = _rtB -> B_18_215_0 [ 2 ] * _rtB -> B_18_215_0 [ 2 ] ; if (
 ssIsMajorTimeStep ( S ) != 0 ) { _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 0 ] = _rtB -> B_16_7_0 [ 0 ] >= _rtP
--> P_29 ? 1 : _rtB -> B_16_7_0 [ 0 ] > _rtP -> P_30 ? 0 : - 1 ; _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 1 ] = _rtB -> B_16_7_0 [ 1 ] >= _rtP
--> P_29 ? 1 : _rtB -> B_16_7_0 [ 1 ] > _rtP -> P_30 ? 0 : - 1 ; _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 2 ] = _rtB -> B_16_7_0 [ 2 ] >= _rtP
--> P_29 ? 1 : _rtB -> B_16_7_0 [ 2 ] > _rtP -> P_30 ? 0 : - 1 ; } _rtB ->
-B_16_9_0 [ 0 ] = _rtDW -> Saturationtoavoidnegativesqrt_MODE_c [ 0 ] == 1 ?
-_rtP -> P_29 : _rtDW -> Saturationtoavoidnegativesqrt_MODE_c [ 0 ] == - 1 ?
-_rtP -> P_30 : _rtB -> B_16_7_0 [ 0 ] ; _rtB -> B_16_9_0 [ 1 ] = _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 1 ] == 1 ? _rtP -> P_29 : _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 1 ] == - 1 ? _rtP -> P_30 : _rtB ->
-B_16_7_0 [ 1 ] ; _rtB -> B_16_9_0 [ 2 ] = _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 2 ] == 1 ? _rtP -> P_29 : _rtDW ->
-Saturationtoavoidnegativesqrt_MODE_c [ 2 ] == - 1 ? _rtP -> P_30 : _rtB ->
-B_16_7_0 [ 2 ] ; if ( ssIsMajorTimeStep ( S ) != 0 ) { if ( _rtDW ->
-Sqrt_DWORK1 != 0 ) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; _rtDW
--> Sqrt_DWORK1 = 0 ; } _rtB -> B_16_10_0 [ 0 ] = muDoubleScalarSqrt ( _rtB ->
-B_16_9_0 [ 0 ] ) ; _rtB -> B_16_10_0 [ 1 ] = muDoubleScalarSqrt ( _rtB ->
-B_16_9_0 [ 1 ] ) ; _rtB -> B_16_10_0 [ 2 ] = muDoubleScalarSqrt ( _rtB ->
-B_16_9_0 [ 2 ] ) ; srUpdateBC ( _rtDW -> TrueRMS_SubsysRanBC_i ) ; } else {
-if ( _rtB -> B_16_9_0 [ 0 ] < 0.0 ) { _rtB -> B_16_10_0 [ 0 ] = -
-muDoubleScalarSqrt ( muDoubleScalarAbs ( _rtB -> B_16_9_0 [ 0 ] ) ) ; } else
-{ _rtB -> B_16_10_0 [ 0 ] = muDoubleScalarSqrt ( _rtB -> B_16_9_0 [ 0 ] ) ; }
-if ( _rtB -> B_16_9_0 [ 0 ] < 0.0 ) { _rtDW -> Sqrt_DWORK1 = 1 ; } if ( _rtB
--> B_16_9_0 [ 1 ] < 0.0 ) { _rtB -> B_16_10_0 [ 1 ] = - muDoubleScalarSqrt (
-muDoubleScalarAbs ( _rtB -> B_16_9_0 [ 1 ] ) ) ; } else { _rtB -> B_16_10_0 [
-1 ] = muDoubleScalarSqrt ( _rtB -> B_16_9_0 [ 1 ] ) ; } if ( _rtB -> B_16_9_0
-[ 1 ] < 0.0 ) { _rtDW -> Sqrt_DWORK1 = 1 ; } if ( _rtB -> B_16_9_0 [ 2 ] <
-0.0 ) { _rtB -> B_16_10_0 [ 2 ] = - muDoubleScalarSqrt ( muDoubleScalarAbs (
-_rtB -> B_16_9_0 [ 2 ] ) ) ; } else { _rtB -> B_16_10_0 [ 2 ] =
-muDoubleScalarSqrt ( _rtB -> B_16_9_0 [ 2 ] ) ; } if ( _rtB -> B_16_9_0 [ 2 ]
-< 0.0 ) { _rtDW -> Sqrt_DWORK1 = 1 ; } } } isHit = ssIsSampleHit ( S , 1 , 0
-) ; if ( ( isHit != 0 ) && ( ssIsMajorTimeStep ( S ) != 0 ) ) { if ( _rtB ->
-B_20_219_0 ) { if ( ! _rtDW -> RMS_MODE_h ) { if ( ssGetTaskTime ( S , 1 ) !=
+Saturationtoavoidnegativesqrt_MODE_c [ 0 ] = _rtB -> B_14_7_0 [ 0 ] >= _rtP
+-> P_18 ? 1 : _rtB -> B_14_7_0 [ 0 ] > _rtP -> P_19 ? 0 : - 1 ; _rtDW ->
+Saturationtoavoidnegativesqrt_MODE_c [ 1 ] = _rtB -> B_14_7_0 [ 1 ] >= _rtP
+-> P_18 ? 1 : _rtB -> B_14_7_0 [ 1 ] > _rtP -> P_19 ? 0 : - 1 ; _rtDW ->
+Saturationtoavoidnegativesqrt_MODE_c [ 2 ] = _rtB -> B_14_7_0 [ 2 ] >= _rtP
+-> P_18 ? 1 : _rtB -> B_14_7_0 [ 2 ] > _rtP -> P_19 ? 0 : - 1 ; srUpdateBC (
+_rtDW -> TrueRMS_SubsysRanBC_i ) ; } } isHit = ssIsSampleHit ( S , 1 , 0 ) ;
+if ( ( isHit != 0 ) && ( ssIsMajorTimeStep ( S ) != 0 ) ) { if ( _rtB ->
+B_18_640_0 ) { if ( ! _rtDW -> RMS_MODE ) { if ( ssGetTaskTime ( S , 1 ) !=
 ssGetTStart ( S ) ) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } (
 void ) memset ( & ( ( ( XDis_InverterModulesInParallel_T * )
-ssGetContStateDisabled ( S ) ) -> integrator_CSTATE_o ) , 0 , 6 * sizeof (
-boolean_T ) ) ; _rtDW -> RMS_MODE_h = true ; } } else { if ( _rtDW ->
-RMS_MODE_h ) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( void )
-memset ( & ( ( ( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled
-( S ) ) -> integrator_CSTATE_o ) , 1 , 6 * sizeof ( boolean_T ) ) ; _rtDW ->
-RMS_MODE_h = false ; } } } if ( _rtDW -> RMS_MODE_h ) { _rtB -> B_14_0_0 [ 0
-] = _rtX -> integrator_CSTATE_o [ 0 ] ; _rtB -> B_14_0_0 [ 1 ] = _rtX ->
-integrator_CSTATE_o [ 1 ] ; _rtB -> B_14_0_0 [ 2 ] = _rtX ->
-integrator_CSTATE_o [ 2 ] ; { real_T * * uBuffer = ( real_T * * ) & _rtDW ->
-TransportDelay_PWORK_f . TUbufferPtrs [ 0 ] ; real_T * * tBuffer = ( real_T *
-* ) & _rtDW -> TransportDelay_PWORK_f . TUbufferPtrs [ 3 ] ; real_T simTime =
-ssGetT ( S ) ; real_T tMinusDelay ; { int_T i1 ; real_T * y0 = & _rtB ->
-B_14_1_0 [ 0 ] ; int_T * iw_Tail = & _rtDW -> TransportDelay_IWORK_j . Tail [
-0 ] ; int_T * iw_Head = & _rtDW -> TransportDelay_IWORK_j . Head [ 0 ] ;
-int_T * iw_Last = & _rtDW -> TransportDelay_IWORK_j . Last [ 0 ] ; int_T *
-iw_CircularBufSize = & _rtDW -> TransportDelay_IWORK_j . CircularBufSize [ 0
-] ; for ( i1 = 0 ; i1 < 3 ; i1 ++ ) { tMinusDelay = ( ( _rtP -> P_4 > 0.0 ) ?
-_rtP -> P_4 : 0.0 ) ; tMinusDelay = simTime - tMinusDelay ; y0 [ i1 ] =
-InverterModulesInParallel_acc_rt_TDelayInterpolate ( tMinusDelay , 0.0 , *
-tBuffer , * uBuffer , iw_CircularBufSize [ i1 ] , & iw_Last [ i1 ] , iw_Tail
-[ i1 ] , iw_Head [ i1 ] , _rtP -> P_5 , 0 , ( boolean_T ) ( ssIsMinorTimeStep
-( S ) && ( ssGetTimeOfLastOutput ( S ) == ssGetT ( S ) ) ) ) ; tBuffer ++ ;
-uBuffer ++ ; } } } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) {
-_rtB -> B_14_3_0 = _rtP -> P_6 ; } rtb_B_20_21_0 = ( ssGetT ( S ) >= _rtB ->
-B_14_3_0 ) ; isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB
--> B_14_5_0 [ 0 ] = _rtDW -> Memory_PreviousInput_e [ 0 ] ; _rtB -> B_14_5_0
-[ 1 ] = _rtDW -> Memory_PreviousInput_e [ 1 ] ; _rtB -> B_14_5_0 [ 2 ] =
-_rtDW -> Memory_PreviousInput_e [ 2 ] ; } if ( rtb_B_20_21_0 ) { _rtB ->
-B_13_0_0 [ 0 ] = _rtB -> B_14_0_0 [ 0 ] - _rtB -> B_14_1_0 [ 0 ] ; _rtB ->
-B_13_1_0 [ 0 ] = _rtP -> P_1 * _rtB -> B_13_0_0 [ 0 ] ; _rtB -> B_14_7_0 [ 0
-] = _rtB -> B_13_1_0 [ 0 ] ; _rtB -> B_13_0_0 [ 1 ] = _rtB -> B_14_0_0 [ 1 ]
-- _rtB -> B_14_1_0 [ 1 ] ; _rtB -> B_13_1_0 [ 1 ] = _rtP -> P_1 * _rtB ->
-B_13_0_0 [ 1 ] ; _rtB -> B_14_7_0 [ 1 ] = _rtB -> B_13_1_0 [ 1 ] ; _rtB ->
-B_13_0_0 [ 2 ] = _rtB -> B_14_0_0 [ 2 ] - _rtB -> B_14_1_0 [ 2 ] ; _rtB ->
-B_13_1_0 [ 2 ] = _rtP -> P_1 * _rtB -> B_13_0_0 [ 2 ] ; _rtB -> B_14_7_0 [ 2
-] = _rtB -> B_13_1_0 [ 2 ] ; } else { _rtB -> B_14_7_0 [ 0 ] = _rtB ->
-B_14_5_0 [ 0 ] ; _rtB -> B_14_7_0 [ 1 ] = _rtB -> B_14_5_0 [ 1 ] ; _rtB ->
-B_14_7_0 [ 2 ] = _rtB -> B_14_5_0 [ 2 ] ; } _rtB -> B_14_8_0 [ 0 ] = _rtX ->
-integrator_CSTATE_a [ 0 ] ; _rtB -> B_14_8_0 [ 1 ] = _rtX ->
-integrator_CSTATE_a [ 1 ] ; _rtB -> B_14_8_0 [ 2 ] = _rtX ->
-integrator_CSTATE_a [ 2 ] ; { real_T * * uBuffer = ( real_T * * ) & _rtDW ->
-TransportDelay_PWORK_i . TUbufferPtrs [ 0 ] ; real_T * * tBuffer = ( real_T *
-* ) & _rtDW -> TransportDelay_PWORK_i . TUbufferPtrs [ 3 ] ; real_T simTime =
-ssGetT ( S ) ; real_T tMinusDelay ; { int_T i1 ; real_T * y0 = & _rtB ->
-B_14_9_0 [ 0 ] ; int_T * iw_Tail = & _rtDW -> TransportDelay_IWORK_d . Tail [
-0 ] ; int_T * iw_Head = & _rtDW -> TransportDelay_IWORK_d . Head [ 0 ] ;
-int_T * iw_Last = & _rtDW -> TransportDelay_IWORK_d . Last [ 0 ] ; int_T *
-iw_CircularBufSize = & _rtDW -> TransportDelay_IWORK_d . CircularBufSize [ 0
-] ; for ( i1 = 0 ; i1 < 3 ; i1 ++ ) { tMinusDelay = ( ( _rtP -> P_9 > 0.0 ) ?
-_rtP -> P_9 : 0.0 ) ; tMinusDelay = simTime - tMinusDelay ; y0 [ i1 ] =
-InverterModulesInParallel_acc_rt_TDelayInterpolate ( tMinusDelay , 0.0 , *
-tBuffer , * uBuffer , iw_CircularBufSize [ i1 ] , & iw_Last [ i1 ] , iw_Tail
-[ i1 ] , iw_Head [ i1 ] , _rtP -> P_10 , 0 , ( boolean_T ) (
-ssIsMinorTimeStep ( S ) && ( ssGetTimeOfLastOutput ( S ) == ssGetT ( S ) ) )
-) ; tBuffer ++ ; uBuffer ++ ; } } } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if
-( isHit != 0 ) { _rtB -> B_14_11_0 = _rtP -> P_11 ; } rtb_B_20_21_0 = (
-ssGetT ( S ) >= _rtB -> B_14_11_0 ) ; isHit = ssIsSampleHit ( S , 1 , 0 ) ;
-if ( isHit != 0 ) { _rtB -> B_14_13_0 [ 0 ] = _rtDW -> Memory_PreviousInput_m
-[ 0 ] ; _rtB -> B_14_13_0 [ 1 ] = _rtDW -> Memory_PreviousInput_m [ 1 ] ;
-_rtB -> B_14_13_0 [ 2 ] = _rtDW -> Memory_PreviousInput_m [ 2 ] ; } if (
-rtb_B_20_21_0 ) { _rtB -> B_12_0_0 [ 0 ] = _rtB -> B_14_8_0 [ 0 ] - _rtB ->
-B_14_9_0 [ 0 ] ; _rtB -> B_12_1_0 [ 0 ] = _rtP -> P_0 * _rtB -> B_12_0_0 [ 0
-] ; _rtB -> B_14_15_0 [ 0 ] = _rtB -> B_12_1_0 [ 0 ] ; _rtB -> B_12_0_0 [ 1 ]
-= _rtB -> B_14_8_0 [ 1 ] - _rtB -> B_14_9_0 [ 1 ] ; _rtB -> B_12_1_0 [ 1 ] =
-_rtP -> P_0 * _rtB -> B_12_0_0 [ 1 ] ; _rtB -> B_14_15_0 [ 1 ] = _rtB ->
-B_12_1_0 [ 1 ] ; _rtB -> B_12_0_0 [ 2 ] = _rtB -> B_14_8_0 [ 2 ] - _rtB ->
-B_14_9_0 [ 2 ] ; _rtB -> B_12_1_0 [ 2 ] = _rtP -> P_0 * _rtB -> B_12_0_0 [ 2
-] ; _rtB -> B_14_15_0 [ 2 ] = _rtB -> B_12_1_0 [ 2 ] ; } else { _rtB ->
-B_14_15_0 [ 0 ] = _rtB -> B_14_13_0 [ 0 ] ; _rtB -> B_14_15_0 [ 1 ] = _rtB ->
-B_14_13_0 [ 1 ] ; _rtB -> B_14_15_0 [ 2 ] = _rtB -> B_14_13_0 [ 2 ] ; } _rtB
--> B_14_16_0 [ 0 ] . re = _rtB -> B_14_7_0 [ 0 ] ; _rtB -> B_14_16_0 [ 0 ] .
-im = _rtB -> B_14_15_0 [ 0 ] ; _rtB -> B_14_16_0 [ 1 ] . re = _rtB ->
-B_14_7_0 [ 1 ] ; _rtB -> B_14_16_0 [ 1 ] . im = _rtB -> B_14_15_0 [ 1 ] ;
-_rtB -> B_14_16_0 [ 2 ] . re = _rtB -> B_14_7_0 [ 2 ] ; _rtB -> B_14_16_0 [ 2
-] . im = _rtB -> B_14_15_0 [ 2 ] ; rtb_B_20_200_0 = muDoubleScalarSin ( _rtP
--> P_15 * ssGetTaskTime ( S , 0 ) + _rtP -> P_16 ) * _rtP -> P_13 + _rtP ->
-P_14 ; _rtB -> B_14_19_0 [ 0 ] = _rtB -> B_20_215_0 [ 3 ] * rtb_B_20_200_0 ;
-_rtB -> B_14_19_0 [ 1 ] = _rtB -> B_20_215_0 [ 1 ] * rtb_B_20_200_0 ; _rtB ->
-B_14_19_0 [ 2 ] = _rtB -> B_20_215_0 [ 2 ] * rtb_B_20_200_0 ; rtb_B_20_200_0
-= muDoubleScalarSin ( _rtP -> P_19 * ssGetTaskTime ( S , 0 ) + _rtP -> P_20 )
-* _rtP -> P_17 + _rtP -> P_18 ; _rtB -> B_14_21_0 [ 0 ] = _rtB -> B_20_215_0
-[ 3 ] * rtb_B_20_200_0 ; _rtB -> B_14_21_0 [ 1 ] = _rtB -> B_20_215_0 [ 1 ] *
-rtb_B_20_200_0 ; _rtB -> B_14_21_0 [ 2 ] = _rtB -> B_20_215_0 [ 2 ] *
-rtb_B_20_200_0 ; _rtB -> B_14_22_0 [ 0 ] = _rtP -> P_21 * muDoubleScalarHypot
-( _rtB -> B_14_16_0 [ 0 ] . re , _rtB -> B_14_16_0 [ 0 ] . im ) ; _rtB ->
-B_14_22_0 [ 1 ] = _rtP -> P_21 * muDoubleScalarHypot ( _rtB -> B_14_16_0 [ 1
-] . re , _rtB -> B_14_16_0 [ 1 ] . im ) ; _rtB -> B_14_22_0 [ 2 ] = _rtP ->
-P_21 * muDoubleScalarHypot ( _rtB -> B_14_16_0 [ 2 ] . re , _rtB -> B_14_16_0
-[ 2 ] . im ) ; if ( ssIsMajorTimeStep ( S ) != 0 ) { srUpdateBC ( _rtDW ->
-RMS_SubsysRanBC_n ) ; } } if ( _rtB -> B_20_217_0 ) { _rtB -> B_20_221_0 [ 0
-] = _rtB -> B_16_10_0 [ 0 ] ; _rtB -> B_20_221_0 [ 1 ] = _rtB -> B_16_10_0 [
-1 ] ; _rtB -> B_20_221_0 [ 2 ] = _rtB -> B_16_10_0 [ 2 ] ; } else { _rtB ->
-B_20_221_0 [ 0 ] = _rtB -> B_14_22_0 [ 0 ] ; _rtB -> B_20_221_0 [ 1 ] = _rtB
--> B_14_22_0 [ 1 ] ; _rtB -> B_20_221_0 [ 2 ] = _rtB -> B_14_22_0 [ 2 ] ; }
-isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { { if ( ( _rtDW ->
-HiddenToAsyncQueue_InsertedFor_RMS_at_outport_0_PWORK . AQHandles || _rtDW ->
-HiddenToAsyncQueue_InsertedFor_RMS_at_outport_0_PWORK . SlioLTF ) &&
-ssGetLogOutput ( S ) ) { sdiSlioSdiWriteSignal ( _rtDW ->
-HiddenToAsyncQueue_InsertedFor_RMS_at_outport_0_PWORK . AQHandles , _rtDW ->
-HiddenToAsyncQueue_InsertedFor_RMS_at_outport_0_PWORK . SlioLTF , 0 ,
-ssGetTaskTime ( S , 1 ) , ( void * ) & _rtB -> B_20_221_0 [ 0 ] ) ; } } }
-isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { if ( _rtB ->
-B_20_215_0 [ 25 ] > _rtP -> P_157 ) { _rtB -> B_20_223_0 = _rtP -> P_157 ; }
-else if ( _rtB -> B_20_215_0 [ 25 ] < _rtP -> P_158 ) { _rtB -> B_20_223_0 =
-_rtP -> P_158 ; } else { _rtB -> B_20_223_0 = _rtB -> B_20_215_0 [ 25 ] ; }
-if ( _rtB -> B_20_215_0 [ 23 ] > _rtP -> P_159 ) { _rtB -> B_20_224_0 = _rtP
--> P_159 ; } else if ( _rtB -> B_20_215_0 [ 23 ] < _rtP -> P_160 ) { _rtB ->
-B_20_224_0 = _rtP -> P_160 ; } else { _rtB -> B_20_224_0 = _rtB -> B_20_215_0
-[ 23 ] ; } if ( _rtB -> B_20_215_0 [ 24 ] > _rtP -> P_161 ) { _rtB ->
-B_20_225_0 = _rtP -> P_161 ; } else if ( _rtB -> B_20_215_0 [ 24 ] < _rtP ->
-P_162 ) { _rtB -> B_20_225_0 = _rtP -> P_162 ; } else { _rtB -> B_20_225_0 =
-_rtB -> B_20_215_0 [ 24 ] ; } if ( _rtB -> B_20_215_0 [ 51 ] > _rtP -> P_163
-) { _rtB -> B_20_226_0 = _rtP -> P_163 ; } else if ( _rtB -> B_20_215_0 [ 51
-] < _rtP -> P_164 ) { _rtB -> B_20_226_0 = _rtP -> P_164 ; } else { _rtB ->
-B_20_226_0 = _rtB -> B_20_215_0 [ 51 ] ; } if ( _rtB -> B_20_215_0 [ 49 ] >
-_rtP -> P_165 ) { _rtB -> B_20_227_0 = _rtP -> P_165 ; } else if ( _rtB ->
-B_20_215_0 [ 49 ] < _rtP -> P_166 ) { _rtB -> B_20_227_0 = _rtP -> P_166 ; }
-else { _rtB -> B_20_227_0 = _rtB -> B_20_215_0 [ 49 ] ; } if ( _rtB ->
-B_20_215_0 [ 50 ] > _rtP -> P_167 ) { _rtB -> B_20_228_0 = _rtP -> P_167 ; }
-else if ( _rtB -> B_20_215_0 [ 50 ] < _rtP -> P_168 ) { _rtB -> B_20_228_0 =
-_rtP -> P_168 ; } else { _rtB -> B_20_228_0 = _rtB -> B_20_215_0 [ 50 ] ; }
-ssCallAccelRunBlock ( S , 20 , 229 , SS_CALL_MDL_OUTPUTS ) ;
-ssCallAccelRunBlock ( S , 20 , 230 , SS_CALL_MDL_OUTPUTS ) ; if ( _rtB ->
-B_20_215_0 [ 26 ] > _rtP -> P_169 ) { _rtB -> B_20_231_0 = _rtP -> P_169 ; }
-else if ( _rtB -> B_20_215_0 [ 26 ] < _rtP -> P_170 ) { _rtB -> B_20_231_0 =
-_rtP -> P_170 ; } else { _rtB -> B_20_231_0 = _rtB -> B_20_215_0 [ 26 ] ; }
-if ( _rtB -> B_20_215_0 [ 52 ] > _rtP -> P_171 ) { _rtB -> B_20_232_0 = _rtP
--> P_171 ; } else if ( _rtB -> B_20_215_0 [ 52 ] < _rtP -> P_172 ) { _rtB ->
-B_20_232_0 = _rtP -> P_172 ; } else { _rtB -> B_20_232_0 = _rtB -> B_20_215_0
-[ 52 ] ; } ssCallAccelRunBlock ( S , 20 , 233 , SS_CALL_MDL_OUTPUTS ) ; }
-ssCallAccelRunBlock ( S , 20 , 300 , SS_CALL_MDL_OUTPUTS ) ;
-ssCallAccelRunBlock ( S , 20 , 502 , SS_CALL_MDL_OUTPUTS ) ; isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( ( isHit != 0 ) && ( ssIsMajorTimeStep ( S
-) != 0 ) ) { if ( _rtB -> B_20_640_0 ) { if ( ! _rtDW -> RMS_MODE ) { if (
-ssGetTaskTime ( S , 1 ) != ssGetTStart ( S ) ) {
-ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } ( void ) memset ( & ( (
-( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
-integrator_CSTATE_e ) , 0 , 2 * sizeof ( boolean_T ) ) ; _rtDW -> RMS_MODE =
-true ; } } else { if ( _rtDW -> RMS_MODE ) {
-ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( void ) memset ( & ( ( (
-XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
+ssGetContStateDisabled ( S ) ) -> integrator_CSTATE_e ) , 0 , 2 * sizeof (
+boolean_T ) ) ; _rtDW -> RMS_MODE = true ; } } else { if ( _rtDW -> RMS_MODE
+) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( void ) memset ( & (
+( ( XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
 integrator_CSTATE_e ) , 1 , 2 * sizeof ( boolean_T ) ) ; _rtDW -> RMS_MODE =
-false ; } } } if ( _rtDW -> RMS_MODE ) { _rtB -> B_17_3_0 = (
-muDoubleScalarSin ( _rtP -> P_36 * ssGetTaskTime ( S , 0 ) + _rtP -> P_37 ) *
-_rtP -> P_34 + _rtP -> P_35 ) * _rtB -> B_20_215_0 [ 4 ] ; _rtB -> B_17_5_0 =
-( muDoubleScalarSin ( _rtP -> P_40 * ssGetTaskTime ( S , 0 ) + _rtP -> P_41 )
-* _rtP -> P_38 + _rtP -> P_39 ) * _rtB -> B_20_215_0 [ 4 ] ; if (
+false ; } } } if ( _rtDW -> RMS_MODE ) { _rtB -> B_15_3_0 = (
+muDoubleScalarSin ( _rtP -> P_25 * ssGetTaskTime ( S , 0 ) + _rtP -> P_26 ) *
+_rtP -> P_23 + _rtP -> P_24 ) * _rtB -> B_18_215_0 [ 4 ] ; _rtB -> B_15_5_0 =
+( muDoubleScalarSin ( _rtP -> P_29 * ssGetTaskTime ( S , 0 ) + _rtP -> P_30 )
+* _rtP -> P_27 + _rtP -> P_28 ) * _rtB -> B_18_215_0 [ 4 ] ; if (
 ssIsMajorTimeStep ( S ) != 0 ) { srUpdateBC ( _rtDW -> RMS_SubsysRanBC ) ; }
 } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( ( isHit != 0 ) && (
-ssIsMajorTimeStep ( S ) != 0 ) ) { if ( _rtB -> B_20_639_0 ) { if ( ! _rtDW
+ssIsMajorTimeStep ( S ) != 0 ) ) { if ( _rtB -> B_18_639_0 ) { if ( ! _rtDW
 -> TrueRMS_MODE ) { if ( ssGetTaskTime ( S , 1 ) != ssGetTStart ( S ) ) {
 ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; } ( (
 XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
@@ -629,48 +552,48 @@ integrator_CSTATE = 0 ; _rtDW -> TrueRMS_MODE = true ; } } else { if ( _rtDW
 -> TrueRMS_MODE ) { ssSetBlockStateForSolverChangedAtMajorStep ( S ) ; ( (
 XDis_InverterModulesInParallel_T * ) ssGetContStateDisabled ( S ) ) ->
 integrator_CSTATE = 1 ; _rtDW -> TrueRMS_MODE = false ; } } } if ( _rtDW ->
-TrueRMS_MODE ) { _rtB -> B_19_1_0 = _rtX -> integrator_CSTATE ; { real_T * *
+TrueRMS_MODE ) { _rtB -> B_17_1_0 = _rtX -> integrator_CSTATE ; { real_T * *
 uBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK . TUbufferPtrs [ 0 ]
 ; real_T * * tBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK .
 TUbufferPtrs [ 1 ] ; real_T simTime = ssGetT ( S ) ; real_T tMinusDelay =
-simTime - _rtP -> P_45 ; _rtB -> B_19_2_0 =
+simTime - _rtP -> P_34 ; _rtB -> B_17_2_0 =
 InverterModulesInParallel_acc_rt_TDelayInterpolate ( tMinusDelay , 0.0 , *
 tBuffer , * uBuffer , _rtDW -> TransportDelay_IWORK . CircularBufSize , &
 _rtDW -> TransportDelay_IWORK . Last , _rtDW -> TransportDelay_IWORK . Tail ,
-_rtDW -> TransportDelay_IWORK . Head , _rtP -> P_46 , 0 , ( boolean_T ) (
+_rtDW -> TransportDelay_IWORK . Head , _rtP -> P_35 , 0 , ( boolean_T ) (
 ssIsMinorTimeStep ( S ) && ( ssGetTimeOfLastOutput ( S ) == ssGetT ( S ) ) )
 ) ; } isHit = ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtB ->
-B_19_3_0 = _rtP -> P_47 ; _rtB -> B_19_4_0 = _rtDW -> Memory_PreviousInput ;
-} if ( ssGetT ( S ) >= _rtB -> B_19_3_0 ) { _rtB -> B_18_0_0 = _rtB ->
-B_19_1_0 - _rtB -> B_19_2_0 ; _rtB -> B_18_1_0 = _rtP -> P_42 * _rtB ->
-B_18_0_0 ; _rtB -> B_19_7_0 = _rtB -> B_18_1_0 ; } else { _rtB -> B_19_7_0 =
-_rtB -> B_19_4_0 ; } _rtB -> B_19_8_0 = _rtB -> B_20_215_0 [ 4 ] * _rtB ->
-B_20_215_0 [ 4 ] ; if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW ->
-Saturationtoavoidnegativesqrt_MODE = _rtB -> B_19_7_0 >= _rtP -> P_49 ? 1 :
-_rtB -> B_19_7_0 > _rtP -> P_50 ? 0 : - 1 ; srUpdateBC ( _rtDW ->
+B_17_3_0 = _rtP -> P_36 ; _rtB -> B_17_4_0 = _rtDW -> Memory_PreviousInput ;
+} if ( ssGetT ( S ) >= _rtB -> B_17_3_0 ) { _rtB -> B_16_0_0 = _rtB ->
+B_17_1_0 - _rtB -> B_17_2_0 ; _rtB -> B_16_1_0 = _rtP -> P_31 * _rtB ->
+B_16_0_0 ; _rtB -> B_17_7_0 = _rtB -> B_16_1_0 ; } else { _rtB -> B_17_7_0 =
+_rtB -> B_17_4_0 ; } _rtB -> B_17_8_0 = _rtB -> B_18_215_0 [ 4 ] * _rtB ->
+B_18_215_0 [ 4 ] ; if ( ssIsMajorTimeStep ( S ) != 0 ) { _rtDW ->
+Saturationtoavoidnegativesqrt_MODE = _rtB -> B_17_7_0 >= _rtP -> P_38 ? 1 :
+_rtB -> B_17_7_0 > _rtP -> P_39 ? 0 : - 1 ; srUpdateBC ( _rtDW ->
 TrueRMS_SubsysRanBC ) ; } } isHit = ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit
-!= 0 ) { ssCallAccelRunBlock ( S , 20 , 659 , SS_CALL_MDL_OUTPUTS ) ; }
+!= 0 ) { ssCallAccelRunBlock ( S , 18 , 659 , SS_CALL_MDL_OUTPUTS ) ; }
 UNUSED_PARAMETER ( tid ) ; } static void mdlOutputsTID4 ( SimStruct * S ,
 int_T tid ) { B_InverterModulesInParallel_T * _rtB ;
 P_InverterModulesInParallel_T * _rtP ; _rtP = ( (
 P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) ; _rtB = ( (
 B_InverterModulesInParallel_T * ) _ssGetModelBlockIO ( S ) ) ; _rtB ->
-B_20_0_0 = _rtP -> P_51 ; _rtB -> B_20_3_0 = _rtP -> P_53 ; _rtB -> B_20_17_0
-= _rtP -> P_65 ; _rtB -> B_20_22_0 = _rtP -> P_67 ; _rtB -> B_20_28_0 = _rtP
--> P_68 ; _rtB -> B_20_37_0 = _rtP -> P_72 ; _rtB -> B_20_43_0 = _rtP -> P_73
-; _rtB -> B_20_46_0 = _rtP -> P_75 ; _rtB -> B_20_60_0 = _rtP -> P_87 ; _rtB
--> B_20_65_0 = _rtP -> P_89 ; _rtB -> B_20_71_0 = _rtP -> P_90 ; _rtB ->
-B_20_80_0 = _rtP -> P_94 ; _rtB -> B_20_86_0 = _rtP -> P_95 ; _rtB ->
-B_20_97_0 = _rtP -> P_103 ; _rtB -> B_20_103_0 = _rtP -> P_104 ; _rtB ->
-B_20_112_0 = _rtP -> P_108 ; _rtB -> B_20_118_0 = _rtP -> P_109 ; _rtB ->
-B_20_129_0 = _rtP -> P_117 ; _rtB -> B_20_135_0 = _rtP -> P_118 ; _rtB ->
-B_20_144_0 = _rtP -> P_122 ; _rtB -> B_20_150_0 = _rtP -> P_123 ; _rtB ->
-B_20_161_0 = _rtP -> P_131 ; _rtB -> B_20_167_0 = _rtP -> P_132 ; _rtB ->
-B_20_176_0 = _rtP -> P_136 ; _rtB -> B_20_182_0 = _rtP -> P_137 ; _rtB ->
-B_20_193_0 = _rtP -> P_145 ; _rtB -> B_20_199_0 = _rtP -> P_146 ; _rtB ->
-B_20_208_0 = _rtP -> P_150 ; _rtB -> B_20_217_0 = ( _rtP -> P_156 != 0.0 ) ;
-_rtB -> B_20_219_0 = ! _rtB -> B_20_217_0 ; _rtB -> B_20_639_0 = ( _rtP ->
-P_173 != 0.0 ) ; _rtB -> B_20_640_0 = ! _rtB -> B_20_639_0 ; UNUSED_PARAMETER
+B_18_0_0 = _rtP -> P_40 ; _rtB -> B_18_3_0 = _rtP -> P_42 ; _rtB -> B_18_17_0
+= _rtP -> P_54 ; _rtB -> B_18_22_0 = _rtP -> P_56 ; _rtB -> B_18_28_0 = _rtP
+-> P_57 ; _rtB -> B_18_37_0 = _rtP -> P_61 ; _rtB -> B_18_43_0 = _rtP -> P_62
+; _rtB -> B_18_46_0 = _rtP -> P_64 ; _rtB -> B_18_60_0 = _rtP -> P_76 ; _rtB
+-> B_18_65_0 = _rtP -> P_78 ; _rtB -> B_18_71_0 = _rtP -> P_79 ; _rtB ->
+B_18_80_0 = _rtP -> P_83 ; _rtB -> B_18_86_0 = _rtP -> P_84 ; _rtB ->
+B_18_97_0 = _rtP -> P_92 ; _rtB -> B_18_103_0 = _rtP -> P_93 ; _rtB ->
+B_18_112_0 = _rtP -> P_97 ; _rtB -> B_18_118_0 = _rtP -> P_98 ; _rtB ->
+B_18_129_0 = _rtP -> P_106 ; _rtB -> B_18_135_0 = _rtP -> P_107 ; _rtB ->
+B_18_144_0 = _rtP -> P_111 ; _rtB -> B_18_150_0 = _rtP -> P_112 ; _rtB ->
+B_18_161_0 = _rtP -> P_120 ; _rtB -> B_18_167_0 = _rtP -> P_121 ; _rtB ->
+B_18_176_0 = _rtP -> P_125 ; _rtB -> B_18_182_0 = _rtP -> P_126 ; _rtB ->
+B_18_193_0 = _rtP -> P_134 ; _rtB -> B_18_199_0 = _rtP -> P_135 ; _rtB ->
+B_18_208_0 = _rtP -> P_139 ; _rtB -> B_18_634_0 = ( _rtP -> P_155 != 0.0 ) ;
+_rtB -> B_18_635_0 = ! _rtB -> B_18_634_0 ; _rtB -> B_18_639_0 = ( _rtP ->
+P_156 != 0.0 ) ; _rtB -> B_18_640_0 = ! _rtB -> B_18_639_0 ; UNUSED_PARAMETER
 ( tid ) ; }
 #define MDL_UPDATE
 static void mdlUpdate ( SimStruct * S , int_T tid ) { int32_T isHit ;
@@ -680,15 +603,15 @@ DW_InverterModulesInParallel_T * ) ssGetRootDWork ( S ) ) ; _rtP = ( (
 P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) ; _rtB = ( (
 B_InverterModulesInParallel_T * ) _ssGetModelBlockIO ( S ) ) ; isHit =
 ssIsSampleHit ( S , 2 , 0 ) ; if ( isHit != 0 ) { _rtDW -> DelayInput2_DSTATE
-= _rtB -> B_20_26_0 ; _rtDW -> DelayInput2_DSTATE_c = _rtB -> B_20_41_0 ;
-_rtDW -> DelayInput2_DSTATE_o = _rtB -> B_20_69_0 ; _rtDW ->
-DelayInput2_DSTATE_k = _rtB -> B_20_84_0 ; _rtDW -> DelayInput2_DSTATE_d =
-_rtB -> B_20_101_0 ; _rtDW -> DelayInput2_DSTATE_f = _rtB -> B_20_116_0 ;
-_rtDW -> DelayInput2_DSTATE_n = _rtB -> B_20_133_0 ; _rtDW ->
-DelayInput2_DSTATE_m = _rtB -> B_20_148_0 ; _rtDW -> DelayInput2_DSTATE_dc =
-_rtB -> B_20_165_0 ; _rtDW -> DelayInput2_DSTATE_dj = _rtB -> B_20_180_0 ;
-_rtDW -> DelayInput2_DSTATE_a = _rtB -> B_20_197_0 ; _rtDW ->
-DelayInput2_DSTATE_nv = _rtB -> B_20_212_0 ; ssCallAccelRunBlock ( S , 20 ,
+= _rtB -> B_18_26_0 ; _rtDW -> DelayInput2_DSTATE_c = _rtB -> B_18_41_0 ;
+_rtDW -> DelayInput2_DSTATE_o = _rtB -> B_18_69_0 ; _rtDW ->
+DelayInput2_DSTATE_k = _rtB -> B_18_84_0 ; _rtDW -> DelayInput2_DSTATE_d =
+_rtB -> B_18_101_0 ; _rtDW -> DelayInput2_DSTATE_f = _rtB -> B_18_116_0 ;
+_rtDW -> DelayInput2_DSTATE_n = _rtB -> B_18_133_0 ; _rtDW ->
+DelayInput2_DSTATE_m = _rtB -> B_18_148_0 ; _rtDW -> DelayInput2_DSTATE_dc =
+_rtB -> B_18_165_0 ; _rtDW -> DelayInput2_DSTATE_dj = _rtB -> B_18_180_0 ;
+_rtDW -> DelayInput2_DSTATE_a = _rtB -> B_18_197_0 ; _rtDW ->
+DelayInput2_DSTATE_nv = _rtB -> B_18_212_0 ; ssCallAccelRunBlock ( S , 18 ,
 214 , SS_CALL_MDL_UPDATE ) ; } if ( _rtDW -> TrueRMS_MODE_e ) { { real_T * *
 uBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK_b . TUbufferPtrs [ 0
 ] ; real_T * * tBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK_b .
@@ -702,11 +625,11 @@ InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
 TransportDelay_IWORK_g . CircularBufSize [ 0 ] , & _rtDW ->
 TransportDelay_IWORK_g . Tail [ 0 ] , & _rtDW -> TransportDelay_IWORK_g .
 Head [ 0 ] , & _rtDW -> TransportDelay_IWORK_g . Last [ 0 ] , simTime - _rtP
--> P_25 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
+-> P_14 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
 TransportDelay_IWORK_g . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
 "tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
 TransportDelay_IWORK_g . Head [ 0 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_g . Head [ 0 ] ] = _rtB -> B_16_1_0 [ 0 ] ; _rtDW ->
+TransportDelay_IWORK_g . Head [ 0 ] ] = _rtB -> B_14_1_0 [ 0 ] ; _rtDW ->
 TransportDelay_IWORK_g . Head [ 1 ] = ( ( _rtDW -> TransportDelay_IWORK_g .
 Head [ 1 ] < ( _rtDW -> TransportDelay_IWORK_g . CircularBufSize [ 1 ] - 1 )
 ) ? ( _rtDW -> TransportDelay_IWORK_g . Head [ 1 ] + 1 ) : 0 ) ; if ( _rtDW
@@ -716,11 +639,11 @@ InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
 TransportDelay_IWORK_g . CircularBufSize [ 1 ] , & _rtDW ->
 TransportDelay_IWORK_g . Tail [ 1 ] , & _rtDW -> TransportDelay_IWORK_g .
 Head [ 1 ] , & _rtDW -> TransportDelay_IWORK_g . Last [ 1 ] , simTime - _rtP
--> P_25 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
+-> P_14 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
 TransportDelay_IWORK_g . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
 "tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
 TransportDelay_IWORK_g . Head [ 1 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_g . Head [ 1 ] ] = _rtB -> B_16_1_0 [ 1 ] ; _rtDW ->
+TransportDelay_IWORK_g . Head [ 1 ] ] = _rtB -> B_14_1_0 [ 1 ] ; _rtDW ->
 TransportDelay_IWORK_g . Head [ 2 ] = ( ( _rtDW -> TransportDelay_IWORK_g .
 Head [ 2 ] < ( _rtDW -> TransportDelay_IWORK_g . CircularBufSize [ 2 ] - 1 )
 ) ? ( _rtDW -> TransportDelay_IWORK_g . Head [ 2 ] + 1 ) : 0 ) ; if ( _rtDW
@@ -730,113 +653,15 @@ InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
 TransportDelay_IWORK_g . CircularBufSize [ 2 ] , & _rtDW ->
 TransportDelay_IWORK_g . Tail [ 2 ] , & _rtDW -> TransportDelay_IWORK_g .
 Head [ 2 ] , & _rtDW -> TransportDelay_IWORK_g . Last [ 2 ] , simTime - _rtP
--> P_25 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
+-> P_14 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
 TransportDelay_IWORK_g . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
 "tdelay memory allocation error" ) ; return ; } } ( * tBuffer ) [ _rtDW ->
 TransportDelay_IWORK_g . Head [ 2 ] ] = simTime ; ( * uBuffer ) [ _rtDW ->
-TransportDelay_IWORK_g . Head [ 2 ] ] = _rtB -> B_16_1_0 [ 2 ] ; } isHit =
+TransportDelay_IWORK_g . Head [ 2 ] ] = _rtB -> B_14_1_0 [ 2 ] ; } isHit =
 ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtDW ->
-Memory_PreviousInput_k [ 0 ] = _rtB -> B_16_7_0 [ 0 ] ; _rtDW ->
-Memory_PreviousInput_k [ 1 ] = _rtB -> B_16_7_0 [ 1 ] ; _rtDW ->
-Memory_PreviousInput_k [ 2 ] = _rtB -> B_16_7_0 [ 2 ] ; } } if ( _rtDW ->
-RMS_MODE_h ) { { real_T * * uBuffer = ( real_T * * ) & _rtDW ->
-TransportDelay_PWORK_f . TUbufferPtrs [ 0 ] ; real_T * * tBuffer = ( real_T *
-* ) & _rtDW -> TransportDelay_PWORK_f . TUbufferPtrs [ 3 ] ; real_T simTime =
-ssGetT ( S ) ; _rtDW -> TransportDelay_IWORK_j . Head [ 0 ] = ( ( _rtDW ->
-TransportDelay_IWORK_j . Head [ 0 ] < ( _rtDW -> TransportDelay_IWORK_j .
-CircularBufSize [ 0 ] - 1 ) ) ? ( _rtDW -> TransportDelay_IWORK_j . Head [ 0
-] + 1 ) : 0 ) ; if ( _rtDW -> TransportDelay_IWORK_j . Head [ 0 ] == _rtDW ->
-TransportDelay_IWORK_j . Tail [ 0 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_j . CircularBufSize [ 0 ] , & _rtDW ->
-TransportDelay_IWORK_j . Tail [ 0 ] , & _rtDW -> TransportDelay_IWORK_j .
-Head [ 0 ] , & _rtDW -> TransportDelay_IWORK_j . Last [ 0 ] , simTime - _rtP
--> P_4 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_j . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 0 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 0 ] ] = _rtB -> B_14_0_0 [ 0 ] ; _rtDW ->
-TransportDelay_IWORK_j . Head [ 1 ] = ( ( _rtDW -> TransportDelay_IWORK_j .
-Head [ 1 ] < ( _rtDW -> TransportDelay_IWORK_j . CircularBufSize [ 1 ] - 1 )
-) ? ( _rtDW -> TransportDelay_IWORK_j . Head [ 1 ] + 1 ) : 0 ) ; if ( _rtDW
--> TransportDelay_IWORK_j . Head [ 1 ] == _rtDW -> TransportDelay_IWORK_j .
-Tail [ 1 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_j . CircularBufSize [ 1 ] , & _rtDW ->
-TransportDelay_IWORK_j . Tail [ 1 ] , & _rtDW -> TransportDelay_IWORK_j .
-Head [ 1 ] , & _rtDW -> TransportDelay_IWORK_j . Last [ 1 ] , simTime - _rtP
--> P_4 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_j . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 1 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 1 ] ] = _rtB -> B_14_0_0 [ 1 ] ; _rtDW ->
-TransportDelay_IWORK_j . Head [ 2 ] = ( ( _rtDW -> TransportDelay_IWORK_j .
-Head [ 2 ] < ( _rtDW -> TransportDelay_IWORK_j . CircularBufSize [ 2 ] - 1 )
-) ? ( _rtDW -> TransportDelay_IWORK_j . Head [ 2 ] + 1 ) : 0 ) ; if ( _rtDW
--> TransportDelay_IWORK_j . Head [ 2 ] == _rtDW -> TransportDelay_IWORK_j .
-Tail [ 2 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_j . CircularBufSize [ 2 ] , & _rtDW ->
-TransportDelay_IWORK_j . Tail [ 2 ] , & _rtDW -> TransportDelay_IWORK_j .
-Head [ 2 ] , & _rtDW -> TransportDelay_IWORK_j . Last [ 2 ] , simTime - _rtP
--> P_4 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_j . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 2 ] ] = simTime ; ( * uBuffer ) [ _rtDW ->
-TransportDelay_IWORK_j . Head [ 2 ] ] = _rtB -> B_14_0_0 [ 2 ] ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtDW ->
-Memory_PreviousInput_e [ 0 ] = _rtB -> B_14_7_0 [ 0 ] ; _rtDW ->
-Memory_PreviousInput_e [ 1 ] = _rtB -> B_14_7_0 [ 1 ] ; _rtDW ->
-Memory_PreviousInput_e [ 2 ] = _rtB -> B_14_7_0 [ 2 ] ; } { real_T * *
-uBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK_i . TUbufferPtrs [ 0
-] ; real_T * * tBuffer = ( real_T * * ) & _rtDW -> TransportDelay_PWORK_i .
-TUbufferPtrs [ 3 ] ; real_T simTime = ssGetT ( S ) ; _rtDW ->
-TransportDelay_IWORK_d . Head [ 0 ] = ( ( _rtDW -> TransportDelay_IWORK_d .
-Head [ 0 ] < ( _rtDW -> TransportDelay_IWORK_d . CircularBufSize [ 0 ] - 1 )
-) ? ( _rtDW -> TransportDelay_IWORK_d . Head [ 0 ] + 1 ) : 0 ) ; if ( _rtDW
--> TransportDelay_IWORK_d . Head [ 0 ] == _rtDW -> TransportDelay_IWORK_d .
-Tail [ 0 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_d . CircularBufSize [ 0 ] , & _rtDW ->
-TransportDelay_IWORK_d . Tail [ 0 ] , & _rtDW -> TransportDelay_IWORK_d .
-Head [ 0 ] , & _rtDW -> TransportDelay_IWORK_d . Last [ 0 ] , simTime - _rtP
--> P_9 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_d . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 0 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 0 ] ] = _rtB -> B_14_8_0 [ 0 ] ; _rtDW ->
-TransportDelay_IWORK_d . Head [ 1 ] = ( ( _rtDW -> TransportDelay_IWORK_d .
-Head [ 1 ] < ( _rtDW -> TransportDelay_IWORK_d . CircularBufSize [ 1 ] - 1 )
-) ? ( _rtDW -> TransportDelay_IWORK_d . Head [ 1 ] + 1 ) : 0 ) ; if ( _rtDW
--> TransportDelay_IWORK_d . Head [ 1 ] == _rtDW -> TransportDelay_IWORK_d .
-Tail [ 1 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_d . CircularBufSize [ 1 ] , & _rtDW ->
-TransportDelay_IWORK_d . Tail [ 1 ] , & _rtDW -> TransportDelay_IWORK_d .
-Head [ 1 ] , & _rtDW -> TransportDelay_IWORK_d . Last [ 1 ] , simTime - _rtP
--> P_9 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_d . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 1 ] ] = simTime ; ( * uBuffer ++ ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 1 ] ] = _rtB -> B_14_8_0 [ 1 ] ; _rtDW ->
-TransportDelay_IWORK_d . Head [ 2 ] = ( ( _rtDW -> TransportDelay_IWORK_d .
-Head [ 2 ] < ( _rtDW -> TransportDelay_IWORK_d . CircularBufSize [ 2 ] - 1 )
-) ? ( _rtDW -> TransportDelay_IWORK_d . Head [ 2 ] + 1 ) : 0 ) ; if ( _rtDW
--> TransportDelay_IWORK_d . Head [ 2 ] == _rtDW -> TransportDelay_IWORK_d .
-Tail [ 2 ] ) { if ( !
-InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf ( & _rtDW ->
-TransportDelay_IWORK_d . CircularBufSize [ 2 ] , & _rtDW ->
-TransportDelay_IWORK_d . Tail [ 2 ] , & _rtDW -> TransportDelay_IWORK_d .
-Head [ 2 ] , & _rtDW -> TransportDelay_IWORK_d . Last [ 2 ] , simTime - _rtP
--> P_9 , tBuffer , uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
-TransportDelay_IWORK_d . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
-"tdelay memory allocation error" ) ; return ; } } ( * tBuffer ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 2 ] ] = simTime ; ( * uBuffer ) [ _rtDW ->
-TransportDelay_IWORK_d . Head [ 2 ] ] = _rtB -> B_14_8_0 [ 2 ] ; } isHit =
-ssIsSampleHit ( S , 1 , 0 ) ; if ( isHit != 0 ) { _rtDW ->
-Memory_PreviousInput_m [ 0 ] = _rtB -> B_14_15_0 [ 0 ] ; _rtDW ->
-Memory_PreviousInput_m [ 1 ] = _rtB -> B_14_15_0 [ 1 ] ; _rtDW ->
-Memory_PreviousInput_m [ 2 ] = _rtB -> B_14_15_0 [ 2 ] ; } } if ( _rtDW ->
+Memory_PreviousInput_k [ 0 ] = _rtB -> B_14_7_0 [ 0 ] ; _rtDW ->
+Memory_PreviousInput_k [ 1 ] = _rtB -> B_14_7_0 [ 1 ] ; _rtDW ->
+Memory_PreviousInput_k [ 2 ] = _rtB -> B_14_7_0 [ 2 ] ; } } if ( _rtDW ->
 TrueRMS_MODE ) { { real_T * * uBuffer = ( real_T * * ) & _rtDW ->
 TransportDelay_PWORK . TUbufferPtrs [ 0 ] ; real_T * * tBuffer = ( real_T * *
 ) & _rtDW -> TransportDelay_PWORK . TUbufferPtrs [ 1 ] ; real_T simTime =
@@ -847,14 +672,14 @@ CircularBufSize - 1 ) ) ? ( _rtDW -> TransportDelay_IWORK . Head + 1 ) : 0 )
 . Tail ) { if ( ! InverterModulesInParallel_acc_rt_TDelayUpdateTailOrGrowBuf
 ( & _rtDW -> TransportDelay_IWORK . CircularBufSize , & _rtDW ->
 TransportDelay_IWORK . Tail , & _rtDW -> TransportDelay_IWORK . Head , &
-_rtDW -> TransportDelay_IWORK . Last , simTime - _rtP -> P_45 , tBuffer ,
+_rtDW -> TransportDelay_IWORK . Last , simTime - _rtP -> P_34 , tBuffer ,
 uBuffer , ( NULL ) , ( boolean_T ) 0 , false , & _rtDW ->
 TransportDelay_IWORK . MaxNewBufSize ) ) { ssSetErrorStatus ( S ,
 "tdelay memory allocation error" ) ; return ; } } ( * tBuffer ) [ _rtDW ->
 TransportDelay_IWORK . Head ] = simTime ; ( * uBuffer ) [ _rtDW ->
-TransportDelay_IWORK . Head ] = _rtB -> B_19_1_0 ; } isHit = ssIsSampleHit (
+TransportDelay_IWORK . Head ] = _rtB -> B_17_1_0 ; } isHit = ssIsSampleHit (
 S , 1 , 0 ) ; if ( isHit != 0 ) { _rtDW -> Memory_PreviousInput = _rtB ->
-B_19_7_0 ; } } UNUSED_PARAMETER ( tid ) ; }
+B_17_7_0 ; } } UNUSED_PARAMETER ( tid ) ; }
 #define MDL_UPDATE
 static void mdlUpdateTID4 ( SimStruct * S , int_T tid ) { UNUSED_PARAMETER (
 tid ) ; }
@@ -865,27 +690,27 @@ DW_InverterModulesInParallel_T * _rtDW ; _rtDW = ( (
 DW_InverterModulesInParallel_T * ) ssGetRootDWork ( S ) ) ; _rtXdot = ( (
 XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) ) ; _rtB = ( (
 B_InverterModulesInParallel_T * ) _ssGetModelBlockIO ( S ) ) ; if ( _rtDW ->
-TrueRMS_MODE_e ) { _rtXdot -> integrator_CSTATE_c [ 0 ] = _rtB -> B_16_8_0 [
-0 ] ; _rtXdot -> integrator_CSTATE_c [ 1 ] = _rtB -> B_16_8_0 [ 1 ] ; _rtXdot
--> integrator_CSTATE_c [ 2 ] = _rtB -> B_16_8_0 [ 2 ] ; } else { { real_T *
-dx ; int_T i ; dx = & ( ( ( XDot_InverterModulesInParallel_T * ) ssGetdX ( S
-) ) -> integrator_CSTATE_c [ 0 ] ) ; for ( i = 0 ; i < 3 ; i ++ ) { dx [ i ]
-= 0.0 ; } } } if ( _rtDW -> RMS_MODE_h ) { _rtXdot -> integrator_CSTATE_o [ 0
-] = _rtB -> B_14_19_0 [ 0 ] ; _rtXdot -> integrator_CSTATE_a [ 0 ] = _rtB ->
-B_14_21_0 [ 0 ] ; _rtXdot -> integrator_CSTATE_o [ 1 ] = _rtB -> B_14_19_0 [
-1 ] ; _rtXdot -> integrator_CSTATE_a [ 1 ] = _rtB -> B_14_21_0 [ 1 ] ;
-_rtXdot -> integrator_CSTATE_o [ 2 ] = _rtB -> B_14_19_0 [ 2 ] ; _rtXdot ->
-integrator_CSTATE_a [ 2 ] = _rtB -> B_14_21_0 [ 2 ] ; } else { { real_T * dx
-; int_T i ; dx = & ( ( ( XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) )
--> integrator_CSTATE_o [ 0 ] ) ; for ( i = 0 ; i < 6 ; i ++ ) { dx [ i ] =
-0.0 ; } } } if ( _rtDW -> RMS_MODE ) { _rtXdot -> integrator_CSTATE_e = _rtB
--> B_17_5_0 ; _rtXdot -> integrator_CSTATE_i = _rtB -> B_17_3_0 ; } else { {
-real_T * dx ; int_T i ; dx = & ( ( ( XDot_InverterModulesInParallel_T * )
-ssGetdX ( S ) ) -> integrator_CSTATE_e ) ; for ( i = 0 ; i < 2 ; i ++ ) { dx
-[ i ] = 0.0 ; } } } if ( _rtDW -> TrueRMS_MODE ) { _rtXdot ->
-integrator_CSTATE = _rtB -> B_19_8_0 ; } else { ( (
-XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) ) -> integrator_CSTATE =
-0.0 ; } }
+RMS_MODE_h ) { _rtXdot -> integrator_CSTATE_a [ 0 ] = _rtB -> B_12_5_0 [ 0 ]
+; _rtXdot -> integrator_CSTATE_o [ 0 ] = _rtB -> B_12_3_0 [ 0 ] ; _rtXdot ->
+integrator_CSTATE_a [ 1 ] = _rtB -> B_12_5_0 [ 1 ] ; _rtXdot ->
+integrator_CSTATE_o [ 1 ] = _rtB -> B_12_3_0 [ 1 ] ; _rtXdot ->
+integrator_CSTATE_a [ 2 ] = _rtB -> B_12_5_0 [ 2 ] ; _rtXdot ->
+integrator_CSTATE_o [ 2 ] = _rtB -> B_12_3_0 [ 2 ] ; } else { { real_T * dx ;
+int_T i ; dx = & ( ( ( XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) )
+-> integrator_CSTATE_a [ 0 ] ) ; for ( i = 0 ; i < 6 ; i ++ ) { dx [ i ] =
+0.0 ; } } } if ( _rtDW -> TrueRMS_MODE_e ) { _rtXdot -> integrator_CSTATE_c [
+0 ] = _rtB -> B_14_8_0 [ 0 ] ; _rtXdot -> integrator_CSTATE_c [ 1 ] = _rtB ->
+B_14_8_0 [ 1 ] ; _rtXdot -> integrator_CSTATE_c [ 2 ] = _rtB -> B_14_8_0 [ 2
+] ; } else { { real_T * dx ; int_T i ; dx = & ( ( (
+XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) ) -> integrator_CSTATE_c [
+0 ] ) ; for ( i = 0 ; i < 3 ; i ++ ) { dx [ i ] = 0.0 ; } } } if ( _rtDW ->
+RMS_MODE ) { _rtXdot -> integrator_CSTATE_e = _rtB -> B_15_5_0 ; _rtXdot ->
+integrator_CSTATE_i = _rtB -> B_15_3_0 ; } else { { real_T * dx ; int_T i ;
+dx = & ( ( ( XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) ) ->
+integrator_CSTATE_e ) ; for ( i = 0 ; i < 2 ; i ++ ) { dx [ i ] = 0.0 ; } } }
+if ( _rtDW -> TrueRMS_MODE ) { _rtXdot -> integrator_CSTATE = _rtB ->
+B_17_8_0 ; } else { ( ( XDot_InverterModulesInParallel_T * ) ssGetdX ( S ) )
+-> integrator_CSTATE = 0.0 ; } }
 #define MDL_ZERO_CROSSINGS
 static void mdlZeroCrossings ( SimStruct * S ) {
 B_InverterModulesInParallel_T * _rtB ; P_InverterModulesInParallel_T * _rtP ;
@@ -894,46 +719,46 @@ _rtDW ; _rtDW = ( ( DW_InverterModulesInParallel_T * ) ssGetRootDWork ( S ) )
 ; _rtZCSV = ( ( ZCV_InverterModulesInParallel_T * ) ssGetSolverZcSignalVector
 ( S ) ) ; _rtP = ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) )
 ; _rtB = ( ( B_InverterModulesInParallel_T * ) _ssGetModelBlockIO ( S ) ) ;
-_rtZCSV -> Compare_RelopInput_ZC = _rtB -> B_20_14_0 -
-InverterModulesInParallel_rtC ( S ) -> B_20_15_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_e = _rtB -> B_20_14_0 - InverterModulesInParallel_rtC (
-S ) -> B_20_31_0 ; _rtZCSV -> Compare_RelopInput_ZC_d = _rtB -> B_20_57_0 -
-InverterModulesInParallel_rtC ( S ) -> B_20_58_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_a = _rtB -> B_20_57_0 - InverterModulesInParallel_rtC (
-S ) -> B_20_74_0 ; _rtZCSV -> Compare_RelopInput_ZC_p = _rtB -> B_20_90_0 -
-InverterModulesInParallel_rtC ( S ) -> B_20_91_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_av = _rtB -> B_20_90_0 - InverterModulesInParallel_rtC
-( S ) -> B_20_106_0 ; _rtZCSV -> Compare_RelopInput_ZC_n = _rtB -> B_20_122_0
-- InverterModulesInParallel_rtC ( S ) -> B_20_123_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_j = _rtB -> B_20_122_0 - InverterModulesInParallel_rtC
-( S ) -> B_20_138_0 ; _rtZCSV -> Compare_RelopInput_ZC_o = _rtB -> B_20_154_0
-- InverterModulesInParallel_rtC ( S ) -> B_20_155_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_i = _rtB -> B_20_154_0 - InverterModulesInParallel_rtC
-( S ) -> B_20_170_0 ; _rtZCSV -> Compare_RelopInput_ZC_f = _rtB -> B_20_186_0
-- InverterModulesInParallel_rtC ( S ) -> B_20_187_0 ; _rtZCSV ->
-Compare_RelopInput_ZC_pd = _rtB -> B_20_186_0 - InverterModulesInParallel_rtC
-( S ) -> B_20_202_0 ; if ( _rtDW -> TrueRMS_MODE_e ) { _rtZCSV ->
-Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 0 ] = _rtB -> B_16_7_0 [ 0 ] -
-_rtP -> P_29 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 0 ] =
-_rtB -> B_16_7_0 [ 0 ] - _rtP -> P_30 ; _rtZCSV ->
-Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 1 ] = _rtB -> B_16_7_0 [ 1 ] -
-_rtP -> P_29 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 1 ] =
-_rtB -> B_16_7_0 [ 1 ] - _rtP -> P_30 ; _rtZCSV ->
-Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 2 ] = _rtB -> B_16_7_0 [ 2 ] -
-_rtP -> P_29 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 2 ] =
-_rtB -> B_16_7_0 [ 2 ] - _rtP -> P_30 ; } else { { real_T * zcsv = & ( ( (
+_rtZCSV -> Compare_RelopInput_ZC = _rtB -> B_18_14_0 -
+InverterModulesInParallel_rtC ( S ) -> B_18_15_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_e = _rtB -> B_18_14_0 - InverterModulesInParallel_rtC (
+S ) -> B_18_31_0 ; _rtZCSV -> Compare_RelopInput_ZC_d = _rtB -> B_18_57_0 -
+InverterModulesInParallel_rtC ( S ) -> B_18_58_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_a = _rtB -> B_18_57_0 - InverterModulesInParallel_rtC (
+S ) -> B_18_74_0 ; _rtZCSV -> Compare_RelopInput_ZC_p = _rtB -> B_18_90_0 -
+InverterModulesInParallel_rtC ( S ) -> B_18_91_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_av = _rtB -> B_18_90_0 - InverterModulesInParallel_rtC
+( S ) -> B_18_106_0 ; _rtZCSV -> Compare_RelopInput_ZC_n = _rtB -> B_18_122_0
+- InverterModulesInParallel_rtC ( S ) -> B_18_123_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_j = _rtB -> B_18_122_0 - InverterModulesInParallel_rtC
+( S ) -> B_18_138_0 ; _rtZCSV -> Compare_RelopInput_ZC_o = _rtB -> B_18_154_0
+- InverterModulesInParallel_rtC ( S ) -> B_18_155_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_i = _rtB -> B_18_154_0 - InverterModulesInParallel_rtC
+( S ) -> B_18_170_0 ; _rtZCSV -> Compare_RelopInput_ZC_f = _rtB -> B_18_186_0
+- InverterModulesInParallel_rtC ( S ) -> B_18_187_0 ; _rtZCSV ->
+Compare_RelopInput_ZC_pd = _rtB -> B_18_186_0 - InverterModulesInParallel_rtC
+( S ) -> B_18_202_0 ; if ( _rtDW -> TrueRMS_MODE_e ) { _rtZCSV ->
+Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 0 ] = _rtB -> B_14_7_0 [ 0 ] -
+_rtP -> P_18 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 0 ] =
+_rtB -> B_14_7_0 [ 0 ] - _rtP -> P_19 ; _rtZCSV ->
+Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 1 ] = _rtB -> B_14_7_0 [ 1 ] -
+_rtP -> P_18 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 1 ] =
+_rtB -> B_14_7_0 [ 1 ] - _rtP -> P_19 ; _rtZCSV ->
+Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 2 ] = _rtB -> B_14_7_0 [ 2 ] -
+_rtP -> P_18 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC_d [ 2 ] =
+_rtB -> B_14_7_0 [ 2 ] - _rtP -> P_19 ; } else { { real_T * zcsv = & ( ( (
 ZCV_InverterModulesInParallel_T * ) ssGetSolverZcSignalVector ( S ) ) ->
 Saturationtoavoidnegativesqrt_UprLim_ZC_i [ 0 ] ) ; int_T i ; for ( i = 0 ; i
 < 6 ; i ++ ) { zcsv [ i ] = 0.0 ; } } } if ( _rtDW -> TrueRMS_MODE ) {
-_rtZCSV -> Saturationtoavoidnegativesqrt_UprLim_ZC = _rtB -> B_19_7_0 - _rtP
--> P_49 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC = _rtB ->
-B_19_7_0 - _rtP -> P_50 ; } else { { real_T * zcsv = & ( ( (
+_rtZCSV -> Saturationtoavoidnegativesqrt_UprLim_ZC = _rtB -> B_17_7_0 - _rtP
+-> P_38 ; _rtZCSV -> Saturationtoavoidnegativesqrt_LwrLim_ZC = _rtB ->
+B_17_7_0 - _rtP -> P_39 ; } else { { real_T * zcsv = & ( ( (
 ZCV_InverterModulesInParallel_T * ) ssGetSolverZcSignalVector ( S ) ) ->
 Saturationtoavoidnegativesqrt_UprLim_ZC ) ; int_T i ; for ( i = 0 ; i < 2 ; i
 ++ ) { zcsv [ i ] = 0.0 ; } } } } static void mdlInitializeSizes ( SimStruct
-* S ) { ssSetChecksumVal ( S , 0 , 334351492U ) ; ssSetChecksumVal ( S , 1 ,
-545527817U ) ; ssSetChecksumVal ( S , 2 , 1301060072U ) ; ssSetChecksumVal (
-S , 3 , 2968489587U ) ; { mxArray * slVerStructMat = NULL ; mxArray *
+* S ) { ssSetChecksumVal ( S , 0 , 2693451532U ) ; ssSetChecksumVal ( S , 1 ,
+2302314703U ) ; ssSetChecksumVal ( S , 2 , 3546223786U ) ; ssSetChecksumVal (
+S , 3 , 3056272162U ) ; { mxArray * slVerStructMat = NULL ; mxArray *
 slStrMat = mxCreateString ( "simulink" ) ; char slVerChar [ 10 ] ; int status
 = mexCallMATLAB ( 1 , & slVerStructMat , 1 , & slStrMat , "ver" ) ; if (
 status == 0 ) { mxArray * slVerMat = mxGetField ( slVerStructMat , 0 ,
@@ -954,8 +779,8 @@ P_InverterModulesInParallel_T ) ) { static char msg [ 256 ] ; sprintf ( msg ,
 "not match for accelerator mex file." ) ; } } _ssSetModelRtp ( S , ( real_T *
 ) & InverterModulesInParallel_rtDefaultP ) ; _ssSetConstBlockIO ( S , &
 InverterModulesInParallel_rtInvariant ) ; rt_InitInfAndNaN ( sizeof ( real_T
-) ) ; ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) -> P_29 =
-rtInf ; ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) -> P_49 =
+) ) ; ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) -> P_18 =
+rtInf ; ( ( P_InverterModulesInParallel_T * ) ssGetModelRtp ( S ) ) -> P_38 =
 rtInf ; } static void mdlInitializeSampleTimes ( SimStruct * S ) {
 slAccRegPrmChangeFcn ( S , mdlOutputsTID4 ) ; } static void mdlTerminate (
 SimStruct * S ) { }
