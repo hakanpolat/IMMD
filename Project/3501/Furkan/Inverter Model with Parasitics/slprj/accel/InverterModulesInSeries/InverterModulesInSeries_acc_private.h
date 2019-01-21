@@ -3,6 +3,7 @@
 #define RTW_HEADER_InverterModulesInSeries_acc_private_h_
 #include "rtwtypes.h"
 #include "multiword_types.h"
+#include "InverterModulesInSeries_acc.h"
 #if !defined(ss_VALIDATE_MEMORY)
 #define ss_VALIDATE_MEMORY(S, ptr)   if(!(ptr)) {\
   ssSetErrorStatus(S, RT_MEMORY_ALLOCATION_ERROR);\
@@ -33,5 +34,49 @@ tMinusDelay , real_T tStart , real_T * tBuf , real_T * uBuf , int_T bufSz ,
 int_T * lastIdx , int_T oldestIdx , int_T newIdx , real_T initOutput ,
 boolean_T discrete , boolean_T minorStepAndTAtLastMajorOutput ) ; extern
 real_T look1_pbinlxpw ( real_T u0 , const real_T bp0 [ ] , const real_T table
-[ ] , uint32_T prevIndex [ ] , uint32_T maxIndex ) ;
+[ ] , uint32_T prevIndex [ ] , uint32_T maxIndex ) ; void
+InverterModulesInSeries_RMS_Init ( SimStruct * S ,
+B_RMS_InverterModulesInSeries_T * localB , DW_RMS_InverterModulesInSeries_T *
+localDW , P_RMS_InverterModulesInSeries_T * localP ,
+X_RMS_InverterModulesInSeries_T * localX ) ; void
+InverterModulesInSeries_RMS_Deriv ( SimStruct * S ,
+B_RMS_InverterModulesInSeries_T * localB , DW_RMS_InverterModulesInSeries_T *
+localDW , XDot_RMS_InverterModulesInSeries_T * localXdot ) ; void
+InverterModulesInSeries_RMS_Disable ( SimStruct * S ,
+DW_RMS_InverterModulesInSeries_T * localDW ) ; void
+InverterModulesInSeries_RMS_Update ( SimStruct * S ,
+B_RMS_InverterModulesInSeries_T * localB , DW_RMS_InverterModulesInSeries_T *
+localDW , P_RMS_InverterModulesInSeries_T * localP ) ; void
+InverterModulesInSeries_RMS ( SimStruct * S , boolean_T rtu_Enable , real_T
+rtu_In , const real_T rtu_In_k [ 2 ] , B_RMS_InverterModulesInSeries_T *
+localB , DW_RMS_InverterModulesInSeries_T * localDW ,
+P_RMS_InverterModulesInSeries_T * localP , X_RMS_InverterModulesInSeries_T *
+localX , XDis_RMS_InverterModulesInSeries_T * localXdis ) ; void
+InverterModulesInSeries_TrueRMS_Init ( SimStruct * S ,
+B_TrueRMS_InverterModulesInSeries_T * localB ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ,
+P_TrueRMS_InverterModulesInSeries_T * localP ,
+X_TrueRMS_InverterModulesInSeries_T * localX ) ; void
+InverterModulesInSeries_TrueRMS_Deriv ( SimStruct * S ,
+B_TrueRMS_InverterModulesInSeries_T * localB ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ,
+XDot_TrueRMS_InverterModulesInSeries_T * localXdot ) ; void
+InverterModulesInSeries_TrueRMS_ZC ( SimStruct * S ,
+B_TrueRMS_InverterModulesInSeries_T * localB ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ,
+P_TrueRMS_InverterModulesInSeries_T * localP ,
+ZCV_TrueRMS_InverterModulesInSeries_T * localZCSV ) ; void
+InverterModulesInSeries_TrueRMS_Disable ( SimStruct * S ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ) ; void
+InverterModulesInSeries_TrueRMS_Update ( SimStruct * S ,
+B_TrueRMS_InverterModulesInSeries_T * localB ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ,
+P_TrueRMS_InverterModulesInSeries_T * localP ) ; void
+InverterModulesInSeries_TrueRMS ( SimStruct * S , boolean_T rtu_Enable ,
+real_T rtu_In , const real_T rtu_In_j [ 2 ] ,
+B_TrueRMS_InverterModulesInSeries_T * localB ,
+DW_TrueRMS_InverterModulesInSeries_T * localDW ,
+P_TrueRMS_InverterModulesInSeries_T * localP ,
+X_TrueRMS_InverterModulesInSeries_T * localX ,
+XDis_TrueRMS_InverterModulesInSeries_T * localXdis ) ;
 #endif
