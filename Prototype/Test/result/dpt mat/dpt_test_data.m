@@ -16,16 +16,18 @@ Vds4 = VarName4;
 %%
 figure;
 hold all;
-plot(timeaxis1*1e9,Vds1,'b-','Linewidth',2);
-plot(timeaxis2*1e9,Vds2,'r-','Linewidth',2);
+plot(timeaxis1*1e9,Vds1,'r-','Linewidth',2);
+%plot(timeaxis2*1e9,Vds2,'r-','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (ns)','FontSize',12,'FontWeight','Bold')
 ylabel('Vds (Volts)','FontSize',12,'FontWeight','Bold')
 xlim([-20 100]);
-ylim([-50 400]);
-legend('250V, 8.4A, Top, Turn-off','275V, 9.4A, Top, Turn-off');
+ylim([-50 500]);
+% legend('250V, 8.4A, Top, Turn-off','275V, 9.4A, Top, Turn-off');
 
+
+%%
 figure;
 hold all;
 plot(timeaxis3*1e9,Vds3,'k-','Linewidth',2);
