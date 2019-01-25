@@ -1,5 +1,5 @@
 %% Initial Configurations
-clear all;clc;
+% clear all;clc;
 
 %% Source parameters
 PulseAmplitude = 9;
@@ -21,7 +21,7 @@ Dbot = 0.1; % duty cycle of bot
 DelayTop = 0;
 DelayBot = 50;
 Module1Phase = 0; %in degree
-Module2Phase = 0; %in degree
+Module2Phase = 180; %in degree
 
 Ls = 0.9e-9;
 Ld = 0.9e-9;
@@ -56,14 +56,14 @@ CNegToCap = 31.2e-9;
 % ADrainToLoad = 1e-15;
 % APosToCap = 1e-15;
 % ANegToCap = 1e-15;
-
+% 
 % BCapToDrain = 1e-15;
 % BCapToSource = 1e-15;
 % BSourceToLoad = 1e-15;
 % BDrainToLoad = 1e-15;
 % BPosToCap = 1e-15;
 % BNegToCap = 1e-15;
-
+% 
 % CCapToDrain = 1e-15;
 % CCapToSource = 1e-15;
 % CSourceToLoad = 1e-15;
@@ -72,11 +72,11 @@ CNegToCap = 31.2e-9;
 % CNegToCap = 1e-15;
 
 %Module 1 Connection Inductances
-POS1 = 100e-9;
-NEG1 = 100e-9;
+POS1 = 100e-15;
+NEG1 = 100e-15;
 %Module 2 Connection Inductances
-POS2 = 100e-9;
-NEG2 = 100e-9;
+POS2 = 100e-15;
+NEG2 = 100e-15;
 
 %% Load parameters
 Vdc = Vmodule*series;
@@ -109,13 +109,13 @@ Vin = Vdc + Idc*Rin;
 
 %% Capacitances
 % Module 1
-C1A = 1.5e-6;
-C1B = 1.5e-6;
-C1C = 1.5e-6;
+C1A = 5e-6;
+C1B = 5e-6;
+C1C = 5e-6;
 % Module 2
-C2A = 8.5e-6;
-C2B = 8.5e-6;
-C2C = 8.5e-6;
+C2A = 5e-6;
+C2B = 5e-6;
+C2C = 5e-6;
 %% Initial Conditions
 % % Phase A Top
 % CurrAT = 0;
