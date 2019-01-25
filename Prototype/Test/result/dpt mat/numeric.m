@@ -180,21 +180,22 @@ legend('Phase C, Load on Top, Top switch');
 figure;
 hold all;
 plot(Vdc,phA_loadB_bot,'ro-','Linewidth',2);
-plot(Vdc,phA_loadT_top,'bo-','Linewidth',2);
+%plot(Vdc,phA_loadT_top,'bo-','Linewidth',2);
 plot(Vdc,phB_loadB_bot,'kx-','Linewidth',2);
-plot(Vdc,phB_loadT_top,'mx-','Linewidth',2);
-plot(Vdc2,phC_loadT_top,'g+-','Linewidth',2);
+%plot(Vdc,phB_loadT_top,'mx-','Linewidth',2);
+%plot(Vdc2,phC_loadT_top,'g+-','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('DC Link Voltage (Volts)','FontSize',12,'FontWeight','Bold')
 ylabel('Vds peak (Volts)','FontSize',12,'FontWeight','Bold')
 xlim([0 300]);
 ylim([0 500]);
-legend('Phase A, Load on Bottom, Bottom switch',...
-    'Phase A, Load on Top, Top switch',...
-    'Phase B, Load on Bottom, Bottom switch',...
-    'Phase B, Load on Top, Top switch',...
-    'Phase C, Load on Top, Top switch');
+% legend('Phase A, Load on Bottom, Bottom switch',...
+%     'Phase A, Load on Top, Top switch',...
+%     'Phase B, Load on Bottom, Bottom switch',...
+%     'Phase B, Load on Top, Top switch',...
+%     'Phase C, Load on Top, Top switch');
+legend('Phase A', 'Phase B');
 
 
 
