@@ -1,39 +1,67 @@
-### Ocak 2019
+### Şubat 2019
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı 1 tane dizilecek (+2 DSP)
-  * Güç kartı 3 tane daha dizilecek
-  * DPT testleri tamamlanacak
-  * Inverter testi GaN yavaşlatılarak yapılacak
-  * Güç kartı soğutucu ile yük altında test (bkz: [Test](https://github.com/mesutto/IMMD/tree/master/Prototype/Test))
+  * Kontrol kartı testleri yapılacak
+  * Güç kartı 1 tane dizilecek
+  * 3-faz Inverter testi (kart dizilirse)
+  * Full-bridge ile termal test
 2. GaN Gardaşları
   * PCB layout tasarımı
 3. V.1. Motor
   * Montaj
 4. V.1. Mekanik
   * Mekanik parçaların üretimi
-  * Kasa kesilecek
 5. V.1. Soğutucu
   * Heat sink uzunluğu gözden geçirilecek
 
 ##### Makale çalışmaları
-1. **ECCE 2019: "IMMD PCB effect of parasitic inductances" üzerine yazılacak (Digest, 15 Ocak), [tık](http://www.ieee-ecce.org/2019/).**
+1. **ECCE 2019: Gönderildi**
+2. **PEDS 2019: Kabul edildi. Final paper 15 Mart**
 2. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 3. Dergi (MDPI Electronics)
 
 ##### Tez çalışmaları
 1. Outline tamamlanacak
-2. Tezin yazımına başlanacak
-9. GaN ile ilgili çalışmalar
-  * Matematik modelinin half-bridge şeklinde geliştirilmesi
-  * Loss modellemesi
-  * PCB'ler arası endüktanslar çıkarılacak
-  * Endüktansların 4 modülde etkileri incelenecek
+2. Modüler motor sürücü dengesizlikleri
 
 ##### Proje, rapor, satın almalar
 1. 3501
-  * Hizmetten aktarım yapılacak (avans)
+  * Avans kapatılacak
+2. BAP
+  * 3.Gelişme Raporu (Mart 2018-Eylül 2018)
+
+________
+
+
+### Ocak 2019
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * **Kontrol kartı 1 tane dizildi (+2 DSP)**
+  * **DPT testleri tamamlandı**
+  * **Inverter testi GaN yavaşlatılarak yapıldı. 275V'ta 10 sn sonra yandı.**
+2. GaN Gardaşları
+  * **PCB layout tasarımı devam**
+3. V.1. Motor
+  * **Sarımlar yapıldı.**
+4. V.1. Mekanik
+  * **Mekanik parçaların üretimi yapılıyor.**
+  * **Kasa kedildi.**
+5. V.1. Soğutucu
+
+##### Makale çalışmaları
+1. **ECCE 2019: "IMMD PCB effect of parasitic inductances" üzerine yazıldı (Digest, 15 Ocak), [tık](http://www.ieee-ecce.org/2019/).**
+2. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+3. **Dergi (MDPI Electronics): Abstract**
+
+##### Tez çalışmaları
+1. **Modüler motor sürücü dengesizlikleri inceleniyor**
+
+##### Proje, rapor, satın almalar
+1. 3501
+  * **Hizmet (avans)**
+  * **Sarf (avans)**
   * Avans kapatılacak
 2. BAP
   * 3.Gelişme Raporu (Mart 2018-Eylül 2018)
