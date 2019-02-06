@@ -57,7 +57,7 @@ V9 JunctionBot 0 {temp}
 .option temp=150
 .param VBUS = 270
 .param ISW=11.3
-.param Rgon=20
+.param Rgon=15
 .param Rgoff = 2
 .param VDRV_P=6
 .param VDRV_N=3
