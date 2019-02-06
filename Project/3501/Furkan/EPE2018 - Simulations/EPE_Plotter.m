@@ -1,16 +1,16 @@
 %EPE - 2018 - GaN Plots
 %% Static Calculator
 Vgs_static = -10:1:6;
-Vds_ch = 0:0.1:475;
+Vds_ch = -20:0.01:0;
 cur = 4.5057; % To be updated
 K = cur * 0.8 * (273/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
 slp = 2;
-    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(25 - 25))) / 295 + 1e-4;
-    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(25 - 25))) * 18.2 / 295) + 1e-4;
+    Rs = 3.6 * 0.238 * 0.82 * (1 - (-0.0135*(150 - 25))) / 295 + 1e-4;
+    Rd = (3.6/4) * (0.95*0.82*(1 - (-0.0135*(150 - 25))) * 18.2 / 295) + 1e-4;
 for GateIndex = 1:17    % Ids static = Ichan | Vds = Vch + Ich * (Rd + Rs)
-    for i=1:((475/0.1)+1)
+    for i=1:((20/0.01)+1)
         GS = Vgs_static(GateIndex);
         DS = Vds_ch(i);
         GD = GS - DS;
@@ -61,8 +61,8 @@ grid on
 for j=[8,13,14,17]
     plot((Vds_static(j,:)), Ids_static(j,:),'Linewidth',2.0);
 end
-xlim([0 415]);
-ylim([0 60]);
+xlim([-10 0]);
+ylim([-20 0]);
 xlabel('V_d_s(V)');
 ylabel('I_d_s(A)');
 title({'I_d_s vs V_d_s Curve of Top Switch During Turn ON'})

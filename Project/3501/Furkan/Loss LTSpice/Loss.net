@@ -1,0 +1,73 @@
+* D:\GitHub Repositories\IMMD\Project\3501\Furkan\Loss LTSpice\Loss.asc
+L3 N016 N026 {L_DPT}
+R1 N008 N007 {Rgon}
+R2 N008 N010 {Rgoff}
+L10 N007 N006 {L_GATE}
+L11 N010 N009 {L_GATE}
+R3 N027 N023 {Rgon}
+R4 N027 N029 {Rgoff}
+L12 N023 N022 {L_GATE}
+L13 N029 N028 {L_GATE}
+S1 N006 N002 N003 N004 SW_GDH
+S2 N004 N009 N004 N003 SW_GDL
+S3 N022 N015 N017 N021 SW_GDH
+S4 N021 N028 N021 N017 SW_GDL
+V2 N002 N001 {VDRV_P}
+V3 N001 N004 {VDRV_N}
+V4 N015 N024 {VDRV_P}
+V5 N024 N021 {VDRV_N}
+V6 N003 N004 PULSE(-1 1 {DT} 1n 1n {T_ON-2*DT} {T_P} 2)
+V7 N017 N021 PULSE(1 -1 0 1n 1n {T_ON} {T_P} 2)
+XU2 N027 BotDrain 0 N024 JunctionBot JunctionBot GS66508B_L3V2
+XU1 N008 TopDrain TopSource N001 JunctionTop JunctionTop GS66508B_L3V2
+L1 TopSource N016 3.724n
+L2 N016 BotDrain 3.724n
+C1 N005 N025 5e-6 IC={VBUS} Rser=23e-3 Lser=19.9e-9
+L4 N011 N005 29.8n Rser=1037u
+L5 N026 N025 48.6n Rser=1422u
+L6 TopDrain N005 7.14n Rser=854u
+L7 N025 0 5.658n Rser=664u
+V1 N011 N026 {VBUS}
+C2 N014 N020 0.1µ Rser=17.5m Lser=0.75n IC={VBUS}
+C3 N013 N019 0.1µ Rser=17.5m Lser=0.75n IC={VBUS}
+C4 N012 N018 0.1µ Rser=17.5m Lser=0.75n IC={VBUS}
+L8 N014 TopDrain 10n
+L9 N013 TopDrain 10n
+L14 N012 TopDrain 10n
+L15 0 N018 12n
+L16 0 N019 12n
+L17 0 N020 12n
+V8 JunctionTop 0 {temp}
+V9 JunctionBot 0 {temp}
+.model SW_GDH VSWITCH Roff=1e6 Ron=2 Voff=0 Von=1
+.model SW_GDL VSWITCH Roff=1e6 Ron=4 Voff=0 Von=1
+.tran 0 8U 0
+.option ITL1 = 500
+.option ITL2 = 500
+.option ITL4 = 500
+.option RELTOL = 0.01
+.option ABSTOL=1E-09
+.option CHGTOL=1E-12
+.option VNTOL=1E-6
+.option GMIN=1E-15
+.option TRTOL=1
+.option noopiter
+.option gminsteps=0
+.option topologycheck=0
+.option temp=150
+.param VBUS = 270
+.param ISW=11.3
+.param Rgon=20
+.param Rgoff = 2
+.param VDRV_P=6
+.param VDRV_N=3
+.param DT=100n
+.param T_ON=4U
+.param L_DPT=VBUS*(T_ON-2*DT)/ISW
+.param T_P = 6U
+.param L_GATE = 3N
+.param LS_EX = 10p
+.param L_DS=3n
+.lib GaN_LTspice_GS66508B_L3V2.lib
+.backanno
+.end
