@@ -5,7 +5,7 @@
   * Kontrol kartı testleri yapılacak
   * Güç kartı 1 tane dizilecek
   * 3-faz Inverter testi (kart dizilirse)
-  * Full-bridge ile termal test
+  * **Full-bridge ile termal test yapıldı. DPT'ye geri dönülecek (20 Ohm)**
 2. GaN Gardaşları
   * PCB layout tasarımı
 3. V.1. Motor
@@ -24,6 +24,7 @@
 ##### Tez çalışmaları
 1. Outline tamamlanacak
 2. Modüler motor sürücü dengesizlikleri
+3. **Loss hesabı yapıldı**
 
 ##### Proje, rapor, satın almalar
 1. 3501
