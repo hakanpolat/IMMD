@@ -21,7 +21,7 @@ C_SRCS += \
 ../DSP2833x_PieCtrl.c \
 ../DSP2833x_PieVect.c \
 ../DSP2833x_SysCtrl.c \
-../Double\ Pulse\ Test\ (TripZone).c 
+../Double\ Pulse\ Test\ (Chopper).c 
 
 C_DEPS += \
 ./DSP2833x_CpuTimers.d \
@@ -30,7 +30,7 @@ C_DEPS += \
 ./DSP2833x_PieCtrl.d \
 ./DSP2833x_PieVect.d \
 ./DSP2833x_SysCtrl.d \
-./Double\ Pulse\ Test\ (TripZone).d 
+./Double\ Pulse\ Test\ (Chopper).d 
 
 OBJS += \
 ./DSP2833x_ADC_cal.obj \
@@ -42,7 +42,7 @@ OBJS += \
 ./DSP2833x_PieVect.obj \
 ./DSP2833x_SysCtrl.obj \
 ./DSP2833x_usDelay.obj \
-./Double\ Pulse\ Test\ (TripZone).obj 
+./Double\ Pulse\ Test\ (Chopper).obj 
 
 ASM_DEPS += \
 ./DSP2833x_ADC_cal.d \
@@ -59,7 +59,7 @@ OBJS__QUOTED += \
 "DSP2833x_PieVect.obj" \
 "DSP2833x_SysCtrl.obj" \
 "DSP2833x_usDelay.obj" \
-"Double Pulse Test (TripZone).obj" 
+"Double Pulse Test (Chopper).obj" 
 
 C_DEPS__QUOTED += \
 "DSP2833x_CpuTimers.d" \
@@ -68,7 +68,7 @@ C_DEPS__QUOTED += \
 "DSP2833x_PieCtrl.d" \
 "DSP2833x_PieVect.d" \
 "DSP2833x_SysCtrl.d" \
-"Double Pulse Test (TripZone).d" 
+"Double Pulse Test (Chopper).d" 
 
 ASM_DEPS__QUOTED += \
 "DSP2833x_ADC_cal.d" \
@@ -87,6 +87,6 @@ C_SRCS__QUOTED += \
 "../DSP2833x_PieCtrl.c" \
 "../DSP2833x_PieVect.c" \
 "../DSP2833x_SysCtrl.c" \
-"../Double Pulse Test (TripZone).c" 
+"../Double Pulse Test (Chopper).c" 
 
 
