@@ -2,6 +2,7 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
+  * **Kontrol kartı test planı yapıldı.**
   * Kontrol kartı testleri yapılacak
   * Güç kartı 1 tane dizilecek
   * 3-faz Inverter testi (kart dizilirse)
@@ -30,7 +31,7 @@
 1. 3501
   * Avans kapatılacak
 2. BAP
-  * 3.Gelişme Raporu (Mart 2018-Eylül 2018)
+  * **3.Gelişme Raporu Taslağı oluşturuldu**
 
 ________
 
