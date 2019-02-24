@@ -3,18 +3,19 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * **Kontrol kartı test planı yapıldı.**
-  * Kontrol kartı testleri yapılacak
-  * Güç kartı 1 tane dizilecek
-  * 3-faz Inverter testi (kart dizilirse)
+  * **Kontrol kartı testlerine başlandı. Flyback çalıştı ve patladı. Hata tespit edildi. Malzeme alınacak. [Malzeme listesi](https://docs.google.com/spreadsheets/d/1yYd4jG9k6lppbEI8Sx3rW8ZVwk8tipui_LQqaIk5rZo/edit#gid=0)**
+  * Güç kartı 1 tane dizilecek => 3-faz Inverter testi yapılacak
   * **Full-bridge ile termal test yapıldı. DPT'ye geri dönülecek (20 Ohm)**
+  * DPT testleri ile farklı Ron değerlerinde farklı noktalardaki osilasyonlara bakılacak.
+  * Versiyon 1.2 gate driver kartı
 2. GaN Gardaşları
   * PCB layout tasarımı
 3. V.1. Motor
-  * Montaj
+  * **Montaj yapılıyor**
 4. V.1. Mekanik
-  * Mekanik parçaların üretimi
+  * **Mekanik parçaların üretimi yapıldı**
 5. V.1. Soğutucu
-  * Heat sink uzunluğu gözden geçirilecek
+  * **Heat sink uzunluğu gözden geçirildi. Şimdilik bu şekilde kalacak. Yeni PCB'de değerlendirilecek.**
 
 ##### Makale çalışmaları
 1. **ECCE 2019: Gönderildi**
@@ -24,14 +25,16 @@
 
 ##### Tez çalışmaları
 1. Outline tamamlanacak
-2. Modüler motor sürücü dengesizlikleri
+2. Modüler motor sürücü dengesizlikleri üzerine simulasyonlar
 3. **Loss hesabı yapıldı**
 
 ##### Proje, rapor, satın almalar
 1. 3501
   * Avans kapatılacak
+  * [Malzeme listesi](https://docs.google.com/spreadsheets/d/1yYd4jG9k6lppbEI8Sx3rW8ZVwk8tipui_LQqaIk5rZo/edit#gid=0)
 2. BAP
   * **3.Gelişme Raporu Taslağı oluşturuldu**
+  * 3.Gelişme Raporu teslim edilecek.
 
 ________
 
