@@ -1,17 +1,43 @@
+### Mart 2019
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * Kontrol kartı testleri tamamlanacak
+  * Kontrol kartı DSP yazılımı hazırlanacak
+  * Versiyon 1.2 gate driver kartı tasarımı tamamlanacak, üretilecek
+2. GaN Gardaşları
+  * PCB layout tasarımı için toplantı yapılacak
+3. V.1. Motor
+  * Test düzeneği hazırlanacak
+  * Jeneratör modda testlere başlanacak.
+
+##### Makale çalışmaları
+1. PEDS 2019: Kabul edildi. Final paper 15 Mart submission
+2. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+
+##### Tez çalışmaları
+1. Outline tamamlanacak
+2. Modüler motor sürücü dengesizlikleri üzerine simulasyonlara devam edilecek
+
+##### Proje, rapor, satın almalar
+1. BAP
+  * 3.Gelişme Raporu teslim edilecek.
+________
+
 ### Şubat 2019
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * **Kontrol kartı test planı yapıldı.**
-  * **Kontrol kartı testlerine başlandı. Flyback çalıştı ve patladı. Hata tespit edildi. Malzeme alınacak. [Malzeme listesi](https://docs.google.com/spreadsheets/d/1yYd4jG9k6lppbEI8Sx3rW8ZVwk8tipui_LQqaIk5rZo/edit#gid=0)**
-  * Güç kartı 1 tane dizilecek => 3-faz Inverter testi yapılacak
-  * **Full-bridge ile termal test yapıldı. DPT'ye geri dönülecek (20 Ohm)**
-  * DPT testleri ile farklı Ron değerlerinde farklı noktalardaki osilasyonlara bakılacak.
-  * Versiyon 1.2 gate driver kartı
+  * **Kontrol kartı testlerine başlandı. Flyback çalıştı ve patladı. Hata tespit edildi. Malzeme sipariş edildi. [Malzeme listesi](https://docs.google.com/spreadsheets/d/1yYd4jG9k6lppbEI8Sx3rW8ZVwk8tipui_LQqaIk5rZo/edit#gid=0)**
+  * **Güç kartı 1 tane dizilecek => 3-faz Inverter testi yapılacak => Yeni kart tasarımı yapılacak**
+  * **Full-bridge ile termal test yapıldı. DPT'ye geri dönüldü (20 Ohm)**
+  * **DPT testleri ile farklı Ron değerlerinde farklı noktalardaki osilasyonlara bakılıyor**
+  * **Versiyon 1.2 gate driver kartına başlandı**
 2. GaN Gardaşları
   * PCB layout tasarımı
 3. V.1. Motor
-  * **Montaj yapılıyor**
+  * **Montaj yapıldı**
 4. V.1. Mekanik
   * **Mekanik parçaların üretimi yapıldı**
 5. V.1. Soğutucu
@@ -21,7 +47,7 @@
 1. **ECCE 2019: Gönderildi**
 2. **PEDS 2019: Kabul edildi. Final paper 15 Mart**
 2. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
-3. Dergi (MDPI Electronics)
+3. **Dergi (MDPI Electronics) => Yeni GaN kartı için ertelendi**
 
 ##### Tez çalışmaları
 1. Outline tamamlanacak
