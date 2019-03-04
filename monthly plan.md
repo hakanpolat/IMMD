@@ -2,9 +2,11 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * Kontrol kartı testleri tamamlanacak
-  * Kontrol kartı DSP yazılımı hazırlanacak
-  * Versiyon 1.2 gate driver kartı tasarımı tamamlanacak, üretilecek
+  * **Kontrol kartı testleri:** Devam ediyor. DSP çalıştı. Gerilim ölçümleri, DC bara bağlantıları ve DSP fonksiyonlarının yerine getirilmesi kaldı.
+  * **Kontrol DSP yazılımı:** Temel LED yakma yazılımı hazırlandı, çalıştırıldı. Yazılım geliştirilecek.
+  * **Versiyon 1.2 gate driver kartı:** Testlere devam edildi. False turn-on anına bakılıyor. (Bkz: Test günlükleri)
+  * **Versiyon 1.3 gate driver kartı:** Şematik tasarımı tamamlandı. Layoutta fazlar tamamlandı. Gate drive ve diğer kısımlar kaldı.
+  * **Versiyon 1.3 gate driver kartı:** Üretilecek, dizilecek.
 2. GaN Gardaşları
   * PCB layout tasarımı için toplantı yapılacak
 3. V.1. Motor
