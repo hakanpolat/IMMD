@@ -1,29 +1,63 @@
+### Nisan 2019
+
+##### Tasarım - donanım çalışmaları
+1. V.1. PCB
+  * **Kontrol DSP yazılımı:** Yazılım geliştirilecek. Kontrol kartına aktarılacak.
+  * **Versiyon 1.3 gate driver kartı:** 2 tane Dizilecek. Temel testler yapılacak. DPT yapılacak. İnverter testleri yapılacak.
+2. GaN Gardaşları
+  * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
+3. V.1. Motor
+  * **Test düzeneği:** Hazırlanacak.
+  * **Ölçüm testleri** Yapılacak.
+  * **Jeneratör mod:** Testlere başlanacak. Endüklenen gerilimlere bakılacak.
+
+##### Makale çalışmaları
+1. **ACEMP 2019:** Makale gönderilecek.
+2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+
+##### Tez çalışmaları
+1. **Outline:** Tamamlanacak
+2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek
+
+##### Proje, rapor, satın almalar
+1. BAP
+  * **3.Gelişme Raporu** Teslim edilecek.
+2. 3501
+  * **2. Gelişme Raporu**: Teslim edilecek.
+  * **Bütçe:** Kalan bütçeye bakıldı. Yeni avans çekilecek.
+
+________
+
 ### Mart 2019
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * **Kontrol kartı testleri:** Devam ediyor. DSP çalıştı. Gerilim ölçümleri, DC bara bağlantıları ve DSP fonksiyonlarının yerine getirilmesi kaldı.
+  * **Kontrol kartı testleri:** Tamamlandı. Flyback'in yük altında testine tekrar bakılacak.
   * **Kontrol DSP yazılımı:** Temel LED yakma yazılımı hazırlandı, çalıştırıldı. Yazılım geliştirilecek.
-  * **Versiyon 1.2 gate driver kartı:** Testlere devam edildi. False turn-on anına bakılıyor. (Bkz: Test günlükleri)
-  * **Versiyon 1.3 gate driver kartı:** Şematik tasarımı tamamlandı. Layoutta fazlar tamamlandı. Gate drive ve diğer kısımlar kaldı.
-  * **Versiyon 1.3 gate driver kartı:** Üretilecek, dizilecek.
+  * **Versiyon 1.2 gate driver kartı:** Testlere devam edildi. False turn-on anına bakıldı. (Bkz: Test günlükleri)
+  * **Versiyon 1.3 gate driver kartı:** Tamamlandı. Üretime gönderildi. Dizgi gelecek ay.
 2. GaN Gardaşları
-  * PCB layout tasarımı için toplantı yapılacak
+  * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
 3. V.1. Motor
-  * Test düzeneği hazırlanacak
-  * Jeneratör modda testlere başlanacak.
+  * **Test düzeneği:** Hazırlanacak.
+  * **Ölçüm testleri** Yapılacak.
+  * **Jeneratör mod:** Testlere başlanacak. Endüklenen gerilimlere bakılacak.
 
 ##### Makale çalışmaları
-1. PEDS 2019: Kabul edildi. Final paper 15 Mart submission
-2. [Ufuktaki Konferanslar](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+1. **PEDS 2019:** Kabul edildi. Final paper submit edildi.
+2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. Outline tamamlanacak
-2. Modüler motor sürücü dengesizlikleri üzerine simulasyonlara devam edilecek
+1. **Outline:** Tamamlanacak
+2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek
 
 ##### Proje, rapor, satın almalar
 1. BAP
-  * 3.Gelişme Raporu teslim edilecek.
+  * **3.Gelişme Raporu** Teslim edilecek.
+2. 3501
+  * **2. Gelişme Raporu**: Outline çıkarıldı. Yazımına başlandı.
+  * **Bütçe:** Kalan bütçeye bakıldı. Yeni avans çekilecek.
+
 ________
 
 ### Şubat 2019
