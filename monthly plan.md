@@ -16,7 +16,7 @@
 2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. **Outline:** Tamamlanacak
+1. **Outline:** Tamamlanacak.
 2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek
 
 ##### Proje, rapor, satın almalar
@@ -48,8 +48,8 @@ ________
 2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 
 ##### Tez çalışmaları
-1. **Outline:** Tamamlanacak
-2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek
+1. **Outline:** Tamamlanacak.
+2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek.
 
 ##### Proje, rapor, satın almalar
 1. BAP
