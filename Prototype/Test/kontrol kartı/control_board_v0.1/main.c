@@ -10,21 +10,32 @@ extern void InitPieVectTable(void);
 extern void InitCpuTimers(void);
 extern void ConfigCpuTimer(struct CPUTIMER_VARS *, float, float);
 
-void Gpio_Select1();
+void Gpio_Select();
 void InitSystem();
-void InitEpwm1();
-void InitECapModules();
+void InitEpwm1(); // Module-4 Phase-A
+void InitEpwm2(); // Module-2 Phase-C
+void InitEpwm3(); // Module-2 Phase-B
+void InitEpwm4(); // Module-2 Phase-A
+void InitEpwm5(); // Module-4 Phase-B
+void InitEpwm6(); // Module-1 Phase-C
+void InitEpwm7(); // Module-1 Phase-B
+void InitEpwm8(); // Module-1 Phase-A
+void InitEpwm9(); // Module-3 Phase-C
+void InitEpwm10(); // Module-3 Phase-B
+void InitEpwm11(); // Module-3 Phase-A
+void InitEpwm12(); // Module-4 Phase-C
+//void InitECapModules();
 
 //interrupt void cpu_timer0_isr(void);
 __interrupt void cpu_timer0_isr(void);
 __interrupt void cpu_timer1_isr(void);
 __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
-__interrupt void ecap4_isr(void);
+//__interrupt void ecap4_isr(void);
 
-int iCTRPeriod=0;
-int iCTRDutyCycle=0;
-int iECap1IntCount=0;
+//int iCTRPeriod=0;
+//int iCTRDutyCycle=0;
+//int iECap1IntCount=0;
 
 int main(void)
 {
@@ -43,16 +54,8 @@ int main(void)
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =0;
     EDIS;
 
-    Gpio_Select1();
-    EALLOW;
-    GpioCtrlRegs.GPAPUD.bit.GPIO0 = 1;    // Disable pull-up on GPIO0 (EPWM1A)
-    GpioCtrlRegs.GPAPUD.bit.GPIO1 = 1;    // Disable pull-up on GPIO1 (EPWM1B)
-    GpioCtrlRegs.GPAGMUX1.bit.GPIO0 = 0;   // Configure GPIO0 as EPWM1A
-    GpioCtrlRegs.GPAGMUX1.bit.GPIO1 = 0;     // Configure GPIO1 as EPWM1B
-    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;   // Configure GPIO0 as EPWM1A
-    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;     // Configure GPIO1 as EPWM1B
-    TrigRegs.INPUT10SELECT = 0;
-    EDIS;
+    Gpio_Select();
+    //TrigRegs.INPUT10SELECT = 0;
 
     DINT; //disable the interrupts
 
@@ -67,15 +70,28 @@ int main(void)
     PieVectTable.TIMER1_INT = &cpu_timer1_isr;
     PieVectTable.TIMER2_INT = &cpu_timer2_isr;
     PieVectTable.EPWM1_INT = &epwm1_isr;
-    PieVectTable.ECAP4_INT = &ecap4_isr;
+    //PieVectTable.ECAP4_INT = &ecap4_isr;
     EDIS;
 
-    InitECapModules();
+    //InitECapModules();
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
-    ConfigCpuTimer(&CpuTimer0, 200, 1000); //2 miliseconds
+    //ConfigCpuTimer(&CpuTimer0, 200, 1000); //2 miliseconds
+    ConfigCpuTimer(&CpuTimer0, 200, 250); //0.5 miliseconds (1 kHz square wave)
     ConfigCpuTimer(&CpuTimer1, 200, 1000000); //2 seconds
     ConfigCpuTimer(&CpuTimer2, 200, 1000000); //2 seconds
+
     InitEpwm1();
+    InitEpwm2();
+    InitEpwm3();
+    InitEpwm4();
+    InitEpwm5();
+    InitEpwm6();
+    InitEpwm7();
+    InitEpwm8();
+    InitEpwm9();
+    InitEpwm10();
+    InitEpwm11();
+    InitEpwm12();
 
     //CpuTimer0Regs.PRD.all = 0xFFFFFFFF;
     CpuTimer0Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
@@ -88,7 +104,7 @@ int main(void)
     IER |= M_INT14;
     PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
     PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
-    PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
+    //PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
@@ -109,9 +125,11 @@ int main(void)
 
 }
 
-void Gpio_Select1()
+void Gpio_Select()
 {
+
     EALLOW;
+
     GpioCtrlRegs.GPAMUX1.all = 0;
     GpioCtrlRegs.GPAMUX2.all = 0;
     GpioCtrlRegs.GPAGMUX1.all = 0;
@@ -142,24 +160,165 @@ void Gpio_Select1()
     GpioCtrlRegs.GPFGMUX1.all = 0;
     GpioCtrlRegs.GPFGMUX2.all = 0;
 
-    GpioCtrlRegs.GPAPUD.bit.GPIO31 = 0; // enable pull up
-    GpioDataRegs.GPASET.bit.GPIO31 = 1; // Load output latch. Recommended in rm
-    GpioCtrlRegs.GPADIR.bit.GPIO31 = 1; // set it as output
 
-    GpioCtrlRegs.GPBPUD.bit.GPIO34 = 0; // enable pull up
-    GpioDataRegs.GPBSET.bit.GPIO34 = 1; // Load output latch. Recommended in rm
-    GpioCtrlRegs.GPBDIR.bit.GPIO34 = 1; // set it as output
-    GpioDataRegs.GPASET.bit.GPIO31 = 1;
-    GpioDataRegs.GPBCLEAR.bit.GPIO34 = 1;
+    // Module-1 Phase-A PWM (ePWM8)
+    GpioCtrlRegs.GPAPUD.bit.GPIO14 = 1;    // Disable pull-up on GPIO14 (EPWM8A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO15 = 1;    // Disable pull-up on GPIO15 (EPWM8B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO14 = 0;  // Configure GPIO14 as EPWM8A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO15 = 0;  // Configure GPIO15 as EPWM8B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO14 = 1;   // Configure GPIO14 as EPWM8A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO15 = 1;   // Configure GPIO15 as EPWM8B
 
-    GpioCtrlRegs.GPCPUD.bit.GPIO74 = 0;
-    GpioDataRegs.GPCSET.bit.GPIO74 = 1;
-    GpioCtrlRegs.GPCDIR.bit.GPIO74 = 1;
+    // Module-1 Phase-B PWM (ePWM7)
+    GpioCtrlRegs.GPAPUD.bit.GPIO12 = 1;    // Disable pull-up on GPIO12 (EPWM7A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO13 = 1;    // Disable pull-up on GPIO13 (EPWM7B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO12 = 0;  // Configure GPIO12 as EPWM7A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO13 = 0;  // Configure GPIO13 as EPWM7B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO12 = 1;   // Configure GPIO12 as EPWM7A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO13 = 1;   // Configure GPIO13 as EPWM7B
+
+    // Module-1 Phase-C PWM (ePWM6)
+    GpioCtrlRegs.GPAPUD.bit.GPIO10 = 1;    // Disable pull-up on GPIO10 (EPWM6A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO11 = 1;    // Disable pull-up on GPIO11 (EPWM6B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO10 = 0;  // Configure GPIO10 as EPWM6A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO11 = 0;  // Configure GPIO11 as EPWM6B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 1;   // Configure GPIO10 as EPWM6A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO11 = 1;   // Configure GPIO11 as EPWM6B
+
+    // Module-2 Phase-A PWM (ePWM4)
+    GpioCtrlRegs.GPAPUD.bit.GPIO6 = 1;    // Disable pull-up on GPIO6 (EPWM4A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO7 = 1;    // Disable pull-up on GPIO7 (EPWM4B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO6 = 0;  // Configure GPIO6 as EPWM4A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO7 = 0;  // Configure GPIO7 as EPWM4B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;   // Configure GPIO6 as EPWM4A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;   // Configure GPIO7 as EPWM4B
+
+    // Module-2 Phase-B PWM (ePWM3)
+    GpioCtrlRegs.GPAPUD.bit.GPIO4 = 1;    // Disable pull-up on GPIO4 (EPWM3A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO5 = 1;    // Disable pull-up on GPIO5 (EPWM3B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO4 = 0;  // Configure GPIO4 as EPWM3A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO5 = 0;  // Configure GPIO5 as EPWM3B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;   // Configure GPIO4 as EPWM3A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;   // Configure GPIO5 as EPWM3B
+
+    // Module-2 Phase-C PWM (ePWM2)
+    GpioCtrlRegs.GPAPUD.bit.GPIO2 = 1;    // Disable pull-up on GPIO2 (EPWM2A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO3 = 1;    // Disable pull-up on GPIO3 (EPWM2B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO2 = 0;  // Configure GPIO2 as EPWM2A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO3 = 0;  // Configure GPIO3 as EPWM2B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;   // Configure GPIO2 as EPWM2A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;   // Configure GPIO3 as EPWM2B
+
+    // Module-3 Phase-A PWM (ePWM11)
+    GpioCtrlRegs.GPAPUD.bit.GPIO20 = 1;    // Disable pull-up on GPIO20 (EPWM11A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO21 = 1;    // Disable pull-up on GPIO21 (EPWM11B)
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO20 = 1;  // Configure GPIO20 as EPWM11A
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO21 = 1;  // Configure GPIO21 as EPWM11B
+    GpioCtrlRegs.GPAMUX2.bit.GPIO20 = 1;   // Configure GPIO20 as EPWM11A
+    GpioCtrlRegs.GPAMUX2.bit.GPIO21 = 1;   // Configure GPIO21 as EPWM11B
+
+    // Module-3 Phase-B PWM (ePWM10)
+    GpioCtrlRegs.GPAPUD.bit.GPIO18 = 1;    // Disable pull-up on GPIO18 (EPWM10A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO19 = 1;    // Disable pull-up on GPIO19 (EPWM10B)
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO18 = 1;  // Configure GPIO18 as EPWM10A
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO19 = 1;  // Configure GPIO19 as EPWM10B
+    GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1;   // Configure GPIO18 as EPWM10A
+    GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 1;   // Configure GPIO19 as EPWM10B
+
+    // Module-3 Phase-C PWM (ePWM9)
+    GpioCtrlRegs.GPAPUD.bit.GPIO16 = 1;    // Disable pull-up on GPIO16 (EPWM9A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO17 = 1;    // Disable pull-up on GPIO17 (EPWM9B)
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO16 = 1;  // Configure GPIO16 as EPWM9A
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO17 = 1;  // Configure GPIO17 as EPWM9B
+    GpioCtrlRegs.GPAMUX2.bit.GPIO16 = 1;   // Configure GPIO16 as EPWM9A
+    GpioCtrlRegs.GPAMUX2.bit.GPIO17 = 1;   // Configure GPIO17 as EPWM9B
+
+    // Module-4 Phase-A PWM (ePWM1)
+    GpioCtrlRegs.GPAPUD.bit.GPIO0 = 1;    // Disable pull-up on GPIO0 (EPWM1A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO1 = 1;    // Disable pull-up on GPIO1 (EPWM1B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO0 = 0;  // Configure GPIO0 as EPWM1A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO1 = 0;  // Configure GPIO1 as EPWM1B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;   // Configure GPIO0 as EPWM1A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;   // Configure GPIO1 as EPWM1B
+
+    // Module-4 Phase-B PWM (ePWM5)
+    GpioCtrlRegs.GPAPUD.bit.GPIO8 = 1;    // Disable pull-up on GPIO8 (EPWM5A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;    // Disable pull-up on GPIO9 (EPWM5B)
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO8 = 0;  // Configure GPIO8 as EPWM5A
+    GpioCtrlRegs.GPAGMUX1.bit.GPIO9 = 0;  // Configure GPIO9 as EPWM5B
+    GpioCtrlRegs.GPAMUX1.bit.GPIO8 = 1;   // Configure GPIO8 as EPWM5A
+    GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 1;   // Configure GPIO9 as EPWM5B
+
+    // Module-4 Phase-C PWM (ePWM12)
+    GpioCtrlRegs.GPAPUD.bit.GPIO22 = 1;    // Disable pull-up on GPIO22 (EPWM12A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO23 = 1;    // Disable pull-up on GPIO23 (EPWM12B)
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO22 = 1;  // Configure GPIO22 as EPWM12A
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO23 = 1;  // Configure GPIO23 as EPWM12B
+    GpioCtrlRegs.GPAMUX2.bit.GPIO22 = 1;   // Configure GPIO22 as EPWM12A
+    GpioCtrlRegs.GPAMUX2.bit.GPIO23 = 1;   // Configure GPIO23 as EPWM12B
+
+
+    // Module-1 Phase-A Enable (GPIO94)
+    GpioCtrlRegs.GPCPUD.bit.GPIO94 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO94 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO94 = 1; // set it as output
+
+    // Module-1 Phase-B Enable (GPIO93)
+    GpioCtrlRegs.GPCPUD.bit.GPIO93 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO93 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO93 = 1; // set it as output
+
+    // Module-1 Phase-C Enable (GPIO92)
+    GpioCtrlRegs.GPCPUD.bit.GPIO92 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO92 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO92 = 1; // set it as output
+
+    // Module-2 Phase-A Enable (GPIO91)
+    GpioCtrlRegs.GPCPUD.bit.GPIO91 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO91 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO91 = 1; // set it as output
+
+    // Module-2 Phase-B Enable (GPIO90)
+    GpioCtrlRegs.GPCPUD.bit.GPIO90 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO90 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO90 = 1; // set it as output
+
+    // Module-2 Phase-C Enable (GPIO89)
+    GpioCtrlRegs.GPCPUD.bit.GPIO89 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO89 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO89 = 1; // set it as output
+
+    // Module-3 Phase-A Enable (GPIO77)
+    GpioCtrlRegs.GPCPUD.bit.GPIO77 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO77 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO77 = 1; // set it as output
+
+    // Module-3 Phase-B Enable (GPIO78)
+    GpioCtrlRegs.GPCPUD.bit.GPIO78 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO78 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO78 = 1; // set it as output
+
+    // Module-3 Phase-C Enable (GPIO79)
+    GpioCtrlRegs.GPCPUD.bit.GPIO79 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO79 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO79 = 1; // set it as output
+
+    // Module-4 Phase-A Enable (GPIO74)
+    GpioCtrlRegs.GPCPUD.bit.GPIO74 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO74 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO74 = 1; // set it as output
+
+    // Module-4 Phase-B Enable (GPIO75)
+    GpioCtrlRegs.GPCPUD.bit.GPIO75 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO75 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO75 = 1; // set it as output
+
+    // Module-4 Phase-C Enable (GPIO76)
+    GpioCtrlRegs.GPCPUD.bit.GPIO76 = 0; // enable pull up
+    GpioDataRegs.GPCSET.bit.GPIO76 = 1; // Load output latch. Recommended in rm
+    GpioCtrlRegs.GPCDIR.bit.GPIO76 = 1; // set it as output
 
     EDIS;
-
-    /*TODO pullup settings can be done here*/
-    /***************************************/
 
 }
 void InitSystem(void)
@@ -174,7 +333,25 @@ __interrupt void cpu_timer0_isr(void)
    CpuTimer0.InterruptCount++;
    WdRegs.WDKEY.all = 0xAA;
 
+   // Module-4 Enables
    GpioDataRegs.GPCTOGGLE.bit.GPIO74 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO75 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO76 = 1;
+
+   // Module-3 Enables
+   GpioDataRegs.GPCTOGGLE.bit.GPIO77 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO78 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO79 = 1;
+
+   // Module-2 Enables
+   GpioDataRegs.GPCTOGGLE.bit.GPIO91 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO90 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO89 = 1;
+
+   // Module-1 Enables
+   GpioDataRegs.GPCTOGGLE.bit.GPIO94 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO93 = 1;
+   GpioDataRegs.GPCTOGGLE.bit.GPIO92 = 1;
 
    // Acknowledge this interrupt to receive more interrupts from group 1
    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
@@ -192,7 +369,7 @@ __interrupt void cpu_timer2_isr(void)
 {
    CpuTimer2.InterruptCount++;
    // The CPU acknowledges the interrupt.
-   GpioDataRegs.GPATOGGLE.bit.GPIO31 = 1;
+   //GpioDataRegs.GPATOGGLE.bit.GPIO31 = 1;
 
 }
 __interrupt void epwm1_isr(void)
@@ -201,55 +378,505 @@ __interrupt void epwm1_isr(void)
     //update_compare(&epwm1_info);
     // Clear INT flag for this timer
     EPwm1Regs.ETCLR.bit.INT = 1;
-    GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
-    if(EPwm1Regs.CMPA.half.CMPA>=45)
-        EPwm1Regs.CMPA.half.CMPA=0;    // Set compare A value
-    else
-        EPwm1Regs.CMPA.half.CMPA+=1;
+    //GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
+    //EPwm1Regs.CMPA.half.CMPA = 12500;
+    //if(EPwm1Regs.CMPA.half.CMPA>=45)
+    //    EPwm1Regs.CMPA.half.CMPA=0;    // Set compare A value
+    //else
+    //    EPwm1Regs.CMPA.half.CMPA+=1;
 
     // Acknowledge this interrupt to receive more interrupts from group 3
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 }
+
+
 void InitEpwm1(void)
 {
-    EPwm1Regs.TBPRD = 10000;
-    EPwm1Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
-    EPwm1Regs.TBCTR = 0x0000;                     // Clear counter
-
-    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD/2;    // Set compare A value
-    EPwm1Regs.CMPB.half.CMPB = EPwm1Regs.TBPRD/2;    // Set Compare B value
-
     EPwm1Regs.TBCTL.all = 0x00;
-    EPwm1Regs.TBCTL.bit.CTRMODE = 2; // Count up and douwn
-    EPwm1Regs.TBCTL.bit.CLKDIV = 0;  //TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm1Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm1Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm1Regs.TBCTL2.all = 0x00;
+    EPwm1Regs.TBPRD = 25000;
+    EPwm1Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm1Regs.CMPCTL.all = 0x00;
     EPwm1Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-    EPwm1Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
-
-    EPwm1Regs.CMPCTL2.all = 0x00;
-
-    EPwm1Regs.DBCTL.all = 0x00;
-    EPwm1Regs.DBCTL2.all = 0x00;
+    //EPwm1Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm1Regs.AQCTLA.all = 0x00;
     EPwm1Regs.AQCTLA.bit.CAU = 2; //set high
     EPwm1Regs.AQCTLA.bit.CAD = 1; //set low
-    EPwm1Regs.AQCTLB.all = 0x00;
-    EPwm1Regs.AQCTLB.bit.CBU = 1; //set low
-    EPwm1Regs.AQCTLB.bit.CBD = 2; //set high
+    //EPwm1Regs.AQCTLB.all = 0x00;
+    //EPwm1Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm1Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm1Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm1Regs.CMPB.half.CMPB = EPwm1Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm1Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm1Regs.TBCTL2.all = 0x00;
+    EPwm1Regs.CMPCTL2.all = 0x00;
+    EPwm1Regs.DBCTL.all = 0x00;
+    EPwm1Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm1Regs.DBCTL.bit.POLSEL = 2;
+    EPwm1Regs.DBFED = 500;
+    EPwm1Regs.DBRED = 500;
+    EPwm1Regs.DBCTL2.all = 0x00;
 
     EPwm1Regs.ETSEL.all = 0x00;
     EPwm1Regs.ETSEL.bit.INTSEL = 1;//when TBCTR == 0
     EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
-
     EPwm1Regs.ETPS.all = 0x00;
     EPwm1Regs.ETPS.bit.INTPRD = 1;           // Generate INT on first event
 
 }
+
+void InitEpwm2(void)
+{
+
+    EPwm2Regs.TBCTL.all = 0x00;
+    EPwm2Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm2Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm2Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm2Regs.TBPRD = 25000;
+    EPwm2Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm2Regs.CMPCTL.all = 0x00;
+    EPwm2Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm2Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm2Regs.AQCTLA.all = 0x00;
+    EPwm2Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm2Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm2Regs.AQCTLB.all = 0x00;
+    //EPwm2Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm2Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm2Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm2Regs.CMPB.half.CMPB = EPwm2Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm2Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm2Regs.TBCTL2.all = 0x00;
+    EPwm2Regs.CMPCTL2.all = 0x00;
+    EPwm2Regs.DBCTL.all = 0x00;
+    EPwm2Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm2Regs.DBCTL.bit.POLSEL = 2;
+    EPwm2Regs.DBFED = 500;
+    EPwm2Regs.DBRED = 500;
+    EPwm2Regs.DBCTL2.all = 0x00;
+
+    EPwm2Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm3(void)
+{
+
+    EPwm3Regs.TBCTL.all = 0x00;
+    EPwm3Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm3Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm3Regs.TBPRD = 25000;
+    EPwm3Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm3Regs.CMPCTL.all = 0x00;
+    EPwm3Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm3Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm3Regs.AQCTLA.all = 0x00;
+    EPwm3Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm3Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm3Regs.AQCTLB.all = 0x00;
+    //EPwm3Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm3Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm3Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm3Regs.CMPB.half.CMPB = EPwm3Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm3Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm3Regs.TBCTL2.all = 0x00;
+    EPwm3Regs.CMPCTL2.all = 0x00;
+    EPwm3Regs.DBCTL.all = 0x00;
+    EPwm3Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm3Regs.DBCTL.bit.POLSEL = 2;
+    EPwm3Regs.DBFED = 500;
+    EPwm3Regs.DBRED = 500;
+    EPwm3Regs.DBCTL2.all = 0x00;
+
+    EPwm3Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm4(void)
+{
+
+    EPwm4Regs.TBCTL.all = 0x00;
+    EPwm4Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm4Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm4Regs.TBPRD = 25000;
+    EPwm4Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm4Regs.CMPCTL.all = 0x00;
+    EPwm4Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm4Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm4Regs.AQCTLA.all = 0x00;
+    EPwm4Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm4Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm4Regs.AQCTLB.all = 0x00;
+    //EPwm4Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm4Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm4Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm4Regs.CMPB.half.CMPB = EPwm4Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm4Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm4Regs.TBCTL2.all = 0x00;
+    EPwm4Regs.CMPCTL2.all = 0x00;
+    EPwm4Regs.DBCTL.all = 0x00;
+    EPwm4Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm4Regs.DBCTL.bit.POLSEL = 2;
+    EPwm4Regs.DBFED = 500;
+    EPwm4Regs.DBRED = 500;
+    EPwm4Regs.DBCTL2.all = 0x00;
+
+    EPwm4Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm5(void)
+{
+
+    EPwm5Regs.TBCTL.all = 0x00;
+    EPwm5Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm5Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm5Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm5Regs.TBPRD = 25000;
+    EPwm5Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm5Regs.CMPCTL.all = 0x00;
+    EPwm5Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm5Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm5Regs.AQCTLA.all = 0x00;
+    EPwm5Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm5Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm5Regs.AQCTLB.all = 0x00;
+    //EPwm5Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm5Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm5Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm5Regs.CMPB.half.CMPB = EPwm5Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm5Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm5Regs.TBCTL2.all = 0x00;
+    EPwm5Regs.CMPCTL2.all = 0x00;
+    EPwm5Regs.DBCTL.all = 0x00;
+    EPwm5Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm5Regs.DBCTL.bit.POLSEL = 2;
+    EPwm5Regs.DBFED = 500;
+    EPwm5Regs.DBRED = 500;
+    EPwm5Regs.DBCTL2.all = 0x00;
+
+    EPwm5Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm6(void)
+{
+
+    EPwm6Regs.TBCTL.all = 0x00;
+     EPwm6Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+     EPwm6Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+     EPwm6Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+     EPwm6Regs.TBPRD = 25000;
+     EPwm6Regs.TBCTR = 0x0000;          // Clear counter
+
+     EPwm6Regs.CMPCTL.all = 0x00;
+     EPwm6Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+     //EPwm6Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+     EPwm6Regs.AQCTLA.all = 0x00;
+     EPwm6Regs.AQCTLA.bit.CAU = 2; //set high
+     EPwm6Regs.AQCTLA.bit.CAD = 1; //set low
+     //EPwm6Regs.AQCTLB.all = 0x00;
+     //EPwm6Regs.AQCTLB.bit.CBU = 1; //set low
+     //EPwm6Regs.AQCTLB.bit.CBD = 2; //set high
+
+     EPwm6Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     //EPwm6Regs.CMPB.half.CMPB = EPwm6Regs.TBPRD/2;    // Set Compare B value
+
+     EPwm6Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+     EPwm6Regs.TBCTL2.all = 0x00;
+     EPwm6Regs.CMPCTL2.all = 0x00;
+     EPwm6Regs.DBCTL.all = 0x00;
+     EPwm6Regs.DBCTL.bit.OUT_MODE = 3;
+     EPwm6Regs.DBCTL.bit.POLSEL = 2;
+     EPwm6Regs.DBFED = 500;
+     EPwm6Regs.DBRED = 500;
+     EPwm6Regs.DBCTL2.all = 0x00;
+
+     EPwm6Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm7(void)
+{
+
+    EPwm7Regs.TBCTL.all = 0x00;
+    EPwm7Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm7Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm7Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm7Regs.TBPRD = 25000;
+    EPwm7Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm7Regs.CMPCTL.all = 0x00;
+    EPwm7Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm7Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm7Regs.AQCTLA.all = 0x00;
+    EPwm7Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm7Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm7Regs.AQCTLB.all = 0x00;
+    //EPwm7Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm7Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm7Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm7Regs.CMPB.half.CMPB = EPwm7Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm7Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm7Regs.TBCTL2.all = 0x00;
+    EPwm7Regs.CMPCTL2.all = 0x00;
+    EPwm7Regs.DBCTL.all = 0x00;
+    EPwm7Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm7Regs.DBCTL.bit.POLSEL = 2;
+    EPwm7Regs.DBFED = 500;
+    EPwm7Regs.DBRED = 500;
+    EPwm7Regs.DBCTL2.all = 0x00;
+
+    EPwm7Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm8(void)
+{
+
+    EPwm8Regs.TBCTL.all = 0x00;
+     EPwm8Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+     EPwm8Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+     EPwm8Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+     EPwm8Regs.TBPRD = 25000;
+     EPwm8Regs.TBCTR = 0x0000;          // Clear counter
+
+     EPwm8Regs.CMPCTL.all = 0x00;
+     EPwm8Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+     //EPwm8Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+     EPwm8Regs.AQCTLA.all = 0x00;
+     EPwm8Regs.AQCTLA.bit.CAU = 2; //set high
+     EPwm8Regs.AQCTLA.bit.CAD = 1; //set low
+     //EPwm8Regs.AQCTLB.all = 0x00;
+     //EPwm8Regs.AQCTLB.bit.CBU = 1; //set low
+     //EPwm8Regs.AQCTLB.bit.CBD = 2; //set high
+
+     EPwm8Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     //EPwm8Regs.CMPB.half.CMPB = EPwm8Regs.TBPRD/2;    // Set Compare B value
+
+     EPwm8Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+     EPwm8Regs.TBCTL2.all = 0x00;
+     EPwm8Regs.CMPCTL2.all = 0x00;
+     EPwm8Regs.DBCTL.all = 0x00;
+     EPwm8Regs.DBCTL.bit.OUT_MODE = 3;
+     EPwm8Regs.DBCTL.bit.POLSEL = 2;
+     EPwm8Regs.DBFED = 500;
+     EPwm8Regs.DBRED = 500;
+     EPwm8Regs.DBCTL2.all = 0x00;
+
+     EPwm8Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm9(void)
+{
+
+    EPwm9Regs.TBCTL.all = 0x00;
+     EPwm9Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+     EPwm9Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+     EPwm9Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+     EPwm9Regs.TBPRD = 25000;
+     EPwm9Regs.TBCTR = 0x0000;          // Clear counter
+
+     EPwm9Regs.CMPCTL.all = 0x00;
+     EPwm9Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+     //EPwm9Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+     EPwm9Regs.AQCTLA.all = 0x00;
+     EPwm9Regs.AQCTLA.bit.CAU = 2; //set high
+     EPwm9Regs.AQCTLA.bit.CAD = 1; //set low
+     //EPwm9Regs.AQCTLB.all = 0x00;
+     //EPwm9Regs.AQCTLB.bit.CBU = 1; //set low
+     //EPwm9Regs.AQCTLB.bit.CBD = 2; //set high
+
+     EPwm9Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     //EPwm9Regs.CMPB.half.CMPB = EPwm9Regs.TBPRD/2;    // Set Compare B value
+
+     EPwm9Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+     EPwm9Regs.TBCTL2.all = 0x00;
+     EPwm9Regs.CMPCTL2.all = 0x00;
+     EPwm9Regs.DBCTL.all = 0x00;
+     EPwm9Regs.DBCTL.bit.OUT_MODE = 3;
+     EPwm9Regs.DBCTL.bit.POLSEL = 2;
+     EPwm9Regs.DBFED = 500;
+     EPwm9Regs.DBRED = 500;
+     EPwm9Regs.DBCTL2.all = 0x00;
+
+     EPwm9Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm10(void)
+{
+
+    EPwm10Regs.TBCTL.all = 0x00;
+     EPwm10Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+     EPwm10Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+     EPwm10Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+     EPwm10Regs.TBPRD = 25000;
+     EPwm10Regs.TBCTR = 0x0000;          // Clear counter
+
+     EPwm10Regs.CMPCTL.all = 0x00;
+     EPwm10Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+     //EPwm10Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+     EPwm10Regs.AQCTLA.all = 0x00;
+     EPwm10Regs.AQCTLA.bit.CAU = 2; //set high
+     EPwm10Regs.AQCTLA.bit.CAD = 1; //set low
+     //EPwm10Regs.AQCTLB.all = 0x00;
+     //EPwm10Regs.AQCTLB.bit.CBU = 1; //set low
+     //EPwm10Regs.AQCTLB.bit.CBD = 2; //set high
+
+     EPwm10Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     //EPwm10Regs.CMPB.half.CMPB = EPwm10Regs.TBPRD/2;    // Set Compare B value
+
+     EPwm10Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+     EPwm10Regs.TBCTL2.all = 0x00;
+     EPwm10Regs.CMPCTL2.all = 0x00;
+     EPwm10Regs.DBCTL.all = 0x00;
+     EPwm10Regs.DBCTL.bit.OUT_MODE = 3;
+     EPwm10Regs.DBCTL.bit.POLSEL = 2;
+     EPwm10Regs.DBFED = 500;
+     EPwm10Regs.DBRED = 500;
+     EPwm10Regs.DBCTL2.all = 0x00;
+
+     EPwm10Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm11(void)
+{
+
+    EPwm11Regs.TBCTL.all = 0x00;
+     EPwm11Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+     EPwm11Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+     EPwm11Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+     EPwm11Regs.TBPRD = 25000;
+     EPwm11Regs.TBCTR = 0x0000;          // Clear counter
+
+     EPwm11Regs.CMPCTL.all = 0x00;
+     EPwm11Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+     //EPwm11Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+     EPwm11Regs.AQCTLA.all = 0x00;
+     EPwm11Regs.AQCTLA.bit.CAU = 2; //set high
+     EPwm11Regs.AQCTLA.bit.CAD = 1; //set low
+     //EPwm11Regs.AQCTLB.all = 0x00;
+     //EPwm11Regs.AQCTLB.bit.CBU = 1; //set low
+     //EPwm11Regs.AQCTLB.bit.CBD = 2; //set high
+
+     EPwm11Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     //EPwm11Regs.CMPB.half.CMPB = EPwm11Regs.TBPRD/2;    // Set Compare B value
+
+     EPwm11Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+     EPwm11Regs.TBCTL2.all = 0x00;
+     EPwm11Regs.CMPCTL2.all = 0x00;
+     EPwm11Regs.DBCTL.all = 0x00;
+     EPwm11Regs.DBCTL.bit.OUT_MODE = 3;
+     EPwm11Regs.DBCTL.bit.POLSEL = 2;
+     EPwm11Regs.DBFED = 500;
+     EPwm11Regs.DBRED = 500;
+     EPwm11Regs.DBCTL2.all = 0x00;
+
+     EPwm11Regs.ETSEL.all = 0x00;
+
+}
+
+void InitEpwm12(void)
+{
+
+    EPwm12Regs.TBCTL.all = 0x00;
+    EPwm12Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm12Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm12Regs.TBCTL.bit.HSPCLKDIV = 0;
+
+    EPwm12Regs.TBPRD = 25000;
+    EPwm12Regs.TBCTR = 0x0000;          // Clear counter
+
+    EPwm12Regs.CMPCTL.all = 0x00;
+    EPwm12Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    //EPwm12Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+
+    EPwm12Regs.AQCTLA.all = 0x00;
+    EPwm12Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm12Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm12Regs.AQCTLB.all = 0x00;
+    //EPwm12Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm12Regs.AQCTLB.bit.CBD = 2; //set high
+
+    EPwm12Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    //EPwm12Regs.CMPB.half.CMPB = EPwm12Regs.TBPRD/2;    // Set Compare B value
+
+    EPwm12Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+
+    EPwm12Regs.TBCTL2.all = 0x00;
+    EPwm12Regs.CMPCTL2.all = 0x00;
+    EPwm12Regs.DBCTL.all = 0x00;
+    EPwm12Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm12Regs.DBCTL.bit.POLSEL = 2;
+    EPwm12Regs.DBFED = 500;
+    EPwm12Regs.DBRED = 500;
+    EPwm12Regs.DBCTL2.all = 0x00;
+
+    EPwm12Regs.ETSEL.all = 0x00;
+
+}
+
+
+
+
+/*
 void InitECapModules()
 {
     ECap1Regs.ECEINT.all = 0x0000;          // Disable all capture __interrupts
@@ -289,3 +916,4 @@ __interrupt void ecap4_isr(void)
 
 }
 
+*/
