@@ -92,7 +92,7 @@ int main(void)
 
     EALLOW; // initperipheral clock diyince bunlara gerek kalmiyor sanirim.
     CpuSysRegs.PCLKCR2.bit.EPWM1 = 1;/*enable clock for epwm1*/
-    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =0;
+    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
     EDIS;
 
     Gpio_Select();
@@ -140,23 +140,22 @@ int main(void)
     CpuTimer0Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
     CpuTimer1Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
     CpuTimer2Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
-    IER |= M_INT1;
-    IER |= M_INT3;
-    IER |= M_INT4;
-    IER |= M_INT13;
-    IER |= M_INT14;
-    IER |= M_INT14;    // Buraya ADC gelecek, kontrol et
-    PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
-    PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
-    PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // Buraya ADC gelecek, kontrol et
+    IER |= M_INT1;   // ADC
+    IER |= M_INT3;   // EPWM
+    //IER |= M_INT4; // ECAP
+    IER |= M_INT13;  // CPU1.TIMER1
+    IER |= M_INT14;  // CPU1.TIMER2
+    PieCtrlRegs.PIEIER1.bit.INTx7 = 1; // TIMER0
+    PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // EPWM1
+    PieCtrlRegs.PIEIER1.bit.INTx1 = 1; // ADCA1
 
     //PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
     EINT;  // Enable Global interrupt INTM
-    ERTM;  // Enable Global realtime interrupt DBGM
+    ERTM;  // Enable Global real time interrupt DBGM
 
     EALLOW;
-    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =1; // buna da gerek olmayabilir
+    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1; // buna da gerek olmayabilir
     WdRegs.WDCR.all = 0x0028;//set the watch dog
     EDIS;
 
@@ -438,76 +437,166 @@ __interrupt void epwm1_isr(void)
 
 __interrupt void adc1_isr(void)
 {
+
+	// These will be changed
+	Vdc_M3_adc = AdcaResultRegs.ADCRESULT0;
+	Vdc_M1_adc = AdcaResultRegs.ADCRESULT1;
+	Vdc_M2_adc = AdcaResultRegs.ADCRESULT2;
+	Vdc_M4_adc = AdcaResultRegs.ADCRESULT3;
+	Is_M1_PhA_adc = AdcaResultRegs.ADCRESULT4;
+	Is_M1_PhB_adc = AdcaResultRegs.ADCRESULT5;
+	Is_M1_PhC_adc = AdcaResultRegs.ADCRESULT6;
+	Is_M2_PhA_adc = AdcaResultRegs.ADCRESULT7;
+	Is_M2_PhB_adc = AdcaResultRegs.ADCRESULT8;
+	Is_M2_PhC_adc = AdcaResultRegs.ADCRESULT9;
+	Is_M3_PhA_adc = AdcaResultRegs.ADCRESULT10;
+	Is_M3_PhB_adc = AdcaResultRegs.ADCRESULT11;
+	Is_M3_PhC_adc = AdcaResultRegs.ADCRESULT12;
+	Is_M4_PhA_adc = AdcaResultRegs.ADCRESULT13;
+	Is_M4_PhB_adc = AdcaResultRegs.ADCRESULT14;
+	Is_M4_PhC_adc = AdcaResultRegs.ADCRESULT15;
+
     /*
-    Va_adc  =   AdcMirror.ADCRESULT0; // store results global
-        Vb_adc  =   AdcMirror.ADCRESULT1; // store results global
-        Vc_adc  =   AdcMirror.ADCRESULT2; // store results global
-        Vref_adc =  AdcMirror.ADCRESULT3;
-        Vdc_adc =   AdcMirror.ADCRESULT4; // store results global
-        Ia_adc =    AdcMirror.ADCRESULT5; // store results global
-        Ib_adc =    AdcMirror.ADCRESULT6;
-        Ic_adc =    AdcMirror.ADCRESULT7;
-        Va_adc =    AdcMirror.ADCRESULT8;
-        Vb_adc =    AdcMirror.ADCRESULT9;
-        Vc_adc =    AdcMirror.ADCRESULT10;
-        Vref_adc=   AdcMirror.ADCRESULT11;
-        Temp_B_adc= AdcMirror.ADCRESULT12;
-        Temp_C_adc= AdcMirror.ADCRESULT13;
-        Vs_C_adc =  AdcMirror.ADCRESULT14;
-        AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
-        AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
-        PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
-        */
+	AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
+    AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
+    */
+
+	//AdcaRegs.ADCINTFLG.bit.ADCINT1 // ADC Interrupt 1 Flag. Reading these flags indicates if the associated ADCINT pulse was generated since the last clear
+	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;  // Clears respective flag bit in the ADCINTFLG register
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
 
 }
 
 void Setup_ADC(void)
 {
-    /*
-    AdcRegs.ADCREFSEL.bit.REF_SEL = 0;
-    AdcRegs.ADCTRL1.all = 0;
-    AdcRegs.ADCTRL1.bit.SEQ_CASC = 0;       // cascaded sequencer mode
-    AdcRegs.ADCTRL1.bit.CONT_RUN = 0;       // single run mode
-    AdcRegs.ADCTRL1.bit.ACQ_PS = 7;         // 8 X ADC clock
-    AdcRegs.ADCTRL1.bit.CPS = 0;            // divide by 1
+	AdcaRegs.ADCCTL1.all = 0x00; // ADC Control 1 Register
+	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1; // All analog circuitry inside the core is powered up
+	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1; // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
 
-    AdcRegs.ADCTRL2.all = 0;
-    // clear SOC flags
-    AdcRegs.ADCTRL2.bit.SOC_SEQ1=0;
-    AdcRegs.ADCTRL2.bit.EPWM_SOCA_SEQ1 = 1; // ePWM_SOCA trigger (start of sequence)
-    AdcRegs.ADCTRL2.bit.INT_ENA_SEQ1 = 1;   // enable ADC int for seq1
-    AdcRegs.ADCTRL2.bit.INT_MOD_SEQ1 = 0;   // interrupt after every EOS (end of sequence)
+	AdcaRegs.ADCCTL2.all = 0x00; // ADC Control 2 Register
+	AdcaRegs.ADCCTL2.bit.SIGNALMODE = 0; // Single-ended
+	AdcaRegs.ADCCTL2.bit.RESOLUTION = 0; // 12-bit resolution
+	AdcaRegs.ADCCTL2.bit.PRESCALE = 0; // ADCCLK = Input Clock / 1.0
 
-    AdcRegs.ADCTRL2.bit.SOC_SEQ2=0;
-    AdcRegs.ADCTRL2.bit.EPWM_SOCB_SEQ2=1;
-    AdcRegs.ADCTRL2.bit.INT_ENA_SEQ2=1;
-    AdcRegs.ADCTRL2.bit.INT_MOD_SEQ2=0;
+	AdcaRegs.ADCBURSTCTL.all = 0x00; // ADC Burst Control Register
+	AdcaRegs.ADCBURSTCTL.bit.BURSTEN = 0; // Burst mode is disabled
 
+	AdcaRegs.ADCINTSEL1N2.all = 0x00; // ADC Interrupt 1 and 2 Selection Register
+	AdcaRegs.ADCINTSEL1N2.bit.INT1CONT = 0; // No further ADCINT1 pulses are generated until ADCINT1 flag (in ADCINTFLG register) is cleared by user
+	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1; // ADCINT1 is enabled
+	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 0; // ? EOC0 is trigger for ADCINT1
 
-    AdcRegs.ADCTRL3.bit.ADCCLKPS = 3;       // set FCLK to 12.5 MHz
+	AdcaRegs.ADCINTSEL3N4.all = 0x00; // ADC Interrupt 3 and 4 Selection Register
 
-    AdcRegs.ADCMAXCONV.bit.MAX_CONV1= 7;            // 8 conversions
-    AdcRegs.ADCMAXCONV.bit.MAX_CONV2=3;
+	AdcaRegs.ADCSOCPRICTL.all = 0x00; // ADC SOC Priority Control Register
+	AdcaRegs.ADCSOCPRICTL.bit.SOCPRIORITY = 0; // SOC priority is handled in round robin mode for all channels
 
-    AdcRegs.ADCCHSELSEQ1.bit.CONV00 = 0;    // ADCINA0 - Vs_A
-    AdcRegs.ADCCHSELSEQ1.bit.CONV01 = 1;    // ADCINA1 - Vs_B
-    AdcRegs.ADCCHSELSEQ1.bit.CONV02 = 2;    // ADCINA2 - Vs_C
-    AdcRegs.ADCCHSELSEQ1.bit.CONV03 = 3;    // ADCINA3 - Vref
+	AdcaRegs.ADCINTSOCSEL1.all = 0x00; // ADC Interrupt SOC Selection 1 Register
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC0 = 1; // ADCINT1 will trigger SOC0
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC1 = 1; // ADCINT1 will trigger SOC1
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC2 = 1; // ADCINT1 will trigger SOC2
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC3 = 1; // ADCINT1 will trigger SOC3
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC4 = 1; // ADCINT1 will trigger SOC4
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC5 = 1; // ADCINT1 will trigger SOC5
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC6 = 1; // ADCINT1 will trigger SOC6
+	AdcaRegs.ADCINTSOCSEL1.bit.SOC7 = 1; // ADCINT1 will trigger SOC7
 
-    AdcRegs.ADCCHSELSEQ2.bit.CONV04 = 4;    // ADCINA4 - Vdc
-    AdcRegs.ADCCHSELSEQ2.bit.CONV05 = 8;    // ADCINB0 - Is_A
-    AdcRegs.ADCCHSELSEQ2.bit.CONV06 = 9;    // ADCINB1 - Is_B
-    AdcRegs.ADCCHSELSEQ2.bit.CONV07 = 10;   // ADCINB2 - Is_C
+	AdcaRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC8 = 1; // ADCINT1 will trigger SOC8
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC9 = 1; // ADCINT1 will trigger SOC9
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC10 = 1; // ADCINT1 will trigger SOC10
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC11 = 1; // ADCINT1 will trigger SOC11
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC12 = 1; // ADCINT1 will trigger SOC12
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC13 = 1; // ADCINT1 will trigger SOC13
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC14 = 1; // ADCINT1 will trigger SOC14
+	AdcaRegs.ADCINTSOCSEL2.bit.SOC15 = 1; // ADCINT1 will trigger SOC15
 
-    AdcRegs.ADCCHSELSEQ3.bit.CONV08 = 0;    // ADCINA0 - Vs_A
-    AdcRegs.ADCCHSELSEQ3.bit.CONV09 = 1;    // ADCINA1 - Vs_B
-    AdcRegs.ADCCHSELSEQ3.bit.CONV10 = 2;    // ADCINA2 - Vs_C
-    AdcRegs.ADCCHSELSEQ3.bit.CONV11 = 3;    // ADCINA3 - Vref
+	// AdcaRegs.ADCSOC0CTL.bit.TRIGSEL: SOC0 Trigger Source Select.
+	// Along with the SOC0 field in the ADCINTSOCSEL1 register, this bit field configures which trigger will set the SOC0 flag
+	// in the ADCSOCFLG1 register to initiate a conversion to start once priority is given to it
+	// AdcaRegs.ADCSOC0CTL.bit.CHSEL: SOC0 Channel Select.
+	// Selects the channel to be converted when SOC0 is received by the ADC
+	// AdcaRegs.ADCSOC0CTL.bit.ACQPS: SOC0 Acquisition Prescale
 
-    AdcRegs.ADCCHSELSEQ4.bit.CONV12 = 12;   // ADCINB4 - Temp_B
-    AdcRegs.ADCCHSELSEQ4.bit.CONV13 = 13;   // ADCINB5 - Temp_C
-    AdcRegs.ADCCHSELSEQ4.bit.CONV14 = 14;   // ADCINB6 - Vs_C
-    */
+	AdcaRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
+	AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCIN0
+	AdcaRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
+	AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCIN1
+	AdcaRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCIN2
+	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIN3
+	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+	AdcaRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCIN4
+	AdcaRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+	AdcaRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIN5
+	AdcaRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC6CTL.all = 0x0000;    // ADC SOC6 Control Register
+	AdcaRegs.ADCSOC6CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC6CTL.bit.CHSEL = 6;   // Single-ended ADCIN6
+	AdcaRegs.ADCSOC6CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC7CTL.all = 0x0000;    // ADC SOC7 Control Register
+	AdcaRegs.ADCSOC7CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC7CTL.bit.CHSEL = 7;   // Single-ended ADCIN7
+	AdcaRegs.ADCSOC7CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC8CTL.all = 0x0000;    // ADC SOC8 Control Register
+	AdcaRegs.ADCSOC8CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC8CTL.bit.CHSEL = 8;   // Single-ended ADCIN8
+	AdcaRegs.ADCSOC8CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC9CTL.all = 0x0000;    // ADC SOC9 Control Register
+	AdcaRegs.ADCSOC9CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC9CTL.bit.CHSEL = 9;   // Single-ended ADCIN9
+	AdcaRegs.ADCSOC9CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC10CTL.all = 0x0000;    // ADC SOC10 Control Register
+	AdcaRegs.ADCSOC10CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC10CTL.bit.CHSEL = 10;   // Single-ended ADCIN10
+	AdcaRegs.ADCSOC10CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC11CTL.all = 0x0000;    // ADC SOC11 Control Register
+	AdcaRegs.ADCSOC11CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC11CTL.bit.CHSEL = 11;   // Single-ended ADCIN11
+	AdcaRegs.ADCSOC11CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC12CTL.all = 0x0000;    // ADC SOC12 Control Register
+	AdcaRegs.ADCSOC12CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC12CTL.bit.CHSEL = 12;   // Single-ended ADCIN12
+	AdcaRegs.ADCSOC12CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC13CTL.all = 0x0000;    // ADC SOC13 Control Register
+	AdcaRegs.ADCSOC13CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC13CTL.bit.CHSEL = 13;   // Single-ended ADCIN13
+	AdcaRegs.ADCSOC13CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC14CTL.all = 0x0000;    // ADC SOC14 Control Register
+	AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;   // Single-ended ADCIN14
+	AdcaRegs.ADCSOC14CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+
+	AdcaRegs.ADCSOC15CTL.all = 0x0000;    // ADC SOC15 Control Register
+	AdcaRegs.ADCSOC15CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC15CTL.bit.CHSEL = 15;   // Single-ended ADCIN15
+	AdcaRegs.ADCSOC15CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
 
 }
 void InitEpwm1(void)
@@ -546,10 +635,10 @@ void InitEpwm1(void)
     EPwm1Regs.DBCTL2.all = 0x00;
 
     EPwm1Regs.ETSEL.all = 0x00;
-    EPwm1Regs.ETSEL.bit.INTSEL = 1;//when TBCTR == 0
-    EPwm1Regs.ETSEL.bit.INTEN = 1;                // Enable INT
+    EPwm1Regs.ETSEL.bit.INTSEL = 1; // When TBCTR == 0
+    EPwm1Regs.ETSEL.bit.INTEN = 1;  // Enable INT
     EPwm1Regs.ETPS.all = 0x00;
-    EPwm1Regs.ETPS.bit.INTPRD = 1;           // Generate INT on first event
+    EPwm1Regs.ETPS.bit.INTPRD = 1;  // Generate INT on first event
 
 }
 
@@ -590,12 +679,12 @@ void InitEpwm2(void)
     EPwm2Regs.DBCTL2.all = 0x00;
 
     EPwm2Regs.ETSEL.all = 0x00;
-    EPwm2Regs.ETSEL.bit.INTEN = 1;
-    EPwm2Regs.ETSEL.bit.INTSEL = 1; // interrupt when CTRD=TBPRD
-    EPwm2Regs.ETPS.bit.SOCAPRD = 1; //interrupt on the first event
-    EPwm2Regs.ETPS.bit.INTPRD = 1;
-    EPwm2Regs.ETSEL.bit.SOCAEN  = 1;        //enable SOCA generation
-    EPwm2Regs.ETSEL.bit.SOCASEL = 1;        //generate SOCA when CTR = PRD
+    EPwm2Regs.ETSEL.bit.SOCAEN  = 1;  // Enable SOCA generation
+    EPwm2Regs.ETSEL.bit.SOCASEL = 2;  // Generate SOCA when CTR = PRD
+    //EPwm2Regs.ETSEL.bit.INTEN = 1;
+    //EPwm2Regs.ETSEL.bit.INTSEL = 1;
+    EPwm2Regs.ETPS.bit.SOCAPRD = 1;   // Interrupt on the first event
+    //EPwm2Regs.ETPS.bit.INTPRD = 1;
 
 }
 
