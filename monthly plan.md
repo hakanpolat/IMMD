@@ -2,18 +2,21 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * **Kontrol DSP yazılımı:** Yazılım geliştirilecek. Kontrol kartına aktarılacak.
+  * **Kontrol kartı testi:** Flyback yük altında çalıştı (30W). Noise problemi var, bakılacak. PWM bufferlara bakılıyor.
+  * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC ve EQEPe bakılacak.
   * **Versiyon 1.3 gate driver kartı:** 2 tane Dizilecek. Temel testler yapılacak. DPT yapılacak. İnverter testleri yapılacak.
 2. GaN Gardaşları
   * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
 3. V.1. Motor
-  * **Test düzeneği:** Hazırlanacak.
-  * **Ölçüm testleri** Yapılacak.
-  * **Jeneratör mod:** Testlere başlanacak. Endüklenen gerilimlere bakılacak.
+  * **Test düzeneği:** Hazırlandı.
+  * **Ölçüm testleri** Direnç, inductance testi yapıldı.
+  * **Jeneratör mod:** Testlere başlandı. Endüklenen gerilime bakıldı. Tüm sargılardan data alınacak.
 
 ##### Makale çalışmaları
-1. **ACEMP 2019:** Makale gönderilecek.
+1. **ACEMP 2019:** Makale gönderilecek (?).
 2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+3. **IET JoE:** İstenen düzeltmeler gönderildi.
+4. **IET JoPE:** Special issue için outline çıkarılacak. Testlerin durumuna göre yapılmaya başlanacak.
 
 ##### Tez çalışmaları
 1. **Outline:** Tamamlanacak.
@@ -21,9 +24,9 @@
 
 ##### Proje, rapor, satın almalar
 1. BAP
-  * **3.Gelişme Raporu** Teslim edilecek.
+  * **Final Raporu:** Teslim edildi.
 2. 3501
-  * **2. Gelişme Raporu**: Teslim edilecek.
+  * **2. Gelişme Raporu**: Tamamlandı. Teslim edilecek.
   * **Bütçe:** Kalan bütçeye bakıldı. Yeni avans çekilecek.
 
 ________
