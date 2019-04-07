@@ -9,9 +9,12 @@ extern void InitPieCtrl(void);
 extern void InitPieVectTable(void);
 extern void InitCpuTimers(void);
 extern void ConfigCpuTimer(struct CPUTIMER_VARS *, float, float);
+extern void InitAdc(void);
+extern void InitPeripheralClocks(void);
 
 void Gpio_Select();
 void InitSystem();
+void Setup_ADC();
 void InitEpwm1(); // Module-4 Phase-A
 void InitEpwm2(); // Module-2 Phase-C
 void InitEpwm3(); // Module-2 Phase-B
@@ -31,6 +34,42 @@ __interrupt void cpu_timer0_isr(void);
 __interrupt void cpu_timer1_isr(void);
 __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
+__interrupt void adc1_isr(void);
+
+// Global Variables
+float Vdc_M1;
+float Vdc_M2;
+float Vdc_M3;
+float Vdc_M4;
+float Is_M1_PhA;
+float Is_M1_PhB;
+float Is_M1_PhC;
+float Is_M2_PhA;
+float Is_M2_PhB;
+float Is_M2_PhC;
+float Is_M3_PhA;
+float Is_M3_PhB;
+float Is_M3_PhC;
+float Is_M4_PhA;
+float Is_M4_PhB;
+float Is_M4_PhC;
+float Vdc_M1_adc;
+float Vdc_M2_adc;
+float Vdc_M3_adc;
+float Vdc_M4_adc;
+float Is_M1_PhA_adc;
+float Is_M1_PhB_adc;
+float Is_M1_PhC_adc;
+float Is_M2_PhA_adc;
+float Is_M2_PhB_adc;
+float Is_M2_PhC_adc;
+float Is_M3_PhA_adc;
+float Is_M3_PhB_adc;
+float Is_M3_PhC_adc;
+float Is_M4_PhA_adc;
+float Is_M4_PhB_adc;
+float Is_M4_PhC_adc;
+
 //__interrupt void ecap4_isr(void);
 
 //int iCTRPeriod=0;
@@ -49,7 +88,9 @@ int main(void)
     // add 2837x_FLASH_lnk_cpu1_bist.cmd
     // and add "_FLASH" to your predefined options
 
-    EALLOW;
+    InitPeripheralClocks();
+
+    EALLOW; // initperipheral clock diyince bunlara gerek kalmiyor sanirim.
     CpuSysRegs.PCLKCR2.bit.EPWM1 = 1;/*enable clock for epwm1*/
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =0;
     EDIS;
@@ -62,7 +103,6 @@ int main(void)
     InitPieCtrl();// first link F2837xD_PieCtrl.c
     IER = 0x0000;
     IFR = 0x0000;
-    //PieVectTable.TIMER0_INT = &cpu_timer0_isr;
     InitPieVectTable();
 
     EALLOW;  // This is needed to write to EALLOW protected registers
@@ -70,12 +110,12 @@ int main(void)
     PieVectTable.TIMER1_INT = &cpu_timer1_isr;
     PieVectTable.TIMER2_INT = &cpu_timer2_isr;
     PieVectTable.EPWM1_INT = &epwm1_isr;
+    PieVectTable.ADCA1_INT = &adc1_isr;
     //PieVectTable.ECAP4_INT = &ecap4_isr;
     EDIS;
 
     //InitECapModules();
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
-    //ConfigCpuTimer(&CpuTimer0, 200, 1000); //2 miliseconds
     ConfigCpuTimer(&CpuTimer0, 200, 250); //0.5 miliseconds (1 kHz square wave)
     ConfigCpuTimer(&CpuTimer1, 200, 1000000); //2 seconds
     ConfigCpuTimer(&CpuTimer2, 200, 1000000); //2 seconds
@@ -93,6 +133,9 @@ int main(void)
     InitEpwm11();
     InitEpwm12();
 
+    //InitAdc();
+    Setup_ADC();
+
     //CpuTimer0Regs.PRD.all = 0xFFFFFFFF;
     CpuTimer0Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
     CpuTimer1Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
@@ -102,15 +145,18 @@ int main(void)
     IER |= M_INT4;
     IER |= M_INT13;
     IER |= M_INT14;
+    IER |= M_INT14;    // Buraya ADC gelecek, kontrol et
     PieCtrlRegs.PIEIER1.bit.INTx7 = 1;
     PieCtrlRegs.PIEIER3.bit.INTx1 = 1;
+    PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // Buraya ADC gelecek, kontrol et
+
     //PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
     EINT;  // Enable Global interrupt INTM
     ERTM;  // Enable Global realtime interrupt DBGM
 
     EALLOW;
-    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =1;
+    CpuSysRegs.PCLKCR0.bit.TBCLKSYNC =1; // buna da gerek olmayabilir
     WdRegs.WDCR.all = 0x0028;//set the watch dog
     EDIS;
 
@@ -321,13 +367,14 @@ void Gpio_Select()
     EDIS;
 
 }
-void InitSystem(void)
+void InitSystem(void) // burayi yukari alalim
 {
     EALLOW;
     WdRegs.WDCR.all = 0x0028;         // Watchdog enabled, 4.3 milliseconds
     CpuSysRegs.PCLKCR0.bit.CPUTIMER0 = 1; //enable cputimer0
     EDIS;
 }
+
 __interrupt void cpu_timer0_isr(void)
 {
    CpuTimer0.InterruptCount++;
@@ -389,7 +436,80 @@ __interrupt void epwm1_isr(void)
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
 }
 
+__interrupt void adc1_isr(void)
+{
+    /*
+    Va_adc  =   AdcMirror.ADCRESULT0; // store results global
+        Vb_adc  =   AdcMirror.ADCRESULT1; // store results global
+        Vc_adc  =   AdcMirror.ADCRESULT2; // store results global
+        Vref_adc =  AdcMirror.ADCRESULT3;
+        Vdc_adc =   AdcMirror.ADCRESULT4; // store results global
+        Ia_adc =    AdcMirror.ADCRESULT5; // store results global
+        Ib_adc =    AdcMirror.ADCRESULT6;
+        Ic_adc =    AdcMirror.ADCRESULT7;
+        Va_adc =    AdcMirror.ADCRESULT8;
+        Vb_adc =    AdcMirror.ADCRESULT9;
+        Vc_adc =    AdcMirror.ADCRESULT10;
+        Vref_adc=   AdcMirror.ADCRESULT11;
+        Temp_B_adc= AdcMirror.ADCRESULT12;
+        Temp_C_adc= AdcMirror.ADCRESULT13;
+        Vs_C_adc =  AdcMirror.ADCRESULT14;
+        AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
+        AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
+        PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
+        */
 
+}
+
+void Setup_ADC(void)
+{
+    /*
+    AdcRegs.ADCREFSEL.bit.REF_SEL = 0;
+    AdcRegs.ADCTRL1.all = 0;
+    AdcRegs.ADCTRL1.bit.SEQ_CASC = 0;       // cascaded sequencer mode
+    AdcRegs.ADCTRL1.bit.CONT_RUN = 0;       // single run mode
+    AdcRegs.ADCTRL1.bit.ACQ_PS = 7;         // 8 X ADC clock
+    AdcRegs.ADCTRL1.bit.CPS = 0;            // divide by 1
+
+    AdcRegs.ADCTRL2.all = 0;
+    // clear SOC flags
+    AdcRegs.ADCTRL2.bit.SOC_SEQ1=0;
+    AdcRegs.ADCTRL2.bit.EPWM_SOCA_SEQ1 = 1; // ePWM_SOCA trigger (start of sequence)
+    AdcRegs.ADCTRL2.bit.INT_ENA_SEQ1 = 1;   // enable ADC int for seq1
+    AdcRegs.ADCTRL2.bit.INT_MOD_SEQ1 = 0;   // interrupt after every EOS (end of sequence)
+
+    AdcRegs.ADCTRL2.bit.SOC_SEQ2=0;
+    AdcRegs.ADCTRL2.bit.EPWM_SOCB_SEQ2=1;
+    AdcRegs.ADCTRL2.bit.INT_ENA_SEQ2=1;
+    AdcRegs.ADCTRL2.bit.INT_MOD_SEQ2=0;
+
+
+    AdcRegs.ADCTRL3.bit.ADCCLKPS = 3;       // set FCLK to 12.5 MHz
+
+    AdcRegs.ADCMAXCONV.bit.MAX_CONV1= 7;            // 8 conversions
+    AdcRegs.ADCMAXCONV.bit.MAX_CONV2=3;
+
+    AdcRegs.ADCCHSELSEQ1.bit.CONV00 = 0;    // ADCINA0 - Vs_A
+    AdcRegs.ADCCHSELSEQ1.bit.CONV01 = 1;    // ADCINA1 - Vs_B
+    AdcRegs.ADCCHSELSEQ1.bit.CONV02 = 2;    // ADCINA2 - Vs_C
+    AdcRegs.ADCCHSELSEQ1.bit.CONV03 = 3;    // ADCINA3 - Vref
+
+    AdcRegs.ADCCHSELSEQ2.bit.CONV04 = 4;    // ADCINA4 - Vdc
+    AdcRegs.ADCCHSELSEQ2.bit.CONV05 = 8;    // ADCINB0 - Is_A
+    AdcRegs.ADCCHSELSEQ2.bit.CONV06 = 9;    // ADCINB1 - Is_B
+    AdcRegs.ADCCHSELSEQ2.bit.CONV07 = 10;   // ADCINB2 - Is_C
+
+    AdcRegs.ADCCHSELSEQ3.bit.CONV08 = 0;    // ADCINA0 - Vs_A
+    AdcRegs.ADCCHSELSEQ3.bit.CONV09 = 1;    // ADCINA1 - Vs_B
+    AdcRegs.ADCCHSELSEQ3.bit.CONV10 = 2;    // ADCINA2 - Vs_C
+    AdcRegs.ADCCHSELSEQ3.bit.CONV11 = 3;    // ADCINA3 - Vref
+
+    AdcRegs.ADCCHSELSEQ4.bit.CONV12 = 12;   // ADCINB4 - Temp_B
+    AdcRegs.ADCCHSELSEQ4.bit.CONV13 = 13;   // ADCINB5 - Temp_C
+    AdcRegs.ADCCHSELSEQ4.bit.CONV14 = 14;   // ADCINB6 - Vs_C
+    */
+
+}
 void InitEpwm1(void)
 {
     EPwm1Regs.TBCTL.all = 0x00;
@@ -470,6 +590,12 @@ void InitEpwm2(void)
     EPwm2Regs.DBCTL2.all = 0x00;
 
     EPwm2Regs.ETSEL.all = 0x00;
+    EPwm2Regs.ETSEL.bit.INTEN = 1;
+    EPwm2Regs.ETSEL.bit.INTSEL = 1; // interrupt when CTRD=TBPRD
+    EPwm2Regs.ETPS.bit.SOCAPRD = 1; //interrupt on the first event
+    EPwm2Regs.ETPS.bit.INTPRD = 1;
+    EPwm2Regs.ETSEL.bit.SOCAEN  = 1;        //enable SOCA generation
+    EPwm2Regs.ETSEL.bit.SOCASEL = 1;        //generate SOCA when CTR = PRD
 
 }
 

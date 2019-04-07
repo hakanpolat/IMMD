@@ -81,7 +81,7 @@
 					</folderInfo>
 					<fileInfo id="com.ti.ccstudio.buildDefinitions.C2000.Debug.495494322.1342996166" name="main.c" rcbsApplicability="disable" resourcePath="main.c" toolsToInvoke="com.ti.ccstudio.buildDefinitions.C2000_18.1.exe.compilerDebug.1495219813.272376535">
 						<tool id="com.ti.ccstudio.buildDefinitions.C2000_18.1.exe.compilerDebug.1495219813.272376535" name="C2000 Compiler" superClass="com.ti.ccstudio.buildDefinitions.C2000_18.1.exe.compilerDebug.1495219813">
-							<option id="com.ti.ccstudio.buildDefinitions.C2000_18.1.compilerID.PREINCLUDE.2034480982" superClass="com.ti.ccstudio.buildDefinitions.C2000_18.1.compilerID.PREINCLUDE" valueType="includeFiles">
+							<option id="com.ti.ccstudio.buildDefinitions.C2000_18.1.compilerID.PREINCLUDE.2034480982" name="Specify a preinclude file (--preinclude)" superClass="com.ti.ccstudio.buildDefinitions.C2000_18.1.compilerID.PREINCLUDE" valueType="includeFiles">
 								<listOptionValue builtIn="false" value="C:\Users\mesutto\Desktop\ccsworkspace\control_board_v0.1\F2837xD_CpuTimers.c"/>
 								<listOptionValue builtIn="false" value="C:\Users\mesutto\Desktop\ccsworkspace\control_board_v0.1\F2837xD_DefaultISR.c"/>
 								<listOptionValue builtIn="false" value="C:\Users\mesutto\Desktop\ccsworkspace\control_board_v0.1\F2837xD_EPwm.c"/>
@@ -100,7 +100,7 @@
 						</tool>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="F2837xD_SysCtrl.c|F2837xD_PieVect.c|F2837xD_PieCtrl.c|F2837xD_Ipc.c|F2837xD_Gpio.c|F2837xD_GlobalVariableDefs.c|F2837xD_EPwm.c|F2837xD_ECap.c|F2837xD_DefaultISR.c|F2837xD_CpuTimers.c|2837x_FLASH_lnk_cpu1.cmd" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="F2837xD_Adc.c|F2837xD_SysCtrl.c|F2837xD_PieVect.c|F2837xD_PieCtrl.c|F2837xD_Ipc.c|F2837xD_Gpio.c|F2837xD_GlobalVariableDefs.c|F2837xD_EPwm.c|F2837xD_ECap.c|F2837xD_DefaultISR.c|F2837xD_CpuTimers.c|2837x_FLASH_lnk_cpu1.cmd" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
