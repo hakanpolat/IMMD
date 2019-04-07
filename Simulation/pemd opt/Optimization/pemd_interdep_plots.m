@@ -22,13 +22,13 @@ ylabel('Core iron mass (kg)','FontSize',16,'FontWeight','Bold')
 
 %% Aspect ratio, Motor efficiency, number of modules
 figure;
-plot(ar_xaxis,ar_np_effm(1,:),'b -','Linewidth',3);
+plot(ar_xaxis,ar_np_effm(1,:),'b -','Linewidth',2);
 hold on
-plot(ar_xaxis,ar_np_effm(2,:),'k -','Linewidth',3);
+plot(ar_xaxis,ar_np_effm(2,:),'k o','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_effm(3,:),'r -','Linewidth',3);
+plot(ar_xaxis,ar_np_effm(3,:),'r *','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_effm(4,:),'g -','Linewidth',3);
+plot(ar_xaxis,ar_np_effm(4,:),'g --','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -79,13 +79,13 @@ ylabel('Magnet mass (kg)','FontSize',16,'FontWeight','Bold')
 
 %% Aspect ratio, Power density, number of modules
 figure;
-plot(ar_xaxis,ar_np_PDv(1,:),'b -','Linewidth',3);
+plot(ar_xaxis,ar_np_PDv(1,:),'b -','Linewidth',2);
 hold on
-plot(ar_xaxis,ar_np_PDv(2,:),'k -','Linewidth',3);
+plot(ar_xaxis,ar_np_PDv(2,:),'k o','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_PDv(3,:),'r -','Linewidth',3);
+plot(ar_xaxis,ar_np_PDv(3,:),'r *','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_PDv(4,:),'g -','Linewidth',3);
+plot(ar_xaxis,ar_np_PDv(4,:),'g --','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -201,15 +201,15 @@ ylabel('Power density (kW/lt)','FontSize',16,'FontWeight','Bold')
 figure;
 plot(ma_xaxis,ma_np_effdr(1,:),'bx-','Linewidth',2);
 hold on
-plot(ma_xaxis,ma_np_effdr(2,:),'rx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effdr(2,:),'ro-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effdr(3,:),'kx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effdr(3,:),'k*-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effdr(4,:),'gx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effdr(4,:),'g--','Linewidth',3);
 hold on;
-plot(ma_xaxis,ma_np_effdr(5,:),'mx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effdr(5,:),'m^-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effdr(6,:),'cx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effdr(6,:),'c+-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -227,15 +227,15 @@ xlim([0.48 1.02]);
 figure;
 plot(ma_xaxis,ma_np_Cdcreq(1,:),'bx-','Linewidth',2);
 hold on
-plot(ma_xaxis,ma_np_Cdcreq(2,:),'rx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Cdcreq(2,:),'ro-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Cdcreq(3,:),'kx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Cdcreq(3,:),'k*-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Cdcreq(4,:),'gx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Cdcreq(4,:),'g--','Linewidth',3);
 hold on;
-plot(ma_xaxis,ma_np_Cdcreq(5,:),'mx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Cdcreq(5,:),'m^-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Cdcreq(6,:),'cx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Cdcreq(6,:),'c+-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -253,15 +253,15 @@ xlim([0.48 1.02]);
 figure;
 plot(ma_xaxis,ma_np_Icrms(1,:),'bx-','Linewidth',2);
 hold on
-plot(ma_xaxis,ma_np_Icrms(2,:),'rx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Icrms(2,:),'ro-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Icrms(3,:),'kx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Icrms(3,:),'k*-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Icrms(4,:),'gx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Icrms(4,:),'g--','Linewidth',3);
 hold on;
-plot(ma_xaxis,ma_np_Icrms(5,:),'mx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Icrms(5,:),'m^-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_Icrms(6,:),'cx-','Linewidth',2);
+plot(ma_xaxis,ma_np_Icrms(6,:),'c+-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -280,15 +280,15 @@ xlim([0.48 1.02]);
 figure;
 plot(ma_xaxis,ma_np_effm(1,:),'bx-','Linewidth',2);
 hold on
-plot(ma_xaxis,ma_np_effm(2,:),'rx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effm(2,:),'ro-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effm(3,:),'kx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effm(3,:),'k*-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effm(4,:),'gx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effm(4,:),'g--','Linewidth',3);
 hold on;
-plot(ma_xaxis,ma_np_effm(5,:),'mx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effm(5,:),'m^-','Linewidth',2);
 hold on;
-plot(ma_xaxis,ma_np_effm(6,:),'cx-','Linewidth',2);
+plot(ma_xaxis,ma_np_effm(6,:),'c+-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -332,15 +332,15 @@ xlim([0.48 1.02]);
 figure;
 plot(fsw_xaxis,fsw_np_effdr(1,:),'bx-','Linewidth',2);
 hold on
-plot(fsw_xaxis,fsw_np_effdr(2,:),'rx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_effdr(2,:),'ro-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_effdr(3,:),'kx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_effdr(3,:),'k*-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_effdr(4,:),'gx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_effdr(4,:),'g--','Linewidth',3);
 hold on;
-plot(fsw_xaxis,fsw_np_effdr(5,:),'mx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_effdr(5,:),'m+-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_effdr(6,:),'cx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_effdr(6,:),'c^-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -352,22 +352,19 @@ xlabel('Switching frequency (kHz)','FontSize',16,'FontWeight','Bold')
 ylabel('Drive efficiency (%)','FontSize',16,'FontWeight','Bold')
 ylim([97 100]);
 xlim([-4 220]);
-
-
-
 %% Switching frequency, Capacitance requirement, number of parallel modules
 figure;
 plot(fsw_xaxis,fsw_np_Cdcreq(1,:),'bx-','Linewidth',2);
 hold on
-plot(fsw_xaxis,fsw_np_Cdcreq(2,:),'rx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Cdcreq(2,:),'ro-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_Cdcreq(3,:),'kx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Cdcreq(3,:),'k*-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_Cdcreq(4,:),'gx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Cdcreq(4,:),'g--','Linewidth',3);
 hold on;
-plot(fsw_xaxis,fsw_np_Cdcreq(5,:),'mx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Cdcreq(5,:),'m+-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_Cdcreq(6,:),'cx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Cdcreq(6,:),'c^-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -379,8 +376,6 @@ xlabel('Switching frequency (kHz)','FontSize',16,'FontWeight','Bold')
 ylabel('Required capacitance (uF)','FontSize',16,'FontWeight','Bold')
 %ylim([97 100]);
 xlim([-4 120]);
-
-
 %% Switching frequency, Power density, number of parallel modules
 figure;
 %plot(fsw_xaxis,fsw_np_PDv(1,:),'bx-','Linewidth',2);
@@ -539,16 +534,13 @@ ylabel('Total volume (lt)','FontSize',16,'FontWeight','Bold')
 ylim([0 8]);
 xlim([-4 220]);
 
-
-
-
 %% Number of series modules, Capacitance requirement, number of parallel modules
 figure;
 plot(np_xaxis,np_ns_Cdcreq(1,:),'bx-','Linewidth',2);
 hold on
-plot(np_xaxis,np_ns_Cdcreq(2,:),'rx-','Linewidth',3);
+plot(np_xaxis,np_ns_Cdcreq(2,:),'ro-','Linewidth',2);
 hold on;
-plot(np_xaxis,np_ns_Cdcreq(3,:),'kx-','Linewidth',3);
+plot(np_xaxis,np_ns_Cdcreq(3,:),'k--','Linewidth',3);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -564,9 +556,9 @@ xlim([0 9]);
 figure;
 plot(np_xaxis,np_ns_PDv(1,:),'bx-','Linewidth',2);
 hold on
-plot(np_xaxis,np_ns_PDv(2,:),'rx-','Linewidth',3);
+plot(np_xaxis,np_ns_PDv(2,:),'ro-','Linewidth',2);
 hold on;
-plot(np_xaxis,np_ns_PDv(3,:),'kx-','Linewidth',3);
+plot(np_xaxis,np_ns_PDv(3,:),'k--','Linewidth',3);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -605,11 +597,11 @@ fsw_np_Voldr(3,3) = (fsw_np_Voldr(3,2)+fsw_np_Voldr(3,4))/2;
 
 
 figure;
-plot(fsw_xaxis,fsw_np_Vhs(3,:),'rx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Vhs(3,:),'rx-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_Voldr(3,:),'kx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_Voldr(3,:),'ko-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,(fsw_np_Vhs(3,:)+fsw_np_Voldr(3,:))/1,'bx-','Linewidth',3);
+plot(fsw_xaxis,(fsw_np_Vhs(3,:)+fsw_np_Voldr(3,:))/1,'b--','Linewidth',3);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -634,15 +626,15 @@ fsw_np_PDv(2,9) = (fsw_np_PDv(2,8)+fsw_np_PDv(2,12))/2;
 figure;
 %plot(fsw_xaxis,fsw_np_PDv(1,:),'bx-','Linewidth',2);
 %hold on
-plot(fsw_xaxis,fsw_np_PDv(2,:),'rx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_PDv(2,:),'rx-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_PDv(3,:),'kx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_PDv(3,:),'ko-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_PDv(4,:),'gx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_PDv(4,:),'g--','Linewidth',3);
 hold on;
-plot(fsw_xaxis,fsw_np_PDv(5,:),'mx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_PDv(5,:),'m^-','Linewidth',2);
 hold on;
-plot(fsw_xaxis,fsw_np_PDv(6,:),'cx-','Linewidth',3);
+plot(fsw_xaxis,fsw_np_PDv(6,:),'c+-','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
@@ -659,13 +651,13 @@ xlim([-4 220]);
 
 %% Aspect ratio, Magnet mass, number of modules
 figure;
-plot(ar_xaxis,ar_np_cost(1,:),'b -','Linewidth',3);
+plot(ar_xaxis,ar_np_cost(1,:),'g -','Linewidth',2);
 hold on
-plot(ar_xaxis,ar_np_cost(2,:),'k -','Linewidth',3);
+plot(ar_xaxis,ar_np_cost(2,:),'k o','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_cost(3,:),'r -','Linewidth',3);
+plot(ar_xaxis,ar_np_cost(3,:),'r *','Linewidth',2);
 hold on;
-plot(ar_xaxis,ar_np_cost(4,:),'g -','Linewidth',3);
+plot(ar_xaxis,ar_np_cost(4,:),'b --','Linewidth',2);
 hold off;
 grid on;
 set(gca,'FontSize',16);
