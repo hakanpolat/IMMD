@@ -441,23 +441,25 @@ __interrupt void adc1_isr(void)
 {
     GpioDataRegs.GPCSET.bit.GPIO93 = 1;
 
-	// These will be changed
-	Vdc_M3_adc = AdcaResultRegs.ADCRESULT0;
-	Vdc_M1_adc = AdcaResultRegs.ADCRESULT1;
-	Vdc_M2_adc = AdcaResultRegs.ADCRESULT2;
-	Vdc_M4_adc = AdcaResultRegs.ADCRESULT3;
-	Is_M1_PhA_adc = AdcaResultRegs.ADCRESULT4;
-	Is_M1_PhB_adc = AdcaResultRegs.ADCRESULT5;
-	Is_M1_PhC_adc = AdcaResultRegs.ADCRESULT6;
-	Is_M2_PhA_adc = AdcaResultRegs.ADCRESULT7;
-	Is_M2_PhB_adc = AdcaResultRegs.ADCRESULT8;
-	Is_M2_PhC_adc = AdcaResultRegs.ADCRESULT9;
-	Is_M3_PhA_adc = AdcaResultRegs.ADCRESULT10;
-	Is_M3_PhB_adc = AdcaResultRegs.ADCRESULT11;
-	Is_M3_PhC_adc = AdcaResultRegs.ADCRESULT12;
-	Is_M4_PhA_adc = AdcaResultRegs.ADCRESULT13;
-	Is_M4_PhB_adc = AdcaResultRegs.ADCRESULT14;
-	Is_M4_PhC_adc = AdcaResultRegs.ADCRESULT15;
+    Vdc_M3_adc    = AdcaResultRegs.ADCRESULT0;
+    Vdc_M1_adc    = AdcaResultRegs.ADCRESULT1;
+    Is_M3_PhC_adc = AdcaResultRegs.ADCRESULT3;
+    Is_M1_PhA_adc = AdcaResultRegs.ADCRESULT4;
+    Is_M2_PhB_adc = AdcaResultRegs.ADCRESULT5;
+    Is_M3_PhB_adc = AdcaResultRegs.ADCRESULT14;
+    Is_M3_PhA_adc = AdcaResultRegs.ADCRESULT15;
+
+    Is_M4_PhB_adc = AdcbResultRegs.ADCRESULT0;
+    Is_M4_PhC_adc = AdcbResultRegs.ADCRESULT1;
+    Is_M2_PhC_adc = AdcbResultRegs.ADCRESULT2;
+    Is_M4_PhA_adc = AdcbResultRegs.ADCRESULT3;
+
+    Is_M2_PhA_adc = AdccResultRegs.ADCRESULT2;
+    Is_M1_PhC_adc = AdccResultRegs.ADCRESULT3;
+    Is_M1_PhB_adc = AdccResultRegs.ADCRESULT4;
+
+    Vdc_M4_adc    = AdcdResultRegs.ADCRESULT0;
+    Vdc_M2_adc    = AdcdResultRegs.ADCRESULT1;
 
     /*
 	AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
@@ -474,16 +476,22 @@ __interrupt void adc1_isr(void)
 
 void Setup_ADC(void)
 {
+
+    // AdcaRegs.ADCSOCFRC1.all = 0x000F; // Bi ara bakalim
+
     EALLOW;
 	AdcaRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
 	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
 	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
-    AdcbRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
+
+	AdcbRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
     AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
     AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+
     AdccRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
     AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
     AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+
     AdcdRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
     AdcdRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
     AdcdRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
@@ -492,14 +500,17 @@ void Setup_ADC(void)
 	AdcaRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
 	AdcaRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
 	AdcaRegs.ADCCTL2.bit.PRESCALE = 0;      // ADCCLK = Input Clock / 1.0
-    AdcbRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
+
+	AdcbRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
     AdcbRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
     AdcbRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
     AdcbRegs.ADCCTL2.bit.PRESCALE = 0;      // ADCCLK = Input Clock / 1.0
+
     AdccRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
     AdccRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
     AdccRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
     AdccRegs.ADCCTL2.bit.PRESCALE = 0;      // ADCCLK = Input Clock / 1.0
+
     AdcdRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
     AdcdRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
     AdcdRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
@@ -507,10 +518,13 @@ void Setup_ADC(void)
 
 	AdcaRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
 	AdcaRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
-    AdcbRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
+
+	AdcbRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
     AdcbRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
+
     AdccRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
     AdccRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
+
     AdcdRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
     AdcdRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
 
@@ -561,85 +575,118 @@ void Setup_ADC(void)
 	// Selects the channel to be converted when SOC0 is received by the ADC
 	// AdcaRegs.ADCSOC0CTL.bit.ACQPS: SOC0 Acquisition Prescale
 
+    // Vdc_M3_adc
 	AdcaRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
 	AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCIN0
+	AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINA0
 	AdcaRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
+	// Vdc_M1_adc
 	AdcaRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
 	AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCIN1
+	AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINA1
 	AdcaRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
-	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCIN2
-	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
+	//AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+	//AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	//AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINA2
+	//AdcaRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M3_PhC_adc
 	AdcaRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
 	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIN3
+	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINA3
 	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
+	// Is_M1_PhA_adc
 	AdcaRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
 	AdcaRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCIN4
+	AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINA4
 	AdcaRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
+	// Is_M2_PhB_adc
 	AdcaRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
 	AdcaRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIN5
+	AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINA5
 	AdcaRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC6CTL.all = 0x0000;    // ADC SOC6 Control Register
-	AdcaRegs.ADCSOC6CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC6CTL.bit.CHSEL = 6;   // Single-ended ADCIN6
-	AdcaRegs.ADCSOC6CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC7CTL.all = 0x0000;    // ADC SOC7 Control Register
-	AdcaRegs.ADCSOC7CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC7CTL.bit.CHSEL = 7;   // Single-ended ADCIN7
-	AdcaRegs.ADCSOC7CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC8CTL.all = 0x0000;    // ADC SOC8 Control Register
-	AdcaRegs.ADCSOC8CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC8CTL.bit.CHSEL = 8;   // Single-ended ADCIN8
-	AdcaRegs.ADCSOC8CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC9CTL.all = 0x0000;    // ADC SOC9 Control Register
-	AdcaRegs.ADCSOC9CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC9CTL.bit.CHSEL = 9;   // Single-ended ADCIN9
-	AdcaRegs.ADCSOC9CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC10CTL.all = 0x0000;    // ADC SOC10 Control Register
-	AdcaRegs.ADCSOC10CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC10CTL.bit.CHSEL = 10;   // Single-ended ADCIN10
-	AdcaRegs.ADCSOC10CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC11CTL.all = 0x0000;    // ADC SOC11 Control Register
-	AdcaRegs.ADCSOC11CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC11CTL.bit.CHSEL = 11;   // Single-ended ADCIN11
-	AdcaRegs.ADCSOC11CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC12CTL.all = 0x0000;    // ADC SOC12 Control Register
-	AdcaRegs.ADCSOC12CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC12CTL.bit.CHSEL = 12;   // Single-ended ADCIN12
-	AdcaRegs.ADCSOC12CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC13CTL.all = 0x0000;    // ADC SOC13 Control Register
-	AdcaRegs.ADCSOC13CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC13CTL.bit.CHSEL = 13;   // Single-ended ADCIN13
-	AdcaRegs.ADCSOC13CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC14CTL.all = 0x0000;    // ADC SOC14 Control Register
-	AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;   // Single-ended ADCIN14
-	AdcaRegs.ADCSOC14CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
-
-	AdcaRegs.ADCSOC15CTL.all = 0x0000;    // ADC SOC15 Control Register
-	AdcaRegs.ADCSOC15CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC15CTL.bit.CHSEL = 15;   // Single-ended ADCIN15
-	AdcaRegs.ADCSOC15CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M3_PhB_adc
+    AdcaRegs.ADCSOC14CTL.all = 0x0000;    // ADC SOC14 Control Register
+    AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;   // Single-ended ADCIN14
+    AdcaRegs.ADCSOC14CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    // Is_M3_PhA_adc
+    AdcaRegs.ADCSOC15CTL.all = 0x0000;    // ADC SOC15 Control Register
+    AdcaRegs.ADCSOC15CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC15CTL.bit.CHSEL = 15;   // Single-ended ADCIN15
+    AdcaRegs.ADCSOC15CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    // Is_M4_PhB_adc
+    AdcbRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
+	AdcbRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcbRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINB0
+	AdcbRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M4_PhC_adc
+	AdcbRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
+	AdcbRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcbRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINB1
+	AdcbRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M2_PhC_adc
+	AdcbRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINB2
+	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M4_PhA_adc
+	AdcbRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIB3
+	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdcbRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+	//AdcbRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	//AdcbRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINB4
+	//AdcbRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdcbRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+	//AdcbRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	//AdcbRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINB5
+	//AdcbRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M2_PhA_adc
+	AdccRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+	AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINC2
+	AdccRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Is_M1_PhC_adc
+	AdccRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINC3
+	AdccRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    // Is_M1_PhB_adc
+	AdccRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+	AdccRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdccRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINC4
+	AdccRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdccRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+	//AdccRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	//AdccRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINC5
+	//AdccRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	// Vdc_M4_adc
+	AdcdRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
+    AdcdRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcdRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCIND0
+    AdcdRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    // Vdc_M2_adc
+    AdcdRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
+    AdcdRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcdRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCIND1
+    AdcdRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+    //AdcdRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcdRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCIND2
+    //AdcdRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+    //AdcdRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcdRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIND3
+    //AdcdRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+    //AdcdRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcdRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCIND4
+    //AdcdRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+    //AdcdRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcdRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIND5
+    //AdcdRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
 
 	DELAY_US(1000);
 
