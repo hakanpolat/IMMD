@@ -579,114 +579,114 @@ void Setup_ADC(void)
 	AdcaRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
 	AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINA0
-	AdcaRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcaRegs.ADCSOC0CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Vdc_M1_adc
 	AdcaRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
 	AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINA1
-	AdcaRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcaRegs.ADCSOC1CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	//AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
 	//AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	//AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINA2
-	//AdcaRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdcaRegs.ADCSOC2CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M3_PhC_adc
 	AdcaRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
 	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINA3
-	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M1_PhA_adc
 	AdcaRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
 	AdcaRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINA4
-	AdcaRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcaRegs.ADCSOC4CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M2_PhB_adc
 	AdcaRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
 	AdcaRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINA5
-	AdcaRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcaRegs.ADCSOC5CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M3_PhB_adc
     AdcaRegs.ADCSOC14CTL.all = 0x0000;    // ADC SOC14 Control Register
     AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;   // Single-ended ADCIN14
-    AdcaRegs.ADCSOC14CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    AdcaRegs.ADCSOC14CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     // Is_M3_PhA_adc
     AdcaRegs.ADCSOC15CTL.all = 0x0000;    // ADC SOC15 Control Register
     AdcaRegs.ADCSOC15CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcaRegs.ADCSOC15CTL.bit.CHSEL = 15;   // Single-ended ADCIN15
-    AdcaRegs.ADCSOC15CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    AdcaRegs.ADCSOC15CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     // Is_M4_PhB_adc
     AdcbRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
 	AdcbRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcbRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINB0
-	AdcbRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcbRegs.ADCSOC0CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M4_PhC_adc
 	AdcbRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
 	AdcbRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcbRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINB1
-	AdcbRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcbRegs.ADCSOC1CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M2_PhC_adc
 	AdcbRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
 	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINB2
-	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M4_PhA_adc
 	AdcbRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
 	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIB3
-	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	//AdcbRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
 	//AdcbRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	//AdcbRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINB4
-	//AdcbRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdcbRegs.ADCSOC4CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	//AdcbRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
 	//AdcbRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	//AdcbRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINB5
-	//AdcbRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdcbRegs.ADCSOC5CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M2_PhA_adc
 	AdccRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
 	AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINC2
-	AdccRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdccRegs.ADCSOC2CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Is_M1_PhC_adc
 	AdccRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
 	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINC3
-	AdccRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdccRegs.ADCSOC3CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     // Is_M1_PhB_adc
 	AdccRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
 	AdccRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdccRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINC4
-	AdccRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	AdccRegs.ADCSOC4CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	//AdccRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
 	//AdccRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
 	//AdccRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINC5
-	//AdccRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+	//AdccRegs.ADCSOC5CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 	// Vdc_M4_adc
 	AdcdRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
     AdcdRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcdRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCIND0
-    AdcdRegs.ADCSOC0CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    AdcdRegs.ADCSOC0CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     // Vdc_M2_adc
     AdcdRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
     AdcdRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcdRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCIND1
-    AdcdRegs.ADCSOC1CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    AdcdRegs.ADCSOC1CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     //AdcdRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
     //AdcdRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     //AdcdRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCIND2
-    //AdcdRegs.ADCSOC2CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC2CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     //AdcdRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
     //AdcdRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     //AdcdRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIND3
-    //AdcdRegs.ADCSOC3CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC3CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     //AdcdRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
     //AdcdRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     //AdcdRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCIND4
-    //AdcdRegs.ADCSOC4CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC4CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
     //AdcdRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
     //AdcdRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     //AdcdRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIND5
-    //AdcdRegs.ADCSOC5CTL.bit.ACQPS = 0;   // Sample window is 1 system clock cycle wide
+    //AdcdRegs.ADCSOC5CTL.bit.ACQPS = 15;   // Sample window is 1 system clock cycle wide
 
 	DELAY_US(1000);
 
