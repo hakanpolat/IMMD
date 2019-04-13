@@ -2,10 +2,15 @@
 #include <math.h>
 #include <F2837xD_Pie_defines.h>
 #include <picontroller.h>
+#include <clarketransform.h>
+#include <inverseclarketransform.h>
+#include <parktransform.h>
+#include <inverseparktransform.h>
 
 //#include <stdio.h>
 
 #define pi 3.141592654
+#define sqrt3 1,7321
 #define sysclk_frequency 200000000	// Hz
 #define sysclk_period 5				// ns
 #define motor_frequency 50			// Hz
@@ -39,7 +44,6 @@ void InitEpwm9(); // Module-3 Phase-C
 void InitEpwm10(); // Module-3 Phase-B
 void InitEpwm11(); // Module-3 Phase-A
 void InitEpwm12(); // Module-4 Phase-C
-//void InitECapModules();
 
 //interrupt void cpu_timer0_isr(void);
 __interrupt void cpu_timer0_isr(void);
@@ -94,6 +98,18 @@ float Voltage_TransferFunction = 114.406;
 float Current_TransferFunction = 13.333;
 float Current_Offset = 1.5;
 
+float Vout_M1_set = 85;	// Volts per phase
+float Vout_M2_set = 85;	// Volts per phase
+float Vout_M3_set = 85;	// Volts per phase
+float Vout_M4_set = 85;	// Volts per phase
+
+float ModulationIndex_M1;
+float ModulationIndex_M2;
+float ModulationIndex_M3;
+float ModulationIndex_M4;
+
+double spwm_counter = 0;
+
 float epwm1_dutycycle = 0.5;
 float epwm2_dutycycle = 0.5;
 float epwm3_dutycycle = 0.5;
@@ -111,7 +127,26 @@ float Vdc_set = 270;
 float PI_Vdc_M1_Out[2];
 float PI_Vdc_M1_Error;
 
+float Is_M1_Ialfa;
+float Is_M1_Ibeta;
+float Is_M1_Id;
+float Is_M1_Iq;
+
+float Vout_M1_Vd;
+float Vout_M1_Vq;
+float Vout_M1_Valfa;
+float Vout_M1_Vbeta;
+float Vout_M1_PhA;
+float Vout_M1_PhB;
+float Vout_M1_PhC;
+
+float position_angle; // in radians
+
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
+CLARKETRANSFORM clarke_Is_M1 = CLARKETRANSFORM_DEFAULTS;
+INVERSECLARKETRANSFORM inverseclarke_Vout_M1 = INVERSECLARKETRANSFORM_DEFAULTS;
+PARKTRANSFORM park_Is_M1 = PARKTRANSFORM_DEFAULTS;
+INVERSEPARKTRANSFORM inversepark_Vout_M1 = INVERSEPARKTRANSFORM_DEFAULTS;
 
 int main(void)
 {
@@ -470,21 +505,19 @@ __interrupt void epwm1_isr(void)
 	//i++;
 	//if (i == BUFFERLENGTH) i=0;
 
-
     // Update PWM duty cycles
-
-	EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD*epwm1_dutycycle;
-	EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD*epwm2_dutycycle;
-	EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD*epwm3_dutycycle;
-	EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD*epwm4_dutycycle;
-	EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD*epwm5_dutycycle;
-	EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD*epwm6_dutycycle;
-	EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD*epwm7_dutycycle;
-	EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD*epwm8_dutycycle;
-	EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD*epwm9_dutycycle;
-	EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD*epwm10_dutycycle;
-	EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD*epwm11_dutycycle;
-	EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD*epwm12_dutycycle;
+	EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD*epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
+	EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD*epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
+	EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD*epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
+	EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD*epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
+	EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD*epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
+	EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD*epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
+	EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD*epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
+	EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD*epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
+	EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD*epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
+	EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD*epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
+	EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD*epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
+	EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD*epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
 
 	//
 
@@ -546,13 +579,68 @@ __interrupt void adc1_isr(void)
     picontroller_Vdc_M1.Uin = Vdc_M1;
     picontroller_Vdc_M1.error[1] = PI_Vdc_M1_Error;
     picontroller_Vdc_M1.Yout[1] = PI_Vdc_M1_Out[1];
-    PICONTROLLER_MACRO(picontroller_Vdc_M1);
+    PICONTROLLER(picontroller_Vdc_M1);
     PI_Vdc_M1_Error = picontroller_Vdc_M1.error[1];	// error[n-1]
     PI_Vdc_M1_Out[1] = picontroller_Vdc_M1.Yout[1];	// output[n-1]
     PI_Vdc_M1_Out[0] = picontroller_Vdc_M1.Yout[0];	// output[n]
 
+    // Clarke Transform for Module-1 Currents
+    clarke_Is_M1.va = Is_M1_PhA;
+    clarke_Is_M1.vb = Is_M1_PhA;
+    clarke_Is_M1.vc = Is_M1_PhA;
+    CLARKETRANSFORM(clarke_Is_M1);
+    Is_M1_Ialfa = clarke_Is_M1.valfa;
+    Is_M1_Ibeta = clarke_Is_M1.vbeta;
 
-    /*
+    // Park Transform for Module-1 Currents
+    park_Is_M1.valfa = Is_M1_Ialfa;
+    park_Is_M1.vbeta = Is_M1_Ibeta;
+    park_Is_M1.theta = position_angle;
+    PARKTRANSFORM(park_Is_M1);
+    Is_M1_Id = park_Is_M1.vd;
+    Is_M1_Iq = park_Is_M1.vq;
+
+    // Inverse Park Transform for Module-1 Output Voltages
+    inversepark_Vout_M1.vd = Vout_M1_Vd;
+    inversepark_Vout_M1.vq = Vout_M1_Vq;
+    inversepark_Vout_M1.theta = position_angle;
+    INVERSEPARKTRANSFORM(inversepark_Vout_M1);
+    Vout_M1_Valfa = inversepark_Vout_M1.valfa;
+    Vout_M1_Vbeta = inversepark_Vout_M1.vbeta;
+
+    // Inverse Clarke Transform for Module-1 Output Voltages
+    inverseclarke_Vout_M1.valfa = Vout_M1_Valfa;
+    inverseclarke_Vout_M1.vbeta = Vout_M1_Vbeta;
+    INVERSECLARKETRANSFORM(inverseclarke_Vout_M1);
+    Vout_M1_PhA = inverseclarke_Vout_M1.va;
+    Vout_M1_PhB = inverseclarke_Vout_M1.vb;
+    Vout_M1_PhC = inverseclarke_Vout_M1.vc;
+
+    // sinusoidal PWM
+    ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
+    epwm8_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency) + 1) / 2;
+    epwm7_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency - 2*pi/3) + 1) / 2;
+    epwm6_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency + 2*pi/3) + 1) / 2;
+
+	spwm_counter += 1;
+    if( spwm_counter > ((switching_frequency/motor_frequency)-1))
+    	spwm_counter = 0;
+
+
+/*
+	epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
+	epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
+	epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
+	epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
+	epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
+	epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
+	epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
+	epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
+	epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
+	epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
+	epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
+	epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
+
 	AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
     AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
     */
