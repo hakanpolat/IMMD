@@ -1,8 +1,18 @@
 #include <F2837xD_Device.h>
 #include <math.h>
 #include <F2837xD_Pie_defines.h>
+#include <picontroller.h>
 
 //#include <stdio.h>
+
+#define pi 3.141592654
+#define sysclk_frequency 200000000	// Hz
+#define sysclk_period 5				// ns
+#define motor_frequency 50			// Hz
+#define switching_frequency 10000	// Hz
+#define max_adc_digital 4095
+#define max_adc_analog 3   			// volt
+#define dead_time 100	 			// ns
 
 extern void InitSysCtrl(void);
 extern void InitPieCtrl(void);
@@ -38,7 +48,11 @@ __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
 __interrupt void adc1_isr(void);
 
-// Global Variables
+//float out_buffer1[400]; // Buffer for graph-1
+//float out_buffer2[400]; // Buffer for graph-2
+//const short BUFFERLENGTH = 400; // Size of buffer
+//short i = 0; // buffer counter
+
 float Vdc_M1;
 float Vdc_M2;
 float Vdc_M3;
@@ -80,11 +94,24 @@ float Voltage_TransferFunction = 114.406;
 float Current_TransferFunction = 13.333;
 float Current_Offset = 1.5;
 
-//__interrupt void ecap4_isr(void);
+float epwm1_dutycycle = 0.5;
+float epwm2_dutycycle = 0.5;
+float epwm3_dutycycle = 0.5;
+float epwm4_dutycycle = 0.5;
+float epwm5_dutycycle = 0.5;
+float epwm6_dutycycle = 0.5;
+float epwm7_dutycycle = 0.5;
+float epwm8_dutycycle = 0.5;
+float epwm9_dutycycle = 0.5;
+float epwm10_dutycycle = 0.5;
+float epwm11_dutycycle = 0.5;
+float epwm12_dutycycle = 0.5;
 
-//int iCTRPeriod=0;
-//int iCTRDutyCycle=0;
-//int iECap1IntCount=0;
+float Vdc_set = 270;
+float PI_Vdc_M1_Out[2];
+float PI_Vdc_M1_Error;
+
+PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
 
 int main(void)
 {
@@ -437,17 +464,32 @@ __interrupt void cpu_timer2_isr(void)
 __interrupt void epwm1_isr(void)
 {
     GpioDataRegs.GPCSET.bit.GPIO94 = 1;
-    // Update the CMPA and CMPB values
-    //update_compare(&epwm1_info);
-    // Clear INT flag for this timer
-    EPwm1Regs.ETCLR.bit.INT = 1;
-    //GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
-    //EPwm1Regs.CMPA.half.CMPA = 12500;
-    //if(EPwm1Regs.CMPA.half.CMPA>=45)
-    //    EPwm1Regs.CMPA.half.CMPA=0;    // Set compare A value
-    //else
-    //    EPwm1Regs.CMPA.half.CMPA+=1;
 
+    //out_buffer1[i] = Vdc_M1;
+	//out_buffer2[i] = Vdc_M2;
+	//i++;
+	//if (i == BUFFERLENGTH) i=0;
+
+
+    // Update PWM duty cycles
+
+	EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD*epwm1_dutycycle;
+	EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD*epwm2_dutycycle;
+	EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD*epwm3_dutycycle;
+	EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD*epwm4_dutycycle;
+	EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD*epwm5_dutycycle;
+	EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD*epwm6_dutycycle;
+	EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD*epwm7_dutycycle;
+	EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD*epwm8_dutycycle;
+	EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD*epwm9_dutycycle;
+	EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD*epwm10_dutycycle;
+	EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD*epwm11_dutycycle;
+	EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD*epwm12_dutycycle;
+
+	//
+
+
+    EPwm1Regs.ETCLR.bit.INT = 1;
     // Acknowledge this interrupt to receive more interrupts from group 3
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
     GpioDataRegs.GPCCLEAR.bit.GPIO94 = 1;
@@ -478,22 +520,37 @@ __interrupt void adc1_isr(void)
     DSP_Temp_Sensor = GetTemperatureC(DSP_Temp_Sensor_adc);
 
     // Calculate actual measurements
-    Vdc_M1 = (Vdc_M1_adc*3/4096)*Voltage_TransferFunction;
-    Vdc_M2 = (Vdc_M2_adc*3/4096)*Voltage_TransferFunction;
-    Vdc_M3 = (Vdc_M3_adc*3/4096)*Voltage_TransferFunction;
-    Vdc_M4 = (Vdc_M4_adc*3/4096)*Voltage_TransferFunction;
-    Is_M1_PhA = ((Is_M1_PhA_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M1_PhB = ((Is_M1_PhB_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M1_PhC = ((Is_M1_PhC_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M2_PhA = ((Is_M2_PhA_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M2_PhB = ((Is_M2_PhB_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M2_PhC = ((Is_M2_PhC_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M3_PhA = ((Is_M3_PhA_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M3_PhB = ((Is_M3_PhB_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M3_PhC = ((Is_M3_PhC_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M4_PhA = ((Is_M4_PhA_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M4_PhB = ((Is_M4_PhB_adc*3/4096)-Current_Offset)*Current_TransferFunction;
-    Is_M4_PhC = ((Is_M4_PhC_adc*3/4096)-Current_Offset)*Current_TransferFunction;
+    Vdc_M1 = (Vdc_M1_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
+    Vdc_M2 = (Vdc_M2_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
+    Vdc_M3 = (Vdc_M3_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
+    Vdc_M4 = (Vdc_M4_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
+    Is_M1_PhA = ((Is_M1_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M1_PhB = ((Is_M1_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M1_PhC = ((Is_M1_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhA = ((Is_M2_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhB = ((Is_M2_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhC = ((Is_M2_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhA = ((Is_M3_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhB = ((Is_M3_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhC = ((Is_M3_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhA = ((Is_M4_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhB = ((Is_M4_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhC = ((Is_M4_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+
+    // PI Controller Vdc_M1
+    picontroller_Vdc_M1.Kp = 1;
+    picontroller_Vdc_M1.Ki = 1;
+    picontroller_Vdc_M1.upperlim = 1;
+    picontroller_Vdc_M1.lowerlim = 0;
+    picontroller_Vdc_M1.Uset = Vdc_set;
+    picontroller_Vdc_M1.Uin = Vdc_M1;
+    picontroller_Vdc_M1.error[1] = PI_Vdc_M1_Error;
+    picontroller_Vdc_M1.Yout[1] = PI_Vdc_M1_Out[1];
+    PICONTROLLER_MACRO(picontroller_Vdc_M1);
+    PI_Vdc_M1_Error = picontroller_Vdc_M1.error[1];	// error[n-1]
+    PI_Vdc_M1_Out[1] = picontroller_Vdc_M1.Yout[1];	// output[n-1]
+    PI_Vdc_M1_Out[0] = picontroller_Vdc_M1.Yout[0];	// output[n]
+
 
     /*
 	AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
@@ -729,7 +786,7 @@ void Setup_ADC(void)
     //AdcdRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIND5
     //AdcdRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
 
-	DELAY_US(1000);
+	//DELAY_US(1000);
 
 	EDIS;
 
@@ -741,7 +798,7 @@ void InitEpwm1(void)
     EPwm1Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm1Regs.TBPRD = 25000;
+    EPwm1Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm1Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm1Regs.CMPCTL.all = 0x00;
@@ -755,7 +812,7 @@ void InitEpwm1(void)
     //EPwm1Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm1Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm1Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm1Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm1Regs.CMPB.half.CMPB = EPwm1Regs.TBPRD/2;    // Set Compare B value
 
     EPwm1Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -765,8 +822,8 @@ void InitEpwm1(void)
     EPwm1Regs.DBCTL.all = 0x00;
     EPwm1Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm1Regs.DBCTL.bit.POLSEL = 2;
-    EPwm1Regs.DBFED = 500;
-    EPwm1Regs.DBRED = 500;
+    EPwm1Regs.DBFED = dead_time/sysclk_period;
+    EPwm1Regs.DBRED = dead_time/sysclk_period;
     EPwm1Regs.DBCTL2.all = 0x00;
 
     EPwm1Regs.ETSEL.all = 0x00;
@@ -785,7 +842,7 @@ void InitEpwm2(void)
     EPwm2Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm2Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm2Regs.TBPRD = 25000;
+    EPwm2Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm2Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm2Regs.CMPCTL.all = 0x00;
@@ -799,7 +856,7 @@ void InitEpwm2(void)
     //EPwm2Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm2Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm2Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm2Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm2Regs.CMPB.half.CMPB = EPwm2Regs.TBPRD/2;    // Set Compare B value
 
     EPwm2Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -809,8 +866,8 @@ void InitEpwm2(void)
     EPwm2Regs.DBCTL.all = 0x00;
     EPwm2Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm2Regs.DBCTL.bit.POLSEL = 2;
-    EPwm2Regs.DBFED = 500;
-    EPwm2Regs.DBRED = 500;
+    EPwm2Regs.DBFED = dead_time/sysclk_period;
+    EPwm2Regs.DBRED = dead_time/sysclk_period;
     EPwm2Regs.DBCTL2.all = 0x00;
 
     EPwm2Regs.ETSEL.all = 0x00;
@@ -831,7 +888,7 @@ void InitEpwm3(void)
     EPwm3Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm3Regs.TBPRD = 25000;
+    EPwm3Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm3Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm3Regs.CMPCTL.all = 0x00;
@@ -845,7 +902,7 @@ void InitEpwm3(void)
     //EPwm3Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm3Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm3Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm3Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm3Regs.CMPB.half.CMPB = EPwm3Regs.TBPRD/2;    // Set Compare B value
 
     EPwm3Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -855,8 +912,8 @@ void InitEpwm3(void)
     EPwm3Regs.DBCTL.all = 0x00;
     EPwm3Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm3Regs.DBCTL.bit.POLSEL = 2;
-    EPwm3Regs.DBFED = 500;
-    EPwm3Regs.DBRED = 500;
+    EPwm3Regs.DBFED = dead_time/sysclk_period;
+    EPwm3Regs.DBRED = dead_time/sysclk_period;
     EPwm3Regs.DBCTL2.all = 0x00;
 
     EPwm3Regs.ETSEL.all = 0x00;
@@ -871,7 +928,7 @@ void InitEpwm4(void)
     EPwm4Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm4Regs.TBPRD = 25000;
+    EPwm4Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm4Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm4Regs.CMPCTL.all = 0x00;
@@ -885,7 +942,7 @@ void InitEpwm4(void)
     //EPwm4Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm4Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm4Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm4Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm4Regs.CMPB.half.CMPB = EPwm4Regs.TBPRD/2;    // Set Compare B value
 
     EPwm4Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -895,8 +952,8 @@ void InitEpwm4(void)
     EPwm4Regs.DBCTL.all = 0x00;
     EPwm4Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm4Regs.DBCTL.bit.POLSEL = 2;
-    EPwm4Regs.DBFED = 500;
-    EPwm4Regs.DBRED = 500;
+    EPwm4Regs.DBFED = dead_time/sysclk_period;
+    EPwm4Regs.DBRED = dead_time/sysclk_period;
     EPwm4Regs.DBCTL2.all = 0x00;
 
     EPwm4Regs.ETSEL.all = 0x00;
@@ -911,7 +968,7 @@ void InitEpwm5(void)
     EPwm5Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm5Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm5Regs.TBPRD = 25000;
+    EPwm5Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm5Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm5Regs.CMPCTL.all = 0x00;
@@ -925,7 +982,7 @@ void InitEpwm5(void)
     //EPwm5Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm5Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm5Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm5Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm5Regs.CMPB.half.CMPB = EPwm5Regs.TBPRD/2;    // Set Compare B value
 
     EPwm5Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -935,8 +992,8 @@ void InitEpwm5(void)
     EPwm5Regs.DBCTL.all = 0x00;
     EPwm5Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm5Regs.DBCTL.bit.POLSEL = 2;
-    EPwm5Regs.DBFED = 500;
-    EPwm5Regs.DBRED = 500;
+    EPwm5Regs.DBFED = dead_time/sysclk_period;
+    EPwm5Regs.DBRED = dead_time/sysclk_period;
     EPwm5Regs.DBCTL2.all = 0x00;
 
     EPwm5Regs.ETSEL.all = 0x00;
@@ -951,7 +1008,7 @@ void InitEpwm6(void)
      EPwm6Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
      EPwm6Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm6Regs.TBPRD = 25000;
+     EPwm6Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
      EPwm6Regs.TBCTR = 0x0000;          // Clear counter
 
      EPwm6Regs.CMPCTL.all = 0x00;
@@ -965,7 +1022,7 @@ void InitEpwm6(void)
      //EPwm6Regs.AQCTLB.bit.CBU = 1; //set low
      //EPwm6Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm6Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     EPwm6Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
      //EPwm6Regs.CMPB.half.CMPB = EPwm6Regs.TBPRD/2;    // Set Compare B value
 
      EPwm6Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -975,8 +1032,8 @@ void InitEpwm6(void)
      EPwm6Regs.DBCTL.all = 0x00;
      EPwm6Regs.DBCTL.bit.OUT_MODE = 3;
      EPwm6Regs.DBCTL.bit.POLSEL = 2;
-     EPwm6Regs.DBFED = 500;
-     EPwm6Regs.DBRED = 500;
+     EPwm6Regs.DBFED = dead_time/sysclk_period;
+     EPwm6Regs.DBRED = dead_time/sysclk_period;
      EPwm6Regs.DBCTL2.all = 0x00;
 
      EPwm6Regs.ETSEL.all = 0x00;
@@ -991,7 +1048,7 @@ void InitEpwm7(void)
     EPwm7Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm7Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm7Regs.TBPRD = 25000;
+    EPwm7Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm7Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm7Regs.CMPCTL.all = 0x00;
@@ -1005,7 +1062,7 @@ void InitEpwm7(void)
     //EPwm7Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm7Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm7Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm7Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm7Regs.CMPB.half.CMPB = EPwm7Regs.TBPRD/2;    // Set Compare B value
 
     EPwm7Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1015,8 +1072,8 @@ void InitEpwm7(void)
     EPwm7Regs.DBCTL.all = 0x00;
     EPwm7Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm7Regs.DBCTL.bit.POLSEL = 2;
-    EPwm7Regs.DBFED = 500;
-    EPwm7Regs.DBRED = 500;
+    EPwm7Regs.DBFED = dead_time/sysclk_period;
+    EPwm7Regs.DBRED = dead_time/sysclk_period;
     EPwm7Regs.DBCTL2.all = 0x00;
 
     EPwm7Regs.ETSEL.all = 0x00;
@@ -1031,7 +1088,7 @@ void InitEpwm8(void)
      EPwm8Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
      EPwm8Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm8Regs.TBPRD = 25000;
+     EPwm8Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
      EPwm8Regs.TBCTR = 0x0000;          // Clear counter
 
      EPwm8Regs.CMPCTL.all = 0x00;
@@ -1045,7 +1102,7 @@ void InitEpwm8(void)
      //EPwm8Regs.AQCTLB.bit.CBU = 1; //set low
      //EPwm8Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm8Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     EPwm8Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
      //EPwm8Regs.CMPB.half.CMPB = EPwm8Regs.TBPRD/2;    // Set Compare B value
 
      EPwm8Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1055,8 +1112,8 @@ void InitEpwm8(void)
      EPwm8Regs.DBCTL.all = 0x00;
      EPwm8Regs.DBCTL.bit.OUT_MODE = 3;
      EPwm8Regs.DBCTL.bit.POLSEL = 2;
-     EPwm8Regs.DBFED = 500;
-     EPwm8Regs.DBRED = 500;
+     EPwm8Regs.DBFED = dead_time/sysclk_period;
+     EPwm8Regs.DBRED = dead_time/sysclk_period;
      EPwm8Regs.DBCTL2.all = 0x00;
 
      EPwm8Regs.ETSEL.all = 0x00;
@@ -1071,7 +1128,7 @@ void InitEpwm9(void)
      EPwm9Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
      EPwm9Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm9Regs.TBPRD = 25000;
+     EPwm9Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
      EPwm9Regs.TBCTR = 0x0000;          // Clear counter
 
      EPwm9Regs.CMPCTL.all = 0x00;
@@ -1085,7 +1142,7 @@ void InitEpwm9(void)
      //EPwm9Regs.AQCTLB.bit.CBU = 1; //set low
      //EPwm9Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm9Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     EPwm9Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
      //EPwm9Regs.CMPB.half.CMPB = EPwm9Regs.TBPRD/2;    // Set Compare B value
 
      EPwm9Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1095,8 +1152,8 @@ void InitEpwm9(void)
      EPwm9Regs.DBCTL.all = 0x00;
      EPwm9Regs.DBCTL.bit.OUT_MODE = 3;
      EPwm9Regs.DBCTL.bit.POLSEL = 2;
-     EPwm9Regs.DBFED = 500;
-     EPwm9Regs.DBRED = 500;
+     EPwm9Regs.DBFED = dead_time/sysclk_period;
+     EPwm9Regs.DBRED = dead_time/sysclk_period;
      EPwm9Regs.DBCTL2.all = 0x00;
 
      EPwm9Regs.ETSEL.all = 0x00;
@@ -1111,7 +1168,7 @@ void InitEpwm10(void)
      EPwm10Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
      EPwm10Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm10Regs.TBPRD = 25000;
+     EPwm10Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
      EPwm10Regs.TBCTR = 0x0000;          // Clear counter
 
      EPwm10Regs.CMPCTL.all = 0x00;
@@ -1125,7 +1182,7 @@ void InitEpwm10(void)
      //EPwm10Regs.AQCTLB.bit.CBU = 1; //set low
      //EPwm10Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm10Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     EPwm10Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
      //EPwm10Regs.CMPB.half.CMPB = EPwm10Regs.TBPRD/2;    // Set Compare B value
 
      EPwm10Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1135,8 +1192,8 @@ void InitEpwm10(void)
      EPwm10Regs.DBCTL.all = 0x00;
      EPwm10Regs.DBCTL.bit.OUT_MODE = 3;
      EPwm10Regs.DBCTL.bit.POLSEL = 2;
-     EPwm10Regs.DBFED = 500;
-     EPwm10Regs.DBRED = 500;
+     EPwm10Regs.DBFED = dead_time/sysclk_period;
+     EPwm10Regs.DBRED = dead_time/sysclk_period;
      EPwm10Regs.DBCTL2.all = 0x00;
 
      EPwm10Regs.ETSEL.all = 0x00;
@@ -1151,7 +1208,7 @@ void InitEpwm11(void)
      EPwm11Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
      EPwm11Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm11Regs.TBPRD = 25000;
+     EPwm11Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
      EPwm11Regs.TBCTR = 0x0000;          // Clear counter
 
      EPwm11Regs.CMPCTL.all = 0x00;
@@ -1165,7 +1222,7 @@ void InitEpwm11(void)
      //EPwm11Regs.AQCTLB.bit.CBU = 1; //set low
      //EPwm11Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm11Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+     EPwm11Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
      //EPwm11Regs.CMPB.half.CMPB = EPwm11Regs.TBPRD/2;    // Set Compare B value
 
      EPwm11Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1175,8 +1232,8 @@ void InitEpwm11(void)
      EPwm11Regs.DBCTL.all = 0x00;
      EPwm11Regs.DBCTL.bit.OUT_MODE = 3;
      EPwm11Regs.DBCTL.bit.POLSEL = 2;
-     EPwm11Regs.DBFED = 500;
-     EPwm11Regs.DBRED = 500;
+     EPwm11Regs.DBFED = dead_time/sysclk_period;
+     EPwm11Regs.DBRED = dead_time/sysclk_period;
      EPwm11Regs.DBCTL2.all = 0x00;
 
      EPwm11Regs.ETSEL.all = 0x00;
@@ -1191,7 +1248,7 @@ void InitEpwm12(void)
     EPwm12Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm12Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm12Regs.TBPRD = 25000;
+    EPwm12Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
     EPwm12Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm12Regs.CMPCTL.all = 0x00;
@@ -1205,7 +1262,7 @@ void InitEpwm12(void)
     //EPwm12Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm12Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm12Regs.CMPA.half.CMPA = 12500;    // Set compare A value
+    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
     //EPwm12Regs.CMPB.half.CMPB = EPwm12Regs.TBPRD/2;    // Set Compare B value
 
     EPwm12Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1215,58 +1272,13 @@ void InitEpwm12(void)
     EPwm12Regs.DBCTL.all = 0x00;
     EPwm12Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm12Regs.DBCTL.bit.POLSEL = 2;
-    EPwm12Regs.DBFED = 500;
-    EPwm12Regs.DBRED = 500;
+    EPwm12Regs.DBFED = dead_time/sysclk_period;
+    EPwm12Regs.DBRED = dead_time/sysclk_period;
     EPwm12Regs.DBCTL2.all = 0x00;
 
     EPwm12Regs.ETSEL.all = 0x00;
 
 }
-
-
-
-
-/*
-void InitECapModules()
-{
-    ECap1Regs.ECEINT.all = 0x0000;          // Disable all capture __interrupts
-    ECap1Regs.ECCLR.all = 0xFFFF;           // Clear all CAP __interrupt flags
-    ECap1Regs.ECCTL1.bit.CAPLDEN = 0;       // Disable CAP1-CAP4 register loads
-    ECap1Regs.ECCTL2.bit.TSCTRSTOP = 0;     // Make sure the counter is stopped
-
-    ECap1Regs.ECCTL2.bit.CONT_ONESHT = 0;   // Continuous
-    ECap1Regs.ECCTL2.bit.STOP_WRAP = 3;     // Wrap at 4 events
-    ECap1Regs.ECCTL1.bit.CAP1POL = 0;       // Rising edge
-    ECap1Regs.ECCTL1.bit.CAP2POL = 1;       // Falling edge
-    ECap1Regs.ECCTL1.bit.CAP3POL = 0;       // Rising edge
-    ECap1Regs.ECCTL1.bit.CAP4POL = 1;       // Falling edge
-    ECap1Regs.ECCTL1.bit.CTRRST1 = 0;       // Do not reset when cap1 occurs
-    ECap1Regs.ECCTL1.bit.CTRRST2 = 0;       // Do not reset when cap2 occurs
-    ECap1Regs.ECCTL1.bit.CTRRST3 = 0;       // Do not reset when cap3 occurs
-    ECap1Regs.ECCTL1.bit.CTRRST4 = 1;       // Reset when cap4 occurs
-    ECap1Regs.ECCTL2.bit.SYNCI_EN = 1;      // Enable sync in
-    ECap1Regs.ECCTL2.bit.SYNCO_SEL = 0;     // Pass through  (syncin=syncout)
-
-    ECap1Regs.ECCTL2.bit.TSCTRSTOP = 1;     // Start Counter
-    ECap1Regs.ECCTL2.bit.REARM = 0;         // no effect
-    ECap1Regs.ECCTL1.bit.CAPLDEN = 1;       // Enable CAP1-CAP4 register loads
-    ECap1Regs.ECEINT.bit.CEVT4 = 1;         // Enable Capture Event 4 Interrupt
-
-    //ECap1Regs.
-
-}
-__interrupt void ecap4_isr(void)
-{
-    ECap1Regs.ECCLR.bit.INT = 1;     // Clear the ECAP interrupt flags
-    ECap1Regs.ECCLR.bit.CEVT4 = 1;   // Clear the ECAP4 interrupt flag
-    iCTRPeriod=(int32)ECap1Regs.CAP2 - (int32)ECap1Regs.CAP1;
-    iCTRDutyCycle=(int32)ECap1Regs.CAP3 - (int32)ECap1Regs.CAP1;
-    iECap1IntCount++;
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP4; // acknowledge the PIE group 4
-
-}
-
-*/
 
 
 
