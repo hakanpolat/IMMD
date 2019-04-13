@@ -11,6 +11,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./F2837xD_CodeStartBranch.obj" \
+"./F2837xD_TempSensorConv.obj" \
 "./F2837xD_usDelay.obj" \
 "./main.obj" \
 "../2837x_FLASH_lnk_cpu1_bist.cmd" \
@@ -143,7 +144,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 control_board_v0.1.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --define=CPU1 --define=_FLASH -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"control_board_v0.1.map" --stack_size=0x200 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="control_board_v0.1_linkInfo.xml" --rom_model -o "control_board_v0.1.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --define=CPU1 --define=_FLASH -g --diag_warning=225 --diag_wrap=off --display_error_number -z -m"control_board_v0.1.map" --stack_size=0x200 --warn_sections -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/lib" -i"C:/ti/ccsv8/tools/compiler/ti-cgt-c2000_18.1.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="control_board_v0.1_linkInfo.xml" --rom_model -o "control_board_v0.1.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
@@ -157,8 +158,8 @@ control_board_v0.1.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "F2837xD_CodeStartBranch.obj" "F2837xD_usDelay.obj" "main.obj" 
-	-$(RM) "main.d" 
+	-$(RM) "F2837xD_CodeStartBranch.obj" "F2837xD_TempSensorConv.obj" "F2837xD_usDelay.obj" "main.obj" 
+	-$(RM) "F2837xD_TempSensorConv.d" "main.d" 
 	-$(RM) "F2837xD_CodeStartBranch.d" "F2837xD_usDelay.d" 
 	-@echo 'Finished clean'
 	-@echo ' '

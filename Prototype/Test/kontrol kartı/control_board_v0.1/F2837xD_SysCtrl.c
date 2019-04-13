@@ -72,7 +72,7 @@ void InitSysCtrl(void)
     // F28_PLLCR and F28_CLKINDIV are defined in F2837xD_Examples.h
 
     //InitSysPll(XTAL_OSC,IMULT_20,FMULT_1,PLLCLK_BY_2); 		//PLLSYSCLK = 10Mhz(OSCCLK) * 40 (IMULT) * 1 (FMULT) /  2 (PLLCLK_BY_2)
-   InitSysPll(INT_OSC1,IMULT_20,FMULT_1,PLLCLK_BY_2);
+   InitSysPll(INT_OSC1,IMULT_20,FMULT_1,PLLCLK_BY_1);  // INT_OSC1 (10 MHz) devreye alindi. PLL_DIV /1 yapildi.
 
 
     //Turn on all peripherals
