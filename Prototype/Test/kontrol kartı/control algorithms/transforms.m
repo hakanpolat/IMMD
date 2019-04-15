@@ -62,9 +62,9 @@ end
 
 figure;
 hold all;
-plot(t,volta,'r-','Linewidth',1);
-plot(t,voltb,'b-','Linewidth',1);
-plot(t,voltc,'k-','Linewidth',1);
+%plot(t,volta,'r-','Linewidth',1);
+%plot(t,voltb,'b-','Linewidth',1);
+%plot(t,voltc,'k-','Linewidth',1);
 plot(t,voltanew,'m*-','Linewidth',2);
 plot(t,voltbnew,'g*-','Linewidth',2);
 plot(t,voltcnew,'c*-','Linewidth',2);
@@ -107,8 +107,8 @@ end
 
 figure;
 hold all;
-plot(t,voltalfanew,'r-','Linewidth',1);
-plot(t,voltbetanew,'b-','Linewidth',1);
+%plot(t,voltalfanew,'r-','Linewidth',1);
+%plot(t,voltbetanew,'b-','Linewidth',1);
 plot(t,voltalfa,'k*-','Linewidth',1);
 plot(t,voltbeta,'m*-','Linewidth',2);
 grid on;
