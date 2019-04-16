@@ -32,6 +32,7 @@ extern InitTempSensor(float32);
 void Gpio_Select();
 void InitSystem();
 void Setup_ADC();
+void Setup_EQEP();
 void InitEpwm1(); // Module-4 Phase-A
 void InitEpwm2(); // Module-2 Phase-C
 void InitEpwm3(); // Module-2 Phase-B
@@ -103,6 +104,9 @@ float Vout_M2_set = 85;	// Volts per phase
 float Vout_M3_set = 85;	// Volts per phase
 float Vout_M4_set = 85;	// Volts per phase
 
+float Rotor_Position; // radians, mechanical
+float Rotor_Speed; // radians per second, mechanical
+
 float ModulationIndex_M1;
 float ModulationIndex_M2;
 float ModulationIndex_M3;
@@ -140,7 +144,7 @@ float Vout_M1_PhA;
 float Vout_M1_PhB;
 float Vout_M1_PhC;
 
-float position_angle; // in radians
+float position_angle; // in radians, electrical
 
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
 CLARKETRANSFORM clarke_Is_M1 = CLARKETRANSFORM_DEFAULTS;
@@ -169,7 +173,7 @@ int main(void)
 
     EALLOW;
     ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0; // EPWM Clock Divide Select: /1 of PLLSYSCLK
-    EDIS;
+	EDIS;
 
     Gpio_Select();
     //TrigRegs.INPUT10SELECT = 0;
@@ -211,6 +215,7 @@ int main(void)
 
     //InitAdc();
     Setup_ADC();
+    Setup_EQEP();
 
     InitTempSensor(vrefhi_voltage);
 
@@ -440,6 +445,48 @@ void Gpio_Select()
     GpioCtrlRegs.GPCPUD.bit.GPIO76 = 0; // enable pull up
     GpioDataRegs.GPCSET.bit.GPIO76 = 1; // Load output latch. Recommended in rm
     GpioCtrlRegs.GPCDIR.bit.GPIO76 = 1; // set it as output
+
+    // Encoder - EQEP1-A
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO50 = 0; // Configure GPIO50 as EQEP1A
+    GpioCtrlRegs.GPBMUX2.bit.GPIO50 = 1;  // Configure GPIO50 as EQEP1A
+    GpioCtrlRegs.GPBPUD.bit.GPIO50 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO50 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO50 = 0; // Input qualification type: Sync
+
+    // Encoder - EQEP1-B
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO51 = 0; // Configure GPIO51 as EQEP1B
+    GpioCtrlRegs.GPBMUX2.bit.GPIO51 = 1;  // Configure GPIO51 as EQEP1B
+    GpioCtrlRegs.GPBPUD.bit.GPIO51 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO51 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO51 = 0; // Input qualification type: Sync
+
+    // Encoder - EQEP1-I
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO53 = 0; // Configure GPIO53 as EQEP1I
+    GpioCtrlRegs.GPBMUX2.bit.GPIO53 = 1;  // Configure GPIO53 as EQEP1I
+    GpioCtrlRegs.GPBPUD.bit.GPIO53 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO53 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO53 = 0; // Input qualification type: Sync
+
+    // Encoder - EQEP2-A
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO54 = 0; // Configure GPIO54 as EQEP2A
+    GpioCtrlRegs.GPBMUX2.bit.GPIO54 = 1;  // Configure GPIO54 as EQEP2A
+    GpioCtrlRegs.GPBPUD.bit.GPIO54 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO54 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO54 = 0; // Input qualification type: Sync
+
+    // Encoder - EQEP2-B
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO55 = 0; // Configure GPIO55 as EQEP2B
+    GpioCtrlRegs.GPBMUX2.bit.GPIO55 = 1;  // Configure GPIO55 as EQEP2B
+    GpioCtrlRegs.GPBPUD.bit.GPIO55 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO55 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO55 = 0; // Input qualification type: Sync
+
+    // Encoder - EQEP2-I
+    GpioCtrlRegs.GPBGMUX2.bit.GPIO57 = 0; // Configure GPIO57 as EQEP2I
+    GpioCtrlRegs.GPBMUX2.bit.GPIO57 = 1;  // Configure GPIO57 as EQEP2I
+    GpioCtrlRegs.GPBPUD.bit.GPIO57 = 1;   // Disable pull up
+    GpioCtrlRegs.GPBDIR.bit.GPIO57 = 0;   // set it as input
+    GpioCtrlRegs.GPBQSEL2.bit.GPIO57 = 0; // Input qualification type: Sync
 
     EDIS;
 
@@ -879,6 +926,91 @@ void Setup_ADC(void)
 	EDIS;
 
 }
+
+void Setup_EQEP(void)
+{
+	// ARC-H-50-3600-TTL-6-3M-10-FC
+	// ARC: Optik, H: Hollow, 50: 50mm, 3600: Resolution, TTL: 5VDC supply, 6: A, An, B, Bn, Z, Zn
+	// 1: A  - Yellow
+	// 2: Bn - White
+	// 3: +V - Red
+	// 4: 0V - Black
+	// 5: An - Blue
+	// 6: B  - Green
+	// 7: Zn - Grey
+	// 8: Z  - Pink
+	// 9: GND - Shield
+
+	// QEPI: Gated to A and B (zero marker)
+	// A leads B, forward direction (quadrature clock mode)
+
+	// Quadrature Decoder Unit (QDU) Registers
+	EQep1Regs.QDECCTL.all = 0x00;     // Quadrature Decoder Control
+	EQep1Regs.QDECCTL.bit.QSRC = 0;   // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
+	EQep1Regs.QDECCTL.bit.SOEN = 0;   // Disable position-compare sync output
+	EQep1Regs.QDECCTL.bit.SPSEL = 1;  // Strobe pin is used for sync output: Don't care
+	EQep1Regs.QDECCTL.bit.XCR = 0;    // External Clock Rate: 2x resolution: Count the rising/falling edge
+	EQep1Regs.QDECCTL.bit.SWAP = 0;   // CLK/DIR Signal Source for Position Counter: Quadrature-clock inputs are not swapped
+	EQep1Regs.QDECCTL.bit.IGATE = 0;  // Disable gating of Index pulse
+	EQep1Regs.QDECCTL.bit.QAP = 0;    // QEPA input polarity: No effect
+	EQep1Regs.QDECCTL.bit.QBP = 0;    // QEPB input polarity: No effect
+	EQep1Regs.QDECCTL.bit.QIP = 0;    // QEPI input polarity: No effect
+	EQep1Regs.QDECCTL.bit.QSP = 0;    // QEPS input polarity: No effect
+
+	// Position Counter and Control Unit (PCCU) Registers
+	EQep1Regs.QEPCTL.all = 0x00;      // QEP Control
+	EQep1Regs.QEPCTL.bit.FREE_SOFT = 0;// Emulation mode: Position counter stops immediately on emulation suspend
+	EQep1Regs.QEPCTL.bit.PCRM = 0;    // Position counter reset on an index event
+	EQep1Regs.QEPCTL.bit.IEI = 2;     // Initializes the position counter on the rising edge of the QEPI signal
+	EQep1Regs.QEPCTL.bit.IEL = 1;     // Latches position counter on rising edge of the index signal
+	EQep1Regs.QEPCTL.bit.QPEN = 0;    // Reset the eQEP peripheral internal operating flags/read-only registers.
+	EQep1Regs.QEPCTL.bit.QCLM = 0;    // QEP capture latch mode: Latch on position counter read by CPU
+	EQep1Regs.QEPCTL.bit.UTE = 1;     // QEP unit timer enable: Enable unit timer
+	EQep1Regs.QEPCTL.bit.WDE = 1;     // Enable the eQEP watchdog timer
+
+	// Position Compare Control
+	EQep1Regs.QPOSCTL.all = 0x0000;	  // Position Compare Control: Disabled
+
+	// Quadrature edge-capture unit for low-speed measurement (QCAP)
+	EQep1Regs.QCAPCTL.all = 0x00;
+	EQep1Regs.QCAPCTL.bit.CEN = 1;    // eQEP capture unit is enabled
+	EQep1Regs.QCAPCTL.bit.CCPS = 0;   // eQEP capture timer clock prescaler: CAPCLK = SYSCLKOUT/1  ??
+	EQep1Regs.QCAPCTL.bit.UPPS = 0;	  // Unit position event prescaler: UPEVNT = QCLK/1  ??
+
+	// QEP Interrupt Control (EQEPxINT)
+	// Eleven interrupt events (PCE, PHE, QDC, WTO, PCU, PCO, PCR, PCM, SEL, IEL and UTO) can be generated.
+	EQep1Regs.QEINT.all = 0x00;
+	EQep1Regs.QEINT.bit.WTO = 1;      // Watchdog time out interrupt enabled
+
+	/*
+	// Registers to be watched
+	EQep1Regs.QPOSCNT   // Position counter: This counter acts as a position integrator whose count value is proportional to position from a give reference point
+	EQep1Regs.QPOSINIT  // Position counter init: contains the position value that is used to initialize the position counter based on external strobe or index event
+	EQep1Regs.QPOSMAX   // Maximum Position Count: contains the maximum position counter value.
+	EQep1Regs.QPOSCMP   // Position Compare: is compared with the position counter (QPOSCNT) to generate sync output and/or interrupt on compare match
+	EQep1Regs.QPOSILAT  // Index Position Latch: The position-counter value is latched into this register on an index event as defined by the QEPCTL[IEL] bits.
+	EQep1Regs.QPOSLAT   // Position Latch: The position-counter value is latched into this register on a unit time out event.
+	EQep1Regs.QUTMR	    // QEP Unit Timer: This register acts as time base for unit time event generation. When this timer value matches the unit time period value a unit time event is generated.
+	EQep1Regs.QUPRD     // QEP unit period: contains the period count for the unit timer to generate periodic unit time events.
+	EQep1Regs.QWDTMR    // Watchdog timer: time base for the watchdog to detect motor stalls
+	EQep1Regs.QWDPRD	// Watchdog period: contains the time-out count for the eQEP peripheral	watch dog timer
+	EQep1Regs.QCTMR	 	// QEP Capture Timer: This register provides time base for edge capture unit
+	EQep1Regs.QCPRD	    // QEP Capture Period: This register holds the period count value between the last successive eQEP position events
+
+	EQep1Regs.QFLG.bit.INT   // Global interrupt status flag
+	EQep1Regs.QCLR.bit.INT   // Global interrupt clear flag
+	EQep1Regs.QFLG.bit.WTO	 // Watchdog timeout interrupt flag
+	EQep1Regs.QCLR.bit.WTO = 1;	 // Clear watchdog timeout interrupt flag
+
+	EQep1Regs.QEPSTS.bit.UPEVNT	 // 1h (R/W) = Unit position event detected. Write 1 to clear
+	EQep1Regs.QEPSTS.bit.QDF 	 // Quadrature direction flag: 1=Clockwise
+	*/
+
+	EQep1Regs.QEPCTL.bit.QPEN = 1;    // eQEP position counter is enabled
+
+
+}
+
 void InitEpwm1(void)
 {
     EPwm1Regs.TBCTL.all = 0x00;

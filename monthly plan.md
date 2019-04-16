@@ -2,21 +2,21 @@
 
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
-  * **Kontrol kartı testi:** Flyback yük altında çalıştı (30W). Noise problemi var, bakılacak. PWM bufferlara bakılıyor.
-  * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC ve EQEPe bakılacak.
-  * **Versiyon 1.3 gate driver kartı:** 2 tane Dizilecek. Temel testler yapılacak. DPT yapılacak. İnverter testleri yapılacak.
+  * **Kontrol kartı testi:** Flyback yük altında çalıştı (30W). Noise problemi var, bakılacak. PWM bufferlara bakılıyor, 3 tanesi kaldı. ADC_REF bufferları düzeltildi.
+  * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC çalışırıldı. Timingler ayarlandı. PI controller, park, clarke ve inverse2leri yazıldı. EQEP'e bakılıyor.
+  * **Versiyon 1.3 gate driver kartı:** 2 tane dizildi. Bir karta temel testler yapıldı. DPT yapılıyor, 2 faz 300V'a çıktı. B fazı kaldı. İnverter testleri yapılacak. Akım ölçümleri test edilmedi.
 2. GaN Gardaşları
   * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
 3. V.1. Motor
   * **Test düzeneği:** Hazırlandı.
   * **Ölçüm testleri** Direnç, inductance testi yapıldı.
-  * **Jeneratör mod:** Testlere başlandı. Endüklenen gerilime bakıldı. Tüm sargılardan data alınacak.
+  * **Jeneratör mod:** Endüklenen gerilimlere bakıldı. Tüm sargılardan data alındı. yükle test ediliyor.
 
 ##### Makale çalışmaları
 1. **ACEMP 2019:** Makale gönderilecek (?).
 2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 3. **IET JoE:** İstenen düzeltmeler gönderildi.
-4. **IET JoPE:** Special issue için outline çıkarılacak. Testlerin durumuna göre yapılmaya başlanacak.
+4. **IET JoPE:** Special issue için outline çıkarılacak. Testlerin durumuna göre yazılmaya başlanacak.
 
 ##### Tez çalışmaları
 1. **Outline:** Tamamlanacak.
@@ -26,7 +26,7 @@
 1. BAP
   * **Final Raporu:** Teslim edildi.
 2. 3501
-  * **2. Gelişme Raporu**: Tamamlandı. Teslim edilecek.
+  * **2. Gelişme Raporu**: Teslim edildi.
   * **Bütçe:** Kalan bütçeye bakıldı. Yeni avans çekilecek.
 
 ________
