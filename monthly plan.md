@@ -3,14 +3,14 @@
 ##### Tasarım - donanım çalışmaları
 1. V.1. PCB
   * **Kontrol kartı testi:** Flyback yük altında çalıştı (30W). Noise problemi var, bakılacak. PWM bufferlara bakılıyor, 3 tanesi kaldı. ADC_REF bufferları düzeltildi.
-  * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC çalışırıldı. Timingler ayarlandı. PI controller, park, clarke ve inverse2leri yazıldı. EQEP'e bakılıyor.
-  * **Versiyon 1.3 gate driver kartı:** 2 tane dizildi. Bir karta temel testler yapıldı. DPT yapılıyor, 2 faz 300V'a çıktı. B fazı kaldı. İnverter testleri yapılacak. Akım ölçümleri test edilmedi.
+  * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC çalışırıldı. Timingler ayarlandı. PI controller, park, clarke ve inverse'leri yazıldı. EQEP'e bakılıyor.
+  * **Versiyon 1.3 gate driver kartı:** 2 tane dizildi. Bir karta temel testler yapıldı. DPT yapıldı. İnverter testleri yapıldı (300V-8A-2kW). Akım ölçümleri test edilmedi.
 2. GaN Gardaşları
   * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
 3. V.1. Motor
   * **Test düzeneği:** Hazırlandı.
   * **Ölçüm testleri** Direnç, inductance testi yapıldı.
-  * **Jeneratör mod:** Endüklenen gerilimlere bakıldı. Tüm sargılardan data alındı. yükle test ediliyor.
+  * **Jeneratör mod:** Endüklenen gerilimlere bakıldı. Tüm sargılardan data alındı. Yükle test ediliyor.
 
 ##### Makale çalışmaları
 1. **ACEMP 2019:** Makale gönderilecek (?).
