@@ -1,15 +1,18 @@
 % Control simulation Parameters
 
+global pole_pair;
+pole_pair = 10;
 Ts = 1e-6; % sec
-Tfinal = 0.1; % sec
+Tfinal = 1; % sec
 Ripth = 0.08; % sec
 fsw = 10e3; % Hz
+Tsw = 1/fsw; % sec
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
 Ef = 155; % Volts
 Ls = 13.8e-3; % Henries
 Rs = 1e-3; % Ohms
-fout = 50; % Hz
+fout = 100; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
@@ -33,3 +36,9 @@ Cdc = 100e-6;
 
 motor_speed = 600; % rpm
 
+%%
+% Control algorithm model
+Kp = 100;
+Ki = 100;
+Ymax = 300;
+Ymin = -300;
