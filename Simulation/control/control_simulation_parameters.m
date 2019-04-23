@@ -2,7 +2,7 @@
 
 global pole_pair;
 pole_pair = 10;
-Ts = 100e-9; % sec
+Ts = 500e-9; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
 fsw = 10e3; % Hz
