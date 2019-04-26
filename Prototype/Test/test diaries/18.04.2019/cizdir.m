@@ -136,7 +136,7 @@ legend('40 kHz Recorded','Undersampled to 10 kHz','10 kHz Recorded');
 %%
 time1 = VarName1-VarName1(1);
 voltage1 = VarName2;
-Ts1 = 0.5e-6;
+Ts1 = 0.1e-6;
 Tfinal1 = VarName1(end)-VarName1(1);
 
 %%
