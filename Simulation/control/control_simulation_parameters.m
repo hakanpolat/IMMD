@@ -2,13 +2,14 @@
 
 global pole_pair;
 pole_pair = 10;
-Ts = 500e-9; % sec
+Ts = 100e-9; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
-fsw = 10e3; % Hz
+fsw = 40e3; % Hz
 Tsw = 1/fsw; % sec
-Vdc = 300; % Volts
-Pout = 2e3; % W
+%Vdc = 300; % Volts
+Vdc = 10.6066017177982;
+Pout = 2e3*0.00125; % W ///////
 Ef = 155; % Volts
 Ls = 13.8e-3; % Henries
 Rs = 1e-3; % Ohms
