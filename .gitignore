@@ -75,6 +75,7 @@ Prototype/Test/kontrol kartı/pwm/~$wm_res.docx
 Prototype/Test/test diaries/11.04.2019/~$11.04.2019_Results.xlsx
 Prototype/Test/test diaries/11.04.2019/~$19.04.11 - Test Günlüğü - GateDriverV1.3 - İlkTest.docx
 Prototype/Test/test diaries/18.04.2019/~$t_results.docx
+<<<<<<< HEAD
 Prototype/Test/test diaries/18.04.2019/slprj/sl_proj.tmw
 Prototype/Test/test diaries/18.04.2019/slprj/sim/_sharedutils/shared_file.dmr
 Prototype/Test/test diaries/18.04.2019/slprj/accel/pwm_analysis/rtGetInf.h
@@ -127,3 +128,6 @@ Prototype/Test/test diaries/2019.04.24/slprj/accel/pwm_analysis/pwm_analysis_acc
 Prototype/Test/test diaries/2019.04.24/slprj/accel/pwm_analysis/pwm_analysis_acc_private.h
 Prototype/Test/test diaries/2019.04.24/pwm_analysis_acc.mexw64
 Prototype/Test/test diaries/18.04.2019/pwm_analysis_acc.mexw64
+=======
+*.dat
+>>>>>>> 35d4fc042dcf9a85af607ff46da3085a61b67393
