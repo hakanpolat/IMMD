@@ -3,7 +3,7 @@
 Vgs_static = -10:1:6;
 Vds_ch = -20:0.01:0;
 cur = 4.5057; % To be updated
-Temp = 150;
+Temp = 125;
 K = cur * 0.8 * ((273+Temp-25)/300)^(-2.7);
 x0 = 0.31 ;
 x1 = 0.255;
