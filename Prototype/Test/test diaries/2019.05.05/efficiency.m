@@ -15,6 +15,8 @@ index_offset = time_offset/Ts;
 start_index = index_offset+1;
 stop_index = start_index+window_period/Ts;
 
+freq_fourier = 50; % Hz
+
 %% Efficiency Load-1
 Inst_Power_PhaseA_Load1 = Va_load1.*(Ia_a1_load1+Ia_a2_load1);
 Inst_Power_PhaseB_Load1 = Vb_load1.*(Ib_a1_load1+Ib_a2_load1);
@@ -31,8 +33,10 @@ Avrg_Power_DC_Load1 = mean(Inst_Power_DC_Load1(start_index:stop_index));
 Avrg_Power_AC1_Load1 = mean(Inst_Power_AC_Load1);
 Avrg_Power_AC2_Load1 = Avrg_Power_PhaseA_Load1+Avrg_Power_PhaseB_Load1+Avrg_Power_PhaseC_Load1;
 
-Efficiency1_Load1 = 100*Avrg_Power_AC1_Load1/Avrg_Power_DC_Load1
-Efficiency2_Load1 = 100*Avrg_Power_AC2_Load1/Avrg_Power_DC_Load1
+Efficiency1_Load1 = 100*Avrg_Power_AC1_Load1/Avrg_Power_DC_Load1;
+Efficiency2_Load1 = 100*Avrg_Power_AC2_Load1/Avrg_Power_DC_Load1;
+Wattmeter_Power_DC_Load1 = 398;
+Efficiency3_Load1 = 100*Avrg_Power_AC2_Load1/Wattmeter_Power_DC_Load1;
 
 
 %% Efficiency Load-2
@@ -51,8 +55,10 @@ Avrg_Power_DC_Load2 = mean(Inst_Power_DC_Load2(start_index:stop_index));
 Avrg_Power_AC1_Load2 = mean(Inst_Power_AC_Load2);
 Avrg_Power_AC2_Load2 = Avrg_Power_PhaseA_Load2+Avrg_Power_PhaseB_Load2+Avrg_Power_PhaseC_Load2;
 
-Efficiency1_Load2 = 100*Avrg_Power_AC1_Load2/Avrg_Power_DC_Load2
-Efficiency2_Load2 = 100*Avrg_Power_AC2_Load2/Avrg_Power_DC_Load2
+Efficiency1_Load2 = 100*Avrg_Power_AC1_Load2/Avrg_Power_DC_Load2;
+Efficiency2_Load2 = 100*Avrg_Power_AC2_Load2/Avrg_Power_DC_Load2;
+Wattmeter_Power_DC_Load2 = 775;
+Efficiency3_Load2 = 100*Avrg_Power_AC2_Load2/Wattmeter_Power_DC_Load2;
 
 
 %% Efficiency Load-3
@@ -71,6 +77,8 @@ Avrg_Power_AC2_Load3 = Avrg_Power_PhaseA_Load3+Avrg_Power_PhaseB_Load3+Avrg_Powe
 
 Efficiency1_Load3 = 100*Avrg_Power_AC1_Load3/Avrg_Power_DC_Load3;
 Efficiency2_Load3 = 100*Avrg_Power_AC2_Load3/Avrg_Power_DC_Load3;
+Wattmeter_Power_DC_Load3 = 1150;
+Efficiency3_Load3 = 100*Avrg_Power_AC2_Load3/Wattmeter_Power_DC_Load3;
 
 
 %% Efficiency Load-4
@@ -89,6 +97,8 @@ Avrg_Power_AC2_Load4 = Avrg_Power_PhaseA_Load4+Avrg_Power_PhaseB_Load4+Avrg_Powe
 
 Efficiency1_Load4 = 100*Avrg_Power_AC1_Load4/Avrg_Power_DC_Load4;
 Efficiency2_Load4 = 100*Avrg_Power_AC2_Load4/Avrg_Power_DC_Load4;
+Wattmeter_Power_DC_Load4 = 1530;
+Efficiency3_Load4 = 100*Avrg_Power_AC2_Load4/Wattmeter_Power_DC_Load4;
 
 
 %% Efficiency Load-5
@@ -107,6 +117,8 @@ Avrg_Power_AC2_Load5 = Avrg_Power_PhaseA_Load5+Avrg_Power_PhaseB_Load5+Avrg_Powe
 
 Efficiency1_Load5 = 100*Avrg_Power_AC1_Load5/Avrg_Power_DC_Load5;
 Efficiency2_Load5 = 100*Avrg_Power_AC2_Load5/Avrg_Power_DC_Load5;
+Wattmeter_Power_DC_Load5 = 1910;
+Efficiency3_Load5 = 100*Avrg_Power_AC2_Load5/Wattmeter_Power_DC_Load5;
 
 
 %% Plots
@@ -123,6 +135,12 @@ Efficiency2 = [Efficiency2_Load1
                Efficiency2_Load4
                Efficiency2_Load5];
 
+Efficiency3 = [Efficiency3_Load1
+               Efficiency3_Load2
+               Efficiency3_Load3
+               Efficiency3_Load4
+               Efficiency3_Load5];
+
 loading = 1:5;
 load_power = loading*400;
 
@@ -130,9 +148,46 @@ figure;
 hold all;
 plot(load_power,Efficiency1,'b-o','Linewidth',2);
 plot(load_power,Efficiency2,'r-o','Linewidth',2);
+plot(load_power,Efficiency3,'k-o','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Load Power (W)','FontSize',12,'FontWeight','Bold')
 ylabel('Efficiency (%)','FontSize',12,'FontWeight','Bold')
-ylim([90 110]);
+ylim([90 102]);
+xlim([300 2100])
+
+%%
+%%akim_load1 = max(Idc_a1_load1)
+Loss_data_Load1 = Wattmeter_Power_DC_Load1 - Avrg_Power_AC2_Load1;
+Loss_data_Load2 = Wattmeter_Power_DC_Load2 - Avrg_Power_AC2_Load2;
+Loss_data_Load3 = Wattmeter_Power_DC_Load3 - Avrg_Power_AC2_Load3;
+Loss_data_Load4 = Wattmeter_Power_DC_Load4 - Avrg_Power_AC2_Load4;
+Loss_data_Load5 = Wattmeter_Power_DC_Load5 - Avrg_Power_AC2_Load5;
+Loss_data = [Loss_data_Load1
+             Loss_data_Load2
+             Loss_data_Load3
+             Loss_data_Load4
+             Loss_data_Load5];
+
+%%
+Wattmeter_Power_DC = [1910,1530,1150,775,398];
+Wattmeter_Power_AC = [1890,1513,1138,767,391];
+Loss_data = Wattmeter_Power_DC' - Wattmeter_Power_AC'
+Efficiency_data = Wattmeter_Power_AC'./Wattmeter_Power_DC'*100
+
+Efficiency_sim = [
+    ];
+
+Loss_calculated = [
+                    
+                    ];
+
+figure;
+hold all;
+plot(load_power,Efficiency_data,'b-o','Linewidth',2);
+grid on;
+set(gca,'FontSize',12);
+xlabel('Load Power (W)','FontSize',12,'FontWeight','Bold')
+ylabel('Efficiency (%)','FontSize',12,'FontWeight','Bold')
+ylim([90 102]);
 xlim([300 2100])
