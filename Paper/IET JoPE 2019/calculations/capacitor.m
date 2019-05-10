@@ -10,9 +10,13 @@ m = 3;
 Idcrms = Is*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
     pf^2*(sqrt(3)/pi-9*ma/16)) ) % Amps
 
-Cdcreq = ns*(ma*Is/(16*fsw*Vdcrip))*...
+Cdcreq = (ma*Is/(16*fsw*Vdcrip))*...
     sqrt( (6 - (96*sqrt(3)*ma)/(5*pi) +...
-    (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) )/np/m % Farads
+    (9*ma^2/2) )*pf^2 + (8*sqrt(3)*ma)/(5*pi) ) % Farads
+
+Cdcreq_total = Cdcreq*ns
+Cdcreq_int = Cdcreq_total/np
+Cdcreq_phase = Cdcreq_int/m
 
 Idcpercap = Idcrms/2;
 ESR = 21.1e-3; % Ohms
