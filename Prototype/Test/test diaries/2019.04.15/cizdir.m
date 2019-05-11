@@ -56,13 +56,13 @@ legend('Phase-A','Phase-B','Phase-C','Threshold');
 figure;
 hold all;
 plot(e008*1e9,VarName2,'b-','Linewidth',2);
-plot(e1*1e9,VarName1,'r-','Linewidth',2);
-plot(e2*1e9,VarName3,'g-','Linewidth',1);
+% plot(e1*1e9,VarName1,'r-','Linewidth',2);
+% plot(e2*1e9,VarName3,'g-','Linewidth',1);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Time (ns)','FontSize',12,'FontWeight','Bold')
 ylabel('Vds (Volts)','FontSize',12,'FontWeight','Bold')
-xlim([-5 60]);
+% xlim([-5 60]);
 legend('Phase-A','Phase-B','Phase-C');
 
 %%
