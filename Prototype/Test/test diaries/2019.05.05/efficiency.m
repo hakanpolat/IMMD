@@ -171,23 +171,39 @@ Loss_data = [Loss_data_Load1
 
 %%
 Wattmeter_Power_DC = [1910,1530,1150,775,398];
-Wattmeter_Power_AC = [1890,1513,1138,767,391];
-Loss_data = Wattmeter_Power_DC' - Wattmeter_Power_AC'
-Efficiency_data = Wattmeter_Power_AC'./Wattmeter_Power_DC'*100
+Simulasyon_Inst_Power_AC = [1893,1514,1140,767.7,390.6];
+Simulasyon_Fund_Power_AC = [1890,1512,1138,766.2,389.8];
 
-Efficiency_sim = [
-    ];
+PCB_loss = 2.85;
+Capacitor_loss = 0.3;
+Loss_data_ACinst = Wattmeter_Power_DC' - Simulasyon_Inst_Power_AC';
+Loss_data_ACfund = Wattmeter_Power_DC' - Simulasyon_Fund_Power_AC';
+Loss_data_Furkan = [18.15776307,10.82091244,6.084196153,3.057558565,1.298884292];
+Loss_data_Furkan = Capacitor_loss + Loss_data_Furkan;
+Loss_data_Ozan   = [21,15.7,12.0,9.3,5.6]-PCB_loss;
 
-Loss_calculated = [
-                    
-                    ];
+Efficiency_ACinst = Simulasyon_Inst_Power_AC'./Wattmeter_Power_DC'*100;
+Efficiency_ACfund = Simulasyon_Fund_Power_AC'./Wattmeter_Power_DC'*100;
+Efficiency_Furkan = (Wattmeter_Power_DC' - Loss_data_Furkan')./Wattmeter_Power_DC'*100;
+Efficiency_Ozan = (Wattmeter_Power_DC' - Loss_data_Ozan')./Wattmeter_Power_DC'*100;
+Efficiency_exp_from_sim = [98.97,98.78,99.02,98.89,97.99];
+
+load_power = 400*[5,4,3,2,1];
+
 
 figure;
 hold all;
-plot(load_power,Efficiency_data,'b-o','Linewidth',2);
+plot(load_power,Efficiency_Furkan,'r-o','Linewidth',2);
+%plot(load_power,smooth(Efficiency_Furkan),'r-o','Linewidth',2);
+plot(load_power,Efficiency_ACfund,'k-x','Linewidth',2);
+%plot(load_power,smooth(Efficiency_ACfund),'b-o','Linewidth',2);
+plot(load_power,Efficiency_Ozan,'b-+','Linewidth',2);
+%plot(load_power,smooth(Efficiency_Ozan),'g-o','Linewidth',2);
 grid on;
 set(gca,'FontSize',12);
 xlabel('Load Power (W)','FontSize',12,'FontWeight','Bold')
 ylabel('Efficiency (%)','FontSize',12,'FontWeight','Bold')
-ylim([90 102]);
+ylim([95 100]);
 xlim([300 2100])
+%legend('Instantaneous AC Power','Fundamental AC Power','Furkan','Ozan');
+legend('Calculated','Experimental','Estimated from Thermal Data');

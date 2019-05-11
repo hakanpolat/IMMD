@@ -3,17 +3,17 @@
 Ts = 1e-6; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
-fsw = 10e3; % Hz
+fsw = 40e3; % Hz
 Vdc = 540; % Volts
 Pout = 8e3/0.94; % W
-Ef = 155; % Volts
-Ls = 13.8e-3; % Henries
+Ef = 80; % Volts
+Ls = 3.5e-3; % Henries
 Rs = 1e-3; % Ohms
-fout = 50; % Hz
+fout = 100; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
-np = 1;
-ns = 1;
+np = 2;
+ns = 2;
 n = ns*np;
 Poutm = Pout/n; % Watts
 Is = Poutm/(Ef*m); % amps
@@ -33,7 +33,7 @@ Cdc = 100e-6;
 
 
 Idcrms1 = Is*sqrt( 2*ma*(sqrt(3)/(4*pi) +...
-    pf^2*(sqrt(3)/pi-9*ma/16)) ); % Amps
+    pf^2*(sqrt(3)/pi-9*ma/16)) ) % Amps
 
 Vdcrip = 1;
 Cdcreq1 = ns*(ma*Is/(16*fsw*Vdcrip))*...
