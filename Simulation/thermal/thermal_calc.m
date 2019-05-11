@@ -10,18 +10,40 @@ A = b*y; % m2
 Ploss_single = 4; % W
 Num_fin = 12;
 T_a = 273 + 25; % 
-for i = 1:37
+%for i = 1:37
     C = 1.42;
     n = 0.25;
-    L = index(i); 
+    %L = index(i);
+    L = 0.024;
     Surface_area = 2*(y+b)*L + A;
     power = Ploss_single*6/Num_fin;
     %T_s = (power/(C*A))^(1/(n+1)) * L^(n/(n+1))+T_a
-    T_s = T_a + 30;
-    h_fin(i) = C*((T_s-T_a)/L)^n;
-    thermal_resistance(i) = 1/((h_fin(i)*Surface_area)*12);
-end
+    T_s = T_a + 60;
+    %h_fin(i) = C*((T_s-T_a)/L)^n;
+    %thermal_resistance(i) = 1/((h_fin(i)*Surface_area)*12);
+    h_fin = C*((T_s-T_a)/L)^n
+    thermal_resistance = 1/((h_fin*Surface_area)*Num_fin);
+%end
+Rth_fins = thermal_resistance
 
+Ploss_single = 4; % W
+b = 8.57E-3; %gap between adjacent plates
+L = 5E-3; %m length of plate in vertical flow direction
+%L = 107e-3; % m - Length of base (avg)
+T_a = 273+25;%temperature of ambient air
+%C = 1.32;
+C = 0.59;
+n = 0.25;
+A = 0.0105; % m^2 base area
+%T_s = (Ploss_single*6/(C*A))^(1/(n+1)) * L^(n/(n+1)) + T_a
+T_s = T_a + 60;
+h_simple = C*((T_s-T_a)/L)^n
+Rth_base = 1/(h_simple*A)
+
+Rth_hs = Rth_base*Rth_fins/(Rth_base+Rth_fins)
+
+
+%%
 figure;
 hold all;
 plot(index,h_fin,'r-','Linewidth',1);
@@ -35,20 +57,6 @@ set(gca,'FontSize',14);
 %legend({'Phase-A','Phase-B','Phase-C'},'Location','northeast');
 
 %%
-Ploss_single = 4; % W
-b = 8.57E-3; %gap between adjacent plates
-L = 5E-3; %m length of plate in vertical flow direction
-%L = 107e-3; % m - Length of base (avg)
-T_a = 273+25;%temperature of ambient air
-C = 1.32;
-n = 0.25;
-A = 0.0105; % m^2 base area
-%T_s = (Ploss_single*6/(C*A))^(1/(n+1)) * L^(n/(n+1)) + T_a
-T_s = T_a + 20;
-h_simple = C*((T_s-T_a)/L)^n
-Rth = 1/(h_simple*A)
-
-%%
 Rth_juction_case = 0.5; % C/W
 Rth_pcb = 3.39; % C/W
 thermal_cond_tim = 5; % W/mK
@@ -60,7 +68,7 @@ Ploss_single = 1:0.1:10; % W
 Ploss_total = Ploss_single*6; % W
 Tambient = 25; % C
 Tjunction = 105; % C
-Rth_heat_sink = (Tjunction - Tambient - Ploss_single*Rth_path)./(6*Ploss_single)
+Rth_heat_sink = (Tjunction - Tambient - Ploss_single*Rth_path)./(6*Ploss_single);
 figure
 hold all;
 plot(Ploss_single,Rth_heat_sink,'b-','Linewidth',2);
