@@ -24,13 +24,13 @@ end
 
 figure;
 hold all;
-plot(index,h_fin,'r-','Linewidth',1);
+plot(1e2*index,h_fin,'r-','Linewidth',1);
 ylabel('Conv','FontSize',14,'FontWeight','Bold')
 yyaxis right
-plot(index,thermal_resistance,'b-','Linewidth',1);
+plot(1e2*index,thermal_resistance,'b-','Linewidth',1);
 ylabel('Rth','FontSize',14,'FontWeight','Bold')
 set(gca,'FontSize',14);
-%xlabel('Time (ms)','FontSize',14,'FontWeight','Bold')
+xlabel('Fin height (cm)','FontSize',14,'FontWeight','Bold')
 %xlim([-10 20]);
 %legend({'Phase-A','Phase-B','Phase-C'},'Location','northeast');
 
@@ -60,7 +60,7 @@ Ploss_single = 1:0.1:10; % W
 Ploss_total = Ploss_single*6; % W
 Tambient = 25; % C
 Tjunction = 105; % C
-Rth_heat_sink = (Tjunction - Tambient - Ploss_single*Rth_path)./(6*Ploss_single)
+Rth_heat_sink = (Tjunction - Tambient - Ploss_single*Rth_path)./(6*Ploss_single);
 figure
 hold all;
 plot(Ploss_single,Rth_heat_sink,'b-','Linewidth',2);
