@@ -1,3 +1,5 @@
+% https://www.digikey.com/product-detail/en/epcos-tdk/B32774D4505K000/495-4828-ND/3492301
+
 Is = 8.8; % A
 pf = 0.97;
 ma = 0.9;
