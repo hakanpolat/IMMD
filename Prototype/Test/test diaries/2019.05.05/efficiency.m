@@ -175,35 +175,52 @@ Simulasyon_Inst_Power_AC = [1893,1514,1140,767.7,390.6];
 Simulasyon_Fund_Power_AC = [1890,1512,1138,766.2,389.8];
 
 PCB_loss = 2.85;
-Capacitor_loss = 0.3;
+Capacitor_loss = 0.3*[1,0.8,0.6,0.4,0.2];
 Loss_data_ACinst = Wattmeter_Power_DC' - Simulasyon_Inst_Power_AC';
 Loss_data_ACfund = Wattmeter_Power_DC' - Simulasyon_Fund_Power_AC';
-Loss_data_Furkan = [18.15776307,10.82091244,6.084196153,3.057558565,1.298884292];
-Loss_data_Furkan = Capacitor_loss + Loss_data_Furkan;
-Loss_data_Ozan   = [21,15.7,12.0,9.3,5.6]-PCB_loss;
+%Loss_data_Furkan = [18.15776307,10.82091244,6.084196153,3.057558565,1.298884292];
+Loss_data_Furkan = [19.92,12.21,7.22,3.99,2.08] + Capacitor_loss;
+%Loss_data_Ozan   = [21,15.7,12.0,9.3,5.6]-PCB_loss;
+
+Loss_data_calorimeter = [27,17,12.5,9,5.5] - PCB_loss; % 9 net degil, 5'i salladým
 
 Efficiency_ACinst = Simulasyon_Inst_Power_AC'./Wattmeter_Power_DC'*100;
 Efficiency_ACfund = Simulasyon_Fund_Power_AC'./Wattmeter_Power_DC'*100;
 Efficiency_Furkan = (Wattmeter_Power_DC' - Loss_data_Furkan')./Wattmeter_Power_DC'*100;
-Efficiency_Ozan = (Wattmeter_Power_DC' - Loss_data_Ozan')./Wattmeter_Power_DC'*100;
-Efficiency_exp_from_sim = [98.97,98.78,99.02,98.89,97.99];
+%Efficiency_Ozan = (Wattmeter_Power_DC' - Loss_data_Ozan')./Wattmeter_Power_DC'*100;
+%Efficiency_exp_from_sim = [98.97,98.78,99.02,98.89,97.99];
+Efficiency_Calorimeter = 100*(Wattmeter_Power_DC - Loss_data_calorimeter)./(Wattmeter_Power_DC);
 
 load_power = 400*[5,4,3,2,1];
 
-
+%%
 figure;
 hold all;
 plot(load_power,Efficiency_Furkan,'r-o','Linewidth',2);
 %plot(load_power,smooth(Efficiency_Furkan),'r-o','Linewidth',2);
 plot(load_power,Efficiency_ACfund,'k-x','Linewidth',2);
 %plot(load_power,smooth(Efficiency_ACfund),'b-o','Linewidth',2);
-plot(load_power,Efficiency_Ozan,'b-+','Linewidth',2);
+plot(load_power,Efficiency_Calorimeter','b-+','Linewidth',2);
 %plot(load_power,smooth(Efficiency_Ozan),'g-o','Linewidth',2);
 grid on;
-set(gca,'FontSize',12);
-xlabel('Load Power (W)','FontSize',12,'FontWeight','Bold')
-ylabel('Efficiency (%)','FontSize',12,'FontWeight','Bold')
+set(gca,'FontSize',14);
+xlabel('Load Power (W)','FontSize',14,'FontWeight','Bold')
+ylabel('Efficiency (%)','FontSize',14,'FontWeight','Bold')
 ylim([95 100]);
 xlim([300 2100])
-%legend('Instantaneous AC Power','Fundamental AC Power','Furkan','Ozan');
-legend('Calculated','Experimental','Estimated from Thermal Data');
+legend('Calculated','Electrical measurements','Calorimeter');
+
+
+%%
+figure;
+hold all;
+plot(load_power*1e-3,Efficiency_Furkan,'r-o','Linewidth',2);
+plot(load_power*1e-3,Efficiency_Calorimeter','b-+','Linewidth',2);
+%grid on;
+set(gca,'FontSize',14);
+xlabel('Output Power (kW)','FontSize',14,'FontWeight','Bold')
+ylabel('Efficiency (%)','FontSize',14,'FontWeight','Bold')
+ylim([95 100]);
+xlim([300 2100]*1e-3)
+legend({'Calculated','Measured'},'Location','best');
+

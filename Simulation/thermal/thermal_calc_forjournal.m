@@ -88,3 +88,21 @@ set(gca,'FontSize',14);
 xlabel('Single device loss (W)','FontSize',14,'FontWeight','Bold')
 ylabel('Required R_{th-hs} (C/W)','FontSize',14,'FontWeight','Bold')
 
+%%
+Rth_juction_case = 0.5; % C/W
+Rth_pcb = 3.39; % C/W
+thermal_cond_tim = 5; % W/mK
+area_tim = 17e-3*14e-3; % m^2
+length_tim = 2e-3; % m
+Rth_tim = length_tim/(thermal_cond_tim*area_tim); % C/W
+Rth_path = Rth_tim + Rth_juction_case + Rth_pcb; % C/W
+Rth_path_eqv = Rth_path/6;
+Ploss2_total = 24; % W
+Ploss1_total = 19; % W
+Tj1 = 80;
+Tj2 = 105;
+Ta = 25;
+Rth_hs1 = (Tj1-Ta)/Ploss1_total - Rth_path_eqv
+Rth_hs2 = (Tj2-Ta)/Ploss2_total - Rth_path_eqv
+
+
