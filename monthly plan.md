@@ -1,3 +1,37 @@
+### Mayıs 2019
+
+##### Tasarım - donanım çalışmaları
+1. **Motor sürücü**
+  * **Kontrol kartı testi:** Flyback noise problemi. PWM bufferların kalan 3 tanesi düzeltilmeli.
+  * **Kontrol DSP yazılımı:** EQEP çalıştırılacak ve mevcut kontrolcüye entegre edilecek. Simulink üzerinde kontrol simulasyonu tamamlanacak.
+  * **Versiyon 1.3 gate driver kartı:** 2 kart sorunsuz çalışıyor. Akım ölçümleri test edilmedi. 3 kart daha dizilmeli.
+  * **Heat sink:** Diğerlerinin kesimine karar verilecek.
+  * **Seri-Paralel çalışma:** Test edilecek. Interleaving için DSP kodu yazılacak.
+2. **Motor**
+  * **Generatör mod:** Yük testi eksik.
+  * **Motor modu:** Test edilecek.  
+
+##### Teorik çalışmalar
+1. **Modülerlik:** ECCE makalesindeki simulasyonlar yeni kartta tekrarlanacak. Analitik modelleme çalışılacak.
+2. **Dengesizlik:** Dengesizlikler üzerine simulasyonlara devam edilecek ?
+3. **Termal model:** Modeldeki aksaklıklar üzerine çalışılacak.
+
+##### Makale çalışmaları
+1. **IET JoPE:** Special issue submit edildi.
+2. **IET JoE:** Düzeltme sonrası dönüş olmadı.
+3. **ECCE 2019:** Kabul edildi. Full-paper için planlama yapıldı.
+4. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
+
+##### Tez çalışmaları
+1. **Outline:** Tamamlanacak.
+2. **TİK:** Rapor yazılacak, gönderilecek. Sunum yapılacak.
+
+##### Proje, rapor, satın almalar
+1. **Bütçe:** Avans çekildi. Aktarmalar yapılacak.
+
+________
+
+
 ### Nisan 2019
 
 ##### Tasarım - donanım çalışmaları
@@ -6,21 +40,21 @@
   * **Kontrol DSP yazılımı:** Yazılım kontrol kartında çalışıyor. PWM, enable ve interrupt yapıldı. ADC çalışırıldı. Timingler ayarlandı. PI controller, park, clarke ve inverse'leri yazıldı. EQEP'e bakılıyor.
   * **Versiyon 1.3 gate driver kartı:** 2 tane dizildi. Bir karta temel testler yapıldı. DPT yapıldı. İnverter testleri yapıldı (300V-8A-2kW). Akım ölçümleri test edilmedi.
 2. GaN Gardaşları
-  * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak
+  * **Karakterizasyon kartı:** Layout tasarımı için toplantı yapılacak.
 3. V.1. Motor
   * **Test düzeneği:** Hazırlandı.
   * **Ölçüm testleri** Direnç, inductance testi yapıldı.
   * **Jeneratör mod:** Endüklenen gerilimlere bakıldı. Tüm sargılardan data alındı. Yükle test ediliyor.
 
 ##### Makale çalışmaları
-1. **ACEMP 2019:** Makale gönderilecek (?).
+1. **ACEMP 2019:** Nope.
 2. [**Ufuktaki Konferanslar**](https://github.com/mesutto/IMMD/blob/master/conference%20list%20short.md)
 3. **IET JoE:** İstenen düzeltmeler gönderildi.
-4. **IET JoPE:** Special issue için outline çıkarılacak. Testlerin durumuna göre yazılmaya başlanacak.
+4. **IET JoPE:** Special issue için outline çıkarıldı.
 
 ##### Tez çalışmaları
 1. **Outline:** Tamamlanacak.
-2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek
+2. **Modüler motor sürücü:** Dengesizlikler üzerine simulasyonlara devam edilecek.
 
 ##### Proje, rapor, satın almalar
 1. BAP
