@@ -1,6 +1,6 @@
 %% Ploss vs Tempfplot = figure;
 bar(Pout*1e-3,Ploss,'stacked','BarWidth',0.6);
-ylim([0 20]);
+ylim([0 21]);
 xlim([0.2 2.2]);
 ax = gca;
 set(findobj(gcf,'type','axes'),'FontName','Arial','FontSize',12,'LineWidth', 1);
