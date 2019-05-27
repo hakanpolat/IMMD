@@ -179,3 +179,51 @@ Simulation/analytical model/slprj/accel/sim_model_simpledclink/codedescriptor.dm
 Simulation/analytical model/slprj/accel/sim_model_simpledclink/modelsources.txt
 Simulation/analytical model/slprj/accel/sim_model_simpledclink/defines.txt
 Simulation/analytical model/sim_model_simpledclink_acc.mexw64
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/codedescriptor.dmr
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/__cf_InverterModulesInSeries2016a.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_ref.rsp
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_types.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_private.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_data.c
+Simulation/modular/slprj/sl_proj.tmw
+Simulation/modular/slprj/sim/_sharedutils/shared_file.dmr
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtwtypes.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtw_proj.tmw
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rt_nonfinite.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rt_nonfinite.c
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rt_defines.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtGetNaN.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtGetNaN.c
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtGetInf.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/rtGetInf.c
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/multiword_types.h
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc.c
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.mk
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.lnk
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.bat
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/modelsources.txt
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/defines.txt
+Simulation/modular/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtw_proj.tmw
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/modelsources.txt
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/defines.txt
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.mk
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.lnk
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a.bat
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtGetInf.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtGetInf.c
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/multiword_types.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_data.c
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc.c
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rt_defines.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtGetNaN.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtGetNaN.c
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_ref.rsp
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_types.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/InverterModulesInSeries2016a_acc_private.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rtwtypes.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rt_nonfinite.h
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/rt_nonfinite.c
+Project/3501/Furkan/Inverter Model with Parasitics/slprj/accel/InverterModulesInSeries2016a/codedescriptor.dmr
+Simulation/modular/InverterModulesInSeries2016a_acc.mexw64
