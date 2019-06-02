@@ -196,7 +196,7 @@ xlim([0 2.1]);
 ylim([0 1.1]);
 legend({'pf1','pf2'},'Location','best');
 
-%% Unbalance in the voltage
+%% Unbalance in the voltage (RL load)
 R1 = 10; % Ohm
 L1 = 20e-3; % H
 R2 = 2:0.1:20; % Ohm
@@ -228,3 +228,4 @@ V2 = 0.612*ma2*Vdc2/sqrt(3);
 I2 = V2/Z2;
 S2 = 3*V2*I2;
 P2 = S2*pf2
+
