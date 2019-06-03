@@ -14,7 +14,6 @@ series = 1;
 parallel = 2;
 VpulseMax = 6; 
 VpulseMin = -3;
-Lesl = 19e-9;
 
 % Quantities in below are in percent
 Dtop = 0.1; % duty cycle of top
@@ -27,8 +26,44 @@ Module2Phase = 180; %in degree
 Ls = 0.9e-9;
 Ld = 0.9e-9;
 
+ESLA = 19e-9;
+ESLB = 19e-9;
+ESLC = 19e-9;
+ESRA = 19e-9;
+ESRB = 19e-9;
+ESRC = 19e-9;
+
+
 %% Parasitics
 % Tüm parazitikler var
+LATop  = 03.40e-9;
+LABot  = 20.25e-9;
+LAMid  = 01.30e-9;
+LBTop  = 03.38e-9;
+LBBot  = 20.38e-9;
+LBMid  = 01.30e-9;
+LCTop  = 03.41e-9;
+LCBot  = 20.94e-9;
+LCMid  = 01.30e-9;
+LABTop = 18.30e-9;
+LABBot = 10.20e-9;
+LBCTop = 21.84e-9;
+LBCBot = 11.14e-9;
+
+RATop  = 03.40e-9;
+RABot  = 20.25e-9;
+RAMid  = 01.30e-9;
+RBTop  = 03.38e-9;
+RBBot  = 20.38e-9;
+RBMid  = 01.30e-9;
+RCTop  = 03.41e-9;
+RCBot  = 20.94e-9;
+RCMid  = 01.30e-9;
+RABTop = 18.30e-9;
+RABBot = 10.20e-9;
+RBCTop = 21.84e-9;
+RBCBot = 11.14e-9;
+
 ACapToDrain = 7.14e-9;
 ACapToSource = 5.65e-9;
 ASourceToLoad = 3.724e-9;
@@ -72,10 +107,15 @@ CNegToCap = 31.2e-9;
 % CPosToCap = 1e-15;
 % CNegToCap = 1e-15;
 
-%Module 1 Connection Inductances
+% Connection inductance var
+% POS1 = 100e-9;
+% NEG1 = 100e-9;
+% POS2 = 100e-9;
+% NEG2 = 100e-9;
+
+% Connection inductance yok
 POS1 = 100e-15;
 NEG1 = 100e-15;
-%Module 2 Connection Inductances
 POS2 = 100e-15;
 NEG2 = 100e-15;
 
@@ -161,5 +201,5 @@ SourceCurrent = InitialCurrent;
 model = 'Modular_Model_New_Board';
 SampleTime = 1e-7;
 load_system(model);
-set_param(model, 'StopTime','30e-3')
+set_param(model, 'StopTime','3e-3')
 sim(model);
