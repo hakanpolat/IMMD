@@ -26,13 +26,21 @@ Module2Phase = 180; %in degree
 Ls = 0.9e-9;
 Ld = 0.9e-9;
 
-ESLA = 19e-9;
-ESLB = 19e-9;
-ESLC = 19e-9;
-ESRA = 19e-9;
-ESRB = 19e-9;
-ESRC = 19e-9;
+% Yes ESL and ESR
+% ESLA = 19e-9;
+% ESLB = 19e-9;
+% ESLC = 19e-9;
+% ESRA = 21.1e-3;
+% ESRB = 21.1e-3;
+% ESRC = 21.1e-3;
 
+% No ESL and ESR
+ESLA = 19e-15;
+ESLB = 19e-15;
+ESLC = 19e-15;
+ESRA = 21.1e-15;
+ESRB = 21.1e-15;
+ESRC = 21.1e-15;
 
 %% Parasitics
 % Tüm parazitikler var
@@ -64,6 +72,38 @@ RABBot = 10.20e-9;
 RBCTop = 21.84e-9;
 RBCBot = 11.14e-9;
 
+% Tüm parazitikler yok
+LATop2  = 03.40e-15;
+LABot2  = 20.25e-15;
+LAMid2  = 01.30e-15;
+LBTop2  = 03.38e-15;
+LBBot2  = 20.38e-15;
+LBMid2  = 01.30e-15;
+LCTop2  = 03.41e-15;
+LCBot2  = 20.94e-15;
+LCMid2  = 01.30e-15;
+LABTop2 = 18.30e-15;
+LABBot2 = 10.20e-15;
+LBCTop2 = 21.84e-15;
+LBCBot2 = 11.14e-15;
+
+RATop2  = 03.40e-15;
+RABot2  = 20.25e-15;
+RAMid2  = 01.30e-15;
+RBTop2  = 03.38e-15;
+RBBot2  = 20.38e-15;
+RBMid2  = 01.30e-15;
+RCTop2  = 03.41e-15;
+RCBot2  = 20.94e-15;
+RCMid2  = 01.30e-15;
+RABTop2 = 18.30e-15;
+RABBot2 = 10.20e-15;
+RBCTop2 = 21.84e-15;
+RBCBot2 = 11.14e-15;
+
+
+% Eski kart
+% Tüm parazitikler var
 ACapToDrain = 7.14e-9;
 ACapToSource = 5.65e-9;
 ASourceToLoad = 3.724e-9;
@@ -85,6 +125,7 @@ CDrainToLoad = 3.242e-9;
 CPosToCap = 43.665e-9;
 CNegToCap = 31.2e-9;
 
+% Eski kart
 % Tüm parazitikler yok
 % ACapToDrain = 1e-15;
 % ACapToSource = 1e-15;
@@ -143,7 +184,7 @@ Lload2 = Xload2/(2*pi*ffund);
 Iload2 = Vln2/Z2;
 
 P = P_module1+ P_module2;
-Idc = P/Vdc;
+Idc = P/Vdc/2;
 Rin = 10;
 Lin = Lload1;
 Vin = Vdc + Idc*Rin;
@@ -197,9 +238,10 @@ LoadC = InitialCurrent/2;
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink 
-
-model = 'Modular_Model_New_Board';
+Tfinal = 20e-3;
 SampleTime = 1e-7;
-load_system(model);
-set_param(model, 'StopTime','3e-3')
-sim(model);
+
+%%
+%tic
+%sim('Modular_Model_New_Board')
+%toc
