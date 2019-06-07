@@ -1,6 +1,6 @@
 Ts = 1e-6; % sec
 Tfinal = 0.5; % sec
-Ripth = 0.25; % sec
+Ripth = 0.3; % sec
 minlim = 200; % V
 maxlim = 340; % V
 fsw = 10e3; % Hz
@@ -26,41 +26,56 @@ delta = acos(Ef/Vt); % radians
 deltad = delta*180/pi; % degrees
 pf = cos(delta);
 phase = [0 90 0 90];
-Rin = 1;
-%Lin = 1e-3;
+Rin = 70;
+Lin = 1e-15;
 Vinm = Vdcm + Rin*(Poutm/Vdcm);
 Cdc1 = 5e-6; % F
 Cdc = 3*Cdc1; % F
-ESL = 19e-9; % H
-Lpar = 5e-9; % H
-Rpar = 1e-6;
+%ESL = 19e-9; % H
+%ESR = 21.1e-3; % Ohm
+ESL = 19e-15; % H
+ESR = 21.1e-15; % Ohm
+Lpar = 5e-15; % H
+Rpar = 1e-15;
 
+%%
+%sim('sim_model_simpledclink');
+
+%%
+% FFT parameters
+fft_cycle = 10;
+fft_start = 0.3;
+fft_fund = 50;
+fft_maxfreq = 100000;
+fft_THDmaxfreq = 100000;
 
 %% DC link current
 idc_FFTDATA = power_fftscope(idc);
-idc_FFTDATA.startTime = 0.3;
-idc_FFTDATA.cycles = 4; 
-idc_FFTDATA.fundamental = 50; 
-idc_FFTDATA.maxFrequency = 50000;
-idc_FFTDATA.THDmaxFrequency = 50000;
+idc_FFTDATA.startTime = fft_start;
+idc_FFTDATA.cycles = fft_cycle; 
+idc_FFTDATA.fundamental = fft_fund; 
+idc_FFTDATA.maxFrequency = fft_maxfreq;
+idc_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 idc_FFTDATA = power_fftscope(idc_FFTDATA);
 num = numel(idc_FFTDATA.mag);
 idc_DCcomp = idc_FFTDATA.mag(1);
-clc;
+%clc;
 fprintf('\nDC component: %g\n',idc_DCcomp);
+idc_rms_comp = idc_DCcomp;
 for k = 2:num
-    if (idc_FFTDATA.mag(k) >= idc_DCcomp*0.01)
-        fprintf('\nFreq: %g, Mag: %g, Phase: %g\n',idc_FFTDATA.freq(k),idc_FFTDATA.mag(k),idc_FFTDATA.phase(k));
+    if (idc_FFTDATA.mag(k) >= idc_DCcomp*0.05)
+       fprintf('\nFreq: %g, Mag: %g, Phase: %g\n',idc_FFTDATA.freq(k),idc_FFTDATA.mag(k),idc_FFTDATA.phase(k));
+       idc_rms_comp = sqrt(idc_rms_comp^2 + (idc_FFTDATA.mag(k)/sqrt(2))^2);
     end    
 end
 
 %% PWM Signals - A
 SA_FFTDATA = power_fftscope(SA);
-SA_FFTDATA.startTime = 0.3;
-SA_FFTDATA.cycles = 4; 
-SA_FFTDATA.fundamental = 50; 
-SA_FFTDATA.maxFrequency = 50000;
-SA_FFTDATA.THDmaxFrequency = 50000;
+SA_FFTDATA.startTime = fft_start;
+SA_FFTDATA.cycles = fft_cycle; 
+SA_FFTDATA.fundamental = fft_fund; 
+SA_FFTDATA.maxFrequency = fft_maxfreq;
+SA_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 SA_FFTDATA = power_fftscope(SA_FFTDATA);
 num = numel(SA_FFTDATA.mag);
 SA_DCcomp = SA_FFTDATA.mag(1);
@@ -76,11 +91,11 @@ end
 
 %% PWM Signals - B
 SB_FFTDATA = power_fftscope(SB);
-SB_FFTDATA.startTime = 0.3;
-SB_FFTDATA.cycles = 4; 
-SB_FFTDATA.fundamental = 50; 
-SB_FFTDATA.maxFrequency = 50000;
-SB_FFTDATA.THDmaxFrequency = 50000;
+SB_FFTDATA.startTime = fft_start;
+SB_FFTDATA.cycles = fft_cycle; 
+SB_FFTDATA.fundamental = fft_fund; 
+SB_FFTDATA.maxFrequency = fft_maxfreq;
+SB_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 SB_FFTDATA = power_fftscope(SB_FFTDATA);
 num = numel(SB_FFTDATA.mag);
 SB_DCcomp = SB_FFTDATA.mag(1);
@@ -96,11 +111,11 @@ end
 
 %% PWM Signals - C
 SC_FFTDATA = power_fftscope(SC);
-SC_FFTDATA.startTime = 0.3;
-SC_FFTDATA.cycles = 4; 
-SC_FFTDATA.fundamental = 50; 
-SC_FFTDATA.maxFrequency = 50000;
-SC_FFTDATA.THDmaxFrequency = 50000;
+SC_FFTDATA.startTime = fft_start;
+SC_FFTDATA.cycles = fft_cycle; 
+SC_FFTDATA.fundamental = fft_fund; 
+SC_FFTDATA.maxFrequency = fft_maxfreq;
+SC_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 SC_FFTDATA = power_fftscope(SC_FFTDATA);
 num = numel(SC_FFTDATA.mag);
 SC_DCcomp = SC_FFTDATA.mag(1);
@@ -113,14 +128,14 @@ for k = 1:num
         fprintf('\nFreq: %g, Mag: %g, Phase: %g\n',SC_FFTDATA.freq(k),SC_FFTDATA.mag(k),SC_FFTDATA.phase(k));
     end    
 end
-% 
-% %% Vll - AB
+ 
+%% Vll - AB
 % Vll_FFTDATA = power_fftscope(vll);
-% Vll_FFTDATA.startTime = 0.3;
-% Vll_FFTDATA.cycles = 4; 
-% Vll_FFTDATA.fundamental = 50; 
-% Vll_FFTDATA.maxFrequency = 50000;
-% Vll_FFTDATA.THDmaxFrequency = 50000;
+% Vll_FFTDATA.startTime = fft_start;
+% Vll_FFTDATA.cycles = fft_cycle; 
+% Vll_FFTDATA.fundamental = fft_fund; 
+% Vll_FFTDATA.maxFrequency = fft_maxfreq;
+% Vll_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 % Vll_FFTDATA = power_fftscope(Vll_FFTDATA);
 % num = numel(Vll_FFTDATA.mag);
 % DCcomp = Vll_FFTDATA.mag(1);
@@ -136,11 +151,11 @@ end
 
 %% is - A
 isa_FFTDATA = power_fftscope(isa);
-isa_FFTDATA.startTime = 0.3;
-isa_FFTDATA.cycles = 4; 
-isa_FFTDATA.fundamental = 50; 
-isa_FFTDATA.maxFrequency = 50000;
-isa_FFTDATA.THDmaxFrequency = 50000;
+isa_FFTDATA.startTime = fft_start;
+isa_FFTDATA.cycles = fft_cycle; 
+isa_FFTDATA.fundamental = fft_fund; 
+isa_FFTDATA.maxFrequency = fft_maxfreq;
+isa_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 isa_FFTDATA = power_fftscope(isa_FFTDATA);
 num = numel(isa_FFTDATA.mag);
 isa_DCcomp = isa_FFTDATA.mag(1);
@@ -156,11 +171,11 @@ end
 
 %% is - B
 isb_FFTDATA = power_fftscope(isb);
-isb_FFTDATA.startTime = 0.3;
-isb_FFTDATA.cycles = 4; 
-isb_FFTDATA.fundamental = 50; 
-isb_FFTDATA.maxFrequency = 50000;
-isb_FFTDATA.THDmaxFrequency = 50000;
+isb_FFTDATA.startTime = fft_start;
+isb_FFTDATA.cycles = fft_cycle; 
+isb_FFTDATA.fundamental = fft_fund; 
+isb_FFTDATA.maxFrequency = fft_maxfreq;
+isb_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 isb_FFTDATA = power_fftscope(isb_FFTDATA);
 num = numel(isb_FFTDATA.mag);
 isb_DCcomp = isb_FFTDATA.mag(1);
@@ -176,11 +191,11 @@ end
 
 %% is - C
 isc_FFTDATA = power_fftscope(isc);
-isc_FFTDATA.startTime = 0.3;
-isc_FFTDATA.cycles = 4; 
-isc_FFTDATA.fundamental = 50; 
-isc_FFTDATA.maxFrequency = 50000;
-isc_FFTDATA.THDmaxFrequency = 50000;
+isc_FFTDATA.startTime = fft_start;
+isc_FFTDATA.cycles = fft_cycle; 
+isc_FFTDATA.fundamental = fft_fund; 
+isc_FFTDATA.maxFrequency = fft_maxfreq;
+isc_FFTDATA.THDmaxFrequency = fft_THDmaxfreq;
 isc_FFTDATA = power_fftscope(isc_FFTDATA);
 num = numel(isc_FFTDATA.mag);
 isc_DCcomp = isc_FFTDATA.mag(1);
@@ -356,14 +371,56 @@ idc_harm_comp_filtered_sorted = sortrows(idc_harm_comp_filtered(:,1:3),1)
 
 
 %%
+idc_calc_harm = zeros(1,num);
+for k = 1:num
+    cond = any(idc_FFTDATA.freq(k) == idc_harm_comp_filtered_sorted(:,1),1);
+    if (cond == 1)
+        my_index = find(idc_harm_comp_filtered_sorted(:,1) == idc_FFTDATA.freq(k));
+        idc_calc_harm(k) = idc_harm_comp_filtered_sorted(my_index,2);
+    end
+end
 figure;
 hold all;
 plot(idc_FFTDATA.freq*1e-3,idc_FFTDATA.mag,'r-','Linewidth',1);
-plot(isa_FFTDATA.freq*1e-3,isa_FFTDATA.mag*10,'b-','Linewidth',1);
+plot(idc_FFTDATA.freq*1e-3,idc_calc_harm,'b-','Linewidth',1);
 set(gca,'FontSize',14);
 xlabel('Frequency (kHz)','FontSize',14,'FontWeight','Bold')
 ylabel('Magnitude (Amps)','FontSize',14,'FontWeight','Bold')
 xlim([-1 51]);
 ylim([0 10]);
-legend({'Idc','Isa'},'Location','best');
+legend({'Simulated','Calculated'},'Location','best');
+
+
+%% DC link input current
+IinFFTDATA = power_fftscope(Iin);
+IinFFTDATA.startTime = fft_start;
+IinFFTDATA.cycles = fft_cycle; 
+IinFFTDATA.fundamental = fft_fund; 
+IinFFTDATA.maxFrequency = fft_maxfreq;
+IinFFTDATA.THDmaxFrequency = fft_THDmaxfreq;
+IinFFTDATA = power_fftscope(IinFFTDATA);
+num = numel(IinFFTDATA.mag);
+IinDCcomp = IinFFTDATA.mag(1);
+%clc;
+fprintf('\nDC component: %g\n',IinDCcomp);
+Iinrms_comp = IinDCcomp;
+for k = 2:num
+    if (IinFFTDATA.mag(k) >= IinDCcomp*0.01)
+       fprintf('\nFreq: %g, Mag: %g, Phase: %g\n',IinFFTDATA.freq(k),IinFFTDATA.mag(k),IinFFTDATA.phase(k));
+       Iinrms_comp = sqrt(Iinrms_comp^2 + (IinFFTDATA.mag(k)/sqrt(2))^2);
+    end    
+end
+
+
+%%
+% figure;
+% hold all;
+% plot(idc_FFTDATA.freq*1e-3,idc_FFTDATA.mag,'r-','Linewidth',1);
+% plot(isa_FFTDATA.freq*1e-3,isa_FFTDATA.mag*10,'b-','Linewidth',1);
+% set(gca,'FontSize',14);
+% xlabel('Frequency (kHz)','FontSize',14,'FontWeight','Bold')
+% ylabel('Magnitude (Amps)','FontSize',14,'FontWeight','Bold')
+% xlim([-1 51]);
+% ylim([0 10]);
+% legend({'Idc','Isa'},'Location','best');
 
