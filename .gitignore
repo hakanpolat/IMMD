@@ -468,3 +468,24 @@ Simulation/analytical model/sim_model_simpledclink_2parallel_rlload_acc.mexw64
 Simulation/analytical model/sim_model_simpledclink_2parallel_rlload_acc.exp
 Simulation/analytical model/sim_model_withparasitic_rlload_acc.mexw64
 Simulation/analytical model/sim_model_simpledclink_2series_rlload_acc.exp
+Simulation/balancing/slprj/accel/balancing_sim_model/balancing_sim_model_acc.obj
+Simulation/balancing/balancing_sim_model_acc.lib
+Simulation/balancing/balancing_sim_model_RL_load_acc.lib
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/sim_model_simpledclink_acc_data.obj
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/rt_nonfinite.obj
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/rtGetNaN.obj
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/rtGetInf.obj
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/lccstub.obj
+Simulation/analytical model/sim_model_simpledclink_acc.lib
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/rtGetNaN.obj
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/rtGetInf.obj
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/lccstub.obj
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/balancing_sim_model_RL_load_acc_data.obj
+Simulation/balancing/slprj/accel/balancing_sim_model/rtGetInf.obj
+Simulation/balancing/slprj/accel/balancing_sim_model/lccstub.obj
+Simulation/analytical model/slprj/accel/sim_model_simpledclink/sim_model_simpledclink_acc.obj
+Simulation/balancing/slprj/accel/balancing_sim_model/rt_nonfinite.obj
+Simulation/balancing/slprj/accel/balancing_sim_model/rtGetNaN.obj
+Simulation/balancing/slprj/accel/balancing_sim_model/balancing_sim_model_acc_data.obj
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/rt_nonfinite.obj
+Simulation/balancing/slprj/accel/balancing_sim_model_RL_load/balancing_sim_model_RL_load_acc.obj
