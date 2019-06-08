@@ -4,30 +4,74 @@ Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
 fsw = 10e3; % Hz
 Vdc = 540; % Volts
-Pout = 4e3/0.94; % W
-Ef = 80; % Volts
-Ls = 3.5e-3; % Henries
-Rs = 1e-3; % Ohms
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
 ns = 2;
 n = ns*np;
-Poutm = Pout/n; % Watts
-Is = Poutm/(Ef*m); % amps
-Xs = wout*Ls; % Ohms
-Vdrop = Is*Xs; % Volts
-Vt = sqrt(Ef^2+Vdrop^2); % Volts
-Vdcm = Vdc/ns; % volts
-ma = Vt*sqrt(3)/(Vdcm*0.612);
-delta = acos(Ef/Vt); % radians
-deltad = delta*180/pi; % degrees
-pf = cos(delta);
 phase = [0 90 0 90];
+Cdc = 15e-6;
+Ls = 10e-3; % Henries
+Rs = 1e-3; % Ohms
+Xs = wout*Ls; % Ohms
+
+Ef1A = 80;
+Ef1B = Ef1A;
+Ef1C = Ef1A;
+Ef2A = 90;
+Ef2B = Ef2A;
+Ef2C = Ef2A;
+
+Ef1A_ph = 0;
+Ef1B_ph = Ef1A_ph - 120;
+Ef1C_ph = Ef1A_ph + 120;
+Ef2A_ph = 0;
+Ef2B_ph = Ef2A_ph - 120;
+Ef2C_ph = Ef2A_ph + 120;
+
+Ef1_avg = mean([Ef1A,Ef1B,Ef1C]);
+Ef2_avg = mean([Ef2A,Ef2B,Ef2C]);
+
+Poutm1 = 2e3;
+Is1 = Poutm1/(Ef1_avg*m);
+Vdrop1 = Is1*Xs; % Volts
+Vt1 = sqrt(Ef1_avg^2+Vdrop1^2); % Volts
+Vdcm1 = Vdc/ns; % volts
+ma1 = Vt1*sqrt(3)/(Vdcm1*0.612);
+delta1 = acos(Ef1_avg/Vt1); % radians
+deltad1 = delta1*180/pi; % degrees
+pf1 = cos(delta1);
+Soutm1 = Poutm1/pf1;
+Qoutm1 = sqrt(Soutm1^2-Poutm1^2);
+
+Poutm2 = 2e3;
+Is2 = Poutm2/(Ef2_avg*m);
+Vdrop2 = Is2*Xs; % Volts
+Vt2 = sqrt(Ef2_avg^2+Vdrop2^2); % Volts
+Vdcm2 = Vdc/ns; % volts
+ma2 = Vt2*sqrt(3)/(Vdcm2*0.612);
+delta2 = acos(Ef2_avg/Vt2); % radians
+deltad2 = delta2*180/pi; % degrees
+pf2 = cos(delta2);
+Soutm2 = Poutm2/pf2;
+Qoutm2 = sqrt(Soutm2^2-Poutm2^2);
+
+Pout = Poutm1 + Poutm2;
 Rin = 70;
 Vin = Vdc + Rin*(Pout/Vdc);
-Cdc = 100e-6;
+
+Pcalc1 = 3*Vt1*Ef1_avg*sin(delta1)/Xs
+Qcalc1 = 3*(Vt1^2-Vt1*Ef1_avg*cos(delta1))/Xs
+Pcalc2 = 3*Vt2*Ef2_avg*sin(delta2)/Xs
+Qcalc2 = 3*(Vt2^2-Vt2*Ef2_avg*cos(delta2))/Xs
+
+calc_rat1 = ma1*sin(delta1) / (ma2*sin(delta2))
+calc_rat2 = Ef2_avg/Ef1_avg
+
+ma1/ma2
+sin(delta1)/sin(delta2)
+
 
 
 %% RL Load
@@ -35,7 +79,7 @@ Ts = 1e-6; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
 fsw = 10e3; % Hz
-Vdc = 100; % Volts
+Vdc = 540; % Volts
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
@@ -97,11 +141,11 @@ Vdc2 = Vdc-Vdc1;
 V1 = 0.612*ma1*Vdc1/sqrt(3);
 I1 = V1/mean([Z1A,Z1B,Z1C]);
 S1 = 3*V1*I1;
-P1 = S1*pf1;
+P1 = S1*mean([pf1A,pf1B,pf1C]);
 V2 = 0.612*ma2*Vdc2/sqrt(3);
 I2 = V2/mean([Z2A,Z2B,Z2C]);
 S2 = 3*V2*I2;
-P2 = S2*pf2;
+P2 = S2*mean([pf2A,pf2B,pf2C]);
 
 Pout = P1 + P2;
 Rin = 70;

@@ -8,7 +8,7 @@ ns = 1;
 
 % Selections
 ESL_ESR = 1;
-Par_module = 1;
+Par_module = 0;
 
 Ts = 1e-8; % sec
 Tfinal = 0.05; % sec
@@ -44,8 +44,8 @@ Lload = Xload/(2*pi*fout);
 
 switch ESL_ESR
     case 1
-        ESL = 19e-9/3; % H
-        ESR = 21.1e-3/3; % Ohm
+        ESL = 19e-9; % H
+        ESR = 21.1e-3; % Ohm
     case 0
         ESL = 1e-15; % H
         ESR = 1e-15; % Ohm
@@ -58,11 +58,96 @@ switch Par_module
     case 1
         Lpar = 50e-9; % H
         Rpar = 10e-3; % Ohm
+        
+        LATop  = 03.40e-9;
+        LABot  = 20.25e-9;
+        LAMid  = 01.30e-9;
+        LBTop  = 03.38e-9;
+        LBBot  = 20.38e-9;
+        LBMid  = 01.30e-9;
+        LCTop  = 03.41e-9;
+        LCBot  = 20.94e-9;
+        LCMid  = 01.30e-9;
+        LABTop = 18.30e-9;
+        LABBot = 10.20e-9;
+        LBCTop = 21.84e-9;
+        LBCBot = 11.14e-9;
+
+        RATop  = 9.70e-3;
+        RABot  = 52.8e-3;
+        RAMid  = 1.30e-3;
+        RBTop  = 9.87e-3;
+        RBBot  = 43.9e-3;
+        RBMid  = 1.30e-3;
+        RCTop  = 49.4e-3;
+        RCBot  = 46.6e-3;
+        RCMid  = 1.30e-3;
+        RABTop = 42.6e-3;
+        RABBot = 20.4e-3;
+        RBCTop = 49.4e-3;
+        RBCBot = 16.6e-3;
+
     case 0
-        Lpar = 1e-9; % H
-        Rpar = 1e-9; % Ohm
+        LATop  = 03.40e-15;
+        LABot  = 20.25e-15;
+        LAMid  = 01.30e-15;
+        LBTop  = 03.38e-15;
+        LBBot  = 20.38e-15;
+        LBMid  = 01.30e-15;
+        LCTop  = 03.41e-15;
+        LCBot  = 20.94e-15;
+        LCMid  = 01.30e-15;
+        LABTop = 18.30e-15;
+        LABBot = 10.20e-15;
+        LBCTop = 21.84e-15;
+        LBCBot = 11.14e-15;
+
+        RATop  = 03.40e-15;
+        RABot  = 20.25e-15;
+        RAMid  = 01.30e-15;
+        RBTop  = 03.38e-15;
+        RBBot  = 20.38e-15;
+        RBMid  = 01.30e-15;
+        RCTop  = 03.41e-15;
+        RCBot  = 20.94e-15;
+        RCMid  = 01.30e-15;
+        RABTop = 18.30e-15;
+        RABBot = 10.20e-15;
+        RBCTop = 21.84e-15;
+        RBCBot = 11.14e-15;
+
     otherwise
-        Lpar = 1e-9; % H
-        Rpar = 1e-9; % Ohm
+        LATop  = 03.40e-15;
+        LABot  = 20.25e-15;
+        LAMid  = 01.30e-15;
+        LBTop  = 03.38e-15;
+        LBBot  = 20.38e-15;
+        LBMid  = 01.30e-15;
+        LCTop  = 03.41e-15;
+        LCBot  = 20.94e-15;
+        LCMid  = 01.30e-15;
+        LABTop = 18.30e-15;
+        LABBot = 10.20e-15;
+        LBCTop = 21.84e-15;
+        LBCBot = 11.14e-15;
+
+        RATop  = 03.40e-15;
+        RABot  = 20.25e-15;
+        RAMid  = 01.30e-15;
+        RBTop  = 03.38e-15;
+        RBBot  = 20.38e-15;
+        RBMid  = 01.30e-15;
+        RCTop  = 03.41e-15;
+        RCBot  = 20.94e-15;
+        RCMid  = 01.30e-15;
+        RABTop = 18.30e-15;
+        RABBot = 10.20e-15;
+        RBCTop = 21.84e-15;
+        RBCBot = 11.14e-15;
+
 end
+
+
+
+
 
