@@ -1,0 +1,11 @@
+#include "__cf_InverterModulesInSeries2016a.h"
+#ifndef RTW_HEADER_InverterModulesInSeries2016a_acc_types_h_
+#define RTW_HEADER_InverterModulesInSeries2016a_acc_types_h_
+#include "rtwtypes.h"
+#include "multiword_types.h"
+typedef struct P_RMS_InverterModulesInSeries2016a_T_
+P_RMS_InverterModulesInSeries2016a_T ; typedef struct
+P_TrueRMS_InverterModulesInSeries2016a_T_
+P_TrueRMS_InverterModulesInSeries2016a_T ; typedef struct
+P_InverterModulesInSeries2016a_T_ P_InverterModulesInSeries2016a_T ;
+#endif

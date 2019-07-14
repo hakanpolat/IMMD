@@ -157,7 +157,7 @@ LoadC = InitialCurrent/2;
 SourceVolt = Vdc;
 SourceCurrent = InitialCurrent;
 %% Run Simulink 
-model = 'InverterModulesInSeries';
+model = 'InverterModulesInSeries2016a';
 SampleTime = 1e-7;
 load_system(model);
 set_param(model, 'StopTime','30e-3')

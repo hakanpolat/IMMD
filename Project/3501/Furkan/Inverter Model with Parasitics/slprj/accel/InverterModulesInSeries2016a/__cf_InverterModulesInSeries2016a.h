@@ -1,0 +1,3 @@
+#ifndef CF_InverterModulesInSeries2016a_H__
+#define CF_InverterModulesInSeries2016a_H__
+#endif
