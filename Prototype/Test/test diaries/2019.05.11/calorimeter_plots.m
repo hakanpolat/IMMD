@@ -95,7 +95,7 @@ hold all;
 yyaxis left
 plot(time,-diff_surface,'bx-','Linewidth',2);
 plot(time_top,-diff_top,'ko-','Linewidth',2);
-plot(time,zeros(1,numel(time)),'g--','Linewidth',2);
+%plot(time,zeros(1,numel(time)),'g--','Linewidth',2);
 ylim([-2.5 2.5]);
 ylabel('Temperature difference (^\circC)','FontSize',14,'FontWeight','Bold')
 yyaxis right
@@ -105,7 +105,9 @@ ylabel('Power input (W)','FontSize',14,'FontWeight','Bold')
 xlabel('Time (minutes)','FontSize',14,'FontWeight','Bold')
 set(gca,'FontSize',14);
 xlim([0 300]);
-legend({'Surface','Top','Threshold','Res Power'},'Location','best');
+legend({'Temperature difference in box front surfaces',...
+    'Temperature difference in box top surfaces',...
+    'Resistance Power Input'},'Location','best');
 
 %%
 power_modify1 = (power_curve'-24)
@@ -128,3 +130,12 @@ xlim([0 300]);
 legend({'24W','25W','26W','27W','28W'},'Location','best');
 
 
+%%
+
+% Konferans: 
+% https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=5544503
+% https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6699623
+% https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6634469
+% https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=6185790
+% https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=8170556
+% 
