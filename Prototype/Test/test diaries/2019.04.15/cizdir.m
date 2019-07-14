@@ -9,24 +9,25 @@ hold all;
 plot(Vdc,PhA_Vds,'ro-','Linewidth',2);
 plot(Vdc,PhB_Vds,'b*-','Linewidth',2);
 plot(Vdc,PhC_Vds,'k--','Linewidth',2);
-grid on;
-set(gca,'FontSize',12);
-xlabel('DC Link Voltage (Volts)','FontSize',12,'FontWeight','Bold')
-ylabel('Vds (Volts)','FontSize',12,'FontWeight','Bold')
+%grid on;
+set(gca,'FontSize',14);
+xlabel('DC Link Voltage (Volts)','FontSize',14,'FontWeight','Bold')
+ylabel('Vds (Volts)','FontSize',14,'FontWeight','Bold')
 xlim([0 325]);
 legend('Phase-A','Phase-B','Phase-C');
 
+%%
 figure;
 hold all;
 plot(Vdc,PhA_Vds-Vdc,'ro-','Linewidth',2);
 plot(Vdc,PhB_Vds-Vdc,'b*-','Linewidth',2);
 plot(Vdc,PhC_Vds-Vdc,'k--','Linewidth',2);
-grid on;
-set(gca,'FontSize',12);
-xlabel('DC Link Voltage (Volts)','FontSize',12,'FontWeight','Bold')
-ylabel('Overshoot (Volts)','FontSize',12,'FontWeight','Bold')
+%grid on;
+set(gca,'FontSize',14);
+xlabel('DC Link Voltage (Volts)','FontSize',14,'FontWeight','Bold')
+ylabel('Voltage overshoot (Volts)','FontSize',14,'FontWeight','Bold')
 xlim([0 325]);
-ylim([0 50]);
+ylim([0 40]);
 legend('Phase-A','Phase-B','Phase-C');
 
 
@@ -88,12 +89,12 @@ figure;
 hold all;
 plot(e1*1e9,VarName1,'b-','Linewidth',2);
 plot(e008*1e9,VarName2,'r-','Linewidth',2);
-grid on;
-set(gca,'FontSize',12);
-xlabel('Time (ns)','FontSize',12,'FontWeight','Bold')
-ylabel('Phase-C Vds (Volts)','FontSize',12,'FontWeight','Bold')
+%grid on;
+set(gca,'FontSize',14);
+xlabel('Time (ns)','FontSize',14,'FontWeight','Bold')
+ylabel('Drain-to-source voltage (Volts)','FontSize',14,'FontWeight','Bold')
 xlim([-5 60]);
-legend('Bottom','Top');
+legend({'Top','Bottom'},'Location','best');
 
 %% Top results Vgs
 
