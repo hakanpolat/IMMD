@@ -1,8 +1,8 @@
 % Induced Voltage
-Ts = 1e-6; % sec
+Ts = 1e-7; % sec
 Tfinal = 0.1; % sec
 Ripth = 0.08; % sec
-fsw = 10e3; % Hz
+fsw = 40e3; % Hz
 Vdc = 540; % Volts
 fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
@@ -61,26 +61,26 @@ Pout = Poutm1 + Poutm2;
 Rin = 70;
 Vin = Vdc + Rin*(Pout/Vdc);
 
-Pcalc1 = 3*Vt1*Ef1_avg*sin(delta1)/Xs
-Qcalc1 = 3*(Vt1^2-Vt1*Ef1_avg*cos(delta1))/Xs
-Pcalc2 = 3*Vt2*Ef2_avg*sin(delta2)/Xs
-Qcalc2 = 3*(Vt2^2-Vt2*Ef2_avg*cos(delta2))/Xs
-
-calc_rat1 = ma1*sin(delta1) / (ma2*sin(delta2))
-calc_rat2 = Ef2_avg/Ef1_avg
-
-ma1/ma2
-sin(delta1)/sin(delta2)
+% Pcalc1 = 3*Vt1*Ef1_avg*sin(delta1)/Xs
+% Qcalc1 = 3*(Vt1^2-Vt1*Ef1_avg*cos(delta1))/Xs
+% Pcalc2 = 3*Vt2*Ef2_avg*sin(delta2)/Xs
+% Qcalc2 = 3*(Vt2^2-Vt2*Ef2_avg*cos(delta2))/Xs
+% 
+% calc_rat1 = ma1*sin(delta1) / (ma2*sin(delta2))
+% calc_rat2 = Ef2_avg/Ef1_avg
+% 
+% ma1/ma2
+% sin(delta1)/sin(delta2)
 
 
 
 %% RL Load
-Ts = 1e-6; % sec
-Tfinal = 0.1; % sec
-Ripth = 0.08; % sec
-fsw = 10e3; % Hz
+Ts = 1e-7; % sec
+Tfinal = 0.05; % sec
+Ripth = 0.04; % sec
+fsw = 40e3; % Hz
 Vdc = 540; % Volts
-fout = 50; % Hz
+fout = 75; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
@@ -90,19 +90,47 @@ phase = [0 90 0 90];
 Cdc = 15e-6;
 delta = 0; % deg
 
-Lload_1A = 36e-3; % Henries
-Lload_1B = 34e-3; % Henries
-Lload_1C = 36e-3; % Henries
-Rload_1A = 15.26; % Ohms
-Rload_1B = 15.31; % Ohms
-Rload_1C = 15.26; % Ohms
+% calculate nominal values
+Pmodt = 2e3;
+pft = 0.9;
+manom = 0.9;
+Vdcnom = Vdc/2;
+Vllrmsnom = 0.612*manom*Vdcnom;
+Vlnrms = Vllrmsnom/sqrt(3);
+Smodt = Pmodt/pft;
+Ilinemod = Smodt/(3*Vlnrms);
+Znom = Vlnrms/Ilinemod;
+Rnom = Znom*pft;
+Xnom = sqrt(Znom^2-Rnom^2);
+Lnom = Xnom/(2*pi*fout);
 
-Lload_2A = 26e-3; % Henries
-Lload_2B = 26e-3; % Henries
-Lload_2C = 26e-3; % Henries
-Rload_2A = 14.02; % Ohms
-Rload_2B = 14.03; % Ohms
-Rload_2C = 14.00; % Ohms
+% balanced load
+% Lload_1A = Lnom; % Henries
+% Lload_1B = Lnom; % Henries
+% Lload_1C = Lnom; % Henries
+% Rload_1A = Rnom; % Ohms
+% Rload_1B = Rnom; % Ohms
+% Rload_1C = Rnom; % Ohms
+% Lload_2A = Lnom; % Henries
+% Lload_2B = Lnom; % Henries
+% Lload_2C = Lnom; % Henries
+% Rload_2A = Rnom; % Ohms
+% Rload_2B = Rnom; % Ohms
+% Rload_2C = Rnom; % Ohms
+
+% unbalanced load
+Lload_1A = Lnom; % Henries
+Lload_1B = Lnom*1.1; % Henries
+Lload_1C = Lnom*1.2; % Henries
+Rload_1A = Rnom; % Ohms
+Rload_1B = Rnom*1.1; % Ohms
+Rload_1C = Rnom*1.2; % Ohms
+Lload_2A = Lnom*1.05; % Henries
+Lload_2B = Lnom*1.15; % Henries
+Lload_2C = Lnom*1.25; % Henries
+Rload_2A = Rnom*1.05; % Ohms
+Rload_2B = Rnom*1.15; % Ohms
+Rload_2C = Rnom*1.25; % Ohms
 
 X1A = 2*pi*fout*Lload_1A; % Ohm
 X1B = 2*pi*fout*Lload_1B; % Ohm
@@ -125,16 +153,18 @@ pf2A = Rload_2A/Z2A;
 pf2B = Rload_2B/Z2B;
 pf2C = Rload_2C/Z2C;
 
-% Calculate ma's
-%ma1 = 0.9;
-%ma2 = 0.9;
-Rload1 = Rload_1A;
-Rload2 = Rload_2A;
-pf1 = pf1A;
-pf2 = pf2A;
-ratioma = sqrt(Rload1/Rload2)*(pf2/pf1);
+% No balancing
+ma1 = 0.9;
 ma2 = 0.9;
-ma1 = ma2*ratioma;
+
+% Balancing
+% Rload1 = Rload_1A;
+% Rload2 = Rload_2A;
+% pf1 = pf1A;
+% pf2 = pf2A;
+% ratioma = sqrt(Rload1/Rload2)*(pf2/pf1);
+% ma2 = 0.9;
+% ma1 = ma2*ratioma;
 
 ratio_R = mean([Rload_2A,Rload_2B,Rload_2C])/mean([Rload_1A,Rload_1B,Rload_1C]);
 ratio_pf = mean([pf1A,pf1B,pf1C])^2/mean([pf2A,pf2B,pf2C])^2;
@@ -152,5 +182,6 @@ S2 = 3*V2*I2;
 P2 = S2*mean([pf2A,pf2B,pf2C]);
 
 Pout = P1 + P2;
+
 Rin = 70;
 Vin = Vdc + Rin*(Pout/Vdc)+3;
