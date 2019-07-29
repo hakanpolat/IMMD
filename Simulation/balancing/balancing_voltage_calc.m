@@ -31,8 +31,8 @@ P2 = S2.*pf2;
 figure;
 hold all;
 plot(R2/R1,ma2,'r-','Linewidth',2);
-plot(R2/R1,ma1*ones(numel(ma2)),'b-','Linewidth',2);
-plot(R2/R1,ones(numel(ma2)),'k--','Linewidth',2);
+plot(R2/R1,ma1*ones(1,numel(ma2)),'b-','Linewidth',2);
+plot(R2/R1,ones(1,numel(ma2)),'k--','Linewidth',2);
 set(gca,'FontSize',14);
 xlabel('R2/R1','FontSize',14,'FontWeight','Bold')
 ylabel('ma','FontSize',14,'FontWeight','Bold')
@@ -53,7 +53,7 @@ ylim([0.5 1.2]);
 %%
 figure;
 hold all;
-plot(R2/R1,pf1*ones(numel(ma2)),'r-','Linewidth',2);
+plot(R2/R1,pf1*ones(1,numel(ma2)),'r-','Linewidth',2);
 plot(R2/R1,pf2,'b-','Linewidth',2);
 set(gca,'FontSize',14);
 xlabel('R2/R1','FontSize',14,'FontWeight','Bold')
@@ -215,17 +215,17 @@ ma1 = 0.9;
 ma2 = 0.9;
 
 ratio_R = R2/R1;
-ratio_pf = (pf1/pf2)^2;
+ratio_pf = (pf1./pf2).^2;
 ratio_ma = (ma1/ma2)^2;
-ratio = ratio_ma*ratio_pf*ratio_R;
-Vdc1 = Vdc/(ratio+1)
+ratio = ratio_ma*ratio_pf.*ratio_R;
+Vdc1 = Vdc./(ratio+1)
 Vdc2 = Vdc-Vdc1
 V1 = 0.612*ma1*Vdc1/sqrt(3);
 I1 = V1/Z1;
 S1 = 3*V1*I1;
 P1 = S1*pf1
 V2 = 0.612*ma2*Vdc2/sqrt(3);
-I2 = V2/Z2;
+I2 = V2./Z2;
 S2 = 3*V2*I2;
 P2 = S2*pf2
 
