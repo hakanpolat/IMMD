@@ -80,7 +80,7 @@ Tfinal = 0.05; % sec
 Ripth = 0.04; % sec
 fsw = 40e3; % Hz
 Vdc = 540; % Volts
-fout = 75; % Hz
+fout = 50; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
@@ -119,18 +119,19 @@ Lnom = Xnom/(2*pi*fout);
 % Rload_2C = Rnom; % Ohms
 
 % unbalanced load
-Lload_1A = Lnom; % Henries
-Lload_1B = Lnom*1.1; % Henries
-Lload_1C = Lnom*1.2; % Henries
-Rload_1A = Rnom; % Ohms
-Rload_1B = Rnom*1.1; % Ohms
-Rload_1C = Rnom*1.2; % Ohms
-Lload_2A = Lnom*1.05; % Henries
-Lload_2B = Lnom*1.15; % Henries
-Lload_2C = Lnom*1.25; % Henries
-Rload_2A = Rnom*1.05; % Ohms
-Rload_2B = Rnom*1.15; % Ohms
-Rload_2C = Rnom*1.25; % Ohms
+Lload_1A = Lnom*1.00; % Henries
+Lload_1B = Lnom*1.00; % Henries
+Lload_1C = Lnom*1.00; % Henries
+Rload_1A = Rnom*1.00; % Ohms
+Rload_1B = Rnom*1.00; % Ohms
+Rload_1C = Rnom*1.20; % Ohms
+
+Lload_2A = Lnom*1.00; % Henries
+Lload_2B = Lnom*1.00; % Henries
+Lload_2C = Lnom*1.00; % Henries
+Rload_2A = Rnom*1.00; % Ohms
+Rload_2B = Rnom*1.00; % Ohms
+Rload_2C = Rnom*1.00; % Ohms
 
 X1A = 2*pi*fout*Lload_1A; % Ohm
 X1B = 2*pi*fout*Lload_1B; % Ohm
