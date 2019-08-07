@@ -111,6 +111,7 @@ float ModulationIndex_M1;
 float ModulationIndex_M2;
 float ModulationIndex_M3;
 float ModulationIndex_M4;
+float ModulationIndex_Default = 0.9;
 
 double spwm_counter = 0;
 
@@ -159,33 +160,36 @@ int main(void)
     //EDIS;
     //InitFlash();
 
-    InitSysCtrl();// first link F2837xD_SysCtrl.c
+    InitSysCtrl();    // first link F2837xD_SysCtrl.c
     // if you are using in flash
     // add 2837x_FLASH_lnk_cpu1_bist.cmd
     // and add "_FLASH" to your predefined options
 
     InitPeripheralClocks();
 
-    EALLOW; // initperipheral clock diyince bunlara gerek kalmiyor sanirim.
+    EALLOW;
+    // initperipheral clock diyince bunlara gerek kalmiyor sanirim.
     CpuSysRegs.PCLKCR2.bit.EPWM1 = 1;/*enable clock for epwm1*/
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
     EDIS;
 
     EALLOW;
     ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0; // EPWM Clock Divide Select: /1 of PLLSYSCLK
-	EDIS;
+    EDIS;
 
     Gpio_Select();
     //TrigRegs.INPUT10SELECT = 0;
 
-    DINT; //disable the interrupts
+    DINT;
+    //disable the interrupts
 
-    InitPieCtrl();// first link F2837xD_PieCtrl.c
+    InitPieCtrl(); // first link F2837xD_PieCtrl.c
     IER = 0x0000;
     IFR = 0x0000;
     InitPieVectTable();
 
-    EALLOW;  // This is needed to write to EALLOW protected registers
+    EALLOW;
+    // This is needed to write to EALLOW protected registers
     PieVectTable.TIMER0_INT = &cpu_timer0_isr;
     PieVectTable.TIMER1_INT = &cpu_timer1_isr;
     PieVectTable.TIMER2_INT = &cpu_timer2_isr;
@@ -234,19 +238,27 @@ int main(void)
 
     //PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
-    EINT;  // Enable Global interrupt INTM
-    ERTM;  // Enable Global real time interrupt DBGM
+    EINT;
+    // Enable Global interrupt INTM
+    ERTM;
+    // Enable Global real time interrupt DBGM
 
     EALLOW;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1; // buna da gerek olmayabilir
-    WdRegs.WDCR.all = 0x0028;//set the watch dog
+    WdRegs.WDCR.all = 0x0028; //set the watch dog
     EDIS;
 
-    while(1)
+    // Module-1 Enable larýn setleri
+    GpioDataRegs.GPCSET.bit.GPIO94 = 1;
+    GpioDataRegs.GPCSET.bit.GPIO93 = 1;
+    GpioDataRegs.GPCSET.bit.GPIO92 = 1;
+
+    while (1)
     {
-        while(!CpuTimer0.InterruptCount)
-        {}
-        WdRegs.WDKEY.all = 0x55;// serve to watchdog
+        while (!CpuTimer0.InterruptCount)
+        {
+        }
+        WdRegs.WDKEY.all = 0x55; // serve to watchdog
         CpuTimer0.InterruptCount = 0;
 
     }
@@ -287,7 +299,6 @@ void Gpio_Select()
     GpioCtrlRegs.GPFMUX2.all = 0;
     GpioCtrlRegs.GPFGMUX1.all = 0;
     GpioCtrlRegs.GPFGMUX2.all = 0;
-
 
     // Module-1 Phase-A PWM (ePWM8)
     GpioCtrlRegs.GPAPUD.bit.GPIO14 = 1;    // Disable pull-up on GPIO14 (EPWM8A)
@@ -338,16 +349,16 @@ void Gpio_Select()
     GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;   // Configure GPIO3 as EPWM2B
 
     // Module-3 Phase-A PWM (ePWM11)
-    GpioCtrlRegs.GPAPUD.bit.GPIO20 = 1;    // Disable pull-up on GPIO20 (EPWM11A)
-    GpioCtrlRegs.GPAPUD.bit.GPIO21 = 1;    // Disable pull-up on GPIO21 (EPWM11B)
+    GpioCtrlRegs.GPAPUD.bit.GPIO20 = 1;   // Disable pull-up on GPIO20 (EPWM11A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO21 = 1;   // Disable pull-up on GPIO21 (EPWM11B)
     GpioCtrlRegs.GPAGMUX2.bit.GPIO20 = 1;  // Configure GPIO20 as EPWM11A
     GpioCtrlRegs.GPAGMUX2.bit.GPIO21 = 1;  // Configure GPIO21 as EPWM11B
     GpioCtrlRegs.GPAMUX2.bit.GPIO20 = 1;   // Configure GPIO20 as EPWM11A
     GpioCtrlRegs.GPAMUX2.bit.GPIO21 = 1;   // Configure GPIO21 as EPWM11B
 
     // Module-3 Phase-B PWM (ePWM10)
-    GpioCtrlRegs.GPAPUD.bit.GPIO18 = 1;    // Disable pull-up on GPIO18 (EPWM10A)
-    GpioCtrlRegs.GPAPUD.bit.GPIO19 = 1;    // Disable pull-up on GPIO19 (EPWM10B)
+    GpioCtrlRegs.GPAPUD.bit.GPIO18 = 1;   // Disable pull-up on GPIO18 (EPWM10A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO19 = 1;   // Disable pull-up on GPIO19 (EPWM10B)
     GpioCtrlRegs.GPAGMUX2.bit.GPIO18 = 1;  // Configure GPIO18 as EPWM10A
     GpioCtrlRegs.GPAGMUX2.bit.GPIO19 = 1;  // Configure GPIO19 as EPWM10B
     GpioCtrlRegs.GPAMUX2.bit.GPIO18 = 1;   // Configure GPIO18 as EPWM10A
@@ -378,13 +389,12 @@ void Gpio_Select()
     GpioCtrlRegs.GPAMUX1.bit.GPIO9 = 1;   // Configure GPIO9 as EPWM5B
 
     // Module-4 Phase-C PWM (ePWM12)
-    GpioCtrlRegs.GPAPUD.bit.GPIO22 = 1;    // Disable pull-up on GPIO22 (EPWM12A)
-    GpioCtrlRegs.GPAPUD.bit.GPIO23 = 1;    // Disable pull-up on GPIO23 (EPWM12B)
+    GpioCtrlRegs.GPAPUD.bit.GPIO22 = 1;   // Disable pull-up on GPIO22 (EPWM12A)
+    GpioCtrlRegs.GPAPUD.bit.GPIO23 = 1;   // Disable pull-up on GPIO23 (EPWM12B)
     GpioCtrlRegs.GPAGMUX2.bit.GPIO22 = 1;  // Configure GPIO22 as EPWM12A
     GpioCtrlRegs.GPAGMUX2.bit.GPIO23 = 1;  // Configure GPIO23 as EPWM12B
     GpioCtrlRegs.GPAMUX2.bit.GPIO22 = 1;   // Configure GPIO22 as EPWM12A
     GpioCtrlRegs.GPAMUX2.bit.GPIO23 = 1;   // Configure GPIO23 as EPWM12B
-
 
     // Module-1 Phase-A Enable (GPIO94)
     GpioCtrlRegs.GPCPUD.bit.GPIO94 = 0; // enable pull up
@@ -501,87 +511,91 @@ void InitSystem(void) // burayi yukari alalim
 
 __interrupt void cpu_timer0_isr(void)
 {
-   CpuTimer0.InterruptCount++;
-   WdRegs.WDKEY.all = 0xAA;
+    CpuTimer0.InterruptCount++;
+    WdRegs.WDKEY.all = 0xAA;
 
-   // Module-4 Enables
-   GpioDataRegs.GPCTOGGLE.bit.GPIO74 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO75 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO76 = 1;
+    /*
+     // Module-4 Enables
+     GpioDataRegs.GPCTOGGLE.bit.GPIO74 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO75 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO76 = 1;
 
-   // Module-3 Enables
-   GpioDataRegs.GPCTOGGLE.bit.GPIO77 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO78 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO79 = 1;
+     // Module-3 Enables
+     GpioDataRegs.GPCTOGGLE.bit.GPIO77 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO78 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO79 = 1;
 
-   // Module-2 Enables
-   GpioDataRegs.GPCTOGGLE.bit.GPIO91 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO90 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO89 = 1;
+     // Module-2 Enables
+     GpioDataRegs.GPCTOGGLE.bit.GPIO91 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO90 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO89 = 1;
 
-   // Module-1 Enables
-   //GpioDataRegs.GPCTOGGLE.bit.GPIO94 = 1;
-   //GpioDataRegs.GPCTOGGLE.bit.GPIO93 = 1;
-   GpioDataRegs.GPCTOGGLE.bit.GPIO92 = 1;
+     // Module-1 Enables
+     GpioDataRegs.GPCTOGGLE.bit.GPIO94 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO93 = 1;
+     GpioDataRegs.GPCTOGGLE.bit.GPIO92 = 1;
+     */
 
-   // Acknowledge this interrupt to receive more interrupts from group 1
-   PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+    // Acknowledge this interrupt to receive more interrupts from group 1
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
 __interrupt void cpu_timer1_isr(void)
 {
-   CpuTimer1.InterruptCount++;
-   // The CPU acknowledges the interrupt.
-   // GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
+    CpuTimer1.InterruptCount++;
+    // The CPU acknowledges the interrupt.
+    // GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
 
 }
 
 __interrupt void cpu_timer2_isr(void)
 {
-   CpuTimer2.InterruptCount++;
-   // The CPU acknowledges the interrupt.
-   //GpioDataRegs.GPATOGGLE.bit.GPIO31 = 1;
+    CpuTimer2.InterruptCount++;
+    // The CPU acknowledges the interrupt.
+    //GpioDataRegs.GPATOGGLE.bit.GPIO31 = 1;
 
 }
 __interrupt void epwm1_isr(void)
 {
-    GpioDataRegs.GPCSET.bit.GPIO94 = 1;
+    //GpioDataRegs.GPCSET.bit.GPIO94 = 1;
 
     //out_buffer1[i] = Vdc_M1;
-	//out_buffer2[i] = Vdc_M2;
-	//i++;
-	//if (i == BUFFERLENGTH) i=0;
+    //out_buffer2[i] = Vdc_M2;
+    //i++;
+    //if (i == BUFFERLENGTH) i=0;
 
     // Update PWM duty cycles
-	EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD*epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
-	EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD*epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
-	EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD*epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
-	EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD*epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
-	EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD*epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
-	EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD*epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
-	EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD*epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
-	EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD*epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
-	EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD*epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
-	EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD*epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
-	EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD*epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
-	EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD*epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
+    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD * epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
+    EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD * epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
+    EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD * epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
+    EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD * epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
+    EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD * epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
+    EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD * epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
+    EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD * epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
+    EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD * epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
+    //EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
+    EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD * epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
+    EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD * epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
+    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD * epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
 
-	//
+    // temporary
+    EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm7_dutycycle;// Module-3 Phase-C PWM (ePWM9)
 
+    //
 
     EPwm1Regs.ETCLR.bit.INT = 1;
     // Acknowledge this interrupt to receive more interrupts from group 3
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP3;
-    GpioDataRegs.GPCCLEAR.bit.GPIO94 = 1;
+    //GpioDataRegs.GPCCLEAR.bit.GPIO94 = 1;
 }
 
 __interrupt void adc1_isr(void)
 {
-    GpioDataRegs.GPCSET.bit.GPIO93 = 1;
+    //GpioDataRegs.GPCSET.bit.GPIO93 = 1;
 
     // First digital readings from ADCs
-    Vdc_M3_adc    = AdcaResultRegs.ADCRESULT0;
-    Vdc_M1_adc    = AdcaResultRegs.ADCRESULT1;
+    Vdc_M3_adc = AdcaResultRegs.ADCRESULT0;
+    Vdc_M1_adc = AdcaResultRegs.ADCRESULT1;
     Is_M3_PhC_adc = AdcaResultRegs.ADCRESULT3;
     Is_M1_PhA_adc = AdcaResultRegs.ADCRESULT4;
     Is_M2_PhB_adc = AdcaResultRegs.ADCRESULT5;
@@ -594,28 +608,44 @@ __interrupt void adc1_isr(void)
     Is_M2_PhA_adc = AdccResultRegs.ADCRESULT2;
     Is_M1_PhC_adc = AdccResultRegs.ADCRESULT3;
     Is_M1_PhB_adc = AdccResultRegs.ADCRESULT4;
-    Vdc_M4_adc    = AdcdResultRegs.ADCRESULT0;
-    Vdc_M2_adc    = AdcdResultRegs.ADCRESULT1;
+    Vdc_M4_adc = AdcdResultRegs.ADCRESULT0;
+    Vdc_M2_adc = AdcdResultRegs.ADCRESULT1;
     DSP_Temp_Sensor_adc = AdcaResultRegs.ADCRESULT13;
     DSP_Temp_Sensor = GetTemperatureC(DSP_Temp_Sensor_adc);
 
     // Calculate actual measurements
-    Vdc_M1 = (Vdc_M1_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
-    Vdc_M2 = (Vdc_M2_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
-    Vdc_M3 = (Vdc_M3_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
-    Vdc_M4 = (Vdc_M4_adc * max_adc_analog / max_adc_digital) * Voltage_TransferFunction;
-    Is_M1_PhA = ((Is_M1_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M1_PhB = ((Is_M1_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M1_PhC = ((Is_M1_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M2_PhA = ((Is_M2_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M2_PhB = ((Is_M2_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M2_PhC = ((Is_M2_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M3_PhA = ((Is_M3_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M3_PhB = ((Is_M3_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M3_PhC = ((Is_M3_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M4_PhA = ((Is_M4_PhA_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M4_PhB = ((Is_M4_PhB_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
-    Is_M4_PhC = ((Is_M4_PhC_adc * max_adc_analog / max_adc_digital) - Current_Offset) * Current_TransferFunction;
+    Vdc_M1 = (Vdc_M1_adc * max_adc_analog / max_adc_digital)
+            * Voltage_TransferFunction;
+    Vdc_M2 = (Vdc_M2_adc * max_adc_analog / max_adc_digital)
+            * Voltage_TransferFunction;
+    Vdc_M3 = (Vdc_M3_adc * max_adc_analog / max_adc_digital)
+            * Voltage_TransferFunction;
+    Vdc_M4 = (Vdc_M4_adc * max_adc_analog / max_adc_digital)
+            * Voltage_TransferFunction;
+    Is_M1_PhA = ((Is_M1_PhA_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M1_PhB = ((Is_M1_PhB_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M1_PhC = ((Is_M1_PhC_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhA = ((Is_M2_PhA_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhB = ((Is_M2_PhB_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M2_PhC = ((Is_M2_PhC_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhA = ((Is_M3_PhA_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhB = ((Is_M3_PhB_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M3_PhC = ((Is_M3_PhC_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhA = ((Is_M4_PhA_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhB = ((Is_M4_PhB_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
+    Is_M4_PhC = ((Is_M4_PhC_adc * max_adc_analog / max_adc_digital)
+            - Current_Offset) * Current_TransferFunction;
 
     // PI Controller Vdc_M1
     picontroller_Vdc_M1.Kp = 1;
@@ -626,7 +656,7 @@ __interrupt void adc1_isr(void)
     picontroller_Vdc_M1.Uin = Vdc_M1;
     picontroller_Vdc_M1.error[1] = PI_Vdc_M1_Error;
     picontroller_Vdc_M1.Yout[1] = PI_Vdc_M1_Out[1];
-    PICONTROLLER(picontroller_Vdc_M1);
+    PICONTROLLER (picontroller_Vdc_M1);
     PI_Vdc_M1_Error = picontroller_Vdc_M1.error[1];	// error[n-1]
     PI_Vdc_M1_Out[1] = picontroller_Vdc_M1.Yout[1];	// output[n-1]
     PI_Vdc_M1_Out[0] = picontroller_Vdc_M1.Yout[0];	// output[n]
@@ -635,7 +665,7 @@ __interrupt void adc1_isr(void)
     clarke_Is_M1.va = Is_M1_PhA;
     clarke_Is_M1.vb = Is_M1_PhA;
     clarke_Is_M1.vc = Is_M1_PhA;
-    CLARKETRANSFORM(clarke_Is_M1);
+    CLARKETRANSFORM (clarke_Is_M1);
     Is_M1_Ialfa = clarke_Is_M1.valfa;
     Is_M1_Ibeta = clarke_Is_M1.vbeta;
 
@@ -643,7 +673,7 @@ __interrupt void adc1_isr(void)
     park_Is_M1.valfa = Is_M1_Ialfa;
     park_Is_M1.vbeta = Is_M1_Ibeta;
     park_Is_M1.theta = position_angle;
-    PARKTRANSFORM(park_Is_M1);
+    PARKTRANSFORM (park_Is_M1);
     Is_M1_Id = park_Is_M1.vd;
     Is_M1_Iq = park_Is_M1.vq;
 
@@ -651,52 +681,58 @@ __interrupt void adc1_isr(void)
     inversepark_Vout_M1.vd = Vout_M1_Vd;
     inversepark_Vout_M1.vq = Vout_M1_Vq;
     inversepark_Vout_M1.theta = position_angle;
-    INVERSEPARKTRANSFORM(inversepark_Vout_M1);
+    INVERSEPARKTRANSFORM (inversepark_Vout_M1);
     Vout_M1_Valfa = inversepark_Vout_M1.valfa;
     Vout_M1_Vbeta = inversepark_Vout_M1.vbeta;
 
     // Inverse Clarke Transform for Module-1 Output Voltages
     inverseclarke_Vout_M1.valfa = Vout_M1_Valfa;
     inverseclarke_Vout_M1.vbeta = Vout_M1_Vbeta;
-    INVERSECLARKETRANSFORM(inverseclarke_Vout_M1);
+    INVERSECLARKETRANSFORM (inverseclarke_Vout_M1);
     Vout_M1_PhA = inverseclarke_Vout_M1.va;
     Vout_M1_PhB = inverseclarke_Vout_M1.vb;
     Vout_M1_PhC = inverseclarke_Vout_M1.vc;
 
     // sinusoidal PWM
-    ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
-    epwm8_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency) + 1) / 2;
-    epwm7_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency - 2*pi/3) + 1) / 2;
-    epwm6_dutycycle = ( ModulationIndex_M1*sin(2*pi*motor_frequency*spwm_counter/switching_frequency + 2*pi/3) + 1) / 2;
+    //ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
+    ModulationIndex_M1 = ModulationIndex_Default;
+    epwm8_dutycycle = (ModulationIndex_M1
+            * sin(2 * pi * motor_frequency * spwm_counter / switching_frequency)
+            + 1) / 2;
+    epwm7_dutycycle = (ModulationIndex_M1
+            * sin(2 * pi * motor_frequency * spwm_counter / switching_frequency
+                    - 2 * pi / 3) + 1) / 2;
+    epwm6_dutycycle = (ModulationIndex_M1
+            * sin(2 * pi * motor_frequency * spwm_counter / switching_frequency
+                    + 2 * pi / 3) + 1) / 2;
 
-	spwm_counter += 1;
-    if( spwm_counter > ((switching_frequency/motor_frequency)-1))
-    	spwm_counter = 0;
+    spwm_counter += 1;
+    if (spwm_counter > ((switching_frequency / motor_frequency) - 1))
+        spwm_counter = 0;
 
+    /*
+     epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
+     epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
+     epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
+     epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
+     epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
+     epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
+     epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
+     epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
+     epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
+     epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
+     epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
+     epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
 
-/*
-	epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
-	epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
-	epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
-	epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
-	epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
-	epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
-	epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
-	epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
-	epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
-	epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
-	epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
-	epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
+     AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
+     AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
+     */
 
-	AdcRegs.ADCTRL2.bit.RST_SEQ1=1; // Clear INT SEQ1 bit
-    AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
-    */
+    //AdcaRegs.ADCINTFLG.bit.ADCINT1 // ADC Interrupt 1 Flag. Reading these flags indicates if the associated ADCINT pulse was generated since the last clear
+    AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
 
-	//AdcaRegs.ADCINTFLG.bit.ADCINT1 // ADC Interrupt 1 Flag. Reading these flags indicates if the associated ADCINT pulse was generated since the last clear
-	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;  // Clears respective flag bit in the ADCINTFLG register
-	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
-
-	GpioDataRegs.GPCCLEAR.bit.GPIO93 = 1;
+    //GpioDataRegs.GPCCLEAR.bit.GPIO93 = 1;
 
 }
 
@@ -706,28 +742,28 @@ void Setup_ADC(void)
     // AdcaRegs.ADCSOCFRC1.all = 0x000F; // Bi ara bakalim
 
     EALLOW;
-	AdcaRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
-	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
-	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+    AdcaRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
+    AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1; // All analog circuitry inside the core is powered up
+    AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1; // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
 
-	AdcbRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
-    AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
-    AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+    AdcbRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
+    AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1; // All analog circuitry inside the core is powered up
+    AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1; // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
 
     AdccRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
-    AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
-    AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+    AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1; // All analog circuitry inside the core is powered up
+    AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1; // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
 
     AdcdRegs.ADCCTL1.all = 0x00;            // ADC Control 1 Register
-    AdcdRegs.ADCCTL1.bit.ADCPWDNZ = 1;      // All analog circuitry inside the core is powered up
-    AdcdRegs.ADCCTL1.bit.INTPULSEPOS = 1;   // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
+    AdcdRegs.ADCCTL1.bit.ADCPWDNZ = 1; // All analog circuitry inside the core is powered up
+    AdcdRegs.ADCCTL1.bit.INTPULSEPOS = 1; // ? Interrupt pulse generation occurs at the end of the conversion, 1 cycle prior to the ADC result latching into its result register
 
-	AdcaRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
-	AdcaRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
-	AdcaRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
-	AdcaRegs.ADCCTL2.bit.PRESCALE = 6;      // ADCCLK = Input Clock / 4.0
+    AdcaRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
+    AdcaRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
+    AdcaRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
+    AdcaRegs.ADCCTL2.bit.PRESCALE = 6;      // ADCCLK = Input Clock / 4.0
 
-	AdcbRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
+    AdcbRegs.ADCCTL2.all = 0x00;            // ADC Control 2 Register
     AdcbRegs.ADCCTL2.bit.SIGNALMODE = 0;    // Single-ended
     AdcbRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
     AdcbRegs.ADCCTL2.bit.PRESCALE = 6;      // ADCCLK = Input Clock / 4.0
@@ -742,10 +778,10 @@ void Setup_ADC(void)
     AdcdRegs.ADCCTL2.bit.RESOLUTION = 0;    // 12-bit resolution
     AdcdRegs.ADCCTL2.bit.PRESCALE = 6;      // ADCCLK = Input Clock / 4.0
 
-	AdcaRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
-	AdcaRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
+    AdcaRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
+    AdcaRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
 
-	AdcbRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
+    AdcbRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
     AdcbRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
 
     AdccRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
@@ -754,156 +790,155 @@ void Setup_ADC(void)
     AdcdRegs.ADCBURSTCTL.all = 0x00;        // ADC Burst Control Register
     AdcdRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
 
-	AdcaRegs.ADCINTSEL1N2.all = 0x00;       // ADC Interrupt 1 and 2 Selection Register
-	AdcaRegs.ADCINTSEL1N2.bit.INT1CONT = 0; // No further ADCINT1 pulses are generated until ADCINT1 flag (in ADCINTFLG register) is cleared by user
-	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;    // ADCINT1 is enabled
-	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 0;  // ? EOC0 is trigger for ADCINT1
-	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;  // Clears respective flag bit in the ADCINTFLG register
-	AdcaRegs.ADCINTSEL3N4.all = 0x00;       // ADC Interrupt 3 and 4 Selection Register
+    AdcaRegs.ADCINTSEL1N2.all = 0x00; // ADC Interrupt 1 and 2 Selection Register
+    AdcaRegs.ADCINTSEL1N2.bit.INT1CONT = 0; // No further ADCINT1 pulses are generated until ADCINT1 flag (in ADCINTFLG register) is cleared by user
+    AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;    // ADCINT1 is enabled
+    AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 0;  // ? EOC0 is trigger for ADCINT1
+    AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
+    AdcaRegs.ADCINTSEL3N4.all = 0x00; // ADC Interrupt 3 and 4 Selection Register
 
-	AdcaRegs.ADCSOCPRICTL.all = 0x00;       // ADC SOC Priority Control Register
-	AdcaRegs.ADCSOCPRICTL.bit.SOCPRIORITY = 0; // SOC priority is handled in round robin mode for all channels
+    AdcaRegs.ADCSOCPRICTL.all = 0x00;       // ADC SOC Priority Control Register
+    AdcaRegs.ADCSOCPRICTL.bit.SOCPRIORITY = 0; // SOC priority is handled in round robin mode for all channels
 
-	AdcaRegs.ADCINTSOCSEL1.all = 0x00;      // ADC Interrupt SOC Selection 1 Register
-    AdcbRegs.ADCINTSOCSEL1.all = 0x00;      // ADC Interrupt SOC Selection 1 Register
-    AdccRegs.ADCINTSOCSEL1.all = 0x00;      // ADC Interrupt SOC Selection 1 Register
-    AdcdRegs.ADCINTSOCSEL1.all = 0x00;      // ADC Interrupt SOC Selection 1 Register
-	/*
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC0 = 1; // ADCINT1 will trigger SOC0
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC1 = 1; // ADCINT1 will trigger SOC1
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC2 = 1; // ADCINT1 will trigger SOC2
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC3 = 1; // ADCINT1 will trigger SOC3
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC4 = 1; // ADCINT1 will trigger SOC4
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC5 = 1; // ADCINT1 will trigger SOC5
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC6 = 1; // ADCINT1 will trigger SOC6
-	AdcaRegs.ADCINTSOCSEL1.bit.SOC7 = 1; // ADCINT1 will trigger SOC7
-    */
+    AdcaRegs.ADCINTSOCSEL1.all = 0x00; // ADC Interrupt SOC Selection 1 Register
+    AdcbRegs.ADCINTSOCSEL1.all = 0x00; // ADC Interrupt SOC Selection 1 Register
+    AdccRegs.ADCINTSOCSEL1.all = 0x00; // ADC Interrupt SOC Selection 1 Register
+    AdcdRegs.ADCINTSOCSEL1.all = 0x00; // ADC Interrupt SOC Selection 1 Register
+    /*
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC0 = 1; // ADCINT1 will trigger SOC0
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC1 = 1; // ADCINT1 will trigger SOC1
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC2 = 1; // ADCINT1 will trigger SOC2
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC3 = 1; // ADCINT1 will trigger SOC3
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC4 = 1; // ADCINT1 will trigger SOC4
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC5 = 1; // ADCINT1 will trigger SOC5
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC6 = 1; // ADCINT1 will trigger SOC6
+     AdcaRegs.ADCINTSOCSEL1.bit.SOC7 = 1; // ADCINT1 will trigger SOC7
+     */
 
-	AdcaRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
+    AdcaRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
     AdcbRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
     AdccRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
     AdcdRegs.ADCINTSOCSEL2.all = 0x00; // ADC Interrupt SOC Selection 2 Register
-	/*
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC8 = 1; // ADCINT1 will trigger SOC8
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC9 = 1; // ADCINT1 will trigger SOC9
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC10 = 1; // ADCINT1 will trigger SOC10
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC11 = 1; // ADCINT1 will trigger SOC11
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC12 = 1; // ADCINT1 will trigger SOC12
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC13 = 1; // ADCINT1 will trigger SOC13
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC14 = 1; // ADCINT1 will trigger SOC14
-	AdcaRegs.ADCINTSOCSEL2.bit.SOC15 = 1; // ADCINT1 will trigger SOC15
-    */
+    /*
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC8 = 1; // ADCINT1 will trigger SOC8
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC9 = 1; // ADCINT1 will trigger SOC9
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC10 = 1; // ADCINT1 will trigger SOC10
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC11 = 1; // ADCINT1 will trigger SOC11
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC12 = 1; // ADCINT1 will trigger SOC12
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC13 = 1; // ADCINT1 will trigger SOC13
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC14 = 1; // ADCINT1 will trigger SOC14
+     AdcaRegs.ADCINTSOCSEL2.bit.SOC15 = 1; // ADCINT1 will trigger SOC15
+     */
 
-	// AdcaRegs.ADCSOC0CTL.bit.TRIGSEL: SOC0 Trigger Source Select.
-	// Along with the SOC0 field in the ADCINTSOCSEL1 register, this bit field configures which trigger will set the SOC0 flag
-	// in the ADCSOCFLG1 register to initiate a conversion to start once priority is given to it
-	// AdcaRegs.ADCSOC0CTL.bit.CHSEL: SOC0 Channel Select.
-	// Selects the channel to be converted when SOC0 is received by the ADC
-	// AdcaRegs.ADCSOC0CTL.bit.ACQPS: SOC0 Acquisition Prescale
-
+    // AdcaRegs.ADCSOC0CTL.bit.TRIGSEL: SOC0 Trigger Source Select.
+    // Along with the SOC0 field in the ADCINTSOCSEL1 register, this bit field configures which trigger will set the SOC0 flag
+    // in the ADCSOCFLG1 register to initiate a conversion to start once priority is given to it
+    // AdcaRegs.ADCSOC0CTL.bit.CHSEL: SOC0 Channel Select.
+    // Selects the channel to be converted when SOC0 is received by the ADC
+    // AdcaRegs.ADCSOC0CTL.bit.ACQPS: SOC0 Acquisition Prescale
     // Temp Sensor
     AnalogSubsysRegs.TSNSCTL.bit.ENABLE = 1; // Temperature Sensor Enable
     AdcaRegs.ADCSOC13CTL.all = 0x0000;    // ADC SOC13 Control Register
     AdcaRegs.ADCSOC13CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcaRegs.ADCSOC13CTL.bit.CHSEL = 13;   // Single-ended ADCIN13
-    AdcaRegs.ADCSOC13CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcaRegs.ADCSOC13CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
 
     // Vdc_M3_adc
-	AdcaRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
-	AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINA0
-	AdcaRegs.ADCSOC0CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Vdc_M1_adc
-	AdcaRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
-	AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINA1
-	AdcaRegs.ADCSOC1CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	//AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
-	//AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	//AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINA2
-	//AdcaRegs.ADCSOC2CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M3_PhC_adc
-	AdcaRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
-	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINA3
-	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M1_PhA_adc
-	AdcaRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
-	AdcaRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINA4
-	AdcaRegs.ADCSOC4CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M2_PhB_adc
-	AdcaRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
-	AdcaRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINA5
-	AdcaRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M3_PhB_adc
+    AdcaRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
+    AdcaRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINA0
+    AdcaRegs.ADCSOC0CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Vdc_M1_adc
+    AdcaRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
+    AdcaRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINA1
+    AdcaRegs.ADCSOC1CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    //AdcaRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+    //AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINA2
+    //AdcaRegs.ADCSOC2CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    // Is_M3_PhC_adc
+    AdcaRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+    AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINA3
+    AdcaRegs.ADCSOC3CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M1_PhA_adc
+    AdcaRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+    AdcaRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINA4
+    AdcaRegs.ADCSOC4CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M2_PhB_adc
+    AdcaRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+    AdcaRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcaRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINA5
+    AdcaRegs.ADCSOC5CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M3_PhB_adc
     AdcaRegs.ADCSOC14CTL.all = 0x0000;    // ADC SOC14 Control Register
     AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;   // Single-ended ADCIN14
-    AdcaRegs.ADCSOC14CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcaRegs.ADCSOC14CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
     // Is_M3_PhA_adc
     AdcaRegs.ADCSOC15CTL.all = 0x0000;    // ADC SOC15 Control Register
     AdcaRegs.ADCSOC15CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcaRegs.ADCSOC15CTL.bit.CHSEL = 15;   // Single-ended ADCIN15
-    AdcaRegs.ADCSOC15CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcaRegs.ADCSOC15CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
     // Is_M4_PhB_adc
     AdcbRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
-	AdcbRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcbRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINB0
-	AdcbRegs.ADCSOC0CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M4_PhC_adc
-	AdcbRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
-	AdcbRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcbRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINB1
-	AdcbRegs.ADCSOC1CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M2_PhC_adc
-	AdcbRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
-	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINB2
-	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M4_PhA_adc
-	AdcbRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
-	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIB3
-	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	//AdcbRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
-	//AdcbRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	//AdcbRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINB4
-	//AdcbRegs.ADCSOC4CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	//AdcbRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
-	//AdcbRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	//AdcbRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINB5
-	//AdcbRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M2_PhA_adc
-	AdccRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
-	AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINC2
-	AdccRegs.ADCSOC2CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Is_M1_PhC_adc
-	AdccRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
-	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINC3
-	AdccRegs.ADCSOC3CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcbRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcbRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCINB0
+    AdcbRegs.ADCSOC0CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M4_PhC_adc
+    AdcbRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
+    AdcbRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcbRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCINB1
+    AdcbRegs.ADCSOC1CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M2_PhC_adc
+    AdcbRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+    AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINB2
+    AdcbRegs.ADCSOC2CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M4_PhA_adc
+    AdcbRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+    AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCIB3
+    AdcbRegs.ADCSOC3CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    //AdcbRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+    //AdcbRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcbRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINB4
+    //AdcbRegs.ADCSOC4CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    //AdcbRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+    //AdcbRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdcbRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINB5
+    //AdcbRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    // Is_M2_PhA_adc
+    AdccRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
+    AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCINC2
+    AdccRegs.ADCSOC2CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    // Is_M1_PhC_adc
+    AdccRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
+    AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINC3
+    AdccRegs.ADCSOC3CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
     // Is_M1_PhB_adc
-	AdccRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
-	AdccRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	AdccRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINC4
-	AdccRegs.ADCSOC4CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	//AdccRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
-	//AdccRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
-	//AdccRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINC5
-	//AdccRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
-	// Vdc_M4_adc
-	AdcdRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
+    AdccRegs.ADCSOC4CTL.all = 0x0000;    // ADC SOC4 Control Register
+    AdccRegs.ADCSOC4CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    AdccRegs.ADCSOC4CTL.bit.CHSEL = 4;   // Single-ended ADCINC4
+    AdccRegs.ADCSOC4CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
+    //AdccRegs.ADCSOC5CTL.all = 0x0000;    // ADC SOC5 Control Register
+    //AdccRegs.ADCSOC5CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+    //AdccRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCINC5
+    //AdccRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    // Vdc_M4_adc
+    AdcdRegs.ADCSOC0CTL.all = 0x0000;    // ADC SOC0 Control Register
     AdcdRegs.ADCSOC0CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcdRegs.ADCSOC0CTL.bit.CHSEL = 0;   // Single-ended ADCIND0
-    AdcdRegs.ADCSOC0CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcdRegs.ADCSOC0CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
     // Vdc_M2_adc
     AdcdRegs.ADCSOC1CTL.all = 0x0000;    // ADC SOC1 Control Register
     AdcdRegs.ADCSOC1CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     AdcdRegs.ADCSOC1CTL.bit.CHSEL = 1;   // Single-ended ADCIND1
-    AdcdRegs.ADCSOC1CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
+    AdcdRegs.ADCSOC1CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
     //AdcdRegs.ADCSOC2CTL.all = 0x0000;    // ADC SOC2 Control Register
     //AdcdRegs.ADCSOC2CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
     //AdcdRegs.ADCSOC2CTL.bit.CHSEL = 2;   // Single-ended ADCIND2
@@ -921,93 +956,92 @@ void Setup_ADC(void)
     //AdcdRegs.ADCSOC5CTL.bit.CHSEL = 5;   // Single-ended ADCIND5
     //AdcdRegs.ADCSOC5CTL.bit.ACQPS = 30;   // Sample window is 1 system clock cycle wide
 
-	//DELAY_US(1000);
+    //DELAY_US(1000);
 
-	EDIS;
+    EDIS;
 
 }
 
 void Setup_EQEP(void)
 {
-	// ARC-H-50-3600-TTL-6-3M-10-FC
-	// ARC: Optik, H: Hollow, 50: 50mm, 3600: Resolution, TTL: 5VDC supply, 6: A, An, B, Bn, Z, Zn
-	// 1: A  - Yellow
-	// 2: Bn - White
-	// 3: +V - Red
-	// 4: 0V - Black
-	// 5: An - Blue
-	// 6: B  - Green
-	// 7: Zn - Grey
-	// 8: Z  - Pink
-	// 9: GND - Shield
+    // ARC-H-50-3600-TTL-6-3M-10-FC
+    // ARC: Optik, H: Hollow, 50: 50mm, 3600: Resolution, TTL: 5VDC supply, 6: A, An, B, Bn, Z, Zn
+    // 1: A  - Yellow
+    // 2: Bn - White
+    // 3: +V - Red
+    // 4: 0V - Black
+    // 5: An - Blue
+    // 6: B  - Green
+    // 7: Zn - Grey
+    // 8: Z  - Pink
+    // 9: GND - Shield
 
-	// QEPI: Gated to A and B (zero marker)
-	// A leads B, forward direction (quadrature clock mode)
+    // QEPI: Gated to A and B (zero marker)
+    // A leads B, forward direction (quadrature clock mode)
 
-	// Quadrature Decoder Unit (QDU) Registers
-	EQep1Regs.QDECCTL.all = 0x00;     // Quadrature Decoder Control
-	EQep1Regs.QDECCTL.bit.QSRC = 0;   // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
-	EQep1Regs.QDECCTL.bit.SOEN = 0;   // Disable position-compare sync output
-	EQep1Regs.QDECCTL.bit.SPSEL = 1;  // Strobe pin is used for sync output: Don't care
-	EQep1Regs.QDECCTL.bit.XCR = 0;    // External Clock Rate: 2x resolution: Count the rising/falling edge
-	EQep1Regs.QDECCTL.bit.SWAP = 0;   // CLK/DIR Signal Source for Position Counter: Quadrature-clock inputs are not swapped
-	EQep1Regs.QDECCTL.bit.IGATE = 0;  // Disable gating of Index pulse
-	EQep1Regs.QDECCTL.bit.QAP = 0;    // QEPA input polarity: No effect
-	EQep1Regs.QDECCTL.bit.QBP = 0;    // QEPB input polarity: No effect
-	EQep1Regs.QDECCTL.bit.QIP = 0;    // QEPI input polarity: No effect
-	EQep1Regs.QDECCTL.bit.QSP = 0;    // QEPS input polarity: No effect
+    // Quadrature Decoder Unit (QDU) Registers
+    EQep1Regs.QDECCTL.all = 0x00;     // Quadrature Decoder Control
+    EQep1Regs.QDECCTL.bit.QSRC = 0; // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
+    EQep1Regs.QDECCTL.bit.SOEN = 0;   // Disable position-compare sync output
+    EQep1Regs.QDECCTL.bit.SPSEL = 1; // Strobe pin is used for sync output: Don't care
+    EQep1Regs.QDECCTL.bit.XCR = 0; // External Clock Rate: 2x resolution: Count the rising/falling edge
+    EQep1Regs.QDECCTL.bit.SWAP = 0; // CLK/DIR Signal Source for Position Counter: Quadrature-clock inputs are not swapped
+    EQep1Regs.QDECCTL.bit.IGATE = 0;  // Disable gating of Index pulse
+    EQep1Regs.QDECCTL.bit.QAP = 0;    // QEPA input polarity: No effect
+    EQep1Regs.QDECCTL.bit.QBP = 0;    // QEPB input polarity: No effect
+    EQep1Regs.QDECCTL.bit.QIP = 0;    // QEPI input polarity: No effect
+    EQep1Regs.QDECCTL.bit.QSP = 0;    // QEPS input polarity: No effect
 
-	// Position Counter and Control Unit (PCCU) Registers
-	EQep1Regs.QEPCTL.all = 0x00;      // QEP Control
-	EQep1Regs.QEPCTL.bit.FREE_SOFT = 0;// Emulation mode: Position counter stops immediately on emulation suspend
-	EQep1Regs.QEPCTL.bit.PCRM = 0;    // Position counter reset on an index event
-	EQep1Regs.QEPCTL.bit.IEI = 2;     // Initializes the position counter on the rising edge of the QEPI signal
-	EQep1Regs.QEPCTL.bit.IEL = 1;     // Latches position counter on rising edge of the index signal
-	EQep1Regs.QEPCTL.bit.QPEN = 0;    // Reset the eQEP peripheral internal operating flags/read-only registers.
-	EQep1Regs.QEPCTL.bit.QCLM = 0;    // QEP capture latch mode: Latch on position counter read by CPU
-	EQep1Regs.QEPCTL.bit.UTE = 1;     // QEP unit timer enable: Enable unit timer
-	EQep1Regs.QEPCTL.bit.WDE = 1;     // Enable the eQEP watchdog timer
+    // Position Counter and Control Unit (PCCU) Registers
+    EQep1Regs.QEPCTL.all = 0x00;      // QEP Control
+    EQep1Regs.QEPCTL.bit.FREE_SOFT = 0; // Emulation mode: Position counter stops immediately on emulation suspend
+    EQep1Regs.QEPCTL.bit.PCRM = 0;   // Position counter reset on an index event
+    EQep1Regs.QEPCTL.bit.IEI = 2; // Initializes the position counter on the rising edge of the QEPI signal
+    EQep1Regs.QEPCTL.bit.IEL = 1; // Latches position counter on rising edge of the index signal
+    EQep1Regs.QEPCTL.bit.QPEN = 0; // Reset the eQEP peripheral internal operating flags/read-only registers.
+    EQep1Regs.QEPCTL.bit.QCLM = 0; // QEP capture latch mode: Latch on position counter read by CPU
+    EQep1Regs.QEPCTL.bit.UTE = 1;    // QEP unit timer enable: Enable unit timer
+    EQep1Regs.QEPCTL.bit.WDE = 1;     // Enable the eQEP watchdog timer
 
-	// Position Compare Control
-	EQep1Regs.QPOSCTL.all = 0x0000;	  // Position Compare Control: Disabled
+    // Position Compare Control
+    EQep1Regs.QPOSCTL.all = 0x0000;	  // Position Compare Control: Disabled
 
-	// Quadrature edge-capture unit for low-speed measurement (QCAP)
-	EQep1Regs.QCAPCTL.all = 0x00;
-	EQep1Regs.QCAPCTL.bit.CEN = 1;    // eQEP capture unit is enabled
-	EQep1Regs.QCAPCTL.bit.CCPS = 0;   // eQEP capture timer clock prescaler: CAPCLK = SYSCLKOUT/1  ??
-	EQep1Regs.QCAPCTL.bit.UPPS = 0;	  // Unit position event prescaler: UPEVNT = QCLK/1  ??
+    // Quadrature edge-capture unit for low-speed measurement (QCAP)
+    EQep1Regs.QCAPCTL.all = 0x00;
+    EQep1Regs.QCAPCTL.bit.CEN = 1;    // eQEP capture unit is enabled
+    EQep1Regs.QCAPCTL.bit.CCPS = 0; // eQEP capture timer clock prescaler: CAPCLK = SYSCLKOUT/1  ??
+    EQep1Regs.QCAPCTL.bit.UPPS = 0;	// Unit position event prescaler: UPEVNT = QCLK/1  ??
 
-	// QEP Interrupt Control (EQEPxINT)
-	// Eleven interrupt events (PCE, PHE, QDC, WTO, PCU, PCO, PCR, PCM, SEL, IEL and UTO) can be generated.
-	EQep1Regs.QEINT.all = 0x00;
-	EQep1Regs.QEINT.bit.WTO = 1;      // Watchdog time out interrupt enabled
+    // QEP Interrupt Control (EQEPxINT)
+    // Eleven interrupt events (PCE, PHE, QDC, WTO, PCU, PCO, PCR, PCM, SEL, IEL and UTO) can be generated.
+    EQep1Regs.QEINT.all = 0x00;
+    EQep1Regs.QEINT.bit.WTO = 1;      // Watchdog time out interrupt enabled
 
-	/*
-	// Registers to be watched
-	EQep1Regs.QPOSCNT   // Position counter: This counter acts as a position integrator whose count value is proportional to position from a give reference point
-	EQep1Regs.QPOSINIT  // Position counter init: contains the position value that is used to initialize the position counter based on external strobe or index event
-	EQep1Regs.QPOSMAX   // Maximum Position Count: contains the maximum position counter value.
-	EQep1Regs.QPOSCMP   // Position Compare: is compared with the position counter (QPOSCNT) to generate sync output and/or interrupt on compare match
-	EQep1Regs.QPOSILAT  // Index Position Latch: The position-counter value is latched into this register on an index event as defined by the QEPCTL[IEL] bits.
-	EQep1Regs.QPOSLAT   // Position Latch: The position-counter value is latched into this register on a unit time out event.
-	EQep1Regs.QUTMR	    // QEP Unit Timer: This register acts as time base for unit time event generation. When this timer value matches the unit time period value a unit time event is generated.
-	EQep1Regs.QUPRD     // QEP unit period: contains the period count for the unit timer to generate periodic unit time events.
-	EQep1Regs.QWDTMR    // Watchdog timer: time base for the watchdog to detect motor stalls
-	EQep1Regs.QWDPRD	// Watchdog period: contains the time-out count for the eQEP peripheral	watch dog timer
-	EQep1Regs.QCTMR	 	// QEP Capture Timer: This register provides time base for edge capture unit
-	EQep1Regs.QCPRD	    // QEP Capture Period: This register holds the period count value between the last successive eQEP position events
+    /*
+     // Registers to be watched
+     EQep1Regs.QPOSCNT   // Position counter: This counter acts as a position integrator whose count value is proportional to position from a give reference point
+     EQep1Regs.QPOSINIT  // Position counter init: contains the position value that is used to initialize the position counter based on external strobe or index event
+     EQep1Regs.QPOSMAX   // Maximum Position Count: contains the maximum position counter value.
+     EQep1Regs.QPOSCMP   // Position Compare: is compared with the position counter (QPOSCNT) to generate sync output and/or interrupt on compare match
+     EQep1Regs.QPOSILAT  // Index Position Latch: The position-counter value is latched into this register on an index event as defined by the QEPCTL[IEL] bits.
+     EQep1Regs.QPOSLAT   // Position Latch: The position-counter value is latched into this register on a unit time out event.
+     EQep1Regs.QUTMR	    // QEP Unit Timer: This register acts as time base for unit time event generation. When this timer value matches the unit time period value a unit time event is generated.
+     EQep1Regs.QUPRD     // QEP unit period: contains the period count for the unit timer to generate periodic unit time events.
+     EQep1Regs.QWDTMR    // Watchdog timer: time base for the watchdog to detect motor stalls
+     EQep1Regs.QWDPRD	// Watchdog period: contains the time-out count for the eQEP peripheral	watch dog timer
+     EQep1Regs.QCTMR	 	// QEP Capture Timer: This register provides time base for edge capture unit
+     EQep1Regs.QCPRD	    // QEP Capture Period: This register holds the period count value between the last successive eQEP position events
 
-	EQep1Regs.QFLG.bit.INT   // Global interrupt status flag
-	EQep1Regs.QCLR.bit.INT   // Global interrupt clear flag
-	EQep1Regs.QFLG.bit.WTO	 // Watchdog timeout interrupt flag
-	EQep1Regs.QCLR.bit.WTO = 1;	 // Clear watchdog timeout interrupt flag
+     EQep1Regs.QFLG.bit.INT   // Global interrupt status flag
+     EQep1Regs.QCLR.bit.INT   // Global interrupt clear flag
+     EQep1Regs.QFLG.bit.WTO	 // Watchdog timeout interrupt flag
+     EQep1Regs.QCLR.bit.WTO = 1;	 // Clear watchdog timeout interrupt flag
 
-	EQep1Regs.QEPSTS.bit.UPEVNT	 // 1h (R/W) = Unit position event detected. Write 1 to clear
-	EQep1Regs.QEPSTS.bit.QDF 	 // Quadrature direction flag: 1=Clockwise
-	*/
+     EQep1Regs.QEPSTS.bit.UPEVNT	 // 1h (R/W) = Unit position event detected. Write 1 to clear
+     EQep1Regs.QEPSTS.bit.QDF 	 // Quadrature direction flag: 1=Clockwise
+     */
 
-	EQep1Regs.QEPCTL.bit.QPEN = 1;    // eQEP position counter is enabled
-
+    EQep1Regs.QEPCTL.bit.QPEN = 1;    // eQEP position counter is enabled
 
 }
 
@@ -1018,11 +1052,11 @@ void InitEpwm1(void)
     EPwm1Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm1Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm1Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm1Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm1Regs.CMPCTL.all = 0x00;
-    EPwm1Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm1Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm1Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm1Regs.AQCTLA.all = 0x00;
@@ -1032,7 +1066,7 @@ void InitEpwm1(void)
     //EPwm1Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm1Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm1Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm1Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm1Regs.CMPB.half.CMPB = EPwm1Regs.TBPRD/2;    // Set Compare B value
 
     EPwm1Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1042,8 +1076,8 @@ void InitEpwm1(void)
     EPwm1Regs.DBCTL.all = 0x00;
     EPwm1Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm1Regs.DBCTL.bit.POLSEL = 2;
-    EPwm1Regs.DBFED = dead_time/sysclk_period;
-    EPwm1Regs.DBRED = dead_time/sysclk_period;
+    EPwm1Regs.DBFED = dead_time / sysclk_period;
+    EPwm1Regs.DBRED = dead_time / sysclk_period;
     EPwm1Regs.DBCTL2.all = 0x00;
 
     EPwm1Regs.ETSEL.all = 0x00;
@@ -1062,11 +1096,11 @@ void InitEpwm2(void)
     EPwm2Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm2Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm2Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm2Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm2Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm2Regs.CMPCTL.all = 0x00;
-    EPwm2Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm2Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm2Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm2Regs.AQCTLA.all = 0x00;
@@ -1076,7 +1110,7 @@ void InitEpwm2(void)
     //EPwm2Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm2Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm2Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm2Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm2Regs.CMPB.half.CMPB = EPwm2Regs.TBPRD/2;    // Set Compare B value
 
     EPwm2Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1086,12 +1120,12 @@ void InitEpwm2(void)
     EPwm2Regs.DBCTL.all = 0x00;
     EPwm2Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm2Regs.DBCTL.bit.POLSEL = 2;
-    EPwm2Regs.DBFED = dead_time/sysclk_period;
-    EPwm2Regs.DBRED = dead_time/sysclk_period;
+    EPwm2Regs.DBFED = dead_time / sysclk_period;
+    EPwm2Regs.DBRED = dead_time / sysclk_period;
     EPwm2Regs.DBCTL2.all = 0x00;
 
     EPwm2Regs.ETSEL.all = 0x00;
-    EPwm2Regs.ETSEL.bit.SOCAEN  = 1;  // Enable SOCA generation
+    EPwm2Regs.ETSEL.bit.SOCAEN = 1;  // Enable SOCA generation
     EPwm2Regs.ETSEL.bit.SOCASEL = 2;  // Generate SOCA when CTR = PRD
     //EPwm2Regs.ETSEL.bit.INTEN = 1;
     //EPwm2Regs.ETSEL.bit.INTSEL = 1;
@@ -1108,11 +1142,11 @@ void InitEpwm3(void)
     EPwm3Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm3Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm3Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm3Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm3Regs.CMPCTL.all = 0x00;
-    EPwm3Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm3Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm3Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm3Regs.AQCTLA.all = 0x00;
@@ -1122,7 +1156,7 @@ void InitEpwm3(void)
     //EPwm3Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm3Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm3Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm3Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm3Regs.CMPB.half.CMPB = EPwm3Regs.TBPRD/2;    // Set Compare B value
 
     EPwm3Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1132,8 +1166,8 @@ void InitEpwm3(void)
     EPwm3Regs.DBCTL.all = 0x00;
     EPwm3Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm3Regs.DBCTL.bit.POLSEL = 2;
-    EPwm3Regs.DBFED = dead_time/sysclk_period;
-    EPwm3Regs.DBRED = dead_time/sysclk_period;
+    EPwm3Regs.DBFED = dead_time / sysclk_period;
+    EPwm3Regs.DBRED = dead_time / sysclk_period;
     EPwm3Regs.DBCTL2.all = 0x00;
 
     EPwm3Regs.ETSEL.all = 0x00;
@@ -1148,11 +1182,11 @@ void InitEpwm4(void)
     EPwm4Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm4Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm4Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm4Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm4Regs.CMPCTL.all = 0x00;
-    EPwm4Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm4Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm4Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm4Regs.AQCTLA.all = 0x00;
@@ -1162,7 +1196,7 @@ void InitEpwm4(void)
     //EPwm4Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm4Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm4Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm4Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm4Regs.CMPB.half.CMPB = EPwm4Regs.TBPRD/2;    // Set Compare B value
 
     EPwm4Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1172,8 +1206,8 @@ void InitEpwm4(void)
     EPwm4Regs.DBCTL.all = 0x00;
     EPwm4Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm4Regs.DBCTL.bit.POLSEL = 2;
-    EPwm4Regs.DBFED = dead_time/sysclk_period;
-    EPwm4Regs.DBRED = dead_time/sysclk_period;
+    EPwm4Regs.DBFED = dead_time / sysclk_period;
+    EPwm4Regs.DBRED = dead_time / sysclk_period;
     EPwm4Regs.DBCTL2.all = 0x00;
 
     EPwm4Regs.ETSEL.all = 0x00;
@@ -1188,11 +1222,11 @@ void InitEpwm5(void)
     EPwm5Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm5Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm5Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm5Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm5Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm5Regs.CMPCTL.all = 0x00;
-    EPwm5Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm5Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm5Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm5Regs.AQCTLA.all = 0x00;
@@ -1202,7 +1236,7 @@ void InitEpwm5(void)
     //EPwm5Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm5Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm5Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm5Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm5Regs.CMPB.half.CMPB = EPwm5Regs.TBPRD/2;    // Set Compare B value
 
     EPwm5Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1212,8 +1246,8 @@ void InitEpwm5(void)
     EPwm5Regs.DBCTL.all = 0x00;
     EPwm5Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm5Regs.DBCTL.bit.POLSEL = 2;
-    EPwm5Regs.DBFED = dead_time/sysclk_period;
-    EPwm5Regs.DBRED = dead_time/sysclk_period;
+    EPwm5Regs.DBFED = dead_time / sysclk_period;
+    EPwm5Regs.DBRED = dead_time / sysclk_period;
     EPwm5Regs.DBCTL2.all = 0x00;
 
     EPwm5Regs.ETSEL.all = 0x00;
@@ -1224,39 +1258,39 @@ void InitEpwm6(void)
 {
 
     EPwm6Regs.TBCTL.all = 0x00;
-     EPwm6Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
-     EPwm6Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
-     EPwm6Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm6Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm6Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm6Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm6Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
-     EPwm6Regs.TBCTR = 0x0000;          // Clear counter
+    EPwm6Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
+    EPwm6Regs.TBCTR = 0x0000;          // Clear counter
 
-     EPwm6Regs.CMPCTL.all = 0x00;
-     EPwm6Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-     //EPwm6Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+    EPwm6Regs.CMPCTL.all = 0x00;
+    EPwm6Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
+    //EPwm6Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
-     EPwm6Regs.AQCTLA.all = 0x00;
-     EPwm6Regs.AQCTLA.bit.CAU = 2; //set high
-     EPwm6Regs.AQCTLA.bit.CAD = 1; //set low
-     //EPwm6Regs.AQCTLB.all = 0x00;
-     //EPwm6Regs.AQCTLB.bit.CBU = 1; //set low
-     //EPwm6Regs.AQCTLB.bit.CBD = 2; //set high
+    EPwm6Regs.AQCTLA.all = 0x00;
+    EPwm6Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm6Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm6Regs.AQCTLB.all = 0x00;
+    //EPwm6Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm6Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm6Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
-     //EPwm6Regs.CMPB.half.CMPB = EPwm6Regs.TBPRD/2;    // Set Compare B value
+    EPwm6Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
+    //EPwm6Regs.CMPB.half.CMPB = EPwm6Regs.TBPRD/2;    // Set Compare B value
 
-     EPwm6Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+    EPwm6Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
 
-     EPwm6Regs.TBCTL2.all = 0x00;
-     EPwm6Regs.CMPCTL2.all = 0x00;
-     EPwm6Regs.DBCTL.all = 0x00;
-     EPwm6Regs.DBCTL.bit.OUT_MODE = 3;
-     EPwm6Regs.DBCTL.bit.POLSEL = 2;
-     EPwm6Regs.DBFED = dead_time/sysclk_period;
-     EPwm6Regs.DBRED = dead_time/sysclk_period;
-     EPwm6Regs.DBCTL2.all = 0x00;
+    EPwm6Regs.TBCTL2.all = 0x00;
+    EPwm6Regs.CMPCTL2.all = 0x00;
+    EPwm6Regs.DBCTL.all = 0x00;
+    EPwm6Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm6Regs.DBCTL.bit.POLSEL = 2;
+    EPwm6Regs.DBFED = dead_time / sysclk_period;
+    EPwm6Regs.DBRED = dead_time / sysclk_period;
+    EPwm6Regs.DBCTL2.all = 0x00;
 
-     EPwm6Regs.ETSEL.all = 0x00;
+    EPwm6Regs.ETSEL.all = 0x00;
 
 }
 
@@ -1268,11 +1302,11 @@ void InitEpwm7(void)
     EPwm7Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm7Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm7Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm7Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm7Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm7Regs.CMPCTL.all = 0x00;
-    EPwm7Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm7Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
     //EPwm7Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm7Regs.AQCTLA.all = 0x00;
@@ -1282,7 +1316,7 @@ void InitEpwm7(void)
     //EPwm7Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm7Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm7Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm7Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm7Regs.CMPB.half.CMPB = EPwm7Regs.TBPRD/2;    // Set Compare B value
 
     EPwm7Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1292,8 +1326,8 @@ void InitEpwm7(void)
     EPwm7Regs.DBCTL.all = 0x00;
     EPwm7Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm7Regs.DBCTL.bit.POLSEL = 2;
-    EPwm7Regs.DBFED = dead_time/sysclk_period;
-    EPwm7Regs.DBRED = dead_time/sysclk_period;
+    EPwm7Regs.DBFED = dead_time / sysclk_period;
+    EPwm7Regs.DBRED = dead_time / sysclk_period;
     EPwm7Regs.DBCTL2.all = 0x00;
 
     EPwm7Regs.ETSEL.all = 0x00;
@@ -1304,39 +1338,39 @@ void InitEpwm8(void)
 {
 
     EPwm8Regs.TBCTL.all = 0x00;
-     EPwm8Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
-     EPwm8Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
-     EPwm8Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm8Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm8Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm8Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm8Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
-     EPwm8Regs.TBCTR = 0x0000;          // Clear counter
+    EPwm8Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
+    EPwm8Regs.TBCTR = 0x0000;          // Clear counter
 
-     EPwm8Regs.CMPCTL.all = 0x00;
-     EPwm8Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-     //EPwm8Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+    EPwm8Regs.CMPCTL.all = 0x00;
+    EPwm8Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
+    //EPwm8Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
-     EPwm8Regs.AQCTLA.all = 0x00;
-     EPwm8Regs.AQCTLA.bit.CAU = 2; //set high
-     EPwm8Regs.AQCTLA.bit.CAD = 1; //set low
-     //EPwm8Regs.AQCTLB.all = 0x00;
-     //EPwm8Regs.AQCTLB.bit.CBU = 1; //set low
-     //EPwm8Regs.AQCTLB.bit.CBD = 2; //set high
+    EPwm8Regs.AQCTLA.all = 0x00;
+    EPwm8Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm8Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm8Regs.AQCTLB.all = 0x00;
+    //EPwm8Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm8Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm8Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
-     //EPwm8Regs.CMPB.half.CMPB = EPwm8Regs.TBPRD/2;    // Set Compare B value
+    EPwm8Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
+    //EPwm8Regs.CMPB.half.CMPB = EPwm8Regs.TBPRD/2;    // Set Compare B value
 
-     EPwm8Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+    EPwm8Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
 
-     EPwm8Regs.TBCTL2.all = 0x00;
-     EPwm8Regs.CMPCTL2.all = 0x00;
-     EPwm8Regs.DBCTL.all = 0x00;
-     EPwm8Regs.DBCTL.bit.OUT_MODE = 3;
-     EPwm8Regs.DBCTL.bit.POLSEL = 2;
-     EPwm8Regs.DBFED = dead_time/sysclk_period;
-     EPwm8Regs.DBRED = dead_time/sysclk_period;
-     EPwm8Regs.DBCTL2.all = 0x00;
+    EPwm8Regs.TBCTL2.all = 0x00;
+    EPwm8Regs.CMPCTL2.all = 0x00;
+    EPwm8Regs.DBCTL.all = 0x00;
+    EPwm8Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm8Regs.DBCTL.bit.POLSEL = 2;
+    EPwm8Regs.DBFED = dead_time / sysclk_period;
+    EPwm8Regs.DBRED = dead_time / sysclk_period;
+    EPwm8Regs.DBCTL2.all = 0x00;
 
-     EPwm8Regs.ETSEL.all = 0x00;
+    EPwm8Regs.ETSEL.all = 0x00;
 
 }
 
@@ -1344,39 +1378,39 @@ void InitEpwm9(void)
 {
 
     EPwm9Regs.TBCTL.all = 0x00;
-     EPwm9Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
-     EPwm9Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
-     EPwm9Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm9Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm9Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm9Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm9Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
-     EPwm9Regs.TBCTR = 0x0000;          // Clear counter
+    EPwm9Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
+    EPwm9Regs.TBCTR = 0x0000;          // Clear counter
 
-     EPwm9Regs.CMPCTL.all = 0x00;
-     EPwm9Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-     //EPwm9Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+    EPwm9Regs.CMPCTL.all = 0x00;
+    EPwm9Regs.CMPCTL.bit.SHDWAMODE = 1;         //only active registers are used
+    //EPwm9Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
-     EPwm9Regs.AQCTLA.all = 0x00;
-     EPwm9Regs.AQCTLA.bit.CAU = 2; //set high
-     EPwm9Regs.AQCTLA.bit.CAD = 1; //set low
-     //EPwm9Regs.AQCTLB.all = 0x00;
-     //EPwm9Regs.AQCTLB.bit.CBU = 1; //set low
-     //EPwm9Regs.AQCTLB.bit.CBD = 2; //set high
+    EPwm9Regs.AQCTLA.all = 0x00;
+    EPwm9Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm9Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm9Regs.AQCTLB.all = 0x00;
+    //EPwm9Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm9Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm9Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
-     //EPwm9Regs.CMPB.half.CMPB = EPwm9Regs.TBPRD/2;    // Set Compare B value
+    EPwm9Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
+    //EPwm9Regs.CMPB.half.CMPB = EPwm9Regs.TBPRD/2;    // Set Compare B value
 
-     EPwm9Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+    EPwm9Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
 
-     EPwm9Regs.TBCTL2.all = 0x00;
-     EPwm9Regs.CMPCTL2.all = 0x00;
-     EPwm9Regs.DBCTL.all = 0x00;
-     EPwm9Regs.DBCTL.bit.OUT_MODE = 3;
-     EPwm9Regs.DBCTL.bit.POLSEL = 2;
-     EPwm9Regs.DBFED = dead_time/sysclk_period;
-     EPwm9Regs.DBRED = dead_time/sysclk_period;
-     EPwm9Regs.DBCTL2.all = 0x00;
+    EPwm9Regs.TBCTL2.all = 0x00;
+    EPwm9Regs.CMPCTL2.all = 0x00;
+    EPwm9Regs.DBCTL.all = 0x00;
+    EPwm9Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm9Regs.DBCTL.bit.POLSEL = 2;
+    EPwm9Regs.DBFED = dead_time / sysclk_period;
+    EPwm9Regs.DBRED = dead_time / sysclk_period;
+    EPwm9Regs.DBCTL2.all = 0x00;
 
-     EPwm9Regs.ETSEL.all = 0x00;
+    EPwm9Regs.ETSEL.all = 0x00;
 
 }
 
@@ -1384,39 +1418,39 @@ void InitEpwm10(void)
 {
 
     EPwm10Regs.TBCTL.all = 0x00;
-     EPwm10Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
-     EPwm10Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
-     EPwm10Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm10Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm10Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm10Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm10Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
-     EPwm10Regs.TBCTR = 0x0000;          // Clear counter
+    EPwm10Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
+    EPwm10Regs.TBCTR = 0x0000;          // Clear counter
 
-     EPwm10Regs.CMPCTL.all = 0x00;
-     EPwm10Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-     //EPwm10Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+    EPwm10Regs.CMPCTL.all = 0x00;
+    EPwm10Regs.CMPCTL.bit.SHDWAMODE = 1;        //only active registers are used
+    //EPwm10Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
-     EPwm10Regs.AQCTLA.all = 0x00;
-     EPwm10Regs.AQCTLA.bit.CAU = 2; //set high
-     EPwm10Regs.AQCTLA.bit.CAD = 1; //set low
-     //EPwm10Regs.AQCTLB.all = 0x00;
-     //EPwm10Regs.AQCTLB.bit.CBU = 1; //set low
-     //EPwm10Regs.AQCTLB.bit.CBD = 2; //set high
+    EPwm10Regs.AQCTLA.all = 0x00;
+    EPwm10Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm10Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm10Regs.AQCTLB.all = 0x00;
+    //EPwm10Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm10Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm10Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
-     //EPwm10Regs.CMPB.half.CMPB = EPwm10Regs.TBPRD/2;    // Set Compare B value
+    EPwm10Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
+    //EPwm10Regs.CMPB.half.CMPB = EPwm10Regs.TBPRD/2;    // Set Compare B value
 
-     EPwm10Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+    EPwm10Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
 
-     EPwm10Regs.TBCTL2.all = 0x00;
-     EPwm10Regs.CMPCTL2.all = 0x00;
-     EPwm10Regs.DBCTL.all = 0x00;
-     EPwm10Regs.DBCTL.bit.OUT_MODE = 3;
-     EPwm10Regs.DBCTL.bit.POLSEL = 2;
-     EPwm10Regs.DBFED = dead_time/sysclk_period;
-     EPwm10Regs.DBRED = dead_time/sysclk_period;
-     EPwm10Regs.DBCTL2.all = 0x00;
+    EPwm10Regs.TBCTL2.all = 0x00;
+    EPwm10Regs.CMPCTL2.all = 0x00;
+    EPwm10Regs.DBCTL.all = 0x00;
+    EPwm10Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm10Regs.DBCTL.bit.POLSEL = 2;
+    EPwm10Regs.DBFED = dead_time / sysclk_period;
+    EPwm10Regs.DBRED = dead_time / sysclk_period;
+    EPwm10Regs.DBCTL2.all = 0x00;
 
-     EPwm10Regs.ETSEL.all = 0x00;
+    EPwm10Regs.ETSEL.all = 0x00;
 
 }
 
@@ -1424,39 +1458,39 @@ void InitEpwm11(void)
 {
 
     EPwm11Regs.TBCTL.all = 0x00;
-     EPwm11Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
-     EPwm11Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
-     EPwm11Regs.TBCTL.bit.HSPCLKDIV = 0;
+    EPwm11Regs.TBCTL.bit.CTRMODE = 2;   // Count up and douwn
+    EPwm11Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
+    EPwm11Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-     EPwm11Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
-     EPwm11Regs.TBCTR = 0x0000;          // Clear counter
+    EPwm11Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
+    EPwm11Regs.TBCTR = 0x0000;          // Clear counter
 
-     EPwm11Regs.CMPCTL.all = 0x00;
-     EPwm11Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
-     //EPwm11Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
+    EPwm11Regs.CMPCTL.all = 0x00;
+    EPwm11Regs.CMPCTL.bit.SHDWAMODE = 1;        //only active registers are used
+    //EPwm11Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
-     EPwm11Regs.AQCTLA.all = 0x00;
-     EPwm11Regs.AQCTLA.bit.CAU = 2; //set high
-     EPwm11Regs.AQCTLA.bit.CAD = 1; //set low
-     //EPwm11Regs.AQCTLB.all = 0x00;
-     //EPwm11Regs.AQCTLB.bit.CBU = 1; //set low
-     //EPwm11Regs.AQCTLB.bit.CBD = 2; //set high
+    EPwm11Regs.AQCTLA.all = 0x00;
+    EPwm11Regs.AQCTLA.bit.CAU = 2; //set high
+    EPwm11Regs.AQCTLA.bit.CAD = 1; //set low
+    //EPwm11Regs.AQCTLB.all = 0x00;
+    //EPwm11Regs.AQCTLB.bit.CBU = 1; //set low
+    //EPwm11Regs.AQCTLB.bit.CBD = 2; //set high
 
-     EPwm11Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
-     //EPwm11Regs.CMPB.half.CMPB = EPwm11Regs.TBPRD/2;    // Set Compare B value
+    EPwm11Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
+    //EPwm11Regs.CMPB.half.CMPB = EPwm11Regs.TBPRD/2;    // Set Compare B value
 
-     EPwm11Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
+    EPwm11Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
 
-     EPwm11Regs.TBCTL2.all = 0x00;
-     EPwm11Regs.CMPCTL2.all = 0x00;
-     EPwm11Regs.DBCTL.all = 0x00;
-     EPwm11Regs.DBCTL.bit.OUT_MODE = 3;
-     EPwm11Regs.DBCTL.bit.POLSEL = 2;
-     EPwm11Regs.DBFED = dead_time/sysclk_period;
-     EPwm11Regs.DBRED = dead_time/sysclk_period;
-     EPwm11Regs.DBCTL2.all = 0x00;
+    EPwm11Regs.TBCTL2.all = 0x00;
+    EPwm11Regs.CMPCTL2.all = 0x00;
+    EPwm11Regs.DBCTL.all = 0x00;
+    EPwm11Regs.DBCTL.bit.OUT_MODE = 3;
+    EPwm11Regs.DBCTL.bit.POLSEL = 2;
+    EPwm11Regs.DBFED = dead_time / sysclk_period;
+    EPwm11Regs.DBRED = dead_time / sysclk_period;
+    EPwm11Regs.DBCTL2.all = 0x00;
 
-     EPwm11Regs.ETSEL.all = 0x00;
+    EPwm11Regs.ETSEL.all = 0x00;
 
 }
 
@@ -1468,11 +1502,11 @@ void InitEpwm12(void)
     EPwm12Regs.TBCTL.bit.CLKDIV = 0;    // TBCLOK = EPWMCLOCK/(128*10) = 78125Hz
     EPwm12Regs.TBCTL.bit.HSPCLKDIV = 0;
 
-    EPwm12Regs.TBPRD = sysclk_frequency/(switching_frequency*2);
+    EPwm12Regs.TBPRD = sysclk_frequency / (switching_frequency * 2);
     EPwm12Regs.TBCTR = 0x0000;          // Clear counter
 
     EPwm12Regs.CMPCTL.all = 0x00;
-    EPwm12Regs.CMPCTL.bit.SHDWAMODE = 1;//only active registers are used
+    EPwm12Regs.CMPCTL.bit.SHDWAMODE = 1;        //only active registers are used
     //EPwm12Regs.CMPCTL.bit.SHDWBMODE = 1;//only active registers are used
 
     EPwm12Regs.AQCTLA.all = 0x00;
@@ -1482,7 +1516,7 @@ void InitEpwm12(void)
     //EPwm12Regs.AQCTLB.bit.CBU = 1; //set low
     //EPwm12Regs.AQCTLB.bit.CBD = 2; //set high
 
-    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD/2;    // Set compare A value
+    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD / 2;    // Set compare A value
     //EPwm12Regs.CMPB.half.CMPB = EPwm12Regs.TBPRD/2;    // Set Compare B value
 
     EPwm12Regs.TBPHS.half.TBPHS = 0x0000;          // Phase is 0
@@ -1492,13 +1526,11 @@ void InitEpwm12(void)
     EPwm12Regs.DBCTL.all = 0x00;
     EPwm12Regs.DBCTL.bit.OUT_MODE = 3;
     EPwm12Regs.DBCTL.bit.POLSEL = 2;
-    EPwm12Regs.DBFED = dead_time/sysclk_period;
-    EPwm12Regs.DBRED = dead_time/sysclk_period;
+    EPwm12Regs.DBFED = dead_time / sysclk_period;
+    EPwm12Regs.DBRED = dead_time / sysclk_period;
     EPwm12Regs.DBCTL2.all = 0x00;
 
     EPwm12Regs.ETSEL.all = 0x00;
 
 }
-
-
 
