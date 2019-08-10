@@ -95,6 +95,17 @@ int16 DSP_Temp_Sensor_adc;
 int16 DSP_Temp_Sensor;
 float32 vrefhi_voltage = 3;
 
+float VdcM1_avg;
+float VdcM1_avg_tmp = 0;
+float VdcM2_avg;
+float VdcM2_avg_tmp = 0;
+float VdcM3_avg;
+float VdcM3_avg_tmp = 0;
+float VdcM4_avg;
+float VdcM4_avg_tmp = 0;
+int16 Vdc_avg_counter = 0;
+int16 Vdc_avg_ctr_max = 200;
+
 float Voltage_TransferFunction = 114.406;
 float Current_TransferFunction = 13.333;
 float Current_Offset = 1.5;
@@ -565,21 +576,21 @@ __interrupt void epwm1_isr(void)
     //if (i == BUFFERLENGTH) i=0;
 
     // Update PWM duty cycles
-    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD * epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
-    EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD * epwm2_dutycycle;// Module-2 Phase-C PWM (ePWM2)
-    EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD * epwm3_dutycycle;// Module-2 Phase-B PWM (ePWM3)
-    EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD * epwm4_dutycycle;// Module-2 Phase-A PWM (ePWM4)
-    EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD * epwm5_dutycycle;// Module-4 Phase-B PWM (ePWM5)
-    EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD * epwm6_dutycycle;// Module-1 Phase-C PWM (ePWM6)
-    EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD * epwm7_dutycycle;// Module-1 Phase-B PWM (ePWM7)
-    EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD * epwm8_dutycycle;// Module-1 Phase-A PWM (ePWM8)
+    EPwm1Regs.CMPA.half.CMPA = EPwm1Regs.TBPRD * epwm1_dutycycle; // Module-4 Phase-A PWM (ePWM1)
+    EPwm2Regs.CMPA.half.CMPA = EPwm2Regs.TBPRD * epwm2_dutycycle; // Module-2 Phase-C PWM (ePWM2)
+    EPwm3Regs.CMPA.half.CMPA = EPwm3Regs.TBPRD * epwm3_dutycycle; // Module-2 Phase-B PWM (ePWM3)
+    EPwm4Regs.CMPA.half.CMPA = EPwm4Regs.TBPRD * epwm4_dutycycle; // Module-2 Phase-A PWM (ePWM4)
+    EPwm5Regs.CMPA.half.CMPA = EPwm5Regs.TBPRD * epwm5_dutycycle; // Module-4 Phase-B PWM (ePWM5)
+    EPwm6Regs.CMPA.half.CMPA = EPwm6Regs.TBPRD * epwm6_dutycycle; // Module-1 Phase-C PWM (ePWM6)
+    EPwm7Regs.CMPA.half.CMPA = EPwm7Regs.TBPRD * epwm7_dutycycle; // Module-1 Phase-B PWM (ePWM7)
+    EPwm8Regs.CMPA.half.CMPA = EPwm8Regs.TBPRD * epwm8_dutycycle; // Module-1 Phase-A PWM (ePWM8)
     //EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm9_dutycycle;// Module-3 Phase-C PWM (ePWM9)
-    EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD * epwm10_dutycycle;// Module-3 Phase-B PWM (ePWM10)
-    EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD * epwm11_dutycycle;// Module-3 Phase-A PWM (ePWM11)
-    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD * epwm12_dutycycle;// Module-4 Phase-C PWM (ePWM12)
+    EPwm10Regs.CMPA.half.CMPA = EPwm10Regs.TBPRD * epwm10_dutycycle; // Module-3 Phase-B PWM (ePWM10)
+    EPwm11Regs.CMPA.half.CMPA = EPwm11Regs.TBPRD * epwm11_dutycycle; // Module-3 Phase-A PWM (ePWM11)
+    EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD * epwm12_dutycycle; // Module-4 Phase-C PWM (ePWM12)
 
     // temporary
-    EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm7_dutycycle;// Module-3 Phase-C PWM (ePWM9)
+    EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm7_dutycycle; // Module-3 Phase-C PWM (ePWM9)
 
     //
 
@@ -646,6 +657,29 @@ __interrupt void adc1_isr(void)
             - Current_Offset) * Current_TransferFunction;
     Is_M4_PhC = ((Is_M4_PhC_adc * max_adc_analog / max_adc_digital)
             - Current_Offset) * Current_TransferFunction;
+
+    // Averaging of Vdc's
+
+    if (Vdc_avg_counter >= Vdc_avg_ctr_max)
+    {
+        VdcM1_avg = VdcM1_avg_tmp / Vdc_avg_ctr_max;
+        VdcM1_avg_tmp = 0;
+        VdcM2_avg = VdcM2_avg_tmp / Vdc_avg_ctr_max;
+        VdcM2_avg_tmp = 0;
+        VdcM3_avg = VdcM3_avg_tmp / Vdc_avg_ctr_max;
+        VdcM3_avg_tmp = 0;
+        VdcM4_avg = VdcM4_avg_tmp / Vdc_avg_ctr_max;
+        VdcM4_avg_tmp = 0;
+        Vdc_avg_counter = 0;
+    }
+    else
+    {
+        VdcM1_avg_tmp = VdcM1_avg_tmp + Vdc_M1;
+        VdcM2_avg_tmp = VdcM2_avg_tmp + Vdc_M2;
+        VdcM3_avg_tmp = VdcM3_avg_tmp + Vdc_M3;
+        VdcM4_avg_tmp = VdcM4_avg_tmp + Vdc_M4;
+        Vdc_avg_counter++;
+    }
 
     // PI Controller Vdc_M1
     picontroller_Vdc_M1.Kp = 1;
