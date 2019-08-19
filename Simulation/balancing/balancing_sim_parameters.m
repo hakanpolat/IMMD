@@ -122,8 +122,8 @@ Lnom = Xnom/(2*pi*fout);
 Lload_1A = Lnom*1.00; % Henries
 Lload_1B = Lnom*1.00; % Henries
 Lload_1C = Lnom*1.00; % Henries
-Rload_1A = Rnom*1.00; % Ohms
-Rload_1B = Rnom*1.00; % Ohms
+Rload_1A = Rnom*1.20; % Ohms
+Rload_1B = Rnom*1.20; % Ohms
 Rload_1C = Rnom*1.20; % Ohms
 
 Lload_2A = Lnom*1.00; % Henries
@@ -159,13 +159,13 @@ ma1 = 0.9;
 ma2 = 0.9;
 
 % Balancing
-% Rload1 = Rload_1A;
-% Rload2 = Rload_2A;
-% pf1 = pf1A;
-% pf2 = pf2A;
-% ratioma = sqrt(Rload1/Rload2)*(pf2/pf1);
-% ma2 = 0.9;
-% ma1 = ma2*ratioma;
+Rload1 = Rload_1A;
+Rload2 = Rload_2A;
+pf1 = pf1A;
+pf2 = pf2A;
+ratioma = sqrt(Rload1/Rload2)*(pf2/pf1);
+ma2 = 0.9;
+ma1 = ma2*ratioma;
 
 ratio_R = mean([Rload_2A,Rload_2B,Rload_2C])/mean([Rload_1A,Rload_1B,Rload_1C]);
 ratio_pf = mean([pf1A,pf1B,pf1C])^2/mean([pf2A,pf2B,pf2C])^2;

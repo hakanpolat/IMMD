@@ -41,6 +41,20 @@ Rload_2A = Rnom*1.00; % Ohms
 Rload_2B = Rnom*1.00; % Ohms
 Rload_2C = Rnom*1.00; % Ohms
 
+X1A = 2*pi*fout*Lload_1A; % Ohm
+X1B = 2*pi*fout*Lload_1B; % Ohm
+X1C = 2*pi*fout*Lload_1C; % Ohm
+X2A = 2*pi*fout*Lload_2A; % Ohm
+X2B = 2*pi*fout*Lload_2B; % Ohm
+X2C = 2*pi*fout*Lload_2C; % Ohm
+
+Z1A = sqrt(Rload_1A^2+X1A^2); % Ohm
+Z1B = sqrt(Rload_1B^2+X1B^2); % Ohm
+Z1C = sqrt(Rload_1C^2+X1C^2); % Ohm
+Z2A = sqrt(Rload_2A^2+X2A^2); % Ohm
+Z2B = sqrt(Rload_2B^2+X2B^2); % Ohm
+Z2C = sqrt(Rload_2C^2+X2C^2); % Ohm
+
 pf1A = Rload_1A/Z1A;
 pf1B = Rload_1B/Z1B;
 pf1C = Rload_1C/Z1C;
@@ -52,7 +66,7 @@ ma1 = 0.9;
 
 Pout = Pmodt;
 Rin = 10;
-Rmid = 5;
+Rmid = 1;
 Cdcrec = 2e-3;
 Vin = Vdc + (Rin+Rmid)*(Pout/Vdc);
 

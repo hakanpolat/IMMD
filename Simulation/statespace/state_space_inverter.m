@@ -1,3 +1,4 @@
+tic
 %% Time array
 Tstep = 1e-6; % s
 Tfinal = 100e-3; % s
@@ -5,7 +6,7 @@ time_array = 0:Tstep:Tfinal-Tstep;
 NumberofSteps = numel(time_array);
 %% Defined Parameters
 DCSourceMagn = 300; % V
-SixthHarmonicMagn = 0; % V
+SixthHarmonicMagn = 10; % V
 SixthHarmonicPhase = 0; % Radians
 %% Constant Parameters
 Cdc = 15e-6; % F
@@ -110,6 +111,8 @@ ConverterVoltagePhaseBPhaseC = DCBusVoltage.*(SB-SC);
 ConverterVoltagePhaseCPhaseA = DCBusVoltage.*(SC-SA);
 ConverterDCBusCurrent = PhaseACurrent.*SA + PhaseBCurrent.*SB + PhaseCCurrent.*SC;
 DCBusCapacitorCurrent = InputCurrent - ConverterDCBusCurrent;
+
+toc
 
 %% Phase Currents
 figure;
