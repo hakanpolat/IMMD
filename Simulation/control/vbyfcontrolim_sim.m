@@ -53,6 +53,7 @@ Irated = Prated/(Vllrated*sqrt(3)*0.85);
 Vrated = Vllrated/sqrt(3);
 Vboost = 20; % V
 VbyfFreqSteps = 2; % Hz -2
+Initial_freq = 5;
 VbyfStepTime = 0.2; % s -0.5
 Tload = 10;
 delta = 0;
