@@ -3,7 +3,7 @@ Tfinal = 0.2; % sec
 Ripth = 0.18; % sec
 fsw = 10e3; % Hz
 Vdc = 270; % Volts
-fout = 50; % Hz
+fout = 150; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
@@ -11,7 +11,7 @@ ns = 1;
 n = ns*np;
 phase = [0 90 0 90];
 Cdc = 15e-6;
-delta = 0; % deg
+delta = pi/2; % rad
 
 % calculate nominal values
 Pmodt = 2e3;
@@ -31,8 +31,8 @@ Lload_1A = Lnom*1.00; % Henries
 Lload_1B = Lnom*1.00; % Henries
 Lload_1C = Lnom*1.00; % Henries
 Rload_1A = Rnom*1.00; % Ohms
-Rload_1B = Rnom*1.00; % Ohms
-Rload_1C = Rnom*1.00; % Ohms
+Rload_1B = Rnom*1.20; % Ohms
+Rload_1C = Rnom*1.20; % Ohms
 
 Lload_2A = Lnom*1.00; % Henries
 Lload_2B = Lnom*1.00; % Henries
@@ -66,8 +66,8 @@ ma1 = 0.9;
 
 Pout = Pmodt;
 Rin = 10;
-Rmid = 1;
-Cdcrec = 2e-3;
+Rmid = 4;
+Cdcrec = 4e-3;
 Vin = Vdc + (Rin+Rmid)*(Pout/Vdc);
 
 GridFreq = 50;
