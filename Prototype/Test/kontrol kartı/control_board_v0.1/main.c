@@ -28,6 +28,7 @@
 #define ENCODERTICKCOUNT    200
 #define ENCODERMAXTICKCOUNT ENCODERRESOLUTION*NUMBEROFTICKSPERQAB
 #define NUMBEROFPOLEPAIRS	10
+#define VBYFCONTROLENABLE 	1		/*hakansrc added*/
 
 extern void InitSysCtrl(void);
 extern void InitPieCtrl(void);
@@ -63,6 +64,11 @@ __interrupt void cpu_timer1_isr(void);
 __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
 __interrupt void adc1_isr(void);
+#if VBYFCONTROLENABLE
+__interrupt void isr_Increment_freq(void);
+__interrupt void isr_Decrement_freq(void);
+void VBYFSetup(void);
+#endif
 
 //float out_buffer1[400]; // Buffer for graph-1
 //float out_buffer2[400]; // Buffer for graph-2
@@ -176,6 +182,16 @@ float Vout_M1_PhA;
 float Vout_M1_PhB;
 float Vout_M1_PhC;
 
+#if VBYFCONTROLENABLE /*hakansrc added*/
+float32 fVbyfFreqSteps = 10;	   //hz, each push on the button will increase the fundamental frequency by that value
+float32 fFrequencySaturation = 50; //hz, max value for fundamental frequency
+float32 fVrated = 230.1;		   //Vrms, ma value is calculated depending on this value when there is a change in frequency
+float32 fFrequencyInitial = 25;	//hz, initial frequency value
+float32 fAppliedFrequency = 0;	 //hz, this is the applied frequency to the motor
+float32 vbyf_ma_value = 0;
+float32 fVdc = 750;
+#endif
+
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
 CLARKETRANSFORM clarke_Is_M1 = CLARKETRANSFORM_DEFAULTS;
 INVERSECLARKETRANSFORM inverseclarke_Vout_M1 = INVERSECLARKETRANSFORM_DEFAULTS;
@@ -248,7 +264,9 @@ int main(void) {
 	//InitAdc();
 	Setup_ADC();
 	Setup_EQEP();
-
+	#if VBYFCONTROLENABLE
+	VBYFSetup();
+	#endif
 	InitTempSensor(vrefhi_voltage);
 
 	//CpuTimer0Regs.PRD.all = 0xFFFFFFFF;
@@ -263,7 +281,8 @@ int main(void) {
 	PieCtrlRegs.PIEIER1.bit.INTx7 = 1; // TIMER0
 	PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // EPWM1
 	PieCtrlRegs.PIEIER1.bit.INTx1 = 1; // ADCA1
-
+    PieCtrlRegs.PIEIER1.bit.INTx4 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT1_ISR enabling*/
+    PieCtrlRegs.PIEIER1.bit.INTx5 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT2_ISR enabling*/
 	//PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
 	EINT;
@@ -276,7 +295,7 @@ int main(void) {
 	WdRegs.WDCR.all = 0x0028; //set the watch dog
 	EDIS;
 
-	// Module-1 Enable larýn setleri
+	// Module-1 Enable larï¿½n setleri
 	GpioDataRegs.GPCSET.bit.GPIO94 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO93 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO92 = 1;
@@ -1648,4 +1667,66 @@ void InitEpwm12(void) {
 	EPwm12Regs.ETSEL.all = 0x00;
 
 }
+#if VBYFCONTROLENABLE
+void VBYFSetup(void)
+{
+	fAppliedFrequency = fFrequencyInitial;
+	vbyf_ma_value = fAppliedFrequency * (fVrated / fFrequencySaturation) * (sqrt(3) / (fVdc * 0.612));
+	EALLOW;
+	/*vbyfcontrol*/
+	GpioCtrlRegs.GPBGMUX1.bit.GPIO32 = 0;
+	GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;
+	GpioCtrlRegs.GPBDIR.bit.GPIO32 = 0; // GPIO32 = input /*BUTTON for frequency increment*/
+	PieVectTable.XINT1_INT = &isr_Increment_freq;
+	XintRegs.XINT1CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
+	XintRegs.XINT1CR.bit.POLARITY = 1; /*rising edge trigger*/
+	GPIO_SetupXINT1Gpio(32);		   /*set GPIO32 as the source of the trigger*/
+	EDIS;
+	/*hakansrc: WARNING -- donot merge these EDIS and EALLOW*/
+	EALLOW;
+	GpioCtrlRegs.GPAGMUX2.bit.GPIO19 = 0;
+	GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 0;
+	GpioCtrlRegs.GPADIR.bit.GPIO19 = 0; // GPIO19 = input /*BUTTON for frequency decrement*/
+	PieVectTable.XINT2_INT = &isr_Decrement_freq;
+	XintRegs.XINT2CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
+	XintRegs.XINT2CR.bit.POLARITY = 1; /*rising edge trigger*/
+	GPIO_SetupXINT2Gpio(19);		   /*set GPIO32 as the source of the trigger*/
+	EDIS;
 
+	/**/
+}
+__interrupt void isr_Increment_freq(void) /*ISR for increment*/
+{
+    //Xint1Count++;
+    if((fAppliedFrequency+fVbyfFreqSteps)>fFrequencySaturation)
+    {
+        fAppliedFrequency = fFrequencySaturation;
+    }
+    else
+    {
+        fAppliedFrequency = fAppliedFrequency + fVbyfFreqSteps;
+    }
+    vbyf_ma_value = fAppliedFrequency*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+
+
+    // Acknowledge this interrupt to get more from group 1
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+}
+__interrupt void isr_Decrement_freq(void)  /*ISR for decrement*/
+{
+    //Xint2Count++;
+    if((fAppliedFrequency-fVbyfFreqSteps)<fFrequencyInitial)
+    {
+        fAppliedFrequency = fFrequencyInitial;
+    }
+    else
+    {
+        fAppliedFrequency = fAppliedFrequency - fVbyfFreqSteps;
+
+    }
+    vbyf_ma_value = fAppliedFrequency*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+
+    // Acknowledge this interrupt to get more from group 1
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+}
+#endif
