@@ -1,0 +1,13 @@
+Lload_1A = Lnom1.20; % Henries
+Lload_1B = Lnom1.20; % Henries
+Lload_1C = Lnom1.00; % Henries
+Rload_1A = Rnom1.00; % Ohms
+Rload_1B = Rnom1.20; % Ohms
+Rload_1C = Rnom1.20; % Ohms
+
+Lload_2A = Lnom1.00; % Henries
+Lload_2B = Lnom1.00; % Henries
+Lload_2C = Lnom1.00; % Henries
+Rload_2A = Rnom1.00; % Ohms
+Rload_2B = Rnom1.00; % Ohms
+Rload_2C = Rnom1.00; % Ohms
