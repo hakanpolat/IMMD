@@ -13,7 +13,7 @@
 #define sqrt3 				1,7321
 #define sysclk_frequency 	200000000	// Hz
 #define sysclk_period 		5				// ns
-#define motor_frequency 	50			// Hz
+#define motor_frequency 	50			// Hz			/*need to define this as constant value rather than macro, for control loop*/
 #define switching_frequency 10000	// Hz
 #define max_adc_digital 	4095
 #define max_adc_analog 		3   			// volt
@@ -28,7 +28,7 @@
 #define ENCODERTICKCOUNT    200
 #define ENCODERMAXTICKCOUNT ENCODERRESOLUTION*NUMBEROFTICKSPERQAB
 #define NUMBEROFPOLEPAIRS	10
-#define VBYFCONTROLENABLE 	1		/*hakansrc added*/
+#define VBYFCONTROLENABLE 	1		/*set this zero to disable vbyfcontrol part*/
 
 extern void InitSysCtrl(void);
 extern void InitPieCtrl(void);
@@ -187,9 +187,13 @@ float32 fVbyfFreqSteps = 10;	   //hz, each push on the button will increase the 
 float32 fFrequencySaturation = 50; //hz, max value for fundamental frequency
 float32 fVrated = 230.1;		   //Vrms, ma value is calculated depending on this value when there is a change in frequency
 float32 fFrequencyInitial = 25;	//hz, initial frequency value
-float32 fAppliedFrequency = 0;	 //hz, this is the applied frequency to the motor
-float32 vbyf_ma_value = 0;
+float32 fFundamentalFrequencyToBeApplied = 0;	 //hz, this is the applied frequency to the motor when the motor voltage waveform crosses zero
+float32 VbyF_ma_ToBeApplied = 0;				
 float32 fVdc = 750;
+
+float32 fMotorFundamentalFrequency	= 0;	/*this will be updated when zero cross occurs*/
+float32 fAmplitudeModulationIndex 	= 0;	/*this will be updated when zero cross occurs*/
+
 #endif
 
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
@@ -755,6 +759,7 @@ __interrupt void adc1_isr(void) {
 	Vout_M1_PhA = inverseclarke_Vout_M1.va;
 	Vout_M1_PhB = inverseclarke_Vout_M1.vb;
 	Vout_M1_PhC = inverseclarke_Vout_M1.vc;
+#if !VBYFCONTROLENABLE /*hakansrc: following is the default condition*/
 
 	// sinusoidal PWM
 	//ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
@@ -774,6 +779,19 @@ __interrupt void adc1_isr(void) {
 	spwm_counter += 1;
 	if (spwm_counter > ((switching_frequency / motor_frequency) - 1))
 		spwm_counter = 0;
+#else
+	spwm_counter += 1;
+	if (spwm_counter > ((switching_frequency / fMotorFundamentalFrequency) - 1))
+	{
+		fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
+		fAmplitudeModulationIndex = VbyF_ma_ToBeApplied;
+		spwm_counter = 0;
+	}
+	
+	epwm8_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency)+1)/2;
+	epwm7_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency-2*PI/3)+1)/2;
+	epwm6_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency+2*PI/3)+1)/2;	
+#endif
 
 	/*
 	 epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
@@ -1670,10 +1688,14 @@ void InitEpwm12(void) {
 #if VBYFCONTROLENABLE
 void VBYFSetup(void)
 {
-	fAppliedFrequency = fFrequencyInitial;
-	vbyf_ma_value = fAppliedFrequency * (fVrated / fFrequencySaturation) * (sqrt(3) / (fVdc * 0.612));
+	/*WARNING: call this function before initializing interrupts*/
+	/*fMotorFundamentalFrequency&fAmplitudeModulationIndex are updated inside the GPIO interrupt service routines(isr_Increment_freq,isr_Decrement_freq)
+	and those values are applied to the motor when spwm_counter is set to zero (i.e. when the fundamental sinusoidal at 0 degree)*/
+	fFundamentalFrequencyToBeApplied = fFrequencyInitial;
+	VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied * (fVrated / fFrequencySaturation) * (sqrt(3) / (fVdc * 0.612));
+	fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
+	fAmplitudeModulationIndex =	VbyF_ma_ToBeApplied;
 	EALLOW;
-	/*vbyfcontrol*/
 	GpioCtrlRegs.GPBGMUX1.bit.GPIO32 = 0;
 	GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;
 	GpioCtrlRegs.GPBDIR.bit.GPIO32 = 0; // GPIO32 = input /*BUTTON for frequency increment*/
@@ -1698,15 +1720,15 @@ void VBYFSetup(void)
 __interrupt void isr_Increment_freq(void) /*ISR for increment*/
 {
     //Xint1Count++;
-    if((fAppliedFrequency+fVbyfFreqSteps)>fFrequencySaturation)
+    if((fFundamentalFrequencyToBeApplied+fVbyfFreqSteps)>fFrequencySaturation)
     {
-        fAppliedFrequency = fFrequencySaturation;
+        fFundamentalFrequencyToBeApplied = fFrequencySaturation;
     }
     else
     {
-        fAppliedFrequency = fAppliedFrequency + fVbyfFreqSteps;
+        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied + fVbyfFreqSteps;
     }
-    vbyf_ma_value = fAppliedFrequency*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
 
 
     // Acknowledge this interrupt to get more from group 1
@@ -1715,16 +1737,16 @@ __interrupt void isr_Increment_freq(void) /*ISR for increment*/
 __interrupt void isr_Decrement_freq(void)  /*ISR for decrement*/
 {
     //Xint2Count++;
-    if((fAppliedFrequency-fVbyfFreqSteps)<fFrequencyInitial)
+    if((fFundamentalFrequencyToBeApplied-fVbyfFreqSteps)<fFrequencyInitial)
     {
-        fAppliedFrequency = fFrequencyInitial;
+        fFundamentalFrequencyToBeApplied = fFrequencyInitial;
     }
     else
     {
-        fAppliedFrequency = fAppliedFrequency - fVbyfFreqSteps;
+        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied - fVbyfFreqSteps;
 
     }
-    vbyf_ma_value = fAppliedFrequency*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
 
     // Acknowledge this interrupt to get more from group 1
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
