@@ -29,13 +29,18 @@ delta = 0; % Radians
 VrefA = ma*sin(2*pi*fout*time_array-delta);
 VrefB = ma*sin(2*pi*fout*time_array-delta-2*pi/3);
 VrefC = ma*sin(2*pi*fout*time_array-delta-4*pi/3);
-Vcarrier = sawtooth(2*pi*fsw*time_array);
+%Vcarrier = sawtooth(2*pi*fsw*time_array);
+Vtriang = zeros(1, NumberofSteps);
+for k = 1:Tfinal*fsw
+   Triang_temp = triang(1/(Ts*fsw));
+   Vtriang((100*(k-1)+1:k/(Tstep*fsw))) = (Triang_temp*2)-1;
+end
+Vcarrier = Vtriang;
 SA = (VrefA > Vcarrier);
 SB = (VrefB > Vcarrier);
 SC = (VrefC > Vcarrier);
 %% States
 PhaseACurrent = zeros(1, NumberofSteps);
-PhaseBCurrent = zeros(1, NumberofSteps);
 PhaseCCurrent = zeros(1, NumberofSteps);
 DCBusVoltage = zeros(1, NumberofSteps);
 InputCurrent = zeros(1, NumberofSteps);
@@ -213,19 +218,20 @@ legend({'Model-SA','Simulation-SA'},'Location','best');
 % %ylim([-1.2 1.2]);
 % legend({'Phase-AB','Phase-BC','Phase-CA'},'Location','best');
 %%
-% %% Reference Signal and Carrier
-% figure;
-% hold all;
-% plot(time_array,VrefA,'b-','Linewidth',2);
-% plot(time_array,VrefB,'g-','Linewidth',2);
-% plot(time_array,VrefC,'k-','Linewidth',2);
-% plot(time_array,Vcarrier,'r-','Linewidth',2);
-% set(gca,'FontSize',14);
-% xlabel('Time (Seconds)','FontSize',14,'FontWeight','Bold')
-% ylabel('Reference Signals (Volts)','FontSize',14,'FontWeight','Bold')
-% xlim([0 40e-3]);
-% ylim([-1.2 1.2]);
-% legend({'Phase-A','Phase-B','Phase-C'},'Location','best');
+%% Reference Signal and Carrier
+figure;
+hold all;
+plot(time_array,VrefA,'b-','Linewidth',1);
+plot(time_array,VrefB,'g-','Linewidth',1);
+plot(time_array,VrefC,'k-','Linewidth',1);
+plot(time_array,Vcarrier,'r-','Linewidth',1);
+plot(time_array,Vtriang,'b--','Linewidth',1);
+set(gca,'FontSize',14);
+xlabel('Time (Seconds)','FontSize',14,'FontWeight','Bold')
+ylabel('Reference Signals (Volts)','FontSize',14,'FontWeight','Bold')
+xlim([0 40e-3]);
+ylim([-1.2 1.2]);
+legend({'Phase-A','Phase-B','Phase-C'},'Location','best');
 % %% Switching Signals
 % figure;
 % hold all;
