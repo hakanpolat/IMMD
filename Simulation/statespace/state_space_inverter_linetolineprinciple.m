@@ -11,6 +11,9 @@ DCSourceMagn = 300; % V
 SixthHarmonicMagn = 0; % V
 SixthHarmonicFreq = 300; % Hz
 SixthHarmonicPhase = 0; % Radians
+Vacrms = 220; % V
+GridFreq = 50; % Hz
+Cdcrec = 5e-3; % F
 %% Constant Parameters
 Cdc = 15e-6; % F
 RA = 10; % Ohms
@@ -29,13 +32,13 @@ delta = 0; % Radians
 VrefA = ma*sin(2*pi*fout*time_array-delta);
 VrefB = ma*sin(2*pi*fout*time_array-delta-2*pi/3);
 VrefC = ma*sin(2*pi*fout*time_array-delta-4*pi/3);
-%Vcarrier = sawtooth(2*pi*fsw*time_array);
-Vtriang = zeros(1, NumberofSteps);
-for k = 1:Tfinal*fsw
-   Triang_temp = triang(1/(Ts*fsw));
-   Vtriang((100*(k-1)+1:k/(Tstep*fsw))) = (Triang_temp*2)-1;
-end
-Vcarrier = Vtriang;
+Vcarrier = sawtooth(2*pi*fsw*time_array);
+% Vtriang = zeros(1, NumberofSteps);
+% for k = 1:Tfinal*fsw
+%    Triang_temp = triang(1/(Ts*fsw));
+%    Vtriang((100*(k-1)+1:k/(Tstep*fsw))) = (Triang_temp*2)-1;
+% end
+% Vcarrier = Vtriang;
 SA = (VrefA > Vcarrier);
 SB = (VrefB > Vcarrier);
 SC = (VrefC > Vcarrier);
@@ -156,11 +159,11 @@ legend({'Capacitor','Converter','Input'},'Location','best');
 figure;
 hold all;
 plot(time_array,PhaseACurrent,'b-','Linewidth',1);
-plot(time_array,-Isa(1:NumberofSteps)','r--','Linewidth',1);
+plot(time_array,Isa(1:NumberofSteps)','r--','Linewidth',1);
 plot(time_array,PhaseBCurrent,'r-','Linewidth',1);
-plot(time_array,-Isb(1:NumberofSteps)','k--','Linewidth',1);
+plot(time_array,Isb(1:NumberofSteps)','k--','Linewidth',1);
 plot(time_array,PhaseCCurrent,'k-','Linewidth',1);
-plot(time_array,-Isc(1:NumberofSteps)','b--','Linewidth',1);
+plot(time_array,Isc(1:NumberofSteps)','b--','Linewidth',1);
 set(gca,'FontSize',14);
 xlabel('Time (Seconds)','FontSize',14,'FontWeight','Bold')
 ylabel('Phase Currents (Amps)','FontSize',14,'FontWeight','Bold')
