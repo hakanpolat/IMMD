@@ -1,12 +1,15 @@
 tic
 %% Time array
 Tstep = 1e-6; % s
+Ts = Tstep; % s
+Ripth = 0.18; % sec
 Tfinal = 100e-3; % s
 time_array = 0:Tstep:Tfinal-Tstep;
 NumberofSteps = numel(time_array);
 %% Defined Parameters
 DCSourceMagn = 300; % V
 SixthHarmonicMagn = 0; % V
+SixthHarmonicFreq = 300; % Hz
 SixthHarmonicPhase = 0; % Radians
 %% Constant Parameters
 Cdc = 15e-6; % F
@@ -20,12 +23,12 @@ Rin = 2; % Ohms
 Lin = 1e-3; % H
 %% Generate switching signals
 ma = 0.9;
-fo = 50; % Hz
+fout = 50; % Hz
 fsw = 10e3; % Hz
 delta = 0; % Radians
-VrefA = ma*sin(2*pi*fo*time_array-delta);
-VrefB = ma*sin(2*pi*fo*time_array-delta-2*pi/3);
-VrefC = ma*sin(2*pi*fo*time_array-delta-4*pi/3);
+VrefA = ma*sin(2*pi*fout*time_array-delta);
+VrefB = ma*sin(2*pi*fout*time_array-delta-2*pi/3);
+VrefC = ma*sin(2*pi*fout*time_array-delta-4*pi/3);
 Vcarrier = sawtooth(2*pi*fsw*time_array);
 SA = (VrefA > Vcarrier);
 SB = (VrefB > Vcarrier);
