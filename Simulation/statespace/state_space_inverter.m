@@ -6,7 +6,7 @@ time_array = 0:Tstep:Tfinal-Tstep;
 NumberofSteps = numel(time_array);
 %% Defined Parameters
 DCSourceMagn = 300; % V
-SixthHarmonicMagn = 10; % V
+SixthHarmonicMagn = 0; % V
 SixthHarmonicPhase = 0; % Radians
 %% Constant Parameters
 Cdc = 15e-6; % F
@@ -17,7 +17,7 @@ LA = 15e-3; % H
 LB = 15e-3; % H
 LC = 15e-3; % H
 Rin = 2; % Ohms
-Lin = 1e-6; % H
+Lin = 1e-3; % H
 %% Generate switching signals
 ma = 0.9;
 fo = 50; % Hz
