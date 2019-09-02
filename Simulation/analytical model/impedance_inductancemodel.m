@@ -23,31 +23,66 @@ C1A = 5e-6;
 C1B = 5e-6;
 C1C = 5e-6;
 
-%% New merged inducances
-L1 = LATop + LABot + ESLA;
-L2 = LABTop;
-L3 = LABBot;
-L4 = ESLB;
-L5 = LBTop + LBBot + LBCTop + LBCBot + ESLC;
+%% New merged inducances - phA
+L1_phA = LATop + LABot + ESLA;
+L2_phA = LABTop;
+L3_phA = LABBot;
+L4_phA = ESLB;
+L5_phA = LBTop + LBBot + LBCTop + LBCBot + ESLC;
 
-%% Calculated impedances
-Z1 = 1i*w*L5 + 1./(1i*w*C1C);
-Z2 = 1i*w*L4 + 1./(1i*w*C1B);
-Z3 = Z1.*Z2./(Z1+Z2);
-Z4 = Z3 + 1i*w*(L2+L3);
-Z5 = 1i*w*L1 + 1./(1i*w*C1A);
-Zeqv = Z4.*Z5./(Z4+Z5);
+%% New merged inducances - phB
+L1_phB = LATop + LABot + LABTop + LABBot + ESLA;
+L2_phB = ESLB;
+L3_phB = LBTop + LBBot;
+L4_phB = LBCTop + LBCBot + ESLC;
 
+%% New merged inducances - phC
+L1_phC = LATop + LABot + LABTop + LABBot + ESLA;
+L2_phC = ESLB;
+L3_phC = LBTop + LBBot + LBCTop + LBCBot;
+L4_phC = ESLC;
+L5_phC = LCTop + LCBot;
+
+%% Calculated impedances - phA
+Z1_phA = 1i*w*L5_phA + 1./(1i*w*C1C);
+Z2_phA = 1i*w*L4_phA + 1./(1i*w*C1B);
+Z3_phA = Z1_phA.*Z2_phA./(Z1_phA+Z2_phA);
+Z4_phA = Z3_phA + 1i*w*(L2_phA+L3_phA);
+Z5_phA = 1i*w*L1_phA + 1./(1i*w*C1A);
+Zeqv_phA = Z4_phA.*Z5_phA./(Z4_phA+Z5_phA);
+
+%% Calculated impedances - phB
+Z1_phB = 1i*w*L1_phB + 1./(1i*w*C1A);
+Z2_phB = 1i*w*L2_phB + 1./(1i*w*C1B);
+Z3_phB = Z1_phB.*Z2_phB./(Z1_phB+Z2_phB);
+Z4_phB = Z3_phB + 1i*w*(L3_phB);
+Z5_phB = 1i*w*L4_phB + 1./(1i*w*C1C);
+Zeqv_phB = Z4_phB.*Z5_phB./(Z4_phB+Z5_phB);
+
+%% Calculated impedances - phC
+Z1_phC = 1i*w*L1_phC + 1./(1i*w*C1A);
+Z2_phC = 1i*w*L2_phC + 1./(1i*w*C1B);
+Z3_phC = Z1_phC.*Z2_phC./(Z1_phC+Z2_phC);
+Z4_phC = Z3_phC + 1i*w*(L3_phC);
+Z5_phC = 1i*w*L4_phC + 1./(1i*w*C1C);
+Z6_phC = Z4_phC.*Z5_phC./(Z4_phC+Z5_phC);
+Zeqv_phC = Z6_phC + 1i*w*L5_phC;
+
+%%
 figure;
-%hold all;
-loglog(w/(2*pi*1000),abs(Zeqv),'-s')
+hold all;
+plot(w/(2*pi*1000),abs(Zeqv_phA),'b-','Linewidth',1);
+plot(w/(2*pi*1000),abs(Zeqv_phB),'k--','Linewidth',1);
+plot(w/(2*pi*1000),abs(Zeqv_phC),'r-','Linewidth',1);
+set(gca, 'YScale', 'log', 'XScale', 'log')
 grid on;
 set(gca,'FontSize',14);
 xlabel('Frequency (kHz)','FontSize',14,'FontWeight','Bold')
 ylabel('Magnitude of equivalent impedance','FontSize',14,'FontWeight','Bold')
-%xlim([0 40e-3]);
+xlim([1 10000]);
 %ylim([-1.2 1.2]);
+legend({'phA','phB','phC'},'Location','best');
 
-
-% plot(time_array,DCBusVoltage,'b-','Linewidth',2);
-% plot(time_array,InputVoltage,'r-','Linewidth',2);
+%% Obsolete
+% loglog(w/(2*pi*1000),abs(Zeqv_phA),'-s')
+% loglog(w/(2*pi*1000),abs(Zeqv_phC),'-s')
