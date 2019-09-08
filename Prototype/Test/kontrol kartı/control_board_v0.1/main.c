@@ -24,9 +24,9 @@
 #define CLOCKWISE           1
 #define COUNTERCLOCKWISE    0
 #define CLOCKHZ             200000000 //200MHz
-#define ENCODERRESOLUTION	1000 //3600
+#define ENCODERRESOLUTION	3600 //3600
 #define NUMBEROFTICKSPERQAB 4
-#define ENCODERMAXTICKCOUNT ENCODERRESOLUTION*NUMBEROFTICKSPERQAB
+#define ENCODERMAXTICKCOUNT (ENCODERRESOLUTION*NUMBEROFTICKSPERQAB-1)
 #define NUMBEROFPOLEPAIRS	10
 
 extern void InitSysCtrl(void);
@@ -73,7 +73,11 @@ __interrupt void adc2_isr(void);
 
 //float32 fRPM = 0;
 float32 fAngularMechanicalPosition = 0;  // mechanical, radians
+float32 fAngularMechanicalPositionPrevious = 0;
+float32 fDeltaAngularMechanicalPosition = 0;
+unsigned long ulPOSCNTPrevious = 0;
 float32 fAngularMechanicalSpeed = 0; // mechanical, radians/second
+float32 fAngularMechanicalSpeedPrevious = 0;
 unsigned int uiHighSpeedFlag = 0; //0:low speed, 1 high speed => simdilik lowda dursun
 Uint32 uiPositionLatched = 0;
 Uint32 uiPositionLatchedPrevious = 0;
@@ -82,6 +86,8 @@ Uint32 uiPositionTotalCounted;
 unsigned int uiUpEventTickValue = 16;
 float fAngularElectricalPosition; // electrical, radians
 float fAngularElectricalSpeed; //electrical, radians/second
+
+
 
 float Vdc_M1;
 float Vdc_M2;
@@ -292,10 +298,9 @@ int main(void) {
 	GpioDataRegs.GPCSET.bit.GPIO94 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO93 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO92 = 1;
-
 	while (1) {
-		while (!CpuTimer0.InterruptCount) {
-
+		while (!CpuTimer0.InterruptCount)
+		{
 		}
 		WdRegs.WDKEY.all = 0x55; // serve to watchdog
 		CpuTimer0.InterruptCount = 0;
@@ -649,7 +654,51 @@ __interrupt void adc2_isr(void) {
 	GpioDataRegs.GPCSET.bit.GPIO76 = 1;
 
 	// Get position and speed
-	PositionSpeedCalculate();
+	//PositionSpeedCalculate();
+	if(EQep1Regs.QEPSTS.bit.QDLF == 1)
+	{
+	    if(EQep1Regs.QPOSCNT != ulPOSCNTPrevious)
+	    {
+	        fAngularMechanicalPositionPrevious = fAngularMechanicalPosition;
+	        fAngularMechanicalPosition =  ((float32) EQep1Regs.QPOSCNT/(ENCODERMAXTICKCOUNT))*360; // mech-degrees
+	        fDeltaAngularMechanicalPosition = fAngularMechanicalPosition - fAngularMechanicalPositionPrevious;
+            if(fDeltaAngularMechanicalPosition<0)
+            {
+                fDeltaAngularMechanicalPosition = 360 -fAngularMechanicalPositionPrevious+fAngularMechanicalPosition;
+            }
+	        fAngularMechanicalSpeed = fDeltaAngularMechanicalPosition*switching_frequency;
+	        ulPOSCNTPrevious = EQep1Regs.QPOSCNT;
+
+	    }
+	    else
+	    {
+	        fAngularMechanicalSpeed = fAngularMechanicalSpeedPrevious;
+	        fAngularMechanicalPosition = fAngularMechanicalPositionPrevious;
+	    }
+	}
+	else    /*then it is turning in other direction, the position is decreasing*/
+	{
+        if(EQep1Regs.QPOSCNT != ulPOSCNTPrevious)
+        {
+            fAngularMechanicalPositionPrevious = fAngularMechanicalPosition;
+            fAngularMechanicalPosition =  ((float32) EQep1Regs.QPOSCNT/(ENCODERMAXTICKCOUNT))*360; // mech-degrees
+
+            fDeltaAngularMechanicalPosition = fAngularMechanicalPositionPrevious - fAngularMechanicalPosition;/*this part different*/
+            if(fDeltaAngularMechanicalPosition<0)
+            {
+                fDeltaAngularMechanicalPosition = 360 -fAngularMechanicalPosition+fAngularMechanicalPositionPrevious;/*this part is different*/
+            }
+            fAngularMechanicalSpeed = fDeltaAngularMechanicalPosition*switching_frequency;
+            ulPOSCNTPrevious = EQep1Regs.QPOSCNT;
+
+        }
+        else
+        {
+            fAngularMechanicalSpeed = fAngularMechanicalSpeedPrevious;
+            fAngularMechanicalPosition = fAngularMechanicalPositionPrevious;
+        }
+	}
+
 
 	counter_minmax++;
     if (counter_minmax > 10) minmax_enable = 1;
@@ -841,8 +890,8 @@ __interrupt void adc2_isr(void) {
 // designed by hakansrc
 void PositionSpeedCalculate(void) {
 	/*TODO cover up the reverse direction case*/
-	fAngularMechanicalPosition = (float32) EQep1Regs.QPOSCNT
-			/ (float32) ENCODERMAXTICKCOUNT * 2 * PI; // mech-radians
+	fAngularMechanicalPosition = ( (float32) EQep1Regs.QPOSCNT
+			/ (ENCODERMAXTICKCOUNT) ) * 360; // mech-radians
 	uiDirectonOfRotation = EQep1Regs.QEPSTS.bit.QDF; // Quadrature direction flag: 1=Clockwise
 	fAngularElectricalPosition = fAngularMechanicalPosition*NUMBEROFPOLEPAIRS; // electrical, radians
 
@@ -1140,7 +1189,7 @@ void Setup_EQEP(void) {
 
 	// Quadrature Decoder Unit (QDU) Registers
 	EQep1Regs.QDECCTL.all = 0x00;     // Quadrature Decoder Control
-	EQep1Regs.QDECCTL.bit.QSRC = 2; // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
+	EQep1Regs.QDECCTL.bit.QSRC = 0; // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
 	// hakansrc QSRC=2 girmis -- "0"
 	EQep1Regs.QDECCTL.bit.SOEN = 0;   // Disable position-compare sync output
 	EQep1Regs.QDECCTL.bit.SPSEL = 1; // Strobe pin is used for sync output: Don't care
@@ -1168,7 +1217,7 @@ void Setup_EQEP(void) {
 	EQep1Regs.QEPCTL.bit.WDE = 1;     // Enable the eQEP watchdog timer
 
 	EQep1Regs.QPOSINIT = 0; // Initial QPOSCNT , QPOSCNT set to zero on index event (or strobe or software if desired)
-	EQep1Regs.QPOSMAX = 0xffffffff;       // Max value of QPOSCNT
+	EQep1Regs.QPOSMAX = 14399;       // Max value of QPOSCNT
 
 	// Quadrature edge-capture unit for low-speed measurement (QCAP)
 	EQep1Regs.QCAPCTL.all = 0x00;
