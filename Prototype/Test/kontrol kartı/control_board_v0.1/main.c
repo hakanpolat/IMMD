@@ -6,6 +6,7 @@
 #include <inverseclarketransform.h>
 #include <parktransform.h>
 #include <inverseparktransform.h>
+#include <F2837xD_Examples.h>
 
 //#include <stdio.h>
 
@@ -13,7 +14,7 @@
 #define sqrt3 				1,7321
 #define sysclk_frequency 	200000000	// Hz
 #define sysclk_period 		5				// ns
-#define motor_frequency 	50			// Hz			/*need to define this as constant value rather than macro, for control loop*/
+#define motor_frequency 	50			// Hz
 #define switching_frequency 10000	// Hz
 #define max_adc_digital 	4095
 #define max_adc_analog 		3   			// volt
@@ -23,12 +24,10 @@
 #define CLOCKWISE           1
 #define COUNTERCLOCKWISE    0
 #define CLOCKHZ             200000000 //200MHz
-#define ENCODERRESOLUTION	3600
+#define ENCODERRESOLUTION	1000 //3600
 #define NUMBEROFTICKSPERQAB 4
-#define ENCODERTICKCOUNT    200
 #define ENCODERMAXTICKCOUNT ENCODERRESOLUTION*NUMBEROFTICKSPERQAB
 #define NUMBEROFPOLEPAIRS	10
-#define VBYFCONTROLENABLE 	1		/*set this zero to disable vbyfcontrol part*/
 
 extern void InitSysCtrl(void);
 extern void InitPieCtrl(void);
@@ -64,11 +63,8 @@ __interrupt void cpu_timer1_isr(void);
 __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
 __interrupt void adc1_isr(void);
-#if VBYFCONTROLENABLE
-__interrupt void isr_Increment_freq(void);
-__interrupt void isr_Decrement_freq(void);
-void VBYFSetup(void);
-#endif
+__interrupt void adc2_isr(void);
+
 
 //float out_buffer1[400]; // Buffer for graph-1
 //float out_buffer2[400]; // Buffer for graph-2
@@ -119,6 +115,11 @@ float Is_M3_PhC_adc;
 float Is_M4_PhA_adc;
 float Is_M4_PhB_adc;
 float Is_M4_PhC_adc;
+int counter_measurement = 0;
+float Is_M1_PhC_max = -1000;
+float Is_M1_PhC_min = 1000;
+int counter_minmax = 0;
+int minmax_enable = 0;
 
 int16 DSP_Temp_Sensor_adc;
 int16 DSP_Temp_Sensor;
@@ -182,20 +183,6 @@ float Vout_M1_PhA;
 float Vout_M1_PhB;
 float Vout_M1_PhC;
 
-#if VBYFCONTROLENABLE /*hakansrc added*/
-float32 fVbyfFreqSteps = 10;	   //hz, each push on the button will increase the fundamental frequency by that value
-float32 fFrequencySaturation = 50; //hz, max value for fundamental frequency
-float32 fVrated = 230.1;		   //Vrms, ma value is calculated depending on this value when there is a change in frequency
-float32 fFrequencyInitial = 25;	//hz, initial frequency value
-float32 fFundamentalFrequencyToBeApplied = 0;	 //hz, this is the applied frequency to the motor when the motor voltage waveform crosses zero
-float32 VbyF_ma_ToBeApplied = 0;				
-float32 fVdc = 750;
-
-float32 fMotorFundamentalFrequency	= 0;	/*this will be updated when zero cross occurs*/
-float32 fAmplitudeModulationIndex 	= 0;	/*this will be updated when zero cross occurs*/
-
-#endif
-
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
 CLARKETRANSFORM clarke_Is_M1 = CLARKETRANSFORM_DEFAULTS;
 INVERSECLARKETRANSFORM inverseclarke_Vout_M1 = INVERSECLARKETRANSFORM_DEFAULTS;
@@ -242,14 +229,16 @@ int main(void) {
 	PieVectTable.TIMER1_INT = &cpu_timer1_isr;
 	PieVectTable.TIMER2_INT = &cpu_timer2_isr;
 	PieVectTable.EPWM1_INT = &epwm1_isr;
-	PieVectTable.ADCA1_INT = &adc1_isr;
+	PieVectTable.ADCC1_INT = &adc1_isr;
+	PieVectTable.ADCA2_INT = &adc2_isr;
+
 	//PieVectTable.ECAP4_INT = &ecap4_isr;
 	EDIS;
 
 	//InitECapModules();
 	InitCpuTimers();   // For this example, only initialize the Cpu Timers
 	ConfigCpuTimer(&CpuTimer0, 200, 250); //0.5 miliseconds (1 kHz square wave)
-	ConfigCpuTimer(&CpuTimer1, 200, 1000000); //2 seconds
+	ConfigCpuTimer(&CpuTimer1, 200, 100000/(switching_frequency)); //2 seconds
 	ConfigCpuTimer(&CpuTimer2, 200, 1000000); //2 seconds
 
 	InitEpwm1();
@@ -268,25 +257,25 @@ int main(void) {
 	//InitAdc();
 	Setup_ADC();
 	Setup_EQEP();
-	#if VBYFCONTROLENABLE
-	VBYFSetup();
-	#endif
+
 	InitTempSensor(vrefhi_voltage);
 
 	//CpuTimer0Regs.PRD.all = 0xFFFFFFFF;
 	CpuTimer0Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
 	CpuTimer1Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
 	CpuTimer2Regs.TCR.all = 0x4000; // Use write-only instruction to set TSS bit = 0
-	IER |= M_INT1;   // ADC
+	IER |= M_INT1;   // ADC-A1
+	IER |= M_INT10;   // ADC-A2
 	IER |= M_INT3;   // EPWM
 	//IER |= M_INT4; // ECAP
 	IER |= M_INT13;  // CPU1.TIMER1
 	IER |= M_INT14;  // CPU1.TIMER2
 	PieCtrlRegs.PIEIER1.bit.INTx7 = 1; // TIMER0
 	PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // EPWM1
-	PieCtrlRegs.PIEIER1.bit.INTx1 = 1; // ADCA1
-    PieCtrlRegs.PIEIER1.bit.INTx4 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT1_ISR enabling*/
-    PieCtrlRegs.PIEIER1.bit.INTx5 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT2_ISR enabling*/
+	PieCtrlRegs.PIEIER1.bit.INTx3 = 1; // ADCA1
+	PieCtrlRegs.PIEIER10.bit.INTx2 = 1; // ADCA2
+
+
 	//PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
 	EINT;
@@ -299,7 +288,7 @@ int main(void) {
 	WdRegs.WDCR.all = 0x0028; //set the watch dog
 	EDIS;
 
-	// Module-1 Enable larï¿½n setleri
+	// Module-1 Enable larýn setleri
 	GpioDataRegs.GPCSET.bit.GPIO94 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO93 = 1;
 	GpioDataRegs.GPCSET.bit.GPIO92 = 1;
@@ -588,12 +577,6 @@ __interrupt void cpu_timer0_isr(void) {
 	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 }
 
-__interrupt void cpu_timer1_isr(void) {
-	CpuTimer1.InterruptCount++;
-	// The CPU acknowledges the interrupt.
-	// GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
-
-}
 
 __interrupt void cpu_timer2_isr(void) {
 	CpuTimer2.InterruptCount++;
@@ -634,11 +617,59 @@ __interrupt void epwm1_isr(void) {
 	//GpioDataRegs.GPCCLEAR.bit.GPIO94 = 1;
 }
 
+
+__interrupt void cpu_timer1_isr(void) {
+    // Module-4-A Enables
+    //GpioDataRegs.GPCSET.bit.GPIO74 = 1;
+
+
+    //DELAY_US(1);
+
+    //GpioDataRegs.GPCCLEAR.bit.GPIO74 = 1;
+
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+
+}
+
 __interrupt void adc1_isr(void) {
-	//GpioDataRegs.GPCSET.bit.GPIO93 = 1;
+    //GpioDataRegs.GPCSET.bit.GPIO93 = 1;
+    //GpioDataRegs.GPCSET.bit.GPIO75 = 1;
+
+    counter_measurement++;
+    Is_M1_PhC_adc += AdccResultRegs.ADCRESULT3;
+    //DELAY_US(1);
+    //GpioDataRegs.GPCCLEAR.bit.GPIO75 = 1;
+
+    AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
+
+}
+
+__interrupt void adc2_isr(void) {
+	GpioDataRegs.GPCSET.bit.GPIO76 = 1;
 
 	// Get position and speed
 	PositionSpeedCalculate();
+
+	counter_minmax++;
+    if (counter_minmax > 10) minmax_enable = 1;
+
+	Is_M1_PhC = (( (Is_M1_PhC_adc/ (float)counter_measurement) * max_adc_analog / max_adc_digital)
+	      - Current_Offset) * Current_TransferFunction;
+
+	if (minmax_enable == 1)
+	{
+	if (Is_M1_PhC > Is_M1_PhC_max)
+	    {
+	    Is_M1_PhC_max = Is_M1_PhC;
+	    }
+	if (Is_M1_PhC < Is_M1_PhC_min)
+	    {
+	    Is_M1_PhC_min = Is_M1_PhC;
+	    }
+	}
+	Is_M1_PhC_adc = 0;
+	counter_measurement = 0;
 
 	// First digital readings from ADCs
 	Vdc_M3_adc = AdcaResultRegs.ADCRESULT0;
@@ -653,7 +684,7 @@ __interrupt void adc1_isr(void) {
 	Is_M2_PhC_adc = AdcbResultRegs.ADCRESULT2;
 	Is_M4_PhA_adc = AdcbResultRegs.ADCRESULT3;
 	Is_M2_PhA_adc = AdccResultRegs.ADCRESULT2;
-	Is_M1_PhC_adc = AdccResultRegs.ADCRESULT3;
+	//Is_M1_PhC_adc = AdccResultRegs.ADCRESULT3;
 	Is_M1_PhB_adc = AdccResultRegs.ADCRESULT4;
 	Vdc_M4_adc = AdcdResultRegs.ADCRESULT0;
 	Vdc_M2_adc = AdcdResultRegs.ADCRESULT1;
@@ -673,8 +704,8 @@ __interrupt void adc1_isr(void) {
 			- Current_Offset) * Current_TransferFunction;
 	Is_M1_PhB = ((Is_M1_PhB_adc * max_adc_analog / max_adc_digital)
 			- Current_Offset) * Current_TransferFunction;
-	Is_M1_PhC = ((Is_M1_PhC_adc * max_adc_analog / max_adc_digital)
-			- Current_Offset) * Current_TransferFunction;
+	//Is_M1_PhC = ((Is_M1_PhC_adc * max_adc_analog / max_adc_digital)
+	//		- Current_Offset) * Current_TransferFunction;
 	Is_M2_PhA = ((Is_M2_PhA_adc * max_adc_analog / max_adc_digital)
 			- Current_Offset) * Current_TransferFunction;
 	Is_M2_PhB = ((Is_M2_PhB_adc * max_adc_analog / max_adc_digital)
@@ -759,7 +790,6 @@ __interrupt void adc1_isr(void) {
 	Vout_M1_PhA = inverseclarke_Vout_M1.va;
 	Vout_M1_PhB = inverseclarke_Vout_M1.vb;
 	Vout_M1_PhC = inverseclarke_Vout_M1.vc;
-#if !VBYFCONTROLENABLE /*hakansrc: following is the default condition*/
 
 	// sinusoidal PWM
 	//ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
@@ -779,19 +809,6 @@ __interrupt void adc1_isr(void) {
 	spwm_counter += 1;
 	if (spwm_counter > ((switching_frequency / motor_frequency) - 1))
 		spwm_counter = 0;
-#else
-	spwm_counter += 1;
-	if (spwm_counter > ((switching_frequency / fMotorFundamentalFrequency) - 1))
-	{
-		fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
-		fAmplitudeModulationIndex = VbyF_ma_ToBeApplied;
-		spwm_counter = 0;
-	}
-	
-	epwm8_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency)+1)/2;
-	epwm7_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency-2*PI/3)+1)/2;
-	epwm6_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency+2*PI/3)+1)/2;	
-#endif
 
 	/*
 	 epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
@@ -811,9 +828,11 @@ __interrupt void adc1_isr(void) {
 	 AdcRegs.ADCST.bit.INT_SEQ1_CLR = 1;     // Clear INT SEQ1 bit
 	 */
 
+    GpioDataRegs.GPCCLEAR.bit.GPIO76 = 1;
+
 	//AdcaRegs.ADCINTFLG.bit.ADCINT1 // ADC Interrupt 1 Flag. Reading these flags indicates if the associated ADCINT pulse was generated since the last clear
-	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
-	PieCtrlRegs.PIEACK.all = PIEACK_GROUP1; // Acknowledge interrupt to PIE
+	AdcaRegs.ADCINTFLGCLR.bit.ADCINT2 = 1; // Clears respective flag bit in the ADCINTFLG register
+	PieCtrlRegs.PIEACK.all = PIEACK_GROUP10; // Acknowledge interrupt to PIE
 
 	//GpioDataRegs.GPCCLEAR.bit.GPIO93 = 1;
 
@@ -918,11 +937,19 @@ void Setup_ADC(void) {
 	AdcdRegs.ADCBURSTCTL.bit.BURSTEN = 0;   // Burst mode is disabled
 
 	AdcaRegs.ADCINTSEL1N2.all = 0x00; // ADC Interrupt 1 and 2 Selection Register
-	AdcaRegs.ADCINTSEL1N2.bit.INT1CONT = 0; // No further ADCINT1 pulses are generated until ADCINT1 flag (in ADCINTFLG register) is cleared by user
-	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;    // ADCINT1 is enabled
-	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 0;  // ? EOC0 is trigger for ADCINT1
-	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
+	AdcaRegs.ADCINTSEL1N2.bit.INT2CONT = 0; // No further ADCINT1 pulses are generated until ADCINT1 flag (in ADCINTFLG register) is cleared by user
+	AdcaRegs.ADCINTSEL1N2.bit.INT2E = 1;    // ADCINT1 is enabled
+	AdcaRegs.ADCINTSEL1N2.bit.INT2SEL = 0;  // ? EOC0 is trigger for ADCINT1
+	AdcaRegs.ADCINTFLGCLR.bit.ADCINT2 = 1; // Clears respective flag bit in the ADCINTFLG register
 	AdcaRegs.ADCINTSEL3N4.all = 0x00; // ADC Interrupt 3 and 4 Selection Register
+
+	/*hakansrc*/
+    AdccRegs.ADCINTSEL1N2.all = 0x00; // ADC Interrupt 1 and 2 Selection Register
+    AdccRegs.ADCINTSEL1N2.bit.INT1CONT = 0; // No further ADCINT2 pulses are generated until ADCINT2 flag (in ADCINTFLG register) is cleared by user
+    AdccRegs.ADCINTSEL1N2.bit.INT1E = 1;    // ADCINT2 is enabled
+    AdccRegs.ADCINTSEL1N2.bit.INT1SEL = 3;  // ? EOC3 is trigger for ADCINT1
+    AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
+    AdccRegs.ADCINTSEL3N4.all = 0x00; // ADC Interrupt 3 and 4 Selection Register
 
 	AdcaRegs.ADCSOCPRICTL.all = 0x00;       // ADC SOC Priority Control Register
 	AdcaRegs.ADCSOCPRICTL.bit.SOCPRIORITY = 0; // SOC priority is handled in round robin mode for all channels
@@ -966,7 +993,7 @@ void Setup_ADC(void) {
 	// Temp Sensor
 	AnalogSubsysRegs.TSNSCTL.bit.ENABLE = 1; // Temperature Sensor Enable
 	AdcaRegs.ADCSOC13CTL.all = 0x0000;    // ADC SOC13 Control Register
-	AdcaRegs.ADCSOC13CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdcaRegs.ADCSOC13CTL.bit.TRIGSEL = 7; // (7) ADCTRIG5 - ePWM2, ADCSOCA
 	AdcaRegs.ADCSOC13CTL.bit.CHSEL = 13;   // Single-ended ADCIN13
 	AdcaRegs.ADCSOC13CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
 
@@ -1044,7 +1071,7 @@ void Setup_ADC(void) {
 	AdccRegs.ADCSOC2CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
 	// Is_M1_PhC_adc
 	AdccRegs.ADCSOC3CTL.all = 0x0000;    // ADC SOC3 Control Register
-	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 7; // ADCTRIG5 - ePWM2, ADCSOCA
+	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 2; // ADCTRIG5 - ePWM2, ADCSOCA
 	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;   // Single-ended ADCINC3
 	AdccRegs.ADCSOC3CTL.bit.ACQPS = 30; // Sample window is 1 system clock cycle wide
 	// Is_M1_PhB_adc
@@ -1113,8 +1140,8 @@ void Setup_EQEP(void) {
 
 	// Quadrature Decoder Unit (QDU) Registers
 	EQep1Regs.QDECCTL.all = 0x00;     // Quadrature Decoder Control
-	EQep1Regs.QDECCTL.bit.QSRC = 0; // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
-	// hakansrc QSRC=2 girmis
+	EQep1Regs.QDECCTL.bit.QSRC = 2; // Position-counter source selection: Quadrature count mode (QCLK = iCLK, QDIR = iDIR)
+	// hakansrc QSRC=2 girmis -- "0"
 	EQep1Regs.QDECCTL.bit.SOEN = 0;   // Disable position-compare sync output
 	EQep1Regs.QDECCTL.bit.SPSEL = 1; // Strobe pin is used for sync output: Don't care
 	EQep1Regs.QDECCTL.bit.XCR = 0; // External Clock Rate: 2x resolution: Count the rising/falling edge
@@ -1285,6 +1312,7 @@ void InitEpwm2(void) {
 	EPwm2Regs.DBFED = dead_time / sysclk_period;
 	EPwm2Regs.DBRED = dead_time / sysclk_period;
 	EPwm2Regs.DBCTL2.all = 0x00;
+
 
 	EPwm2Regs.ETSEL.all = 0x00;
 	EPwm2Regs.ETSEL.bit.SOCAEN = 1;  // Enable SOCA generation
@@ -1685,70 +1713,4 @@ void InitEpwm12(void) {
 	EPwm12Regs.ETSEL.all = 0x00;
 
 }
-#if VBYFCONTROLENABLE
-void VBYFSetup(void)
-{
-	/*WARNING: call this function before initializing interrupts*/
-	/*fMotorFundamentalFrequency&fAmplitudeModulationIndex are updated inside the GPIO interrupt service routines(isr_Increment_freq,isr_Decrement_freq)
-	and those values are applied to the motor when spwm_counter is set to zero (i.e. when the fundamental sinusoidal at 0 degree)*/
-	fFundamentalFrequencyToBeApplied = fFrequencyInitial;
-	VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied * (fVrated / fFrequencySaturation) * (sqrt(3) / (fVdc * 0.612));
-	fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
-	fAmplitudeModulationIndex =	VbyF_ma_ToBeApplied;
-	EALLOW;
-	GpioCtrlRegs.GPBGMUX1.bit.GPIO32 = 0;
-	GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;
-	GpioCtrlRegs.GPBDIR.bit.GPIO32 = 0; // GPIO32 = input /*BUTTON for frequency increment*/
-	PieVectTable.XINT1_INT = &isr_Increment_freq;
-	XintRegs.XINT1CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
-	XintRegs.XINT1CR.bit.POLARITY = 1; /*rising edge trigger*/
-	GPIO_SetupXINT1Gpio(32);		   /*set GPIO32 as the source of the trigger*/
-	EDIS;
-	/*hakansrc: WARNING -- donot merge these EDIS and EALLOW*/
-	EALLOW;
-	GpioCtrlRegs.GPAGMUX2.bit.GPIO19 = 0;
-	GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 0;
-	GpioCtrlRegs.GPADIR.bit.GPIO19 = 0; // GPIO19 = input /*BUTTON for frequency decrement*/
-	PieVectTable.XINT2_INT = &isr_Decrement_freq;
-	XintRegs.XINT2CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
-	XintRegs.XINT2CR.bit.POLARITY = 1; /*rising edge trigger*/
-	GPIO_SetupXINT2Gpio(19);		   /*set GPIO32 as the source of the trigger*/
-	EDIS;
 
-	/**/
-}
-__interrupt void isr_Increment_freq(void) /*ISR for increment*/
-{
-    //Xint1Count++;
-    if((fFundamentalFrequencyToBeApplied+fVbyfFreqSteps)>fFrequencySaturation)
-    {
-        fFundamentalFrequencyToBeApplied = fFrequencySaturation;
-    }
-    else
-    {
-        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied + fVbyfFreqSteps;
-    }
-    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
-
-
-    // Acknowledge this interrupt to get more from group 1
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
-}
-__interrupt void isr_Decrement_freq(void)  /*ISR for decrement*/
-{
-    //Xint2Count++;
-    if((fFundamentalFrequencyToBeApplied-fVbyfFreqSteps)<fFrequencyInitial)
-    {
-        fFundamentalFrequencyToBeApplied = fFrequencyInitial;
-    }
-    else
-    {
-        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied - fVbyfFreqSteps;
-
-    }
-    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
-
-    // Acknowledge this interrupt to get more from group 1
-    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
-}
-#endif
