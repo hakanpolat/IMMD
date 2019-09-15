@@ -14,7 +14,7 @@ Eğer daha düşük RPM değerlerinde hız ölçümü yapılmak isteniyorsa CCPS
 ![](table4.PNG)
 
 ## Test rutini
-Enkoderin yapısını test eden bir rutin oluşturuldu. Enkoder yapıları PWM waveformlarıyla taklit edilerek gerekli hız değerlerine ulaşıp ulaşılamadığı ve ne hassasiyette&sıklıkta hız hesabı yapılabildiği gözlemlenmeye çalışıldı. Hız ve pozisyon hesapları 25µslik bir PWM ISR'ı içerisinde yapıldı.
+Enkoderin yapısını test eden bir rutin oluşturuldu. Enkoder yapıları PWM waveformlarıyla taklit edilerek gerekli hız değerlerine ulaşıp ulaşılamadığı ve ne hassasiyette&sıklıkta hız hesabı yapılabildiği gözlemlenmeye çalışıldı. Hız ve pozisyon hesapları 40µslik bir PWM ISR'ı içerisinde yapıldı.
 
 Oluşturulan rutinle, PWMler 4000 pulse'lık bir enkoderi simule edecek şekilde ayarlandı. hız ölçümleri geniş bir aralıkta yapıldı. Sonuçlar aşağıdaki tabloda sağlanmıştır. 
 ![](table1.PNG)
