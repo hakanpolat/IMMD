@@ -292,7 +292,7 @@ int main(void)
     WdRegs.WDCR.all = 0x0028; //set the watch dog
     EDIS;
 
-    // Module-1 Enable larýn setleri
+    // Module-1 Enable larï¿½n setleri
     GpioDataRegs.GPCSET.bit.GPIO94 = 1;
     GpioDataRegs.GPCSET.bit.GPIO93 = 1;
     GpioDataRegs.GPCSET.bit.GPIO92 = 1;
@@ -649,9 +649,9 @@ __interrupt void adc1_isr(void)
     if (EQep1Regs.QEPSTS.bit.UPEVNT == 1)
     {
         fAngularMechanicalSpeed = 1.0
-                * (((float32) CLOCKHZ / (float32) 64.0)
-                        / (float32) EQep1Regs.QCPRDLAT) * (float32) 2
-                * (float32) PI;/*TODO; parameterize the values,uiUpEventTickValue comes from UPPS value = 16 for now,128 comes from ccps value*/
+                * (((float32) CLOCKHZ / (float32) 1.0)
+                        / (float32) EQep1Regs.QCPRD) * (float32) 2
+                * (float32) PI;/*TODO; parameterize the values,uiUpEventTickValue comes from UPPS value = 1 for now,1 comes from ccps value*/
         fAngularMechanicalSpeed = fAngularMechanicalSpeed
                 / (float32) (ENCODERMAXTICKCOUNT);
         fAngularMechanicalSpeedRPM = fAngularMechanicalSpeed * (float32) 60
@@ -1274,7 +1274,7 @@ void Setup_EQEP(void)
     // Quadrature edge-capture unit for low-speed measurement (QCAP)
     EQep1Regs.QCAPCTL.all = 0x00;
     EQep1Regs.QCAPCTL.bit.CEN = 1;    // eQEP capture unit is enabled
-    EQep1Regs.QCAPCTL.bit.CCPS = 6; // eQEP capture timer clock prescaler: // CAPCLK = SYSCLKOUT/64
+    EQep1Regs.QCAPCTL.bit.CCPS = 0; // eQEP capture timer clock prescaler: // CAPCLK = SYSCLKOUT/1
     EQep1Regs.QCAPCTL.bit.UPPS = 0; // Unit position event prescaler: UPEVNT = QCLK/1 , QCLK is triggered in every rising or falling edge of A or B
     // UPPS reiz veri important
 
