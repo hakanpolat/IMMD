@@ -638,6 +638,7 @@ __interrupt void epwm1_isr(void)
     EPwm12Regs.CMPA.half.CMPA = EPwm12Regs.TBPRD * epwm12_dutycycle; // Module-4 Phase-C PWM (ePWM12)
 
     // temporary
+    /*hakansrc: TODO, modify this*/
     EPwm9Regs.CMPA.half.CMPA = EPwm9Regs.TBPRD * epwm7_dutycycle; // Module-3 Phase-C PWM (ePWM9)
 
     //
@@ -694,6 +695,7 @@ __interrupt void cpu_timer1_isr(void)
 __interrupt void adc1_isr(void)
 {
     //GpioDataRegs.GPCSET.bit.GPIO93 = 1;
+    /*hakansrc: TODO, modify this*/
     GpioDataRegs.GPCSET.bit.GPIO75 = 1;
     fAngularMechanicalPosition = ((float32) EQep1Regs.QPOSCNT
             / (ENCODERMAXTICKCOUNT)) * 360; // mech-degrees
@@ -730,6 +732,7 @@ __interrupt void adc1_isr(void)
     counter_measurement++;
     Is_M1_PhC_adc += AdccResultRegs.ADCRESULT3;
     //DELAY_US(1);
+    /*hakansrc: TODO, modify this*/
     GpioDataRegs.GPCCLEAR.bit.GPIO75 = 1;
 
     AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1; // Clears respective flag bit in the ADCINTFLG register
@@ -739,6 +742,7 @@ __interrupt void adc1_isr(void)
 
 __interrupt void adc2_isr(void)
 {
+    /*hakansrc: TODO, modify this*/
     GpioDataRegs.GPCSET.bit.GPIO76 = 1;
 
     // Get position and speed
@@ -993,7 +997,7 @@ __interrupt void adc2_isr(void)
     //DELAY_US(1);
 
 
-
+    /*hakansrc: TODO, modify this*/
     GpioDataRegs.GPCCLEAR.bit.GPIO76 = 1;
 
     //AdcaRegs.ADCINTFLG.bit.ADCINT1 // ADC Interrupt 1 Flag. Reading these flags indicates if the associated ADCINT pulse was generated since the last clear
@@ -1007,6 +1011,7 @@ __interrupt void adc2_isr(void)
 // designed by hakansrc
 void PositionSpeedCalculate(void)
 {
+    /*TODO this part is unused for now, the speed is calculated at adc1_isr*/
     /*TODO cover up the reverse direction case*/
     fAngularMechanicalPosition = ((float32) EQep1Regs.QPOSCNT
             / (ENCODERMAXTICKCOUNT)) * 360; // mech-radians
@@ -1037,6 +1042,7 @@ void PositionSpeedCalculate(void)
      }
      } else
      */
+    /*hakansrc: TODO, modify this, unnecessary part*/
     if (uiHighSpeedFlag == LOWSPEED)
     {
         if (EQep1Regs.QEPSTS.bit.UPEVNT == 1)
