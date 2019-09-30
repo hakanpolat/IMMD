@@ -14,8 +14,8 @@
 #define sqrt3 				1,7321
 #define sysclk_frequency 	200000000	// Hz
 #define sysclk_period 		5				// ns
-#define motor_frequency 	50			// Hz
-#define switching_frequency 40000	// Hz
+#define motor_frequency 50                  // Hz			/*need to define this as constant value rather than macro, for control loop*/
+#define switching_frequency 40000           // Hz
 #define max_adc_digital 	4095
 #define max_adc_analog 		3   			// volt
 #define dead_time 			100	 			// ns
@@ -28,6 +28,7 @@
 #define NUMBEROFTICKSPERQAB 4
 #define ENCODERMAXTICKCOUNT (ENCODERRESOLUTION*NUMBEROFTICKSPERQAB-1)
 #define NUMBEROFPOLEPAIRS	10
+#define VBYFCONTROLENABLE 	1		/*set this zero to disable vbyfcontrol part*/
 
 extern void InitSysCtrl(void);
 extern void InitPieCtrl(void);
@@ -64,7 +65,11 @@ __interrupt void cpu_timer2_isr(void);
 __interrupt void epwm1_isr(void);
 __interrupt void adc1_isr(void);
 __interrupt void adc2_isr(void);
-
+#if VBYFCONTROLENABLE
+__interrupt void isr_Increment_freq(void);
+__interrupt void isr_Decrement_freq(void);
+void VBYFSetup(void);
+#endif
 //float out_buffer1[400]; // Buffer for graph-1
 //float out_buffer2[400]; // Buffer for graph-2
 //const short BUFFERLENGTH = 400; // Size of buffer
@@ -187,6 +192,22 @@ float Vout_M1_PhA;
 float Vout_M1_PhB;
 float Vout_M1_PhC;
 
+#if VBYFCONTROLENABLE /*hakansrc added*/
+float32 fVbyfFreqSteps = 5;	   //hz, each push on the button will increase the fundamental frequency by that value
+float32 fFrequencySaturation = 50; //hz, max value for fundamental frequency
+float32 fVrated = 230.1;		   //Vrms, ma value is calculated depending on this value when there is a change in frequency
+float32 fFrequencyInitial = 5;	//hz, initial frequency value
+float32 fFundamentalFrequencyToBeApplied = 0;	 //hz, this is the applied frequency to the motor when the motor voltage waveform crosses zero
+float32 VbyF_ma_ToBeApplied = 0;
+float32 fVdc = 750;
+
+float32 fMotorFundamentalFrequency	= 0;	/*this will be updated when zero cross occurs*/
+float32 fAmplitudeModulationIndex 	= 0;	/*this will be updated when zero cross occurs*/
+Uint16 uiAzaltFlag=0;
+Uint16 uiArtirFlag=0;
+
+#endif
+
 PICONTROLLER picontroller_Vdc_M1 = PICONTROLLER_DEFAULTS;
 CLARKETRANSFORM clarke_Is_M1 = CLARKETRANSFORM_DEFAULTS;
 INVERSECLARKETRANSFORM inverseclarke_Vout_M1 = INVERSECLARKETRANSFORM_DEFAULTS;
@@ -243,7 +264,7 @@ int main(void)
     //InitECapModules();
     InitCpuTimers();   // For this example, only initialize the Cpu Timers
     ConfigCpuTimer(&CpuTimer0, 200, 250); //0.5 miliseconds (1 kHz square wave)
-    ConfigCpuTimer(&CpuTimer1, 200, 200000 / (switching_frequency)); //2 seconds
+    ConfigCpuTimer(&CpuTimer1, 200, 2000000); //2 seconds
     ConfigCpuTimer(&CpuTimer2, 200, 1000000); //2 seconds
 
     InitEpwm1();
@@ -262,7 +283,9 @@ int main(void)
     //InitAdc();
     Setup_ADC();
     Setup_EQEP();
-
+	#if VBYFCONTROLENABLE
+	VBYFSetup();
+	#endif
     InitTempSensor(vrefhi_voltage);
 
     //CpuTimer0Regs.PRD.all = 0xFFFFFFFF;
@@ -279,7 +302,8 @@ int main(void)
     PieCtrlRegs.PIEIER3.bit.INTx1 = 1; // EPWM1
     PieCtrlRegs.PIEIER1.bit.INTx3 = 1; // ADCA1
     PieCtrlRegs.PIEIER10.bit.INTx2 = 1; // ADCA2
-
+    PieCtrlRegs.PIEIER1.bit.INTx4 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT1_ISR enabling*/
+    PieCtrlRegs.PIEIER1.bit.INTx5 = VBYFCONTROLENABLE;   /*VBYFCONTROLENABLE: used for XINT2_ISR enabling*/
     //PieCtrlRegs.PIEIER4.bit.INTx4 = 1;//enable interrupt for ecap4
 
     EINT;
@@ -627,13 +651,42 @@ __interrupt void epwm1_isr(void)
 
 __interrupt void cpu_timer1_isr(void)
 {
-    // Module-4-A Enables
-    GpioDataRegs.GPCSET.bit.GPIO74 = 1;
+	CpuTimer1.InterruptCount++;
+	// The CPU acknowledges the interrupt.
+	// GpioDataRegs.GPBTOGGLE.bit.GPIO34 = 1;
+    //Xint1Count++;
+    #if VBYFCONTROLENABLE
+	if(uiArtirFlag)
+	{
+	    if((fFundamentalFrequencyToBeApplied+fVbyfFreqSteps)>fFrequencySaturation)
+	    {
+	        fFundamentalFrequencyToBeApplied = fFrequencySaturation;
+	    }
+	    else
+	    {
+	        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied + fVbyfFreqSteps;
+	    }
+	    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+	    GpioDataRegs.GPASET.bit.GPIO18 = 1;
 
-    //DELAY_US(1);
+	}
+	if(uiAzaltFlag)
+	{
 
-    GpioDataRegs.GPCCLEAR.bit.GPIO74 = 1;
+	    if((fFundamentalFrequencyToBeApplied-fVbyfFreqSteps)<fFrequencyInitial)
+	    {
+	        fFundamentalFrequencyToBeApplied = fFrequencyInitial;
+	    }
+	    else
+	    {
+	        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied - fVbyfFreqSteps;
 
+	    }
+	    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+	    GpioDataRegs.GPASET.bit.GPIO18 = 1;
+
+	}
+    #endif
     PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
 
 }
@@ -884,22 +937,41 @@ __interrupt void adc2_isr(void)
     Vout_M1_PhB = inverseclarke_Vout_M1.vb;
     Vout_M1_PhC = inverseclarke_Vout_M1.vc;
 
-    // sinusoidal PWM
-    //ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
-    ModulationIndex_M1 = ModulationIndex_Default;
-    epwm8_dutycycle = (ModulationIndex_M1
-            * sin(2 * PI * motor_frequency * spwm_counter / switching_frequency)
-            + 1) / 2;
-    epwm7_dutycycle = (ModulationIndex_M1
-            * sin(2 * PI * motor_frequency * spwm_counter / switching_frequency
-                    - 2 * PI / 3) + 1) / 2;
-    epwm6_dutycycle = (ModulationIndex_M1
-            * sin(2 * PI * motor_frequency * spwm_counter / switching_frequency
-                    + 2 * PI / 3) + 1) / 2;
+#if !VBYFCONTROLENABLE /*hakansrc: following is the default condition*/
 
-    spwm_counter += 1;
-    if (spwm_counter > ((switching_frequency / motor_frequency) - 1))
-        spwm_counter = 0;
+	// sinusoidal PWM
+	//ModulationIndex_M1 = Vout_M1_set*sqrt3/(0.612*Vdc_set);
+	ModulationIndex_M1 = ModulationIndex_Default;
+	epwm8_dutycycle = (ModulationIndex_M1
+			* sin(2 * PI * motor_frequency * spwm_counter / switching_frequency)
+			+ 1) / 2;
+	epwm7_dutycycle = (ModulationIndex_M1
+			* sin(
+					2 * PI * motor_frequency * spwm_counter
+							/ switching_frequency - 2 * PI / 3) + 1) / 2;
+	epwm6_dutycycle = (ModulationIndex_M1
+			* sin(
+					2 * PI * motor_frequency * spwm_counter
+							/ switching_frequency + 2 * PI / 3) + 1) / 2;
+
+	spwm_counter += 1;
+	if (spwm_counter > ((switching_frequency / motor_frequency) - 1))
+		spwm_counter = 0;
+#else
+	spwm_counter += 1;
+	if (spwm_counter > ((switching_frequency / fMotorFundamentalFrequency) - 1))
+	{
+		fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
+		fAmplitudeModulationIndex = VbyF_ma_ToBeApplied;
+		spwm_counter = 0;
+	    GpioDataRegs.GPACLEAR.bit.GPIO18 = 1;
+
+	}
+
+	epwm8_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency)+1)/2;
+	epwm7_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency-2*PI/3)+1)/2;
+	epwm6_dutycycle = (fAmplitudeModulationIndex*sin(2*PI*fMotorFundamentalFrequency*spwm_counter/switching_frequency+2*PI/3)+1)/2;
+#endif
 
     /*
      epwm1_dutycycle;// Module-4 Phase-A PWM (ePWM1)
@@ -1826,3 +1898,75 @@ void InitEpwm12(void)
 
 }
 
+#if VBYFCONTROLENABLE
+void VBYFSetup(void)
+{
+    /*WARNING: call this function before initializing interrupts*/
+    /*fMotorFundamentalFrequency&fAmplitudeModulationIndex are updated inside the GPIO interrupt service routines(isr_Increment_freq,isr_Decrement_freq)
+	and those values are applied to the motor when spwm_counter is set to zero (i.e. when the fundamental sinusoidal at 0 degree)*/
+    fFundamentalFrequencyToBeApplied = fFrequencyInitial;
+    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied * (fVrated / fFrequencySaturation) * (sqrt(3) / (fVdc * 0.612));
+    fMotorFundamentalFrequency = fFundamentalFrequencyToBeApplied;
+    fAmplitudeModulationIndex = VbyF_ma_ToBeApplied;
+    EALLOW;
+    GpioCtrlRegs.GPBGMUX1.bit.GPIO32 = 0;
+    GpioCtrlRegs.GPBMUX1.bit.GPIO32 = 0;
+    GpioCtrlRegs.GPBDIR.bit.GPIO32 = 0; // GPIO32 = input /*BUTTON for frequency increment*/
+    PieVectTable.XINT1_INT = &isr_Increment_freq;
+    XintRegs.XINT1CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
+    XintRegs.XINT1CR.bit.POLARITY = 1; /*rising edge trigger*/
+    GPIO_SetupXINT1Gpio(32);           /*set GPIO32 as the source of the trigger*/
+    EDIS;
+    /*hakansrc: WARNING -- donot merge these EDIS and EALLOW*/
+    EALLOW;
+    GpioCtrlRegs.GPAGMUX2.bit.GPIO19 = 0;
+    GpioCtrlRegs.GPAMUX2.bit.GPIO19 = 0;
+    GpioCtrlRegs.GPADIR.bit.GPIO19 = 0; // GPIO19 = input /*BUTTON for frequency decrement*/
+    PieVectTable.XINT2_INT = &isr_Decrement_freq;
+    XintRegs.XINT2CR.bit.ENABLE = 1;   /*enable XINT interrupt*/
+    XintRegs.XINT2CR.bit.POLARITY = 1; /*rising edge trigger*/
+    GPIO_SetupXINT2Gpio(19);           /*set GPIO19 as the source of the trigger*/
+    EDIS;
+
+    /**/
+}
+__interrupt void isr_Increment_freq(void) /*ISR for increment*/
+{
+    //Xint1Count++;
+    /*
+    if((fFundamentalFrequencyToBeApplied+fVbyfFreqSteps)>fFrequencySaturation)
+    {
+        fFundamentalFrequencyToBeApplied = fFrequencySaturation;
+    }
+    else
+    {
+        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied + fVbyfFreqSteps;
+    }
+    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+     */
+    uiArtirFlag = 1;
+    uiAzaltFlag = 0;
+    // Acknowledge this interrupt to get more from group 1
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+}
+__interrupt void isr_Decrement_freq(void) /*ISR for decrement*/
+{
+    //Xint2Count++;
+    /*
+    if((fFundamentalFrequencyToBeApplied-fVbyfFreqSteps)<fFrequencyInitial)
+    {
+        fFundamentalFrequencyToBeApplied = fFrequencyInitial;
+    }
+    else
+    {
+        fFundamentalFrequencyToBeApplied = fFundamentalFrequencyToBeApplied - fVbyfFreqSteps;
+
+    }
+    VbyF_ma_ToBeApplied = fFundamentalFrequencyToBeApplied*(fVrated/fFrequencySaturation)*(sqrt(3)/(fVdc*0.612));
+*/
+    uiArtirFlag = 0;
+    uiAzaltFlag = 1;
+    // Acknowledge this interrupt to get more from group 1
+    PieCtrlRegs.PIEACK.all = PIEACK_GROUP1;
+}
+#endif
