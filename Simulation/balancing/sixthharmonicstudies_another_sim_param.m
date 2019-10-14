@@ -3,7 +3,7 @@ Tfinal = 0.2; % sec
 Ripth = 0.18; % sec
 fsw = 10e3; % Hz
 Vdc = 270; % Volts
-fout = 50; % Hz
+fout = 150; % Hz
 wout = 2*pi*fout; % rad/sec
 m = 3;
 np = 1;
@@ -11,7 +11,7 @@ ns = 1;
 n = ns*np;
 phase = [0 90 0 90];
 Cdc = 15e-6;
-delta = 0; % rad
+delta = pi/2+pi/6; % rad
 
 % calculate nominal values
 Pmodt = 2e3;
@@ -27,19 +27,19 @@ Rnom = Znom*pft;
 Xnom = sqrt(Znom^2-Rnom^2);
 Lnom = Xnom/(2*pi*fout);
 
-Lload_1A = Lnom*1.00*3*2; % Henries
-Lload_1B = Lnom*1.00*3*2; % Henries
-Lload_1C = Lnom*1.00*3*2; % Henries
-Rload_1A = Rnom*1.00*3*2; % Ohms
-Rload_1B = Rnom*1.00*3*2; % Ohms
-Rload_1C = Rnom*1.00*3*2; % Ohms
+Lload_1A = Lnom*1.00; % Henries
+Lload_1B = Lnom*1.00; % Henries
+Lload_1C = Lnom*1.00; % Henries
+Rload_1A = Rnom*1.00; % Ohms
+Rload_1B = Rnom*2.5; % Ohms
+Rload_1C = Rnom*2.5; % Ohms
 
-Lload_2A = Lnom*1.00; % Henries
-Lload_2B = Lnom*1.00; % Henries
-Lload_2C = Lnom*1.00; % Henries
-Rload_2A = Rnom*1.00; % Ohms
-Rload_2B = Rnom*1.00; % Ohms
-Rload_2C = Rnom*1.00; % Ohms
+% Lload_2A = Lnom*1.00; % Henries
+% Lload_2B = Lnom*1.00; % Henries
+% Lload_2C = Lnom*1.00; % Henries
+% Rload_2A = Rnom*1.00; % Ohms
+% Rload_2B = Rnom*1.00; % Ohms
+% Rload_2C = Rnom*1.00; % Ohms
 
 X1A = 2*pi*fout*Lload_1A; % Ohm
 X1B = 2*pi*fout*Lload_1B; % Ohm
@@ -67,48 +67,13 @@ ma1 = 0.9;
 Pout = Pmodt;
 Rin = 10;
 Rmid = 0.1;
-Lmid = 1e-3;
 Cdcrec = 4e-3;
-ESLrec = 100e-9;
-ESRrec = 10e-3;
 Vin = Vdc + (Rin+Rmid)*(Pout/Vdc);
 
 GridFreq = 50;
-GridPhase = 15;
-Vacrms = 120;
+Vacrms = 115;
 Voutdcrec = Vacrms*sqrt(2)*sqrt(3);
 Poutrec = Pmodt;
 Ioutrec = Poutrec/Voutdcrec;
 Rloadrec = Voutdcrec/Ioutrec;
-
-% 3rd harmonic injection
-ma_third = 0.5;
-f_third = 150;
-delta_third = 0*pi/180;
-
-
-%% Some trials
-SA_ma1 = 0.9;
-SA_f1 = 150;
-SA_delta1 = 0*pi/180;
-SA_ma3 = 0.2;
-SA_f3 = 150;
-SA_delta3 = 0*pi/180;
-SB_delta3 = 0*pi/180;
-SC_delta3 = 0*pi/180;
-Is1_f = 150;
-Is3_f = 150;
-third = 1;
-Isa1 = 5;
-Isa3 = third;
-Isb1 = 5;
-Isb3 = third;
-Isc1 = 5;
-Isc3 = third;
-Isa1_delta = 0*pi/180;
-Isb1_delta = -120*pi/180;
-Isc1_delta = 120*pi/180;
-Isa3_delta = 0*pi/180;
-Isb3_delta = 0*pi/180;
-Isc3_delta = 0*pi/180;
 
