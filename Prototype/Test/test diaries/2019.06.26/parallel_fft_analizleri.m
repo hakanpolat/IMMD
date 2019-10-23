@@ -85,12 +85,13 @@ sim('for_fft_parallel.slx');
 
 %% Adjust FFT parameters
 
-fft_cycle = 14;
+fft_cycle = 2;
 fft_start = 0;
 fft_fund = 50;
 fft_maxfreq = 200000;
 fft_THDmaxfreq = 200000;
-n_harmonic=20;
+h_level=0.02;
+% n_harmonic=20;
 
 %% Idc - Module 1 - No int
 
@@ -204,7 +205,7 @@ set(gca,'FontSize',14);
 xlabel('Frequency (Hertz)','FontSize',14,'FontWeight','Bold')
 ylabel('FFT of Module Currents (Amper)','FontSize',14,'FontWeight','Bold')
 % xlim([0 1000]);
-ylim([0 0.6]);
+% ylim([0 0.6]);
 grid on
 L1=sprintf('Mod 1 - No Interleaving - Idc = %.3f A ',max(Idc1_noint_200v_forfft_FFTDATA.mag));
 L2=sprintf('Mod 1 - Yes Interleaving - Idc = %.3f A ',max(Idc1_yesint_200v_forfft_FFTDATA.mag));
@@ -252,7 +253,64 @@ legend(L7,L8,L9,L10);
 title('Sum and Difference of the Module Currents- Parallel - 200V - 200 kHz ');
 
 
-% %% Harmonic Analysis
+%% Harmonic Analysis
+
+mp_Idc1_noint_200v=[Idc1_noint_200v_forfft_FFTDATA.freq Idc1_noint_200v_forfft_FFTDATA.mag Idc1_noint_200v_forfft_FFTDATA.phase ];
+mp_Idc1_yesint_200v=[Idc1_yesint_200v_forfft_FFTDATA.freq Idc1_yesint_200v_forfft_FFTDATA.mag Idc1_yesint_200v_forfft_FFTDATA.phase ];
+mp_Idc2_noint_200v=[Idc2_noint_200v_forfft_FFTDATA.freq Idc2_noint_200v_forfft_FFTDATA.mag Idc2_noint_200v_forfft_FFTDATA.phase ];
+mp_Idc2_yesint_200v=[Idc2_yesint_200v_forfft_FFTDATA.freq Idc2_yesint_200v_forfft_FFTDATA.mag Idc2_yesint_200v_forfft_FFTDATA.phase ];
+mp_Isum_noint_200v=[Isum_noint_200v_forfft_FFTDATA.freq Isum_noint_200v_forfft_FFTDATA.mag Isum_noint_200v_forfft_FFTDATA.phase ];
+mp_Isum_yesint_200v=[Isum_yesint_200v_forfft_FFTDATA.freq Isum_yesint_200v_forfft_FFTDATA.mag Isum_yesint_200v_forfft_FFTDATA.phase ];
+mp_Idif_noint_200v=[Idif_noint_200v_forfft_FFTDATA.freq Idif_noint_200v_forfft_FFTDATA.mag Idif_noint_200v_forfft_FFTDATA.phase ];
+mp_Idif_yesint_200v=[Idif_yesint_200v_forfft_FFTDATA.freq Idif_yesint_200v_forfft_FFTDATA.mag Idif_yesint_200v_forfft_FFTDATA.phase ];
+mp_Vdc_noint_200v=[Vdc_noint_200v_forfft_FFTDATA.freq Vdc_noint_200v_forfft_FFTDATA.mag Vdc_noint_200v_forfft_FFTDATA.phase ];
+mp_Vdc_yesint_200v=[Vdc_yesint_200v_forfft_FFTDATA.freq Vdc_yesint_200v_forfft_FFTDATA.mag Vdc_yesint_200v_forfft_FFTDATA.phase ];
+
+num = size(mp_Idc1_noint_200v);
+i=1;
+
+for k = 1:num(1)
+    if (mp_Idc1_noint_200v(k,2) >= h_level*max(mp_Idc1_noint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Idc1_yesint_200v(k,2) >= h_level*max(mp_Idc1_yesint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Idc2_noint_200v(k,2) >= h_level*max(mp_Idc2_noint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Idc2_yesint_200v(k,2) >= h_level*max(mp_Idc2_yesint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Isum_noint_200v(k,2) >= h_level*max(mp_Isum_noint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Isum_yesint_200v(k,2) >= h_level*max(mp_Isum_yesint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Idif_noint_200v(k,2) >= h_level*max(mp_Idif_noint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Idif_yesint_200v(k,2) >= h_level*max(mp_Idif_yesint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Vdc_noint_200v(k,2) >= h_level*max(mp_Vdc_noint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    elseif  (mp_Vdc_yesint_200v(k,2) >= h_level*max(mp_Vdc_yesint_200v(:,2)))
+        a(i,:)=[mp_Idc1_noint_200v(k,:) mp_Idc1_yesint_200v(k,:) mp_Idc2_noint_200v(k,:) mp_Idc2_yesint_200v(k,:) mp_Isum_noint_200v(k,:) mp_Isum_yesint_200v(k,:) mp_Idif_noint_200v(k,:) mp_Idif_yesint_200v(k,:) mp_Vdc_noint_200v(k,:) mp_Vdc_yesint_200v(k,:)];
+        i=i+1;
+    end
+end
+
+%% Exporting as .xlsx file
+
+C=[{{},'Idc1_noint_200v',{},{},'Idc1_yesint_200v',{},{},'Idc2_noint_200v',{},{},'Idc2_yesint_200v',{},{},'Isum_noint_200v',{},{},'Isum_yesint_200v',{},{},'Idif_noint_200v',{},{},'Idif_yesint_200v',{},{},'Vdc_noint_200v',{},{},'Vdc_yesint_200v',{};'Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase',};num2cell(a)];
+T=cell2table(C);
+filename = 'harmonicse.xlsx';
+writetable(T,filename);
+
+%%
 % %Idc - Module 1 - No int
 % 
 % mp_Idc1_noint_200v=[Idc1_noint_200v_forfft_FFTDATA.freq Idc1_noint_200v_forfft_FFTDATA.mag Idc1_noint_200v_forfft_FFTDATA.phase ];
@@ -332,8 +390,6 @@ title('Sum and Difference of the Module Currents- Parallel - 200V - 200 kHz ');
 % H_Idif_yesint_200v=Idif_yesint_200v_forfft_FFTDATA.phase(I_Idif_yesint_200v);
 % I_Idif_yesint_200v=(I_Idif_yesint_200v-1)*Idif_yesint_200v_forfft_FFTDATA.freq(2);
 % harmonics_Idif_yesint_200v=[I_Idif_yesint_200v(1:n_harmonic) B_Idif_yesint_200v(1:n_harmonic) H_Idif_yesint_200v(1:n_harmonic)];
-% 
-% %% Exporting as .xlsx file
 % 
 % harm=[harmonics_Idc1_noint_200v, harmonics_Idc1_yesint_200v, harmonics_Idc2_noint_200v, harmonics_Idc2_yesint_200v, harmonics_Isum_noint_200v, harmonics_Isum_yesint_200v, harmonics_Idif_noint_200v, harmonics_Idif_yesint_200v, harmonics_Vdc_noint_200v, harmonics_Vdc_yesint_200v];
 % C=[{{},'Idc1_noint_200v',{},{},'Idc1_yesint_200v',{},{},'Idc2_noint_200v',{},{},'Idc2_yesint_200v',{},{},'Isum_noint_200v',{},{},'Isum_yesint_200v',{},{},'Idif_noint_200v',{},{},'Idif_yesint_200v',{},{},'Vdc_noint_200v',{},{},'Vdc_yesint_200v',{};'Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase','Frequency','Magnitude','Phase',};num2cell(harm)];
