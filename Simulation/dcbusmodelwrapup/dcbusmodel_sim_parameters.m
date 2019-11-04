@@ -396,11 +396,11 @@ delta2 = 0; % rad
 
 Pout = Pmodt*ns*np;
 Rin = 1e-3;
-Rmid = 4;
+Rmid = 1;
 Vin = Vdc + (Rin+Rmid)*(Pout/Vdc);
 
 % Rectifier parameters
-Vacrms = 113 + 26; % Volts
+Vacrms = 113 + 10; % Volts
 GridPhase = 0; % deg
 GridFreq = 50; % Hz
 Cdcrec = 1.1e-3; % Farads
