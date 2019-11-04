@@ -395,12 +395,14 @@ delta1 = 0; % rad
 delta2 = 0; % rad
 
 Pout = Pmodt*ns*np;
-Rin = 1e-3;
-Rmid = 1;
+Rin = 1e-3; % Ohms
+Rmid = 1; % Ohms
+Rmid2 = 1; % Ohms
+Lmid2 = 1e-6; % Henries
 Vin = Vdc + (Rin+Rmid)*(Pout/Vdc);
 
 % Rectifier parameters
-Vacrms = 113 + 10; % Volts
+Vacrms = 123.8; % Volts
 GridPhase = 0; % deg
 GridFreq = 50; % Hz
 Cdcrec = 1.1e-3; % Farads
